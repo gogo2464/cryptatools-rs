@@ -1,0 +1,17 @@
+[package]
+name = "cryptatools-rs"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+
+[lib]
+name = "cryptatools"
+path = "cryptatools-core/src/lib.rs"
+crate-type = ["cdylib", "rlib"]
+
+[[bin]]
+name = "cryptatanalib"
+path = "cryptatools-cli/src/main.rs"
