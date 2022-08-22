@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"mod":[["caesar_number","Encrypt with Caesar shifting encryption algorithm."]]};

@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"constant":[["ASCII_ALPHABET",""],["PRINTABLE",""],["UU_ENCODING_ALPHABET",""]]};

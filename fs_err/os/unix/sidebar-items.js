@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"mod":[["fs","Unix-specific extensions to wrappers in `fs_err` for `std::fs` types."]]};

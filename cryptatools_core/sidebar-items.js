@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"fn":[["ffi_caesar_number_d5ca_rustbuffer_alloc",""],["ffi_caesar_number_d5ca_rustbuffer_free",""],["ffi_caesar_number_d5ca_rustbuffer_from_bytes",""],["ffi_caesar_number_d5ca_rustbuffer_reserve",""]],"macro":[["uniffi_reexport_scaffolding",""]],"mod":[["cryptanalysis",""],["cryptography",""]]};

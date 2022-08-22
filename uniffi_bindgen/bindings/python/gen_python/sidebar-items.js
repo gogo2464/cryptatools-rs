@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"fn":[["generate_python_bindings",""]],"mod":[["filters",""]],"struct":[["Config",""],["CustomTypeConfig",""],["PythonCodeOracle",""],["PythonWrapper",""],["TypeRenderer","Renders Python helper code for all types"]]};

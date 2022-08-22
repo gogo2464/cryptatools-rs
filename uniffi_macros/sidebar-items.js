@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"macro":[["build_foreign_language_testcases","A macro to build testcases for a component’s generated bindings."],["generate_and_include_scaffolding","A helper macro to generate and include component scaffolding."],["include_scaffolding","A helper macro to include generated component scaffolding."]]};

@@ -1,0 +1,73 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Component Interface Definition."><meta name="keywords" content="rust, rustlang, rust-lang, interface"><title>uniffi_bindgen::interface - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc mod"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../uniffi_bindgen/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div>
+        </a><h2 class="location"></h2>
+    </nav>
+    <nav class="sidebar"><a class="sidebar-logo" href="../../uniffi_bindgen/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div>
+        </a><h2 class="location"><a href="#">Module interface</a></h2><div class="sidebar-elems"><section><div class="block"><ul><li><a href="#reexports">Re-exports</a></li><li><a href="#modules">Modules</a></li><li><a href="#structs">Structs</a></li><li><a href="#enums">Enums</a></li></ul></div></section></div></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../uniffi_bindgen/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><div id="settings-menu" tabindex="-1">
+                                <a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div>
+                        </div></form></nav></div><section id="main-content" class="content"><div class="main-heading">
+    <h1 class="fqn"><span class="in-band">Module <a href="../index.html">uniffi_bindgen</a>::<wbr><a class="mod" href="#">interface</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../../clipboard.svg" width="19" height="18" alt="Copy item path"></button></span></h1><span class="out-of-band"><a class="srclink" href="../../src/uniffi_bindgen/interface/mod.rs.html#5-992">source</a> · <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><h2 id="component-interface-definition"><a href="#component-interface-definition">Component Interface Definition.</a></h2>
+<p>This module provides an abstract representation of the interface provided by a UniFFI Rust Component,
+in high-level terms suitable for translation into target consumer languages such as Kotlin
+and Swift. It also provides facilities for parsing a WebIDL interface definition file into such a
+representation.</p>
+<p>The entrypoint to this crate is the <code>ComponentInterface</code> struct, which holds a complete definition
+of the interface provided by a component, in two parts:</p>
+<ul>
+<li>The high-level consumer API, in terms of objects and records and methods and so-on</li>
+<li>The low-level FFI contract through which the foreign language code can call into Rust.</li>
+</ul>
+<p>That’s really the key concept of this crate so it’s worth repeating: a <code>ComponentInterface</code> completely
+defines the shape and semantics of an interface between the Rust-based implementation of a component
+and its foreign language consumers, including details like:</p>
+<ul>
+<li>The names of all symbols in the compiled object file</li>
+<li>The type and arity of all exported functions</li>
+<li>The layout and conventions used for all arguments and return types</li>
+</ul>
+<p>If you have a dynamic library compiled from a Rust Component using this crate, and a foreign
+language binding generated from the same <code>ComponentInterface</code> using the same version of this
+module, then there should be no opportunities for them to disagree on how the two sides should
+interact.</p>
+<p>General and incomplete TODO list for this thing:</p>
+<ul>
+<li>
+<p>It should prevent user error and the possibility of generating bad code by doing (at least)
+the following checks:</p>
+<ul>
+<li>No duplicate names (types, methods, args, etc)</li>
+<li>No shadowing of builtin names, or names we use in code generation
+We expect that if the user actually does one of these things, then they <em>should</em> get a compile
+error when trying to build the component, because the codegen will be invalid. But we can’t
+guarantee that there’s not some edge-case where it produces valid-but-incorrect code.</li>
+</ul>
+</li>
+<li>
+<p>There is a <em>lot</em> of cloning going on, in the spirit of “first make it work”. There’s probably
+a good opportunity here for e.g. interned strings, but we’re nowhere near the point were we need
+that kind of optimization just yet.</p>
+</li>
+<li>
+<p>Error messages and general developer experience leave a lot to be desired.</p>
+</li>
+</ul>
+</div></details><h2 id="reexports" class="small-section-header"><a href="#reexports">Re-exports</a></h2>
+<div class="item-table"><div class="item-row"><div class="item-left import-item" id="reexport.Type"><code>pub use types::<a class="enum" href="types/enum.Type.html" title="enum uniffi_bindgen::interface::types::Type">Type</a>;</code></div><div class="item-right docblock-short"></div></div><div class="item-row"><div class="item-left import-item" id="reexport.FFIArgument"><code>pub use ffi::<a class="struct" href="ffi/struct.FFIArgument.html" title="struct uniffi_bindgen::interface::ffi::FFIArgument">FFIArgument</a>;</code></div><div class="item-right docblock-short"></div></div><div class="item-row"><div class="item-left import-item" id="reexport.FFIFunction"><code>pub use ffi::<a class="struct" href="ffi/struct.FFIFunction.html" title="struct uniffi_bindgen::interface::ffi::FFIFunction">FFIFunction</a>;</code></div><div class="item-right docblock-short"></div></div><div class="item-row"><div class="item-left import-item" id="reexport.FFIType"><code>pub use ffi::<a class="enum" href="ffi/enum.FFIType.html" title="enum uniffi_bindgen::interface::ffi::FFIType">FFIType</a>;</code></div><div class="item-right docblock-short"></div></div></div><h2 id="modules" class="small-section-header"><a href="#modules">Modules</a></h2>
+<div class="item-table"><div class="item-row"><div class="item-left module-item"><a class="mod" href="ffi/index.html" title="uniffi_bindgen::interface::ffi mod">ffi</a></div><div class="item-right docblock-short"><p>Low-level typesystem for the FFI layer of a component interface.</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="mod" href="types/index.html" title="uniffi_bindgen::interface::types mod">types</a></div><div class="item-right docblock-short"><p>Basic typesystem for defining a component interface.</p>
+</div></div></div><h2 id="structs" class="small-section-header"><a href="#structs">Structs</a></h2>
+<div class="item-table"><div class="item-row"><div class="item-left module-item"><a class="struct" href="struct.Argument.html" title="uniffi_bindgen::interface::Argument struct">Argument</a></div><div class="item-right docblock-short"><p>Represents an argument to a function/constructor/method call.</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="struct" href="struct.CallbackInterface.html" title="uniffi_bindgen::interface::CallbackInterface struct">CallbackInterface</a></div><div class="item-right docblock-short"></div></div><div class="item-row"><div class="item-left module-item"><a class="struct" href="struct.ComponentInterface.html" title="uniffi_bindgen::interface::ComponentInterface struct">ComponentInterface</a></div><div class="item-right docblock-short"><p>The main public interface for this module, representing the complete details of an interface exposed
+by a rust component and the details of consuming it via an extern-C FFI layer.</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="struct" href="struct.Constructor.html" title="uniffi_bindgen::interface::Constructor struct">Constructor</a></div><div class="item-right docblock-short"></div></div><div class="item-row"><div class="item-left module-item"><a class="struct" href="struct.Enum.html" title="uniffi_bindgen::interface::Enum struct">Enum</a></div><div class="item-right docblock-short"><p>Represents an enum with named variants, each of which may have named
+and typed fields.</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="struct" href="struct.Error.html" title="uniffi_bindgen::interface::Error struct">Error</a></div><div class="item-right docblock-short"><p>Represents an Error that might be thrown by functions/methods in the component interface.</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="struct" href="struct.Field.html" title="uniffi_bindgen::interface::Field struct">Field</a></div><div class="item-right docblock-short"></div></div><div class="item-row"><div class="item-left module-item"><a class="struct" href="struct.Function.html" title="uniffi_bindgen::interface::Function struct">Function</a></div><div class="item-right docblock-short"><p>Represents a standalone function.</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="struct" href="struct.Method.html" title="uniffi_bindgen::interface::Method struct">Method</a></div><div class="item-right docblock-short"></div></div><div class="item-row"><div class="item-left module-item"><a class="struct" href="struct.Namespace.html" title="uniffi_bindgen::interface::Namespace struct">Namespace</a></div><div class="item-right docblock-short"><p>A namespace is currently just a name, but might hold more metadata about
+the component in future.</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="struct" href="struct.Object.html" title="uniffi_bindgen::interface::Object struct">Object</a></div><div class="item-right docblock-short"><p>An “object” is an opaque type that can be instantiated and passed around by reference,
+have methods called on it, and so on - basically your classic Object Oriented Programming
+type of deal, except without elaborate inheritence hierarchies.</p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="struct" href="struct.Record.html" title="uniffi_bindgen::interface::Record struct">Record</a></div><div class="item-right docblock-short"><p>Represents a “data class” style object, for passing around complex values.</p>
+</div></div></div><h2 id="enums" class="small-section-header"><a href="#enums">Enums</a></h2>
+<div class="item-table"><div class="item-row"><div class="item-left module-item"><a class="enum" href="enum.Literal.html" title="uniffi_bindgen::interface::Literal enum">Literal</a></div><div class="item-right docblock-short"></div></div><div class="item-row"><div class="item-left module-item"><a class="enum" href="enum.Radix.html" title="uniffi_bindgen::interface::Radix enum">Radix</a></div><div class="item-right docblock-short"></div></div></div></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="uniffi_bindgen" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.63.0 (4b91a6ea7 2022-08-08)" ></div>
+</body></html>
