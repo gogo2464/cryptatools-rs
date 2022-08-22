@@ -7,22 +7,41 @@ jobs:
       matrix:
         os: [ubuntu-latest]
     runs-on:
-      - windows-latest
+      - ubuntu-latest
     steps:
     - uses: actions/checkout@v2
       with:
         fetch-depth: 0
+
     - uses: actions-rs/toolchain@v1
       with:
         toolchain: stable
+
     - uses: actions-rs/cargo@v1
       with:
         command: build
         args: --release --all-features
-    - name: install uniffi_bindgen with cargo
-      run: cargo install uniffi_bindgen
-    - name: install cryptatools
+
+    - name: install dependencies
+      run: |
+        cargo install uniffi_bindgen ;
+
+    - name: build cryptatools
       run: cargo build
+
     - name: run tests
       run: |
-        cargo test  --all
+        cargo test --all
+
+    - name: generate documentation
+      run: |
+        cargo doc --target-dir ./out &&
+        cp --force -r ./out/doc ./docs ;
+        #echo "<meta http-equiv=refresh content=0;url=`echo gogo2464/cryptatools-rs | cut -d '/' -f 2`/index.html>" > docs/index.html
+
+    - name: publish documentation
+      uses: JamesIves/github-pages-deploy-action@v4
+      with:
+        folder: docs
+        branch: gh-pages
+        BASE_BRANCH: development

@@ -1,7 +1,4 @@
 //! Encrypt with Caesar shifting encryption algorithm.
-//!
-//! 
-
 pub struct CaesarNumberAlgorithm {
     /// Alphabet used by the caesar number encryption Algotithm.
     alphabet : &'static str,
