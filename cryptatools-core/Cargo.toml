@@ -6,3 +6,12 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+uniffi = "0.19.3"
+uniffi_macros = "0.19.3"
+
+[build-dependencies]
+uniffi_build = {version = "0.19.3", features = [ "builtin-bindgen" ]}
+
+[lib]
+name = "cryptatools_core"
+crate-type = ["cdylib", "rlib"] #crate-type = ["cdylib", "rlib"]

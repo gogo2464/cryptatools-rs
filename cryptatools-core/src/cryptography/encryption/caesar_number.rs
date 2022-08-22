@@ -21,16 +21,16 @@ impl CaesarNumberAlgorithm {
      ///  The custom alphabet has been put in the constructor of the struct CaesarNumberAlgorithm.
      /// 
      ///  ```
-     ///  use crate::cryptatools::cryptography::encryption::caesar_number::CaesarNumberAlgorithm;
-     ///  use crate::cryptatools::cryptography::encoding::alphabets::ASCII_ALPHABET;
+     ///  use crate::cryptatools_core::cryptography::encryption::caesar_number::CaesarNumberAlgorithm;
+     ///  use crate::cryptatools_core::cryptography::encoding::alphabets::ASCII_ALPHABET;
      ///  let mut c: CaesarNumberAlgorithm = CaesarNumberAlgorithm::new(ASCII_ALPHABET);
      ///  let encrypted = c.encrypt(vec![0x41, 0x41, 0x41], 1);
      ///  assert_eq!(vec![0x42, 0x42, 0x42], encrypted);
      ///  ```
      /// 
      ///  ```
-     ///  use crate::cryptatools::cryptography::encryption::caesar_number::CaesarNumberAlgorithm;
-     ///  use crate::cryptatools::cryptography::encoding::alphabets::ASCII_ALPHABET;
+     ///  use crate::cryptatools_core::cryptography::encryption::caesar_number::CaesarNumberAlgorithm;
+     ///  use crate::cryptatools_core::cryptography::encoding::alphabets::ASCII_ALPHABET;
      ///  use std::char;
      ///  let mut c: CaesarNumberAlgorithm = CaesarNumberAlgorithm::new(ASCII_ALPHABET);
      ///  let plain_text: Vec<u8> = vec!(0x41, 0x41, 0x41);
@@ -43,8 +43,8 @@ impl CaesarNumberAlgorithm {
      ///  ```
      /// 
      ///  ```
-     ///  use crate::cryptatools::cryptography::encryption::caesar_number::CaesarNumberAlgorithm;
-     ///  use crate::cryptatools::cryptography::encoding::alphabets::ASCII_ALPHABET;
+     ///  use crate::cryptatools_core::cryptography::encryption::caesar_number::CaesarNumberAlgorithm;
+     ///  use crate::cryptatools_core::cryptography::encoding::alphabets::ASCII_ALPHABET;
      ///  use std::char;
      ///  let mut c: CaesarNumberAlgorithm = CaesarNumberAlgorithm::new(ASCII_ALPHABET);
      ///  let plain_text: Vec<u8> = vec!(0x41, 0x41, 0x41);
