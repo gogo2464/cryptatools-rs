@@ -1,11 +1,11 @@
 //! Encrypt with Caesar shifting encryption algorithm.
 pub struct CaesarNumberAlgorithm {
     /// Alphabet used by the caesar number encryption Algotithm.
-    alphabet : &'static str,
+    pub alphabet : String,
 }
 
 impl CaesarNumberAlgorithm {
-    pub fn new(alphabet: &'static str) -> Self {
+    pub fn new(alphabet: String) -> Self {
         CaesarNumberAlgorithm {
             alphabet
         }
@@ -20,7 +20,7 @@ impl CaesarNumberAlgorithm {
      ///  ```
      ///  use crate::cryptatools_core::cryptography::encryption::caesar_number::CaesarNumberAlgorithm;
      ///  use crate::cryptatools_core::cryptography::encoding::alphabets::ASCII_ALPHABET;
-     ///  let mut c: CaesarNumberAlgorithm = CaesarNumberAlgorithm::new(ASCII_ALPHABET);
+     ///  let mut c: CaesarNumberAlgorithm = CaesarNumberAlgorithm::new(String::from(ASCII_ALPHABET));
      ///  let encrypted = c.encrypt(vec![0x41, 0x41, 0x41], 1);
      ///  assert_eq!(vec![0x42, 0x42, 0x42], encrypted);
      ///  ```
@@ -29,7 +29,7 @@ impl CaesarNumberAlgorithm {
      ///  use crate::cryptatools_core::cryptography::encryption::caesar_number::CaesarNumberAlgorithm;
      ///  use crate::cryptatools_core::cryptography::encoding::alphabets::ASCII_ALPHABET;
      ///  use std::char;
-     ///  let mut c: CaesarNumberAlgorithm = CaesarNumberAlgorithm::new(ASCII_ALPHABET);
+     ///  let mut c: CaesarNumberAlgorithm = CaesarNumberAlgorithm::new(String::from(ASCII_ALPHABET));
      ///  let plain_text: Vec<u8> = vec!(0x41, 0x41, 0x41);
      ///  let encrypted = c.encrypt(plain_text, 1);
      ///  let mut re_encrypted = String::new();
@@ -43,7 +43,7 @@ impl CaesarNumberAlgorithm {
      ///  use crate::cryptatools_core::cryptography::encryption::caesar_number::CaesarNumberAlgorithm;
      ///  use crate::cryptatools_core::cryptography::encoding::alphabets::ASCII_ALPHABET;
      ///  use std::char;
-     ///  let mut c: CaesarNumberAlgorithm = CaesarNumberAlgorithm::new(ASCII_ALPHABET);
+     ///  let mut c: CaesarNumberAlgorithm = CaesarNumberAlgorithm::new(String::from(ASCII_ALPHABET));
      ///  let plain_text: Vec<u8> = vec!(0x41, 0x41, 0x41);
      ///  let encrypted = c.encrypt(plain_text, 10);
      ///  let mut re_encrypted = String::new();
@@ -72,7 +72,7 @@ mod tests {
 
     #[test]
     fn encrypt_with_caesar_number_encryption_algorithm() {
-        let mut c = CaesarNumberAlgorithm::new(ASCII_ALPHABET);
+        let mut c = CaesarNumberAlgorithm::new(String::from(String::from(ASCII_ALPHABET)));
         let encrypted = c.encrypt(vec![0x42, 0x42, 0x42], 1);
         assert_eq!(vec![0x43, 0x43, 0x43], encrypted);
     }
