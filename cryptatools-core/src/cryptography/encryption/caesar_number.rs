@@ -53,7 +53,7 @@ impl CaesarNumberAlgorithm {
      ///  assert_eq!(re_encrypted, "KKK");
      ///  ```
 
-     pub fn encrypt(&mut self, plain_text: Vec<u8>, key: usize) -> Vec<u8> {
+     pub fn encrypt(&self, plain_text: Vec<u8>, key: u32) -> Vec<u8> {
         let mut result: Vec<u8> = Vec::new();
 
         for element in plain_text {
@@ -72,7 +72,7 @@ mod tests {
 
     #[test]
     fn encrypt_with_caesar_number_encryption_algorithm() {
-        let mut c = CaesarNumberAlgorithm::new(String::from(String::from(ASCII_ALPHABET)));
+        let c = CaesarNumberAlgorithm::new(String::from(String::from(ASCII_ALPHABET)));
         let encrypted = c.encrypt(vec![0x42, 0x42, 0x42], 1);
         assert_eq!(vec![0x43, 0x43, 0x43], encrypted);
     }

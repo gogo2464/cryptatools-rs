@@ -1,3 +1,3 @@
 fn main() {
-    uniffi_build::generate_scaffolding("./src/caesar_number.udl").unwrap();
+    uniffi_build::generate_scaffolding("./src/cryptatools.udl").unwrap();
 }

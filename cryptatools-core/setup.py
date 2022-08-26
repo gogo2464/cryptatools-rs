@@ -174,13 +174,13 @@ class build(_build):
 
         shutil.copyfile(
             SRC_ROOT / "cryptatools-rs" / "target" / target / buildvariant / "deps" / shared_object,
-            SRC_ROOT / "cryptatools-rs" / "cryptatools-core" / "uniffi_caesar_number.dll",
+            SRC_ROOT / "cryptatools-rs" / "cryptatools-core" / "uniffi_cryptatools.dll",
         )
 
         command = [
             "uniffi-bindgen",
             "generate",
-            "cryptatools-rs/cryptatools-core/src/caesar_number.udl",
+            "cryptatools-rs/cryptatools-core/src/cryptatools.udl",
             "--language",
             "python",
             "--out-dir",
@@ -189,7 +189,7 @@ class build(_build):
         subprocess.check_call(command, cwd=SRC_ROOT, env=env)
 
         shutil.copyfile(
-            SRC_ROOT / "target" / "caesar_number.py", SRC_ROOT / "cryptatools-rs" / "cryptatools-core" / "caesar_number.py"
+            SRC_ROOT  / "target" / "cryptatools.py", SRC_ROOT / "cryptatools-rs" / "cryptatools-core" / "cryptatools.py"
         )
 
         return _build.run(self)
@@ -223,7 +223,7 @@ setup(
     setup_requires=requirements,
     url="https://github.com/gogo2464/cryptatools",
     zip_safe=False,
-    package_data={"cryptatools_core": [shared_object, "uniffi_caesar_number.dll"]},
+    package_data={"cryptatools_core": [shared_object, "uniffi_cryptatools.dll"]},
     distclass=BinaryDistribution,
     cmdclass={"install": InstallPlatlib, "bdist_wheel": bdist_wheel, "build": build},
 )
