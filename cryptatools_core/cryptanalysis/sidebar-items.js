@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"mod":[["general_cryptanalysis_methods",""]]};
+window.SIDEBAR_ITEMS = {"mod":[["general_cryptanalysis_methods",""],["plain_text_detector",""]]};
