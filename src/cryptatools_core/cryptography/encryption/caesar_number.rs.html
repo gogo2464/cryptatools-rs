@@ -138,7 +138,7 @@
      <span class="doccomment">///  assert_eq!(re_encrypted, &quot;KKK&quot;);</span>
      <span class="doccomment">///  ```</span>
 
-     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">encrypt</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">plain_text</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>, <span class="ident">key</span>: <span class="ident">usize</span>) -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span> {
+     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">encrypt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">plain_text</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>, <span class="ident">key</span>: <span class="ident">u32</span>) -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">result</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Vec::new</span>();
 
         <span class="kw">for</span> <span class="ident">element</span> <span class="kw">in</span> <span class="ident">plain_text</span> {
@@ -157,7 +157,7 @@
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">encrypt_with_caesar_number_encryption_algorithm</span>() {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">c</span> <span class="op">=</span> <span class="ident">CaesarNumberAlgorithm::new</span>(<span class="ident">String::from</span>(<span class="ident">String::from</span>(<span class="ident">ASCII_ALPHABET</span>)));
+        <span class="kw">let</span> <span class="ident">c</span> <span class="op">=</span> <span class="ident">CaesarNumberAlgorithm::new</span>(<span class="ident">String::from</span>(<span class="ident">String::from</span>(<span class="ident">ASCII_ALPHABET</span>)));
         <span class="kw">let</span> <span class="ident">encrypted</span> <span class="op">=</span> <span class="ident">c</span>.<span class="ident">encrypt</span>(<span class="macro">vec!</span>[<span class="number">0x42</span>, <span class="number">0x42</span>, <span class="number">0x42</span>], <span class="number">1</span>);
         <span class="macro">assert_eq!</span>(<span class="macro">vec!</span>[<span class="number">0x43</span>, <span class="number">0x43</span>, <span class="number">0x43</span>], <span class="ident">encrypted</span>);
     }
