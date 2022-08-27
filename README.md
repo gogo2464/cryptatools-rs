@@ -77,11 +77,26 @@ If you have a suggestion that would make this better, please fork the repo and c
 Don't forget to give the project a star! Thanks again!
 
 1. Document your work. See [the how to make documentation chapter](https://github.com/gogo2464/cryptatools#documentation)
-2. Fork the Project
-3. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-4. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-5. Push to the Branch (`git push origin feature/AmazingFeature`)
-6. Open a Pull Request
+2. For each method or object implemented, do not forget to make tests with doctest.
+3. Create Python binding.
+4. Open your Pull Request.
+
+##Create Python bindings.
+
+Cryptatools relies on uniffi to provide bindings to Python3. Ensure to provide Python3 bindings before making your Pull Request.
+
+To create Python Bindings, edit the file `cryptatools-rs/src/cryptatools.udl`. Edit it to add your newly created object as mentionned in the official uniffi documentation at this address: https://mozilla.github.io/uniffi-rs/udl_file_spec.html.
+
+Then do not forget to edit the file `cryptatools-rs/cryptatools-core/src/lib.rs` and just before the:
+
+```
+uniffi_macros::include_scaffolding!("cryptatools");
+```
+
+import your own crate.
+
+Once this is done, edit the task `Test python bindings` on the pipeline of the file `cryptatools-rs/.github/workflows/windows.yml`. Fell free to import and use your work here.
+
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
