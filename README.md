@@ -9,9 +9,10 @@ Then this program include a library like pwnlib. And it will expose some command
 
 ### Installation
 
-Installation is same for any OS. Just run:
+Installation of `cryptatools-core` is same for any OS. In `Cargo.toml`, just write:
 ```shell
-cargo install --git https://github.com/gogo2464/cryptatools-rs
+[dependencies]
+cryptatools-core = { git = "https://github.com/gogo2464/cryptatools-rs", package = 'cryptatools-core' }
 ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
