@@ -38,7 +38,7 @@ jobs:
     
     - name: Build and install Python Bindings
       run: |
-        python .\cryptatools-core\setup.py bdist_wheel --verbose ;
+        python .\cryptatools-core\setup.py bdist_wheel --verbose &&
         pip3 install .\dist\cryptatools_python3-51.1.0-py3-none-win_amd64.whl --force-reinstall ;
     
     - name: Test python bindings

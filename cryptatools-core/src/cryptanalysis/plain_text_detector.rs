@@ -24,6 +24,16 @@ impl PlainTextDetector {
      ///  let is_plain_text = ptd.is_plain_text(text, vec![], 0.0);
      ///  assert_eq!(is_plain_text, true);
      ///  ```
+     /// 
+     ///  ```
+     ///  use lingua::Language::*;
+     ///  use lingua::Language;
+     ///  use crate::cryptatools_core::cryptanalysis::plain_text_detector::PlainTextDetector;
+     ///  let mut ptd: PlainTextDetector = PlainTextDetector::new();
+     ///  let text: String = String::from("d0n0mIn0thing");
+     ///  let is_plain_text = ptd.is_plain_text(text, vec![lingua::Language::English, lingua::Language::French], 8.0);
+     ///  assert_eq!(is_plain_text, false);
+     ///  ```
      pub fn is_plain_text(self, plain_or_cipher_text: String, languages: Vec<lingua::Language>, minimum_confidence_value: f64) -> bool {
         let languages_confidence_values = self.catch_confidence_values(plain_or_cipher_text, languages);
 
