@@ -23,9 +23,10 @@ jobs:
         command: build
         args: --release --all-features
 
-    - name: install dependencies
+    - name: Install dependencies
       run: |
-        cargo install uniffi_bindgen ;
+        cargo install uniffi_bindgen
+        pip install setuptools wheel
 
     - name: build cryptatools
       run: cargo build
@@ -37,3 +38,12 @@ jobs:
     - name: generate documentation
       run: |
         cargo doc
+    
+    - name: Build and install Python Bindings
+      run: |
+        python3 ./cryptatools-core/setup.py bdist_wheel --verbose ;
+        pip3 install ./dist/cryptatools_python3-51.1.0-cp36-abi3-linux_x86_64.whl --force-reinstall ;
+    
+    - name: Test python bindings
+      run: |
+        python -c "from cryptatools_core.python3_bindings import CaesarNumberAlgorithm; c = CaesarNumberAlgorithm(alphabet='abc')" ;

@@ -122,14 +122,21 @@ target = os.environ.get("GLEAN_BUILD_TARGET")
 if not target:
     target = get_rustc_info()["host"]
 
-
+extension = "" 
+file_start = ""
 if "-darwin" in target:
-    shared_object = "libglean_ffi.dylib"
+    shared_object = "libcryptatools_core.dylib"
+    extension = ".dylib"
+    file_start = "lib"
 elif "-windows" in target:
     shared_object = "cryptatools_core.dll"
+    extension = ".dll"
+    file_start = ""
 else:
     # Anything else must be an ELF platform - Linux, *BSD, Solaris/illumos
-    shared_object = "libglean_ffi.so"
+    shared_object = "libcryptatools_core.so"
+    extension = ".so"
+    file_start = "lib"
 
 
 class build(_build):
@@ -172,9 +179,12 @@ class build(_build):
 
         subprocess.check_call(command, cwd=SRC_ROOT / "cryptatools-rs", env=env)
 
+        print("DEBUG:")
+        print(os.listdir(SRC_ROOT / "cryptatools-rs" / "target" / target / buildvariant / "deps"))
+
         shutil.copyfile(
             SRC_ROOT / "cryptatools-rs" / "target" / target / buildvariant / "deps" / shared_object,
-            SRC_ROOT / "cryptatools-rs" / "cryptatools-core" / "bindings" / "python3" / "cryptatools-core" / "uniffi_cryptatools.dll",
+            SRC_ROOT / "cryptatools-rs" / "cryptatools-core" / "bindings" / "python3" / "cryptatools-core" / (file_start + "uniffi_cryptatools" + extension),
         )
 
         command = [
@@ -188,8 +198,6 @@ class build(_build):
         ]
         subprocess.check_call(command, cwd=SRC_ROOT, env=env)
 
-
-        print(SRC_ROOT)
         shutil.copyfile(
             SRC_ROOT / "cryptatools-rs" / "target" / "cryptatools.py", SRC_ROOT / "cryptatools-rs" / "cryptatools-core" / "bindings" / "python3" / "cryptatools-core" / "python3_bindings.py"
         )
@@ -225,7 +233,7 @@ setup(
     setup_requires=requirements,
     url="https://github.com/gogo2464/cryptatools",
     zip_safe=False,
-    package_data={"cryptatools_core": [shared_object, "uniffi_cryptatools.dll"]},
+    package_data={"cryptatools_core": [shared_object, file_start + "uniffi_cryptatools" + extension]},
     distclass=BinaryDistribution,
     cmdclass={"install": InstallPlatlib, "bdist_wheel": bdist_wheel, "build": build},
 )

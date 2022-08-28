@@ -6,23 +6,45 @@ jobs:
     strategy:
       matrix:
         os: [macos-latest]
+
     runs-on:
       - macos-latest
+
     steps:
     - uses: actions/checkout@v2
       with:
         fetch-depth: 0
+
     - uses: actions-rs/toolchain@v1
       with:
         toolchain: stable
+
     - uses: actions-rs/cargo@v1
       with:
         command: build
         args: --release --all-features
-    - name: install uniffi_bindgen with cargo
-      run: cargo install uniffi_bindgen
+
+    - name: Install dependencies
+      run: |
+        cargo install uniffi_bindgen
+        pip install setuptools wheel
+
     - name: install cryptatools
       run: cargo build
+
     - name: run tests
       run: |
         cargo test  --all
+
+    - name: generate documentation
+      run: |
+        cargo doc
+    
+    - name: Build and install Python Bindings
+      run: |
+        python3 ./cryptatools-core/setup.py bdist_wheel --verbose ;
+        pip3 install ./dist/cryptatools_python3-51.1.0-cp36-abi3-macosx_10_7_x86_64.whl --force-reinstall ;
+    
+    - name: Test python bindings
+      run: |
+        python3 -c "from cryptatools_core.python3_bindings import CaesarNumberAlgorithm; c = CaesarNumberAlgorithm(alphabet='abc')" ;
