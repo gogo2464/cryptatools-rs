@@ -24,7 +24,7 @@ cargo install --git https://github.com/gogo2464/cryptatools-rs
 ```rust
 ```
 
-For more examples, please refer to the [Tutorial](https://example.com) or to the documentation [Documentation](https://gogo2464.github.io/cryptatools-rs/cryptatools_core/).
+For more examples, please refer to the [Tutorial](https://github.com/gogo2464/cryptatools-rs/blob/master/TUTORIAL.md) or to the documentation [Documentation](https://gogo2464.github.io/cryptatools-rs/cryptatools_core/).
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
