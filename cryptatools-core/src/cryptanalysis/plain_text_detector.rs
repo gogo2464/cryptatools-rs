@@ -1,6 +1,4 @@
 use lingua::{Language, LanguageDetector, LanguageDetectorBuilder};
-use std::result::Result::Ok;
-use std::error::Error;
 
 pub struct PlainTextDetector {
 }
@@ -29,7 +27,7 @@ impl PlainTextDetector {
      pub fn is_plain_text(self, plain_or_cipher_text: String, languages: Vec<lingua::Language>, minimum_confidence_value: f64) -> bool {
         let mut languages_confidence_values = self.catch_confidence_values(plain_or_cipher_text, languages);
 
-        let mut strongest_language = languages_confidence_values.unwrap().into_iter().max_by(|a, b| a.1.total_cmp(&b.1));
+        let strongest_language = languages_confidence_values.unwrap().into_iter().max_by(|a, b| a.1.total_cmp(&b.1));
         if strongest_language.is_none() != true {
             let most_probably_detect_language_confidence_value: f64 = strongest_language.unwrap().1;
             if most_probably_detect_language_confidence_value >= minimum_confidence_value {
