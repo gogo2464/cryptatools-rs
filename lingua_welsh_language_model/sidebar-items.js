@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"constant":[["WELSH_MODELS_DIRECTORY",""],["WELSH_TESTDATA_DIRECTORY",""]]};

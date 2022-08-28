@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"constant":[["KAZAKH_MODELS_DIRECTORY",""],["KAZAKH_TESTDATA_DIRECTORY",""]]};

@@ -1,0 +1,615 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/lingua-1.4.0/src/lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../lingua/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div>
+        </a><h2 class="location"></h2>
+    </nav>
+    <nav class="sidebar"><a class="sidebar-logo" href="../../lingua/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div>
+        </a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../lingua/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><div id="settings-menu" tabindex="-1">
+                                <a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div>
+                        </div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<span id="2">2</span>
+<span id="3">3</span>
+<span id="4">4</span>
+<span id="5">5</span>
+<span id="6">6</span>
+<span id="7">7</span>
+<span id="8">8</span>
+<span id="9">9</span>
+<span id="10">10</span>
+<span id="11">11</span>
+<span id="12">12</span>
+<span id="13">13</span>
+<span id="14">14</span>
+<span id="15">15</span>
+<span id="16">16</span>
+<span id="17">17</span>
+<span id="18">18</span>
+<span id="19">19</span>
+<span id="20">20</span>
+<span id="21">21</span>
+<span id="22">22</span>
+<span id="23">23</span>
+<span id="24">24</span>
+<span id="25">25</span>
+<span id="26">26</span>
+<span id="27">27</span>
+<span id="28">28</span>
+<span id="29">29</span>
+<span id="30">30</span>
+<span id="31">31</span>
+<span id="32">32</span>
+<span id="33">33</span>
+<span id="34">34</span>
+<span id="35">35</span>
+<span id="36">36</span>
+<span id="37">37</span>
+<span id="38">38</span>
+<span id="39">39</span>
+<span id="40">40</span>
+<span id="41">41</span>
+<span id="42">42</span>
+<span id="43">43</span>
+<span id="44">44</span>
+<span id="45">45</span>
+<span id="46">46</span>
+<span id="47">47</span>
+<span id="48">48</span>
+<span id="49">49</span>
+<span id="50">50</span>
+<span id="51">51</span>
+<span id="52">52</span>
+<span id="53">53</span>
+<span id="54">54</span>
+<span id="55">55</span>
+<span id="56">56</span>
+<span id="57">57</span>
+<span id="58">58</span>
+<span id="59">59</span>
+<span id="60">60</span>
+<span id="61">61</span>
+<span id="62">62</span>
+<span id="63">63</span>
+<span id="64">64</span>
+<span id="65">65</span>
+<span id="66">66</span>
+<span id="67">67</span>
+<span id="68">68</span>
+<span id="69">69</span>
+<span id="70">70</span>
+<span id="71">71</span>
+<span id="72">72</span>
+<span id="73">73</span>
+<span id="74">74</span>
+<span id="75">75</span>
+<span id="76">76</span>
+<span id="77">77</span>
+<span id="78">78</span>
+<span id="79">79</span>
+<span id="80">80</span>
+<span id="81">81</span>
+<span id="82">82</span>
+<span id="83">83</span>
+<span id="84">84</span>
+<span id="85">85</span>
+<span id="86">86</span>
+<span id="87">87</span>
+<span id="88">88</span>
+<span id="89">89</span>
+<span id="90">90</span>
+<span id="91">91</span>
+<span id="92">92</span>
+<span id="93">93</span>
+<span id="94">94</span>
+<span id="95">95</span>
+<span id="96">96</span>
+<span id="97">97</span>
+<span id="98">98</span>
+<span id="99">99</span>
+<span id="100">100</span>
+<span id="101">101</span>
+<span id="102">102</span>
+<span id="103">103</span>
+<span id="104">104</span>
+<span id="105">105</span>
+<span id="106">106</span>
+<span id="107">107</span>
+<span id="108">108</span>
+<span id="109">109</span>
+<span id="110">110</span>
+<span id="111">111</span>
+<span id="112">112</span>
+<span id="113">113</span>
+<span id="114">114</span>
+<span id="115">115</span>
+<span id="116">116</span>
+<span id="117">117</span>
+<span id="118">118</span>
+<span id="119">119</span>
+<span id="120">120</span>
+<span id="121">121</span>
+<span id="122">122</span>
+<span id="123">123</span>
+<span id="124">124</span>
+<span id="125">125</span>
+<span id="126">126</span>
+<span id="127">127</span>
+<span id="128">128</span>
+<span id="129">129</span>
+<span id="130">130</span>
+<span id="131">131</span>
+<span id="132">132</span>
+<span id="133">133</span>
+<span id="134">134</span>
+<span id="135">135</span>
+<span id="136">136</span>
+<span id="137">137</span>
+<span id="138">138</span>
+<span id="139">139</span>
+<span id="140">140</span>
+<span id="141">141</span>
+<span id="142">142</span>
+<span id="143">143</span>
+<span id="144">144</span>
+<span id="145">145</span>
+<span id="146">146</span>
+<span id="147">147</span>
+<span id="148">148</span>
+<span id="149">149</span>
+<span id="150">150</span>
+<span id="151">151</span>
+<span id="152">152</span>
+<span id="153">153</span>
+<span id="154">154</span>
+<span id="155">155</span>
+<span id="156">156</span>
+<span id="157">157</span>
+<span id="158">158</span>
+<span id="159">159</span>
+<span id="160">160</span>
+<span id="161">161</span>
+<span id="162">162</span>
+<span id="163">163</span>
+<span id="164">164</span>
+<span id="165">165</span>
+<span id="166">166</span>
+<span id="167">167</span>
+<span id="168">168</span>
+<span id="169">169</span>
+<span id="170">170</span>
+<span id="171">171</span>
+<span id="172">172</span>
+<span id="173">173</span>
+<span id="174">174</span>
+<span id="175">175</span>
+<span id="176">176</span>
+<span id="177">177</span>
+<span id="178">178</span>
+<span id="179">179</span>
+<span id="180">180</span>
+<span id="181">181</span>
+<span id="182">182</span>
+<span id="183">183</span>
+<span id="184">184</span>
+<span id="185">185</span>
+<span id="186">186</span>
+<span id="187">187</span>
+<span id="188">188</span>
+<span id="189">189</span>
+<span id="190">190</span>
+<span id="191">191</span>
+<span id="192">192</span>
+<span id="193">193</span>
+<span id="194">194</span>
+<span id="195">195</span>
+<span id="196">196</span>
+<span id="197">197</span>
+<span id="198">198</span>
+<span id="199">199</span>
+<span id="200">200</span>
+<span id="201">201</span>
+<span id="202">202</span>
+<span id="203">203</span>
+<span id="204">204</span>
+<span id="205">205</span>
+<span id="206">206</span>
+<span id="207">207</span>
+<span id="208">208</span>
+<span id="209">209</span>
+<span id="210">210</span>
+<span id="211">211</span>
+<span id="212">212</span>
+<span id="213">213</span>
+<span id="214">214</span>
+<span id="215">215</span>
+<span id="216">216</span>
+<span id="217">217</span>
+<span id="218">218</span>
+<span id="219">219</span>
+<span id="220">220</span>
+<span id="221">221</span>
+<span id="222">222</span>
+<span id="223">223</span>
+<span id="224">224</span>
+<span id="225">225</span>
+<span id="226">226</span>
+<span id="227">227</span>
+<span id="228">228</span>
+<span id="229">229</span>
+<span id="230">230</span>
+<span id="231">231</span>
+<span id="232">232</span>
+<span id="233">233</span>
+<span id="234">234</span>
+<span id="235">235</span>
+<span id="236">236</span>
+<span id="237">237</span>
+<span id="238">238</span>
+<span id="239">239</span>
+<span id="240">240</span>
+<span id="241">241</span>
+<span id="242">242</span>
+<span id="243">243</span>
+<span id="244">244</span>
+<span id="245">245</span>
+<span id="246">246</span>
+<span id="247">247</span>
+<span id="248">248</span>
+<span id="249">249</span>
+<span id="250">250</span>
+<span id="251">251</span>
+<span id="252">252</span>
+<span id="253">253</span>
+<span id="254">254</span>
+<span id="255">255</span>
+<span id="256">256</span>
+<span id="257">257</span>
+<span id="258">258</span>
+<span id="259">259</span>
+<span id="260">260</span>
+<span id="261">261</span>
+<span id="262">262</span>
+<span id="263">263</span>
+<span id="264">264</span>
+<span id="265">265</span>
+<span id="266">266</span>
+<span id="267">267</span>
+<span id="268">268</span>
+<span id="269">269</span>
+<span id="270">270</span>
+<span id="271">271</span>
+<span id="272">272</span>
+<span id="273">273</span>
+<span id="274">274</span>
+<span id="275">275</span>
+<span id="276">276</span>
+<span id="277">277</span>
+<span id="278">278</span>
+<span id="279">279</span>
+<span id="280">280</span>
+<span id="281">281</span>
+<span id="282">282</span>
+<span id="283">283</span>
+<span id="284">284</span>
+<span id="285">285</span>
+<span id="286">286</span>
+<span id="287">287</span>
+<span id="288">288</span>
+<span id="289">289</span>
+<span id="290">290</span>
+<span id="291">291</span>
+<span id="292">292</span>
+<span id="293">293</span>
+<span id="294">294</span>
+<span id="295">295</span>
+<span id="296">296</span>
+<span id="297">297</span>
+<span id="298">298</span>
+<span id="299">299</span>
+<span id="300">300</span>
+<span id="301">301</span>
+<span id="302">302</span>
+<span id="303">303</span>
+</pre><pre class="rust"><code><span class="comment">/*
+ * Copyright © 2020-today Peter M. Stahl pemistahl@gmail.com
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either expressed or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */</span>
+
+<span class="doccomment">//! ## 1. What does this library do?</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! Its task is simple: It tells you which language some provided textual data is written in.</span>
+<span class="doccomment">//! This is very useful as a preprocessing step for linguistic data in natural language</span>
+<span class="doccomment">//! processing applications such as text classification and spell checking.</span>
+<span class="doccomment">//! Other use cases, for instance, might include routing e-mails to the right geographically</span>
+<span class="doccomment">//! located customer service department, based on the e-mails&#39; languages.</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! ## 2. Why does this library exist?</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! Language detection is often done as part of large machine learning frameworks or natural</span>
+<span class="doccomment">//! language processing applications. In cases where you don&#39;t need the full-fledged</span>
+<span class="doccomment">//! functionality of those systems or don&#39;t want to learn the ropes of those,</span>
+<span class="doccomment">//! a small flexible library comes in handy.</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! So far, the only other comprehensive open source libraries in the Rust ecosystem for</span>
+<span class="doccomment">//! this task are [*CLD2*](https://github.com/emk/rust-cld2)</span>
+<span class="doccomment">//! and [*Whatlang*](https://github.com/greyblake/whatlang-rs).</span>
+<span class="doccomment">//! Unfortunately, they have two major drawbacks:</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! 1. Detection only works with quite lengthy text fragments. For very short text snippets</span>
+<span class="doccomment">//! such as Twitter messages, it does not provide adequate results.</span>
+<span class="doccomment">//! 2. The more languages take part in the decision process, the less accurate are the</span>
+<span class="doccomment">//! detection results.</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! *Lingua* aims at eliminating these problems. It nearly does not need any configuration and</span>
+<span class="doccomment">//! yields pretty accurate results on both long and short text, even on single words and phrases.</span>
+<span class="doccomment">//! It draws on both rule-based and statistical methods but does not use any dictionaries of words.</span>
+<span class="doccomment">//! It does not need a connection to any external API or service either.</span>
+<span class="doccomment">//! Once the library has been downloaded, it can be used completely offline.</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! ## 3. Which languages are supported?</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! Compared to other language detection libraries, *Lingua&#39;s* focus is on *quality over quantity*,</span>
+<span class="doccomment">//! that is, getting detection right for a small set of languages first before adding new ones.</span>
+<span class="doccomment">//! Currently, 75 languages are supported. They are listed as variants in the [Language] enum.</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! ## 4. How good is it?</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! *Lingua* is able to report accuracy statistics for some bundled test data available for each</span>
+<span class="doccomment">//! supported language. The test data for each language is split into three parts:</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! 1. a list of single words with a minimum length of 5 characters</span>
+<span class="doccomment">//! 2. a list of word pairs with a minimum length of 10 characters</span>
+<span class="doccomment">//! 3. a list of complete grammatical sentences of various lengths</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! Both the language models and the test data have been created from separate documents of the</span>
+<span class="doccomment">//! [Wortschatz corpora](https://wortschatz.uni-leipzig.de) offered by Leipzig University, Germany.</span>
+<span class="doccomment">//! Data crawled from various news websites have been used for training, each corpus comprising one</span>
+<span class="doccomment">//! million sentences. For testing, corpora made of arbitrarily chosen websites have been used,</span>
+<span class="doccomment">//! each comprising ten thousand sentences. From each test corpus, a random unsorted subset of</span>
+<span class="doccomment">//! 1000 single words, 1000 word pairs and 1000 sentences has been extracted, respectively.</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! Given the generated test data, I have compared the detection results of *Lingua*, *CLD2* and</span>
+<span class="doccomment">//! *Whatlang* running over the data of *Lingua&#39;s* supported 75 languages. Languages that are not</span>
+<span class="doccomment">//! supported by *Whatlang* are simply ignored for this library during the detection process.</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! The [bar and box plots](https://github.com/pemistahl/lingua-rs/blob/main/ACCURACY_PLOTS.md)</span>
+<span class="doccomment">//! show the measured accuracy values for all three performed tasks: Single word detection,</span>
+<span class="doccomment">//! word pair detection and sentence detection. *Lingua* clearly outperforms its contenders.</span>
+<span class="doccomment">//! Detailed statistics including mean, median and standard deviation values for each language</span>
+<span class="doccomment">//! and classifier are available in</span>
+<span class="doccomment">//! [tabular form](https://github.com/pemistahl/lingua-rs/blob/main/ACCURACY_TABLE.md) as well.</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! ## 5. Why is it better than other libraries?</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! Every language detector uses a probabilistic [n-gram](https://en.wikipedia.org/wiki/N-gram)</span>
+<span class="doccomment">//! model trained on the character distribution in some training corpus. Most libraries only use</span>
+<span class="doccomment">//! n-grams of size 3 (trigrams) which is satisfactory for detecting the language of longer text</span>
+<span class="doccomment">//! fragments consisting of multiple sentences. For short phrases or single words, however,</span>
+<span class="doccomment">//! trigrams are not enough. The shorter the input text is, the less n-grams are available.</span>
+<span class="doccomment">//! The probabilities estimated from such few n-grams are not reliable. This is why *Lingua* makes</span>
+<span class="doccomment">//! use of n-grams of sizes 1 up to 5 which results in much more accurate prediction of the correct</span>
+<span class="doccomment">//! language.</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! A second important difference is that *Lingua* does not only use such a statistical model, but</span>
+<span class="doccomment">//! also a rule-based engine. This engine first determines the alphabet of the input text and</span>
+<span class="doccomment">//! searches for characters which are unique in one or more languages. If exactly one language can</span>
+<span class="doccomment">//! be reliably chosen this way, the statistical model is not necessary anymore. In any case, the</span>
+<span class="doccomment">//! rule-based engine filters out languages that do not satisfy the conditions of the input text.</span>
+<span class="doccomment">//! Only then, in a second step, the probabilistic n-gram model is taken into consideration.</span>
+<span class="doccomment">//! This makes sense because loading less language models means less memory consumption and better</span>
+<span class="doccomment">//! runtime performance.</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! In general, it is always a good idea to restrict the set of languages to be considered in the</span>
+<span class="doccomment">//! classification process using the respective api methods. If you know beforehand that certain</span>
+<span class="doccomment">//! languages are never to occur in an input text, do not let those take part in the classifcation</span>
+<span class="doccomment">//! process. The filtering mechanism of the rule-based engine is quite good, however, filtering</span>
+<span class="doccomment">//! based on your own knowledge of the input text is always preferable.</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! ## 6. How to add it to your project?</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! Add *Lingua* to your `Cargo.toml` file like so:</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! ```toml</span>
+<span class="doccomment">//! [dependencies]</span>
+<span class="doccomment">//! lingua = &quot;1.4.0&quot;</span>
+<span class="doccomment">//! ```</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! By default, this will download the language model dependencies for all 75 supported languages,</span>
+<span class="doccomment">//! a total of approximately 100 MB. If your bandwidth or hard drive space is limited, or you simply</span>
+<span class="doccomment">//! do not need all languages, you can specify a subset of the language models to be downloaded as</span>
+<span class="doccomment">//! separate features in your `Cargo.toml`:</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! ```toml</span>
+<span class="doccomment">//! [dependencies]</span>
+<span class="doccomment">//! lingua = { version = &quot;1.4.0&quot;, default-features = false, features = [&quot;french&quot;, &quot;italian&quot;, &quot;spanish&quot;] }</span>
+<span class="doccomment">//! ```</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! ## 7. How to use?</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! ### 7.1 Basic usage</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! ```</span>
+<span class="doccomment">//! use lingua::{Language, LanguageDetector, LanguageDetectorBuilder};</span>
+<span class="doccomment">//! use lingua::Language::{English, French, German, Spanish};</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! let languages = vec![English, French, German, Spanish];</span>
+<span class="doccomment">//! let detector: LanguageDetector = LanguageDetectorBuilder::from_languages(&amp;languages).build();</span>
+<span class="doccomment">//! let detected_language: Option&lt;Language&gt; = detector.detect_language_of(&quot;languages are awesome&quot;);</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! assert_eq!(detected_language, Some(English));</span>
+<span class="doccomment">//! ```</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! ### 7.2 Minimum relative distance</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! By default, *Lingua* returns the most likely language for a given input text. However, there are</span>
+<span class="doccomment">//! certain words that are spelled the same in more than one language. The word *prologue*, for</span>
+<span class="doccomment">//! instance, is both a valid English and French word. *Lingua* would output either English or</span>
+<span class="doccomment">//! French which might be wrong in the given context. For cases like that, it is possible to</span>
+<span class="doccomment">//! specify a minimum relative distance that the logarithmized and summed up probabilities for</span>
+<span class="doccomment">//! each possible language have to satisfy. It can be stated in the following way:</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! ```</span>
+<span class="doccomment">//! use lingua::LanguageDetectorBuilder;</span>
+<span class="doccomment">//! use lingua::Language::{English, French, German, Spanish};</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! let detector = LanguageDetectorBuilder::from_languages(&amp;[English, French, German, Spanish])</span>
+<span class="doccomment">//!     .with_minimum_relative_distance(0.25) // minimum: 0.00 maximum: 0.99 default: 0.00</span>
+<span class="doccomment">//!     .build();</span>
+<span class="doccomment">//! let detected_language = detector.detect_language_of(&quot;languages are awesome&quot;);</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! assert_eq!(detected_language, None);</span>
+<span class="doccomment">//! ```</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! Be aware that the distance between the language probabilities is dependent on the length of the</span>
+<span class="doccomment">//! input text. The longer the input text, the larger the distance between the languages. So if you</span>
+<span class="doccomment">//! want to classify very short text phrases, do not set the minimum relative distance too high.</span>
+<span class="doccomment">//! Otherwise [`None`](https://doc.rust-lang.org/std/option/enum.Option.html#variant.None) will be</span>
+<span class="doccomment">//! returned most of the time as in the example above. This is the return value for cases where</span>
+<span class="doccomment">//! language detection is not reliably possible.</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! ### 7.3 Confidence values</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! Knowing about the most likely language is nice but how reliable is the computed likelihood?</span>
+<span class="doccomment">//! And how less likely are the other examined languages in comparison to the most likely one?</span>
+<span class="doccomment">//! These questions can be answered as well:</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! ```</span>
+<span class="doccomment">//! use lingua::{LanguageDetectorBuilder, Language};</span>
+<span class="doccomment">//! use lingua::Language::{English, French, German, Spanish};</span>
+<span class="doccomment">//! use float_cmp::approx_eq;</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! let languages = vec![English, French, German, Spanish];</span>
+<span class="doccomment">//! let detector = LanguageDetectorBuilder::from_languages(&amp;languages).build();</span>
+<span class="doccomment">//! let confidence_values: Vec&lt;(Language, f64)&gt; = detector.compute_language_confidence_values(</span>
+<span class="doccomment">//!     &quot;languages are awesome&quot;</span>
+<span class="doccomment">//! );</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! // The more readable version of the assertions below:</span>
+<span class="doccomment">//! // assert_eq!(</span>
+<span class="doccomment">//! //     confidence_values,</span>
+<span class="doccomment">//! //     vec![(English, 1.0), (French, 0.79), (German, 0.75), (Spanish, 0.72)]</span>
+<span class="doccomment">//! // );</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! assert_eq!(confidence_values[0], (English, 1.0_f64));</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! assert_eq!(confidence_values[1].0, French);</span>
+<span class="doccomment">//! assert!(approx_eq!(f64, confidence_values[1].1, 0.7917282993701181, ulps = 2));</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! assert_eq!(confidence_values[2].0, German);</span>
+<span class="doccomment">//! assert!(approx_eq!(f64, confidence_values[2].1, 0.7532048914992281, ulps = 2));</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! assert_eq!(confidence_values[3].0, Spanish);</span>
+<span class="doccomment">//! assert!(approx_eq!(f64, confidence_values[3].1, 0.7229637749926444, ulps = 2));</span>
+<span class="doccomment">//! ```</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! In the example above, a vector of all possible languages is returned, sorted by their confidence</span>
+<span class="doccomment">//! value in descending order. The values that the detector computes are part of a **relative**</span>
+<span class="doccomment">//! confidence metric, not of an absolute one. Each value is a number between 0.0 and 1.0.</span>
+<span class="doccomment">//! The most likely language is always returned with value 1.0. All other languages get values</span>
+<span class="doccomment">//! assigned which are lower than 1.0, denoting how less likely those languages are in comparison</span>
+<span class="doccomment">//! to the most likely language.</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! The vector returned by this method does not necessarily contain all languages which the calling</span>
+<span class="doccomment">//! instance of [LanguageDetector] was built from. If the rule-based engine decides that a specific</span>
+<span class="doccomment">//! language is truly impossible, then it will not be part of the returned vector. Likewise, if no</span>
+<span class="doccomment">//! ngram probabilities can be found within the detector&#39;s languages for the given input text, the</span>
+<span class="doccomment">//! returned vector will be empty. The confidence value for each language not being part of the</span>
+<span class="doccomment">//! returned vector is assumed to be 0.0.</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! ### 7.4 Eager loading versus lazy loading</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! By default, *Lingua* uses lazy-loading to load only those language models on demand which are</span>
+<span class="doccomment">//! considered relevant by the rule-based filter engine. For web services, for instance, it is</span>
+<span class="doccomment">//! rather beneficial to preload all language models into memory to avoid unexpected latency while</span>
+<span class="doccomment">//! waiting for the service response. If you want to enable the eager-loading mode, you can do it</span>
+<span class="doccomment">//! like this:</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! ```</span>
+<span class="doccomment">//! use lingua::LanguageDetectorBuilder;</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! LanguageDetectorBuilder::from_all_languages().with_preloaded_language_models().build();</span>
+<span class="doccomment">//! ```</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! Multiple instances of `LanguageDetector` share the same language models in memory which are</span>
+<span class="doccomment">//! accessed asynchronously by the instances.</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! ### 7.5 Methods to build the LanguageDetector</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! There might be classification tasks where you know beforehand that your language data is</span>
+<span class="doccomment">//! definitely not written in Latin, for instance (what a surprise :-). The detection accuracy can</span>
+<span class="doccomment">//! become better in such cases if you exclude certain languages from the decision process or just</span>
+<span class="doccomment">//! explicitly include relevant languages:</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! ```</span>
+<span class="doccomment">//! use lingua::{LanguageDetectorBuilder, Language, IsoCode639_1, IsoCode639_3};</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! // Including all languages available in the library</span>
+<span class="doccomment">//! // consumes approximately 2GB of memory and might</span>
+<span class="doccomment">//! // lead to slow runtime performance.</span>
+<span class="doccomment">//! LanguageDetectorBuilder::from_all_languages();</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! // Include only languages that are not yet extinct (= currently excludes Latin).</span>
+<span class="doccomment">//! LanguageDetectorBuilder::from_all_spoken_languages();</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! // Include only languages written with Cyrillic script.</span>
+<span class="doccomment">//! LanguageDetectorBuilder::from_all_languages_with_cyrillic_script();</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! // Exclude only the Spanish language from the decision algorithm.</span>
+<span class="doccomment">//! LanguageDetectorBuilder::from_all_languages_without(&amp;[Language::Spanish]);</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! // Only decide between English and German.</span>
+<span class="doccomment">//! LanguageDetectorBuilder::from_languages(&amp;[Language::English, Language::German]);</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! // Select languages by ISO 639-1 code.</span>
+<span class="doccomment">//! LanguageDetectorBuilder::from_iso_codes_639_1(&amp;[IsoCode639_1::EN, IsoCode639_1::DE]);</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! // Select languages by ISO 639-3 code.</span>
+<span class="doccomment">//! LanguageDetectorBuilder::from_iso_codes_639_3(&amp;[IsoCode639_3::ENG, IsoCode639_3::DEU]);</span>
+<span class="doccomment">//! ```</span>
+
+<span class="attribute">#[<span class="ident">macro_use</span>]</span>
+<span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">maplit</span>;
+
+<span class="kw">mod</span> <span class="ident">alphabet</span>;
+<span class="kw">mod</span> <span class="ident">builder</span>;
+<span class="kw">mod</span> <span class="ident">constant</span>;
+<span class="kw">mod</span> <span class="ident">detector</span>;
+<span class="kw">mod</span> <span class="ident">fraction</span>;
+<span class="kw">mod</span> <span class="ident">isocode</span>;
+<span class="kw">mod</span> <span class="ident">json</span>;
+<span class="kw">mod</span> <span class="ident">language</span>;
+<span class="kw">mod</span> <span class="ident">model</span>;
+<span class="kw">mod</span> <span class="ident">ngram</span>;
+<span class="kw">mod</span> <span class="ident">writer</span>;
+
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">target_family</span> <span class="op">=</span> <span class="string">&quot;wasm&quot;</span>)]</span>
+<span class="kw">mod</span> <span class="ident">wasm</span>;
+
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">builder::LanguageDetectorBuilder</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">detector::LanguageDetector</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">isocode</span>::{<span class="ident">IsoCode639_1</span>, <span class="ident">IsoCode639_3</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">language::Language</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">writer</span>::{<span class="ident">LanguageModelFilesWriter</span>, <span class="ident">TestDataFilesWriter</span>};
+
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">target_family</span> <span class="op">=</span> <span class="string">&quot;wasm&quot;</span>)]</span>
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">wasm::LanguageDetectorBuilder</span> <span class="kw">as</span> <span class="ident">WasmLanguageDetectorBuilder</span>;
+
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
+<span class="kw">use</span> <span class="ident">regex::Regex</span>;
+
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
+<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">minify</span>(<span class="ident">json</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="ident">String</span> {
+    <span class="kw">let</span> <span class="ident">re</span> <span class="op">=</span> <span class="ident">Regex::new</span>(<span class="string">&quot;\n\\s*&quot;</span>).<span class="ident">unwrap</span>();
+    <span class="ident">re</span>.<span class="ident">replace_all</span>(<span class="ident">json</span>, <span class="string">&quot;&quot;</span>).<span class="ident">to_string</span>()
+}
+</code></pre></div>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="lingua" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.63.0 (4b91a6ea7 2022-08-08)" ></div>
+</body></html>

@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"constant":[["YORUBA_MODELS_DIRECTORY",""],["YORUBA_TESTDATA_DIRECTORY",""]]};

@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"constant":[["POLISH_MODELS_DIRECTORY",""],["POLISH_TESTDATA_DIRECTORY",""]]};

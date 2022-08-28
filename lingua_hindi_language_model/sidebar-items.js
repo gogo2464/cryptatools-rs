@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"constant":[["HINDI_MODELS_DIRECTORY",""],["HINDI_TESTDATA_DIRECTORY",""]]};

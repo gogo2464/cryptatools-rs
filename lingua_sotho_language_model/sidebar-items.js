@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"constant":[["SOTHO_MODELS_DIRECTORY",""],["SOTHO_TESTDATA_DIRECTORY",""]]};
