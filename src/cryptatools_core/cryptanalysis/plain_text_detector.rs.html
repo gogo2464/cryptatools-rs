@@ -105,6 +105,16 @@
 <span id="99">99</span>
 <span id="100">100</span>
 <span id="101">101</span>
+<span id="102">102</span>
+<span id="103">103</span>
+<span id="104">104</span>
+<span id="105">105</span>
+<span id="106">106</span>
+<span id="107">107</span>
+<span id="108">108</span>
+<span id="109">109</span>
+<span id="110">110</span>
+<span id="111">111</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">lingua</span>::{<span class="ident">Language</span>, <span class="ident">LanguageDetector</span>, <span class="ident">LanguageDetectorBuilder</span>};
 
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PlainTextDetector</span> {
@@ -130,6 +140,16 @@
      <span class="doccomment">///  let text: String = String::from(&quot;The ennemies will attack at midnight!&quot;);</span>
      <span class="doccomment">///  let is_plain_text = ptd.is_plain_text(text, vec![], 0.0);</span>
      <span class="doccomment">///  assert_eq!(is_plain_text, true);</span>
+     <span class="doccomment">///  ```</span>
+     <span class="doccomment">/// </span>
+     <span class="doccomment">///  ```</span>
+     <span class="doccomment">///  use lingua::Language::*;</span>
+     <span class="doccomment">///  use lingua::Language;</span>
+     <span class="doccomment">///  use crate::cryptatools_core::cryptanalysis::plain_text_detector::PlainTextDetector;</span>
+     <span class="doccomment">///  let mut ptd: PlainTextDetector = PlainTextDetector::new();</span>
+     <span class="doccomment">///  let text: String = String::from(&quot;d0n0mIn0thing&quot;);</span>
+     <span class="doccomment">///  let is_plain_text = ptd.is_plain_text(text, vec![lingua::Language::English, lingua::Language::French], 8.0);</span>
+     <span class="doccomment">///  assert_eq!(is_plain_text, false);</span>
      <span class="doccomment">///  ```</span>
      <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_plain_text</span>(<span class="self">self</span>, <span class="ident">plain_or_cipher_text</span>: <span class="ident">String</span>, <span class="ident">languages</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">lingua::Language</span><span class="op">&gt;</span>, <span class="ident">minimum_confidence_value</span>: <span class="ident">f64</span>) -&gt; <span class="ident">bool</span> {
         <span class="kw">let</span> <span class="ident">languages_confidence_values</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">catch_confidence_values</span>(<span class="ident">plain_or_cipher_text</span>, <span class="ident">languages</span>);
