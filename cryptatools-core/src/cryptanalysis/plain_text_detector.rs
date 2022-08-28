@@ -25,7 +25,7 @@ impl PlainTextDetector {
      ///  assert_eq!(is_plain_text, true);
      ///  ```
      pub fn is_plain_text(self, plain_or_cipher_text: String, languages: Vec<lingua::Language>, minimum_confidence_value: f64) -> bool {
-        let mut languages_confidence_values = self.catch_confidence_values(plain_or_cipher_text, languages);
+        let languages_confidence_values = self.catch_confidence_values(plain_or_cipher_text, languages);
 
         let strongest_language = languages_confidence_values.unwrap().into_iter().max_by(|a, b| a.1.total_cmp(&b.1));
         if strongest_language.is_none() != true {
