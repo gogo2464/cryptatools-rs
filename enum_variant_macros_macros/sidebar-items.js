@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"derive":[["FromVariants","Generates From for each variant of enum."],["TryFromVariants","Generates TryFrom for each variant of enum."]]};

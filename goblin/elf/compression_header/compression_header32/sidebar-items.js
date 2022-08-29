@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"constant":[["SIZEOF_CHDR",""]],"struct":[["CompressionHeader","The compression header is used at the start of SHF_COMPRESSED sections"]]};
