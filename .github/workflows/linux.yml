@@ -28,14 +28,14 @@ jobs:
         cargo install uniffi_bindgen
         pip install setuptools wheel
 
-    - name: build cryptatools
+    - name: Build cryptatools
       run: cargo build
 
-    - name: run tests
+    - name: Run tests
       run: |
         cargo test --all
 
-    - name: generate documentation
+    - name: Generate documentation
       run: |
         cargo doc
     

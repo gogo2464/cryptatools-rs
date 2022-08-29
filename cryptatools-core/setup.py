@@ -14,7 +14,7 @@ sys.dont_write_bytecode = True
 
 
 if sys.version_info < (3, 6):
-    print("glean requires at least Python 3.6", file=sys.stderr)
+    print("cryptatools requires at least Python 3.6", file=sys.stderr)
     sys.exit(1)
 
 from pathlib import Path  # noqa
@@ -27,9 +27,6 @@ FROM_TOP = PYTHON_ROOT.relative_to(Path.cwd())
 
 # Path to the root of the git checkout
 SRC_ROOT = PYTHON_ROOT.parents[1]
-
-# glean version. Automatically updated by the bin/prepare_release.sh script
-version = "51.1.0"
 
 requirements = [
     "semver>=2.13.0",
@@ -225,7 +222,7 @@ setup(
     include_package_data=True,
     keywords="cryptatools",
     name="cryptatools-python3",
-    version=version,
+    version="0.1.0",
     packages=[
          "cryptatools_core",
     ],
@@ -235,7 +232,7 @@ setup(
     setup_requires=requirements,
     url="https://github.com/gogo2464/cryptatools",
     zip_safe=False,
-    package_data={"cryptatools_core": [shared_object, new_shared_object_name]},
+    package_data={"cryptatools_core": [new_shared_object_name]},
     distclass=BinaryDistribution,
     cmdclass={"install": InstallPlatlib, "bdist_wheel": bdist_wheel, "build": build},
 )
