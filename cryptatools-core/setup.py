@@ -138,6 +138,8 @@ else:
     extension = ".so"
     file_start = "lib"
 
+new_shared_object_name = file_start + "uniffi_cryptatools" + extension
+
 
 class build(_build):
     def run(self):
@@ -184,7 +186,7 @@ class build(_build):
 
         shutil.copyfile(
             SRC_ROOT / "cryptatools-rs" / "target" / target / buildvariant / "deps" / shared_object,
-            SRC_ROOT / "cryptatools-rs" / "cryptatools-core" / "bindings" / "python3" / "cryptatools-core" / (file_start + "uniffi_cryptatools" + extension),
+            SRC_ROOT / "cryptatools-rs" / "cryptatools-core" / "bindings" / "python3" / "cryptatools-core" / new_shared_object_name,
         )
 
         command = [
@@ -233,7 +235,7 @@ setup(
     setup_requires=requirements,
     url="https://github.com/gogo2464/cryptatools",
     zip_safe=False,
-    package_data={"cryptatools_core": [shared_object, file_start + "uniffi_cryptatools" + extension]},
+    package_data={"cryptatools_core": [shared_object, new_shared_object_name]},
     distclass=BinaryDistribution,
     cmdclass={"install": InstallPlatlib, "bdist_wheel": bdist_wheel, "build": build},
 )
