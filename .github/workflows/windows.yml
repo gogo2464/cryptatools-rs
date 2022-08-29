@@ -27,7 +27,7 @@ jobs:
     - name: Install dependencies
       run: |
         cargo install uniffi_bindgen
-        pip install setuptools wheel
+        pip3 install setuptools wheel
 
     - name: Build cryptatools
       run: cargo build
@@ -42,8 +42,10 @@ jobs:
     
     - name: Build and install Python Bindings
       run: |
-        python .\cryptatools-core\setup.py bdist_wheel --verbose &&
-        pip3 install .\dist\cryptatools_python3-51.1.0-py3-none-win_amd64.whl --force-reinstall ;
+        python .\cryptatools-core\setup.py bdist_wheel --verbose ;
+        $wheelFile = Get-ChildItem -Path .\dist\ -Recurse -Include * ;
+        pip3 install $wheelFile --force-reinstall ;
+        
     
     - name: Test python bindings
       run: |

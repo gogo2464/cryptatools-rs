@@ -178,9 +178,6 @@ class build(_build):
 
         subprocess.check_call(command, cwd=SRC_ROOT / "cryptatools-rs", env=env)
 
-        print("DEBUG:")
-        print(os.listdir(SRC_ROOT / "cryptatools-rs" / "target" / target / buildvariant / "deps"))
-
         shutil.copyfile(
             SRC_ROOT / "cryptatools-rs" / "target" / target / buildvariant / "deps" / shared_object,
             SRC_ROOT / "cryptatools-rs" / "cryptatools-core" / "bindings" / "python3" / "cryptatools-core" / new_shared_object_name,

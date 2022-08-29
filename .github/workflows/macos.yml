@@ -43,7 +43,7 @@ jobs:
     - name: Build and install Python Bindings
       run: |
         python3 ./cryptatools-core/setup.py bdist_wheel --verbose ;
-        pip3 install ./dist/cryptatools_python3-51.1.0-cp36-abi3-macosx_10_7_x86_64.whl --force-reinstall ;
+        pip3 install ./dist/* --force-reinstall ;
     
     - name: Test python bindings
       run: |
