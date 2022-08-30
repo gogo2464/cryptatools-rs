@@ -9,10 +9,32 @@ Then this program include a library like pwnlib. And it will expose some command
 
 ### Installation
 
-Installation of `cryptatools-core` is same for any OS. In `Cargo.toml`, just write:
+Installation of `cryptatools-core` for rust is same for any OS. In `Cargo.toml`, just write:
 ```shell
 [dependencies]
 cryptatools-core = { git = "https://github.com/gogo2464/cryptatools-rs", package = 'cryptatools-core' }
+```
+
+To install the python Bindings,
+
+If you are on windows, with powershell do:
+```powershell
+git clone https://github.com/gogo2464/cryptatools-rs ;
+python .\cryptatools-core\setup.py bdist_wheel --verbose ;
+$wheelFile = Get-ChildItem -Path .\dist\ -Recurse -Include * ;
+pip3 install $wheelFile --force-reinstall ;
+```
+
+If you are on Linux, do:
+```shell
+python3 ./cryptatools-core/setup.py bdist_wheel --verbose ;
+pip3 install ./dist/* --force-reinstall ;
+```
+
+If you are on MacOs, do:
+```shell
+python3 ./cryptatools-core/setup.py bdist_wheel --verbose ;
+pip3 install ./dist/* --force-reinstall ;
 ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
