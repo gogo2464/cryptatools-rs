@@ -12,7 +12,7 @@ Return true if it is plain text. Else return false.</p>
 
 <div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use</span> <span class="ident">lingua::Language</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident">lingua::Language</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::cryptatools_core::cryptanalysis::plain_text_detector::PlainTextDetector</span>;
+<span class="kw">use</span> <span class="ident">cryptatools_core::cryptanalysis::plain_text_detector::PlainTextDetector</span>;
 <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">ptd</span>: <span class="ident">PlainTextDetector</span> <span class="op">=</span> <span class="ident">PlainTextDetector::new</span>();
 <span class="kw">let</span> <span class="ident">text</span>: <span class="ident">String</span> <span class="op">=</span> <span class="ident">String::from</span>(<span class="string">&quot;The ennemies will attack at midnight!&quot;</span>);
 <span class="kw">let</span> <span class="ident">is_plain_text</span> <span class="op">=</span> <span class="ident">ptd</span>.<span class="ident">is_plain_text</span>(<span class="ident">text</span>, <span class="macro">vec!</span>[], <span class="number">0.0</span>);
@@ -20,7 +20,7 @@ Return true if it is plain text. Else return false.</p>
 
 <div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use</span> <span class="ident">lingua::Language</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident">lingua::Language</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::cryptatools_core::cryptanalysis::plain_text_detector::PlainTextDetector</span>;
+<span class="kw">use</span> <span class="ident">cryptatools_core::cryptanalysis::plain_text_detector::PlainTextDetector</span>;
 <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">ptd</span>: <span class="ident">PlainTextDetector</span> <span class="op">=</span> <span class="ident">PlainTextDetector::new</span>();
 <span class="kw">let</span> <span class="ident">text</span>: <span class="ident">String</span> <span class="op">=</span> <span class="ident">String::from</span>(<span class="string">&quot;d0n0mIn0thing&quot;</span>);
 <span class="kw">let</span> <span class="ident">is_plain_text</span> <span class="op">=</span> <span class="ident">ptd</span>.<span class="ident">is_plain_text</span>(<span class="ident">text</span>, <span class="macro">vec!</span>[<span class="ident">lingua::Language::English</span>, <span class="ident">lingua::Language::French</span>], <span class="number">8.0</span>);
@@ -31,7 +31,7 @@ More the text corresponds to the corresponding language, more the confidence val
 
 <div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use</span> <span class="ident">lingua::Language</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident">lingua::Language</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::cryptatools_core::cryptanalysis::plain_text_detector::PlainTextDetector</span>;
+<span class="kw">use</span> <span class="ident">cryptatools_core::cryptanalysis::plain_text_detector::PlainTextDetector</span>;
 <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">ptd</span>: <span class="ident">PlainTextDetector</span> <span class="op">=</span> <span class="ident">PlainTextDetector::new</span>();
 <span class="kw">let</span> <span class="ident">text</span>: <span class="ident">String</span> <span class="op">=</span> <span class="ident">String::from</span>(<span class="string">&quot;The ennemies will attack at midnight!&quot;</span>);
 <span class="kw">let</span> <span class="ident">is_plain_text</span> <span class="op">=</span> <span class="ident">ptd</span>.<span class="ident">is_plain_text</span>(<span class="ident">text</span>, <span class="macro">vec!</span>[], <span class="number">0.0</span>);
@@ -40,7 +40,7 @@ More the text corresponds to the corresponding language, more the confidence val
 
 <div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use</span> <span class="ident">lingua::Language</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident">lingua::Language</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::cryptatools_core::cryptanalysis::plain_text_detector::PlainTextDetector</span>;
+<span class="kw">use</span> <span class="ident">cryptatools_core::cryptanalysis::plain_text_detector::PlainTextDetector</span>;
 <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">ptd</span>: <span class="ident">PlainTextDetector</span> <span class="op">=</span> <span class="ident">PlainTextDetector::new</span>();
 <span class="kw">let</span> <span class="ident">text</span>: <span class="ident">String</span> <span class="op">=</span> <span class="ident">String::from</span>(<span class="string">&quot;languages are awesome&quot;</span>);
 <span class="kw">let</span> <span class="ident">detected_language</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Language</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">ptd</span>.<span class="ident">detect_language</span>(<span class="ident">text</span>, <span class="macro">vec!</span>[]);
@@ -48,7 +48,7 @@ More the text corresponds to the corresponding language, more the confidence val
 
 <div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use</span> <span class="ident">lingua::Language</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident">lingua::Language</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::cryptatools_core::cryptanalysis::plain_text_detector::PlainTextDetector</span>;
+<span class="kw">use</span> <span class="ident">cryptatools_core::cryptanalysis::plain_text_detector::PlainTextDetector</span>;
 <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">ptd</span>: <span class="ident">PlainTextDetector</span> <span class="op">=</span> <span class="ident">PlainTextDetector::new</span>();
 <span class="kw">let</span> <span class="ident">text</span>: <span class="ident">String</span> <span class="op">=</span> <span class="ident">String::from</span>(<span class="string">&quot;languages are awesome&quot;</span>);
 <span class="kw">let</span> <span class="ident">detected_language</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Language</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">ptd</span>.<span class="ident">detect_language</span>(<span class="ident">text</span>, <span class="macro">vec!</span>[<span class="ident">lingua::Language::English</span>, <span class="ident">lingua::Language::French</span>]);

@@ -13,14 +13,14 @@
 If the alphabet overflows, then the cipher text continues from the start of the alphabet.
 The custom alphabet has been put in the constructor of the struct CaesarNumberAlgorithm.</p>
 
-<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::cryptatools_core::cryptography::encryption::caesar_number::CaesarNumberAlgorithm</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::cryptatools_core::cryptography::encoding::alphabets::ASCII_ALPHABET</span>;
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use</span> <span class="ident">cryptatools_core::cryptography::encryption::caesar_number::CaesarNumberAlgorithm</span>;
+<span class="kw">use</span> <span class="ident">cryptatools_core::cryptography::encoding::alphabets::ASCII_ALPHABET</span>;
 <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">c</span>: <span class="ident">CaesarNumberAlgorithm</span> <span class="op">=</span> <span class="ident">CaesarNumberAlgorithm::new</span>(<span class="ident">String::from</span>(<span class="ident">ASCII_ALPHABET</span>));
 <span class="kw">let</span> <span class="ident">encrypted</span> <span class="op">=</span> <span class="ident">c</span>.<span class="ident">encrypt</span>(<span class="macro">vec!</span>[<span class="number">0x41</span>, <span class="number">0x41</span>, <span class="number">0x41</span>], <span class="number">1</span>);
 <span class="macro">assert_eq!</span>(<span class="macro">vec!</span>[<span class="number">0x42</span>, <span class="number">0x42</span>, <span class="number">0x42</span>], <span class="ident">encrypted</span>);</code></pre></div>
 
-<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::cryptatools_core::cryptography::encryption::caesar_number::CaesarNumberAlgorithm</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::cryptatools_core::cryptography::encoding::alphabets::ASCII_ALPHABET</span>;
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use</span> <span class="ident">cryptatools_core::cryptography::encryption::caesar_number::CaesarNumberAlgorithm</span>;
+<span class="kw">use</span> <span class="ident">cryptatools_core::cryptography::encoding::alphabets::ASCII_ALPHABET</span>;
 <span class="kw">use</span> <span class="ident">std::char</span>;
 <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">c</span>: <span class="ident">CaesarNumberAlgorithm</span> <span class="op">=</span> <span class="ident">CaesarNumberAlgorithm::new</span>(<span class="ident">String::from</span>(<span class="ident">ASCII_ALPHABET</span>));
 <span class="kw">let</span> <span class="ident">plain_text</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span> <span class="op">=</span> <span class="macro">vec!</span>(<span class="number">0x41</span>, <span class="number">0x41</span>, <span class="number">0x41</span>);
@@ -31,8 +31,8 @@ The custom alphabet has been put in the constructor of the struct CaesarNumberAl
 }
 <span class="macro">assert_eq!</span>(<span class="ident">re_encrypted</span>, <span class="string">&quot;BBB&quot;</span>);</code></pre></div>
 
-<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::cryptatools_core::cryptography::encryption::caesar_number::CaesarNumberAlgorithm</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::cryptatools_core::cryptography::encoding::alphabets::ASCII_ALPHABET</span>;
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use</span> <span class="ident">cryptatools_core::cryptography::encryption::caesar_number::CaesarNumberAlgorithm</span>;
+<span class="kw">use</span> <span class="ident">cryptatools_core::cryptography::encoding::alphabets::ASCII_ALPHABET</span>;
 <span class="kw">use</span> <span class="ident">std::char</span>;
 <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">c</span>: <span class="ident">CaesarNumberAlgorithm</span> <span class="op">=</span> <span class="ident">CaesarNumberAlgorithm::new</span>(<span class="ident">String::from</span>(<span class="ident">ASCII_ALPHABET</span>));
 <span class="kw">let</span> <span class="ident">plain_text</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span> <span class="op">=</span> <span class="macro">vec!</span>(<span class="number">0x41</span>, <span class="number">0x41</span>, <span class="number">0x41</span>);
