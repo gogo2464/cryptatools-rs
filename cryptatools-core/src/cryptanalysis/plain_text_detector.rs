@@ -18,7 +18,7 @@ impl PlainTextDetector {
      ///  ```
      ///  use lingua::Language::*;
      ///  use lingua::Language;
-     ///  use crate::cryptatools_core::cryptanalysis::plain_text_detector::PlainTextDetector;
+     ///  use cryptatools_core::cryptanalysis::plain_text_detector::PlainTextDetector;
      ///  let mut ptd: PlainTextDetector = PlainTextDetector::new();
      ///  let text: String = String::from("The ennemies will attack at midnight!");
      ///  let is_plain_text = ptd.is_plain_text(text, vec![], 0.0);
@@ -28,7 +28,7 @@ impl PlainTextDetector {
      ///  ```
      ///  use lingua::Language::*;
      ///  use lingua::Language;
-     ///  use crate::cryptatools_core::cryptanalysis::plain_text_detector::PlainTextDetector;
+     ///  use cryptatools_core::cryptanalysis::plain_text_detector::PlainTextDetector;
      ///  let mut ptd: PlainTextDetector = PlainTextDetector::new();
      ///  let text: String = String::from("d0n0mIn0thing");
      ///  let is_plain_text = ptd.is_plain_text(text, vec![lingua::Language::English, lingua::Language::French], 8.0);
@@ -59,7 +59,7 @@ impl PlainTextDetector {
      ///  ```
      ///  use lingua::Language::*;
      ///  use lingua::Language;
-     ///  use crate::cryptatools_core::cryptanalysis::plain_text_detector::PlainTextDetector;
+     ///  use cryptatools_core::cryptanalysis::plain_text_detector::PlainTextDetector;
      ///  let mut ptd: PlainTextDetector = PlainTextDetector::new();
      ///  let text: String = String::from("The ennemies will attack at midnight!");
      ///  let is_plain_text = ptd.is_plain_text(text, vec![], 0.0);
@@ -83,7 +83,7 @@ impl PlainTextDetector {
      ///  ```
      ///  use lingua::Language::*;
      ///  use lingua::Language;
-     ///  use crate::cryptatools_core::cryptanalysis::plain_text_detector::PlainTextDetector;
+     ///  use cryptatools_core::cryptanalysis::plain_text_detector::PlainTextDetector;
      ///  let mut ptd: PlainTextDetector = PlainTextDetector::new();
      ///  let text: String = String::from("languages are awesome");
      ///  let detected_language: Option<Language> = ptd.detect_language(text, vec![]);
@@ -94,7 +94,7 @@ impl PlainTextDetector {
      ///  ```
      ///  use lingua::Language::*;
      ///  use lingua::Language;
-     ///  use crate::cryptatools_core::cryptanalysis::plain_text_detector::PlainTextDetector;
+     ///  use cryptatools_core::cryptanalysis::plain_text_detector::PlainTextDetector;
      ///  let mut ptd: PlainTextDetector = PlainTextDetector::new();
      ///  let text: String = String::from("languages are awesome");
      ///  let detected_language: Option<Language> = ptd.detect_language(text, vec![lingua::Language::English, lingua::Language::French]);
