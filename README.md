@@ -104,7 +104,7 @@ Don't forget to give the project a star! Thanks again!
 3. Create Python binding.
 4. Open your Pull Request.
 
-##Create Python bindings.
+## Create Python bindings.
 
 Cryptatools relies on uniffi to provide bindings to Python3. Ensure to provide Python3 bindings before making your Pull Request.
 
