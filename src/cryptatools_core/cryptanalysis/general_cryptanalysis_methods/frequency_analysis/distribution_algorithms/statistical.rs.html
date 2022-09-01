@@ -47,6 +47,12 @@
 <span id="41">41</span>
 <span id="42">42</span>
 <span id="43">43</span>
+<span id="44">44</span>
+<span id="45">45</span>
+<span id="46">46</span>
+<span id="47">47</span>
+<span id="48">48</span>
+<span id="49">49</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">std::collections::HashMap</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::utils::convert</span>;
 
@@ -69,7 +75,15 @@
     <span class="doccomment">/// use cryptatools_core::cryptanalysis::general_cryptanalysis_methods::frequency_analysis::distribution_algorithms::statistical::{Statistical};</span>
     <span class="doccomment">/// use cryptatools_core::utils::alphabets;</span>
     <span class="doccomment">/// let stat_percentage = Statistical::guess_statistical_distribution(vec![0x41, 0x41, 0x41, 0x41, 0x41, 0x41], String::from(alphabets::ASCII_ALPHABET));</span>
-    <span class="doccomment">/// assert_eq!(HashMap::from([(0x41 as u8, 1.0)]), stat_percentage);//, &quot;{}&quot;, 100</span>
+    <span class="doccomment">/// assert_eq!(HashMap::from([(0x41 as u8, 1.0)]), stat_percentage);</span>
+    <span class="doccomment">/// ```</span>
+    <span class="doccomment">/// </span>
+    <span class="doccomment">/// ```</span>
+    <span class="doccomment">/// use std::collections::HashMap;</span>
+    <span class="doccomment">/// use cryptatools_core::cryptanalysis::general_cryptanalysis_methods::frequency_analysis::distribution_algorithms::statistical::{Statistical};</span>
+    <span class="doccomment">/// use cryptatools_core::utils::alphabets;</span>
+    <span class="doccomment">/// let stat_percentage = Statistical::guess_statistical_distribution(vec![0x41, 0x41, 0x41, 0x41, 0x41, 0x42], String::from(alphabets::ASCII_ALPHABET));</span>
+    <span class="doccomment">/// assert_eq!(HashMap::from([(0x42 as u8, 0.16666666666666666), (0x41 as u8, 0.8333333333333334)]), stat_percentage);</span>
     <span class="doccomment">/// ```</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">guess_statistical_distribution</span>(<span class="ident">encrypted_input</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>, <span class="ident">alphabet</span>: <span class="ident">String</span>) -&gt; <span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">u8</span>, <span class="ident">f64</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">distribution</span>: <span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">u8</span>, <span class="ident">f64</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">HashMap::new</span>();
@@ -83,10 +97,8 @@
             <span class="kw">if</span> <span class="ident">distribution</span>.<span class="ident">get_mut</span>(<span class="kw-2">&amp;</span><span class="ident">u8_alphabet_charcter</span>).<span class="ident">is_some</span>() {
                 <span class="kw-2">*</span><span class="ident">distribution</span>.<span class="ident">get_mut</span>(<span class="kw-2">&amp;</span><span class="ident">u8_alphabet_charcter</span>).<span class="ident">unwrap</span>() <span class="op">=</span> <span class="ident">distribution</span>[<span class="ident">u8_alphabet_charcter</span>] <span class="op">/</span> <span class="ident">encrypted_input</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">f64</span>;
             }
-            
         }
         
-
         <span class="ident">distribution</span>
     }
 }</code></pre></div>

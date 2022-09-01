@@ -51,12 +51,9 @@
 <span id="45">45</span>
 <span id="46">46</span>
 <span id="47">47</span>
-<span id="48">48</span>
-<span id="49">49</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">std::collections::HashMap</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::utils</span>::{<span class="ident">convert</span>, <span class="ident">alphabets</span>};
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::utils::alphabets</span>::{<span class="ident">ASCII_ALPHABET</span>};
-<span class="kw">use</span> <span class="ident">assert_float_eq::assert_f64_near</span>;
 
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CoincidenceIndex</span> {
 
@@ -82,7 +79,6 @@
     <span class="doccomment">/// assert_f64_near!(0.06543385490753913, coincidence_index);</span>
     <span class="doccomment">/// ```</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">guess_coincidence_index</span>(<span class="self">self</span>, <span class="ident">cipher_text_input</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>) -&gt; <span class="ident">f64</span>{
-
         <span class="kw">let</span> <span class="ident">cipher_text_size</span>: <span class="ident">f64</span> <span class="op">=</span> <span class="ident">cipher_text_input</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">f64</span>;
         <span class="kw">if</span> <span class="ident">cipher_text_size</span> <span class="op">&lt;</span><span class="op">=</span> <span class="number">200.0</span> {
             <span class="macro">println!</span>(<span class="string">&quot;Warning: The cipher text input is {0} bytes. Probably {0} characters. It may be too short. You should provide more input characters.&quot;</span>, <span class="ident">cipher_text_size</span>);
