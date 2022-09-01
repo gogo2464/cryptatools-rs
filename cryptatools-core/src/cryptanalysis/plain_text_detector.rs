@@ -62,7 +62,7 @@ impl PlainTextDetector {
      ///  use cryptatools_core::cryptanalysis::plain_text_detector::PlainTextDetector;
      ///  let mut ptd: PlainTextDetector = PlainTextDetector::new();
      ///  let text: String = String::from("The ennemies will attack at midnight!");
-     ///  let is_plain_text = ptd.is_plain_text(text, vec![], 0.0);
+     ///  let is_plain_text = ptd.is_plain_text(text, vec![lingua::Language::English, lingua::Language::French], 0.0);
      ///  assert_eq!(is_plain_text, true);
      ///  ```
     pub fn catch_confidence_values(self, plain_or_cipher_text: String, languages: Vec<lingua::Language>) -> Option<Vec<(Language, f64)>> {

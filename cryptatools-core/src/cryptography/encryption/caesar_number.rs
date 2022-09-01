@@ -19,7 +19,7 @@ impl CaesarNumberAlgorithm {
      /// 
      ///  ```
      ///  use cryptatools_core::cryptography::encryption::caesar_number::CaesarNumberAlgorithm;
-     ///  use cryptatools_core::cryptography::encoding::alphabets::ASCII_ALPHABET;
+     ///  use cryptatools_core::utils::alphabets::ASCII_ALPHABET;
      ///  let mut c: CaesarNumberAlgorithm = CaesarNumberAlgorithm::new(String::from(ASCII_ALPHABET));
      ///  let encrypted = c.encrypt(vec![0x41, 0x41, 0x41], 1);
      ///  assert_eq!(vec![0x42, 0x42, 0x42], encrypted);
@@ -27,7 +27,7 @@ impl CaesarNumberAlgorithm {
      /// 
      ///  ```
      ///  use cryptatools_core::cryptography::encryption::caesar_number::CaesarNumberAlgorithm;
-     ///  use cryptatools_core::cryptography::encoding::alphabets::ASCII_ALPHABET;
+     ///  use cryptatools_core::utils::alphabets::ASCII_ALPHABET;
      ///  use std::char;
      ///  let mut c: CaesarNumberAlgorithm = CaesarNumberAlgorithm::new(String::from(ASCII_ALPHABET));
      ///  let plain_text: Vec<u8> = vec!(0x41, 0x41, 0x41);
@@ -41,7 +41,7 @@ impl CaesarNumberAlgorithm {
      /// 
      ///  ```
      ///  use cryptatools_core::cryptography::encryption::caesar_number::CaesarNumberAlgorithm;
-     ///  use cryptatools_core::cryptography::encoding::alphabets::ASCII_ALPHABET;
+     ///  use cryptatools_core::utils::alphabets::ASCII_ALPHABET;
      ///  use std::char;
      ///  let mut c: CaesarNumberAlgorithm = CaesarNumberAlgorithm::new(String::from(ASCII_ALPHABET));
      ///  let plain_text: Vec<u8> = vec!(0x41, 0x41, 0x41);
@@ -68,7 +68,7 @@ impl CaesarNumberAlgorithm {
 #[cfg(test)]
 mod tests {
     use super::* ;
-    use crate::cryptography::encoding::alphabets::ASCII_ALPHABET;
+    use crate::utils::alphabets::ASCII_ALPHABET;
 
     #[test]
     fn encrypt_with_caesar_number_encryption_algorithm() {

@@ -1,6 +1,5 @@
 use std::collections::HashMap;
 use crate::utils::{convert, alphabets};
-use crate::utils::alphabets::{ASCII_ALPHABET};
 
 pub struct CoincidenceIndex {
 
@@ -18,15 +17,14 @@ impl CoincidenceIndex {
     /// ```
     /// use cryptatools_core::cryptanalysis::general_cryptanalysis_methods::frequency_analysis::coincidence_index::{CoincidenceIndex};
     /// use cryptatools_core::utils::convert;
+    /// use assert_float_eq::{afe_is_f64_near, afe_near_error_msg, assert_f64_near};
     /// let plain_text = String::from("Hello! How are you? I am fine and you?");
     /// let pseudo_cipher_text = convert::Encode::from_ascii_to_u8(plain_text);
     /// let c = CoincidenceIndex::new();
     /// let coincidence_index: f64 = c.guess_coincidence_index(pseudo_cipher_text);
-    /// println!("{0}", coincidence_index);
-    /// assert_eq!(0.06543385490753913, coincidence_index);
+    /// assert_f64_near!(0.06543385490753913, coincidence_index);
     /// ```
     pub fn guess_coincidence_index(self, cipher_text_input: Vec<u8>) -> f64{
-
         let cipher_text_size: f64 = cipher_text_input.len() as f64;
         if cipher_text_size <= 200.0 {
             println!("Warning: The cipher text input is {0} bytes. Probably {0} characters. It may be too short. You should provide more input characters.", cipher_text_size);
