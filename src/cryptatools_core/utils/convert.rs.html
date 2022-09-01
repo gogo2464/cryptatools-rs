@@ -20,21 +20,73 @@
 <span id="14">14</span>
 <span id="15">15</span>
 <span id="16">16</span>
-</pre><pre class="rust"><code><span class="doccomment">///  Convert a vector of u8 to ascii text string.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">///  ```</span>
-<span class="doccomment">///  use cryptatools_core::utils::convert::from_u8_to_ascii;</span>
-<span class="doccomment">///  let ascii: String = from_u8_to_ascii(vec![0x41, 0x41, 0x41]);</span>
-<span class="doccomment">///  assert_eq!(&quot;AAA&quot;, ascii);</span>
-<span class="doccomment">///  ```</span>
-<span class="doccomment">/// </span>
-<span class="doccomment">///  ```</span>
-<span class="doccomment">///  use cryptatools_core::utils::convert::from_u8_to_ascii;</span>
-<span class="doccomment">///  let ascii: String = from_u8_to_ascii(vec![0x48, 0x69, 0x21]);</span>
-<span class="doccomment">///  assert_eq!(&quot;Hi!&quot;, ascii);</span>
-<span class="doccomment">///  ```</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_u8_to_ascii</span>(<span class="ident">u8_input</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>) -&gt; <span class="ident">String</span> {
-    <span class="ident">String::from</span>(<span class="ident">std::str::from_utf8</span>(<span class="ident">u8_input</span>.<span class="ident">as_slice</span>()).<span class="ident">unwrap</span>())
+<span id="17">17</span>
+<span id="18">18</span>
+<span id="19">19</span>
+<span id="20">20</span>
+<span id="21">21</span>
+<span id="22">22</span>
+<span id="23">23</span>
+<span id="24">24</span>
+<span id="25">25</span>
+<span id="26">26</span>
+<span id="27">27</span>
+<span id="28">28</span>
+<span id="29">29</span>
+<span id="30">30</span>
+<span id="31">31</span>
+<span id="32">32</span>
+<span id="33">33</span>
+<span id="34">34</span>
+<span id="35">35</span>
+<span id="36">36</span>
+<span id="37">37</span>
+<span id="38">38</span>
+<span id="39">39</span>
+<span id="40">40</span>
+<span id="41">41</span>
+<span id="42">42</span>
+</pre><pre class="rust"><code><span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Decode</span> {
+
+}
+
+<span class="kw">impl</span> <span class="ident">Decode</span> {
+    <span class="doccomment">///  Decode a vector of u8 to ascii text string.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">///  ```</span>
+    <span class="doccomment">///  use cryptatools_core::utils::convert;</span>
+    <span class="doccomment">///  let ascii: String = convert::Decode::from_u8_to_ascii(vec![0x41, 0x41, 0x41]);</span>
+    <span class="doccomment">///  assert_eq!(&quot;AAA&quot;, ascii);</span>
+    <span class="doccomment">///  ```</span>
+    <span class="doccomment">/// </span>
+    <span class="doccomment">///  ```</span>
+    <span class="doccomment">///  use cryptatools_core::utils::convert;</span>
+    <span class="doccomment">///  let ascii: String = convert::Decode::from_u8_to_ascii(vec![0x48, 0x69, 0x21]);</span>
+    <span class="doccomment">///  assert_eq!(&quot;Hi!&quot;, ascii);</span>
+    <span class="doccomment">///  ```</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_u8_to_ascii</span>(<span class="ident">u8_input</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>) -&gt; <span class="ident">String</span> {
+        <span class="ident">String::from</span>(<span class="ident">std::str::from_utf8</span>(<span class="ident">u8_input</span>.<span class="ident">as_slice</span>()).<span class="ident">unwrap</span>())
+    }
+}
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Encode</span> {
+
+}
+<span class="kw">impl</span> <span class="ident">Encode</span> {
+    <span class="doccomment">///  Encode a string to a vector of u8 bytes.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">///  ```</span>
+    <span class="doccomment">///  use cryptatools_core::utils::convert;</span>
+    <span class="doccomment">///  let bytes: Vec&lt;u8&gt; = convert::Encode::from_ascii_to_u8(String::from(&quot;AAA&quot;));</span>
+    <span class="doccomment">///  assert_eq!(vec![0x41, 0x41, 0x41], bytes);</span>
+    <span class="doccomment">///  ```</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_ascii_to_u8</span>(<span class="ident">ascii_input</span>: <span class="ident">String</span>) -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span> {
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">bytes</span> <span class="op">=</span> <span class="macro">vec!</span>[];
+        <span class="kw">for</span> <span class="ident">character</span> <span class="kw">in</span> <span class="ident">ascii_input</span>.<span class="ident">chars</span>() {
+            <span class="ident">bytes</span>.<span class="ident">push</span>(<span class="ident">char::from</span>(<span class="ident">character</span>) <span class="kw">as</span> <span class="ident">u8</span>)
+        }
+
+        <span class="ident">bytes</span>
+    }
 }</code></pre></div>
 </section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="cryptatools_core" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.63.0 (4b91a6ea7 2022-08-08)" ></div>
 </body></html>

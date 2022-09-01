@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"mod":[["alphabets",""]]};
+window.SIDEBAR_ITEMS = {};

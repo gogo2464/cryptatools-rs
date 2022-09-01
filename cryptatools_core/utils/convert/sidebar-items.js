@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"fn":[["from_u8_to_ascii","Convert a vector of u8 to ascii text string."]]};
+window.SIDEBAR_ITEMS = {"struct":[["Decode",""],["Encode",""]]};

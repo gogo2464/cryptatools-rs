@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"attr":[["extension_trait","Declares an extension trait"]]};

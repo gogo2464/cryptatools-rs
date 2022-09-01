@@ -179,7 +179,7 @@
      <span class="doccomment">///  use cryptatools_core::cryptanalysis::plain_text_detector::PlainTextDetector;</span>
      <span class="doccomment">///  let mut ptd: PlainTextDetector = PlainTextDetector::new();</span>
      <span class="doccomment">///  let text: String = String::from(&quot;The ennemies will attack at midnight!&quot;);</span>
-     <span class="doccomment">///  let is_plain_text = ptd.is_plain_text(text, vec![], 0.0);</span>
+     <span class="doccomment">///  let is_plain_text = ptd.is_plain_text(text, vec![lingua::Language::English, lingua::Language::French], 0.0);</span>
      <span class="doccomment">///  assert_eq!(is_plain_text, true);</span>
      <span class="doccomment">///  ```</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">catch_confidence_values</span>(<span class="self">self</span>, <span class="ident">plain_or_cipher_text</span>: <span class="ident">String</span>, <span class="ident">languages</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">lingua::Language</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">Language</span>, <span class="ident">f64</span>)<span class="op">&gt;</span><span class="op">&gt;</span> {
