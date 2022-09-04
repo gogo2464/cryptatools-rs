@@ -18,7 +18,7 @@ impl CaesarNumberAlgorithm {
      ///  The custom alphabet has been put in the constructor of the struct CaesarNumberAlgorithm.
      /// 
      ///  ```
-     ///  use cryptatools_core::cryptography::encryption::caesar_number::CaesarNumberAlgorithm;
+     ///  use cryptatools_core::cryptography::encryption::monoalphabetic_ciphers::caesar_number::CaesarNumberAlgorithm;
      ///  use cryptatools_core::utils::alphabets::ASCII_ALPHABET;
      ///  let mut c: CaesarNumberAlgorithm = CaesarNumberAlgorithm::new(String::from(ASCII_ALPHABET));
      ///  let encrypted = c.encrypt(vec![0x41, 0x41, 0x41], 1);
@@ -26,7 +26,7 @@ impl CaesarNumberAlgorithm {
      ///  ```
      /// 
      ///  ```
-     ///  use cryptatools_core::cryptography::encryption::caesar_number::CaesarNumberAlgorithm;
+     ///  use cryptatools_core::cryptography::encryption::monoalphabetic_ciphers::caesar_number::CaesarNumberAlgorithm;
      ///  use cryptatools_core::utils::alphabets::ASCII_ALPHABET;
      ///  use std::char;
      ///  let mut c: CaesarNumberAlgorithm = CaesarNumberAlgorithm::new(String::from(ASCII_ALPHABET));
@@ -40,7 +40,7 @@ impl CaesarNumberAlgorithm {
      ///  ```
      /// 
      ///  ```
-     ///  use cryptatools_core::cryptography::encryption::caesar_number::CaesarNumberAlgorithm;
+     ///  use cryptatools_core::cryptography::encryption::monoalphabetic_ciphers::caesar_number::CaesarNumberAlgorithm;
      ///  use cryptatools_core::utils::alphabets::ASCII_ALPHABET;
      ///  use std::char;
      ///  let mut c: CaesarNumberAlgorithm = CaesarNumberAlgorithm::new(String::from(ASCII_ALPHABET));
