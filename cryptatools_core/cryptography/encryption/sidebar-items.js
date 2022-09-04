@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"mod":[["caesar_number","Encrypt with Caesar shifting encryption algorithm."]]};
+window.SIDEBAR_ITEMS = {"mod":[["monoalphabetic_ciphers",""],["polyalphabetic_ciphers",""]]};
