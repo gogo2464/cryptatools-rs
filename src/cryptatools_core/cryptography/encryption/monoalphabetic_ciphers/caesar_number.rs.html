@@ -83,14 +83,26 @@
 <span id="77">77</span>
 <span id="78">78</span>
 <span id="79">79</span>
+<span id="80">80</span>
+<span id="81">81</span>
+<span id="82">82</span>
+<span id="83">83</span>
+<span id="84">84</span>
+<span id="85">85</span>
+<span id="86">86</span>
+<span id="87">87</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Encrypt with Caesar shifting encryption algorithm.</span>
+
+<span class="kw">use</span> <span class="ident">bimap::BiMap</span>;
+<span class="kw">use</span> <span class="ident">once_cell::sync::Lazy</span>;
+
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CaesarNumberAlgorithm</span> {
     <span class="doccomment">/// Alphabet used by the caesar number encryption Algotithm.</span>
-    <span class="kw">pub</span> <span class="ident">alphabet</span> : <span class="ident">String</span>,
+    <span class="kw">pub</span> <span class="ident">alphabet</span> : <span class="ident">BiMap</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span>, <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span><span class="op">&gt;</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">CaesarNumberAlgorithm</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">alphabet</span>: <span class="ident">String</span>) -&gt; <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">alphabet</span>: <span class="ident">BiMap</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span>, <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
         <span class="ident">CaesarNumberAlgorithm</span> {
             <span class="ident">alphabet</span>
         }
@@ -105,7 +117,8 @@
      <span class="doccomment">///  ```</span>
      <span class="doccomment">///  use cryptatools_core::cryptography::encryption::monoalphabetic_ciphers::caesar_number::CaesarNumberAlgorithm;</span>
      <span class="doccomment">///  use cryptatools_core::utils::alphabets::ASCII_ALPHABET;</span>
-     <span class="doccomment">///  let mut c: CaesarNumberAlgorithm = CaesarNumberAlgorithm::new(String::from(ASCII_ALPHABET));</span>
+     <span class="doccomment">///  use once_cell::sync::Lazy;</span>
+     <span class="doccomment">///  let mut c: CaesarNumberAlgorithm = CaesarNumberAlgorithm::new(Lazy::force(&amp;ASCII_ALPHABET).to_owned());</span>
      <span class="doccomment">///  let encrypted = c.encrypt(vec![0x41, 0x41, 0x41], 1);</span>
      <span class="doccomment">///  assert_eq!(vec![0x42, 0x42, 0x42], encrypted);</span>
      <span class="doccomment">///  ```</span>
@@ -113,8 +126,9 @@
      <span class="doccomment">///  ```</span>
      <span class="doccomment">///  use cryptatools_core::cryptography::encryption::monoalphabetic_ciphers::caesar_number::CaesarNumberAlgorithm;</span>
      <span class="doccomment">///  use cryptatools_core::utils::alphabets::ASCII_ALPHABET;</span>
+     <span class="doccomment">///  use once_cell::sync::Lazy;</span>
      <span class="doccomment">///  use std::char;</span>
-     <span class="doccomment">///  let mut c: CaesarNumberAlgorithm = CaesarNumberAlgorithm::new(String::from(ASCII_ALPHABET));</span>
+     <span class="doccomment">///  let mut c: CaesarNumberAlgorithm = CaesarNumberAlgorithm::new(Lazy::force(&amp;ASCII_ALPHABET).to_owned());</span>
      <span class="doccomment">///  let plain_text: Vec&lt;u8&gt; = vec!(0x41, 0x41, 0x41);</span>
      <span class="doccomment">///  let encrypted = c.encrypt(plain_text, 1);</span>
      <span class="doccomment">///  let mut re_encrypted = String::new();</span>
@@ -127,8 +141,9 @@
      <span class="doccomment">///  ```</span>
      <span class="doccomment">///  use cryptatools_core::cryptography::encryption::monoalphabetic_ciphers::caesar_number::CaesarNumberAlgorithm;</span>
      <span class="doccomment">///  use cryptatools_core::utils::alphabets::ASCII_ALPHABET;</span>
+     <span class="doccomment">///  use once_cell::sync::Lazy;</span>
      <span class="doccomment">///  use std::char;</span>
-     <span class="doccomment">///  let mut c: CaesarNumberAlgorithm = CaesarNumberAlgorithm::new(String::from(ASCII_ALPHABET));</span>
+     <span class="doccomment">///  let mut c: CaesarNumberAlgorithm = CaesarNumberAlgorithm::new(Lazy::force(&amp;ASCII_ALPHABET).to_owned());</span>
      <span class="doccomment">///  let plain_text: Vec&lt;u8&gt; = vec!(0x41, 0x41, 0x41);</span>
      <span class="doccomment">///  let encrypted = c.encrypt(plain_text, 10);</span>
      <span class="doccomment">///  let mut re_encrypted = String::new();</span>
@@ -154,10 +169,11 @@
 <span class="kw">mod</span> <span class="ident">tests</span> {
     <span class="kw">use</span> <span class="kw">super</span>::<span class="op">*</span> ;
     <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::utils::alphabets::ASCII_ALPHABET</span>;
+    <span class="kw">use</span> <span class="ident">once_cell::sync::Lazy</span>;
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">encrypt_with_caesar_number_encryption_algorithm</span>() {
-        <span class="kw">let</span> <span class="ident">c</span> <span class="op">=</span> <span class="ident">CaesarNumberAlgorithm::new</span>(<span class="ident">String::from</span>(<span class="ident">String::from</span>(<span class="ident">ASCII_ALPHABET</span>)));
+        <span class="kw">let</span> <span class="ident">c</span> <span class="op">=</span> <span class="ident">CaesarNumberAlgorithm::new</span>(<span class="ident">Lazy::force</span>(<span class="kw-2">&amp;</span><span class="ident">ASCII_ALPHABET</span>).<span class="ident">to_owned</span>());
         <span class="kw">let</span> <span class="ident">encrypted</span> <span class="op">=</span> <span class="ident">c</span>.<span class="ident">encrypt</span>(<span class="macro">vec!</span>[<span class="number">0x42</span>, <span class="number">0x42</span>, <span class="number">0x42</span>], <span class="number">1</span>);
         <span class="macro">assert_eq!</span>(<span class="macro">vec!</span>[<span class="number">0x43</span>, <span class="number">0x43</span>, <span class="number">0x43</span>], <span class="ident">encrypted</span>);
     }

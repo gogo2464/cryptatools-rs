@@ -50,17 +50,22 @@
 <span id="44">44</span>
 <span id="45">45</span>
 <span id="46">46</span>
+<span id="47">47</span>
+<span id="48">48</span>
+<span id="49">49</span>
+<span id="50">50</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">std::collections::HashMap</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::utils</span>::{<span class="ident">convert</span>, <span class="ident">alphabets</span>};
+<span class="kw">use</span> <span class="ident">bimap::BiMap</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::utils</span>::{<span class="ident">convert</span>, <span class="ident">alphabets</span>::{<span class="self">self</span>, <span class="ident">ASCII_ALPHABET</span>}};
 
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CoincidenceIndex</span> {
-
+    <span class="ident">alphabet</span>: <span class="ident">BiMap</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span>, <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span><span class="op">&gt;</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">CoincidenceIndex</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() -&gt; <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">alphabet</span>: <span class="ident">BiMap</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span>, <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
         <span class="ident">CoincidenceIndex</span> {
-
+            <span class="ident">alphabet</span>: <span class="ident">alphabet</span>,
         }
     }
 
@@ -68,11 +73,12 @@
     <span class="doccomment">/// </span>
     <span class="doccomment">/// ```</span>
     <span class="doccomment">/// use cryptatools_core::cryptanalysis::general_cryptanalysis_methods::frequency_analysis::coincidence_index::{CoincidenceIndex};</span>
-    <span class="doccomment">/// use cryptatools_core::utils::convert;</span>
+    <span class="doccomment">/// use cryptatools_core::utils::{alphabets::ASCII_ALPHABET, convert};</span>
+    <span class="doccomment">/// use once_cell::sync::Lazy;</span>
     <span class="doccomment">/// use assert_float_eq::{afe_is_f64_near, afe_near_error_msg, assert_f64_near};</span>
     <span class="doccomment">/// let plain_text = String::from(&quot;Hello! How are you? I am fine and you?&quot;);</span>
     <span class="doccomment">/// let pseudo_cipher_text = convert::Encode::from_ascii_to_u8(plain_text);</span>
-    <span class="doccomment">/// let c = CoincidenceIndex::new();</span>
+    <span class="doccomment">/// let c = CoincidenceIndex::new(Lazy::force(&amp;ASCII_ALPHABET).to_owned());</span>
     <span class="doccomment">/// let coincidence_index: f64 = c.guess_coincidence_index(pseudo_cipher_text);</span>
     <span class="doccomment">/// assert_f64_near!(0.06543385490753913, coincidence_index);</span>
     <span class="doccomment">/// ```</span>
@@ -83,12 +89,14 @@
         }
 
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">iteration</span>: <span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">u8</span>, <span class="ident">f64</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">HashMap::new</span>();
-        <span class="kw">for</span> <span class="ident">u8_byte_alphabet</span> <span class="kw">in</span> <span class="ident">convert::Encode::from_ascii_to_u8</span>(<span class="ident">String::from</span>(<span class="ident">alphabets::ASCII_ALPHABET</span>)) {<span class="comment">//TODO: convert to f64</span>
-            <span class="kw">let</span> <span class="ident">apparition_count</span>: <span class="ident">f64</span> <span class="op">=</span> <span class="ident">cipher_text_input</span>.<span class="ident">iter</span>().<span class="ident">filter</span>(<span class="op">|</span><span class="kw-2">&amp;</span><span class="ident">n</span><span class="op">|</span> <span class="kw-2">*</span><span class="ident">n</span> <span class="op">==</span> <span class="ident">u8_byte_alphabet</span>).<span class="ident">count</span>() <span class="kw">as</span> <span class="ident">f64</span>;<span class="comment">//coincidence_index.insert(k, v)</span>
+
+
+        <span class="kw">for</span> <span class="ident">u8_byte_alphabet</span> <span class="kw">in</span> <span class="self">self</span>.<span class="ident">alphabet</span>.<span class="ident">right_values</span>() {<span class="comment">//TODO: convert to f64</span>
+            <span class="kw">let</span> <span class="ident">apparition_count</span>: <span class="ident">f64</span> <span class="op">=</span> <span class="ident">cipher_text_input</span>.<span class="ident">iter</span>().<span class="ident">filter</span>(<span class="op">|</span><span class="kw-2">&amp;</span><span class="ident">n</span><span class="op">|</span> <span class="kw-2">*</span><span class="ident">n</span> <span class="op">==</span> <span class="ident">u8_byte_alphabet</span>[<span class="number">0</span>]).<span class="ident">count</span>() <span class="kw">as</span> <span class="ident">f64</span>;<span class="comment">// the [0] is a quick hack to avoid to find an algorithm to compare a set of bytes with some bytes of different size.</span>
             <span class="kw">let</span> <span class="ident">sum_apparition_alphabet</span>: <span class="ident">f64</span> <span class="op">=</span> <span class="ident">apparition_count</span> <span class="op">*</span> (<span class="ident">apparition_count</span> <span class="op">-</span> <span class="number">1.0</span>);
             <span class="kw">let</span> <span class="ident">divide_characters</span>: <span class="ident">f64</span> <span class="op">=</span> <span class="ident">cipher_text_size</span> <span class="op">*</span> (<span class="ident">cipher_text_size</span> <span class="op">-</span> <span class="number">1.0</span>);
             <span class="kw">let</span> <span class="ident">result</span>: <span class="ident">f64</span> <span class="op">=</span> <span class="ident">sum_apparition_alphabet</span> <span class="op">/</span> <span class="ident">divide_characters</span>;
-            <span class="ident">iteration</span>.<span class="ident">insert</span>(<span class="ident">u8_byte_alphabet</span> <span class="kw">as</span> <span class="ident">u8</span>, <span class="ident">result</span>);
+            <span class="ident">iteration</span>.<span class="ident">insert</span>(<span class="ident">u8_byte_alphabet</span>[<span class="number">0</span>] <span class="kw">as</span> <span class="ident">u8</span>, <span class="ident">result</span>);<span class="comment">// the [0] is a quick hack to avoid to find an algorithm to compare a set of bytes with some bytes of different size.</span>
         }
 
         <span class="kw">let</span> <span class="ident">coincidence_index</span>: <span class="ident">f64</span> <span class="op">=</span> <span class="ident">iteration</span>.<span class="ident">iter</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">x</span><span class="op">|</span> <span class="ident">x</span>.<span class="number">1</span>).<span class="ident">sum</span>();

@@ -8,6 +8,7 @@ sourcesIndex["askama_escape"] = {"name":"","files":["lib.rs"]};
 sourcesIndex["askama_shared"] = {"name":"","dirs":[{"name":"filters","files":["mod.rs"]},{"name":"helpers","files":["mod.rs"]}],"files":["error.rs","generator.rs","heritage.rs","input.rs","lib.rs","parser.rs"]};
 sourcesIndex["assert_float_eq"] = {"name":"","files":["lib.rs"]};
 sourcesIndex["atty"] = {"name":"","files":["lib.rs"]};
+sourcesIndex["bimap"] = {"name":"","files":["btree.rs","hash.rs","lib.rs","mem.rs"]};
 sourcesIndex["bincode"] = {"name":"","dirs":[{"name":"config","files":["endian.rs","int.rs","legacy.rs","limit.rs","mod.rs","trailing.rs"]},{"name":"de","files":["mod.rs","read.rs"]},{"name":"ser","files":["mod.rs"]}],"files":["byteorder.rs","error.rs","internal.rs","lib.rs"]};
 sourcesIndex["bitflags"] = {"name":"","files":["lib.rs"]};
 sourcesIndex["byteorder"] = {"name":"","files":["io.rs","lib.rs"]};

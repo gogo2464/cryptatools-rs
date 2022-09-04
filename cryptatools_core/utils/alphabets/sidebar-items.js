@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"constant":[["ASCII_ALPHABET",""],["PRINTABLE",""],["UU_ENCODING_ALPHABET",""]]};
+window.SIDEBAR_ITEMS = {"constant":[["PRINTABLE",""],["UU_ENCODING_ALPHABET",""]],"static":[["ASCII_ALPHABET",""],["POKERED_ALPHABET",""]]};
