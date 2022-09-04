@@ -1,11 +1,15 @@
 //! Encrypt with Caesar shifting encryption algorithm.
+
+use bimap::BiMap;
+use once_cell::sync::Lazy;
+
 pub struct CaesarNumberAlgorithm {
     /// Alphabet used by the caesar number encryption Algotithm.
-    pub alphabet : String,
+    pub alphabet : BiMap<&'static str, Vec<u8>>,
 }
 
 impl CaesarNumberAlgorithm {
-    pub fn new(alphabet: String) -> Self {
+    pub fn new(alphabet: BiMap<&'static str, Vec<u8>>) -> Self {
         CaesarNumberAlgorithm {
             alphabet
         }
@@ -20,7 +24,8 @@ impl CaesarNumberAlgorithm {
      ///  ```
      ///  use cryptatools_core::cryptography::encryption::monoalphabetic_ciphers::caesar_number::CaesarNumberAlgorithm;
      ///  use cryptatools_core::utils::alphabets::ASCII_ALPHABET;
-     ///  let mut c: CaesarNumberAlgorithm = CaesarNumberAlgorithm::new(String::from(ASCII_ALPHABET));
+     ///  use once_cell::sync::Lazy;
+     ///  let mut c: CaesarNumberAlgorithm = CaesarNumberAlgorithm::new(Lazy::force(&ASCII_ALPHABET).to_owned());
      ///  let encrypted = c.encrypt(vec![0x41, 0x41, 0x41], 1);
      ///  assert_eq!(vec![0x42, 0x42, 0x42], encrypted);
      ///  ```
@@ -28,8 +33,9 @@ impl CaesarNumberAlgorithm {
      ///  ```
      ///  use cryptatools_core::cryptography::encryption::monoalphabetic_ciphers::caesar_number::CaesarNumberAlgorithm;
      ///  use cryptatools_core::utils::alphabets::ASCII_ALPHABET;
+     ///  use once_cell::sync::Lazy;
      ///  use std::char;
-     ///  let mut c: CaesarNumberAlgorithm = CaesarNumberAlgorithm::new(String::from(ASCII_ALPHABET));
+     ///  let mut c: CaesarNumberAlgorithm = CaesarNumberAlgorithm::new(Lazy::force(&ASCII_ALPHABET).to_owned());
      ///  let plain_text: Vec<u8> = vec!(0x41, 0x41, 0x41);
      ///  let encrypted = c.encrypt(plain_text, 1);
      ///  let mut re_encrypted = String::new();
@@ -42,8 +48,9 @@ impl CaesarNumberAlgorithm {
      ///  ```
      ///  use cryptatools_core::cryptography::encryption::monoalphabetic_ciphers::caesar_number::CaesarNumberAlgorithm;
      ///  use cryptatools_core::utils::alphabets::ASCII_ALPHABET;
+     ///  use once_cell::sync::Lazy;
      ///  use std::char;
-     ///  let mut c: CaesarNumberAlgorithm = CaesarNumberAlgorithm::new(String::from(ASCII_ALPHABET));
+     ///  let mut c: CaesarNumberAlgorithm = CaesarNumberAlgorithm::new(Lazy::force(&ASCII_ALPHABET).to_owned());
      ///  let plain_text: Vec<u8> = vec!(0x41, 0x41, 0x41);
      ///  let encrypted = c.encrypt(plain_text, 10);
      ///  let mut re_encrypted = String::new();
@@ -69,10 +76,11 @@ impl CaesarNumberAlgorithm {
 mod tests {
     use super::* ;
     use crate::utils::alphabets::ASCII_ALPHABET;
+    use once_cell::sync::Lazy;
 
     #[test]
     fn encrypt_with_caesar_number_encryption_algorithm() {
-        let c = CaesarNumberAlgorithm::new(String::from(String::from(ASCII_ALPHABET)));
+        let c = CaesarNumberAlgorithm::new(Lazy::force(&ASCII_ALPHABET).to_owned());
         let encrypted = c.encrypt(vec![0x42, 0x42, 0x42], 1);
         assert_eq!(vec![0x43, 0x43, 0x43], encrypted);
     }
