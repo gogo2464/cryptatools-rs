@@ -2,3 +2,7 @@ namespace cryptatools {
 
 };
 
+interface CaesarNumberAlgorithm {
+    constructor(record<DOMString, sequence<u8>> alphabet);
+    sequence<u8> encrypt(sequence<u8> plain_text, u32 key);
+};

@@ -1,15 +1,14 @@
 //! Encrypt with Caesar shifting encryption algorithm.
 
-use bimap::BiMap;
-use once_cell::sync::Lazy;
+use std::collections::HashMap;
 
 pub struct CaesarNumberAlgorithm {
     /// Alphabet used by the caesar number encryption Algotithm.
-    pub alphabet : BiMap<&'static str, Vec<u8>>,
+    pub alphabet : HashMap<String, Vec<u8>>,
 }
 
 impl CaesarNumberAlgorithm {
-    pub fn new(alphabet: BiMap<&'static str, Vec<u8>>) -> Self {
+    pub fn new(alphabet: HashMap<String, Vec<u8>>) -> Self {
         CaesarNumberAlgorithm {
             alphabet
         }

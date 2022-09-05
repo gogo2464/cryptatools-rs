@@ -1,13 +1,12 @@
 use std::collections::HashMap;
-use bimap::BiMap;
 use crate::utils::{convert, alphabets::{self, ASCII_ALPHABET}};
 
 pub struct CoincidenceIndex {
-    alphabet: BiMap<&'static str, Vec<u8>>,
+    alphabet: HashMap<String, Vec<u8>>,
 }
 
 impl CoincidenceIndex {
-    pub fn new(alphabet: BiMap<&'static str, Vec<u8>>) -> Self {
+    pub fn new(alphabet: HashMap<String, Vec<u8>>) -> Self {
         CoincidenceIndex {
             alphabet: alphabet,
         }
@@ -35,7 +34,7 @@ impl CoincidenceIndex {
         let mut iteration: HashMap<u8, f64> = HashMap::new();
 
 
-        for u8_byte_alphabet in self.alphabet.right_values() {//TODO: convert to f64
+        for u8_byte_alphabet in self.alphabet.values() {//TODO: convert to f64
             let apparition_count: f64 = cipher_text_input.iter().filter(|&n| *n == u8_byte_alphabet[0]).count() as f64;// the [0] is a quick hack to avoid to find an algorithm to compare a set of bytes with some bytes of different size.
             let sum_apparition_alphabet: f64 = apparition_count * (apparition_count - 1.0);
             let divide_characters: f64 = cipher_text_size * (cipher_text_size - 1.0);
