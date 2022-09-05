@@ -175,14 +175,14 @@ class build(_build):
 
         if "-darwin" in target:
             env["MACOSX_DEPLOYMENT_TARGET"] = macos_compat(target)
-
+        
         subprocess.check_call(command, cwd=SRC_ROOT / "cryptatools-rs", env=env)
 
         shutil.copyfile(
             SRC_ROOT / "cryptatools-rs" / "target" / target / buildvariant / "deps" / shared_object,
             SRC_ROOT / "cryptatools-rs" / "cryptatools-core" / "bindings" / "python3" / "cryptatools-core" / new_shared_object_name,
         )
-
+        
         command = [
             "uniffi-bindgen",
             "generate",
