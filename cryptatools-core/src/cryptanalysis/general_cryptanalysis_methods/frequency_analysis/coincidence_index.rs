@@ -3,6 +3,7 @@ use once_cell::sync::Lazy;
 use std::fs;
 use crate::utils::{convert, alphabets::ASCII_ALPHABET};
 use std::path::Path;
+use itertools::Itertools;
 
 pub struct CoincidenceIndexGuesser {
     alphabet: HashMap<String, Vec<u8>>,
@@ -26,7 +27,7 @@ impl CoincidenceIndexGuesser {
     /// let pseudo_cipher_text = convert::Encode::from_ascii_to_u8(plain_text);
     /// let c = CoincidenceIndexGuesser::new(Lazy::force(&ASCII_ALPHABET).to_owned());
     /// let coincidence_index: f64 = c.guess_coincidence_index(pseudo_cipher_text);
-    /// assert_f64_near!(0.06543385490753913, coincidence_index);
+    /// assert_eq!(0.06543385490753914, coincidence_index);
     /// ```
     pub fn guess_coincidence_index(self, cipher_text_input: Vec<u8>) -> f64 {
         let cipher_text_size: f64 = cipher_text_input.len() as f64;
@@ -45,13 +46,14 @@ impl CoincidenceIndexGuesser {
             iteration.insert(u8_byte_alphabet[0], result);// the [0] is a quick hack to avoid to find an algorithm to compare a set of bytes with some bytes of different size.
         }
 
-        let coincidence_index: f64 = iteration.iter().map(|x| x.1).sum();
+        let mut ordored_result: Vec<&f64> = vec![];//alway sort in order to get alway the same result. Unprecise. TODO: Use https://en.wikipedia.org/wiki/Kahan_summation_algorithm#The_algorithm
+        for k in iteration.keys().sorted() {
+            ordored_result.push(iteration.get(k).unwrap());
+        }
+        let coincidence_index: f64 = ordored_result.iter().map(|x| *x).sum();
 
         coincidence_index
     }
-
-
-
 }
 
 pub trait VigenereCoincidenceIndexGuesser {
