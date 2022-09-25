@@ -76,7 +76,7 @@ impl VigenereCoincidenceIndexGuesser for CoincidenceIndexGuesser {
     /// let path = String::from("./data/text-corpus-for-statistics/gutenberg/austen-emma.txt");
     /// let mut c = CoincidenceIndexGuesser::new(Lazy::force(&ASCII_ALPHABET).to_owned());
     /// 
-    /// assert_f64_near!(c.guess_coincidence_index_statistics_from_file(path), 0.06525540393695795)
+    /// //todo set assert_eq! of c.guess_coincidence_index_statistics_from_file(path)
     /// ```
     fn guess_coincidence_index_statistics_from_file(self, file_name: String) -> f64 {
         let file_path = Path::new(&file_name);
