@@ -1,8 +1,6 @@
-use std::{collections::HashMap, hash::Hash};
+use crate::utils::convert;
+use std::{collections::HashMap, fs, path::Path};
 use once_cell::sync::Lazy;
-use std::fs;
-use crate::utils::{convert, alphabets::ASCII_ALPHABET};
-use std::path::Path;
 use itertools::Itertools;
 
 pub struct CoincidenceIndexGuesser {
@@ -102,7 +100,7 @@ impl VigenereCoincidenceIndexGuesser for CoincidenceIndexGuesser {
 }
 
 
-pub static english_default_coincidence_index: Lazy<HashMap<usize, f64>> = Lazy::new(|| {
+pub static ENGLISH_DEFAULT_COINCIDENCE_INDEX: Lazy<HashMap<usize, f64>> = Lazy::new(|| {
     let mut coincidence_index = HashMap::new();
     coincidence_index.insert(1, 0.0639);
     coincidence_index.insert(2, 0.0511);
