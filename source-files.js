@@ -23,8 +23,8 @@ var sourcesIndex = JSON.parse('{\
 "crc32fast":["",[["specialized",[],["mod.rs","pclmulqdq.rs"]]],["baseline.rs","combine.rs","lib.rs","table.rs"]],\
 "crossbeam_channel":["",[["flavors",[],["array.rs","at.rs","list.rs","mod.rs","never.rs","tick.rs","zero.rs"]]],["channel.rs","context.rs","counter.rs","err.rs","lib.rs","select.rs","select_macro.rs","utils.rs","waker.rs"]],\
 "crossbeam_deque":["",[],["deque.rs","lib.rs"]],\
-"crossbeam_epoch":["",[["sync",[],["list.rs","mod.rs","queue.rs"]]],["atomic.rs","collector.rs","default.rs","deferred.rs","epoch.rs","guard.rs","internal.rs","lib.rs"]],\
-"crossbeam_utils":["",[["atomic",[],["atomic_cell.rs","consume.rs","mod.rs","seq_lock.rs"]],["sync",[],["mod.rs","parker.rs","sharded_lock.rs","wait_group.rs"]]],["backoff.rs","cache_padded.rs","lib.rs","thread.rs"]],\
+"crossbeam_epoch":["",[["sync",[],["list.rs","mod.rs","once_lock.rs","queue.rs"]]],["atomic.rs","collector.rs","default.rs","deferred.rs","epoch.rs","guard.rs","internal.rs","lib.rs"]],\
+"crossbeam_utils":["",[["atomic",[],["atomic_cell.rs","consume.rs","mod.rs","seq_lock.rs"]],["sync",[],["mod.rs","once_lock.rs","parker.rs","sharded_lock.rs","wait_group.rs"]]],["backoff.rs","cache_padded.rs","lib.rs","thread.rs"]],\
 "cryptatools_core":["",[["cryptanalysis",[["general_cryptanalysis_methods",[["brute_force",[],["caesar_number.rs","mod.rs"]],["frequency_analysis",[["distribution_algorithms",[],["mod.rs","statistical.rs"]]],["coincidence_index.rs","mod.rs"]]],["mod.rs"]]],["mod.rs","plain_text_detector.rs"]],["cryptography",[["encoding",[],["mod.rs"]],["encryption",[["monoalphabetic_ciphers",[],["caesar_number.rs","mod.rs"]],["polyalphabetic_ciphers",[],["mod.rs","vigenere.rs"]]],["mod.rs"]]],["mod.rs"]],["utils",[],["alphabets.rs","convert.rs","mod.rs"]]],["lib.rs"]],\
 "cryptatools_rs":["",[],["main.rs"]],\
 "either":["",[],["lib.rs"]],\
