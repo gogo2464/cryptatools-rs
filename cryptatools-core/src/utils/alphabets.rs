@@ -1,14 +1,45 @@
 use std::collections::HashMap;
-
 use bimap::BiMap;
 use once_cell::sync::Lazy;
+
+///```
+/// use cryptatools_core::utils::{convert::Encode, alphabets::split_bytes_by_characters_representation, alphabets::ASCII_ALPHABET};
+/// use once_cell::sync::Lazy;
+/// let plaintext = split_bytes_by_characters_representation(Lazy::force(&ASCII_ALPHABET).to_owned(), Encode::from_ascii_to_u8(String::from("the quick brown roman fox jumped over the lazy ostrogoth dog")));
+/// assert_eq!(plaintext, [[116], [104], [101], [32], [113], [117], [105], [99], [107], [32], [98], [114], [111], [119], [110], [32], [114], [111], [109], [97], [110], [32], [102], [111], [120], [32], [106], [117], [109], [112], [101], [100], [32], [111], [118], [101], [114], [32], [116], [104], [101], [32], [108], [97], [122], [121], [32], [111], [115], [116], [114], [111], [103], [111], [116], [104], [32], [100], [111], [103]]);
+/// assert_eq!(plaintext.len(), String::from("the quick brown roman fox jumped over the lazy ostrogoth dog").len());
+/// ```
+
+pub fn split_bytes_by_characters_representation(alphabet: HashMap<String, Vec<u8>>, text: Vec<u8>) -> Vec<Vec<u8>> {
+    let mut set_of_chars: Vec<Vec<u8>> = vec![];
+    let mut character_byte_representation_size: usize = 0;
+    for byte in text {
+        for alphabet_character in alphabet.keys() {
+            if character_byte_representation_size > 0 {
+                character_byte_representation_size = character_byte_representation_size-1;
+                continue;
+            }
+
+            if alphabet.get(alphabet_character).unwrap().len() > 1 {
+                set_of_chars.push(alphabet.get(alphabet_character).unwrap().to_vec());
+                character_byte_representation_size = alphabet.get(alphabet_character).unwrap().len() - 1;
+                continue;
+            } else if alphabet.get(alphabet_character).unwrap().len() == 1 {
+                set_of_chars.push(vec![byte]);
+                break;
+            }
+        }
+    }
+
+    set_of_chars
+}
 
 pub const PRINTABLE: &'static str = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!\"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~ \t\n\r\x0b\x0c";
 //pub const ASCII_ALPHABET: &'static str = "\x00\x01\x02\x03\x04\x05\x06\x07\x08\t\n\x0b\x0c\r\x0e\x0f\x10\x11\x12\x13\x14\x15\x16\x17\x18\x19\x1a\x1b\x1c\x1d\x1e\x1f !\"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~\x7f\\u128";
 pub const UU_ENCODING_ALPHABET: &'static str = " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`";
 
 
- pub static POKERED_ALPHABET: Lazy<BiMap<&'static str, Vec<u8>>> = Lazy::new(|| {
+pub static POKERED_ALPHABET: Lazy<BiMap<&'static str, Vec<u8>>> = Lazy::new(|| {
     let mut alphabet = BiMap::new();
     alphabet.insert("<NULL>", vec![0x00]);
     alphabet.insert("<PAGE>", vec![0x49]);

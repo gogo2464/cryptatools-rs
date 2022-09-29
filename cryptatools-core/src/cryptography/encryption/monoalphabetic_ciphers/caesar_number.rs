@@ -1,5 +1,4 @@
 //! Encrypt with Caesar shifting encryption algorithm.
-
 use std::collections::HashMap;
 
 pub struct CaesarNumberAlgorithm {
