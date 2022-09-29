@@ -184,3 +184,36 @@ pub static ASCII_ALPHABET: Lazy<HashMap<String, Vec<u8>>> = Lazy::new(|| {
     alphabet
   }
 );
+
+pub static MAJ_NO_SPACE_ASCII_ALPHABET: Lazy<HashMap<String, Vec<u8>>> = Lazy::new(|| {
+    let mut alphabet = HashMap::new();
+    alphabet.insert(String::from("A"), vec![0x41]);
+    alphabet.insert(String::from("B"), vec![0x42]);
+    alphabet.insert(String::from("C"), vec![0x43]);
+    alphabet.insert(String::from("D"), vec![0x44]);
+    alphabet.insert(String::from("E"), vec![0x45]);
+    alphabet.insert(String::from("F"), vec![0x46]);
+    alphabet.insert(String::from("G"), vec![0x47]);
+    alphabet.insert(String::from("H"), vec![0x48]);
+    alphabet.insert(String::from("I"), vec![0x49]);
+    alphabet.insert(String::from("J"), vec![0x4a]);
+    alphabet.insert(String::from("K"), vec![0x4b]);
+    alphabet.insert(String::from("L"), vec![0x4c]);
+    alphabet.insert(String::from("M"), vec![0x4d]);
+    alphabet.insert(String::from("N"), vec![0x4e]);
+    alphabet.insert(String::from("O"), vec![0x4f]);
+    alphabet.insert(String::from("P"), vec![0x50]);
+    alphabet.insert(String::from("Q"), vec![0x51]);
+    alphabet.insert(String::from("R"), vec![0x52]);
+    alphabet.insert(String::from("S"), vec![0x53]);
+    alphabet.insert(String::from("T"), vec![0x54]);
+    alphabet.insert(String::from("U"), vec![0x55]);
+    alphabet.insert(String::from("V"), vec![0x56]);
+    alphabet.insert(String::from("W"), vec![0x57]);
+    alphabet.insert(String::from("X"), vec![0x58]);
+    alphabet.insert(String::from("Y"), vec![0x59]);
+    alphabet.insert(String::from("Z"), vec![0x5a]);
+
+    alphabet
+  }
+);
