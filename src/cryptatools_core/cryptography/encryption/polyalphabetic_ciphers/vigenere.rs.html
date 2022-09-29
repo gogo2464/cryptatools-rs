@@ -71,9 +71,35 @@
 <span id="71">71</span>
 <span id="72">72</span>
 <span id="73">73</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">std</span>::{<span class="ident">collections::HashMap</span>, <span class="ident">clone</span>, <span class="ident">slice::SliceIndex</span>};
+<span id="74">74</span>
+<span id="75">75</span>
+<span id="76">76</span>
+<span id="77">77</span>
+<span id="78">78</span>
+<span id="79">79</span>
+<span id="80">80</span>
+<span id="81">81</span>
+<span id="82">82</span>
+<span id="83">83</span>
+<span id="84">84</span>
+<span id="85">85</span>
+<span id="86">86</span>
+<span id="87">87</span>
+<span id="88">88</span>
+<span id="89">89</span>
+<span id="90">90</span>
+<span id="91">91</span>
+<span id="92">92</span>
+<span id="93">93</span>
+<span id="94">94</span>
+<span id="95">95</span>
+<span id="96">96</span>
+<span id="97">97</span>
+<span id="98">98</span>
+<span id="99">99</span>
+</pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">std::collections::HashMap</span>;
 <span class="kw">use</span> <span class="ident">itertools::Itertools</span>;
-<span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">cryptography::encryption::monoalphabetic_ciphers::caesar_number</span>, <span class="ident">utils::alphabets</span>};
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::utils::alphabets</span>;
 
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Vigenere</span> {
     <span class="kw">pub</span> <span class="ident">alphabet</span> : <span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">String</span>, <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span><span class="op">&gt;</span>,
@@ -113,30 +139,56 @@
     <span class="doccomment">/// </span>
     <span class="doccomment">/// If the custom alphabet is represented as multi-bytes representation for a single char, then this function still handles this case and splits bytes by symbol size.</span>
     <span class="doccomment">/// ```</span>
-    <span class="doccomment">/// use cryptatools_core::utils::{alphabets, alphabets::ASCII_ALPHABET, convert::Encode};</span>
+    <span class="doccomment">/// use cryptatools_core::utils::{alphabets, alphabets::ASCII_ALPHABET, alphabets::MAJ_NO_SPACE_ASCII_ALPHABET, convert::Encode};</span>
     <span class="doccomment">/// use cryptatools_core::cryptography::encryption::polyalphabetic_ciphers::vigenere::Vigenere;</span>
     <span class="doccomment">/// use once_cell::sync::Lazy;</span>
     <span class="doccomment">/// let v = Vigenere::new(Lazy::force(&amp;ASCII_ALPHABET).to_owned());</span>
     <span class="doccomment">/// let plaintext = Encode::from_ascii_to_u8(String::from(&quot;the quick brown roman fox jumped over the lazy ostrogoth dog&quot;));</span>
-    <span class="doccomment">/// let key = vec![vec![3], vec![1], vec![5]];//alphabets::split_bytes_by_characters_representation(Lazy::force(&amp;ASCII_ALPHABET).to_owned(), Encode::from_ascii_to_u8(String::from(&quot;caesar&quot;)));</span>
+    <span class="doccomment">/// </span>
+    <span class="doccomment">/// assert_eq!(plaintext, [116, 104, 101, 32, 113, 117, 105, 99, 107, 32, 98, 114, 111, 119, 110, 32, 114, 111, 109, 97, 110, 32, 102, 111, 120, 32, 106, 117, 109, 112, 101, 100, 32, 111, 118, 101, 114, 32, 116, 104, 101, 32, 108, 97, 122, 121, 32, 111, 115, 116, 114, 111, 103, 111, 116, 104, 32, 100, 111, 103]);</span>
+    <span class="doccomment">/// </span>
+    <span class="doccomment">/// let key = alphabets::split_bytes_by_characters_representation(Lazy::force(&amp;ASCII_ALPHABET).to_owned(), Encode::from_ascii_to_u8(String::from(&quot;caesar&quot;)));</span>
+    <span class="doccomment">/// </span>
+    <span class="doccomment">/// assert_eq!(key, [[99], [97], [101], [115], [97], [114]]);</span>
+    <span class="doccomment">/// </span>
     <span class="doccomment">/// let result = v.encrypt(plaintext, key);</span>
-    <span class="doccomment">/// assert_eq!(result, [118, 104, 105, 34, 113, 121, 107, 99, 111, 34, 98, 118, 113, 119, 114, 34, 114, 115, 111, 97, 114, 34, 102, 115, 122, 32, 110, 119, 109, 116, 103, 100, 36, 113, 118, 105, 116, 32, 120, 106, 101, 36, 110, 97, 126, 123, 32, 115, 117, 116, 118, 113, 103, 115, 118, 104, 36, 102, 111, 107]);</span>
+    <span class="doccomment">/// </span>
+    <span class="doccomment">/// assert_eq!(result, [86, 72, 73, 18, 81, 102, 75, 67, 79, 18, 66, 99, 81, 87, 82, 18, 82, 96, 79, 65, 82, 18, 70, 96, 90, 0, 78, 103, 77, 97, 71, 68, 4, 97, 86, 86, 84, 0, 88, 90, 69, 17, 78, 65, 94, 107, 0, 96, 85, 84, 86, 97, 71, 96, 86, 72, 4, 86, 79, 88]);</span>
+    <span class="doccomment">/// </span>
+    <span class="doccomment">/// use cryptatools_core::utils::convert::Decode;</span>
+    <span class="doccomment">/// let str_encrypted = Decode::from_u8_to_ascii(result);</span>
+    <span class="doccomment">/// </span>
+    <span class="doccomment">/// assert_eq!(str_encrypted, &quot;VHI\u{12}QfKCO\u{12}BcQWR\u{12}R`OAR\u{12}F`Z\0NgMaGD\u{4}aVVT\0XZE\u{11}NA^k\0`UTVaG`VH\u{4}VOX&quot;);</span>
+    <span class="doccomment">/// </span>
+    <span class="doccomment">/// let v = Vigenere::new(Lazy::force(&amp;MAJ_NO_SPACE_ASCII_ALPHABET).to_owned());</span>
+    <span class="doccomment">/// let plaintext = Encode::from_ascii_to_u8(String::from(&quot;thequickbrownromanfoxjumpedoverthelazyostrogothdog&quot;).to_uppercase());</span>
+    <span class="doccomment">/// let key = alphabets::split_bytes_by_characters_representation(Lazy::force(&amp;MAJ_NO_SPACE_ASCII_ALPHABET).to_owned(), Encode::from_ascii_to_u8(String::from(&quot;CAESAR&quot;)));</span>
+    <span class="doccomment">/// </span>
+    <span class="doccomment">/// assert_eq!(plaintext, [84, 72, 69, 81, 85, 73, 67, 75, 66, 82, 79, 87, 78, 82, 79, 77, 65, 78, 70, 79, 88, 74, 85, 77, 80, 69, 68, 79, 86, 69, 82, 84, 72, 69, 76, 65, 90, 89, 79, 83, 84, 82, 79, 71, 79, 84, 72, 68, 79, 71]);</span>
+    <span class="doccomment">/// assert_eq!(key, [[67], [65], [69], [83], [65], [82]]);</span>
+    <span class="doccomment">/// </span>
+    <span class="doccomment">/// let result = v.encrypt(plaintext, key);</span>
+    <span class="doccomment">/// </span>
+    <span class="doccomment">/// assert_eq!(result, [86, 72, 73, 73, 85, 90, 69, 75, 70, 74, 79, 78, 80, 82, 83, 69, 65, 69, 72, 79, 66, 66, 85, 68, 82, 69, 72, 71, 86, 86, 84, 84, 76, 87, 76, 82, 66, 89, 83, 75, 84, 73, 81, 71, 83, 76, 72, 85, 81, 71]);</span>
+    <span class="doccomment">/// </span>
+    <span class="doccomment">/// let str_encrypted = Decode::from_u8_to_ascii(result);</span>
+    <span class="doccomment">/// </span>
+    <span class="doccomment">/// assert_eq!(str_encrypted, &quot;VHIIUZEKFJONPRSEAEHOBBUDREHGVVTTLWLRBYSKTIQGSLHUQG&quot;);</span>
+    <span class="doccomment">/// </span>
     <span class="doccomment">/// ```</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">encrypt</span>(<span class="self">self</span>, <span class="ident">plain_text</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>, <span class="ident">passphrase_key</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span><span class="op">&gt;</span>) -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">characters_set</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">alphabets::split_bytes_by_characters_representation</span>(<span class="self">self</span>.<span class="ident">alphabet</span>.<span class="ident">clone</span>(), <span class="ident">plain_text</span>);
 
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">encrypted_character_sets</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="op">=</span> <span class="macro">vec!</span>[];
-
         <span class="kw">for</span> <span class="ident">character_shift</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">characters_set</span>.<span class="ident">clone</span>().<span class="ident">len</span>() {
             <span class="kw">let</span> <span class="ident">key_offset</span> <span class="op">=</span> <span class="ident">character_shift</span> <span class="op">%</span> <span class="ident">passphrase_key</span>.<span class="ident">clone</span>().<span class="ident">len</span>();
 
             <span class="kw">let</span> <span class="ident">top</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">vigenere_table</span>.<span class="ident">get</span>(<span class="number">0</span>).<span class="ident">unwrap</span>().<span class="ident">iter</span>().<span class="ident">position</span>(<span class="op">|</span><span class="ident">x</span><span class="op">|</span><span class="ident">x</span>.<span class="ident">clone</span>() <span class="op">==</span> <span class="ident">passphrase_key</span>[<span class="ident">key_offset</span>]).<span class="ident">unwrap</span>().<span class="ident">clone</span>();
-            <span class="kw">let</span> <span class="ident">left</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">vigenere_table</span>.<span class="ident">iter</span>().<span class="ident">position</span>(<span class="op">|</span><span class="ident">x</span><span class="op">|</span> <span class="ident">x</span>.<span class="ident">clone</span>().<span class="ident">first</span>().<span class="ident">unwrap</span>().<span class="ident">clone</span>() <span class="op">==</span> <span class="ident">characters_set</span>[<span class="ident">character_shift</span>].<span class="ident">clone</span>()).<span class="ident">unwrap</span>() <span class="op">-</span> <span class="number">1</span>;
+            <span class="kw">let</span> <span class="ident">left</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">vigenere_table</span>.<span class="ident">iter</span>().<span class="ident">position</span>(<span class="op">|</span><span class="ident">x</span><span class="op">|</span> <span class="ident">x</span>.<span class="ident">clone</span>().<span class="ident">first</span>().<span class="ident">unwrap</span>().<span class="ident">clone</span>() <span class="op">==</span> <span class="ident">characters_set</span>[<span class="ident">character_shift</span>].<span class="ident">clone</span>()).<span class="ident">unwrap_or</span>(<span class="number">3</span>);
             <span class="ident">encrypted_character_sets</span>.<span class="ident">push</span>(<span class="self">self</span>.<span class="ident">vigenere_table</span>.<span class="ident">get</span>(<span class="ident">left</span>).<span class="ident">unwrap</span>().<span class="ident">get</span>(<span class="ident">top</span>).<span class="ident">unwrap</span>().<span class="ident">to_vec</span>());
         }
-
+        
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">unified_output_bytes</span> <span class="op">=</span> <span class="macro">vec!</span>[];
-
         <span class="kw">for</span> <span class="ident">encrypted_character_set</span> <span class="kw">in</span> <span class="kw-2">&amp;mut</span> <span class="ident">encrypted_character_sets</span> {
             <span class="ident">unified_output_bytes</span>.<span class="ident">append</span>(<span class="ident">encrypted_character_set</span>)
         }

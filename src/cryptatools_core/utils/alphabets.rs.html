@@ -184,6 +184,39 @@
 <span id="184">184</span>
 <span id="185">185</span>
 <span id="186">186</span>
+<span id="187">187</span>
+<span id="188">188</span>
+<span id="189">189</span>
+<span id="190">190</span>
+<span id="191">191</span>
+<span id="192">192</span>
+<span id="193">193</span>
+<span id="194">194</span>
+<span id="195">195</span>
+<span id="196">196</span>
+<span id="197">197</span>
+<span id="198">198</span>
+<span id="199">199</span>
+<span id="200">200</span>
+<span id="201">201</span>
+<span id="202">202</span>
+<span id="203">203</span>
+<span id="204">204</span>
+<span id="205">205</span>
+<span id="206">206</span>
+<span id="207">207</span>
+<span id="208">208</span>
+<span id="209">209</span>
+<span id="210">210</span>
+<span id="211">211</span>
+<span id="212">212</span>
+<span id="213">213</span>
+<span id="214">214</span>
+<span id="215">215</span>
+<span id="216">216</span>
+<span id="217">217</span>
+<span id="218">218</span>
+<span id="219">219</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">std::collections::HashMap</span>;
 <span class="kw">use</span> <span class="ident">bimap::BiMap</span>;
 <span class="kw">use</span> <span class="ident">once_cell::sync::Lazy</span>;
@@ -366,6 +399,39 @@
     <span class="ident">alphabet</span>.<span class="ident">insert</span>(<span class="ident">String::from</span>(<span class="string">&quot;~&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x7e</span>]);
     <span class="ident">alphabet</span>.<span class="ident">insert</span>(<span class="ident">String::from</span>(<span class="string">&quot;\x7f&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x7f</span>]);
     <span class="ident">alphabet</span>.<span class="ident">insert</span>(<span class="ident">String::from</span>(<span class="string">&quot;\\u128&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x80</span>]);
+
+    <span class="ident">alphabet</span>
+  }
+);
+
+<span class="kw">pub</span> <span class="kw">static</span> <span class="ident">MAJ_NO_SPACE_ASCII_ALPHABET</span>: <span class="ident">Lazy</span><span class="op">&lt;</span><span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">String</span>, <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Lazy::new</span>(<span class="op">|</span><span class="op">|</span> {
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">alphabet</span> <span class="op">=</span> <span class="ident">HashMap::new</span>();
+    <span class="ident">alphabet</span>.<span class="ident">insert</span>(<span class="ident">String::from</span>(<span class="string">&quot;A&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x41</span>]);
+    <span class="ident">alphabet</span>.<span class="ident">insert</span>(<span class="ident">String::from</span>(<span class="string">&quot;B&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x42</span>]);
+    <span class="ident">alphabet</span>.<span class="ident">insert</span>(<span class="ident">String::from</span>(<span class="string">&quot;C&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x43</span>]);
+    <span class="ident">alphabet</span>.<span class="ident">insert</span>(<span class="ident">String::from</span>(<span class="string">&quot;D&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x44</span>]);
+    <span class="ident">alphabet</span>.<span class="ident">insert</span>(<span class="ident">String::from</span>(<span class="string">&quot;E&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x45</span>]);
+    <span class="ident">alphabet</span>.<span class="ident">insert</span>(<span class="ident">String::from</span>(<span class="string">&quot;F&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x46</span>]);
+    <span class="ident">alphabet</span>.<span class="ident">insert</span>(<span class="ident">String::from</span>(<span class="string">&quot;G&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x47</span>]);
+    <span class="ident">alphabet</span>.<span class="ident">insert</span>(<span class="ident">String::from</span>(<span class="string">&quot;H&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x48</span>]);
+    <span class="ident">alphabet</span>.<span class="ident">insert</span>(<span class="ident">String::from</span>(<span class="string">&quot;I&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x49</span>]);
+    <span class="ident">alphabet</span>.<span class="ident">insert</span>(<span class="ident">String::from</span>(<span class="string">&quot;J&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x4a</span>]);
+    <span class="ident">alphabet</span>.<span class="ident">insert</span>(<span class="ident">String::from</span>(<span class="string">&quot;K&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x4b</span>]);
+    <span class="ident">alphabet</span>.<span class="ident">insert</span>(<span class="ident">String::from</span>(<span class="string">&quot;L&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x4c</span>]);
+    <span class="ident">alphabet</span>.<span class="ident">insert</span>(<span class="ident">String::from</span>(<span class="string">&quot;M&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x4d</span>]);
+    <span class="ident">alphabet</span>.<span class="ident">insert</span>(<span class="ident">String::from</span>(<span class="string">&quot;N&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x4e</span>]);
+    <span class="ident">alphabet</span>.<span class="ident">insert</span>(<span class="ident">String::from</span>(<span class="string">&quot;O&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x4f</span>]);
+    <span class="ident">alphabet</span>.<span class="ident">insert</span>(<span class="ident">String::from</span>(<span class="string">&quot;P&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x50</span>]);
+    <span class="ident">alphabet</span>.<span class="ident">insert</span>(<span class="ident">String::from</span>(<span class="string">&quot;Q&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x51</span>]);
+    <span class="ident">alphabet</span>.<span class="ident">insert</span>(<span class="ident">String::from</span>(<span class="string">&quot;R&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x52</span>]);
+    <span class="ident">alphabet</span>.<span class="ident">insert</span>(<span class="ident">String::from</span>(<span class="string">&quot;S&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x53</span>]);
+    <span class="ident">alphabet</span>.<span class="ident">insert</span>(<span class="ident">String::from</span>(<span class="string">&quot;T&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x54</span>]);
+    <span class="ident">alphabet</span>.<span class="ident">insert</span>(<span class="ident">String::from</span>(<span class="string">&quot;U&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x55</span>]);
+    <span class="ident">alphabet</span>.<span class="ident">insert</span>(<span class="ident">String::from</span>(<span class="string">&quot;V&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x56</span>]);
+    <span class="ident">alphabet</span>.<span class="ident">insert</span>(<span class="ident">String::from</span>(<span class="string">&quot;W&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x57</span>]);
+    <span class="ident">alphabet</span>.<span class="ident">insert</span>(<span class="ident">String::from</span>(<span class="string">&quot;X&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x58</span>]);
+    <span class="ident">alphabet</span>.<span class="ident">insert</span>(<span class="ident">String::from</span>(<span class="string">&quot;Y&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x59</span>]);
+    <span class="ident">alphabet</span>.<span class="ident">insert</span>(<span class="ident">String::from</span>(<span class="string">&quot;Z&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x5a</span>]);
 
     <span class="ident">alphabet</span>
   }
