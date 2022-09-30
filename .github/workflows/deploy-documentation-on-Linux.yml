@@ -1,4 +1,5 @@
 name: Publish Documentation Online from Ubuntu
+
 on: [push, pull_request]
 
 jobs:
@@ -9,6 +10,11 @@ jobs:
     runs-on:
       - ubuntu-latest
     steps:
+
+    - name: check branch
+      run: |
+        if  [[ "$TRAVIS_BRANCH" == "master" ]] ; then echo 'Generating Documentation.'; else echo 'Only code on master branch can generate documentation.'; exit 0 ; fi
+
     - uses: actions/checkout@v2
       with:
         fetch-depth: 0
