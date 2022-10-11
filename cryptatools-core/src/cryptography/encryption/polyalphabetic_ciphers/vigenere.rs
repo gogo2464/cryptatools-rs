@@ -23,12 +23,15 @@ impl Vigenere {
         
         let alphabets_size = alphabet.values().len();//-1
         let mut vigenere_table: Vec<Vec<Vec<u8>>> = vec![];
+
+
         for i in 0..alphabets_size {
             vigenere_table.push(vec![]);
             for j in i..alphabets_size+i {
                 vigenere_table[i].push(ordonned_alphabet.as_slice()[j%alphabets_size].to_vec());
             }
         }
+        
 
         Vigenere { 
             alphabet: alphabet,
