@@ -58,11 +58,11 @@ impl CaesarNumberAlgorithm {
      ///  assert_eq!(re_encrypted, "KKK");
      ///  ```
 
-     pub fn encrypt<T>(&self, plain_text: Vec<u8>, key: usize) -> Vec<u8> {
+     pub fn encrypt(&self, plain_text: Vec<u8>, key: u32) -> Vec<u8> {
         let mut result: Vec<u8> = Vec::new();
 
         for element in plain_text {
-            let character: u8 = ((element as usize + key) % self.alphabet.len()) as u8;
+            let character: u8 = ((element as u32 + key) % self.alphabet.len() as u32) as u8;
             result.push(character);
         }
 
