@@ -97,6 +97,9 @@
 <span id="97">97</span>
 <span id="98">98</span>
 <span id="99">99</span>
+<span id="100">100</span>
+<span id="101">101</span>
+<span id="102">102</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">std::collections::HashMap</span>;
 <span class="kw">use</span> <span class="ident">itertools::Itertools</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::utils::alphabets</span>;
@@ -122,12 +125,15 @@
         
         <span class="kw">let</span> <span class="ident">alphabets_size</span> <span class="op">=</span> <span class="ident">alphabet</span>.<span class="ident">values</span>().<span class="ident">len</span>();<span class="comment">//-1</span>
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">vigenere_table</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="op">=</span> <span class="macro">vec!</span>[];
+
+
         <span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">alphabets_size</span> {
             <span class="ident">vigenere_table</span>.<span class="ident">push</span>(<span class="macro">vec!</span>[]);
             <span class="kw">for</span> <span class="ident">j</span> <span class="kw">in</span> <span class="ident">i</span>..<span class="ident">alphabets_size</span><span class="op">+</span><span class="ident">i</span> {
                 <span class="ident">vigenere_table</span>[<span class="ident">i</span>].<span class="ident">push</span>(<span class="ident">ordonned_alphabet</span>.<span class="ident">as_slice</span>()[<span class="ident">j</span><span class="op">%</span><span class="ident">alphabets_size</span>].<span class="ident">to_vec</span>());
             }
         }
+        
 
         <span class="ident">Vigenere</span> { 
             <span class="ident">alphabet</span>: <span class="ident">alphabet</span>,
@@ -176,7 +182,7 @@
     <span class="doccomment">/// assert_eq!(str_encrypted, &quot;VHIIUZEKFJONPRSEAEHOBBUDREHGVVTTLWLRBYSKTIQGSLHUQG&quot;);</span>
     <span class="doccomment">/// </span>
     <span class="doccomment">/// ```</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">encrypt</span>(<span class="self">self</span>, <span class="ident">plain_text</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>, <span class="ident">passphrase_key</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span><span class="op">&gt;</span>) -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">encrypt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">plain_text</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>, <span class="ident">passphrase_key</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span><span class="op">&gt;</span>) -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">characters_set</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">alphabets::split_bytes_by_characters_representation</span>(<span class="self">self</span>.<span class="ident">alphabet</span>.<span class="ident">clone</span>(), <span class="ident">plain_text</span>);
 
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">encrypted_character_sets</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="op">=</span> <span class="macro">vec!</span>[];
