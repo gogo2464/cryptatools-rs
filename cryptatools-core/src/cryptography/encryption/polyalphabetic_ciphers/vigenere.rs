@@ -80,7 +80,7 @@ impl Vigenere {
     /// assert_eq!(str_encrypted, "VHIIUZEKFJONPRSEAEHOBBUDREHGVVTTLWLRBYSKTIQGSLHUQG");
     /// 
     /// ```
-    pub fn encrypt(self, plain_text: Vec<u8>, passphrase_key: Vec<Vec<u8>>) -> Vec<u8> {
+    pub fn encrypt(&self, plain_text: Vec<u8>, passphrase_key: Vec<Vec<u8>>) -> Vec<u8> {
         let characters_set: Vec<Vec<u8>> = alphabets::split_bytes_by_characters_representation(self.alphabet.clone(), plain_text);
 
         let mut encrypted_character_sets: Vec<Vec<u8>> = vec![];
