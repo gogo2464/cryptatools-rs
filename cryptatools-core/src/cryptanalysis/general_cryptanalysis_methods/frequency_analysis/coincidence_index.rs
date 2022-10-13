@@ -87,13 +87,11 @@ impl VigenereCoincidenceIndexGuesser for CoincidenceIndexGuesser {
             Err(error) => panic!("{0}", error),
         };
 
-        let bytes_file_content = convert::Encode::from_ascii_to_u8(file_content);
+        let bytes_file_content = convert::Encode::from_ascii_to_u8(file_content.replace(r"\r\n", r"\n"));
         let coincidence_index = self.guess_coincidence_index(bytes_file_content);
         
         coincidence_index
     }
-
-
 }
 
 pub struct VigenereCoincidenceIndexGenerator {
