@@ -76,11 +76,16 @@ impl Vigenere {
     /// assert_eq!(result, [86, 72, 73, 73, 85, 90, 69, 75, 70, 74, 79, 78, 80, 82, 83, 69, 65, 69, 72, 79, 66, 66, 85, 68, 82, 69, 72, 71, 86, 86, 84, 84, 76, 87, 76, 82, 66, 89, 83, 75, 84, 73, 81, 71, 83, 76, 72, 85, 81, 71]);
     /// 
     /// let str_encrypted = Decode::from_u8_to_ascii(result);
-    /// 
     /// assert_eq!(str_encrypted, "VHIIUZEKFJONPRSEAEHOBBUDREHGVVTTLWLRBYSKTIQGSLHUQG");
+    /// 
+    /// 
     /// 
     /// ```
     pub fn encrypt(&self, plain_text: Vec<u8>, passphrase_key: Vec<Vec<u8>>) -> Vec<u8> {
+        if passphrase_key.clone().len() == 0 {
+            return plain_text;
+        }
+
         let characters_set: Vec<Vec<u8>> = alphabets::split_bytes_by_characters_representation(self.alphabet.clone(), plain_text);
 
         let mut encrypted_character_sets: Vec<Vec<u8>> = vec![];
