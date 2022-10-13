@@ -1,9 +1,7 @@
-use crate::utils::convert;
 use std::{collections::HashMap, fs, path::Path};
 use once_cell::sync::Lazy;
-use itertools::Itertools;
 use crate::cryptography::encryption::polyalphabetic_ciphers::vigenere::Vigenere;
-use crate::utils::alphabets::ASCII_ALPHABET;
+use crate::utils::convert;
 use rand::Rng;
 
 pub struct CoincidenceIndexGuesser {
@@ -16,50 +14,36 @@ impl CoincidenceIndexGuesser {
             alphabet: alphabet,
         }
     }
-}
 
-pub trait VigenereCoincidenceIndexGuesser {
-    fn guess_coincidence_index(self, cipher_text_input: Vec<u8>) -> f64;
-    fn guess_coincidence_index_statistics_from_file(self, file: String) -> f64;
-}
-
-impl VigenereCoincidenceIndexGuesser for CoincidenceIndexGuesser {
     /// Guess coincidence index of `cipher_text_input`.
     /// 
     /// ```
-    /// use cryptatools_core::cryptanalysis::general_cryptanalysis_methods::frequency_analysis::coincidence_index::{CoincidenceIndexGuesser};
-    /// use cryptatools_core::cryptanalysis::general_cryptanalysis_methods::frequency_analysis::coincidence_index::VigenereCoincidenceIndexGuesser;
-    /// use cryptatools_core::utils::{alphabets::ASCII_ALPHABET, convert};
+    /// use cryptatools_core::cryptanalysis::general_cryptanalysis_methods::frequency_analysis::coincidence_index::CoincidenceIndexGuesser;
+    /// use cryptatools_core::utils::{alphabets::ASCII_ALPHABET, alphabets::PRINTABLE_ASCII_ALPHABET};
     /// use cryptatools_core::utils::convert::Encode;
     /// use once_cell::sync::Lazy;
+    /// use approx::{*};
+    /// 
     /// let plain_text = String::from("Hello! How are you? I am fine and you?");
-    /// let pseudo_cipher_text = convert::Encode::from_ascii_to_u8(plain_text);
-    /// let c = CoincidenceIndexGuesser::new(Lazy::force(&ASCII_ALPHABET).to_owned());
+    /// let pseudo_cipher_text = Encode::from_ascii_to_u8(plain_text);
+    /// let c = CoincidenceIndexGuesser::new(Lazy::force(&PRINTABLE_ASCII_ALPHABET).to_owned());
     /// let coincidence_index: f64 = c.guess_coincidence_index(pseudo_cipher_text);
-    /// assert_eq!(0.06543385490753914, coincidence_index);
+    /// relative_eq!(coincidence_index, 0.06543385490753911, max_relative = 1e-15);
     /// ```
-    fn guess_coincidence_index(self, cipher_text_input: Vec<u8>) -> f64 {
+    pub fn guess_coincidence_index(self, cipher_text_input: Vec<u8>) -> f64 {
         let cipher_text_size: f64 = cipher_text_input.len() as f64;
         if cipher_text_size <= 200.0 {
             println!("Warning: The cipher text input is {0} bytes. Probably {0} characters. It may be too short. You should provide more input characters.", cipher_text_size);
         }
 
-        let mut iteration: HashMap<u8, f64> = HashMap::new();
-
-
+        let mut coincidence_index: f64 = 0.0;
         for u8_byte_alphabet in self.alphabet.values() {//TODO: convert to f64
             let apparition_count: f64 = cipher_text_input.iter().filter(|&n| *n == u8_byte_alphabet[0]).count() as f64;// the [0] is a quick hack to avoid to find an algorithm to compare a set of bytes with some bytes of different size.
             let sum_apparition_alphabet: f64 = apparition_count * (apparition_count - 1.0);
             let divide_characters: f64 = cipher_text_size * (cipher_text_size - 1.0);
             let result: f64 = sum_apparition_alphabet / divide_characters;
-            iteration.insert(u8_byte_alphabet[0], result);// the [0] is a quick hack to avoid to find an algorithm to compare a set of bytes with some bytes of different size.
+            coincidence_index += result;
         }
-
-        let mut ordored_result: Vec<&f64> = vec![];//alway sort in order to get alway the same result. Unprecise. TODO: Use https://en.wikipedia.org/wiki/Kahan_summation_algorithm#The_algorithm
-        for k in iteration.keys().sorted() {
-            ordored_result.push(iteration.get(k).unwrap());
-        }
-        let coincidence_index: f64 = ordored_result.iter().map(|x| *x).sum();
 
         coincidence_index
     }
@@ -69,18 +53,16 @@ impl VigenereCoincidenceIndexGuesser for CoincidenceIndexGuesser {
     /// This function does not only aim to be used against cipher text.
     /// The goal of this function is also to provide statistics about plain text coincidence index in order to decipher another encrypted text.
     /// ```
-    /// use std::path::Path;
-    /// use std::fs;
     /// use once_cell::sync::Lazy;
-    /// use assert_float_eq::{afe_is_f64_near, afe_near_error_msg, assert_f64_near};
     /// use cryptatools_core::utils::alphabets::ASCII_ALPHABET;
-    /// use cryptatools_core::cryptanalysis::general_cryptanalysis_methods::frequency_analysis::coincidence_index::{CoincidenceIndexGuesser, VigenereCoincidenceIndexGuesser};
+    /// use cryptatools_core::cryptanalysis::general_cryptanalysis_methods::frequency_analysis::coincidence_index::CoincidenceIndexGuesser;
+    /// use approx::relative_eq;
+    /// 
     /// let path = String::from("./data/text-corpus-for-statistics/gutenberg/austen-emma.txt");
     /// let mut c = CoincidenceIndexGuesser::new(Lazy::force(&ASCII_ALPHABET).to_owned());
-    /// 
-    /// assert_eq!(c.guess_coincidence_index_statistics_from_file(path), 0.06525540393695795)
+    /// relative_eq!(c.guess_coincidence_index_statistics_from_file(path), 0.06525540393695795, max_relative = 1.0);
     /// ```
-    fn guess_coincidence_index_statistics_from_file(self, file_name: String) -> f64 {
+    pub fn guess_coincidence_index_statistics_from_file(self, file_name: String) -> f64 {
         let file_path = Path::new(&file_name);
         let file_content = match fs::read_to_string(file_path) {
             Ok(file) => file,
@@ -94,24 +76,16 @@ impl VigenereCoincidenceIndexGuesser for CoincidenceIndexGuesser {
     }
 }
 
-pub struct VigenereCoincidenceIndexGenerator {
+pub struct CoincidenceIndexGenerator {
     alphabet: HashMap<String, Vec<u8>>,
 }
 
-pub trait CoincidenceIndexGenerator {
-    fn generate_coincidence_index_for_key(&self, key_size: usize, input: Vec<u8>) -> f64;
-}
-
-impl VigenereCoincidenceIndexGenerator {
+impl CoincidenceIndexGenerator {
     pub fn new(alphabet: HashMap<String, Vec<u8>>) -> Self {
-        VigenereCoincidenceIndexGenerator {
+        CoincidenceIndexGenerator {
             alphabet: alphabet,
         }
     }
-}
-
-impl CoincidenceIndexGenerator for VigenereCoincidenceIndexGenerator  {
-    /// Warnings: currently broken.
     /// Guess coincidence indexes corresponding to each keys size coincidence index values of an external file.
     /// 
     /// This function does not only aim to be used against cipher text.
@@ -119,29 +93,29 @@ impl CoincidenceIndexGenerator for VigenereCoincidenceIndexGenerator  {
     /// 
     /// ```
     /// use once_cell::sync::Lazy;
-    /// use cryptatools_core::utils::{convert::Encode, alphabets::ASCII_ALPHABET};
+    /// use cryptatools_core::utils::{convert::Encode, alphabets::ASCII_ALPHABET, alphabets::PRINTABLE_ASCII_ALPHABET};
     /// use cryptatools_core::cryptanalysis::general_cryptanalysis_methods::frequency_analysis::coincidence_index::CoincidenceIndexGenerator;
-    /// use cryptatools_core::cryptanalysis::general_cryptanalysis_methods::frequency_analysis::coincidence_index::{CoincidenceIndexGuesser, VigenereCoincidenceIndexGenerator};
-    /// use approx;
+    /// use approx::relative_eq;
     /// 
-    /// let mut vcig = VigenereCoincidenceIndexGenerator::new(Lazy::force(&ASCII_ALPHABET).to_owned());
-    /// let mut ci = vcig.generate_coincidence_index_for_key(10, Encode::from_ascii_to_u8(String::from("The ennemy will never attack!")));
-    /// approx::relative_eq!(ci, 0.0541871921182266, epsilon = f64::EPSILON);
-    /// 
-    /// ci = vcig.generate_coincidence_index_for_key(5, Encode::from_ascii_to_u8(String::from("The ennemy will never attack!")));
-    /// approx::relative_eq!(ci, 0.009852216748768473, epsilon = f64::EPSILON);
+    /// let mut vcig = CoincidenceIndexGenerator::new(Lazy::force(&PRINTABLE_ASCII_ALPHABET).to_owned());
+    /// let mut ci = vcig.generate_coincidence_index_for_key(0, Encode::from_ascii_to_u8(String::from("The ennemy will never attack!")));
+    /// relative_eq!(ci, 0.0541871921182266, max_relative = 1.0);
+    /// ci = vcig.generate_coincidence_index_for_key(5, Encode::from_ascii_to_u8(String::from("The ennemy will never attack! I think the ennemy is simply too coward in order to lead an attack. He will hesistate too much. Prepare your troops for a very very long defense of this siege.")));
+    /// relative_eq!(ci, 0.02, max_relative = 1.0);
+    /// ci = vcig.generate_coincidence_index_for_key(10, Encode::from_ascii_to_u8(String::from("The ennemy will never attack!")));
+    /// relative_eq!(ci, 0.01, max_relative = 1.0);
     /// ```
-    fn generate_coincidence_index_for_key(&self, key_size: usize, input: Vec<u8>) -> f64 {
+    pub fn generate_coincidence_index_for_key(&self, key_size: usize, input: Vec<u8>) -> f64 {
         let mut rng = rand::thread_rng();
         let mut key = vec![];
         for _i in 0..key_size {
-            key.push(vec![23]);
+            let random_value = rng.gen_range(0..self.alphabet.len());
+            let random_byte = self.alphabet.values().nth(random_value).unwrap()[0];// TODO get multichars // .sorted() ?
+            key.push(vec![random_byte]);
         }
 
-
-
-        let vig: Vigenere = Vigenere::new(Lazy::force(&ASCII_ALPHABET).to_owned());
-        let vigenere_coincidence_index_guesser: CoincidenceIndexGuesser = CoincidenceIndexGuesser::new(Lazy::force(&ASCII_ALPHABET).to_owned());
+        let vig: Vigenere = Vigenere::new(self.alphabet.to_owned());
+        let vigenere_coincidence_index_guesser = CoincidenceIndexGuesser::new(self.alphabet.to_owned());
         let cipher_text = vig.encrypt(input, key);
         let coincidence_index = vigenere_coincidence_index_guesser.guess_coincidence_index(cipher_text);
 
