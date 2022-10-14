@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"constant":[["PRINTABLE",""],["UU_ENCODING_ALPHABET",""]],"fn":[["split_bytes_by_characters_representation",""]],"static":[["ASCII_ALPHABET",""],["MAJ_NO_SPACE_ASCII_ALPHABET",""],["POKERED_ALPHABET",""]]};
+window.SIDEBAR_ITEMS = {"constant":[["PRINTABLE",""],["UU_ENCODING_ALPHABET",""]],"fn":[["split_bytes_by_characters_representation",""]],"static":[["ASCII_ALPHABET",""],["MAJ_NO_SPACE_ASCII_ALPHABET",""],["POKERED_ALPHABET",""],["PRINTABLE_ASCII_ALPHABET",""]]};
