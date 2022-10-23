@@ -91,6 +91,15 @@ To see the cryptatools documentation. See: [the API documentation](https://gogo2
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
+<!-- BENCHMARKING EXAMPLE -->
+## Benchmark
+
+```shell
+cargo bench
+```
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
 <!-- CONTRIBUTING -->
 ## Contributing
 
