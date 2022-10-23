@@ -102,9 +102,6 @@
 <span id="102">102</span>
 <span id="103">103</span>
 <span id="104">104</span>
-<span id="105">105</span>
-<span id="106">106</span>
-<span id="107">107</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">std::collections::HashMap</span>;
 <span class="kw">use</span> <span class="ident">itertools::Itertools</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::utils::alphabets</span>;
@@ -184,9 +181,6 @@
     <span class="doccomment">/// </span>
     <span class="doccomment">/// let str_encrypted = Decode::from_u8_to_ascii(result);</span>
     <span class="doccomment">/// assert_eq!(str_encrypted, &quot;VHIIUZEKFJONPRSEAEHOBBUDREHGVVTTLWLRBYSKTIQGSLHUQG&quot;);</span>
-    <span class="doccomment">/// </span>
-    <span class="doccomment">/// </span>
-    <span class="doccomment">/// </span>
     <span class="doccomment">/// ```</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">encrypt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">plain_text</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>, <span class="ident">passphrase_key</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span><span class="op">&gt;</span>) -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span> {
         <span class="kw">if</span> <span class="ident">passphrase_key</span>.<span class="ident">clone</span>().<span class="ident">len</span>() <span class="op">==</span> <span class="number">0</span> {
