@@ -32,7 +32,6 @@ impl Vigenere {
             }
         }
         
-
         Vigenere { 
             alphabet: alphabet,
             vigenere_table: vigenere_table,
@@ -90,8 +89,88 @@ impl Vigenere {
             let key_offset = character_shift % passphrase_key.clone().len();
 
             let top = self.vigenere_table.get(0).unwrap().iter().position(|x|x.clone() == passphrase_key[key_offset]).unwrap().clone();
-            let left = self.vigenere_table.iter().position(|x| x.clone().first().unwrap().clone() == characters_set[character_shift].clone()).unwrap_or(3);
+            let left = self.vigenere_table.iter().position(|x| x.clone().first().unwrap().clone() == characters_set[character_shift].clone()).unwrap_or(3); // crash some tests with unwrap instead of unwrap_or(3)
             encrypted_character_sets.push(self.vigenere_table.get(left).unwrap().get(top).unwrap().to_vec());
+        }
+        
+        let mut unified_output_bytes = vec![];
+        for encrypted_character_set in &mut encrypted_character_sets {
+            unified_output_bytes.append(encrypted_character_set)
+        }
+
+        unified_output_bytes
+    }
+}
+
+
+pub struct VigenereNoTable {
+    pub alphabet : HashMap<String, Vec<u8>>,
+    pub sorted_alphabet: Vec<Vec<u8>>,
+}
+
+impl VigenereNoTable {
+    pub fn new(alphabet: HashMap<String, Vec<u8>>) -> Self {
+        let sorted_alphabet = alphabet.values().cloned().sorted().collect_vec();
+        VigenereNoTable { 
+            alphabet,
+            sorted_alphabet,
+        }
+    }
+
+    fn entry(&self, i: usize, j: usize) -> &Vec<u8> {
+        &self.sorted_alphabet[(i+j) % self.sorted_alphabet.len()]
+    }
+
+    ///
+    /// ```
+    /// use cryptatools_core::utils::{alphabets, alphabets::ASCII_ALPHABET, alphabets::MAJ_NO_SPACE_ASCII_ALPHABET, convert::Encode};
+    /// use cryptatools_core::cryptography::encryption::polyalphabetic_ciphers::vigenere::VigenereNoTable;
+    /// use once_cell::sync::Lazy;
+    /// let v = VigenereNoTable::new(Lazy::force(&ASCII_ALPHABET).to_owned());
+    /// let plaintext = Encode::from_ascii_to_u8(String::from("the quick brown roman fox jumped over the lazy ostrogoth dog"));
+    /// 
+    /// assert_eq!(plaintext, [116, 104, 101, 32, 113, 117, 105, 99, 107, 32, 98, 114, 111, 119, 110, 32, 114, 111, 109, 97, 110, 32, 102, 111, 120, 32, 106, 117, 109, 112, 101, 100, 32, 111, 118, 101, 114, 32, 116, 104, 101, 32, 108, 97, 122, 121, 32, 111, 115, 116, 114, 111, 103, 111, 116, 104, 32, 100, 111, 103]);
+    /// 
+    /// let key = alphabets::split_bytes_by_characters_representation(Lazy::force(&ASCII_ALPHABET).to_owned(), Encode::from_ascii_to_u8(String::from("caesar")));
+    /// 
+    /// assert_eq!(key, [[99], [97], [101], [115], [97], [114]]);
+    /// 
+    /// let result = v.encrypt(plaintext, key);
+    /// 
+    /// assert_eq!(result, [86, 72, 73, 18, 81, 102, 75, 67, 79, 18, 66, 99, 81, 87, 82, 18, 82, 96, 79, 65, 82, 18, 70, 96, 90, 0, 78, 103, 77, 97, 71, 68, 4, 97, 86, 86, 84, 0, 88, 90, 69, 17, 78, 65, 94, 107, 0, 96, 85, 84, 86, 97, 71, 96, 86, 72, 4, 86, 79, 88]);
+    /// 
+    /// use cryptatools_core::utils::convert::Decode;
+    /// let str_encrypted = Decode::from_u8_to_ascii(result);
+    /// 
+    /// assert_eq!(str_encrypted, "VHI\u{12}QfKCO\u{12}BcQWR\u{12}R`OAR\u{12}F`Z\0NgMaGD\u{4}aVVT\0XZE\u{11}NA^k\0`UTVaG`VH\u{4}VOX");
+    /// 
+    /// let v = VigenereNoTable::new(Lazy::force(&MAJ_NO_SPACE_ASCII_ALPHABET).to_owned());
+    /// let plaintext = Encode::from_ascii_to_u8(String::from("thequickbrownromanfoxjumpedoverthelazyostrogothdog").to_uppercase());
+    /// let key = alphabets::split_bytes_by_characters_representation(Lazy::force(&MAJ_NO_SPACE_ASCII_ALPHABET).to_owned(), Encode::from_ascii_to_u8(String::from("CAESAR")));
+    /// assert_eq!(plaintext, [84, 72, 69, 81, 85, 73, 67, 75, 66, 82, 79, 87, 78, 82, 79, 77, 65, 78, 70, 79, 88, 74, 85, 77, 80, 69, 68, 79, 86, 69, 82, 84, 72, 69, 76, 65, 90, 89, 79, 83, 84, 82, 79, 71, 79, 84, 72, 68, 79, 71]);
+    /// assert_eq!(key, [[67], [65], [69], [83], [65], [82]]);
+    /// 
+    /// let result = v.encrypt(plaintext, key);
+    /// 
+    /// assert_eq!(result, [86, 72, 73, 73, 85, 90, 69, 75, 70, 74, 79, 78, 80, 82, 83, 69, 65, 69, 72, 79, 66, 66, 85, 68, 82, 69, 72, 71, 86, 86, 84, 84, 76, 87, 76, 82, 66, 89, 83, 75, 84, 73, 81, 71, 83, 76, 72, 85, 81, 71]);
+    /// 
+    /// let str_encrypted = Decode::from_u8_to_ascii(result);
+    /// assert_eq!(str_encrypted, "VHIIUZEKFJONPRSEAEHOBBUDREHGVVTTLWLRBYSKTIQGSLHUQG");
+    /// ```
+    pub fn encrypt(&self, plain_text: Vec<u8>, passphrase_key: Vec<Vec<u8>>) -> Vec<u8> {
+        if passphrase_key.len() == 0 {
+            return plain_text;
+        }
+
+        let characters_set: Vec<Vec<u8>> = alphabets::split_bytes_by_characters_representation(self.alphabet.clone(), plain_text);
+
+        let mut encrypted_character_sets: Vec<Vec<u8>> = vec![];
+        for character_shift in 0..characters_set.len() {
+            let key_offset = character_shift % passphrase_key.len();
+
+            let top = self.sorted_alphabet.iter().position(|x| x == &passphrase_key[key_offset]).unwrap();
+            let left = self.sorted_alphabet.iter().position(|x| x == &characters_set[character_shift]).unwrap_or(3); // crash some tests with unwrap instead of unwrap_or(3)
+            encrypted_character_sets.push(self.entry(top, left).clone());
         }
         
         let mut unified_output_bytes = vec![];

@@ -1,6 +1,6 @@
 use std::{collections::HashMap, fs, path::Path};
 use once_cell::sync::Lazy;
-use crate::cryptography::encryption::polyalphabetic_ciphers::vigenere::Vigenere;
+use crate::cryptography::encryption::polyalphabetic_ciphers::vigenere::VigenereNoTable;
 use crate::utils::convert::{Encode};
 
 use rand::Rng;
@@ -120,7 +120,7 @@ impl CoincidenceIndexGenerator {
             key.push(vec![random_byte]);
         }
 
-        let vig: Vigenere = Vigenere::new(self.alphabet.to_owned());
+        let vig: VigenereNoTable = VigenereNoTable::new(self.alphabet.to_owned());
         let vigenere_coincidence_index_guesser = CoincidenceIndexGuesser::new(self.alphabet.to_owned());
         let cipher_text = vig.encrypt(input, key);
         let coincidence_index = vigenere_coincidence_index_guesser.guess_coincidence_index(cipher_text);
