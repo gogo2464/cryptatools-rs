@@ -168,7 +168,7 @@
 <span id="168">168</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">std</span>::{<span class="ident">collections::HashMap</span>, <span class="ident">fs</span>, <span class="ident">path::Path</span>};
 <span class="kw">use</span> <span class="ident">once_cell::sync::Lazy</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::cryptography::encryption::polyalphabetic_ciphers::vigenere::Vigenere</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::cryptography::encryption::polyalphabetic_ciphers::vigenere::VigenereNoTable</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::utils::convert</span>::{<span class="ident">Encode</span>};
 
 <span class="kw">use</span> <span class="ident">rand::Rng</span>;
@@ -288,7 +288,7 @@
             <span class="ident">key</span>.<span class="ident">push</span>(<span class="macro">vec!</span>[<span class="ident">random_byte</span>]);
         }
 
-        <span class="kw">let</span> <span class="ident">vig</span>: <span class="ident">Vigenere</span> <span class="op">=</span> <span class="ident">Vigenere::new</span>(<span class="self">self</span>.<span class="ident">alphabet</span>.<span class="ident">to_owned</span>());
+        <span class="kw">let</span> <span class="ident">vig</span>: <span class="ident">VigenereNoTable</span> <span class="op">=</span> <span class="ident">VigenereNoTable::new</span>(<span class="self">self</span>.<span class="ident">alphabet</span>.<span class="ident">to_owned</span>());
         <span class="kw">let</span> <span class="ident">vigenere_coincidence_index_guesser</span> <span class="op">=</span> <span class="ident">CoincidenceIndexGuesser::new</span>(<span class="self">self</span>.<span class="ident">alphabet</span>.<span class="ident">to_owned</span>());
         <span class="kw">let</span> <span class="ident">cipher_text</span> <span class="op">=</span> <span class="ident">vig</span>.<span class="ident">encrypt</span>(<span class="ident">input</span>, <span class="ident">key</span>);
         <span class="kw">let</span> <span class="ident">coincidence_index</span> <span class="op">=</span> <span class="ident">vigenere_coincidence_index_guesser</span>.<span class="ident">guess_coincidence_index</span>(<span class="ident">cipher_text</span>);

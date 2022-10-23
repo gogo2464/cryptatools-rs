@@ -167,7 +167,7 @@ var sourcesIndex = JSON.parse('{\
 "strum_macros":["",[["helpers",[],["case_style.rs","metadata.rs","mod.rs","type_props.rs","variant_props.rs"]],["macros",[["strings",[],["as_ref_str.rs","display.rs","from_string.rs","mod.rs","to_string.rs"]]],["enum_count.rs","enum_discriminants.rs","enum_iter.rs","enum_messages.rs","enum_properties.rs","enum_variant_names.rs","from_repr.rs","mod.rs"]]],["lib.rs"]],\
 "syn":["",[["gen",[],["clone.rs","debug.rs","eq.rs","gen_helper.rs","hash.rs","visit_mut.rs"]]],["attr.rs","await.rs","bigint.rs","buffer.rs","custom_keyword.rs","custom_punctuation.rs","data.rs","derive.rs","discouraged.rs","error.rs","export.rs","expr.rs","ext.rs","file.rs","generics.rs","group.rs","ident.rs","item.rs","lib.rs","lifetime.rs","lit.rs","lookahead.rs","mac.rs","macros.rs","op.rs","parse.rs","parse_macro_input.rs","parse_quote.rs","pat.rs","path.rs","print.rs","punctuated.rs","reserved.rs","sealed.rs","span.rs","spanned.rs","stmt.rs","thread.rs","token.rs","tt.rs","ty.rs","verbatim.rs","whitespace.rs"]],\
 "termcolor":["",[],["lib.rs"]],\
-"textwrap":["",[],["core.rs","indentation.rs","lib.rs","line_ending.rs","word_separators.rs","word_splitters.rs","wrap_algorithms.rs"]],\
+"textwrap":["",[],["core.rs","indentation.rs","lib.rs","word_separators.rs","word_splitters.rs","wrap_algorithms.rs"]],\
 "toml":["",[],["datetime.rs","de.rs","lib.rs","macros.rs","map.rs","ser.rs","spanned.rs","tokens.rs","value.rs"]],\
 "unicase":["",[["unicode",[],["map.rs","mod.rs"]]],["ascii.rs","lib.rs"]],\
 "unicode_ident":["",[],["lib.rs","tables.rs"]],\
