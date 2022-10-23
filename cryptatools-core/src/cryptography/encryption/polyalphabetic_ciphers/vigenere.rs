@@ -77,9 +77,6 @@ impl Vigenere {
     /// 
     /// let str_encrypted = Decode::from_u8_to_ascii(result);
     /// assert_eq!(str_encrypted, "VHIIUZEKFJONPRSEAEHOBBUDREHGVVTTLWLRBYSKTIQGSLHUQG");
-    /// 
-    /// 
-    /// 
     /// ```
     pub fn encrypt(&self, plain_text: Vec<u8>, passphrase_key: Vec<Vec<u8>>) -> Vec<u8> {
         if passphrase_key.clone().len() == 0 {

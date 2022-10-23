@@ -1,7 +1,8 @@
 use std::{collections::HashMap, fs, path::Path};
 use once_cell::sync::Lazy;
 use crate::cryptography::encryption::polyalphabetic_ciphers::vigenere::Vigenere;
-use crate::utils::convert;
+use crate::utils::convert::{Encode};
+
 use rand::Rng;
 
 pub struct CoincidenceIndexGuesser {
@@ -22,15 +23,16 @@ impl CoincidenceIndexGuesser {
     /// use cryptatools_core::utils::{alphabets::ASCII_ALPHABET, alphabets::PRINTABLE_ASCII_ALPHABET};
     /// use cryptatools_core::utils::convert::Encode;
     /// use once_cell::sync::Lazy;
-    /// use approx::{*};
+    /// 
+    /// use approx::assert_abs_diff_eq;
     /// 
     /// let plain_text = String::from("Hello! How are you? I am fine and you?");
     /// let pseudo_cipher_text = Encode::from_ascii_to_u8(plain_text);
     /// let c = CoincidenceIndexGuesser::new(Lazy::force(&PRINTABLE_ASCII_ALPHABET).to_owned());
     /// let coincidence_index: f64 = c.guess_coincidence_index(pseudo_cipher_text);
-    /// relative_eq!(coincidence_index, 0.06543385490753911, max_relative = 1e-15);
+    /// assert_abs_diff_eq!(coincidence_index, 0.06543385490753911, epsilon = 1e-16);
     /// ```
-    pub fn guess_coincidence_index(self, cipher_text_input: Vec<u8>) -> f64 {
+    pub fn guess_coincidence_index(&self, cipher_text_input: Vec<u8>) -> f64 {
         let cipher_text_size: f64 = cipher_text_input.len() as f64;
         if cipher_text_size <= 200.0 {
             println!("Warning: The cipher text input is {0} bytes. Probably {0} characters. It may be too short. You should provide more input characters.", cipher_text_size);
@@ -56,20 +58,20 @@ impl CoincidenceIndexGuesser {
     /// use once_cell::sync::Lazy;
     /// use cryptatools_core::utils::alphabets::ASCII_ALPHABET;
     /// use cryptatools_core::cryptanalysis::general_cryptanalysis_methods::frequency_analysis::coincidence_index::CoincidenceIndexGuesser;
-    /// use approx::relative_eq;
+    /// use approx::assert_abs_diff_eq;
     /// 
     /// let path = String::from("./data/text-corpus-for-statistics/gutenberg/austen-emma.txt");
     /// let mut c = CoincidenceIndexGuesser::new(Lazy::force(&ASCII_ALPHABET).to_owned());
-    /// relative_eq!(c.guess_coincidence_index_statistics_from_file(path), 0.06525540393695795, max_relative = 1.0);
+    /// assert_abs_diff_eq!(c.guess_coincidence_index_statistics_from_file(path.clone()), 0.06525540393695795, epsilon = 1e-16);
     /// ```
-    pub fn guess_coincidence_index_statistics_from_file(self, file_name: String) -> f64 {
+    pub fn guess_coincidence_index_statistics_from_file(&self, file_name: String) -> f64 {
         let file_path = Path::new(&file_name);
         let file_content = match fs::read_to_string(file_path) {
             Ok(file) => file,
             Err(error) => panic!("{0}", error),
         };
 
-        let bytes_file_content = convert::Encode::from_ascii_to_u8(file_content.replace(r"\r\n", r"\n"));
+        let bytes_file_content = Encode::from_ascii_to_u8(file_content.replace(r"\r\n", r"\n"));
         let coincidence_index = self.guess_coincidence_index(bytes_file_content);
         
         coincidence_index
@@ -86,7 +88,7 @@ impl CoincidenceIndexGenerator {
             alphabet: alphabet,
         }
     }
-    /// Guess coincidence indexes corresponding to each keys size coincidence index values of an external file.
+    /// Generate coincidence index of a specific key_size choosen poorly for a specified plain text
     /// 
     /// This function does not only aim to be used against cipher text.
     /// The goal of this function is also to provide statistics about plain text coincidence index in order to decipher another encrypted text.
@@ -95,15 +97,19 @@ impl CoincidenceIndexGenerator {
     /// use once_cell::sync::Lazy;
     /// use cryptatools_core::utils::{convert::Encode, alphabets::ASCII_ALPHABET, alphabets::PRINTABLE_ASCII_ALPHABET};
     /// use cryptatools_core::cryptanalysis::general_cryptanalysis_methods::frequency_analysis::coincidence_index::CoincidenceIndexGenerator;
-    /// use approx::relative_eq;
+    /// 
+    /// use approx::assert_abs_diff_eq;
     /// 
     /// let mut vcig = CoincidenceIndexGenerator::new(Lazy::force(&PRINTABLE_ASCII_ALPHABET).to_owned());
     /// let mut ci = vcig.generate_coincidence_index_for_key(0, Encode::from_ascii_to_u8(String::from("The ennemy will never attack!")));
-    /// relative_eq!(ci, 0.0541871921182266, max_relative = 1.0);
+    /// assert_abs_diff_eq!(ci, 0.0541871921182266, epsilon = 1e-16);
     /// ci = vcig.generate_coincidence_index_for_key(5, Encode::from_ascii_to_u8(String::from("The ennemy will never attack! I think the ennemy is simply too coward in order to lead an attack. He will hesistate too much. Prepare your troops for a very very long defense of this siege.")));
-    /// relative_eq!(ci, 0.02, max_relative = 1.0);
+    /// assert_abs_diff_eq!(ci, 0.02, epsilon = 1e-1);
     /// ci = vcig.generate_coincidence_index_for_key(10, Encode::from_ascii_to_u8(String::from("The ennemy will never attack!")));
-    /// relative_eq!(ci, 0.01, max_relative = 1.0);
+    /// assert_abs_diff_eq!(ci, 0.01, epsilon = 1e-1);
+    /// 
+    /// ci = vcig.generate_coincidence_index_for_key(10, Encode::from_ascii_to_u8(String::from("The ennemy will never attack!")));
+    /// assert_abs_diff_eq!(ci, 0.01, epsilon = 1e-1);
     /// ```
     pub fn generate_coincidence_index_for_key(&self, key_size: usize, input: Vec<u8>) -> f64 {
         let mut rng = rand::thread_rng();
@@ -120,6 +126,31 @@ impl CoincidenceIndexGenerator {
         let coincidence_index = vigenere_coincidence_index_guesser.guess_coincidence_index(cipher_text);
 
         coincidence_index
+    }
+
+    /// Generate coincidence index corresponding for a sepcific size coincidence index values of an external file in plain text.
+    /// 
+    /// 
+    /// The coincidence index depends of the alphabet.
+    /// ```
+    /// use once_cell::sync::Lazy;
+    /// use cryptatools_core::utils::{convert::Encode,  alphabets::PRINTABLE_ASCII_ALPHABET};
+    /// use cryptatools_core::cryptanalysis::general_cryptanalysis_methods::frequency_analysis::coincidence_index::CoincidenceIndexGenerator;
+    /// use approx::assert_abs_diff_eq;
+    /// 
+    /// let mut vcig = CoincidenceIndexGenerator::new(Lazy::force(&PRINTABLE_ASCII_ALPHABET).to_owned());
+    /// let mut ci = vcig.generate_coincidence_index_for_key_from_file(5, String::from("./data/text-corpus-for-statistics/gutenberg/austen-emma.txt"));
+    /// assert_abs_diff_eq!(ci, 0.01, epsilon = 1e-1);
+    /// ```
+    pub fn generate_coincidence_index_for_key_from_file(&self, key_size: usize, plain_text_ascii_file_input: String) -> f64 {
+        let file_path = Path::new(&plain_text_ascii_file_input);
+        let file_content = match fs::read_to_string(file_path) {
+            Ok(file) => file,
+            Err(error) => panic!("{0}", error),
+        };
+
+        let coincidence_index_found = self.generate_coincidence_index_for_key(key_size, Encode::from_ascii_to_u8(file_content));
+        coincidence_index_found
     }
 }
 
