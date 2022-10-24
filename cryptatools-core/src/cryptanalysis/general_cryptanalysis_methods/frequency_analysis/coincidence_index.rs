@@ -71,7 +71,7 @@ impl CoincidenceIndexGuesser {
             Err(error) => panic!("{0}", error),
         };
 
-        let bytes_file_content = Encode::from_ascii_to_u8(file_content);
+        let bytes_file_content = Encode::encode(self.alphabet.clone(), file_content);
         let coincidence_index = self.guess_coincidence_index(bytes_file_content);
         
         coincidence_index
@@ -149,7 +149,7 @@ impl CoincidenceIndexGenerator {
             Err(error) => panic!("{0}", error),
         };
 
-        let coincidence_index_found = self.generate_coincidence_index_for_key(key_size, Encode::from_ascii_to_u8(file_content));
+        let coincidence_index_found = self.generate_coincidence_index_for_key(key_size, Encode::encode(self.alphabet.clone(), file_content));
         coincidence_index_found
     }
 }
