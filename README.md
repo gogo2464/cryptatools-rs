@@ -7,6 +7,20 @@ The name come from pwntools a similar tool to exploit memory corruption vulnerab
 
 Then this program include a library like pwnlib. And it will expose some command line tools. Like pwntools. This is a rewrite of the python version in rust in order to be able to be fast and portable and usable in the following various languages rust, python, ruby, javascript and kotlin together.
 
+### Philosophy
+
+This tool aims to be professionnal. Not only a learning tool. It is for realistic exploitation and code breaking.
+
+You can "plug-in" your script to any protocol. Man in the midle as well as blockchain core as well as anything. Example:
+  -You are able to use pypcap to read packets and dpkt to parse these and then you can use cryptatools to break encryption on these packets. This is why this library is avaible in many bindings such as python.
+  -You are able to use rust-web3 to parse a vulnerable cryptocurrency (shitcoin) address to lead to a double spend attack.
+
+The library is very very flexible.
+
+You can automatize any task. There is a command line interface.
+
+
+
 ### Installation
 
 Installation of `cryptatools-core` for rust is same for any OS. In `Cargo.toml`, just write:
