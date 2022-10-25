@@ -239,7 +239,7 @@
             <span class="prelude-val">Err</span>(<span class="ident">error</span>) =&gt; <span class="macro">panic!</span>(<span class="string">&quot;{0}&quot;</span>, <span class="ident">error</span>),
         };
 
-        <span class="kw">let</span> <span class="ident">bytes_file_content</span> <span class="op">=</span> <span class="ident">Encode::from_ascii_to_u8</span>(<span class="ident">file_content</span>);
+        <span class="kw">let</span> <span class="ident">bytes_file_content</span> <span class="op">=</span> <span class="ident">Encode::encode</span>(<span class="self">self</span>.<span class="ident">alphabet</span>.<span class="ident">clone</span>(), <span class="ident">file_content</span>);
         <span class="kw">let</span> <span class="ident">coincidence_index</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">guess_coincidence_index</span>(<span class="ident">bytes_file_content</span>);
         
         <span class="ident">coincidence_index</span>
@@ -317,7 +317,7 @@
             <span class="prelude-val">Err</span>(<span class="ident">error</span>) =&gt; <span class="macro">panic!</span>(<span class="string">&quot;{0}&quot;</span>, <span class="ident">error</span>),
         };
 
-        <span class="kw">let</span> <span class="ident">coincidence_index_found</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">generate_coincidence_index_for_key</span>(<span class="ident">key_size</span>, <span class="ident">Encode::from_ascii_to_u8</span>(<span class="ident">file_content</span>));
+        <span class="kw">let</span> <span class="ident">coincidence_index_found</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">generate_coincidence_index_for_key</span>(<span class="ident">key_size</span>, <span class="ident">Encode::encode</span>(<span class="self">self</span>.<span class="ident">alphabet</span>.<span class="ident">clone</span>(), <span class="ident">file_content</span>));
         <span class="ident">coincidence_index_found</span>
     }
 }
