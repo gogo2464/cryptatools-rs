@@ -12,23 +12,25 @@ Then this program include a library like pwnlib. And it will expose some command
 This tool aims to be professionnal. Not only a learning tool. It is for realistic exploitation and code breaking.
 
 You can "plug-in" your script to any protocol. Man in the midle as well as blockchain core as well as anything. Example:
-  -You are able to use pypcap to read packets and dpkt to parse these and then you can use cryptatools to break encryption on these packets. This is why this library is avaible in many bindings such as python.
+
+  -You are able to use `pypcap` python library to read packets and then `dpkt` python library to parse these and then you can use cryptatools to break encryption on these packets. This is why this library is avaible in many bindings such as python.
+
   -You are able to use rust-web3 to parse a vulnerable cryptocurrency (shitcoin) address to lead to a double spend attack.
 
 The library is very very flexible.
 
 You can automatize any task. There is a command line interface.
 
-
-
 ### Installation
 
+### 1-Rust library installation.
 Installation of `cryptatools-core` for rust is same for any OS. In `Cargo.toml`, just write:
 ```shell
 [dependencies]
 cryptatools-core = { git = "https://github.com/gogo2464/cryptatools-rs", package = 'cryptatools-core' }
 ```
 
+### 2-Python binding installation.
 To install the python Bindings,
 
 If you are on windows, with powershell do:
@@ -51,6 +53,15 @@ python3 ./cryptatools-core/setup.py bdist_wheel --verbose ;
 pip3 install ./dist/* --force-reinstall ;
 ```
 
+### 3-cryptatools-cli the cli intreface
+
+Crytptatools command line interface is split into various program in order to follow the Linux philosophy. To install each one, do:
+
+```shell
+git clone https://github.com/gogo2464/cryptatools-rs/ &&
+cargo install --path .\cryptatools-rs\cryptatools-cli\ ;
+```
+
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
@@ -59,6 +70,19 @@ pip3 install ./dist/* --force-reinstall ;
 ## Usage
 
 ```rust
+```
+
+crypytatools-cli also offers a way to script the library in command line. Do not forget to install each program. See how to install these [here](https://github.com/gogo2464/cryptatools#installation) for more informations.
+
+`cryptatools-cli-stats` does cryptanalysis statistical attacks.
+
+```shell
+cryptatools-cli-stats frequency-analysis "123234" '{\"a\": [\"12\"], \"b\": [\"32\"], \"c\": [\"34\"]}'
+```
+
+`cryptatools-cli-encrypt` uses cryptography algorithm to encrypt data. Obviously you can use it for brute force cryptanalysis attack. But it is not the main philosophy of `cryptatools-rs`.
+
+```shell
 ```
 
 For more examples, please refer to the [Tutorial](https://github.com/gogo2464/cryptatools-rs/blob/master/TUTORIAL.md) or to the documentation [Documentation](https://gogo2464.github.io/cryptatools-rs/cryptatools_core/).
@@ -154,8 +178,6 @@ Once this is done, edit the task `Test python bindings` on the pipeline of the f
 I did not choose the license type yet... Fell free to ask me if you absolutely want top get a license name then I could choose.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
-
 
 <!-- CONTACT -->
 ## Contact
