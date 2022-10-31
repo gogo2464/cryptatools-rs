@@ -56,13 +56,13 @@ impl CoincidenceIndexGuesser {
     /// The goal of this function is also to provide statistics about plain text coincidence index in order to decipher another encrypted text.
     /// ```
     /// use once_cell::sync::Lazy;
-    /// use cryptatools_core::utils::alphabets::ASCII_ALPHABET;
+    /// use cryptatools_core::utils::alphabets::PRINTABLE_ASCII_ALPHABET;
     /// use cryptatools_core::cryptanalysis::general_cryptanalysis_methods::frequency_analysis::coincidence_index::CoincidenceIndexGuesser;
     /// use approx::assert_abs_diff_eq;
     /// 
     /// let path = String::from("./data/text-corpus-for-statistics/gutenberg/austen-emma.txt");
-    /// let mut c = CoincidenceIndexGuesser::new(Lazy::force(&ASCII_ALPHABET).to_owned());
-    /// assert_abs_diff_eq!(c.guess_coincidence_index_statistics_from_file(path.clone()), 0.06525540393695795, epsilon = 1e-16);
+    /// let mut c = CoincidenceIndexGuesser::new(Lazy::force(&PRINTABLE_ASCII_ALPHABET).to_owned());
+    /// assert_abs_diff_eq!(c.guess_coincidence_index_statistics_from_file(path.clone()), 0.06742905478018858, epsilon = 1e-15);
     /// ```
     pub fn guess_coincidence_index_statistics_from_file(&self, file_name: String) -> f64 {
         let file_path = Path::new(&file_name);
@@ -138,18 +138,23 @@ impl CoincidenceIndexGenerator {
     /// use cryptatools_core::cryptanalysis::general_cryptanalysis_methods::frequency_analysis::coincidence_index::CoincidenceIndexGenerator;
     /// use approx::assert_abs_diff_eq;
     /// 
+    /// use std::path::Path;
+    /// use std::fs;
+    /// 
     /// let mut vcig = CoincidenceIndexGenerator::new(Lazy::force(&PRINTABLE_ASCII_ALPHABET).to_owned());
     /// let mut ci = vcig.generate_coincidence_index_for_key_from_file(5, String::from("./data/text-corpus-for-statistics/gutenberg/austen-emma.txt"));
+    /// 
     /// assert_abs_diff_eq!(ci, 0.01, epsilon = 1e-1);
     /// ```
     pub fn generate_coincidence_index_for_key_from_file(&self, key_size: usize, plain_text_ascii_file_input: String) -> f64 {
         let file_path = Path::new(&plain_text_ascii_file_input);
         let file_content = match fs::read_to_string(file_path) {
-            Ok(file) => file,
+            Ok(file) => file.replace("\r\n", "\n"),
             Err(error) => panic!("{0}", error),
         };
 
-        let coincidence_index_found = self.generate_coincidence_index_for_key(key_size, Encode::encode(self.alphabet.clone(), file_content));
+        let encoded_file_content = Encode::encode(self.alphabet.clone(), file_content);
+        let coincidence_index_found = self.generate_coincidence_index_for_key(key_size, encoded_file_content);
         coincidence_index_found
     }
 }

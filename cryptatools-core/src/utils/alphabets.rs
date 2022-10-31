@@ -314,7 +314,6 @@ pub static PRINTABLE_ASCII_ALPHABET: Lazy<HashMap<String, Vec<u8>>> = Lazy::new(
     alphabet.insert(String::from("|"), vec![0x7c]);
     alphabet.insert(String::from("}"), vec![0x7d]);
     alphabet.insert(String::from("~"), vec![0x7e]);
-    alphabet.insert(String::from("\x7f"), vec![0x7f]);
 
     alphabet
   }
