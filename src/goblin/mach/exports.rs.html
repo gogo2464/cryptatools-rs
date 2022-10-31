@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/goblin-0.5.4/src/mach/exports.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>exports.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../goblin/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../goblin/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../goblin/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/goblin-0.5.4/src/mach/exports.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>exports.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../normalize.css"><link rel="stylesheet" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../ayu.css" disabled><link rel="stylesheet" href="../../../dark.css" disabled><link rel="stylesheet" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../goblin/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -379,386 +379,386 @@
 <span id="379">379</span>
 <span id="380">380</span>
 <span id="381">381</span>
-</pre><pre class="rust"><code><span class="doccomment">//! Symbols exported by this binary and available for dynamic linking are encoded in mach-o binaries using a special trie</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! **Note**: the trie is constructed lazily in case it won&#39;t be used, and since computing exports will require allocation, to compute the exports, you need call the export trie&#39;s [exports()](struct.ExportTrie.html#method.exports) method.</span>
+</pre><pre class="rust"><code><span class="doccomment">//! Symbols exported by this binary and available for dynamic linking are encoded in mach-o binaries using a special trie
+//!
+//! **Note**: the trie is constructed lazily in case it won&#39;t be used, and since computing exports will require allocation, to compute the exports, you need call the export trie&#39;s [exports()](struct.ExportTrie.html#method.exports) method.
 
-<span class="comment">// TODO:</span>
-<span class="comment">// (1) Weak of regular_symbol_info type probably needs to be added ?</span>
-<span class="comment">// (3) /usr/lib/libstdc++.6.0.9.dylib has flag 0xc at many offsets... they&#39;re weak</span>
+</span><span class="comment">// TODO:
+// (1) Weak of regular_symbol_info type probably needs to be added ?
+// (3) /usr/lib/libstdc++.6.0.9.dylib has flag 0xc at many offsets... they&#39;re weak
 
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::error</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::mach::load_command</span>;
-<span class="kw">use</span> <span class="ident">alloc::string::String</span>;
-<span class="kw">use</span> <span class="ident">alloc::vec::Vec</span>;
-<span class="kw">use</span> <span class="ident">core::fmt</span>::{<span class="self">self</span>, <span class="ident">Debug</span>};
-<span class="kw">use</span> <span class="ident">core::ops::Range</span>;
-<span class="kw">use</span> <span class="ident">scroll</span>::{<span class="ident">Pread</span>, <span class="ident">Uleb128</span>};
+</span><span class="kw">use </span><span class="kw">crate</span>::error;
+<span class="kw">use </span><span class="kw">crate</span>::mach::load_command;
+<span class="kw">use </span>alloc::string::String;
+<span class="kw">use </span>alloc::vec::Vec;
+<span class="kw">use </span>core::fmt::{<span class="self">self</span>, Debug};
+<span class="kw">use </span>core::ops::Range;
+<span class="kw">use </span>scroll::{Pread, Uleb128};
 
-<span class="kw">type</span> <span class="ident">Flag</span> <span class="op">=</span> <span class="ident">u64</span>;
+<span class="kw">type </span>Flag = u64;
 
-<span class="comment">// &quot;The following are used on the flags byte of a terminal node</span>
-<span class="comment">// in the export information.&quot;</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EXPORT_SYMBOL_FLAGS_KIND_MASK</span>: <span class="ident">Flag</span> <span class="op">=</span> <span class="number">0x03</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EXPORT_SYMBOL_FLAGS_KIND_REGULAR</span>: <span class="ident">Flag</span> <span class="op">=</span> <span class="number">0x00</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EXPORT_SYMBOL_FLAGS_KIND_ABSOLUTE</span>: <span class="ident">Flag</span> <span class="op">=</span> <span class="number">0x02</span>; <span class="comment">// this is a symbol not present in the loader.h but only in the dyld compressed image loader source code, and only available with a #def macro for export flags but libobjc. def has this</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EXPORT_SYMBOL_FLAGS_KIND_THREAD_LOCAL</span>: <span class="ident">Flag</span> <span class="op">=</span> <span class="number">0x01</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EXPORT_SYMBOL_FLAGS_WEAK_DEFINITION</span>: <span class="ident">Flag</span> <span class="op">=</span> <span class="number">0x04</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EXPORT_SYMBOL_FLAGS_REEXPORT</span>: <span class="ident">Flag</span> <span class="op">=</span> <span class="number">0x08</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EXPORT_SYMBOL_FLAGS_STUB_AND_RESOLVER</span>: <span class="ident">Flag</span> <span class="op">=</span> <span class="number">0x10</span>;
+<span class="comment">// &quot;The following are used on the flags byte of a terminal node
+// in the export information.&quot;
+</span><span class="kw">pub const </span>EXPORT_SYMBOL_FLAGS_KIND_MASK: Flag = <span class="number">0x03</span>;
+<span class="kw">pub const </span>EXPORT_SYMBOL_FLAGS_KIND_REGULAR: Flag = <span class="number">0x00</span>;
+<span class="kw">pub const </span>EXPORT_SYMBOL_FLAGS_KIND_ABSOLUTE: Flag = <span class="number">0x02</span>; <span class="comment">// this is a symbol not present in the loader.h but only in the dyld compressed image loader source code, and only available with a #def macro for export flags but libobjc. def has this
+</span><span class="kw">pub const </span>EXPORT_SYMBOL_FLAGS_KIND_THREAD_LOCAL: Flag = <span class="number">0x01</span>;
+<span class="kw">pub const </span>EXPORT_SYMBOL_FLAGS_WEAK_DEFINITION: Flag = <span class="number">0x04</span>;
+<span class="kw">pub const </span>EXPORT_SYMBOL_FLAGS_REEXPORT: Flag = <span class="number">0x08</span>;
+<span class="kw">pub const </span>EXPORT_SYMBOL_FLAGS_STUB_AND_RESOLVER: Flag = <span class="number">0x10</span>;
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">SymbolKind</span> {
-    <span class="ident">Regular</span>,
-    <span class="ident">Absolute</span>,
-    <span class="ident">ThreadLocal</span>,
-    <span class="ident">UnknownSymbolKind</span>(<span class="ident">Flag</span>),
+<span class="attribute">#[derive(Debug)]
+</span><span class="kw">pub enum </span>SymbolKind {
+    Regular,
+    Absolute,
+    ThreadLocal,
+    UnknownSymbolKind(Flag),
 }
 
-<span class="kw">impl</span> <span class="ident">SymbolKind</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">kind</span>: <span class="ident">Flag</span>) -&gt; <span class="ident">SymbolKind</span> {
-        <span class="kw">match</span> <span class="ident">kind</span> <span class="op">&amp;</span> <span class="ident">EXPORT_SYMBOL_FLAGS_KIND_MASK</span> {
-            <span class="number">0x00</span> =&gt; <span class="ident">SymbolKind::Regular</span>,
-            <span class="number">0x01</span> =&gt; <span class="ident">SymbolKind::ThreadLocal</span>,
-            <span class="number">0x02</span> =&gt; <span class="ident">SymbolKind::Absolute</span>,
-            <span class="kw">_</span> =&gt; <span class="ident">SymbolKind::UnknownSymbolKind</span>(<span class="ident">kind</span>),
+<span class="kw">impl </span>SymbolKind {
+    <span class="kw">pub fn </span>new(kind: Flag) -&gt; SymbolKind {
+        <span class="kw">match </span>kind &amp; EXPORT_SYMBOL_FLAGS_KIND_MASK {
+            <span class="number">0x00 </span>=&gt; SymbolKind::Regular,
+            <span class="number">0x01 </span>=&gt; SymbolKind::ThreadLocal,
+            <span class="number">0x02 </span>=&gt; SymbolKind::Absolute,
+            <span class="kw">_ </span>=&gt; SymbolKind::UnknownSymbolKind(kind),
         }
     }
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">to_str</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> {
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident">SymbolKind::Regular</span> =&gt; <span class="string">&quot;Regular&quot;</span>,
-            <span class="ident">SymbolKind::Absolute</span> =&gt; <span class="string">&quot;Absolute&quot;</span>,
-            <span class="ident">SymbolKind::ThreadLocal</span> =&gt; <span class="string">&quot;Thread_LOCAL&quot;</span>,
-            <span class="ident">SymbolKind::UnknownSymbolKind</span>(<span class="ident">_k</span>) =&gt; <span class="string">&quot;Unknown&quot;</span>,
+    <span class="kw">pub fn </span>to_str(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str {
+        <span class="kw">match </span><span class="self">self </span>{
+            SymbolKind::Regular =&gt; <span class="string">&quot;Regular&quot;</span>,
+            SymbolKind::Absolute =&gt; <span class="string">&quot;Absolute&quot;</span>,
+            SymbolKind::ThreadLocal =&gt; <span class="string">&quot;Thread_LOCAL&quot;</span>,
+            SymbolKind::UnknownSymbolKind(_k) =&gt; <span class="string">&quot;Unknown&quot;</span>,
         }
     }
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
-<span class="doccomment">/// An export can be a regular export, a re-export, or a stub</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">ExportInfo</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// A regular exported symbol, which is an address where it is found, and the flags associated with it</span>
-    <span class="ident">Regular</span> { <span class="ident">address</span>: <span class="ident">u64</span>, <span class="ident">flags</span>: <span class="ident">Flag</span> },
-    <span class="doccomment">/// if lib_symbol_name None then same symbol name, otherwise reexport of lib_symbol_name with name in the trie</span>
-    <span class="doccomment">/// &quot;If the string is zero length, then the symbol is re-export from the specified dylib with the same name&quot;</span>
-    <span class="ident">Reexport</span> {
-        <span class="ident">lib</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>,
-        <span class="ident">lib_symbol_name</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span><span class="op">&gt;</span>,
-        <span class="ident">flags</span>: <span class="ident">Flag</span>,
+<span class="attribute">#[derive(Debug)]
+</span><span class="doccomment">/// An export can be a regular export, a re-export, or a stub
+</span><span class="kw">pub enum </span>ExportInfo&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="doccomment">/// A regular exported symbol, which is an address where it is found, and the flags associated with it
+    </span>Regular { address: u64, flags: Flag },
+    <span class="doccomment">/// if lib_symbol_name None then same symbol name, otherwise reexport of lib_symbol_name with name in the trie
+    /// &quot;If the string is zero length, then the symbol is re-export from the specified dylib with the same name&quot;
+    </span>Reexport {
+        lib: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str,
+        lib_symbol_name: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str&gt;,
+        flags: Flag,
     },
-    <span class="doccomment">/// If the flags is `EXPORT_SYMBOL_FLAGS_STUB_AND_RESOLVER`, then following the flags are two `Uleb128`s: the stub offset and the resolver offset. The stub is used by non-lazy pointers.  The resolver is used by lazy pointers and must be called to get the actual address to use</span>
-    <span class="ident">Stub</span> {
-        <span class="ident">stub_offset</span>: <span class="ident">scroll::Uleb128</span>,
-        <span class="ident">resolver_offset</span>: <span class="ident">scroll::Uleb128</span>,
-        <span class="ident">flags</span>: <span class="ident">Flag</span>,
+    <span class="doccomment">/// If the flags is `EXPORT_SYMBOL_FLAGS_STUB_AND_RESOLVER`, then following the flags are two `Uleb128`s: the stub offset and the resolver offset. The stub is used by non-lazy pointers.  The resolver is used by lazy pointers and must be called to get the actual address to use
+    </span>Stub {
+        stub_offset: scroll::Uleb128,
+        resolver_offset: scroll::Uleb128,
+        flags: Flag,
     },
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">ExportInfo</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// Parse out the export info from `bytes`, at `offset`</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">parse</span>(
-        <span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
-        <span class="ident">libs</span>: <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>],
-        <span class="ident">flags</span>: <span class="ident">Flag</span>,
-        <span class="kw-2">mut</span> <span class="ident">offset</span>: <span class="ident">usize</span>,
-    ) -&gt; <span class="ident">error::Result</span><span class="op">&lt;</span><span class="ident">ExportInfo</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-        <span class="kw">use</span> <span class="ident"><span class="self">self</span>::ExportInfo</span>::<span class="kw-2">*</span>;
-        <span class="kw">let</span> <span class="ident">regular</span> <span class="op">=</span> <span class="op">|</span><span class="ident">offset</span><span class="op">|</span> -&gt; <span class="ident">error::Result</span><span class="op">&lt;</span><span class="ident">ExportInfo</span><span class="op">&gt;</span> {
-            <span class="kw">let</span> <span class="ident">address</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">pread</span>::<span class="op">&lt;</span><span class="ident">Uleb128</span><span class="op">&gt;</span>(<span class="ident">offset</span>)<span class="question-mark">?</span>;
-            <span class="prelude-val">Ok</span>(<span class="ident">Regular</span> {
-                <span class="ident">address</span>: <span class="ident">address</span>.<span class="ident">into</span>(),
-                <span class="ident">flags</span>,
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; ExportInfo&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="doccomment">/// Parse out the export info from `bytes`, at `offset`
+    </span><span class="kw">pub fn </span>parse(
+        bytes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8],
+        libs: <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str],
+        flags: Flag,
+        <span class="kw-2">mut </span>offset: usize,
+    ) -&gt; error::Result&lt;ExportInfo&lt;<span class="lifetime">&#39;a</span>&gt;&gt; {
+        <span class="kw">use </span><span class="self">self</span>::ExportInfo::<span class="kw-2">*</span>;
+        <span class="kw">let </span>regular = |offset| -&gt; error::Result&lt;ExportInfo&gt; {
+            <span class="kw">let </span>address = bytes.pread::&lt;Uleb128&gt;(offset)<span class="question-mark">?</span>;
+            <span class="prelude-val">Ok</span>(Regular {
+                address: address.into(),
+                flags,
             })
         };
-        <span class="kw">let</span> <span class="ident">reexport</span> <span class="op">=</span> <span class="op">|</span><span class="kw-2">mut</span> <span class="ident">offset</span><span class="op">|</span> -&gt; <span class="ident">error::Result</span><span class="op">&lt;</span><span class="ident">ExportInfo</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-            <span class="kw">let</span> <span class="ident">lib_ordinal</span>: <span class="ident">u64</span> <span class="op">=</span> {
-                <span class="kw">let</span> <span class="ident">tmp</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">pread</span>::<span class="op">&lt;</span><span class="ident">Uleb128</span><span class="op">&gt;</span>(<span class="ident">offset</span>)<span class="question-mark">?</span>;
-                <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">tmp</span>.<span class="ident">size</span>();
-                <span class="ident">tmp</span>.<span class="ident">into</span>()
+        <span class="kw">let </span>reexport = |<span class="kw-2">mut </span>offset| -&gt; error::Result&lt;ExportInfo&lt;<span class="lifetime">&#39;a</span>&gt;&gt; {
+            <span class="kw">let </span>lib_ordinal: u64 = {
+                <span class="kw">let </span>tmp = bytes.pread::&lt;Uleb128&gt;(offset)<span class="question-mark">?</span>;
+                offset += tmp.size();
+                tmp.into()
             };
-            <span class="kw">let</span> <span class="ident">lib_symbol_name</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">pread</span>::<span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>(<span class="ident">offset</span>)<span class="question-mark">?</span>;
-            <span class="kw">let</span> <span class="ident">lib</span> <span class="op">=</span> <span class="ident">libs</span>[<span class="ident">lib_ordinal</span> <span class="kw">as</span> <span class="ident">usize</span>];
-            <span class="kw">let</span> <span class="ident">lib_symbol_name</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">lib_symbol_name</span> <span class="op">==</span> <span class="string">&quot;&quot;</span> {
-                <span class="prelude-val">None</span>
-            } <span class="kw">else</span> {
-                <span class="prelude-val">Some</span>(<span class="ident">lib_symbol_name</span>)
+            <span class="kw">let </span>lib_symbol_name = bytes.pread::&lt;<span class="kw-2">&amp;</span>str&gt;(offset)<span class="question-mark">?</span>;
+            <span class="kw">let </span>lib = libs[lib_ordinal <span class="kw">as </span>usize];
+            <span class="kw">let </span>lib_symbol_name = <span class="kw">if </span>lib_symbol_name == <span class="string">&quot;&quot; </span>{
+                <span class="prelude-val">None
+            </span>} <span class="kw">else </span>{
+                <span class="prelude-val">Some</span>(lib_symbol_name)
             };
-            <span class="prelude-val">Ok</span>(<span class="ident">Reexport</span> {
-                <span class="ident">lib</span>,
-                <span class="ident">lib_symbol_name</span>,
-                <span class="ident">flags</span>,
+            <span class="prelude-val">Ok</span>(Reexport {
+                lib,
+                lib_symbol_name,
+                flags,
             })
         };
-        <span class="kw">match</span> <span class="ident">SymbolKind::new</span>(<span class="ident">flags</span>) {
-            <span class="ident">SymbolKind::Regular</span> =&gt; {
-                <span class="kw">if</span> <span class="ident">flags</span> <span class="op">&amp;</span> <span class="ident">EXPORT_SYMBOL_FLAGS_REEXPORT</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
-                    <span class="ident">reexport</span>(<span class="ident">offset</span>)
-                } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">flags</span> <span class="op">&amp;</span> <span class="ident">EXPORT_SYMBOL_FLAGS_STUB_AND_RESOLVER</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
-                    <span class="comment">// 0x10</span>
-                    <span class="kw">let</span> <span class="ident">stub_offset</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">pread</span>::<span class="op">&lt;</span><span class="ident">Uleb128</span><span class="op">&gt;</span>(<span class="ident">offset</span>)<span class="question-mark">?</span>;
-                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">stub_offset</span>.<span class="ident">size</span>();
-                    <span class="kw">let</span> <span class="ident">resolver_offset</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">pread</span>::<span class="op">&lt;</span><span class="ident">Uleb128</span><span class="op">&gt;</span>(<span class="ident">offset</span>)<span class="question-mark">?</span>;
-                    <span class="prelude-val">Ok</span>(<span class="ident">Stub</span> {
-                        <span class="ident">stub_offset</span>,
-                        <span class="ident">resolver_offset</span>,
-                        <span class="ident">flags</span>,
+        <span class="kw">match </span>SymbolKind::new(flags) {
+            SymbolKind::Regular =&gt; {
+                <span class="kw">if </span>flags &amp; EXPORT_SYMBOL_FLAGS_REEXPORT != <span class="number">0 </span>{
+                    reexport(offset)
+                } <span class="kw">else if </span>flags &amp; EXPORT_SYMBOL_FLAGS_STUB_AND_RESOLVER != <span class="number">0 </span>{
+                    <span class="comment">// 0x10
+                    </span><span class="kw">let </span>stub_offset = bytes.pread::&lt;Uleb128&gt;(offset)<span class="question-mark">?</span>;
+                    offset += stub_offset.size();
+                    <span class="kw">let </span>resolver_offset = bytes.pread::&lt;Uleb128&gt;(offset)<span class="question-mark">?</span>;
+                    <span class="prelude-val">Ok</span>(Stub {
+                        stub_offset,
+                        resolver_offset,
+                        flags,
                     })
-                <span class="comment">// else if (flags = kEXPORT_SYMBOL_FLAGS_WEAK_DEFINITION) then (*0x40 unused*)</span>
-                } <span class="kw">else</span> {
-                    <span class="ident">regular</span>(<span class="ident">offset</span>)
+                <span class="comment">// else if (flags = kEXPORT_SYMBOL_FLAGS_WEAK_DEFINITION) then (*0x40 unused*)
+                </span>} <span class="kw">else </span>{
+                    regular(offset)
                 }
             }
-            <span class="ident">SymbolKind::ThreadLocal</span> <span class="op">|</span> <span class="ident">SymbolKind::Absolute</span> =&gt; {
-                <span class="kw">if</span> <span class="ident">flags</span> <span class="op">&amp;</span> <span class="ident">EXPORT_SYMBOL_FLAGS_REEXPORT</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
-                    <span class="ident">reexport</span>(<span class="ident">offset</span>)
-                } <span class="kw">else</span> {
-                    <span class="ident">regular</span>(<span class="ident">offset</span>)
+            SymbolKind::ThreadLocal | SymbolKind::Absolute =&gt; {
+                <span class="kw">if </span>flags &amp; EXPORT_SYMBOL_FLAGS_REEXPORT != <span class="number">0 </span>{
+                    reexport(offset)
+                } <span class="kw">else </span>{
+                    regular(offset)
                 }
             }
-            <span class="ident">SymbolKind::UnknownSymbolKind</span>(<span class="ident">_kind</span>) =&gt; {
-                <span class="comment">// 0x5f causes errors, but parsing as regular symbol resolves...</span>
-                <span class="comment">//Err(error::Error::Malformed(format!(&quot;Unknown kind {:#x} from flags {:#x} in get_symbol_type at offset {}&quot;, kind, flags, offset)))</span>
-                <span class="ident">regular</span>(<span class="ident">offset</span>)
+            SymbolKind::UnknownSymbolKind(_kind) =&gt; {
+                <span class="comment">// 0x5f causes errors, but parsing as regular symbol resolves...
+                //Err(error::Error::Malformed(format!(&quot;Unknown kind {:#x} from flags {:#x} in get_symbol_type at offset {}&quot;, kind, flags, offset)))
+                </span>regular(offset)
             }
         }
     }
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
-<span class="doccomment">/// A finalized symbolic export reconstructed from the export trie</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Export</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// The reconsituted export name which dyld matches against</span>
-    <span class="kw">pub</span> <span class="ident">name</span>: <span class="ident">String</span>,
-    <span class="doccomment">/// The export info in the node data</span>
-    <span class="kw">pub</span> <span class="ident">info</span>: <span class="ident">ExportInfo</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>,
-    <span class="doccomment">/// How large this export is</span>
-    <span class="kw">pub</span> <span class="ident">size</span>: <span class="ident">usize</span>,
-    <span class="doccomment">/// The offset this symbol export is found in the binary</span>
-    <span class="kw">pub</span> <span class="ident">offset</span>: <span class="ident">u64</span>,
+<span class="attribute">#[derive(Debug)]
+</span><span class="doccomment">/// A finalized symbolic export reconstructed from the export trie
+</span><span class="kw">pub struct </span>Export&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="doccomment">/// The reconsituted export name which dyld matches against
+    </span><span class="kw">pub </span>name: String,
+    <span class="doccomment">/// The export info in the node data
+    </span><span class="kw">pub </span>info: ExportInfo&lt;<span class="lifetime">&#39;a</span>&gt;,
+    <span class="doccomment">/// How large this export is
+    </span><span class="kw">pub </span>size: usize,
+    <span class="doccomment">/// The offset this symbol export is found in the binary
+    </span><span class="kw">pub </span>offset: u64,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Export</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// Create a new export from `name` and `info`</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">name</span>: <span class="ident">String</span>, <span class="ident">info</span>: <span class="ident">ExportInfo</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>) -&gt; <span class="ident">Export</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">info</span> {
-            <span class="ident">ExportInfo::Regular</span> { <span class="ident">address</span>, .. } =&gt; <span class="ident">address</span>,
-            <span class="kw">_</span> =&gt; <span class="number">0x0</span>,
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Export&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="doccomment">/// Create a new export from `name` and `info`
+    </span><span class="kw">pub fn </span>new(name: String, info: ExportInfo&lt;<span class="lifetime">&#39;a</span>&gt;) -&gt; Export&lt;<span class="lifetime">&#39;a</span>&gt; {
+        <span class="kw">let </span>offset = <span class="kw">match </span>info {
+            ExportInfo::Regular { address, .. } =&gt; address,
+            <span class="kw">_ </span>=&gt; <span class="number">0x0</span>,
         };
-        <span class="ident">Export</span> {
-            <span class="ident">name</span>,
-            <span class="ident">info</span>,
-            <span class="ident">size</span>: <span class="number">0</span>,
-            <span class="ident">offset</span>,
+        Export {
+            name,
+            info,
+            size: <span class="number">0</span>,
+            offset,
         }
     }
 }
 
-<span class="doccomment">/// An export trie efficiently encodes all of the symbols exported by this binary for dynamic linking</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ExportTrie</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="ident">data</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
-    <span class="ident">location</span>: <span class="ident">Range</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span>,
+<span class="doccomment">/// An export trie efficiently encodes all of the symbols exported by this binary for dynamic linking
+</span><span class="kw">pub struct </span>ExportTrie&lt;<span class="lifetime">&#39;a</span>&gt; {
+    data: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8],
+    location: Range&lt;usize&gt;,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">ExportTrie</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">walk_nodes</span>(
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; ExportTrie&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>walk_nodes(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">libs</span>: <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>],
-        <span class="ident">branches</span>: <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">String</span>, <span class="ident">usize</span>)<span class="op">&gt;</span>,
-        <span class="ident">acc</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Export</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-    ) -&gt; <span class="ident">error::Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
-        <span class="kw">for</span> (<span class="ident">symbol</span>, <span class="ident">next_node</span>) <span class="kw">in</span> <span class="ident">branches</span> {
-            <span class="self">self</span>.<span class="ident">walk_trie</span>(<span class="ident">libs</span>, <span class="ident">symbol</span>, <span class="ident">next_node</span>, <span class="ident">acc</span>)<span class="question-mark">?</span>;
+        libs: <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str],
+        branches: Vec&lt;(String, usize)&gt;,
+        acc: <span class="kw-2">&amp;mut </span>Vec&lt;Export&lt;<span class="lifetime">&#39;a</span>&gt;&gt;,
+    ) -&gt; error::Result&lt;()&gt; {
+        <span class="kw">for </span>(symbol, next_node) <span class="kw">in </span>branches {
+            <span class="self">self</span>.walk_trie(libs, symbol, next_node, acc)<span class="question-mark">?</span>;
         }
         <span class="prelude-val">Ok</span>(())
     }
 
-    <span class="comment">// current_symbol can be a str iiuc</span>
-    <span class="kw">fn</span> <span class="ident">walk_branches</span>(
+    <span class="comment">// current_symbol can be a str iiuc
+    </span><span class="kw">fn </span>walk_branches(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">nbranches</span>: <span class="ident">usize</span>,
-        <span class="ident">current_symbol</span>: <span class="ident">String</span>,
-        <span class="kw-2">mut</span> <span class="ident">offset</span>: <span class="ident">usize</span>,
-    ) -&gt; <span class="ident">error::Result</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">String</span>, <span class="ident">usize</span>)<span class="op">&gt;</span><span class="op">&gt;</span> {
-        <span class="kw">if</span> <span class="ident">nbranches</span> <span class="op">&gt;</span> <span class="self">self</span>.<span class="ident">data</span>.<span class="ident">len</span>() {
-            <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">error::Error::BufferTooShort</span>(<span class="ident">nbranches</span>, <span class="string">&quot;branches&quot;</span>));
+        nbranches: usize,
+        current_symbol: String,
+        <span class="kw-2">mut </span>offset: usize,
+    ) -&gt; error::Result&lt;Vec&lt;(String, usize)&gt;&gt; {
+        <span class="kw">if </span>nbranches &gt; <span class="self">self</span>.data.len() {
+            <span class="kw">return </span><span class="prelude-val">Err</span>(error::Error::BufferTooShort(nbranches, <span class="string">&quot;branches&quot;</span>));
         }
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">branches</span> <span class="op">=</span> <span class="ident">Vec::with_capacity</span>(<span class="ident">nbranches</span>);
-        <span class="comment">//println!(&quot;\t@{:#x}&quot;, *offset);</span>
-        <span class="kw">for</span> <span class="ident">_i</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">nbranches</span> {
-            <span class="comment">// additional offset calculations are relative to the base we received</span>
-            <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> <span class="kw-2">&amp;mut</span> <span class="ident">offset</span>;
-            <span class="kw">let</span> <span class="ident">string</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">data</span>.<span class="ident">pread</span>::<span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>(<span class="kw-2">*</span><span class="ident">offset</span>)<span class="question-mark">?</span>;
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">key</span> <span class="op">=</span> <span class="ident">current_symbol</span>.<span class="ident">clone</span>();
-            <span class="ident">key</span>.<span class="ident">push_str</span>(<span class="ident">string</span>);
-            <span class="comment">// +1 for null terminator</span>
-            <span class="kw-2">*</span><span class="ident">offset</span> <span class="op">=</span> <span class="kw-2">*</span><span class="ident">offset</span> <span class="op">+</span> <span class="ident">string</span>.<span class="ident">len</span>() <span class="op">+</span> <span class="number">1</span>;
-            <span class="comment">//println!(&quot;\t({}) string_len: {} offset: {:#x}&quot;, i, string.len(), *offset);</span>
-            <span class="comment">// value is relative to export trie base</span>
-            <span class="kw">let</span> <span class="ident">next_node</span> <span class="op">=</span> <span class="ident">Uleb128::read</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">data</span>, <span class="ident">offset</span>)<span class="question-mark">?</span> <span class="kw">as</span> <span class="ident">usize</span> <span class="op">+</span> <span class="self">self</span>.<span class="ident">location</span>.<span class="ident">start</span>;
-            <span class="comment">//println!(&quot;\t({}) string: {} next_node: {:#x}&quot;, _i, key, next_node);</span>
-            <span class="ident">branches</span>.<span class="ident">push</span>((<span class="ident">key</span>, <span class="ident">next_node</span>));
+        <span class="kw">let </span><span class="kw-2">mut </span>branches = Vec::with_capacity(nbranches);
+        <span class="comment">//println!(&quot;\t@{:#x}&quot;, *offset);
+        </span><span class="kw">for </span>_i <span class="kw">in </span><span class="number">0</span>..nbranches {
+            <span class="comment">// additional offset calculations are relative to the base we received
+            </span><span class="kw">let </span>offset = <span class="kw-2">&amp;mut </span>offset;
+            <span class="kw">let </span>string = <span class="self">self</span>.data.pread::&lt;<span class="kw-2">&amp;</span>str&gt;(<span class="kw-2">*</span>offset)<span class="question-mark">?</span>;
+            <span class="kw">let </span><span class="kw-2">mut </span>key = current_symbol.clone();
+            key.push_str(string);
+            <span class="comment">// +1 for null terminator
+            </span><span class="kw-2">*</span>offset = <span class="kw-2">*</span>offset + string.len() + <span class="number">1</span>;
+            <span class="comment">//println!(&quot;\t({}) string_len: {} offset: {:#x}&quot;, i, string.len(), *offset);
+            // value is relative to export trie base
+            </span><span class="kw">let </span>next_node = Uleb128::read(<span class="kw-2">&amp;</span><span class="self">self</span>.data, offset)<span class="question-mark">? </span><span class="kw">as </span>usize + <span class="self">self</span>.location.start;
+            <span class="comment">//println!(&quot;\t({}) string: {} next_node: {:#x}&quot;, _i, key, next_node);
+            </span>branches.push((key, next_node));
         }
-        <span class="prelude-val">Ok</span>(<span class="ident">branches</span>)
+        <span class="prelude-val">Ok</span>(branches)
     }
 
-    <span class="kw">fn</span> <span class="ident">walk_trie</span>(
+    <span class="kw">fn </span>walk_trie(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">libs</span>: <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>],
-        <span class="ident">current_symbol</span>: <span class="ident">String</span>,
-        <span class="ident">start</span>: <span class="ident">usize</span>,
-        <span class="ident">exports</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Export</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-    ) -&gt; <span class="ident">error::Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
-        <span class="kw">if</span> <span class="ident">start</span> <span class="op">&lt;</span> <span class="self">self</span>.<span class="ident">location</span>.<span class="ident">end</span> {
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">offset</span> <span class="op">=</span> <span class="ident">start</span>;
-            <span class="kw">let</span> <span class="ident">terminal_size</span> <span class="op">=</span> <span class="ident">Uleb128::read</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">data</span>, <span class="kw-2">&amp;mut</span> <span class="ident">offset</span>)<span class="question-mark">?</span>;
-            <span class="comment">// let mut input = String::new();</span>
-            <span class="comment">// ::std::io::stdin().read_line(&amp;mut input).unwrap();</span>
-            <span class="comment">// println!(&quot;@ {:#x} node: {:#x} current_symbol: {}&quot;, start, terminal_size, current_symbol);</span>
-            <span class="kw">if</span> <span class="ident">terminal_size</span> <span class="op">==</span> <span class="number">0</span> {
-                <span class="kw">let</span> <span class="ident">nbranches</span> <span class="op">=</span> <span class="ident">Uleb128::read</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">data</span>, <span class="kw-2">&amp;mut</span> <span class="ident">offset</span>)<span class="question-mark">?</span> <span class="kw">as</span> <span class="ident">usize</span>;
-                <span class="comment">//println!(&quot;\t@ {:#x} BRAN {}&quot;, *offset, nbranches);</span>
-                <span class="kw">let</span> <span class="ident">branches</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">walk_branches</span>(<span class="ident">nbranches</span>, <span class="ident">current_symbol</span>, <span class="ident">offset</span>)<span class="question-mark">?</span>;
-                <span class="self">self</span>.<span class="ident">walk_nodes</span>(<span class="ident">libs</span>, <span class="ident">branches</span>, <span class="ident">exports</span>)
-            } <span class="kw">else</span> {
-                <span class="comment">// terminal node, but the tricky part is that they can have children...</span>
-                <span class="kw">let</span> <span class="ident">pos</span> <span class="op">=</span> <span class="ident">offset</span>;
-                <span class="kw">let</span> <span class="ident">children_start</span> <span class="op">=</span> <span class="kw-2">&amp;mut</span> (<span class="ident">pos</span> <span class="op">+</span> <span class="ident">terminal_size</span> <span class="kw">as</span> <span class="ident">usize</span>);
-                <span class="kw">let</span> <span class="ident">nchildren</span> <span class="op">=</span> <span class="ident">Uleb128::read</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">data</span>, <span class="ident">children_start</span>)<span class="question-mark">?</span> <span class="kw">as</span> <span class="ident">usize</span>;
-                <span class="kw">let</span> <span class="ident">flags</span> <span class="op">=</span> <span class="ident">Uleb128::read</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">data</span>, <span class="kw-2">&amp;mut</span> <span class="ident">offset</span>)<span class="question-mark">?</span>;
-                <span class="comment">//println!(&quot;\t@ {:#x} TERM {} flags: {:#x}&quot;, offset, nchildren, flags);</span>
-                <span class="kw">let</span> <span class="ident">info</span> <span class="op">=</span> <span class="ident">ExportInfo::parse</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">data</span>, <span class="ident">libs</span>, <span class="ident">flags</span>, <span class="ident">offset</span>)<span class="question-mark">?</span>;
-                <span class="kw">let</span> <span class="ident">export</span> <span class="op">=</span> <span class="ident">Export::new</span>(<span class="ident">current_symbol</span>.<span class="ident">clone</span>(), <span class="ident">info</span>);
-                <span class="comment">//println!(&quot;\t{:?}&quot;, &amp;export);</span>
-                <span class="ident">exports</span>.<span class="ident">push</span>(<span class="ident">export</span>);
-                <span class="kw">if</span> <span class="ident">nchildren</span> <span class="op">==</span> <span class="number">0</span> {
-                    <span class="comment">// this branch is done</span>
-                    <span class="prelude-val">Ok</span>(())
-                } <span class="kw">else</span> {
-                    <span class="comment">// more branches to walk</span>
-                    <span class="kw">let</span> <span class="ident">branches</span> <span class="op">=</span>
-                        <span class="self">self</span>.<span class="ident">walk_branches</span>(<span class="ident">nchildren</span>, <span class="ident">current_symbol</span>, <span class="kw-2">*</span><span class="ident">children_start</span>)<span class="question-mark">?</span>;
-                    <span class="self">self</span>.<span class="ident">walk_nodes</span>(<span class="ident">libs</span>, <span class="ident">branches</span>, <span class="ident">exports</span>)
+        libs: <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str],
+        current_symbol: String,
+        start: usize,
+        exports: <span class="kw-2">&amp;mut </span>Vec&lt;Export&lt;<span class="lifetime">&#39;a</span>&gt;&gt;,
+    ) -&gt; error::Result&lt;()&gt; {
+        <span class="kw">if </span>start &lt; <span class="self">self</span>.location.end {
+            <span class="kw">let </span><span class="kw-2">mut </span>offset = start;
+            <span class="kw">let </span>terminal_size = Uleb128::read(<span class="kw-2">&amp;</span><span class="self">self</span>.data, <span class="kw-2">&amp;mut </span>offset)<span class="question-mark">?</span>;
+            <span class="comment">// let mut input = String::new();
+            // ::std::io::stdin().read_line(&amp;mut input).unwrap();
+            // println!(&quot;@ {:#x} node: {:#x} current_symbol: {}&quot;, start, terminal_size, current_symbol);
+            </span><span class="kw">if </span>terminal_size == <span class="number">0 </span>{
+                <span class="kw">let </span>nbranches = Uleb128::read(<span class="kw-2">&amp;</span><span class="self">self</span>.data, <span class="kw-2">&amp;mut </span>offset)<span class="question-mark">? </span><span class="kw">as </span>usize;
+                <span class="comment">//println!(&quot;\t@ {:#x} BRAN {}&quot;, *offset, nbranches);
+                </span><span class="kw">let </span>branches = <span class="self">self</span>.walk_branches(nbranches, current_symbol, offset)<span class="question-mark">?</span>;
+                <span class="self">self</span>.walk_nodes(libs, branches, exports)
+            } <span class="kw">else </span>{
+                <span class="comment">// terminal node, but the tricky part is that they can have children...
+                </span><span class="kw">let </span>pos = offset;
+                <span class="kw">let </span>children_start = <span class="kw-2">&amp;mut </span>(pos + terminal_size <span class="kw">as </span>usize);
+                <span class="kw">let </span>nchildren = Uleb128::read(<span class="kw-2">&amp;</span><span class="self">self</span>.data, children_start)<span class="question-mark">? </span><span class="kw">as </span>usize;
+                <span class="kw">let </span>flags = Uleb128::read(<span class="kw-2">&amp;</span><span class="self">self</span>.data, <span class="kw-2">&amp;mut </span>offset)<span class="question-mark">?</span>;
+                <span class="comment">//println!(&quot;\t@ {:#x} TERM {} flags: {:#x}&quot;, offset, nchildren, flags);
+                </span><span class="kw">let </span>info = ExportInfo::parse(<span class="kw-2">&amp;</span><span class="self">self</span>.data, libs, flags, offset)<span class="question-mark">?</span>;
+                <span class="kw">let </span>export = Export::new(current_symbol.clone(), info);
+                <span class="comment">//println!(&quot;\t{:?}&quot;, &amp;export);
+                </span>exports.push(export);
+                <span class="kw">if </span>nchildren == <span class="number">0 </span>{
+                    <span class="comment">// this branch is done
+                    </span><span class="prelude-val">Ok</span>(())
+                } <span class="kw">else </span>{
+                    <span class="comment">// more branches to walk
+                    </span><span class="kw">let </span>branches =
+                        <span class="self">self</span>.walk_branches(nchildren, current_symbol, <span class="kw-2">*</span>children_start)<span class="question-mark">?</span>;
+                    <span class="self">self</span>.walk_nodes(libs, branches, exports)
                 }
             }
-        } <span class="kw">else</span> {
+        } <span class="kw">else </span>{
             <span class="prelude-val">Ok</span>(())
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">new_impl</span>(<span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>], <span class="ident">start</span>: <span class="ident">usize</span>, <span class="ident">size</span>: <span class="ident">usize</span>) -&gt; <span class="self">Self</span> {
-        <span class="comment">// FIXME: Ideally, this should validate `command`, but the best we can</span>
-        <span class="comment">// do for now is return an empty `Range`.</span>
-        <span class="kw">let</span> <span class="ident">location</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">start</span>
-            .<span class="ident">checked_add</span>(<span class="ident">size</span>)
-            .<span class="ident">and_then</span>(<span class="op">|</span><span class="ident">end</span><span class="op">|</span> <span class="ident">bytes</span>.<span class="ident">get</span>(<span class="ident">start</span>..<span class="ident">end</span>).<span class="ident">map</span>(<span class="op">|</span><span class="kw">_</span><span class="op">|</span> <span class="ident">start</span>..<span class="ident">end</span>))
+    <span class="kw">fn </span>new_impl(bytes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8], start: usize, size: usize) -&gt; <span class="self">Self </span>{
+        <span class="comment">// FIXME: Ideally, this should validate `command`, but the best we can
+        // do for now is return an empty `Range`.
+        </span><span class="kw">let </span>location = <span class="kw">match </span>start
+            .checked_add(size)
+            .and_then(|end| bytes.get(start..end).map(|<span class="kw">_</span>| start..end))
         {
-            <span class="prelude-val">Some</span>(<span class="ident">location</span>) =&gt; <span class="ident">location</span>,
-            <span class="prelude-val">None</span> =&gt; {
+            <span class="prelude-val">Some</span>(location) =&gt; location,
+            <span class="prelude-val">None </span>=&gt; {
                 <span class="macro">log::warn!</span>(<span class="string">&quot;Invalid `DyldInfo` `command`.&quot;</span>);
-                <span class="number">0</span>..<span class="number">0</span>
-            }
+                <span class="number">0</span>..<span class="number">0
+            </span>}
         };
-        <span class="ident">ExportTrie</span> {
-            <span class="ident">data</span>: <span class="ident">bytes</span>,
-            <span class="ident">location</span>,
+        ExportTrie {
+            data: bytes,
+            location,
         }
     }
 
-    <span class="doccomment">/// Walk the export trie for symbols exported by this binary, using the provided `libs` to resolve re-exports</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">exports</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">libs</span>: <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>]) -&gt; <span class="ident">error::Result</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Export</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">location</span>.<span class="ident">start</span>;
-        <span class="kw">let</span> <span class="ident">current_symbol</span> <span class="op">=</span> <span class="ident">String::new</span>();
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">exports</span> <span class="op">=</span> <span class="ident">Vec::new</span>();
-        <span class="self">self</span>.<span class="ident">walk_trie</span>(<span class="ident">libs</span>, <span class="ident">current_symbol</span>, <span class="ident">offset</span>, <span class="kw-2">&amp;mut</span> <span class="ident">exports</span>)<span class="question-mark">?</span>;
-        <span class="prelude-val">Ok</span>(<span class="ident">exports</span>)
+    <span class="doccomment">/// Walk the export trie for symbols exported by this binary, using the provided `libs` to resolve re-exports
+    </span><span class="kw">pub fn </span>exports(<span class="kw-2">&amp;</span><span class="self">self</span>, libs: <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str]) -&gt; error::Result&lt;Vec&lt;Export&lt;<span class="lifetime">&#39;a</span>&gt;&gt;&gt; {
+        <span class="kw">let </span>offset = <span class="self">self</span>.location.start;
+        <span class="kw">let </span>current_symbol = String::new();
+        <span class="kw">let </span><span class="kw-2">mut </span>exports = Vec::new();
+        <span class="self">self</span>.walk_trie(libs, current_symbol, offset, <span class="kw-2">&amp;mut </span>exports)<span class="question-mark">?</span>;
+        <span class="prelude-val">Ok</span>(exports)
     }
 
-    <span class="doccomment">/// Create a new, lazy, zero-copy export trie from the `DyldInfo` `command`</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>], <span class="ident">command</span>: <span class="kw-2">&amp;</span><span class="ident">load_command::DyldInfoCommand</span>) -&gt; <span class="self">Self</span> {
-        <span class="ident"><span class="self">Self</span>::new_impl</span>(
-            <span class="ident">bytes</span>,
-            <span class="ident">command</span>.<span class="ident">export_off</span> <span class="kw">as</span> <span class="ident">usize</span>,
-            <span class="ident">command</span>.<span class="ident">export_size</span> <span class="kw">as</span> <span class="ident">usize</span>,
+    <span class="doccomment">/// Create a new, lazy, zero-copy export trie from the `DyldInfo` `command`
+    </span><span class="kw">pub fn </span>new(bytes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8], command: <span class="kw-2">&amp;</span>load_command::DyldInfoCommand) -&gt; <span class="self">Self </span>{
+        <span class="self">Self</span>::new_impl(
+            bytes,
+            command.export_off <span class="kw">as </span>usize,
+            command.export_size <span class="kw">as </span>usize,
         )
     }
 
-    <span class="doccomment">/// Create a new, lazy, zero-copy export trie from the `LinkeditDataCommand` `command`</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new_from_linkedit_data_command</span>(
-        <span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
-        <span class="ident">command</span>: <span class="kw-2">&amp;</span><span class="ident">load_command::LinkeditDataCommand</span>,
-    ) -&gt; <span class="self">Self</span> {
-        <span class="ident"><span class="self">Self</span>::new_impl</span>(<span class="ident">bytes</span>, <span class="ident">command</span>.<span class="ident">dataoff</span> <span class="kw">as</span> <span class="ident">usize</span>, <span class="ident">command</span>.<span class="ident">datasize</span> <span class="kw">as</span> <span class="ident">usize</span>)
+    <span class="doccomment">/// Create a new, lazy, zero-copy export trie from the `LinkeditDataCommand` `command`
+    </span><span class="kw">pub fn </span>new_from_linkedit_data_command(
+        bytes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8],
+        command: <span class="kw-2">&amp;</span>load_command::LinkeditDataCommand,
+    ) -&gt; <span class="self">Self </span>{
+        <span class="self">Self</span>::new_impl(bytes, command.dataoff <span class="kw">as </span>usize, command.datasize <span class="kw">as </span>usize)
     }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Debug</span> <span class="kw">for</span> <span class="ident">ExportTrie</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">fmt</span>: <span class="kw-2">&amp;mut</span> <span class="ident">fmt::Formatter</span>) -&gt; <span class="ident">fmt::Result</span> {
-        <span class="ident">fmt</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;ExportTrie&quot;</span>)
-            .<span class="ident">field</span>(<span class="string">&quot;data&quot;</span>, <span class="kw-2">&amp;</span><span class="string">&quot;&lt;... redacted ...&gt;&quot;</span>)
-            .<span class="ident">field</span>(
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Debug <span class="kw">for </span>ExportTrie&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, fmt: <span class="kw-2">&amp;mut </span>fmt::Formatter) -&gt; fmt::Result {
+        fmt.debug_struct(<span class="string">&quot;ExportTrie&quot;</span>)
+            .field(<span class="string">&quot;data&quot;</span>, <span class="kw-2">&amp;</span><span class="string">&quot;&lt;... redacted ...&gt;&quot;</span>)
+            .field(
                 <span class="string">&quot;location&quot;</span>,
-                <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{:#x}..{:#x}&quot;</span>, <span class="self">self</span>.<span class="ident">location</span>.<span class="ident">start</span>, <span class="self">self</span>.<span class="ident">location</span>.<span class="ident">end</span>),
+                <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{:#x}..{:#x}&quot;</span>, <span class="self">self</span>.location.start, <span class="self">self</span>.location.end),
             )
-            .<span class="ident">finish</span>()
+            .finish()
     }
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
-<span class="kw">mod</span> <span class="ident">tests</span> {
-    <span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">export_trie</span>() {
-        <span class="kw">const</span> <span class="ident">EXPORTS</span>: [<span class="ident">u8</span>; <span class="number">64</span>] <span class="op">=</span> [
+<span class="attribute">#[cfg(test)]
+</span><span class="kw">mod </span>tests {
+    <span class="kw">use super</span>::<span class="kw-2">*</span>;
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>export_trie() {
+        <span class="kw">const </span>EXPORTS: [u8; <span class="number">64</span>] = [
             <span class="number">0x00</span>, <span class="number">0x01</span>, <span class="number">0x5f</span>, <span class="number">0x00</span>, <span class="number">0x05</span>, <span class="number">0x00</span>, <span class="number">0x02</span>, <span class="number">0x5f</span>, <span class="number">0x6d</span>, <span class="number">0x68</span>, <span class="number">0x5f</span>, <span class="number">0x65</span>, <span class="number">0x78</span>, <span class="number">0x65</span>,
             <span class="number">0x63</span>, <span class="number">0x75</span>, <span class="number">0x74</span>, <span class="number">0x65</span>, <span class="number">0x5f</span>, <span class="number">0x68</span>, <span class="number">0x65</span>, <span class="number">0x61</span>, <span class="number">0x64</span>, <span class="number">0x65</span>, <span class="number">0x72</span>, <span class="number">0x00</span>, <span class="number">0x1f</span>, <span class="number">0x6d</span>,
             <span class="number">0x61</span>, <span class="number">0x00</span>, <span class="number">0x23</span>, <span class="number">0x02</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x02</span>, <span class="number">0x78</span>, <span class="number">0x69</span>, <span class="number">0x6d</span>, <span class="number">0x75</span>, <span class="number">0x6d</span>,
             <span class="number">0x00</span>, <span class="number">0x30</span>, <span class="number">0x69</span>, <span class="number">0x6e</span>, <span class="number">0x00</span>, <span class="number">0x35</span>, <span class="number">0x03</span>, <span class="number">0x00</span>, <span class="number">0xc0</span>, <span class="number">0x1e</span>, <span class="number">0x00</span>, <span class="number">0x03</span>, <span class="number">0x00</span>, <span class="number">0xd0</span>,
             <span class="number">0x1e</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>,
         ];
-        <span class="kw">let</span> <span class="ident">exports</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">EXPORTS</span>[..];
-        <span class="kw">let</span> <span class="ident">libs</span> <span class="op">=</span> <span class="macro">vec!</span>[<span class="string">&quot;/usr/lib/libderp.so&quot;</span>, <span class="string">&quot;/usr/lib/libthuglife.so&quot;</span>];
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">command</span> <span class="op">=</span> <span class="ident">load_command::DyldInfoCommand::default</span>();
-        <span class="ident">command</span>.<span class="ident">export_size</span> <span class="op">=</span> <span class="ident">exports</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">u32</span>;
-        <span class="kw">let</span> <span class="ident">trie</span> <span class="op">=</span> <span class="ident">ExportTrie::new</span>(<span class="kw-2">&amp;</span><span class="ident">exports</span>, <span class="kw-2">&amp;</span><span class="ident">command</span>);
-        <span class="macro">println!</span>(<span class="string">&quot;trie: {:#?}&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">trie</span>);
-        <span class="kw">let</span> <span class="ident">exports</span> <span class="op">=</span> <span class="ident">trie</span>.<span class="ident">exports</span>(<span class="kw-2">&amp;</span><span class="ident">libs</span>).<span class="ident">unwrap</span>();
-        <span class="macro">println!</span>(<span class="string">&quot;len: {} exports: {:#?}&quot;</span>, <span class="ident">exports</span>.<span class="ident">len</span>(), <span class="kw-2">&amp;</span><span class="ident">exports</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">exports</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">usize</span>, <span class="number">3usize</span>)
+        <span class="kw">let </span>exports = <span class="kw-2">&amp;</span>EXPORTS[..];
+        <span class="kw">let </span>libs = <span class="macro">vec!</span>[<span class="string">&quot;/usr/lib/libderp.so&quot;</span>, <span class="string">&quot;/usr/lib/libthuglife.so&quot;</span>];
+        <span class="kw">let </span><span class="kw-2">mut </span>command = load_command::DyldInfoCommand::default();
+        command.export_size = exports.len() <span class="kw">as </span>u32;
+        <span class="kw">let </span>trie = ExportTrie::new(<span class="kw-2">&amp;</span>exports, <span class="kw-2">&amp;</span>command);
+        <span class="macro">println!</span>(<span class="string">&quot;trie: {:#?}&quot;</span>, <span class="kw-2">&amp;</span>trie);
+        <span class="kw">let </span>exports = trie.exports(<span class="kw-2">&amp;</span>libs).unwrap();
+        <span class="macro">println!</span>(<span class="string">&quot;len: {} exports: {:#?}&quot;</span>, exports.len(), <span class="kw-2">&amp;</span>exports);
+        <span class="macro">assert_eq!</span>(exports.len() <span class="kw">as </span>usize, <span class="number">3usize</span>)
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">export_trie_linkedit_data</span>() {
-        <span class="kw">const</span> <span class="ident">EXPORTS</span>: [<span class="ident">u8</span>; <span class="number">64</span>] <span class="op">=</span> [
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>export_trie_linkedit_data() {
+        <span class="kw">const </span>EXPORTS: [u8; <span class="number">64</span>] = [
             <span class="number">0x00</span>, <span class="number">0x01</span>, <span class="number">0x5f</span>, <span class="number">0x00</span>, <span class="number">0x05</span>, <span class="number">0x00</span>, <span class="number">0x02</span>, <span class="number">0x5f</span>, <span class="number">0x6d</span>, <span class="number">0x68</span>, <span class="number">0x5f</span>, <span class="number">0x65</span>, <span class="number">0x78</span>, <span class="number">0x65</span>,
             <span class="number">0x63</span>, <span class="number">0x75</span>, <span class="number">0x74</span>, <span class="number">0x65</span>, <span class="number">0x5f</span>, <span class="number">0x68</span>, <span class="number">0x65</span>, <span class="number">0x61</span>, <span class="number">0x64</span>, <span class="number">0x65</span>, <span class="number">0x72</span>, <span class="number">0x00</span>, <span class="number">0x1f</span>, <span class="number">0x6d</span>,
             <span class="number">0x61</span>, <span class="number">0x00</span>, <span class="number">0x23</span>, <span class="number">0x02</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x02</span>, <span class="number">0x78</span>, <span class="number">0x69</span>, <span class="number">0x6d</span>, <span class="number">0x75</span>, <span class="number">0x6d</span>,
             <span class="number">0x00</span>, <span class="number">0x30</span>, <span class="number">0x69</span>, <span class="number">0x6e</span>, <span class="number">0x00</span>, <span class="number">0x35</span>, <span class="number">0x03</span>, <span class="number">0x00</span>, <span class="number">0xc0</span>, <span class="number">0x1e</span>, <span class="number">0x00</span>, <span class="number">0x03</span>, <span class="number">0x00</span>, <span class="number">0xd0</span>,
             <span class="number">0x1e</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>,
         ];
-        <span class="kw">let</span> <span class="ident">exports</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">EXPORTS</span>[..];
-        <span class="kw">let</span> <span class="ident">libs</span> <span class="op">=</span> <span class="macro">vec!</span>[<span class="string">&quot;/usr/lib/libderp.so&quot;</span>, <span class="string">&quot;/usr/lib/libthuglife.so&quot;</span>];
-        <span class="kw">let</span> <span class="ident">command</span> <span class="op">=</span> <span class="ident">load_command::LinkeditDataCommand</span> {
-            <span class="ident">datasize</span>: <span class="ident">exports</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">u32</span>,
-            ..<span class="ident">Default::default</span>()
+        <span class="kw">let </span>exports = <span class="kw-2">&amp;</span>EXPORTS[..];
+        <span class="kw">let </span>libs = <span class="macro">vec!</span>[<span class="string">&quot;/usr/lib/libderp.so&quot;</span>, <span class="string">&quot;/usr/lib/libthuglife.so&quot;</span>];
+        <span class="kw">let </span>command = load_command::LinkeditDataCommand {
+            datasize: exports.len() <span class="kw">as </span>u32,
+            ..Default::default()
         };
-        <span class="kw">let</span> <span class="ident">trie</span> <span class="op">=</span> <span class="ident">ExportTrie::new_from_linkedit_data_command</span>(<span class="ident">exports</span>, <span class="kw-2">&amp;</span><span class="ident">command</span>);
-        <span class="macro">println!</span>(<span class="string">&quot;trie: {:#?}&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">trie</span>);
-        <span class="kw">let</span> <span class="ident">exports</span> <span class="op">=</span> <span class="ident">trie</span>.<span class="ident">exports</span>(<span class="kw-2">&amp;</span><span class="ident">libs</span>).<span class="ident">unwrap</span>();
-        <span class="macro">println!</span>(<span class="string">&quot;len: {} exports: {:#?}&quot;</span>, <span class="ident">exports</span>.<span class="ident">len</span>(), <span class="kw-2">&amp;</span><span class="ident">exports</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">exports</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">usize</span>, <span class="number">3usize</span>);
+        <span class="kw">let </span>trie = ExportTrie::new_from_linkedit_data_command(exports, <span class="kw-2">&amp;</span>command);
+        <span class="macro">println!</span>(<span class="string">&quot;trie: {:#?}&quot;</span>, <span class="kw-2">&amp;</span>trie);
+        <span class="kw">let </span>exports = trie.exports(<span class="kw-2">&amp;</span>libs).unwrap();
+        <span class="macro">println!</span>(<span class="string">&quot;len: {} exports: {:#?}&quot;</span>, exports.len(), <span class="kw-2">&amp;</span>exports);
+        <span class="macro">assert_eq!</span>(exports.len() <span class="kw">as </span>usize, <span class="number">3usize</span>);
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">invalid_range</span>() {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">command</span> <span class="op">=</span> <span class="ident">load_command::DyldInfoCommand::default</span>();
-        <span class="ident">command</span>.<span class="ident">export_off</span> <span class="op">=</span> <span class="number">0xffff_ff00</span>;
-        <span class="ident">command</span>.<span class="ident">export_size</span> <span class="op">=</span> <span class="number">0x00ff_ff00</span>;
-        <span class="kw">let</span> <span class="ident">trie</span> <span class="op">=</span> <span class="ident">ExportTrie::new</span>(<span class="kw-2">&amp;</span>[], <span class="kw-2">&amp;</span><span class="ident">command</span>);
-        <span class="comment">// FIXME: it would have been nice if this were an `Err`.</span>
-        <span class="kw">let</span> <span class="ident">exports</span> <span class="op">=</span> <span class="ident">trie</span>.<span class="ident">exports</span>(<span class="kw-2">&amp;</span>[]).<span class="ident">unwrap</span>();
-        <span class="macro">assert_eq!</span>(<span class="ident">exports</span>.<span class="ident">len</span>(), <span class="number">0</span>);
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>invalid_range() {
+        <span class="kw">let </span><span class="kw-2">mut </span>command = load_command::DyldInfoCommand::default();
+        command.export_off = <span class="number">0xffff_ff00</span>;
+        command.export_size = <span class="number">0x00ff_ff00</span>;
+        <span class="kw">let </span>trie = ExportTrie::new(<span class="kw-2">&amp;</span>[], <span class="kw-2">&amp;</span>command);
+        <span class="comment">// FIXME: it would have been nice if this were an `Err`.
+        </span><span class="kw">let </span>exports = trie.exports(<span class="kw-2">&amp;</span>[]).unwrap();
+        <span class="macro">assert_eq!</span>(exports.len(), <span class="number">0</span>);
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="goblin" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="goblin" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (77e57db38 2022-10-30)" ></div></body></html>

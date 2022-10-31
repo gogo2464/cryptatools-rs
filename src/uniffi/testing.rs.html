@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/uniffi-0.21.0/src/testing.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>testing.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../uniffi/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../uniffi/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../uniffi/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/uniffi-0.21.0/src/testing.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>testing.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../uniffi/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -149,108 +149,108 @@
 <span id="149">149</span>
 </pre><pre class="rust"><code><span class="comment">/* This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
- * file, You can obtain one at http://mozilla.org/MPL/2.0/. */</span>
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-<span class="doccomment">//! Runtime support functionality for testing generated bindings.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! This module helps you run a foreign language script as a testcase to exercise the</span>
-<span class="doccomment">//! bindings generated from your rust code. You probably don&#39;t want to use it directly,</span>
-<span class="doccomment">//! and should instead use the `build_foreign_language_testcases!` macro provided by</span>
-<span class="doccomment">//! the `uniffi_macros` crate.</span>
+</span><span class="doccomment">//! Runtime support functionality for testing generated bindings.
+//!
+//! This module helps you run a foreign language script as a testcase to exercise the
+//! bindings generated from your rust code. You probably don&#39;t want to use it directly,
+//! and should instead use the `build_foreign_language_testcases!` macro provided by
+//! the `uniffi_macros` crate.
 
-<span class="kw">use</span> <span class="ident">anyhow</span>::{<span class="ident">bail</span>, <span class="prelude-ty">Result</span>};
-<span class="kw">use</span> <span class="ident">camino</span>::{<span class="ident">Utf8Path</span>, <span class="ident">Utf8PathBuf</span>};
-<span class="kw">use</span> <span class="ident">cargo_metadata::Message</span>;
-<span class="kw">use</span> <span class="ident">once_cell::sync::Lazy</span>;
-<span class="kw">use</span> <span class="ident">std</span>::{
-    <span class="ident">collections::HashMap</span>,
-    <span class="ident">process</span>::{<span class="ident">Command</span>, <span class="ident">Stdio</span>},
-    <span class="ident">sync::Mutex</span>,
+</span><span class="kw">use </span>anyhow::{bail, <span class="prelude-ty">Result</span>};
+<span class="kw">use </span>camino::{Utf8Path, Utf8PathBuf};
+<span class="kw">use </span>cargo_metadata::Message;
+<span class="kw">use </span>once_cell::sync::Lazy;
+<span class="kw">use </span>std::{
+    collections::HashMap,
+    process::{Command, Stdio},
+    sync::Mutex,
 };
 
-<span class="comment">// These statics are used for a bit of simple caching and concurrency control.</span>
-<span class="comment">// They map uniffi component crate directories to data about build steps that have already</span>
-<span class="comment">// been executed by this process.</span>
-<span class="kw">static</span> <span class="ident">COMPILED_COMPONENTS</span>: <span class="ident">Lazy</span><span class="op">&lt;</span><span class="ident">Mutex</span><span class="op">&lt;</span><span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">Utf8PathBuf</span>, <span class="ident">Utf8PathBuf</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="op">=</span>
-    <span class="ident">Lazy::new</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">Mutex::new</span>(<span class="ident">HashMap::new</span>()));
-<span class="comment">// Since uniffi-bindgen does the actual generating/compiling of bindings and script files,</span>
-<span class="comment">// we ensure that only one call happens at once (making tests pretty much serialized sorry :/).</span>
-<span class="kw">static</span> <span class="ident">UNIFFI_BINDGEN</span>: <span class="ident">Lazy</span><span class="op">&lt;</span><span class="ident">Mutex</span><span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Lazy::new</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">Mutex::new</span>(<span class="number">0</span>));
+<span class="comment">// These statics are used for a bit of simple caching and concurrency control.
+// They map uniffi component crate directories to data about build steps that have already
+// been executed by this process.
+</span><span class="kw">static </span>COMPILED_COMPONENTS: Lazy&lt;Mutex&lt;HashMap&lt;Utf8PathBuf, Utf8PathBuf&gt;&gt;&gt; =
+    Lazy::new(|| Mutex::new(HashMap::new()));
+<span class="comment">// Since uniffi-bindgen does the actual generating/compiling of bindings and script files,
+// we ensure that only one call happens at once (making tests pretty much serialized sorry :/).
+</span><span class="kw">static </span>UNIFFI_BINDGEN: Lazy&lt;Mutex&lt;i32&gt;&gt; = Lazy::new(|| Mutex::new(<span class="number">0</span>));
 
-<span class="doccomment">/// Execute the given foreign-language script as part of a rust test suite.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// This function takes the top-level directory of a uniffi component crate, and the path to</span>
-<span class="doccomment">/// a foreign-language test file that exercises that component&#39;s bindings. It ensures that the</span>
-<span class="doccomment">/// component is compiled and available for use and then executes the foreign language script,</span>
-<span class="doccomment">/// returning successfully iff the script exits successfully.</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">run_foreign_language_testcase</span>(
-    <span class="ident">pkg_dir</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
-    <span class="ident">udl_files</span>: <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span><span class="ident">str</span>],
-    <span class="ident">test_file</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
-) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
-    <span class="kw">let</span> <span class="ident">cdylib_file</span> <span class="op">=</span> <span class="ident">ensure_compiled_cdylib</span>(<span class="ident">pkg_dir</span>)<span class="question-mark">?</span>;
-    <span class="kw">let</span> <span class="ident">_lock</span> <span class="op">=</span> <span class="ident">UNIFFI_BINDGEN</span>.<span class="ident">lock</span>();
-    <span class="ident">run_uniffi_bindgen_test</span>(<span class="ident">cdylib_file</span>.<span class="ident">as_str</span>(), <span class="ident">udl_files</span>, <span class="ident">test_file</span>)<span class="question-mark">?</span>;
+<span class="doccomment">/// Execute the given foreign-language script as part of a rust test suite.
+///
+/// This function takes the top-level directory of a uniffi component crate, and the path to
+/// a foreign-language test file that exercises that component&#39;s bindings. It ensures that the
+/// component is compiled and available for use and then executes the foreign language script,
+/// returning successfully iff the script exits successfully.
+</span><span class="kw">pub fn </span>run_foreign_language_testcase(
+    pkg_dir: <span class="kw-2">&amp;</span>str,
+    udl_files: <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span>str],
+    test_file: <span class="kw-2">&amp;</span>str,
+) -&gt; <span class="prelude-ty">Result</span>&lt;()&gt; {
+    <span class="kw">let </span>cdylib_file = ensure_compiled_cdylib(pkg_dir)<span class="question-mark">?</span>;
+    <span class="kw">let </span>_lock = UNIFFI_BINDGEN.lock();
+    run_uniffi_bindgen_test(cdylib_file.as_str(), udl_files, test_file)<span class="question-mark">?</span>;
     <span class="prelude-val">Ok</span>(())
 }
 
-<span class="doccomment">/// Ensure that a uniffi component crate is compiled and ready for use.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// This function takes the top-level directory of a uniffi component crate, ensures that the</span>
-<span class="doccomment">/// component&#39;s cdylib is compiled and available for use in generating bindings and running</span>
-<span class="doccomment">/// foreign language code.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Internally, this function does a bit of caching and concurrency management to avoid rebuilding</span>
-<span class="doccomment">/// the component for multiple testcases.</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ensure_compiled_cdylib</span>(<span class="ident">pkg_dir</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Utf8PathBuf</span><span class="op">&gt;</span> {
-    <span class="kw">let</span> <span class="ident">pkg_dir</span> <span class="op">=</span> <span class="ident">Utf8Path::new</span>(<span class="ident">pkg_dir</span>);
+<span class="doccomment">/// Ensure that a uniffi component crate is compiled and ready for use.
+///
+/// This function takes the top-level directory of a uniffi component crate, ensures that the
+/// component&#39;s cdylib is compiled and available for use in generating bindings and running
+/// foreign language code.
+///
+/// Internally, this function does a bit of caching and concurrency management to avoid rebuilding
+/// the component for multiple testcases.
+</span><span class="kw">pub fn </span>ensure_compiled_cdylib(pkg_dir: <span class="kw-2">&amp;</span>str) -&gt; <span class="prelude-ty">Result</span>&lt;Utf8PathBuf&gt; {
+    <span class="kw">let </span>pkg_dir = Utf8Path::new(pkg_dir);
 
-    <span class="comment">// Have we already compiled this component?</span>
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">compiled_components</span> <span class="op">=</span> <span class="ident">COMPILED_COMPONENTS</span>.<span class="ident">lock</span>().<span class="ident">unwrap</span>();
-    <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">cdylib_file</span>) <span class="op">=</span> <span class="ident">compiled_components</span>.<span class="ident">get</span>(<span class="ident">pkg_dir</span>) {
-        <span class="kw">return</span> <span class="prelude-val">Ok</span>(<span class="ident">cdylib_file</span>.<span class="ident">to_owned</span>());
+    <span class="comment">// Have we already compiled this component?
+    </span><span class="kw">let </span><span class="kw-2">mut </span>compiled_components = COMPILED_COMPONENTS.lock().unwrap();
+    <span class="kw">if let </span><span class="prelude-val">Some</span>(cdylib_file) = compiled_components.get(pkg_dir) {
+        <span class="kw">return </span><span class="prelude-val">Ok</span>(cdylib_file.to_owned());
     }
-    <span class="comment">// Nope, looks like we&#39;ll have to compile it afresh.</span>
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">cmd</span> <span class="op">=</span> <span class="ident">Command::new</span>(<span class="string">&quot;cargo&quot;</span>);
-    <span class="ident">cmd</span>.<span class="ident">arg</span>(<span class="string">&quot;build&quot;</span>).<span class="ident">arg</span>(<span class="string">&quot;--message-format=json&quot;</span>).<span class="ident">arg</span>(<span class="string">&quot;--lib&quot;</span>);
-    <span class="ident">cmd</span>.<span class="ident">current_dir</span>(<span class="ident">pkg_dir</span>);
-    <span class="ident">cmd</span>.<span class="ident">stdout</span>(<span class="ident">Stdio::piped</span>());
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">child</span> <span class="op">=</span> <span class="ident">cmd</span>.<span class="ident">spawn</span>()<span class="question-mark">?</span>;
-    <span class="kw">let</span> <span class="ident">output</span> <span class="op">=</span> <span class="ident">std::io::BufReader::new</span>(<span class="ident">child</span>.<span class="ident">stdout</span>.<span class="ident">take</span>().<span class="ident">unwrap</span>());
-    <span class="comment">// Build the crate, looking for any cdylibs that it might produce.</span>
-    <span class="kw">let</span> <span class="ident">cdylibs</span> <span class="op">=</span> <span class="ident">Message::parse_stream</span>(<span class="ident">output</span>)
-        .<span class="ident">filter_map</span>(<span class="op">|</span><span class="ident">message</span><span class="op">|</span> <span class="kw">match</span> <span class="ident">message</span> {
-            <span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; <span class="prelude-val">Some</span>(<span class="prelude-val">Err</span>(<span class="ident">e</span>.<span class="ident">into</span>())),
-            <span class="prelude-val">Ok</span>(<span class="ident">Message::CompilerArtifact</span>(<span class="ident">artifact</span>)) =&gt; {
-                <span class="kw">if</span> <span class="ident">artifact</span>.<span class="ident">target</span>.<span class="ident">kind</span>.<span class="ident">iter</span>().<span class="ident">any</span>(<span class="op">|</span><span class="ident">item</span><span class="op">|</span> <span class="ident">item</span> <span class="op">==</span> <span class="string">&quot;cdylib&quot;</span>) {
-                    <span class="prelude-val">Some</span>(<span class="prelude-val">Ok</span>(<span class="ident">artifact</span>))
-                } <span class="kw">else</span> {
-                    <span class="prelude-val">None</span>
-                }
+    <span class="comment">// Nope, looks like we&#39;ll have to compile it afresh.
+    </span><span class="kw">let </span><span class="kw-2">mut </span>cmd = Command::new(<span class="string">&quot;cargo&quot;</span>);
+    cmd.arg(<span class="string">&quot;build&quot;</span>).arg(<span class="string">&quot;--message-format=json&quot;</span>).arg(<span class="string">&quot;--lib&quot;</span>);
+    cmd.current_dir(pkg_dir);
+    cmd.stdout(Stdio::piped());
+    <span class="kw">let </span><span class="kw-2">mut </span>child = cmd.spawn()<span class="question-mark">?</span>;
+    <span class="kw">let </span>output = std::io::BufReader::new(child.stdout.take().unwrap());
+    <span class="comment">// Build the crate, looking for any cdylibs that it might produce.
+    </span><span class="kw">let </span>cdylibs = Message::parse_stream(output)
+        .filter_map(|message| <span class="kw">match </span>message {
+            <span class="prelude-val">Err</span>(e) =&gt; <span class="prelude-val">Some</span>(<span class="prelude-val">Err</span>(e.into())),
+            <span class="prelude-val">Ok</span>(Message::CompilerArtifact(artifact)) =&gt; {
+                <span class="kw">if </span>artifact.target.kind.iter().any(|item| item == <span class="string">&quot;cdylib&quot;</span>) {
+                    <span class="prelude-val">Some</span>(<span class="prelude-val">Ok</span>(artifact))
+                } <span class="kw">else </span>{
+                    <span class="prelude-val">None
+                </span>}
             }
-            <span class="kw">_</span> =&gt; <span class="prelude-val">None</span>,
+            <span class="kw">_ </span>=&gt; <span class="prelude-val">None</span>,
         })
-        .<span class="ident">collect</span>::<span class="op">&lt;</span><span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="kw">_</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
-    <span class="kw">if</span> <span class="op">!</span><span class="ident">child</span>.<span class="ident">wait</span>()<span class="question-mark">?</span>.<span class="ident">success</span>() {
+        .collect::&lt;<span class="prelude-ty">Result</span>&lt;Vec&lt;<span class="kw">_</span>&gt;&gt;&gt;()<span class="question-mark">?</span>;
+    <span class="kw">if </span>!child.wait()<span class="question-mark">?</span>.success() {
         <span class="macro">bail!</span>(<span class="string">&quot;Failed to execute `cargo build`&quot;</span>);
     }
-    <span class="comment">// If we didn&#39;t just build exactly one cdylib, we&#39;re going to use the one most likely to be produced by `pkg_dir`,</span>
-    <span class="comment">// or we will have a bad time.</span>
-    <span class="kw">let</span> <span class="ident">cdylib</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">cdylibs</span>.<span class="ident">len</span>() {
-        <span class="number">0</span> =&gt; <span class="macro">bail!</span>(<span class="string">&quot;Crate did not produce any cdylibs, it must not be a uniffi component&quot;</span>),
-        <span class="number">1</span> =&gt; <span class="kw-2">&amp;</span><span class="ident">cdylibs</span>[<span class="number">0</span>],
-        <span class="kw">_</span> =&gt; {
-            <span class="kw">match</span> <span class="ident">cdylibs</span>
-                .<span class="ident">iter</span>()
-                .<span class="ident">find</span>(<span class="op">|</span><span class="ident">cdylib</span><span class="op">|</span> <span class="ident">cdylib</span>.<span class="ident">target</span>.<span class="ident">src_path</span>.<span class="ident">starts_with</span>(<span class="ident">pkg_dir</span>))
+    <span class="comment">// If we didn&#39;t just build exactly one cdylib, we&#39;re going to use the one most likely to be produced by `pkg_dir`,
+    // or we will have a bad time.
+    </span><span class="kw">let </span>cdylib = <span class="kw">match </span>cdylibs.len() {
+        <span class="number">0 </span>=&gt; <span class="macro">bail!</span>(<span class="string">&quot;Crate did not produce any cdylibs, it must not be a uniffi component&quot;</span>),
+        <span class="number">1 </span>=&gt; <span class="kw-2">&amp;</span>cdylibs[<span class="number">0</span>],
+        <span class="kw">_ </span>=&gt; {
+            <span class="kw">match </span>cdylibs
+                .iter()
+                .find(|cdylib| cdylib.target.src_path.starts_with(pkg_dir))
             {
-                <span class="prelude-val">Some</span>(<span class="ident">cdylib</span>) =&gt; {
+                <span class="prelude-val">Some</span>(cdylib) =&gt; {
                     <span class="macro">log::warn!</span>(
                         <span class="string">&quot;Crate produced multiple cdylibs, using the one produced by {pkg_dir}&quot;</span>,
                     );
-                    <span class="ident">cdylib</span>
+                    cdylib
                 }
-                <span class="prelude-val">None</span> =&gt; {
+                <span class="prelude-val">None </span>=&gt; {
                     <span class="macro">bail!</span>(
                         <span class="string">&quot;Crate produced multiple cdylibs, none of which is produced by {pkg_dir}&quot;</span>,
                     );
@@ -258,43 +258,43 @@
             }
         }
     };
-    <span class="kw">let</span> <span class="ident">cdylib_files</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="kw">_</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">cdylib</span>
-        .<span class="ident">filenames</span>
-        .<span class="ident">iter</span>()
-        .<span class="ident">filter</span>(<span class="op">|</span><span class="ident">nm</span><span class="op">|</span> <span class="macro">matches!</span>(<span class="ident">nm</span>.<span class="ident">extension</span>(), <span class="prelude-val">Some</span>(<span class="ident">std::env::consts::DLL_EXTENSION</span>)))
-        .<span class="ident">collect</span>();
-    <span class="kw">if</span> <span class="ident">cdylib_files</span>.<span class="ident">len</span>() <span class="op">!</span><span class="op">=</span> <span class="number">1</span> {
+    <span class="kw">let </span>cdylib_files: Vec&lt;<span class="kw">_</span>&gt; = cdylib
+        .filenames
+        .iter()
+        .filter(|nm| <span class="macro">matches!</span>(nm.extension(), <span class="prelude-val">Some</span>(std::env::consts::DLL_EXTENSION)))
+        .collect();
+    <span class="kw">if </span>cdylib_files.len() != <span class="number">1 </span>{
         <span class="macro">bail!</span>(<span class="string">&quot;Failed to build exactly one cdylib file, it must not be a uniffi component&quot;</span>);
     }
-    <span class="kw">let</span> <span class="ident">cdylib_file</span> <span class="op">=</span> <span class="ident">cdylib_files</span>[<span class="number">0</span>];
-    <span class="comment">// Cache the result for subsequent tests.</span>
-    <span class="ident">compiled_components</span>.<span class="ident">insert</span>(<span class="ident">pkg_dir</span>.<span class="ident">to_owned</span>(), <span class="ident">cdylib_file</span>.<span class="ident">to_owned</span>());
-    <span class="prelude-val">Ok</span>(<span class="ident">cdylib_file</span>.<span class="ident">to_owned</span>())
+    <span class="kw">let </span>cdylib_file = cdylib_files[<span class="number">0</span>];
+    <span class="comment">// Cache the result for subsequent tests.
+    </span>compiled_components.insert(pkg_dir.to_owned(), cdylib_file.to_owned());
+    <span class="prelude-val">Ok</span>(cdylib_file.to_owned())
 }
 
-<span class="doccomment">/// Execute the `uniffi-bindgen test` command.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// The default behaviour, suitable for most consumers, is to shell out to the `uniffi-bindgen`</span>
-<span class="doccomment">/// command found on the system.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// If the &quot;builtin-bindgen&quot; feature is enabled then this will instead take a direct dependency</span>
-<span class="doccomment">/// on the `uniffi_bindgen` crate and execute its methods in-process. This is useful for folks</span>
-<span class="doccomment">/// who are working on uniffi itself and want to test out their changes to the bindings generator.</span>
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;builtin-bindgen&quot;</span>))]</span>
-<span class="kw">fn</span> <span class="ident">run_uniffi_bindgen_test</span>(<span class="ident">cdylib_file</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">udl_files</span>: <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span><span class="ident">str</span>], <span class="ident">test_file</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
-    <span class="kw">let</span> <span class="ident">udl_files</span> <span class="op">=</span> <span class="ident">udl_files</span>.<span class="ident">join</span>(<span class="string">&quot;\n&quot;</span>);
-    <span class="kw">let</span> <span class="ident">status</span> <span class="op">=</span> <span class="ident">Command::new</span>(<span class="string">&quot;uniffi-bindgen&quot;</span>)
-        .<span class="ident">args</span>(<span class="kw-2">&amp;</span>[<span class="string">&quot;test&quot;</span>, <span class="ident">cdylib_file</span>, <span class="kw-2">&amp;</span><span class="ident">udl_files</span>, <span class="ident">test_file</span>])
-        .<span class="ident">status</span>()<span class="question-mark">?</span>;
-    <span class="kw">if</span> <span class="op">!</span><span class="ident">status</span>.<span class="ident">success</span>() {
+<span class="doccomment">/// Execute the `uniffi-bindgen test` command.
+///
+/// The default behaviour, suitable for most consumers, is to shell out to the `uniffi-bindgen`
+/// command found on the system.
+///
+/// If the &quot;builtin-bindgen&quot; feature is enabled then this will instead take a direct dependency
+/// on the `uniffi_bindgen` crate and execute its methods in-process. This is useful for folks
+/// who are working on uniffi itself and want to test out their changes to the bindings generator.
+</span><span class="attribute">#[cfg(not(feature = <span class="string">&quot;builtin-bindgen&quot;</span>))]
+</span><span class="kw">fn </span>run_uniffi_bindgen_test(cdylib_file: <span class="kw-2">&amp;</span>str, udl_files: <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span>str], test_file: <span class="kw-2">&amp;</span>str) -&gt; <span class="prelude-ty">Result</span>&lt;()&gt; {
+    <span class="kw">let </span>udl_files = udl_files.join(<span class="string">&quot;\n&quot;</span>);
+    <span class="kw">let </span>status = Command::new(<span class="string">&quot;uniffi-bindgen&quot;</span>)
+        .args(<span class="kw-2">&amp;</span>[<span class="string">&quot;test&quot;</span>, cdylib_file, <span class="kw-2">&amp;</span>udl_files, test_file])
+        .status()<span class="question-mark">?</span>;
+    <span class="kw">if </span>!status.success() {
         <span class="macro">bail!</span>(<span class="string">&quot;Error while running tests: {status}&quot;</span>);
     }
     <span class="prelude-val">Ok</span>(())
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;builtin-bindgen&quot;</span>)]</span>
-<span class="kw">fn</span> <span class="ident">run_uniffi_bindgen_test</span>(<span class="ident">cdylib_file</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">udl_files</span>: <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span><span class="ident">str</span>], <span class="ident">test_file</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
-    <span class="ident">uniffi_bindgen::run_tests</span>(<span class="ident">cdylib_file</span>, <span class="ident">udl_files</span>, <span class="kw-2">&amp;</span>[<span class="ident">test_file</span>], <span class="prelude-val">None</span>)
+<span class="attribute">#[cfg(feature = <span class="string">&quot;builtin-bindgen&quot;</span>)]
+</span><span class="kw">fn </span>run_uniffi_bindgen_test(cdylib_file: <span class="kw-2">&amp;</span>str, udl_files: <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span>str], test_file: <span class="kw-2">&amp;</span>str) -&gt; <span class="prelude-ty">Result</span>&lt;()&gt; {
+    uniffi_bindgen::run_tests(cdylib_file, udl_files, <span class="kw-2">&amp;</span>[test_file], <span class="prelude-val">None</span>)
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="uniffi" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="uniffi" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (77e57db38 2022-10-30)" ></div></body></html>

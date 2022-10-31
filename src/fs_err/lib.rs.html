@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/fs-err-2.8.1/src/lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../fs_err/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../fs_err/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../fs_err/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/fs-err-2.9.0/src/lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../fs_err/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -245,6 +245,9 @@
 <span id="245">245</span>
 <span id="246">246</span>
 <span id="247">247</span>
+<span id="248">248</span>
+<span id="249">249</span>
+<span id="250">250</span>
 </pre><pre class="rust"><code><span class="doccomment">/*!
 fs-err is a drop-in replacement for [`std::fs`][std::fs] that provides more
 helpful messages on errors. Extra information includes which operations was
@@ -311,186 +314,189 @@ println!(&quot;Program config: {:?}&quot;, decoded);
 [std::io::Error]: https://doc.rust-lang.org/stable/std/io/struct.Error.html
 [std::io::Read]: https://doc.rust-lang.org/stable/std/io/trait.Read.html
 [serde_json]: https://crates.io/crates/serde_json
-*/</span>
+*/
 
-<span class="attribute">#![<span class="ident">doc</span>(<span class="ident">html_root_url</span> <span class="op">=</span> <span class="string">&quot;https://docs.rs/fs-err/2.8.1&quot;</span>)]</span>
-<span class="attribute">#![<span class="ident">deny</span>(<span class="ident">missing_debug_implementations</span>, <span class="ident">missing_docs</span>)]</span>
-<span class="attribute">#![<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">feature</span>(<span class="ident">doc_cfg</span>))]</span>
+</span><span class="attribute">#![doc(html_root_url = <span class="string">&quot;https://docs.rs/fs-err/2.9.0&quot;</span>)]
+#![deny(missing_debug_implementations, missing_docs)]
+#![cfg_attr(docsrs, feature(doc_cfg))]
 
-<span class="kw">mod</span> <span class="ident">dir</span>;
-<span class="kw">mod</span> <span class="ident">errors</span>;
-<span class="kw">mod</span> <span class="ident">file</span>;
-<span class="kw">mod</span> <span class="ident">open_options</span>;
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">os</span>;
-<span class="kw">mod</span> <span class="ident">path</span>;
+</span><span class="kw">mod </span>dir;
+<span class="kw">mod </span>errors;
+<span class="kw">mod </span>file;
+<span class="kw">mod </span>open_options;
+<span class="kw">pub mod </span>os;
+<span class="kw">mod </span>path;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;tokio&quot;</span>)]
+#[cfg_attr(docsrs, doc(cfg(feature = <span class="string">&quot;tokio&quot;</span>)))]
+</span><span class="kw">pub mod </span>tokio;
 
-<span class="kw">use</span> <span class="ident">std::fs</span>;
-<span class="kw">use</span> <span class="ident">std::io</span>::{<span class="self">self</span>, <span class="ident">Read</span>, <span class="ident">Write</span>};
-<span class="kw">use</span> <span class="ident">std::path</span>::{<span class="ident">Path</span>, <span class="ident">PathBuf</span>};
+<span class="kw">use </span>std::fs;
+<span class="kw">use </span>std::io::{<span class="self">self</span>, Read, Write};
+<span class="kw">use </span>std::path::{Path, PathBuf};
 
-<span class="kw">use</span> <span class="ident">errors</span>::{<span class="ident">Error</span>, <span class="ident">ErrorKind</span>, <span class="ident">SourceDestError</span>, <span class="ident">SourceDestErrorKind</span>};
+<span class="kw">use </span>errors::{Error, ErrorKind, SourceDestError, SourceDestErrorKind};
 
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">dir</span>::<span class="kw-2">*</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">file</span>::<span class="kw-2">*</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">open_options::OpenOptions</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">path::PathExt</span>;
+<span class="kw">pub use </span>dir::<span class="kw-2">*</span>;
+<span class="kw">pub use </span>file::<span class="kw-2">*</span>;
+<span class="kw">pub use </span>open_options::OpenOptions;
+<span class="kw">pub use </span>path::PathExt;
 
-<span class="doccomment">/// Wrapper for [`fs::read`](https://doc.rust-lang.org/stable/std/fs/fn.read.html).</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">read</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">Path</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">path</span>: <span class="ident">P</span>) -&gt; <span class="ident">io::Result</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-    <span class="kw">let</span> <span class="ident">path</span> <span class="op">=</span> <span class="ident">path</span>.<span class="ident">as_ref</span>();
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">file</span> <span class="op">=</span> <span class="ident">file::open</span>(<span class="ident">path</span>).<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">err_gen</span><span class="op">|</span> <span class="ident">err_gen</span>(<span class="ident">path</span>.<span class="ident">to_path_buf</span>()))<span class="question-mark">?</span>;
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">bytes</span> <span class="op">=</span> <span class="ident">Vec::with_capacity</span>(<span class="ident">initial_buffer_size</span>(<span class="kw-2">&amp;</span><span class="ident">file</span>));
-    <span class="ident">file</span>.<span class="ident">read_to_end</span>(<span class="kw-2">&amp;mut</span> <span class="ident">bytes</span>)
-        .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">err</span><span class="op">|</span> <span class="ident">Error::build</span>(<span class="ident">err</span>, <span class="ident">ErrorKind::Read</span>, <span class="ident">path</span>))<span class="question-mark">?</span>;
-    <span class="prelude-val">Ok</span>(<span class="ident">bytes</span>)
+<span class="doccomment">/// Wrapper for [`fs::read`](https://doc.rust-lang.org/stable/std/fs/fn.read.html).
+</span><span class="kw">pub fn </span>read&lt;P: AsRef&lt;Path&gt;&gt;(path: P) -&gt; io::Result&lt;Vec&lt;u8&gt;&gt; {
+    <span class="kw">let </span>path = path.as_ref();
+    <span class="kw">let </span><span class="kw-2">mut </span>file = file::open(path).map_err(|err_gen| err_gen(path.to_path_buf()))<span class="question-mark">?</span>;
+    <span class="kw">let </span><span class="kw-2">mut </span>bytes = Vec::with_capacity(initial_buffer_size(<span class="kw-2">&amp;</span>file));
+    file.read_to_end(<span class="kw-2">&amp;mut </span>bytes)
+        .map_err(|err| Error::build(err, ErrorKind::Read, path))<span class="question-mark">?</span>;
+    <span class="prelude-val">Ok</span>(bytes)
 }
 
-<span class="doccomment">/// Wrapper for [`fs::read_to_string`](https://doc.rust-lang.org/stable/std/fs/fn.read_to_string.html).</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">read_to_string</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">Path</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">path</span>: <span class="ident">P</span>) -&gt; <span class="ident">io::Result</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span> {
-    <span class="kw">let</span> <span class="ident">path</span> <span class="op">=</span> <span class="ident">path</span>.<span class="ident">as_ref</span>();
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">file</span> <span class="op">=</span> <span class="ident">file::open</span>(<span class="ident">path</span>).<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">err_gen</span><span class="op">|</span> <span class="ident">err_gen</span>(<span class="ident">path</span>.<span class="ident">to_path_buf</span>()))<span class="question-mark">?</span>;
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">string</span> <span class="op">=</span> <span class="ident">String::with_capacity</span>(<span class="ident">initial_buffer_size</span>(<span class="kw-2">&amp;</span><span class="ident">file</span>));
-    <span class="ident">file</span>.<span class="ident">read_to_string</span>(<span class="kw-2">&amp;mut</span> <span class="ident">string</span>)
-        .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">err</span><span class="op">|</span> <span class="ident">Error::build</span>(<span class="ident">err</span>, <span class="ident">ErrorKind::Read</span>, <span class="ident">path</span>))<span class="question-mark">?</span>;
-    <span class="prelude-val">Ok</span>(<span class="ident">string</span>)
+<span class="doccomment">/// Wrapper for [`fs::read_to_string`](https://doc.rust-lang.org/stable/std/fs/fn.read_to_string.html).
+</span><span class="kw">pub fn </span>read_to_string&lt;P: AsRef&lt;Path&gt;&gt;(path: P) -&gt; io::Result&lt;String&gt; {
+    <span class="kw">let </span>path = path.as_ref();
+    <span class="kw">let </span><span class="kw-2">mut </span>file = file::open(path).map_err(|err_gen| err_gen(path.to_path_buf()))<span class="question-mark">?</span>;
+    <span class="kw">let </span><span class="kw-2">mut </span>string = String::with_capacity(initial_buffer_size(<span class="kw-2">&amp;</span>file));
+    file.read_to_string(<span class="kw-2">&amp;mut </span>string)
+        .map_err(|err| Error::build(err, ErrorKind::Read, path))<span class="question-mark">?</span>;
+    <span class="prelude-val">Ok</span>(string)
 }
 
-<span class="doccomment">/// Wrapper for [`fs::write`](https://doc.rust-lang.org/stable/std/fs/fn.write.html).</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">write</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">Path</span><span class="op">&gt;</span>, <span class="ident">C</span>: <span class="ident">AsRef</span><span class="op">&lt;</span>[<span class="ident">u8</span>]<span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">path</span>: <span class="ident">P</span>, <span class="ident">contents</span>: <span class="ident">C</span>) -&gt; <span class="ident">io::Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
-    <span class="kw">let</span> <span class="ident">path</span> <span class="op">=</span> <span class="ident">path</span>.<span class="ident">as_ref</span>();
-    <span class="ident">file::create</span>(<span class="ident">path</span>)
-        .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">err_gen</span><span class="op">|</span> <span class="ident">err_gen</span>(<span class="ident">path</span>.<span class="ident">to_path_buf</span>()))<span class="question-mark">?</span>
-        .<span class="ident">write_all</span>(<span class="ident">contents</span>.<span class="ident">as_ref</span>())
-        .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">err</span><span class="op">|</span> <span class="ident">Error::build</span>(<span class="ident">err</span>, <span class="ident">ErrorKind::Write</span>, <span class="ident">path</span>))
+<span class="doccomment">/// Wrapper for [`fs::write`](https://doc.rust-lang.org/stable/std/fs/fn.write.html).
+</span><span class="kw">pub fn </span>write&lt;P: AsRef&lt;Path&gt;, C: AsRef&lt;[u8]&gt;&gt;(path: P, contents: C) -&gt; io::Result&lt;()&gt; {
+    <span class="kw">let </span>path = path.as_ref();
+    file::create(path)
+        .map_err(|err_gen| err_gen(path.to_path_buf()))<span class="question-mark">?
+        </span>.write_all(contents.as_ref())
+        .map_err(|err| Error::build(err, ErrorKind::Write, path))
 }
 
-<span class="doccomment">/// Wrapper for [`fs::copy`](https://doc.rust-lang.org/stable/std/fs/fn.copy.html).</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">copy</span><span class="op">&lt;</span><span class="ident">P</span>, <span class="ident">Q</span><span class="op">&gt;</span>(<span class="ident">from</span>: <span class="ident">P</span>, <span class="ident">to</span>: <span class="ident">Q</span>) -&gt; <span class="ident">io::Result</span><span class="op">&lt;</span><span class="ident">u64</span><span class="op">&gt;</span>
-<span class="kw">where</span>
-    <span class="ident">P</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">Path</span><span class="op">&gt;</span>,
-    <span class="ident">Q</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">Path</span><span class="op">&gt;</span>,
+<span class="doccomment">/// Wrapper for [`fs::copy`](https://doc.rust-lang.org/stable/std/fs/fn.copy.html).
+</span><span class="kw">pub fn </span>copy&lt;P, Q&gt;(from: P, to: Q) -&gt; io::Result&lt;u64&gt;
+<span class="kw">where
+    </span>P: AsRef&lt;Path&gt;,
+    Q: AsRef&lt;Path&gt;,
 {
-    <span class="kw">let</span> <span class="ident">from</span> <span class="op">=</span> <span class="ident">from</span>.<span class="ident">as_ref</span>();
-    <span class="kw">let</span> <span class="ident">to</span> <span class="op">=</span> <span class="ident">to</span>.<span class="ident">as_ref</span>();
-    <span class="ident">fs::copy</span>(<span class="ident">from</span>, <span class="ident">to</span>)
-        .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">source</span><span class="op">|</span> <span class="ident">SourceDestError::build</span>(<span class="ident">source</span>, <span class="ident">SourceDestErrorKind::Copy</span>, <span class="ident">from</span>, <span class="ident">to</span>))
+    <span class="kw">let </span>from = from.as_ref();
+    <span class="kw">let </span>to = to.as_ref();
+    fs::copy(from, to)
+        .map_err(|source| SourceDestError::build(source, SourceDestErrorKind::Copy, from, to))
 }
 
-<span class="doccomment">/// Wrapper for [`fs::create_dir`](https://doc.rust-lang.org/stable/std/fs/fn.create_dir.html).</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">create_dir</span><span class="op">&lt;</span><span class="ident">P</span><span class="op">&gt;</span>(<span class="ident">path</span>: <span class="ident">P</span>) -&gt; <span class="ident">io::Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span>
-<span class="kw">where</span>
-    <span class="ident">P</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">Path</span><span class="op">&gt;</span>,
+<span class="doccomment">/// Wrapper for [`fs::create_dir`](https://doc.rust-lang.org/stable/std/fs/fn.create_dir.html).
+</span><span class="kw">pub fn </span>create_dir&lt;P&gt;(path: P) -&gt; io::Result&lt;()&gt;
+<span class="kw">where
+    </span>P: AsRef&lt;Path&gt;,
 {
-    <span class="kw">let</span> <span class="ident">path</span> <span class="op">=</span> <span class="ident">path</span>.<span class="ident">as_ref</span>();
-    <span class="ident">fs::create_dir</span>(<span class="ident">path</span>).<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">source</span><span class="op">|</span> <span class="ident">Error::build</span>(<span class="ident">source</span>, <span class="ident">ErrorKind::CreateDir</span>, <span class="ident">path</span>))
+    <span class="kw">let </span>path = path.as_ref();
+    fs::create_dir(path).map_err(|source| Error::build(source, ErrorKind::CreateDir, path))
 }
 
-<span class="doccomment">/// Wrapper for [`fs::create_dir_all`](https://doc.rust-lang.org/stable/std/fs/fn.create_dir_all.html).</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">create_dir_all</span><span class="op">&lt;</span><span class="ident">P</span><span class="op">&gt;</span>(<span class="ident">path</span>: <span class="ident">P</span>) -&gt; <span class="ident">io::Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span>
-<span class="kw">where</span>
-    <span class="ident">P</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">Path</span><span class="op">&gt;</span>,
+<span class="doccomment">/// Wrapper for [`fs::create_dir_all`](https://doc.rust-lang.org/stable/std/fs/fn.create_dir_all.html).
+</span><span class="kw">pub fn </span>create_dir_all&lt;P&gt;(path: P) -&gt; io::Result&lt;()&gt;
+<span class="kw">where
+    </span>P: AsRef&lt;Path&gt;,
 {
-    <span class="kw">let</span> <span class="ident">path</span> <span class="op">=</span> <span class="ident">path</span>.<span class="ident">as_ref</span>();
-    <span class="ident">fs::create_dir_all</span>(<span class="ident">path</span>).<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">source</span><span class="op">|</span> <span class="ident">Error::build</span>(<span class="ident">source</span>, <span class="ident">ErrorKind::CreateDir</span>, <span class="ident">path</span>))
+    <span class="kw">let </span>path = path.as_ref();
+    fs::create_dir_all(path).map_err(|source| Error::build(source, ErrorKind::CreateDir, path))
 }
 
-<span class="doccomment">/// Wrapper for [`fs::remove_dir`](https://doc.rust-lang.org/stable/std/fs/fn.remove_dir.html).</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">remove_dir</span><span class="op">&lt;</span><span class="ident">P</span><span class="op">&gt;</span>(<span class="ident">path</span>: <span class="ident">P</span>) -&gt; <span class="ident">io::Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span>
-<span class="kw">where</span>
-    <span class="ident">P</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">Path</span><span class="op">&gt;</span>,
+<span class="doccomment">/// Wrapper for [`fs::remove_dir`](https://doc.rust-lang.org/stable/std/fs/fn.remove_dir.html).
+</span><span class="kw">pub fn </span>remove_dir&lt;P&gt;(path: P) -&gt; io::Result&lt;()&gt;
+<span class="kw">where
+    </span>P: AsRef&lt;Path&gt;,
 {
-    <span class="kw">let</span> <span class="ident">path</span> <span class="op">=</span> <span class="ident">path</span>.<span class="ident">as_ref</span>();
-    <span class="ident">fs::remove_dir</span>(<span class="ident">path</span>).<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">source</span><span class="op">|</span> <span class="ident">Error::build</span>(<span class="ident">source</span>, <span class="ident">ErrorKind::RemoveDir</span>, <span class="ident">path</span>))
+    <span class="kw">let </span>path = path.as_ref();
+    fs::remove_dir(path).map_err(|source| Error::build(source, ErrorKind::RemoveDir, path))
 }
 
-<span class="doccomment">/// Wrapper for [`fs::remove_dir_all`](https://doc.rust-lang.org/stable/std/fs/fn.remove_dir_all.html).</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">remove_dir_all</span><span class="op">&lt;</span><span class="ident">P</span><span class="op">&gt;</span>(<span class="ident">path</span>: <span class="ident">P</span>) -&gt; <span class="ident">io::Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span>
-<span class="kw">where</span>
-    <span class="ident">P</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">Path</span><span class="op">&gt;</span>,
+<span class="doccomment">/// Wrapper for [`fs::remove_dir_all`](https://doc.rust-lang.org/stable/std/fs/fn.remove_dir_all.html).
+</span><span class="kw">pub fn </span>remove_dir_all&lt;P&gt;(path: P) -&gt; io::Result&lt;()&gt;
+<span class="kw">where
+    </span>P: AsRef&lt;Path&gt;,
 {
-    <span class="kw">let</span> <span class="ident">path</span> <span class="op">=</span> <span class="ident">path</span>.<span class="ident">as_ref</span>();
-    <span class="ident">fs::remove_dir_all</span>(<span class="ident">path</span>).<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">source</span><span class="op">|</span> <span class="ident">Error::build</span>(<span class="ident">source</span>, <span class="ident">ErrorKind::RemoveDir</span>, <span class="ident">path</span>))
+    <span class="kw">let </span>path = path.as_ref();
+    fs::remove_dir_all(path).map_err(|source| Error::build(source, ErrorKind::RemoveDir, path))
 }
 
-<span class="doccomment">/// Wrapper for [`fs::remove_file`](https://doc.rust-lang.org/stable/std/fs/fn.remove_file.html).</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">remove_file</span><span class="op">&lt;</span><span class="ident">P</span><span class="op">&gt;</span>(<span class="ident">path</span>: <span class="ident">P</span>) -&gt; <span class="ident">io::Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span>
-<span class="kw">where</span>
-    <span class="ident">P</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">Path</span><span class="op">&gt;</span>,
+<span class="doccomment">/// Wrapper for [`fs::remove_file`](https://doc.rust-lang.org/stable/std/fs/fn.remove_file.html).
+</span><span class="kw">pub fn </span>remove_file&lt;P&gt;(path: P) -&gt; io::Result&lt;()&gt;
+<span class="kw">where
+    </span>P: AsRef&lt;Path&gt;,
 {
-    <span class="kw">let</span> <span class="ident">path</span> <span class="op">=</span> <span class="ident">path</span>.<span class="ident">as_ref</span>();
-    <span class="ident">fs::remove_file</span>(<span class="ident">path</span>).<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">source</span><span class="op">|</span> <span class="ident">Error::build</span>(<span class="ident">source</span>, <span class="ident">ErrorKind::RemoveFile</span>, <span class="ident">path</span>))
+    <span class="kw">let </span>path = path.as_ref();
+    fs::remove_file(path).map_err(|source| Error::build(source, ErrorKind::RemoveFile, path))
 }
 
-<span class="doccomment">/// Wrapper for [`fs::metadata`](https://doc.rust-lang.org/stable/std/fs/fn.metadata.html).</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">metadata</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">Path</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">path</span>: <span class="ident">P</span>) -&gt; <span class="ident">io::Result</span><span class="op">&lt;</span><span class="ident">fs::Metadata</span><span class="op">&gt;</span> {
-    <span class="kw">let</span> <span class="ident">path</span> <span class="op">=</span> <span class="ident">path</span>.<span class="ident">as_ref</span>();
-    <span class="ident">fs::metadata</span>(<span class="ident">path</span>).<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">source</span><span class="op">|</span> <span class="ident">Error::build</span>(<span class="ident">source</span>, <span class="ident">ErrorKind::Metadata</span>, <span class="ident">path</span>))
+<span class="doccomment">/// Wrapper for [`fs::metadata`](https://doc.rust-lang.org/stable/std/fs/fn.metadata.html).
+</span><span class="kw">pub fn </span>metadata&lt;P: AsRef&lt;Path&gt;&gt;(path: P) -&gt; io::Result&lt;fs::Metadata&gt; {
+    <span class="kw">let </span>path = path.as_ref();
+    fs::metadata(path).map_err(|source| Error::build(source, ErrorKind::Metadata, path))
 }
 
-<span class="doccomment">/// Wrapper for [`fs::canonicalize`](https://doc.rust-lang.org/stable/std/fs/fn.canonicalize.html).</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">canonicalize</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">Path</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">path</span>: <span class="ident">P</span>) -&gt; <span class="ident">io::Result</span><span class="op">&lt;</span><span class="ident">PathBuf</span><span class="op">&gt;</span> {
-    <span class="kw">let</span> <span class="ident">path</span> <span class="op">=</span> <span class="ident">path</span>.<span class="ident">as_ref</span>();
-    <span class="ident">fs::canonicalize</span>(<span class="ident">path</span>).<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">source</span><span class="op">|</span> <span class="ident">Error::build</span>(<span class="ident">source</span>, <span class="ident">ErrorKind::Canonicalize</span>, <span class="ident">path</span>))
+<span class="doccomment">/// Wrapper for [`fs::canonicalize`](https://doc.rust-lang.org/stable/std/fs/fn.canonicalize.html).
+</span><span class="kw">pub fn </span>canonicalize&lt;P: AsRef&lt;Path&gt;&gt;(path: P) -&gt; io::Result&lt;PathBuf&gt; {
+    <span class="kw">let </span>path = path.as_ref();
+    fs::canonicalize(path).map_err(|source| Error::build(source, ErrorKind::Canonicalize, path))
 }
 
-<span class="doccomment">/// Wrapper for [`fs::hard_link`](https://doc.rust-lang.org/stable/std/fs/fn.hard_link.html).</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">hard_link</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">Path</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">Path</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">src</span>: <span class="ident">P</span>, <span class="ident">dst</span>: <span class="ident">Q</span>) -&gt; <span class="ident">io::Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
-    <span class="kw">let</span> <span class="ident">src</span> <span class="op">=</span> <span class="ident">src</span>.<span class="ident">as_ref</span>();
-    <span class="kw">let</span> <span class="ident">dst</span> <span class="op">=</span> <span class="ident">dst</span>.<span class="ident">as_ref</span>();
-    <span class="ident">fs::hard_link</span>(<span class="ident">src</span>, <span class="ident">dst</span>)
-        .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">source</span><span class="op">|</span> <span class="ident">SourceDestError::build</span>(<span class="ident">source</span>, <span class="ident">SourceDestErrorKind::HardLink</span>, <span class="ident">src</span>, <span class="ident">dst</span>))
+<span class="doccomment">/// Wrapper for [`fs::hard_link`](https://doc.rust-lang.org/stable/std/fs/fn.hard_link.html).
+</span><span class="kw">pub fn </span>hard_link&lt;P: AsRef&lt;Path&gt;, Q: AsRef&lt;Path&gt;&gt;(src: P, dst: Q) -&gt; io::Result&lt;()&gt; {
+    <span class="kw">let </span>src = src.as_ref();
+    <span class="kw">let </span>dst = dst.as_ref();
+    fs::hard_link(src, dst)
+        .map_err(|source| SourceDestError::build(source, SourceDestErrorKind::HardLink, src, dst))
 }
 
-<span class="doccomment">/// Wrapper for [`fs::read_link`](https://doc.rust-lang.org/stable/std/fs/fn.read_link.html).</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">read_link</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">Path</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">path</span>: <span class="ident">P</span>) -&gt; <span class="ident">io::Result</span><span class="op">&lt;</span><span class="ident">PathBuf</span><span class="op">&gt;</span> {
-    <span class="kw">let</span> <span class="ident">path</span> <span class="op">=</span> <span class="ident">path</span>.<span class="ident">as_ref</span>();
-    <span class="ident">fs::read_link</span>(<span class="ident">path</span>).<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">source</span><span class="op">|</span> <span class="ident">Error::build</span>(<span class="ident">source</span>, <span class="ident">ErrorKind::ReadLink</span>, <span class="ident">path</span>))
+<span class="doccomment">/// Wrapper for [`fs::read_link`](https://doc.rust-lang.org/stable/std/fs/fn.read_link.html).
+</span><span class="kw">pub fn </span>read_link&lt;P: AsRef&lt;Path&gt;&gt;(path: P) -&gt; io::Result&lt;PathBuf&gt; {
+    <span class="kw">let </span>path = path.as_ref();
+    fs::read_link(path).map_err(|source| Error::build(source, ErrorKind::ReadLink, path))
 }
 
-<span class="doccomment">/// Wrapper for [`fs::rename`](https://doc.rust-lang.org/stable/std/fs/fn.rename.html).</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">rename</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">Path</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">Path</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">from</span>: <span class="ident">P</span>, <span class="ident">to</span>: <span class="ident">Q</span>) -&gt; <span class="ident">io::Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
-    <span class="kw">let</span> <span class="ident">from</span> <span class="op">=</span> <span class="ident">from</span>.<span class="ident">as_ref</span>();
-    <span class="kw">let</span> <span class="ident">to</span> <span class="op">=</span> <span class="ident">to</span>.<span class="ident">as_ref</span>();
-    <span class="ident">fs::rename</span>(<span class="ident">from</span>, <span class="ident">to</span>)
-        .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">source</span><span class="op">|</span> <span class="ident">SourceDestError::build</span>(<span class="ident">source</span>, <span class="ident">SourceDestErrorKind::Rename</span>, <span class="ident">from</span>, <span class="ident">to</span>))
+<span class="doccomment">/// Wrapper for [`fs::rename`](https://doc.rust-lang.org/stable/std/fs/fn.rename.html).
+</span><span class="kw">pub fn </span>rename&lt;P: AsRef&lt;Path&gt;, Q: AsRef&lt;Path&gt;&gt;(from: P, to: Q) -&gt; io::Result&lt;()&gt; {
+    <span class="kw">let </span>from = from.as_ref();
+    <span class="kw">let </span>to = to.as_ref();
+    fs::rename(from, to)
+        .map_err(|source| SourceDestError::build(source, SourceDestErrorKind::Rename, from, to))
 }
 
-<span class="doccomment">/// Wrapper for [`fs::soft_link`](https://doc.rust-lang.org/stable/std/fs/fn.soft_link.html).</span>
-<span class="attribute">#[<span class="ident">deprecated</span> <span class="op">=</span> <span class="string">&quot;replaced with std::os::unix::fs::symlink and \
-std::os::windows::fs::{symlink_file, symlink_dir}&quot;</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">soft_link</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">Path</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">Path</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">src</span>: <span class="ident">P</span>, <span class="ident">dst</span>: <span class="ident">Q</span>) -&gt; <span class="ident">io::Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
-    <span class="kw">let</span> <span class="ident">src</span> <span class="op">=</span> <span class="ident">src</span>.<span class="ident">as_ref</span>();
-    <span class="kw">let</span> <span class="ident">dst</span> <span class="op">=</span> <span class="ident">dst</span>.<span class="ident">as_ref</span>();
-    <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">deprecated</span>)]</span>
-    <span class="ident">fs::soft_link</span>(<span class="ident">src</span>, <span class="ident">dst</span>)
-        .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">source</span><span class="op">|</span> <span class="ident">SourceDestError::build</span>(<span class="ident">source</span>, <span class="ident">SourceDestErrorKind::SoftLink</span>, <span class="ident">src</span>, <span class="ident">dst</span>))
+<span class="doccomment">/// Wrapper for [`fs::soft_link`](https://doc.rust-lang.org/stable/std/fs/fn.soft_link.html).
+</span><span class="attribute">#[deprecated = <span class="string">&quot;replaced with std::os::unix::fs::symlink and \
+std::os::windows::fs::{symlink_file, symlink_dir}&quot;</span>]
+</span><span class="kw">pub fn </span>soft_link&lt;P: AsRef&lt;Path&gt;, Q: AsRef&lt;Path&gt;&gt;(src: P, dst: Q) -&gt; io::Result&lt;()&gt; {
+    <span class="kw">let </span>src = src.as_ref();
+    <span class="kw">let </span>dst = dst.as_ref();
+    <span class="attribute">#[allow(deprecated)]
+    </span>fs::soft_link(src, dst)
+        .map_err(|source| SourceDestError::build(source, SourceDestErrorKind::SoftLink, src, dst))
 }
 
-<span class="doccomment">/// Wrapper for [`fs::symlink_metadata`](https://doc.rust-lang.org/stable/std/fs/fn.symlink_metadata.html).</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">symlink_metadata</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">Path</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">path</span>: <span class="ident">P</span>) -&gt; <span class="ident">io::Result</span><span class="op">&lt;</span><span class="ident">fs::Metadata</span><span class="op">&gt;</span> {
-    <span class="kw">let</span> <span class="ident">path</span> <span class="op">=</span> <span class="ident">path</span>.<span class="ident">as_ref</span>();
-    <span class="ident">fs::symlink_metadata</span>(<span class="ident">path</span>)
-        .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">source</span><span class="op">|</span> <span class="ident">Error::build</span>(<span class="ident">source</span>, <span class="ident">ErrorKind::SymlinkMetadata</span>, <span class="ident">path</span>))
+<span class="doccomment">/// Wrapper for [`fs::symlink_metadata`](https://doc.rust-lang.org/stable/std/fs/fn.symlink_metadata.html).
+</span><span class="kw">pub fn </span>symlink_metadata&lt;P: AsRef&lt;Path&gt;&gt;(path: P) -&gt; io::Result&lt;fs::Metadata&gt; {
+    <span class="kw">let </span>path = path.as_ref();
+    fs::symlink_metadata(path)
+        .map_err(|source| Error::build(source, ErrorKind::SymlinkMetadata, path))
 }
 
-<span class="doccomment">/// Wrapper for [`fs::set_permissions`](https://doc.rust-lang.org/stable/std/fs/fn.set_permissions.html).</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_permissions</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">Path</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">path</span>: <span class="ident">P</span>, <span class="ident">perm</span>: <span class="ident">fs::Permissions</span>) -&gt; <span class="ident">io::Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
-    <span class="kw">let</span> <span class="ident">path</span> <span class="op">=</span> <span class="ident">path</span>.<span class="ident">as_ref</span>();
-    <span class="ident">fs::set_permissions</span>(<span class="ident">path</span>, <span class="ident">perm</span>)
-        .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">source</span><span class="op">|</span> <span class="ident">Error::build</span>(<span class="ident">source</span>, <span class="ident">ErrorKind::SetPermissions</span>, <span class="ident">path</span>))
+<span class="doccomment">/// Wrapper for [`fs::set_permissions`](https://doc.rust-lang.org/stable/std/fs/fn.set_permissions.html).
+</span><span class="kw">pub fn </span>set_permissions&lt;P: AsRef&lt;Path&gt;&gt;(path: P, perm: fs::Permissions) -&gt; io::Result&lt;()&gt; {
+    <span class="kw">let </span>path = path.as_ref();
+    fs::set_permissions(path, perm)
+        .map_err(|source| Error::build(source, ErrorKind::SetPermissions, path))
 }
 
-<span class="kw">fn</span> <span class="ident">initial_buffer_size</span>(<span class="ident">file</span>: <span class="kw-2">&amp;</span><span class="ident">std::fs::File</span>) -&gt; <span class="ident">usize</span> {
-    <span class="ident">file</span>.<span class="ident">metadata</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">m</span><span class="op">|</span> <span class="ident">m</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">usize</span> <span class="op">+</span> <span class="number">1</span>).<span class="ident">unwrap_or</span>(<span class="number">0</span>)
+<span class="kw">fn </span>initial_buffer_size(file: <span class="kw-2">&amp;</span>std::fs::File) -&gt; usize {
+    file.metadata().map(|m| m.len() <span class="kw">as </span>usize + <span class="number">1</span>).unwrap_or(<span class="number">0</span>)
 }
 
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">use</span> <span class="ident">private::Sealed</span>;
-<span class="kw">mod</span> <span class="ident">private</span> {
-    <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">Sealed</span> {}
+<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">use </span>private::Sealed;
+<span class="kw">mod </span>private {
+    <span class="kw">pub trait </span>Sealed {}
 
-    <span class="kw">impl</span> <span class="ident">Sealed</span> <span class="kw">for</span> <span class="ident"><span class="kw">crate</span>::File</span> {}
-    <span class="kw">impl</span> <span class="ident">Sealed</span> <span class="kw">for</span> <span class="ident">std::path::Path</span> {}
-    <span class="kw">impl</span> <span class="ident">Sealed</span> <span class="kw">for</span> <span class="ident"><span class="kw">crate</span>::OpenOptions</span> {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span><span class="kw">crate</span>::File {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span>std::path::Path {}
+    <span class="kw">impl </span>Sealed <span class="kw">for </span><span class="kw">crate</span>::OpenOptions {}
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="fs_err" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="fs_err" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (77e57db38 2022-10-30)" ></div></body></html>

@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/goblin-0.5.4/src/pe/exception.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>exception.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../goblin/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../goblin/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../goblin/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/goblin-0.5.4/src/pe/exception.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>exception.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../normalize.css"><link rel="stylesheet" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../ayu.css" disabled><link rel="stylesheet" href="../../../dark.css" disabled><link rel="stylesheet" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../goblin/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -1056,1063 +1056,1063 @@
 <span id="1056">1056</span>
 <span id="1057">1057</span>
 <span id="1058">1058</span>
-</pre><pre class="rust"><code><span class="doccomment">//! Exception handling and stack unwinding for x64.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! Exception information is exposed via the [`ExceptionData`] structure. If present in a PE file,</span>
-<span class="doccomment">//! it contains a list of [`RuntimeFunction`] entries that can be used to get [`UnwindInfo`] for a</span>
-<span class="doccomment">//! particular code location.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! Unwind information contains a list of unwind codes which specify the operations that are</span>
-<span class="doccomment">//! necessary to restore registers (including the stack pointer RSP) when unwinding out of a</span>
-<span class="doccomment">//! function.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! Depending on where the instruction pointer lies, there are three strategies to unwind:</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//!  1. If the RIP is within an epilog, then control is leaving the function, there can be no</span>
-<span class="doccomment">//!     exception handler associated with this exception for this function, and the effects of the</span>
-<span class="doccomment">//!     epilog must be continued to compute the context of the caller function. To determine if the</span>
-<span class="doccomment">//!     RIP is within an epilog, the code stream from RIP on is examined. If that code stream can be</span>
-<span class="doccomment">//!     matched to the trailing portion of a legitimate epilog, then it&#39;s in an epilog, and the</span>
-<span class="doccomment">//!     remaining portion of the epilog is simulated, with the context record updated as each</span>
-<span class="doccomment">//!     instruction is processed. After this, step 1 is repeated.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//!  2. Case b) If the RIP lies within the prologue, then control has not entered the function,</span>
-<span class="doccomment">//!     there can be no exception handler associated with this exception for this function, and the</span>
-<span class="doccomment">//!     effects of the prolog must be undone to compute the context of the caller function. The RIP</span>
-<span class="doccomment">//!     is within the prolog if the distance from the function start to the RIP is less than or</span>
-<span class="doccomment">//!     equal to the prolog size encoded in the unwind info. The effects of the prolog are unwound</span>
-<span class="doccomment">//!     by scanning forward through the unwind codes array for the first entry with an offset less</span>
-<span class="doccomment">//!     than or equal to the offset of the RIP from the function start, then undoing the effect of</span>
-<span class="doccomment">//!     all remaining items in the unwind code array. Step 1 is then repeated.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//!  3. If the RIP is not within a prolog or epilog and the function has an exception handler, then</span>
-<span class="doccomment">//!     the language-specific handler is called. The handler scans its data and calls filter</span>
-<span class="doccomment">//!     functions as appropriate. The language-specific handler can return that the exception was</span>
-<span class="doccomment">//!     handled or that the search is to be continued. It can also initiate an unwind directly.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! For more information, see [x64 exception handling].</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! [`ExceptionData`]: struct.ExceptionData.html</span>
-<span class="doccomment">//! [`RuntimeFunction`]: struct.RuntimeFunction.html</span>
-<span class="doccomment">//! [`UnwindInfo`]: struct.UnwindInfo.html</span>
-<span class="doccomment">//! [x64 exception handling]: https://docs.microsoft.com/en-us/cpp/build/exception-handling-x64?view=vs-2017</span>
+</pre><pre class="rust"><code><span class="doccomment">//! Exception handling and stack unwinding for x64.
+//!
+//! Exception information is exposed via the [`ExceptionData`] structure. If present in a PE file,
+//! it contains a list of [`RuntimeFunction`] entries that can be used to get [`UnwindInfo`] for a
+//! particular code location.
+//!
+//! Unwind information contains a list of unwind codes which specify the operations that are
+//! necessary to restore registers (including the stack pointer RSP) when unwinding out of a
+//! function.
+//!
+//! Depending on where the instruction pointer lies, there are three strategies to unwind:
+//!
+//!  1. If the RIP is within an epilog, then control is leaving the function, there can be no
+//!     exception handler associated with this exception for this function, and the effects of the
+//!     epilog must be continued to compute the context of the caller function. To determine if the
+//!     RIP is within an epilog, the code stream from RIP on is examined. If that code stream can be
+//!     matched to the trailing portion of a legitimate epilog, then it&#39;s in an epilog, and the
+//!     remaining portion of the epilog is simulated, with the context record updated as each
+//!     instruction is processed. After this, step 1 is repeated.
+//!
+//!  2. Case b) If the RIP lies within the prologue, then control has not entered the function,
+//!     there can be no exception handler associated with this exception for this function, and the
+//!     effects of the prolog must be undone to compute the context of the caller function. The RIP
+//!     is within the prolog if the distance from the function start to the RIP is less than or
+//!     equal to the prolog size encoded in the unwind info. The effects of the prolog are unwound
+//!     by scanning forward through the unwind codes array for the first entry with an offset less
+//!     than or equal to the offset of the RIP from the function start, then undoing the effect of
+//!     all remaining items in the unwind code array. Step 1 is then repeated.
+//!
+//!  3. If the RIP is not within a prolog or epilog and the function has an exception handler, then
+//!     the language-specific handler is called. The handler scans its data and calls filter
+//!     functions as appropriate. The language-specific handler can return that the exception was
+//!     handled or that the search is to be continued. It can also initiate an unwind directly.
+//!
+//! For more information, see [x64 exception handling].
+//!
+//! [`ExceptionData`]: struct.ExceptionData.html
+//! [`RuntimeFunction`]: struct.RuntimeFunction.html
+//! [`UnwindInfo`]: struct.UnwindInfo.html
+//! [x64 exception handling]: https://docs.microsoft.com/en-us/cpp/build/exception-handling-x64?view=vs-2017
 
-<span class="kw">use</span> <span class="ident">core::cmp::Ordering</span>;
-<span class="kw">use</span> <span class="ident">core::fmt</span>;
-<span class="kw">use</span> <span class="ident">core::iter::FusedIterator</span>;
+</span><span class="kw">use </span>core::cmp::Ordering;
+<span class="kw">use </span>core::fmt;
+<span class="kw">use </span>core::iter::FusedIterator;
 
-<span class="kw">use</span> <span class="ident">scroll::ctx::TryFromCtx</span>;
-<span class="kw">use</span> <span class="ident">scroll</span>::{<span class="self">self</span>, <span class="ident">Pread</span>, <span class="ident">Pwrite</span>};
+<span class="kw">use </span>scroll::ctx::TryFromCtx;
+<span class="kw">use </span>scroll::{<span class="self">self</span>, Pread, Pwrite};
 
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::error</span>;
+<span class="kw">use </span><span class="kw">crate</span>::error;
 
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pe::data_directories</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pe::options</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pe::section_table</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pe::utils</span>;
+<span class="kw">use </span><span class="kw">crate</span>::pe::data_directories;
+<span class="kw">use </span><span class="kw">crate</span>::pe::options;
+<span class="kw">use </span><span class="kw">crate</span>::pe::section_table;
+<span class="kw">use </span><span class="kw">crate</span>::pe::utils;
 
-<span class="doccomment">/// The function has an exception handler that should be called when looking for functions that need</span>
-<span class="doccomment">/// to examine exceptions.</span>
-<span class="kw">const</span> <span class="ident">UNW_FLAG_EHANDLER</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">0x01</span>;
-<span class="doccomment">/// The function has a termination handler that should be called when unwinding an exception.</span>
-<span class="kw">const</span> <span class="ident">UNW_FLAG_UHANDLER</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">0x02</span>;
-<span class="doccomment">/// This unwind info structure is not the primary one for the procedure. Instead, the chained unwind</span>
-<span class="doccomment">/// info entry is the contents of a previous `RUNTIME_FUNCTION` entry. If this flag is set, then the</span>
-<span class="doccomment">/// `UNW_FLAG_EHANDLER` and `UNW_FLAG_UHANDLER` flags must be cleared. Also, the frame register and</span>
-<span class="doccomment">/// fixed-stack allocation fields must have the same values as in the primary unwind info.</span>
-<span class="kw">const</span> <span class="ident">UNW_FLAG_CHAININFO</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">0x04</span>;
+<span class="doccomment">/// The function has an exception handler that should be called when looking for functions that need
+/// to examine exceptions.
+</span><span class="kw">const </span>UNW_FLAG_EHANDLER: u8 = <span class="number">0x01</span>;
+<span class="doccomment">/// The function has a termination handler that should be called when unwinding an exception.
+</span><span class="kw">const </span>UNW_FLAG_UHANDLER: u8 = <span class="number">0x02</span>;
+<span class="doccomment">/// This unwind info structure is not the primary one for the procedure. Instead, the chained unwind
+/// info entry is the contents of a previous `RUNTIME_FUNCTION` entry. If this flag is set, then the
+/// `UNW_FLAG_EHANDLER` and `UNW_FLAG_UHANDLER` flags must be cleared. Also, the frame register and
+/// fixed-stack allocation fields must have the same values as in the primary unwind info.
+</span><span class="kw">const </span>UNW_FLAG_CHAININFO: u8 = <span class="number">0x04</span>;
 
-<span class="doccomment">/// info == register number</span>
-<span class="kw">const</span> <span class="ident">UWOP_PUSH_NONVOL</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">0</span>;
-<span class="doccomment">/// no info, alloc size in next 2 slots</span>
-<span class="kw">const</span> <span class="ident">UWOP_ALLOC_LARGE</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">1</span>;
-<span class="doccomment">/// info == size of allocation / 8 - 1</span>
-<span class="kw">const</span> <span class="ident">UWOP_ALLOC_SMALL</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">2</span>;
-<span class="doccomment">/// no info, FP = RSP + UNWIND_INFO.FPRegOffset*16</span>
-<span class="kw">const</span> <span class="ident">UWOP_SET_FPREG</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">3</span>;
-<span class="doccomment">/// info == register number, offset in next slot</span>
-<span class="kw">const</span> <span class="ident">UWOP_SAVE_NONVOL</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">4</span>;
-<span class="doccomment">/// info == register number, offset in next 2 slots</span>
-<span class="kw">const</span> <span class="ident">UWOP_SAVE_NONVOL_FAR</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">5</span>;
-<span class="doccomment">/// changes the structure of unwind codes to `struct Epilogue`.</span>
-<span class="doccomment">/// (was UWOP_SAVE_XMM in version 1, but deprecated and removed)</span>
-<span class="kw">const</span> <span class="ident">UWOP_EPILOG</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">6</span>;
-<span class="doccomment">/// reserved</span>
-<span class="doccomment">/// (was UWOP_SAVE_XMM_FAR in version 1, but deprecated and removed)</span>
-<span class="kw">const</span> <span class="ident">UWOP_SPARE_CODE</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">7</span>;
-<span class="doccomment">/// info == XMM reg number, offset in next slot</span>
-<span class="kw">const</span> <span class="ident">UWOP_SAVE_XMM128</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">8</span>;
-<span class="doccomment">/// info == XMM reg number, offset in next 2 slots</span>
-<span class="kw">const</span> <span class="ident">UWOP_SAVE_XMM128_FAR</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">9</span>;
-<span class="doccomment">/// info == 0: no error-code, 1: error-code</span>
-<span class="kw">const</span> <span class="ident">UWOP_PUSH_MACHFRAME</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">10</span>;
+<span class="doccomment">/// info == register number
+</span><span class="kw">const </span>UWOP_PUSH_NONVOL: u8 = <span class="number">0</span>;
+<span class="doccomment">/// no info, alloc size in next 2 slots
+</span><span class="kw">const </span>UWOP_ALLOC_LARGE: u8 = <span class="number">1</span>;
+<span class="doccomment">/// info == size of allocation / 8 - 1
+</span><span class="kw">const </span>UWOP_ALLOC_SMALL: u8 = <span class="number">2</span>;
+<span class="doccomment">/// no info, FP = RSP + UNWIND_INFO.FPRegOffset*16
+</span><span class="kw">const </span>UWOP_SET_FPREG: u8 = <span class="number">3</span>;
+<span class="doccomment">/// info == register number, offset in next slot
+</span><span class="kw">const </span>UWOP_SAVE_NONVOL: u8 = <span class="number">4</span>;
+<span class="doccomment">/// info == register number, offset in next 2 slots
+</span><span class="kw">const </span>UWOP_SAVE_NONVOL_FAR: u8 = <span class="number">5</span>;
+<span class="doccomment">/// changes the structure of unwind codes to `struct Epilogue`.
+/// (was UWOP_SAVE_XMM in version 1, but deprecated and removed)
+</span><span class="kw">const </span>UWOP_EPILOG: u8 = <span class="number">6</span>;
+<span class="doccomment">/// reserved
+/// (was UWOP_SAVE_XMM_FAR in version 1, but deprecated and removed)
+</span><span class="kw">const </span>UWOP_SPARE_CODE: u8 = <span class="number">7</span>;
+<span class="doccomment">/// info == XMM reg number, offset in next slot
+</span><span class="kw">const </span>UWOP_SAVE_XMM128: u8 = <span class="number">8</span>;
+<span class="doccomment">/// info == XMM reg number, offset in next 2 slots
+</span><span class="kw">const </span>UWOP_SAVE_XMM128_FAR: u8 = <span class="number">9</span>;
+<span class="doccomment">/// info == 0: no error-code, 1: error-code
+</span><span class="kw">const </span>UWOP_PUSH_MACHFRAME: u8 = <span class="number">10</span>;
 
-<span class="doccomment">/// Size of `RuntimeFunction` entries.</span>
-<span class="kw">const</span> <span class="ident">RUNTIME_FUNCTION_SIZE</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">12</span>;
-<span class="doccomment">/// Size of unwind code slots. Codes take 1 - 3 slots.</span>
-<span class="kw">const</span> <span class="ident">UNWIND_CODE_SIZE</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">2</span>;
+<span class="doccomment">/// Size of `RuntimeFunction` entries.
+</span><span class="kw">const </span>RUNTIME_FUNCTION_SIZE: usize = <span class="number">12</span>;
+<span class="doccomment">/// Size of unwind code slots. Codes take 1 - 3 slots.
+</span><span class="kw">const </span>UNWIND_CODE_SIZE: usize = <span class="number">2</span>;
 
-<span class="doccomment">/// An unwind entry for a range of a function.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Unwind information for this function can be loaded with [`ExceptionData::get_unwind_info`].</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// [`ExceptionData::get_unwind_info`]: struct.ExceptionData.html#method.get_unwind_info</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">PartialEq</span>, <span class="ident">Default</span>, <span class="ident">Pread</span>, <span class="ident">Pwrite</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">RuntimeFunction</span> {
-    <span class="doccomment">/// Function start address.</span>
-    <span class="kw">pub</span> <span class="ident">begin_address</span>: <span class="ident">u32</span>,
-    <span class="doccomment">/// Function end address.</span>
-    <span class="kw">pub</span> <span class="ident">end_address</span>: <span class="ident">u32</span>,
-    <span class="doccomment">/// Unwind info address.</span>
-    <span class="kw">pub</span> <span class="ident">unwind_info_address</span>: <span class="ident">u32</span>,
+<span class="doccomment">/// An unwind entry for a range of a function.
+///
+/// Unwind information for this function can be loaded with [`ExceptionData::get_unwind_info`].
+///
+/// [`ExceptionData::get_unwind_info`]: struct.ExceptionData.html#method.get_unwind_info
+</span><span class="attribute">#[repr(C)]
+#[derive(Copy, Clone, PartialEq, Default, Pread, Pwrite)]
+</span><span class="kw">pub struct </span>RuntimeFunction {
+    <span class="doccomment">/// Function start address.
+    </span><span class="kw">pub </span>begin_address: u32,
+    <span class="doccomment">/// Function end address.
+    </span><span class="kw">pub </span>end_address: u32,
+    <span class="doccomment">/// Unwind info address.
+    </span><span class="kw">pub </span>unwind_info_address: u32,
 }
 
-<span class="kw">impl</span> <span class="ident">fmt::Debug</span> <span class="kw">for</span> <span class="ident">RuntimeFunction</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">fmt::Formatter</span>) -&gt; <span class="ident">fmt::Result</span> {
-        <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;RuntimeFunction&quot;</span>)
-            .<span class="ident">field</span>(<span class="string">&quot;begin_address&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{:#x}&quot;</span>, <span class="self">self</span>.<span class="ident">begin_address</span>))
-            .<span class="ident">field</span>(<span class="string">&quot;end_address&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{:#x}&quot;</span>, <span class="self">self</span>.<span class="ident">end_address</span>))
-            .<span class="ident">field</span>(
+<span class="kw">impl </span>fmt::Debug <span class="kw">for </span>RuntimeFunction {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>fmt::Formatter) -&gt; fmt::Result {
+        f.debug_struct(<span class="string">&quot;RuntimeFunction&quot;</span>)
+            .field(<span class="string">&quot;begin_address&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{:#x}&quot;</span>, <span class="self">self</span>.begin_address))
+            .field(<span class="string">&quot;end_address&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{:#x}&quot;</span>, <span class="self">self</span>.end_address))
+            .field(
                 <span class="string">&quot;unwind_info_address&quot;</span>,
-                <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{:#x}&quot;</span>, <span class="self">self</span>.<span class="ident">unwind_info_address</span>),
+                <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{:#x}&quot;</span>, <span class="self">self</span>.unwind_info_address),
             )
-            .<span class="ident">finish</span>()
+            .finish()
     }
 }
 
-<span class="doccomment">/// Iterator over runtime function entries in [`ExceptionData`](struct.ExceptionData.html).</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">RuntimeFunctionIterator</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="ident">data</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
+<span class="doccomment">/// Iterator over runtime function entries in [`ExceptionData`](struct.ExceptionData.html).
+</span><span class="attribute">#[derive(Debug)]
+</span><span class="kw">pub struct </span>RuntimeFunctionIterator&lt;<span class="lifetime">&#39;a</span>&gt; {
+    data: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8],
 }
 
-<span class="kw">impl</span> <span class="ident">Iterator</span> <span class="kw">for</span> <span class="ident">RuntimeFunctionIterator</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span> {
-    <span class="kw">type</span> <span class="ident">Item</span> <span class="op">=</span> <span class="ident">error::Result</span><span class="op">&lt;</span><span class="ident">RuntimeFunction</span><span class="op">&gt;</span>;
+<span class="kw">impl </span>Iterator <span class="kw">for </span>RuntimeFunctionIterator&lt;<span class="lifetime">&#39;_</span>&gt; {
+    <span class="kw">type </span>Item = error::Result&lt;RuntimeFunction&gt;;
 
-    <span class="kw">fn</span> <span class="ident">next</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident"><span class="self">Self</span>::Item</span><span class="op">&gt;</span> {
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">data</span>.<span class="ident">is_empty</span>() {
-            <span class="kw">return</span> <span class="prelude-val">None</span>;
+    <span class="kw">fn </span>next(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>::Item&gt; {
+        <span class="kw">if </span><span class="self">self</span>.data.is_empty() {
+            <span class="kw">return </span><span class="prelude-val">None</span>;
         }
 
-        <span class="prelude-val">Some</span>(<span class="kw">match</span> <span class="self">self</span>.<span class="ident">data</span>.<span class="ident">pread_with</span>(<span class="number">0</span>, <span class="ident">scroll::LE</span>) {
-            <span class="prelude-val">Ok</span>(<span class="ident">func</span>) =&gt; {
-                <span class="self">self</span>.<span class="ident">data</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">data</span>[<span class="ident">RUNTIME_FUNCTION_SIZE</span>..];
-                <span class="prelude-val">Ok</span>(<span class="ident">func</span>)
+        <span class="prelude-val">Some</span>(<span class="kw">match </span><span class="self">self</span>.data.pread_with(<span class="number">0</span>, scroll::LE) {
+            <span class="prelude-val">Ok</span>(func) =&gt; {
+                <span class="self">self</span>.data = <span class="kw-2">&amp;</span><span class="self">self</span>.data[RUNTIME_FUNCTION_SIZE..];
+                <span class="prelude-val">Ok</span>(func)
             }
-            <span class="prelude-val">Err</span>(<span class="ident">error</span>) =&gt; {
-                <span class="self">self</span>.<span class="ident">data</span> <span class="op">=</span> <span class="kw-2">&amp;</span>[];
-                <span class="prelude-val">Err</span>(<span class="ident">error</span>.<span class="ident">into</span>())
+            <span class="prelude-val">Err</span>(error) =&gt; {
+                <span class="self">self</span>.data = <span class="kw-2">&amp;</span>[];
+                <span class="prelude-val">Err</span>(error.into())
             }
         })
     }
 
-    <span class="kw">fn</span> <span class="ident">size_hint</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; (<span class="ident">usize</span>, <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span>) {
-        <span class="kw">let</span> <span class="ident">len</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">data</span>.<span class="ident">len</span>() <span class="op">/</span> <span class="ident">RUNTIME_FUNCTION_SIZE</span>;
-        (<span class="ident">len</span>, <span class="prelude-val">Some</span>(<span class="ident">len</span>))
+    <span class="kw">fn </span>size_hint(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; (usize, <span class="prelude-ty">Option</span>&lt;usize&gt;) {
+        <span class="kw">let </span>len = <span class="self">self</span>.data.len() / RUNTIME_FUNCTION_SIZE;
+        (len, <span class="prelude-val">Some</span>(len))
     }
 }
 
-<span class="kw">impl</span> <span class="ident">FusedIterator</span> <span class="kw">for</span> <span class="ident">RuntimeFunctionIterator</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span> {}
-<span class="kw">impl</span> <span class="ident">ExactSizeIterator</span> <span class="kw">for</span> <span class="ident">RuntimeFunctionIterator</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span> {}
+<span class="kw">impl </span>FusedIterator <span class="kw">for </span>RuntimeFunctionIterator&lt;<span class="lifetime">&#39;_</span>&gt; {}
+<span class="kw">impl </span>ExactSizeIterator <span class="kw">for </span>RuntimeFunctionIterator&lt;<span class="lifetime">&#39;_</span>&gt; {}
 
-<span class="doccomment">/// An x64 register used during unwinding.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">///  - `0` - `15`: General purpose registers</span>
-<span class="doccomment">///  - `17` - `32`: XMM registers</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Debug</span>, <span class="ident">Eq</span>, <span class="ident">PartialEq</span>, <span class="ident">Ord</span>, <span class="ident">PartialOrd</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Register</span>(<span class="kw">pub</span> <span class="ident">u8</span>);
+<span class="doccomment">/// An x64 register used during unwinding.
+///
+///  - `0` - `15`: General purpose registers
+///  - `17` - `32`: XMM registers
+</span><span class="attribute">#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd)]
+</span><span class="kw">pub struct </span>Register(<span class="kw">pub </span>u8);
 
-<span class="kw">impl</span> <span class="ident">Register</span> {
-    <span class="kw">fn</span> <span class="ident">xmm</span>(<span class="ident">number</span>: <span class="ident">u8</span>) -&gt; <span class="self">Self</span> {
-        <span class="ident">Register</span>(<span class="ident">number</span> <span class="op">+</span> <span class="number">17</span>)
+<span class="kw">impl </span>Register {
+    <span class="kw">fn </span>xmm(number: u8) -&gt; <span class="self">Self </span>{
+        Register(number + <span class="number">17</span>)
     }
 
-    <span class="doccomment">/// Returns the x64 register name.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">name</span>(<span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> {
-        <span class="kw">match</span> <span class="self">self</span>.<span class="number">0</span> {
-            <span class="number">0</span> =&gt; <span class="string">&quot;$rax&quot;</span>,
-            <span class="number">1</span> =&gt; <span class="string">&quot;$rcx&quot;</span>,
-            <span class="number">2</span> =&gt; <span class="string">&quot;$rdx&quot;</span>,
-            <span class="number">3</span> =&gt; <span class="string">&quot;$rbx&quot;</span>,
-            <span class="number">4</span> =&gt; <span class="string">&quot;$rsp&quot;</span>,
-            <span class="number">5</span> =&gt; <span class="string">&quot;$rbp&quot;</span>,
-            <span class="number">6</span> =&gt; <span class="string">&quot;$rsi&quot;</span>,
-            <span class="number">7</span> =&gt; <span class="string">&quot;$rdi&quot;</span>,
-            <span class="number">8</span> =&gt; <span class="string">&quot;$r8&quot;</span>,
-            <span class="number">9</span> =&gt; <span class="string">&quot;$r9&quot;</span>,
-            <span class="number">10</span> =&gt; <span class="string">&quot;$r10&quot;</span>,
-            <span class="number">11</span> =&gt; <span class="string">&quot;$r11&quot;</span>,
-            <span class="number">12</span> =&gt; <span class="string">&quot;$r12&quot;</span>,
-            <span class="number">13</span> =&gt; <span class="string">&quot;$r13&quot;</span>,
-            <span class="number">14</span> =&gt; <span class="string">&quot;$r14&quot;</span>,
-            <span class="number">15</span> =&gt; <span class="string">&quot;$r15&quot;</span>,
-            <span class="number">16</span> =&gt; <span class="string">&quot;$rip&quot;</span>,
-            <span class="number">17</span> =&gt; <span class="string">&quot;$xmm0&quot;</span>,
-            <span class="number">18</span> =&gt; <span class="string">&quot;$xmm1&quot;</span>,
-            <span class="number">19</span> =&gt; <span class="string">&quot;$xmm2&quot;</span>,
-            <span class="number">20</span> =&gt; <span class="string">&quot;$xmm3&quot;</span>,
-            <span class="number">21</span> =&gt; <span class="string">&quot;$xmm4&quot;</span>,
-            <span class="number">22</span> =&gt; <span class="string">&quot;$xmm5&quot;</span>,
-            <span class="number">23</span> =&gt; <span class="string">&quot;$xmm6&quot;</span>,
-            <span class="number">24</span> =&gt; <span class="string">&quot;$xmm7&quot;</span>,
-            <span class="number">25</span> =&gt; <span class="string">&quot;$xmm8&quot;</span>,
-            <span class="number">26</span> =&gt; <span class="string">&quot;$xmm9&quot;</span>,
-            <span class="number">27</span> =&gt; <span class="string">&quot;$xmm10&quot;</span>,
-            <span class="number">28</span> =&gt; <span class="string">&quot;$xmm11&quot;</span>,
-            <span class="number">29</span> =&gt; <span class="string">&quot;$xmm12&quot;</span>,
-            <span class="number">30</span> =&gt; <span class="string">&quot;$xmm13&quot;</span>,
-            <span class="number">31</span> =&gt; <span class="string">&quot;$xmm14&quot;</span>,
-            <span class="number">32</span> =&gt; <span class="string">&quot;$xmm15&quot;</span>,
-            <span class="kw">_</span> =&gt; <span class="string">&quot;&quot;</span>,
+    <span class="doccomment">/// Returns the x64 register name.
+    </span><span class="kw">pub fn </span>name(<span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str {
+        <span class="kw">match </span><span class="self">self</span>.<span class="number">0 </span>{
+            <span class="number">0 </span>=&gt; <span class="string">&quot;$rax&quot;</span>,
+            <span class="number">1 </span>=&gt; <span class="string">&quot;$rcx&quot;</span>,
+            <span class="number">2 </span>=&gt; <span class="string">&quot;$rdx&quot;</span>,
+            <span class="number">3 </span>=&gt; <span class="string">&quot;$rbx&quot;</span>,
+            <span class="number">4 </span>=&gt; <span class="string">&quot;$rsp&quot;</span>,
+            <span class="number">5 </span>=&gt; <span class="string">&quot;$rbp&quot;</span>,
+            <span class="number">6 </span>=&gt; <span class="string">&quot;$rsi&quot;</span>,
+            <span class="number">7 </span>=&gt; <span class="string">&quot;$rdi&quot;</span>,
+            <span class="number">8 </span>=&gt; <span class="string">&quot;$r8&quot;</span>,
+            <span class="number">9 </span>=&gt; <span class="string">&quot;$r9&quot;</span>,
+            <span class="number">10 </span>=&gt; <span class="string">&quot;$r10&quot;</span>,
+            <span class="number">11 </span>=&gt; <span class="string">&quot;$r11&quot;</span>,
+            <span class="number">12 </span>=&gt; <span class="string">&quot;$r12&quot;</span>,
+            <span class="number">13 </span>=&gt; <span class="string">&quot;$r13&quot;</span>,
+            <span class="number">14 </span>=&gt; <span class="string">&quot;$r14&quot;</span>,
+            <span class="number">15 </span>=&gt; <span class="string">&quot;$r15&quot;</span>,
+            <span class="number">16 </span>=&gt; <span class="string">&quot;$rip&quot;</span>,
+            <span class="number">17 </span>=&gt; <span class="string">&quot;$xmm0&quot;</span>,
+            <span class="number">18 </span>=&gt; <span class="string">&quot;$xmm1&quot;</span>,
+            <span class="number">19 </span>=&gt; <span class="string">&quot;$xmm2&quot;</span>,
+            <span class="number">20 </span>=&gt; <span class="string">&quot;$xmm3&quot;</span>,
+            <span class="number">21 </span>=&gt; <span class="string">&quot;$xmm4&quot;</span>,
+            <span class="number">22 </span>=&gt; <span class="string">&quot;$xmm5&quot;</span>,
+            <span class="number">23 </span>=&gt; <span class="string">&quot;$xmm6&quot;</span>,
+            <span class="number">24 </span>=&gt; <span class="string">&quot;$xmm7&quot;</span>,
+            <span class="number">25 </span>=&gt; <span class="string">&quot;$xmm8&quot;</span>,
+            <span class="number">26 </span>=&gt; <span class="string">&quot;$xmm9&quot;</span>,
+            <span class="number">27 </span>=&gt; <span class="string">&quot;$xmm10&quot;</span>,
+            <span class="number">28 </span>=&gt; <span class="string">&quot;$xmm11&quot;</span>,
+            <span class="number">29 </span>=&gt; <span class="string">&quot;$xmm12&quot;</span>,
+            <span class="number">30 </span>=&gt; <span class="string">&quot;$xmm13&quot;</span>,
+            <span class="number">31 </span>=&gt; <span class="string">&quot;$xmm14&quot;</span>,
+            <span class="number">32 </span>=&gt; <span class="string">&quot;$xmm15&quot;</span>,
+            <span class="kw">_ </span>=&gt; <span class="string">&quot;&quot;</span>,
         }
     }
 }
 
-<span class="doccomment">/// An unsigned offset to a value in the local stack frame.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Debug</span>, <span class="ident">Eq</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">StackFrameOffset</span> {
-    <span class="doccomment">/// Offset from the current RSP, that is, the lowest address of the fixed stack allocation.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// To restore this register, read the value at the given offset from the RSP.</span>
-    <span class="ident">RSP</span>(<span class="ident">u32</span>),
+<span class="doccomment">/// An unsigned offset to a value in the local stack frame.
+</span><span class="attribute">#[derive(Clone, Copy, Debug, Eq, PartialEq)]
+</span><span class="kw">pub enum </span>StackFrameOffset {
+    <span class="doccomment">/// Offset from the current RSP, that is, the lowest address of the fixed stack allocation.
+    ///
+    /// To restore this register, read the value at the given offset from the RSP.
+    </span>RSP(u32),
 
-    <span class="doccomment">/// Offset from the value of the frame pointer register.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// To restore this register, read the value at the given offset from the FP register, reduced</span>
-    <span class="doccomment">/// by the `frame_register_offset` value specified in the `UnwindInfo` structure. By definition,</span>
-    <span class="doccomment">/// the frame pointer register is any register other than RAX (`0`).</span>
-    <span class="ident">FP</span>(<span class="ident">u32</span>),
+    <span class="doccomment">/// Offset from the value of the frame pointer register.
+    ///
+    /// To restore this register, read the value at the given offset from the FP register, reduced
+    /// by the `frame_register_offset` value specified in the `UnwindInfo` structure. By definition,
+    /// the frame pointer register is any register other than RAX (`0`).
+    </span>FP(u32),
 }
 
-<span class="kw">impl</span> <span class="ident">StackFrameOffset</span> {
-    <span class="kw">fn</span> <span class="ident">with_ctx</span>(<span class="ident">offset</span>: <span class="ident">u32</span>, <span class="ident">ctx</span>: <span class="ident">UnwindOpContext</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw">match</span> <span class="ident">ctx</span>.<span class="ident">frame_register</span> {
-            <span class="ident">Register</span>(<span class="number">0</span>) =&gt; <span class="ident">StackFrameOffset::RSP</span>(<span class="ident">offset</span>),
-            <span class="ident">Register</span>(<span class="kw">_</span>) =&gt; <span class="ident">StackFrameOffset::FP</span>(<span class="ident">offset</span>),
+<span class="kw">impl </span>StackFrameOffset {
+    <span class="kw">fn </span>with_ctx(offset: u32, ctx: UnwindOpContext) -&gt; <span class="self">Self </span>{
+        <span class="kw">match </span>ctx.frame_register {
+            Register(<span class="number">0</span>) =&gt; StackFrameOffset::RSP(offset),
+            Register(<span class="kw">_</span>) =&gt; StackFrameOffset::FP(offset),
         }
     }
 }
 
-<span class="kw">impl</span> <span class="ident">fmt::Display</span> <span class="kw">for</span> <span class="ident">Register</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">fmt::Formatter</span>) -&gt; <span class="ident">fmt::Result</span> {
-        <span class="ident">f</span>.<span class="ident">write_str</span>(<span class="self">self</span>.<span class="ident">name</span>())
+<span class="kw">impl </span>fmt::Display <span class="kw">for </span>Register {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>fmt::Formatter) -&gt; fmt::Result {
+        f.write_str(<span class="self">self</span>.name())
     }
 }
 
-<span class="doccomment">/// An unwind operation corresponding to code in the function prolog.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Unwind operations can be used to reverse the effects of the function prolog and restore register</span>
-<span class="doccomment">/// values of parent stack frames that have been saved to the stack.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Debug</span>, <span class="ident">Eq</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">UnwindOperation</span> {
-    <span class="doccomment">/// Push a nonvolatile integer register, decrementing `RSP` by 8.</span>
-    <span class="ident">PushNonVolatile</span>(<span class="ident">Register</span>),
+<span class="doccomment">/// An unwind operation corresponding to code in the function prolog.
+///
+/// Unwind operations can be used to reverse the effects of the function prolog and restore register
+/// values of parent stack frames that have been saved to the stack.
+</span><span class="attribute">#[derive(Clone, Copy, Debug, Eq, PartialEq)]
+</span><span class="kw">pub enum </span>UnwindOperation {
+    <span class="doccomment">/// Push a nonvolatile integer register, decrementing `RSP` by 8.
+    </span>PushNonVolatile(Register),
 
-    <span class="doccomment">/// Allocate a fixed-size area on the stack.</span>
-    <span class="ident">Alloc</span>(<span class="ident">u32</span>),
+    <span class="doccomment">/// Allocate a fixed-size area on the stack.
+    </span>Alloc(u32),
 
-    <span class="doccomment">/// Establish the frame pointer register by setting the register to some offset of the current</span>
-    <span class="doccomment">/// RSP. The use of an offset permits establishing a frame pointer that points to the middle of</span>
-    <span class="doccomment">/// the fixed stack allocation, helping code density by allowing more accesses to use short</span>
-    <span class="doccomment">/// instruction forms.</span>
-    <span class="ident">SetFPRegister</span>,
+    <span class="doccomment">/// Establish the frame pointer register by setting the register to some offset of the current
+    /// RSP. The use of an offset permits establishing a frame pointer that points to the middle of
+    /// the fixed stack allocation, helping code density by allowing more accesses to use short
+    /// instruction forms.
+    </span>SetFPRegister,
 
-    <span class="doccomment">/// Save a nonvolatile integer register on the stack using a MOV instead of a PUSH. This code is</span>
-    <span class="doccomment">/// primarily used for shrink-wrapping, where a nonvolatile register is saved to the stack in a</span>
-    <span class="doccomment">/// position that was previously allocated.</span>
-    <span class="ident">SaveNonVolatile</span>(<span class="ident">Register</span>, <span class="ident">StackFrameOffset</span>),
+    <span class="doccomment">/// Save a nonvolatile integer register on the stack using a MOV instead of a PUSH. This code is
+    /// primarily used for shrink-wrapping, where a nonvolatile register is saved to the stack in a
+    /// position that was previously allocated.
+    </span>SaveNonVolatile(Register, StackFrameOffset),
 
-    <span class="doccomment">/// Save the lower 64 bits of a nonvolatile XMM register on the stack.</span>
-    <span class="ident">SaveXMM</span>(<span class="ident">Register</span>, <span class="ident">StackFrameOffset</span>),
+    <span class="doccomment">/// Save the lower 64 bits of a nonvolatile XMM register on the stack.
+    </span>SaveXMM(Register, StackFrameOffset),
 
-    <span class="doccomment">/// Describes the function epilog.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// This operation has been introduced with unwind info version 2 and is not implemented yet.</span>
-    <span class="ident">Epilog</span>,
+    <span class="doccomment">/// Describes the function epilog.
+    ///
+    /// This operation has been introduced with unwind info version 2 and is not implemented yet.
+    </span>Epilog,
 
-    <span class="doccomment">/// Save all 128 bits of a nonvolatile XMM register on the stack.</span>
-    <span class="ident">SaveXMM128</span>(<span class="ident">Register</span>, <span class="ident">StackFrameOffset</span>),
+    <span class="doccomment">/// Save all 128 bits of a nonvolatile XMM register on the stack.
+    </span>SaveXMM128(Register, StackFrameOffset),
 
-    <span class="doccomment">/// Push a machine frame. This is used to record the effect of a hardware interrupt or</span>
-    <span class="doccomment">/// exception. Depending on the error flag, this frame has two different layouts.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// This unwind code always appears in a dummy prolog, which is never actually executed but</span>
-    <span class="doccomment">/// instead appears before the real entry point of an interrupt routine, and exists only to</span>
-    <span class="doccomment">/// provide a place to simulate the push of a machine frame. This operation records that</span>
-    <span class="doccomment">/// simulation, which indicates the machine has conceptually done this:</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">///  1. Pop RIP return address from top of stack into `temp`</span>
-    <span class="doccomment">///  2. `$ss`, Push old `$rsp`, `$rflags`, `$cs`, `temp`</span>
-    <span class="doccomment">///  3. If error flag is `true`, push the error code</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Without an error code, RSP was incremented by `40` and the following was frame pushed:</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Offset   | Value</span>
-    <span class="doccomment">/// ---------|--------</span>
-    <span class="doccomment">/// RSP + 32 | `$ss`</span>
-    <span class="doccomment">/// RSP + 24 | old `$rsp`</span>
-    <span class="doccomment">/// RSP + 16 | `$rflags`</span>
-    <span class="doccomment">/// RSP +  8 | `$cs`</span>
-    <span class="doccomment">/// RSP +  0 | `$rip`</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// With an error code, RSP was incremented by `48` and the following was frame pushed:</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Offset   | Value</span>
-    <span class="doccomment">/// ---------|--------</span>
-    <span class="doccomment">/// RSP + 40 | `$ss`</span>
-    <span class="doccomment">/// RSP + 32 | old `$rsp`</span>
-    <span class="doccomment">/// RSP + 24 | `$rflags`</span>
-    <span class="doccomment">/// RSP + 16 | `$cs`</span>
-    <span class="doccomment">/// RSP +  8 | `$rip`</span>
-    <span class="doccomment">/// RSP +  0 | error code</span>
-    <span class="ident">PushMachineFrame</span>(<span class="ident">bool</span>),
+    <span class="doccomment">/// Push a machine frame. This is used to record the effect of a hardware interrupt or
+    /// exception. Depending on the error flag, this frame has two different layouts.
+    ///
+    /// This unwind code always appears in a dummy prolog, which is never actually executed but
+    /// instead appears before the real entry point of an interrupt routine, and exists only to
+    /// provide a place to simulate the push of a machine frame. This operation records that
+    /// simulation, which indicates the machine has conceptually done this:
+    ///
+    ///  1. Pop RIP return address from top of stack into `temp`
+    ///  2. `$ss`, Push old `$rsp`, `$rflags`, `$cs`, `temp`
+    ///  3. If error flag is `true`, push the error code
+    ///
+    /// Without an error code, RSP was incremented by `40` and the following was frame pushed:
+    ///
+    /// Offset   | Value
+    /// ---------|--------
+    /// RSP + 32 | `$ss`
+    /// RSP + 24 | old `$rsp`
+    /// RSP + 16 | `$rflags`
+    /// RSP +  8 | `$cs`
+    /// RSP +  0 | `$rip`
+    ///
+    /// With an error code, RSP was incremented by `48` and the following was frame pushed:
+    ///
+    /// Offset   | Value
+    /// ---------|--------
+    /// RSP + 40 | `$ss`
+    /// RSP + 32 | old `$rsp`
+    /// RSP + 24 | `$rflags`
+    /// RSP + 16 | `$cs`
+    /// RSP +  8 | `$rip`
+    /// RSP +  0 | error code
+    </span>PushMachineFrame(bool),
 
-    <span class="doccomment">/// A reserved operation without effect.</span>
-    <span class="ident">Noop</span>,
+    <span class="doccomment">/// A reserved operation without effect.
+    </span>Noop,
 }
 
-<span class="doccomment">/// Context used to parse unwind operation.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="kw">struct</span> <span class="ident">UnwindOpContext</span> {
-    <span class="doccomment">/// Version of the unwind info.</span>
-    <span class="ident">version</span>: <span class="ident">u8</span>,
+<span class="doccomment">/// Context used to parse unwind operation.
+</span><span class="attribute">#[derive(Clone, Copy, Debug, PartialEq)]
+</span><span class="kw">struct </span>UnwindOpContext {
+    <span class="doccomment">/// Version of the unwind info.
+    </span>version: u8,
 
-    <span class="doccomment">/// The nonvolatile register used as the frame pointer of this function.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// If this register is non-zero, all stack frame offsets used in unwind operations are of type</span>
-    <span class="doccomment">/// `StackFrameOffset::FP`. When loading these offsets, they have to be based off the value of</span>
-    <span class="doccomment">/// this frame register instead of the conventional RSP. This allows the RSP to be modified.</span>
-    <span class="ident">frame_register</span>: <span class="ident">Register</span>,
+    <span class="doccomment">/// The nonvolatile register used as the frame pointer of this function.
+    ///
+    /// If this register is non-zero, all stack frame offsets used in unwind operations are of type
+    /// `StackFrameOffset::FP`. When loading these offsets, they have to be based off the value of
+    /// this frame register instead of the conventional RSP. This allows the RSP to be modified.
+    </span>frame_register: Register,
 }
 
-<span class="doccomment">/// An unwind operation that is executed at a particular place in the function prolog.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Debug</span>, <span class="ident">Eq</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">UnwindCode</span> {
-    <span class="doccomment">/// Offset of the corresponding instruction in the function prolog.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// To be precise, this is the offset from the beginning of the prolog of the end of the</span>
-    <span class="doccomment">/// instruction that performs this operation, plus 1 (that is, the offset of the start of the</span>
-    <span class="doccomment">/// next instruction).</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Unwind codes are ordered by this offset in reverse order, suitable for unwinding.</span>
-    <span class="kw">pub</span> <span class="ident">code_offset</span>: <span class="ident">u8</span>,
+<span class="doccomment">/// An unwind operation that is executed at a particular place in the function prolog.
+</span><span class="attribute">#[derive(Clone, Copy, Debug, Eq, PartialEq)]
+</span><span class="kw">pub struct </span>UnwindCode {
+    <span class="doccomment">/// Offset of the corresponding instruction in the function prolog.
+    ///
+    /// To be precise, this is the offset from the beginning of the prolog of the end of the
+    /// instruction that performs this operation, plus 1 (that is, the offset of the start of the
+    /// next instruction).
+    ///
+    /// Unwind codes are ordered by this offset in reverse order, suitable for unwinding.
+    </span><span class="kw">pub </span>code_offset: u8,
 
-    <span class="doccomment">/// The operation that was performed by the code in the prolog.</span>
-    <span class="kw">pub</span> <span class="ident">operation</span>: <span class="ident">UnwindOperation</span>,
+    <span class="doccomment">/// The operation that was performed by the code in the prolog.
+    </span><span class="kw">pub </span>operation: UnwindOperation,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">TryFromCtx</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">UnwindOpContext</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">UnwindCode</span> {
-    <span class="kw">type</span> <span class="ident">Error</span> <span class="op">=</span> <span class="ident">error::Error</span>;
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">try_from_ctx</span>(<span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>], <span class="ident">ctx</span>: <span class="ident">UnwindOpContext</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(<span class="self">Self</span>, <span class="ident">usize</span>), <span class="ident"><span class="self">Self</span>::Error</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">read</span> <span class="op">=</span> <span class="number">0</span>;
-        <span class="kw">let</span> <span class="ident">code_offset</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">gread_with</span>::<span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>(<span class="kw-2">&amp;mut</span> <span class="ident">read</span>, <span class="ident">scroll::LE</span>)<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">operation</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">gread_with</span>::<span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>(<span class="kw-2">&amp;mut</span> <span class="ident">read</span>, <span class="ident">scroll::LE</span>)<span class="question-mark">?</span>;
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; TryFromCtx&lt;<span class="lifetime">&#39;a</span>, UnwindOpContext&gt; <span class="kw">for </span>UnwindCode {
+    <span class="kw">type </span>Error = error::Error;
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>try_from_ctx(bytes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8], ctx: UnwindOpContext) -&gt; <span class="prelude-ty">Result</span>&lt;(<span class="self">Self</span>, usize), <span class="self">Self</span>::Error&gt; {
+        <span class="kw">let </span><span class="kw-2">mut </span>read = <span class="number">0</span>;
+        <span class="kw">let </span>code_offset = bytes.gread_with::&lt;u8&gt;(<span class="kw-2">&amp;mut </span>read, scroll::LE)<span class="question-mark">?</span>;
+        <span class="kw">let </span>operation = bytes.gread_with::&lt;u8&gt;(<span class="kw-2">&amp;mut </span>read, scroll::LE)<span class="question-mark">?</span>;
 
-        <span class="kw">let</span> <span class="ident">operation_code</span> <span class="op">=</span> <span class="ident">operation</span> <span class="op">&amp;</span> <span class="number">0xf</span>;
-        <span class="kw">let</span> <span class="ident">operation_info</span> <span class="op">=</span> <span class="ident">operation</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">4</span>;
+        <span class="kw">let </span>operation_code = operation &amp; <span class="number">0xf</span>;
+        <span class="kw">let </span>operation_info = operation &gt;&gt; <span class="number">4</span>;
 
-        <span class="kw">let</span> <span class="ident">operation</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">operation_code</span> {
-            <span class="ident"><span class="self">self</span>::UWOP_PUSH_NONVOL</span> =&gt; {
-                <span class="kw">let</span> <span class="ident">register</span> <span class="op">=</span> <span class="ident">Register</span>(<span class="ident">operation_info</span>);
-                <span class="ident">UnwindOperation::PushNonVolatile</span>(<span class="ident">register</span>)
+        <span class="kw">let </span>operation = <span class="kw">match </span>operation_code {
+            <span class="self">self</span>::UWOP_PUSH_NONVOL =&gt; {
+                <span class="kw">let </span>register = Register(operation_info);
+                UnwindOperation::PushNonVolatile(register)
             }
-            <span class="ident"><span class="self">self</span>::UWOP_ALLOC_LARGE</span> =&gt; {
-                <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">operation_info</span> {
-                    <span class="number">0</span> =&gt; <span class="ident">u32::from</span>(<span class="ident">bytes</span>.<span class="ident">gread_with</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>(<span class="kw-2">&amp;mut</span> <span class="ident">read</span>, <span class="ident">scroll::LE</span>)<span class="question-mark">?</span>) <span class="op">*</span> <span class="number">8</span>,
-                    <span class="number">1</span> =&gt; <span class="ident">bytes</span>.<span class="ident">gread_with</span>::<span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>(<span class="kw-2">&amp;mut</span> <span class="ident">read</span>, <span class="ident">scroll::LE</span>)<span class="question-mark">?</span>,
-                    <span class="ident">i</span> =&gt; {
-                        <span class="kw">let</span> <span class="ident">msg</span> <span class="op">=</span> <span class="macro">format!</span>(<span class="string">&quot;invalid op info ({}) for UWOP_ALLOC_LARGE&quot;</span>, <span class="ident">i</span>);
-                        <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">error::Error::Malformed</span>(<span class="ident">msg</span>));
+            <span class="self">self</span>::UWOP_ALLOC_LARGE =&gt; {
+                <span class="kw">let </span>offset = <span class="kw">match </span>operation_info {
+                    <span class="number">0 </span>=&gt; u32::from(bytes.gread_with::&lt;u16&gt;(<span class="kw-2">&amp;mut </span>read, scroll::LE)<span class="question-mark">?</span>) * <span class="number">8</span>,
+                    <span class="number">1 </span>=&gt; bytes.gread_with::&lt;u32&gt;(<span class="kw-2">&amp;mut </span>read, scroll::LE)<span class="question-mark">?</span>,
+                    i =&gt; {
+                        <span class="kw">let </span>msg = <span class="macro">format!</span>(<span class="string">&quot;invalid op info ({}) for UWOP_ALLOC_LARGE&quot;</span>, i);
+                        <span class="kw">return </span><span class="prelude-val">Err</span>(error::Error::Malformed(msg));
                     }
                 };
-                <span class="ident">UnwindOperation::Alloc</span>(<span class="ident">offset</span>)
+                UnwindOperation::Alloc(offset)
             }
-            <span class="ident"><span class="self">self</span>::UWOP_ALLOC_SMALL</span> =&gt; {
-                <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> <span class="ident">u32::from</span>(<span class="ident">operation_info</span>) <span class="op">*</span> <span class="number">8</span> <span class="op">+</span> <span class="number">8</span>;
-                <span class="ident">UnwindOperation::Alloc</span>(<span class="ident">offset</span>)
+            <span class="self">self</span>::UWOP_ALLOC_SMALL =&gt; {
+                <span class="kw">let </span>offset = u32::from(operation_info) * <span class="number">8 </span>+ <span class="number">8</span>;
+                UnwindOperation::Alloc(offset)
             }
-            <span class="ident"><span class="self">self</span>::UWOP_SET_FPREG</span> =&gt; <span class="ident">UnwindOperation::SetFPRegister</span>,
-            <span class="ident"><span class="self">self</span>::UWOP_SAVE_NONVOL</span> =&gt; {
-                <span class="kw">let</span> <span class="ident">register</span> <span class="op">=</span> <span class="ident">Register</span>(<span class="ident">operation_info</span>);
-                <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> <span class="ident">u32::from</span>(<span class="ident">bytes</span>.<span class="ident">gread_with</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>(<span class="kw-2">&amp;mut</span> <span class="ident">read</span>, <span class="ident">scroll::LE</span>)<span class="question-mark">?</span>) <span class="op">*</span> <span class="number">8</span>;
-                <span class="ident">UnwindOperation::SaveNonVolatile</span>(<span class="ident">register</span>, <span class="ident">StackFrameOffset::with_ctx</span>(<span class="ident">offset</span>, <span class="ident">ctx</span>))
+            <span class="self">self</span>::UWOP_SET_FPREG =&gt; UnwindOperation::SetFPRegister,
+            <span class="self">self</span>::UWOP_SAVE_NONVOL =&gt; {
+                <span class="kw">let </span>register = Register(operation_info);
+                <span class="kw">let </span>offset = u32::from(bytes.gread_with::&lt;u16&gt;(<span class="kw-2">&amp;mut </span>read, scroll::LE)<span class="question-mark">?</span>) * <span class="number">8</span>;
+                UnwindOperation::SaveNonVolatile(register, StackFrameOffset::with_ctx(offset, ctx))
             }
-            <span class="ident"><span class="self">self</span>::UWOP_SAVE_NONVOL_FAR</span> =&gt; {
-                <span class="kw">let</span> <span class="ident">register</span> <span class="op">=</span> <span class="ident">Register</span>(<span class="ident">operation_info</span>);
-                <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">gread_with</span>::<span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>(<span class="kw-2">&amp;mut</span> <span class="ident">read</span>, <span class="ident">scroll::LE</span>)<span class="question-mark">?</span>;
-                <span class="ident">UnwindOperation::SaveNonVolatile</span>(<span class="ident">register</span>, <span class="ident">StackFrameOffset::with_ctx</span>(<span class="ident">offset</span>, <span class="ident">ctx</span>))
+            <span class="self">self</span>::UWOP_SAVE_NONVOL_FAR =&gt; {
+                <span class="kw">let </span>register = Register(operation_info);
+                <span class="kw">let </span>offset = bytes.gread_with::&lt;u32&gt;(<span class="kw-2">&amp;mut </span>read, scroll::LE)<span class="question-mark">?</span>;
+                UnwindOperation::SaveNonVolatile(register, StackFrameOffset::with_ctx(offset, ctx))
             }
-            <span class="ident"><span class="self">self</span>::UWOP_EPILOG</span> =&gt; {
-                <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">u32::from</span>(<span class="ident">bytes</span>.<span class="ident">gread_with</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>(<span class="kw-2">&amp;mut</span> <span class="ident">read</span>, <span class="ident">scroll::LE</span>)<span class="question-mark">?</span>) <span class="op">*</span> <span class="number">16</span>;
-                <span class="kw">if</span> <span class="ident">ctx</span>.<span class="ident">version</span> <span class="op">==</span> <span class="number">1</span> {
-                    <span class="kw">let</span> <span class="ident">register</span> <span class="op">=</span> <span class="ident">Register::xmm</span>(<span class="ident">operation_info</span>);
-                    <span class="ident">UnwindOperation::SaveXMM</span>(<span class="ident">register</span>, <span class="ident">StackFrameOffset::with_ctx</span>(<span class="ident">data</span>, <span class="ident">ctx</span>))
-                } <span class="kw">else</span> {
-                    <span class="comment">// TODO: See https://weekly-geekly.github.io/articles/322956/index.html</span>
-                    <span class="ident">UnwindOperation::Epilog</span>
+            <span class="self">self</span>::UWOP_EPILOG =&gt; {
+                <span class="kw">let </span>data = u32::from(bytes.gread_with::&lt;u16&gt;(<span class="kw-2">&amp;mut </span>read, scroll::LE)<span class="question-mark">?</span>) * <span class="number">16</span>;
+                <span class="kw">if </span>ctx.version == <span class="number">1 </span>{
+                    <span class="kw">let </span>register = Register::xmm(operation_info);
+                    UnwindOperation::SaveXMM(register, StackFrameOffset::with_ctx(data, ctx))
+                } <span class="kw">else </span>{
+                    <span class="comment">// TODO: See https://weekly-geekly.github.io/articles/322956/index.html
+                    </span>UnwindOperation::Epilog
                 }
             }
-            <span class="ident"><span class="self">self</span>::UWOP_SPARE_CODE</span> =&gt; {
-                <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">gread_with</span>::<span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>(<span class="kw-2">&amp;mut</span> <span class="ident">read</span>, <span class="ident">scroll::LE</span>)<span class="question-mark">?</span>;
-                <span class="kw">if</span> <span class="ident">ctx</span>.<span class="ident">version</span> <span class="op">==</span> <span class="number">1</span> {
-                    <span class="kw">let</span> <span class="ident">register</span> <span class="op">=</span> <span class="ident">Register::xmm</span>(<span class="ident">operation_info</span>);
-                    <span class="ident">UnwindOperation::SaveXMM128</span>(<span class="ident">register</span>, <span class="ident">StackFrameOffset::with_ctx</span>(<span class="ident">data</span>, <span class="ident">ctx</span>))
-                } <span class="kw">else</span> {
-                    <span class="ident">UnwindOperation::Noop</span>
+            <span class="self">self</span>::UWOP_SPARE_CODE =&gt; {
+                <span class="kw">let </span>data = bytes.gread_with::&lt;u32&gt;(<span class="kw-2">&amp;mut </span>read, scroll::LE)<span class="question-mark">?</span>;
+                <span class="kw">if </span>ctx.version == <span class="number">1 </span>{
+                    <span class="kw">let </span>register = Register::xmm(operation_info);
+                    UnwindOperation::SaveXMM128(register, StackFrameOffset::with_ctx(data, ctx))
+                } <span class="kw">else </span>{
+                    UnwindOperation::Noop
                 }
             }
-            <span class="ident"><span class="self">self</span>::UWOP_SAVE_XMM128</span> =&gt; {
-                <span class="kw">let</span> <span class="ident">register</span> <span class="op">=</span> <span class="ident">Register::xmm</span>(<span class="ident">operation_info</span>);
-                <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> <span class="ident">u32::from</span>(<span class="ident">bytes</span>.<span class="ident">gread_with</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>(<span class="kw-2">&amp;mut</span> <span class="ident">read</span>, <span class="ident">scroll::LE</span>)<span class="question-mark">?</span>) <span class="op">*</span> <span class="number">16</span>;
-                <span class="ident">UnwindOperation::SaveXMM128</span>(<span class="ident">register</span>, <span class="ident">StackFrameOffset::with_ctx</span>(<span class="ident">offset</span>, <span class="ident">ctx</span>))
+            <span class="self">self</span>::UWOP_SAVE_XMM128 =&gt; {
+                <span class="kw">let </span>register = Register::xmm(operation_info);
+                <span class="kw">let </span>offset = u32::from(bytes.gread_with::&lt;u16&gt;(<span class="kw-2">&amp;mut </span>read, scroll::LE)<span class="question-mark">?</span>) * <span class="number">16</span>;
+                UnwindOperation::SaveXMM128(register, StackFrameOffset::with_ctx(offset, ctx))
             }
-            <span class="ident"><span class="self">self</span>::UWOP_SAVE_XMM128_FAR</span> =&gt; {
-                <span class="kw">let</span> <span class="ident">register</span> <span class="op">=</span> <span class="ident">Register::xmm</span>(<span class="ident">operation_info</span>);
-                <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">gread_with</span>::<span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>(<span class="kw-2">&amp;mut</span> <span class="ident">read</span>, <span class="ident">scroll::LE</span>)<span class="question-mark">?</span>;
-                <span class="ident">UnwindOperation::SaveXMM128</span>(<span class="ident">register</span>, <span class="ident">StackFrameOffset::with_ctx</span>(<span class="ident">offset</span>, <span class="ident">ctx</span>))
+            <span class="self">self</span>::UWOP_SAVE_XMM128_FAR =&gt; {
+                <span class="kw">let </span>register = Register::xmm(operation_info);
+                <span class="kw">let </span>offset = bytes.gread_with::&lt;u32&gt;(<span class="kw-2">&amp;mut </span>read, scroll::LE)<span class="question-mark">?</span>;
+                UnwindOperation::SaveXMM128(register, StackFrameOffset::with_ctx(offset, ctx))
             }
-            <span class="ident"><span class="self">self</span>::UWOP_PUSH_MACHFRAME</span> =&gt; {
-                <span class="kw">let</span> <span class="ident">is_error</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">operation_info</span> {
-                    <span class="number">0</span> =&gt; <span class="bool-val">false</span>,
-                    <span class="number">1</span> =&gt; <span class="bool-val">true</span>,
-                    <span class="ident">i</span> =&gt; {
-                        <span class="kw">let</span> <span class="ident">msg</span> <span class="op">=</span> <span class="macro">format!</span>(<span class="string">&quot;invalid op info ({}) for UWOP_PUSH_MACHFRAME&quot;</span>, <span class="ident">i</span>);
-                        <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">error::Error::Malformed</span>(<span class="ident">msg</span>));
+            <span class="self">self</span>::UWOP_PUSH_MACHFRAME =&gt; {
+                <span class="kw">let </span>is_error = <span class="kw">match </span>operation_info {
+                    <span class="number">0 </span>=&gt; <span class="bool-val">false</span>,
+                    <span class="number">1 </span>=&gt; <span class="bool-val">true</span>,
+                    i =&gt; {
+                        <span class="kw">let </span>msg = <span class="macro">format!</span>(<span class="string">&quot;invalid op info ({}) for UWOP_PUSH_MACHFRAME&quot;</span>, i);
+                        <span class="kw">return </span><span class="prelude-val">Err</span>(error::Error::Malformed(msg));
                     }
                 };
-                <span class="ident">UnwindOperation::PushMachineFrame</span>(<span class="ident">is_error</span>)
+                UnwindOperation::PushMachineFrame(is_error)
             }
-            <span class="ident">op</span> =&gt; {
-                <span class="kw">let</span> <span class="ident">msg</span> <span class="op">=</span> <span class="macro">format!</span>(<span class="string">&quot;unknown unwind op code ({})&quot;</span>, <span class="ident">op</span>);
-                <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">error::Error::Malformed</span>(<span class="ident">msg</span>));
+            op =&gt; {
+                <span class="kw">let </span>msg = <span class="macro">format!</span>(<span class="string">&quot;unknown unwind op code ({})&quot;</span>, op);
+                <span class="kw">return </span><span class="prelude-val">Err</span>(error::Error::Malformed(msg));
             }
         };
 
-        <span class="kw">let</span> <span class="ident">code</span> <span class="op">=</span> <span class="ident">UnwindCode</span> {
-            <span class="ident">code_offset</span>,
-            <span class="ident">operation</span>,
+        <span class="kw">let </span>code = UnwindCode {
+            code_offset,
+            operation,
         };
 
-        <span class="prelude-val">Ok</span>((<span class="ident">code</span>, <span class="ident">read</span>))
+        <span class="prelude-val">Ok</span>((code, read))
     }
 }
 
-<span class="doccomment">/// An iterator over unwind codes for a function or part of a function, returned from</span>
-<span class="doccomment">/// [`UnwindInfo`].</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// [`UnwindInfo`]: struct.UnwindInfo.html</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">UnwindCodeIterator</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
-    <span class="ident">offset</span>: <span class="ident">usize</span>,
-    <span class="ident">context</span>: <span class="ident">UnwindOpContext</span>,
+<span class="doccomment">/// An iterator over unwind codes for a function or part of a function, returned from
+/// [`UnwindInfo`].
+///
+/// [`UnwindInfo`]: struct.UnwindInfo.html
+</span><span class="attribute">#[derive(Clone, Debug)]
+</span><span class="kw">pub struct </span>UnwindCodeIterator&lt;<span class="lifetime">&#39;a</span>&gt; {
+    bytes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8],
+    offset: usize,
+    context: UnwindOpContext,
 }
 
-<span class="kw">impl</span> <span class="ident">Iterator</span> <span class="kw">for</span> <span class="ident">UnwindCodeIterator</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span> {
-    <span class="kw">type</span> <span class="ident">Item</span> <span class="op">=</span> <span class="ident">error::Result</span><span class="op">&lt;</span><span class="ident">UnwindCode</span><span class="op">&gt;</span>;
+<span class="kw">impl </span>Iterator <span class="kw">for </span>UnwindCodeIterator&lt;<span class="lifetime">&#39;_</span>&gt; {
+    <span class="kw">type </span>Item = error::Result&lt;UnwindCode&gt;;
 
-    <span class="kw">fn</span> <span class="ident">next</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident"><span class="self">Self</span>::Item</span><span class="op">&gt;</span> {
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">offset</span> <span class="op">&gt;</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">bytes</span>.<span class="ident">len</span>() {
-            <span class="kw">return</span> <span class="prelude-val">None</span>;
+    <span class="kw">fn </span>next(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>::Item&gt; {
+        <span class="kw">if </span><span class="self">self</span>.offset &gt;= <span class="self">self</span>.bytes.len() {
+            <span class="kw">return </span><span class="prelude-val">None</span>;
         }
 
-        <span class="prelude-val">Some</span>(<span class="self">self</span>.<span class="ident">bytes</span>.<span class="ident">gread_with</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="ident">offset</span>, <span class="self">self</span>.<span class="ident">context</span>))
+        <span class="prelude-val">Some</span>(<span class="self">self</span>.bytes.gread_with(<span class="kw-2">&amp;mut </span><span class="self">self</span>.offset, <span class="self">self</span>.context))
     }
 
-    <span class="kw">fn</span> <span class="ident">size_hint</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; (<span class="ident">usize</span>, <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span>) {
-        <span class="kw">let</span> <span class="ident">upper</span> <span class="op">=</span> (<span class="self">self</span>.<span class="ident">bytes</span>.<span class="ident">len</span>() <span class="op">-</span> <span class="self">self</span>.<span class="ident">offset</span>) <span class="op">/</span> <span class="ident">UNWIND_CODE_SIZE</span>;
-        <span class="comment">// the largest codes take up three slots</span>
-        <span class="kw">let</span> <span class="ident">lower</span> <span class="op">=</span> (<span class="ident">upper</span> <span class="op">+</span> <span class="number">3</span> <span class="op">-</span> (<span class="ident">upper</span> <span class="op">%</span> <span class="number">3</span>)) <span class="op">/</span> <span class="number">3</span>;
-        (<span class="ident">lower</span>, <span class="prelude-val">Some</span>(<span class="ident">upper</span>))
+    <span class="kw">fn </span>size_hint(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; (usize, <span class="prelude-ty">Option</span>&lt;usize&gt;) {
+        <span class="kw">let </span>upper = (<span class="self">self</span>.bytes.len() - <span class="self">self</span>.offset) / UNWIND_CODE_SIZE;
+        <span class="comment">// the largest codes take up three slots
+        </span><span class="kw">let </span>lower = (upper + <span class="number">3 </span>- (upper % <span class="number">3</span>)) / <span class="number">3</span>;
+        (lower, <span class="prelude-val">Some</span>(upper))
     }
 }
 
-<span class="kw">impl</span> <span class="ident">FusedIterator</span> <span class="kw">for</span> <span class="ident">UnwindCodeIterator</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span> {}
+<span class="kw">impl </span>FusedIterator <span class="kw">for </span>UnwindCodeIterator&lt;<span class="lifetime">&#39;_</span>&gt; {}
 
-<span class="doccomment">/// A language-specific handler that is called as part of the search for an exception handler or as</span>
-<span class="doccomment">/// part of an unwind.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">UnwindHandler</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// The image-relative address of an exception handler and its implementation-defined data.</span>
-    <span class="ident">ExceptionHandler</span>(<span class="ident">u32</span>, <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>]),
-    <span class="doccomment">/// The image-relative address of a termination handler and its implementation-defined data.</span>
-    <span class="ident">TerminationHandler</span>(<span class="ident">u32</span>, <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>]),
+<span class="doccomment">/// A language-specific handler that is called as part of the search for an exception handler or as
+/// part of an unwind.
+</span><span class="attribute">#[derive(Copy, Clone, Debug, PartialEq)]
+</span><span class="kw">pub enum </span>UnwindHandler&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="doccomment">/// The image-relative address of an exception handler and its implementation-defined data.
+    </span>ExceptionHandler(u32, <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8]),
+    <span class="doccomment">/// The image-relative address of a termination handler and its implementation-defined data.
+    </span>TerminationHandler(u32, <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8]),
 }
 
-<span class="doccomment">/// Unwind information for a function or portion of a function.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// The unwind info structure is used to record the effects a function has on the stack pointer and</span>
-<span class="doccomment">/// where the nonvolatile registers are saved on the stack. The unwind codes can be enumerated with</span>
-<span class="doccomment">/// [`unwind_codes`].</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// This unwind info might only be secondary information, and link to a [chained unwind handler].</span>
-<span class="doccomment">/// For unwinding, this link shall be followed until the root unwind info record has been resolved.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// [`unwind_codes`]: struct.UnwindInfo.html#method.unwind_codes</span>
-<span class="doccomment">/// [chained unwind handler]: struct.UnwindInfo.html#structfield.chained_info</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">UnwindInfo</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// Version of this unwind info.</span>
-    <span class="kw">pub</span> <span class="ident">version</span>: <span class="ident">u8</span>,
+<span class="doccomment">/// Unwind information for a function or portion of a function.
+///
+/// The unwind info structure is used to record the effects a function has on the stack pointer and
+/// where the nonvolatile registers are saved on the stack. The unwind codes can be enumerated with
+/// [`unwind_codes`].
+///
+/// This unwind info might only be secondary information, and link to a [chained unwind handler].
+/// For unwinding, this link shall be followed until the root unwind info record has been resolved.
+///
+/// [`unwind_codes`]: struct.UnwindInfo.html#method.unwind_codes
+/// [chained unwind handler]: struct.UnwindInfo.html#structfield.chained_info
+</span><span class="attribute">#[derive(Clone)]
+</span><span class="kw">pub struct </span>UnwindInfo&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="doccomment">/// Version of this unwind info.
+    </span><span class="kw">pub </span>version: u8,
 
-    <span class="doccomment">/// Length of the function prolog in bytes.</span>
-    <span class="kw">pub</span> <span class="ident">size_of_prolog</span>: <span class="ident">u8</span>,
+    <span class="doccomment">/// Length of the function prolog in bytes.
+    </span><span class="kw">pub </span>size_of_prolog: u8,
 
-    <span class="doccomment">/// The nonvolatile register used as the frame pointer of this function.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// If this register is non-zero, all stack frame offsets used in unwind operations are of type</span>
-    <span class="doccomment">/// `StackFrameOffset::FP`. When loading these offsets, they have to be based off the value of</span>
-    <span class="doccomment">/// this frame register instead of the conventional RSP. This allows the RSP to be modified.</span>
-    <span class="kw">pub</span> <span class="ident">frame_register</span>: <span class="ident">Register</span>,
+    <span class="doccomment">/// The nonvolatile register used as the frame pointer of this function.
+    ///
+    /// If this register is non-zero, all stack frame offsets used in unwind operations are of type
+    /// `StackFrameOffset::FP`. When loading these offsets, they have to be based off the value of
+    /// this frame register instead of the conventional RSP. This allows the RSP to be modified.
+    </span><span class="kw">pub </span>frame_register: Register,
 
-    <span class="doccomment">/// Offset from RSP that is applied to the FP register when it is established.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// When loading offsets of type `StackFrameOffset::FP` from the stack, this offset has to be</span>
-    <span class="doccomment">/// subtracted before loading the value since the actual RSP was lower by that amount in the</span>
-    <span class="doccomment">/// prolog.</span>
-    <span class="kw">pub</span> <span class="ident">frame_register_offset</span>: <span class="ident">u32</span>,
+    <span class="doccomment">/// Offset from RSP that is applied to the FP register when it is established.
+    ///
+    /// When loading offsets of type `StackFrameOffset::FP` from the stack, this offset has to be
+    /// subtracted before loading the value since the actual RSP was lower by that amount in the
+    /// prolog.
+    </span><span class="kw">pub </span>frame_register_offset: u32,
 
-    <span class="doccomment">/// A record pointing to chained unwind information.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// If chained unwind info is present, then this unwind info is a secondary one and the linked</span>
-    <span class="doccomment">/// unwind info contains primary information. Chained info is useful in two situations. First,</span>
-    <span class="doccomment">/// it is used for noncontiguous code segments. Second, this mechanism is sometimes used to</span>
-    <span class="doccomment">/// group volatile register saves.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// The referenced unwind info can itself specify chained unwind information, until it arrives</span>
-    <span class="doccomment">/// at the root unwind info. Generally, the entire chain should be considered when unwinding.</span>
-    <span class="kw">pub</span> <span class="ident">chained_info</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">RuntimeFunction</span><span class="op">&gt;</span>,
+    <span class="doccomment">/// A record pointing to chained unwind information.
+    ///
+    /// If chained unwind info is present, then this unwind info is a secondary one and the linked
+    /// unwind info contains primary information. Chained info is useful in two situations. First,
+    /// it is used for noncontiguous code segments. Second, this mechanism is sometimes used to
+    /// group volatile register saves.
+    ///
+    /// The referenced unwind info can itself specify chained unwind information, until it arrives
+    /// at the root unwind info. Generally, the entire chain should be considered when unwinding.
+    </span><span class="kw">pub </span>chained_info: <span class="prelude-ty">Option</span>&lt;RuntimeFunction&gt;,
 
-    <span class="doccomment">/// An exception or termination handler called as part of the unwind.</span>
-    <span class="kw">pub</span> <span class="ident">handler</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">UnwindHandler</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+    <span class="doccomment">/// An exception or termination handler called as part of the unwind.
+    </span><span class="kw">pub </span>handler: <span class="prelude-ty">Option</span>&lt;UnwindHandler&lt;<span class="lifetime">&#39;a</span>&gt;&gt;,
 
-    <span class="doccomment">/// A list of unwind codes, sorted descending by code offset.</span>
-    <span class="ident">code_bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
+    <span class="doccomment">/// A list of unwind codes, sorted descending by code offset.
+    </span>code_bytes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8],
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">UnwindInfo</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// Parses unwind information from the image at the given offset.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>], <span class="kw-2">mut</span> <span class="ident">offset</span>: <span class="ident">usize</span>) -&gt; <span class="ident">error::Result</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="comment">// Read the version and flags fields, which are combined into a single byte.</span>
-        <span class="kw">let</span> <span class="ident">version_flags</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">gread_with</span>(<span class="kw-2">&amp;mut</span> <span class="ident">offset</span>, <span class="ident">scroll::LE</span>)<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">version</span> <span class="op">=</span> <span class="ident">version_flags</span> <span class="op">&amp;</span> <span class="number">0b111</span>;
-        <span class="kw">let</span> <span class="ident">flags</span> <span class="op">=</span> <span class="ident">version_flags</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">3</span>;
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; UnwindInfo&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="doccomment">/// Parses unwind information from the image at the given offset.
+    </span><span class="kw">pub fn </span>parse(bytes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8], <span class="kw-2">mut </span>offset: usize) -&gt; error::Result&lt;<span class="self">Self</span>&gt; {
+        <span class="comment">// Read the version and flags fields, which are combined into a single byte.
+        </span><span class="kw">let </span>version_flags: u8 = bytes.gread_with(<span class="kw-2">&amp;mut </span>offset, scroll::LE)<span class="question-mark">?</span>;
+        <span class="kw">let </span>version = version_flags &amp; <span class="number">0b111</span>;
+        <span class="kw">let </span>flags = version_flags &gt;&gt; <span class="number">3</span>;
 
-        <span class="kw">if</span> <span class="ident">version</span> <span class="op">&lt;</span> <span class="number">1</span> <span class="op">|</span><span class="op">|</span> <span class="ident">version</span> <span class="op">&gt;</span> <span class="number">2</span> {
-            <span class="kw">let</span> <span class="ident">msg</span> <span class="op">=</span> <span class="macro">format!</span>(<span class="string">&quot;unsupported unwind code version ({})&quot;</span>, <span class="ident">version</span>);
-            <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">error::Error::Malformed</span>(<span class="ident">msg</span>));
+        <span class="kw">if </span>version &lt; <span class="number">1 </span>|| version &gt; <span class="number">2 </span>{
+            <span class="kw">let </span>msg = <span class="macro">format!</span>(<span class="string">&quot;unsupported unwind code version ({})&quot;</span>, version);
+            <span class="kw">return </span><span class="prelude-val">Err</span>(error::Error::Malformed(msg));
         }
 
-        <span class="kw">let</span> <span class="ident">size_of_prolog</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">gread_with</span>::<span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>(<span class="kw-2">&amp;mut</span> <span class="ident">offset</span>, <span class="ident">scroll::LE</span>)<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">count_of_codes</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">gread_with</span>::<span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>(<span class="kw-2">&amp;mut</span> <span class="ident">offset</span>, <span class="ident">scroll::LE</span>)<span class="question-mark">?</span>;
+        <span class="kw">let </span>size_of_prolog = bytes.gread_with::&lt;u8&gt;(<span class="kw-2">&amp;mut </span>offset, scroll::LE)<span class="question-mark">?</span>;
+        <span class="kw">let </span>count_of_codes = bytes.gread_with::&lt;u8&gt;(<span class="kw-2">&amp;mut </span>offset, scroll::LE)<span class="question-mark">?</span>;
 
-        <span class="comment">// Parse the frame register and frame register offset values, that are combined into a</span>
-        <span class="comment">// single byte.</span>
-        <span class="kw">let</span> <span class="ident">frame_info</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">gread_with</span>::<span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>(<span class="kw-2">&amp;mut</span> <span class="ident">offset</span>, <span class="ident">scroll::LE</span>)<span class="question-mark">?</span>;
-        <span class="comment">// If nonzero, then the function uses a frame pointer (FP), and this field is the number</span>
-        <span class="comment">// of the nonvolatile register used as the frame pointer. The zero register value does</span>
-        <span class="comment">// not need special casing since it will not be referenced by the unwind operations.</span>
-        <span class="kw">let</span> <span class="ident">frame_register</span> <span class="op">=</span> <span class="ident">Register</span>(<span class="ident">frame_info</span> <span class="op">&amp;</span> <span class="number">0xf</span>);
-        <span class="comment">// The the scaled offset from RSP that is applied to the FP register when it&#39;s</span>
-        <span class="comment">// established. The actual FP register is set to RSP + 16 * this number, allowing</span>
-        <span class="comment">// offsets from 0 to 240.</span>
-        <span class="kw">let</span> <span class="ident">frame_register_offset</span> <span class="op">=</span> <span class="ident">u32::from</span>((<span class="ident">frame_info</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">4</span>) <span class="op">*</span> <span class="number">16</span>);
+        <span class="comment">// Parse the frame register and frame register offset values, that are combined into a
+        // single byte.
+        </span><span class="kw">let </span>frame_info = bytes.gread_with::&lt;u8&gt;(<span class="kw-2">&amp;mut </span>offset, scroll::LE)<span class="question-mark">?</span>;
+        <span class="comment">// If nonzero, then the function uses a frame pointer (FP), and this field is the number
+        // of the nonvolatile register used as the frame pointer. The zero register value does
+        // not need special casing since it will not be referenced by the unwind operations.
+        </span><span class="kw">let </span>frame_register = Register(frame_info &amp; <span class="number">0xf</span>);
+        <span class="comment">// The the scaled offset from RSP that is applied to the FP register when it&#39;s
+        // established. The actual FP register is set to RSP + 16 * this number, allowing
+        // offsets from 0 to 240.
+        </span><span class="kw">let </span>frame_register_offset = u32::from((frame_info &gt;&gt; <span class="number">4</span>) * <span class="number">16</span>);
 
-        <span class="comment">// An array of items that explains the effect of the prolog on the nonvolatile registers and</span>
-        <span class="comment">// RSP. Some unwind codes require more than one slot in the array.</span>
-        <span class="kw">let</span> <span class="ident">codes_size</span> <span class="op">=</span> <span class="ident">count_of_codes</span> <span class="kw">as</span> <span class="ident">usize</span> <span class="op">*</span> <span class="ident">UNWIND_CODE_SIZE</span>;
-        <span class="kw">let</span> <span class="ident">code_bytes</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">gread_with</span>(<span class="kw-2">&amp;mut</span> <span class="ident">offset</span>, <span class="ident">codes_size</span>)<span class="question-mark">?</span>;
+        <span class="comment">// An array of items that explains the effect of the prolog on the nonvolatile registers and
+        // RSP. Some unwind codes require more than one slot in the array.
+        </span><span class="kw">let </span>codes_size = count_of_codes <span class="kw">as </span>usize * UNWIND_CODE_SIZE;
+        <span class="kw">let </span>code_bytes = bytes.gread_with(<span class="kw-2">&amp;mut </span>offset, codes_size)<span class="question-mark">?</span>;
 
-        <span class="comment">// For alignment purposes, the codes array always has an even number of entries, and the</span>
-        <span class="comment">// final entry is potentially unused. In that case, the array is one longer than indicated</span>
-        <span class="comment">// by the count of unwind codes field.</span>
-        <span class="kw">if</span> <span class="ident">count_of_codes</span> <span class="op">%</span> <span class="number">2</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
-            <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="number">2</span>;
+        <span class="comment">// For alignment purposes, the codes array always has an even number of entries, and the
+        // final entry is potentially unused. In that case, the array is one longer than indicated
+        // by the count of unwind codes field.
+        </span><span class="kw">if </span>count_of_codes % <span class="number">2 </span>!= <span class="number">0 </span>{
+            offset += <span class="number">2</span>;
         }
-        <span class="macro">debug_assert!</span>(<span class="ident">offset</span> <span class="op">%</span> <span class="number">4</span> <span class="op">==</span> <span class="number">0</span>);
+        <span class="macro">debug_assert!</span>(offset % <span class="number">4 </span>== <span class="number">0</span>);
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">chained_info</span> <span class="op">=</span> <span class="prelude-val">None</span>;
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">handler</span> <span class="op">=</span> <span class="prelude-val">None</span>;
+        <span class="kw">let </span><span class="kw-2">mut </span>chained_info = <span class="prelude-val">None</span>;
+        <span class="kw">let </span><span class="kw-2">mut </span>handler = <span class="prelude-val">None</span>;
 
-        <span class="comment">// If flag UNW_FLAG_CHAININFO is set then the UNWIND_INFO structure ends with three UWORDs.</span>
-        <span class="comment">// These UWORDs represent the RUNTIME_FUNCTION information for the function of the chained</span>
-        <span class="comment">// unwind.</span>
-        <span class="kw">if</span> <span class="ident">flags</span> <span class="op">&amp;</span> <span class="ident">UNW_FLAG_CHAININFO</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
-            <span class="ident">chained_info</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">bytes</span>.<span class="ident">gread_with</span>(<span class="kw-2">&amp;mut</span> <span class="ident">offset</span>, <span class="ident">scroll::LE</span>)<span class="question-mark">?</span>);
+        <span class="comment">// If flag UNW_FLAG_CHAININFO is set then the UNWIND_INFO structure ends with three UWORDs.
+        // These UWORDs represent the RUNTIME_FUNCTION information for the function of the chained
+        // unwind.
+        </span><span class="kw">if </span>flags &amp; UNW_FLAG_CHAININFO != <span class="number">0 </span>{
+            chained_info = <span class="prelude-val">Some</span>(bytes.gread_with(<span class="kw-2">&amp;mut </span>offset, scroll::LE)<span class="question-mark">?</span>);
 
-        <span class="comment">// The relative address of the language-specific handler is present in the UNWIND_INFO</span>
-        <span class="comment">// whenever flags UNW_FLAG_EHANDLER or UNW_FLAG_UHANDLER are set. The language-specific</span>
-        <span class="comment">// handler is called as part of the search for an exception handler or as part of an unwind.</span>
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">flags</span> <span class="op">&amp;</span> (<span class="ident">UNW_FLAG_EHANDLER</span> <span class="op">|</span> <span class="ident">UNW_FLAG_UHANDLER</span>) <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
-            <span class="kw">let</span> <span class="ident">address</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">gread_with</span>::<span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>(<span class="kw-2">&amp;mut</span> <span class="ident">offset</span>, <span class="ident">scroll::LE</span>)<span class="question-mark">?</span>;
-            <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">bytes</span>[<span class="ident">offset</span>..];
+        <span class="comment">// The relative address of the language-specific handler is present in the UNWIND_INFO
+        // whenever flags UNW_FLAG_EHANDLER or UNW_FLAG_UHANDLER are set. The language-specific
+        // handler is called as part of the search for an exception handler or as part of an unwind.
+        </span>} <span class="kw">else if </span>flags &amp; (UNW_FLAG_EHANDLER | UNW_FLAG_UHANDLER) != <span class="number">0 </span>{
+            <span class="kw">let </span>address = bytes.gread_with::&lt;u32&gt;(<span class="kw-2">&amp;mut </span>offset, scroll::LE)<span class="question-mark">?</span>;
+            <span class="kw">let </span>data = <span class="kw-2">&amp;</span>bytes[offset..];
 
-            <span class="ident">handler</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="kw">if</span> <span class="ident">flags</span> <span class="op">&amp;</span> <span class="ident">UNW_FLAG_EHANDLER</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
-                <span class="ident">UnwindHandler::ExceptionHandler</span>(<span class="ident">address</span>, <span class="ident">data</span>)
-            } <span class="kw">else</span> {
-                <span class="ident">UnwindHandler::TerminationHandler</span>(<span class="ident">address</span>, <span class="ident">data</span>)
+            handler = <span class="prelude-val">Some</span>(<span class="kw">if </span>flags &amp; UNW_FLAG_EHANDLER != <span class="number">0 </span>{
+                UnwindHandler::ExceptionHandler(address, data)
+            } <span class="kw">else </span>{
+                UnwindHandler::TerminationHandler(address, data)
             });
         }
 
-        <span class="prelude-val">Ok</span>(<span class="ident">UnwindInfo</span> {
-            <span class="ident">version</span>,
-            <span class="ident">size_of_prolog</span>,
-            <span class="ident">frame_register</span>,
-            <span class="ident">frame_register_offset</span>,
-            <span class="ident">chained_info</span>,
-            <span class="ident">handler</span>,
-            <span class="ident">code_bytes</span>,
+        <span class="prelude-val">Ok</span>(UnwindInfo {
+            version,
+            size_of_prolog,
+            frame_register,
+            frame_register_offset,
+            chained_info,
+            handler,
+            code_bytes,
         })
     }
 
-    <span class="doccomment">/// Returns an iterator over unwind codes in this unwind info.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Unwind codes are iterated in descending `code_offset` order suitable for unwinding. If the</span>
-    <span class="doccomment">/// optional [`chained_info`] is present, codes of that unwind info should be interpreted</span>
-    <span class="doccomment">/// immediately afterwards.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">unwind_codes</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">UnwindCodeIterator</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-        <span class="ident">UnwindCodeIterator</span> {
-            <span class="ident">bytes</span>: <span class="self">self</span>.<span class="ident">code_bytes</span>,
-            <span class="ident">offset</span>: <span class="number">0</span>,
-            <span class="ident">context</span>: <span class="ident">UnwindOpContext</span> {
-                <span class="ident">version</span>: <span class="self">self</span>.<span class="ident">version</span>,
-                <span class="ident">frame_register</span>: <span class="self">self</span>.<span class="ident">frame_register</span>,
+    <span class="doccomment">/// Returns an iterator over unwind codes in this unwind info.
+    ///
+    /// Unwind codes are iterated in descending `code_offset` order suitable for unwinding. If the
+    /// optional [`chained_info`] is present, codes of that unwind info should be interpreted
+    /// immediately afterwards.
+    </span><span class="kw">pub fn </span>unwind_codes(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; UnwindCodeIterator&lt;<span class="lifetime">&#39;a</span>&gt; {
+        UnwindCodeIterator {
+            bytes: <span class="self">self</span>.code_bytes,
+            offset: <span class="number">0</span>,
+            context: UnwindOpContext {
+                version: <span class="self">self</span>.version,
+                frame_register: <span class="self">self</span>.frame_register,
             },
         }
     }
 }
 
-<span class="kw">impl</span> <span class="ident">fmt::Debug</span> <span class="kw">for</span> <span class="ident">UnwindInfo</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">fmt::Formatter</span>) -&gt; <span class="ident">fmt::Result</span> {
-        <span class="kw">let</span> <span class="ident">count_of_codes</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">code_bytes</span>.<span class="ident">len</span>() <span class="op">/</span> <span class="ident">UNWIND_CODE_SIZE</span>;
+<span class="kw">impl </span>fmt::Debug <span class="kw">for </span>UnwindInfo&lt;<span class="lifetime">&#39;_</span>&gt; {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>fmt::Formatter) -&gt; fmt::Result {
+        <span class="kw">let </span>count_of_codes = <span class="self">self</span>.code_bytes.len() / UNWIND_CODE_SIZE;
 
-        <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;UnwindInfo&quot;</span>)
-            .<span class="ident">field</span>(<span class="string">&quot;version&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">version</span>)
-            .<span class="ident">field</span>(<span class="string">&quot;size_of_prolog&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">size_of_prolog</span>)
-            .<span class="ident">field</span>(<span class="string">&quot;frame_register&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">frame_register</span>)
-            .<span class="ident">field</span>(<span class="string">&quot;frame_register_offset&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">frame_register_offset</span>)
-            .<span class="ident">field</span>(<span class="string">&quot;count_of_codes&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">count_of_codes</span>)
-            .<span class="ident">field</span>(<span class="string">&quot;chained_info&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">chained_info</span>)
-            .<span class="ident">field</span>(<span class="string">&quot;handler&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">handler</span>)
-            .<span class="ident">finish</span>()
+        f.debug_struct(<span class="string">&quot;UnwindInfo&quot;</span>)
+            .field(<span class="string">&quot;version&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.version)
+            .field(<span class="string">&quot;size_of_prolog&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.size_of_prolog)
+            .field(<span class="string">&quot;frame_register&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.frame_register)
+            .field(<span class="string">&quot;frame_register_offset&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.frame_register_offset)
+            .field(<span class="string">&quot;count_of_codes&quot;</span>, <span class="kw-2">&amp;</span>count_of_codes)
+            .field(<span class="string">&quot;chained_info&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.chained_info)
+            .field(<span class="string">&quot;handler&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.handler)
+            .finish()
     }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">IntoIterator</span> <span class="kw">for</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;_</span> <span class="ident">UnwindInfo</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">type</span> <span class="ident">Item</span> <span class="op">=</span> <span class="ident">error::Result</span><span class="op">&lt;</span><span class="ident">UnwindCode</span><span class="op">&gt;</span>;
-    <span class="kw">type</span> <span class="ident">IntoIter</span> <span class="op">=</span> <span class="ident">UnwindCodeIterator</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>;
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; IntoIterator <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;_ </span>UnwindInfo&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">type </span>Item = error::Result&lt;UnwindCode&gt;;
+    <span class="kw">type </span>IntoIter = UnwindCodeIterator&lt;<span class="lifetime">&#39;a</span>&gt;;
 
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">into_iter</span>(<span class="self">self</span>) -&gt; <span class="ident"><span class="self">Self</span>::IntoIter</span> {
-        <span class="self">self</span>.<span class="ident">unwind_codes</span>()
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>into_iter(<span class="self">self</span>) -&gt; <span class="self">Self</span>::IntoIter {
+        <span class="self">self</span>.unwind_codes()
     }
 }
 
-<span class="doccomment">/// Exception handling and stack unwind information for functions in the image.</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ExceptionData</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
-    <span class="ident">offset</span>: <span class="ident">usize</span>,
-    <span class="ident">size</span>: <span class="ident">usize</span>,
-    <span class="ident">file_alignment</span>: <span class="ident">u32</span>,
+<span class="doccomment">/// Exception handling and stack unwind information for functions in the image.
+</span><span class="kw">pub struct </span>ExceptionData&lt;<span class="lifetime">&#39;a</span>&gt; {
+    bytes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8],
+    offset: usize,
+    size: usize,
+    file_alignment: u32,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">ExceptionData</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// Parses exception data from the image at the given offset.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">parse</span>(
-        <span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
-        <span class="ident">directory</span>: <span class="ident">data_directories::DataDirectory</span>,
-        <span class="ident">sections</span>: <span class="kw-2">&amp;</span>[<span class="ident">section_table::SectionTable</span>],
-        <span class="ident">file_alignment</span>: <span class="ident">u32</span>,
-    ) -&gt; <span class="ident">error::Result</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="ident"><span class="self">Self</span>::parse_with_opts</span>(
-            <span class="ident">bytes</span>,
-            <span class="ident">directory</span>,
-            <span class="ident">sections</span>,
-            <span class="ident">file_alignment</span>,
-            <span class="kw-2">&amp;</span><span class="ident">options::ParseOptions::default</span>(),
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; ExceptionData&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="doccomment">/// Parses exception data from the image at the given offset.
+    </span><span class="kw">pub fn </span>parse(
+        bytes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8],
+        directory: data_directories::DataDirectory,
+        sections: <span class="kw-2">&amp;</span>[section_table::SectionTable],
+        file_alignment: u32,
+    ) -&gt; error::Result&lt;<span class="self">Self</span>&gt; {
+        <span class="self">Self</span>::parse_with_opts(
+            bytes,
+            directory,
+            sections,
+            file_alignment,
+            <span class="kw-2">&amp;</span>options::ParseOptions::default(),
         )
     }
 
-    <span class="doccomment">/// Parses exception data from the image at the given offset.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">parse_with_opts</span>(
-        <span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
-        <span class="ident">directory</span>: <span class="ident">data_directories::DataDirectory</span>,
-        <span class="ident">sections</span>: <span class="kw-2">&amp;</span>[<span class="ident">section_table::SectionTable</span>],
-        <span class="ident">file_alignment</span>: <span class="ident">u32</span>,
-        <span class="ident">opts</span>: <span class="kw-2">&amp;</span><span class="ident">options::ParseOptions</span>,
-    ) -&gt; <span class="ident">error::Result</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">size</span> <span class="op">=</span> <span class="ident">directory</span>.<span class="ident">size</span> <span class="kw">as</span> <span class="ident">usize</span>;
+    <span class="doccomment">/// Parses exception data from the image at the given offset.
+    </span><span class="kw">pub fn </span>parse_with_opts(
+        bytes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8],
+        directory: data_directories::DataDirectory,
+        sections: <span class="kw-2">&amp;</span>[section_table::SectionTable],
+        file_alignment: u32,
+        opts: <span class="kw-2">&amp;</span>options::ParseOptions,
+    ) -&gt; error::Result&lt;<span class="self">Self</span>&gt; {
+        <span class="kw">let </span>size = directory.size <span class="kw">as </span>usize;
 
-        <span class="kw">if</span> <span class="ident">size</span> <span class="op">%</span> <span class="ident">RUNTIME_FUNCTION_SIZE</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
-            <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">error::Error::from</span>(<span class="ident">scroll::Error::BadInput</span> {
-                <span class="ident">size</span>,
-                <span class="ident">msg</span>: <span class="string">&quot;invalid exception directory table size&quot;</span>,
+        <span class="kw">if </span>size % RUNTIME_FUNCTION_SIZE != <span class="number">0 </span>{
+            <span class="kw">return </span><span class="prelude-val">Err</span>(error::Error::from(scroll::Error::BadInput {
+                size,
+                msg: <span class="string">&quot;invalid exception directory table size&quot;</span>,
             }));
         }
 
-        <span class="kw">let</span> <span class="ident">rva</span> <span class="op">=</span> <span class="ident">directory</span>.<span class="ident">virtual_address</span> <span class="kw">as</span> <span class="ident">usize</span>;
-        <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> <span class="ident">utils::find_offset</span>(<span class="ident">rva</span>, <span class="ident">sections</span>, <span class="ident">file_alignment</span>, <span class="ident">opts</span>).<span class="ident">ok_or_else</span>(<span class="op">|</span><span class="op">|</span> {
-            <span class="ident">error::Error::Malformed</span>(<span class="macro">format!</span>(<span class="string">&quot;cannot map exception_rva ({:#x}) into offset&quot;</span>, <span class="ident">rva</span>))
+        <span class="kw">let </span>rva = directory.virtual_address <span class="kw">as </span>usize;
+        <span class="kw">let </span>offset = utils::find_offset(rva, sections, file_alignment, opts).ok_or_else(|| {
+            error::Error::Malformed(<span class="macro">format!</span>(<span class="string">&quot;cannot map exception_rva ({:#x}) into offset&quot;</span>, rva))
         })<span class="question-mark">?</span>;
 
-        <span class="kw">if</span> <span class="ident">offset</span> <span class="op">%</span> <span class="number">4</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
-            <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">error::Error::from</span>(<span class="ident">scroll::Error::BadOffset</span>(<span class="ident">offset</span>)));
+        <span class="kw">if </span>offset % <span class="number">4 </span>!= <span class="number">0 </span>{
+            <span class="kw">return </span><span class="prelude-val">Err</span>(error::Error::from(scroll::Error::BadOffset(offset)));
         }
 
-        <span class="prelude-val">Ok</span>(<span class="ident">ExceptionData</span> {
-            <span class="ident">bytes</span>,
-            <span class="ident">offset</span>,
-            <span class="ident">size</span>,
-            <span class="ident">file_alignment</span>,
+        <span class="prelude-val">Ok</span>(ExceptionData {
+            bytes,
+            offset,
+            size,
+            file_alignment,
         })
     }
 
-    <span class="doccomment">/// The number of function entries described by this exception data.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">len</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">usize</span> {
-        <span class="self">self</span>.<span class="ident">size</span> <span class="op">/</span> <span class="ident">RUNTIME_FUNCTION_SIZE</span>
+    <span class="doccomment">/// The number of function entries described by this exception data.
+    </span><span class="kw">pub fn </span>len(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; usize {
+        <span class="self">self</span>.size / RUNTIME_FUNCTION_SIZE
     }
 
-    <span class="doccomment">/// Indicating whether there are functions in this entry.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_empty</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">len</span>() <span class="op">==</span> <span class="number">0</span>
-    }
+    <span class="doccomment">/// Indicating whether there are functions in this entry.
+    </span><span class="kw">pub fn </span>is_empty(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.len() == <span class="number">0
+    </span>}
 
-    <span class="doccomment">/// Iterates all function entries in order of their code offset.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// To search for a function by relative instruction address, use [`find_function`]. To resolve</span>
-    <span class="doccomment">/// unwind information, use [`get_unwind_info`].</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// [`find_function`]: struct.ExceptionData.html#method.find_function</span>
-    <span class="doccomment">/// [`get_unwind_info`]: struct.ExceptionData.html#method.get_unwind_info</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">functions</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">RuntimeFunctionIterator</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-        <span class="ident">RuntimeFunctionIterator</span> {
-            <span class="ident">data</span>: <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">bytes</span>[<span class="self">self</span>.<span class="ident">offset</span>..<span class="self">self</span>.<span class="ident">offset</span> <span class="op">+</span> <span class="self">self</span>.<span class="ident">size</span>],
+    <span class="doccomment">/// Iterates all function entries in order of their code offset.
+    ///
+    /// To search for a function by relative instruction address, use [`find_function`]. To resolve
+    /// unwind information, use [`get_unwind_info`].
+    ///
+    /// [`find_function`]: struct.ExceptionData.html#method.find_function
+    /// [`get_unwind_info`]: struct.ExceptionData.html#method.get_unwind_info
+    </span><span class="kw">pub fn </span>functions(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; RuntimeFunctionIterator&lt;<span class="lifetime">&#39;a</span>&gt; {
+        RuntimeFunctionIterator {
+            data: <span class="kw-2">&amp;</span><span class="self">self</span>.bytes[<span class="self">self</span>.offset..<span class="self">self</span>.offset + <span class="self">self</span>.size],
         }
     }
 
-    <span class="doccomment">/// Returns the function at the given index.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_function</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">index</span>: <span class="ident">usize</span>) -&gt; <span class="ident">error::Result</span><span class="op">&lt;</span><span class="ident">RuntimeFunction</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">get_function_by_offset</span>(<span class="self">self</span>.<span class="ident">offset</span> <span class="op">+</span> <span class="ident">index</span> <span class="op">*</span> <span class="ident">RUNTIME_FUNCTION_SIZE</span>)
+    <span class="doccomment">/// Returns the function at the given index.
+    </span><span class="kw">pub fn </span>get_function(<span class="kw-2">&amp;</span><span class="self">self</span>, index: usize) -&gt; error::Result&lt;RuntimeFunction&gt; {
+        <span class="self">self</span>.get_function_by_offset(<span class="self">self</span>.offset + index * RUNTIME_FUNCTION_SIZE)
     }
 
-    <span class="doccomment">/// Performs a binary search to find a function entry covering the given RVA relative to the</span>
-    <span class="doccomment">/// image.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">find_function</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">rva</span>: <span class="ident">u32</span>) -&gt; <span class="ident">error::Result</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">RuntimeFunction</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-        <span class="comment">// NB: Binary search implementation copied from std::slice::binary_search_by and adapted.</span>
-        <span class="comment">// Theoretically, there should be nothing that causes parsing runtime functions to fail and</span>
-        <span class="comment">// all access to the bytes buffer is guaranteed to be in range. However, since all other</span>
-        <span class="comment">// functions also return Results, this is much more ergonomic here.</span>
+    <span class="doccomment">/// Performs a binary search to find a function entry covering the given RVA relative to the
+    /// image.
+    </span><span class="kw">pub fn </span>find_function(<span class="kw-2">&amp;</span><span class="self">self</span>, rva: u32) -&gt; error::Result&lt;<span class="prelude-ty">Option</span>&lt;RuntimeFunction&gt;&gt; {
+        <span class="comment">// NB: Binary search implementation copied from std::slice::binary_search_by and adapted.
+        // Theoretically, there should be nothing that causes parsing runtime functions to fail and
+        // all access to the bytes buffer is guaranteed to be in range. However, since all other
+        // functions also return Results, this is much more ergonomic here.
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">size</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">len</span>();
-        <span class="kw">if</span> <span class="ident">size</span> <span class="op">==</span> <span class="number">0</span> {
-            <span class="kw">return</span> <span class="prelude-val">Ok</span>(<span class="prelude-val">None</span>);
+        </span><span class="kw">let </span><span class="kw-2">mut </span>size = <span class="self">self</span>.len();
+        <span class="kw">if </span>size == <span class="number">0 </span>{
+            <span class="kw">return </span><span class="prelude-val">Ok</span>(<span class="prelude-val">None</span>);
         }
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">base</span> <span class="op">=</span> <span class="number">0</span>;
-        <span class="kw">while</span> <span class="ident">size</span> <span class="op">&gt;</span> <span class="number">1</span> {
-            <span class="kw">let</span> <span class="ident">half</span> <span class="op">=</span> <span class="ident">size</span> <span class="op">/</span> <span class="number">2</span>;
-            <span class="kw">let</span> <span class="ident">mid</span> <span class="op">=</span> <span class="ident">base</span> <span class="op">+</span> <span class="ident">half</span>;
-            <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">offset</span> <span class="op">+</span> <span class="ident">mid</span> <span class="op">*</span> <span class="ident">RUNTIME_FUNCTION_SIZE</span>;
-            <span class="kw">let</span> <span class="ident">addr</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">bytes</span>.<span class="ident">pread_with</span>::<span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>(<span class="ident">offset</span>, <span class="ident">scroll::LE</span>)<span class="question-mark">?</span>;
-            <span class="ident">base</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">addr</span> <span class="op">&gt;</span> <span class="ident">rva</span> { <span class="ident">base</span> } <span class="kw">else</span> { <span class="ident">mid</span> };
-            <span class="ident">size</span> <span class="op">-</span><span class="op">=</span> <span class="ident">half</span>;
+        <span class="kw">let </span><span class="kw-2">mut </span>base = <span class="number">0</span>;
+        <span class="kw">while </span>size &gt; <span class="number">1 </span>{
+            <span class="kw">let </span>half = size / <span class="number">2</span>;
+            <span class="kw">let </span>mid = base + half;
+            <span class="kw">let </span>offset = <span class="self">self</span>.offset + mid * RUNTIME_FUNCTION_SIZE;
+            <span class="kw">let </span>addr = <span class="self">self</span>.bytes.pread_with::&lt;u32&gt;(offset, scroll::LE)<span class="question-mark">?</span>;
+            base = <span class="kw">if </span>addr &gt; rva { base } <span class="kw">else </span>{ mid };
+            size -= half;
         }
 
-        <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">offset</span> <span class="op">+</span> <span class="ident">base</span> <span class="op">*</span> <span class="ident">RUNTIME_FUNCTION_SIZE</span>;
-        <span class="kw">let</span> <span class="ident">addr</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">bytes</span>.<span class="ident">pread_with</span>::<span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>(<span class="ident">offset</span>, <span class="ident">scroll::LE</span>)<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">function</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">addr</span>.<span class="ident">cmp</span>(<span class="kw-2">&amp;</span><span class="ident">rva</span>) {
-            <span class="ident">Ordering::Less</span> <span class="op">|</span> <span class="ident">Ordering::Equal</span> =&gt; <span class="self">self</span>.<span class="ident">get_function</span>(<span class="ident">base</span>)<span class="question-mark">?</span>,
-            <span class="ident">Ordering::Greater</span> <span class="kw">if</span> <span class="ident">base</span> <span class="op">==</span> <span class="number">0</span> =&gt; <span class="kw">return</span> <span class="prelude-val">Ok</span>(<span class="prelude-val">None</span>),
-            <span class="ident">Ordering::Greater</span> =&gt; <span class="self">self</span>.<span class="ident">get_function</span>(<span class="ident">base</span> <span class="op">-</span> <span class="number">1</span>)<span class="question-mark">?</span>,
+        <span class="kw">let </span>offset = <span class="self">self</span>.offset + base * RUNTIME_FUNCTION_SIZE;
+        <span class="kw">let </span>addr = <span class="self">self</span>.bytes.pread_with::&lt;u32&gt;(offset, scroll::LE)<span class="question-mark">?</span>;
+        <span class="kw">let </span>function = <span class="kw">match </span>addr.cmp(<span class="kw-2">&amp;</span>rva) {
+            Ordering::Less | Ordering::Equal =&gt; <span class="self">self</span>.get_function(base)<span class="question-mark">?</span>,
+            Ordering::Greater <span class="kw">if </span>base == <span class="number">0 </span>=&gt; <span class="kw">return </span><span class="prelude-val">Ok</span>(<span class="prelude-val">None</span>),
+            Ordering::Greater =&gt; <span class="self">self</span>.get_function(base - <span class="number">1</span>)<span class="question-mark">?</span>,
         };
 
-        <span class="kw">if</span> <span class="ident">function</span>.<span class="ident">end_address</span> <span class="op">&gt;</span> <span class="ident">rva</span> {
-            <span class="prelude-val">Ok</span>(<span class="prelude-val">Some</span>(<span class="ident">function</span>))
-        } <span class="kw">else</span> {
+        <span class="kw">if </span>function.end_address &gt; rva {
+            <span class="prelude-val">Ok</span>(<span class="prelude-val">Some</span>(function))
+        } <span class="kw">else </span>{
             <span class="prelude-val">Ok</span>(<span class="prelude-val">None</span>)
         }
     }
 
-    <span class="doccomment">/// Resolves unwind information for the given function entry.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_unwind_info</span>(
+    <span class="doccomment">/// Resolves unwind information for the given function entry.
+    </span><span class="kw">pub fn </span>get_unwind_info(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">function</span>: <span class="ident">RuntimeFunction</span>,
-        <span class="ident">sections</span>: <span class="kw-2">&amp;</span>[<span class="ident">section_table::SectionTable</span>],
-    ) -&gt; <span class="ident">error::Result</span><span class="op">&lt;</span><span class="ident">UnwindInfo</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">get_unwind_info_with_opts</span>(<span class="ident">function</span>, <span class="ident">sections</span>, <span class="kw-2">&amp;</span><span class="ident">options::ParseOptions::default</span>())
+        function: RuntimeFunction,
+        sections: <span class="kw-2">&amp;</span>[section_table::SectionTable],
+    ) -&gt; error::Result&lt;UnwindInfo&lt;<span class="lifetime">&#39;a</span>&gt;&gt; {
+        <span class="self">self</span>.get_unwind_info_with_opts(function, sections, <span class="kw-2">&amp;</span>options::ParseOptions::default())
     }
 
-    <span class="doccomment">/// Resolves unwind information for the given function entry.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_unwind_info_with_opts</span>(
+    <span class="doccomment">/// Resolves unwind information for the given function entry.
+    </span><span class="kw">pub fn </span>get_unwind_info_with_opts(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="kw-2">mut</span> <span class="ident">function</span>: <span class="ident">RuntimeFunction</span>,
-        <span class="ident">sections</span>: <span class="kw-2">&amp;</span>[<span class="ident">section_table::SectionTable</span>],
-        <span class="ident">opts</span>: <span class="kw-2">&amp;</span><span class="ident">options::ParseOptions</span>,
-    ) -&gt; <span class="ident">error::Result</span><span class="op">&lt;</span><span class="ident">UnwindInfo</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-        <span class="kw">while</span> <span class="ident">function</span>.<span class="ident">unwind_info_address</span> <span class="op">%</span> <span class="number">2</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
-            <span class="kw">let</span> <span class="ident">rva</span> <span class="op">=</span> (<span class="ident">function</span>.<span class="ident">unwind_info_address</span> <span class="op">&amp;</span> <span class="op">!</span><span class="number">1</span>) <span class="kw">as</span> <span class="ident">usize</span>;
-            <span class="ident">function</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">get_function_by_rva_with_opts</span>(<span class="ident">rva</span>, <span class="ident">sections</span>, <span class="ident">opts</span>)<span class="question-mark">?</span>;
+        <span class="kw-2">mut </span>function: RuntimeFunction,
+        sections: <span class="kw-2">&amp;</span>[section_table::SectionTable],
+        opts: <span class="kw-2">&amp;</span>options::ParseOptions,
+    ) -&gt; error::Result&lt;UnwindInfo&lt;<span class="lifetime">&#39;a</span>&gt;&gt; {
+        <span class="kw">while </span>function.unwind_info_address % <span class="number">2 </span>!= <span class="number">0 </span>{
+            <span class="kw">let </span>rva = (function.unwind_info_address &amp; !<span class="number">1</span>) <span class="kw">as </span>usize;
+            function = <span class="self">self</span>.get_function_by_rva_with_opts(rva, sections, opts)<span class="question-mark">?</span>;
         }
 
-        <span class="kw">let</span> <span class="ident">rva</span> <span class="op">=</span> <span class="ident">function</span>.<span class="ident">unwind_info_address</span> <span class="kw">as</span> <span class="ident">usize</span>;
-        <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span>
-            <span class="ident">utils::find_offset</span>(<span class="ident">rva</span>, <span class="ident">sections</span>, <span class="self">self</span>.<span class="ident">file_alignment</span>, <span class="ident">opts</span>).<span class="ident">ok_or_else</span>(<span class="op">|</span><span class="op">|</span> {
-                <span class="ident">error::Error::Malformed</span>(<span class="macro">format!</span>(<span class="string">&quot;cannot map unwind rva ({:#x}) into offset&quot;</span>, <span class="ident">rva</span>))
+        <span class="kw">let </span>rva = function.unwind_info_address <span class="kw">as </span>usize;
+        <span class="kw">let </span>offset =
+            utils::find_offset(rva, sections, <span class="self">self</span>.file_alignment, opts).ok_or_else(|| {
+                error::Error::Malformed(<span class="macro">format!</span>(<span class="string">&quot;cannot map unwind rva ({:#x}) into offset&quot;</span>, rva))
             })<span class="question-mark">?</span>;
 
-        <span class="ident">UnwindInfo::parse</span>(<span class="self">self</span>.<span class="ident">bytes</span>, <span class="ident">offset</span>)
+        UnwindInfo::parse(<span class="self">self</span>.bytes, offset)
     }
 
-    <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">dead_code</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">get_function_by_rva</span>(
+    <span class="attribute">#[allow(dead_code)]
+    </span><span class="kw">fn </span>get_function_by_rva(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">rva</span>: <span class="ident">usize</span>,
-        <span class="ident">sections</span>: <span class="kw-2">&amp;</span>[<span class="ident">section_table::SectionTable</span>],
-    ) -&gt; <span class="ident">error::Result</span><span class="op">&lt;</span><span class="ident">RuntimeFunction</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">get_function_by_rva_with_opts</span>(<span class="ident">rva</span>, <span class="ident">sections</span>, <span class="kw-2">&amp;</span><span class="ident">options::ParseOptions::default</span>())
+        rva: usize,
+        sections: <span class="kw-2">&amp;</span>[section_table::SectionTable],
+    ) -&gt; error::Result&lt;RuntimeFunction&gt; {
+        <span class="self">self</span>.get_function_by_rva_with_opts(rva, sections, <span class="kw-2">&amp;</span>options::ParseOptions::default())
     }
 
-    <span class="kw">fn</span> <span class="ident">get_function_by_rva_with_opts</span>(
+    <span class="kw">fn </span>get_function_by_rva_with_opts(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">rva</span>: <span class="ident">usize</span>,
-        <span class="ident">sections</span>: <span class="kw-2">&amp;</span>[<span class="ident">section_table::SectionTable</span>],
-        <span class="ident">opts</span>: <span class="kw-2">&amp;</span><span class="ident">options::ParseOptions</span>,
-    ) -&gt; <span class="ident">error::Result</span><span class="op">&lt;</span><span class="ident">RuntimeFunction</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span>
-            <span class="ident">utils::find_offset</span>(<span class="ident">rva</span>, <span class="ident">sections</span>, <span class="self">self</span>.<span class="ident">file_alignment</span>, <span class="ident">opts</span>).<span class="ident">ok_or_else</span>(<span class="op">|</span><span class="op">|</span> {
-                <span class="ident">error::Error::Malformed</span>(<span class="macro">format!</span>(
+        rva: usize,
+        sections: <span class="kw-2">&amp;</span>[section_table::SectionTable],
+        opts: <span class="kw-2">&amp;</span>options::ParseOptions,
+    ) -&gt; error::Result&lt;RuntimeFunction&gt; {
+        <span class="kw">let </span>offset =
+            utils::find_offset(rva, sections, <span class="self">self</span>.file_alignment, opts).ok_or_else(|| {
+                error::Error::Malformed(<span class="macro">format!</span>(
                     <span class="string">&quot;cannot map exception rva ({:#x}) into offset&quot;</span>,
-                    <span class="ident">rva</span>
+                    rva
                 ))
             })<span class="question-mark">?</span>;
 
-        <span class="self">self</span>.<span class="ident">get_function_by_offset</span>(<span class="ident">offset</span>)
+        <span class="self">self</span>.get_function_by_offset(offset)
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">get_function_by_offset</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">offset</span>: <span class="ident">usize</span>) -&gt; <span class="ident">error::Result</span><span class="op">&lt;</span><span class="ident">RuntimeFunction</span><span class="op">&gt;</span> {
-        <span class="macro">debug_assert!</span>((<span class="ident">offset</span> <span class="op">-</span> <span class="self">self</span>.<span class="ident">offset</span>) <span class="op">%</span> <span class="ident">RUNTIME_FUNCTION_SIZE</span> <span class="op">==</span> <span class="number">0</span>);
-        <span class="macro">debug_assert!</span>(<span class="ident">offset</span> <span class="op">&lt;</span> <span class="self">self</span>.<span class="ident">offset</span> <span class="op">+</span> <span class="self">self</span>.<span class="ident">size</span>);
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>get_function_by_offset(<span class="kw-2">&amp;</span><span class="self">self</span>, offset: usize) -&gt; error::Result&lt;RuntimeFunction&gt; {
+        <span class="macro">debug_assert!</span>((offset - <span class="self">self</span>.offset) % RUNTIME_FUNCTION_SIZE == <span class="number">0</span>);
+        <span class="macro">debug_assert!</span>(offset &lt; <span class="self">self</span>.offset + <span class="self">self</span>.size);
 
-        <span class="prelude-val">Ok</span>(<span class="self">self</span>.<span class="ident">bytes</span>.<span class="ident">pread_with</span>(<span class="ident">offset</span>, <span class="ident">scroll::LE</span>)<span class="question-mark">?</span>)
-    }
-}
-
-<span class="kw">impl</span> <span class="ident">fmt::Debug</span> <span class="kw">for</span> <span class="ident">ExceptionData</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">fmt::Formatter</span>) -&gt; <span class="ident">fmt::Result</span> {
-        <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;ExceptionData&quot;</span>)
-            .<span class="ident">field</span>(<span class="string">&quot;file_alignment&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">file_alignment</span>)
-            .<span class="ident">field</span>(<span class="string">&quot;offset&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{:#x}&quot;</span>, <span class="self">self</span>.<span class="ident">offset</span>))
-            .<span class="ident">field</span>(<span class="string">&quot;size&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{:#x}&quot;</span>, <span class="self">self</span>.<span class="ident">size</span>))
-            .<span class="ident">field</span>(<span class="string">&quot;len&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">len</span>())
-            .<span class="ident">finish</span>()
+        <span class="prelude-val">Ok</span>(<span class="self">self</span>.bytes.pread_with(offset, scroll::LE)<span class="question-mark">?</span>)
     }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">IntoIterator</span> <span class="kw">for</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;_</span> <span class="ident">ExceptionData</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">type</span> <span class="ident">Item</span> <span class="op">=</span> <span class="ident">error::Result</span><span class="op">&lt;</span><span class="ident">RuntimeFunction</span><span class="op">&gt;</span>;
-    <span class="kw">type</span> <span class="ident">IntoIter</span> <span class="op">=</span> <span class="ident">RuntimeFunctionIterator</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>;
-
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">into_iter</span>(<span class="self">self</span>) -&gt; <span class="ident"><span class="self">Self</span>::IntoIter</span> {
-        <span class="self">self</span>.<span class="ident">functions</span>()
+<span class="kw">impl </span>fmt::Debug <span class="kw">for </span>ExceptionData&lt;<span class="lifetime">&#39;_</span>&gt; {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>fmt::Formatter) -&gt; fmt::Result {
+        f.debug_struct(<span class="string">&quot;ExceptionData&quot;</span>)
+            .field(<span class="string">&quot;file_alignment&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.file_alignment)
+            .field(<span class="string">&quot;offset&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{:#x}&quot;</span>, <span class="self">self</span>.offset))
+            .field(<span class="string">&quot;size&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{:#x}&quot;</span>, <span class="self">self</span>.size))
+            .field(<span class="string">&quot;len&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.len())
+            .finish()
     }
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
-<span class="kw">mod</span> <span class="ident">tests</span> {
-    <span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; IntoIterator <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;_ </span>ExceptionData&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">type </span>Item = error::Result&lt;RuntimeFunction&gt;;
+    <span class="kw">type </span>IntoIter = RuntimeFunctionIterator&lt;<span class="lifetime">&#39;a</span>&gt;;
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">test_size_of_runtime_function</span>() {
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>into_iter(<span class="self">self</span>) -&gt; <span class="self">Self</span>::IntoIter {
+        <span class="self">self</span>.functions()
+    }
+}
+
+<span class="attribute">#[cfg(test)]
+</span><span class="kw">mod </span>tests {
+    <span class="kw">use super</span>::<span class="kw-2">*</span>;
+
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>test_size_of_runtime_function() {
         <span class="macro">assert_eq!</span>(
-            <span class="ident">std::mem::size_of</span>::<span class="op">&lt;</span><span class="ident">RuntimeFunction</span><span class="op">&gt;</span>(),
-            <span class="ident">RUNTIME_FUNCTION_SIZE</span>
+            std::mem::size_of::&lt;RuntimeFunction&gt;(),
+            RUNTIME_FUNCTION_SIZE
         );
     }
 
-    <span class="comment">// Tests disabled until there is a solution for handling binary test data</span>
-    <span class="comment">// See https://github.com/m4b/goblin/issues/185</span>
+    <span class="comment">// Tests disabled until there is a solution for handling binary test data
+    // See https://github.com/m4b/goblin/issues/185
 
-    <span class="comment">// macro_rules! microsoft_symbol {</span>
-    <span class="comment">//     ($name:literal, $id:literal) =&gt; {{</span>
-    <span class="comment">//         use std::fs::File;</span>
-    <span class="comment">//         use std::path::Path;</span>
+    // macro_rules! microsoft_symbol {
+    //     ($name:literal, $id:literal) =&gt; {{
+    //         use std::fs::File;
+    //         use std::path::Path;
 
-    <span class="comment">//         let path = Path::new(concat!(&quot;cache/&quot;, $name));</span>
-    <span class="comment">//         if !path.exists() {</span>
-    <span class="comment">//             let url = format!(</span>
-    <span class="comment">//                 &quot;https://msdl.microsoft.com/download/symbols/{}/{}/{}&quot;,</span>
-    <span class="comment">//                 $name, $id, $name</span>
-    <span class="comment">//             );</span>
+    //         let path = Path::new(concat!(&quot;cache/&quot;, $name));
+    //         if !path.exists() {
+    //             let url = format!(
+    //                 &quot;https://msdl.microsoft.com/download/symbols/{}/{}/{}&quot;,
+    //                 $name, $id, $name
+    //             );
 
-    <span class="comment">//             let mut response = reqwest::get(&amp;url).expect(concat!(&quot;get &quot;, $name));</span>
-    <span class="comment">//             let mut target = File::create(path).expect(concat!(&quot;create &quot;, $name));</span>
-    <span class="comment">//             response</span>
-    <span class="comment">//                 .copy_to(&amp;mut target)</span>
-    <span class="comment">//                 .expect(concat!(&quot;download &quot;, $name));</span>
-    <span class="comment">//         }</span>
+    //             let mut response = reqwest::get(&amp;url).expect(concat!(&quot;get &quot;, $name));
+    //             let mut target = File::create(path).expect(concat!(&quot;create &quot;, $name));
+    //             response
+    //                 .copy_to(&amp;mut target)
+    //                 .expect(concat!(&quot;download &quot;, $name));
+    //         }
 
-    <span class="comment">//         std::fs::read(path).expect(concat!(&quot;open &quot;, $name))</span>
-    <span class="comment">//     }};</span>
-    <span class="comment">// }</span>
+    //         std::fs::read(path).expect(concat!(&quot;open &quot;, $name))
+    //     }};
+    // }
 
-    <span class="comment">// lazy_static::lazy_static! {</span>
-    <span class="comment">//     static ref PE_DATA: Vec&lt;u8&gt; = microsoft_symbol!(&quot;WSHTCPIP.DLL&quot;, &quot;4a5be0b77000&quot;);</span>
-    <span class="comment">// }</span>
+    // lazy_static::lazy_static! {
+    //     static ref PE_DATA: Vec&lt;u8&gt; = microsoft_symbol!(&quot;WSHTCPIP.DLL&quot;, &quot;4a5be0b77000&quot;);
+    // }
 
-    <span class="comment">// #[test]</span>
-    <span class="comment">// fn test_parse() {</span>
-    <span class="comment">//     let pe = PE::parse(&amp;PE_DATA).expect(&quot;parse PE&quot;);</span>
-    <span class="comment">//     let exception_data = pe.exception_data.expect(&quot;get exception data&quot;);</span>
+    // #[test]
+    // fn test_parse() {
+    //     let pe = PE::parse(&amp;PE_DATA).expect(&quot;parse PE&quot;);
+    //     let exception_data = pe.exception_data.expect(&quot;get exception data&quot;);
 
-    <span class="comment">//     assert_eq!(exception_data.len(), 19);</span>
-    <span class="comment">//     assert!(!exception_data.is_empty());</span>
-    <span class="comment">// }</span>
+    //     assert_eq!(exception_data.len(), 19);
+    //     assert!(!exception_data.is_empty());
+    // }
 
-    <span class="comment">// #[test]</span>
-    <span class="comment">// fn test_iter_functions() {</span>
-    <span class="comment">//     let pe = PE::parse(&amp;PE_DATA).expect(&quot;parse PE&quot;);</span>
-    <span class="comment">//     let exception_data = pe.exception_data.expect(&quot;get exception data&quot;);</span>
+    // #[test]
+    // fn test_iter_functions() {
+    //     let pe = PE::parse(&amp;PE_DATA).expect(&quot;parse PE&quot;);
+    //     let exception_data = pe.exception_data.expect(&quot;get exception data&quot;);
 
-    <span class="comment">//     let functions: Vec&lt;RuntimeFunction&gt; = exception_data</span>
-    <span class="comment">//         .functions()</span>
-    <span class="comment">//         .map(|result| result.expect(&quot;parse runtime function&quot;))</span>
-    <span class="comment">//         .collect();</span>
+    //     let functions: Vec&lt;RuntimeFunction&gt; = exception_data
+    //         .functions()
+    //         .map(|result| result.expect(&quot;parse runtime function&quot;))
+    //         .collect();
 
-    <span class="comment">//     assert_eq!(functions.len(), 19);</span>
+    //     assert_eq!(functions.len(), 19);
 
-    <span class="comment">//     let expected = RuntimeFunction {</span>
-    <span class="comment">//         begin_address: 0x1355,</span>
-    <span class="comment">//         end_address: 0x1420,</span>
-    <span class="comment">//         unwind_info_address: 0x4019,</span>
-    <span class="comment">//     };</span>
+    //     let expected = RuntimeFunction {
+    //         begin_address: 0x1355,
+    //         end_address: 0x1420,
+    //         unwind_info_address: 0x4019,
+    //     };
 
-    <span class="comment">//     assert_eq!(functions[4], expected);</span>
-    <span class="comment">// }</span>
+    //     assert_eq!(functions[4], expected);
+    // }
 
-    <span class="comment">// #[test]</span>
-    <span class="comment">// fn test_get_function() {</span>
-    <span class="comment">//     let pe = PE::parse(&amp;PE_DATA).expect(&quot;parse PE&quot;);</span>
-    <span class="comment">//     let exception_data = pe.exception_data.expect(&quot;get exception data&quot;);</span>
+    // #[test]
+    // fn test_get_function() {
+    //     let pe = PE::parse(&amp;PE_DATA).expect(&quot;parse PE&quot;);
+    //     let exception_data = pe.exception_data.expect(&quot;get exception data&quot;);
 
-    <span class="comment">//     let expected = RuntimeFunction {</span>
-    <span class="comment">//         begin_address: 0x1355,</span>
-    <span class="comment">//         end_address: 0x1420,</span>
-    <span class="comment">//         unwind_info_address: 0x4019,</span>
-    <span class="comment">//     };</span>
+    //     let expected = RuntimeFunction {
+    //         begin_address: 0x1355,
+    //         end_address: 0x1420,
+    //         unwind_info_address: 0x4019,
+    //     };
 
-    <span class="comment">//     assert_eq!(</span>
-    <span class="comment">//         exception_data.get_function(4).expect(&quot;find function&quot;),</span>
-    <span class="comment">//         expected</span>
-    <span class="comment">//     );</span>
-    <span class="comment">// }</span>
+    //     assert_eq!(
+    //         exception_data.get_function(4).expect(&quot;find function&quot;),
+    //         expected
+    //     );
+    // }
 
-    <span class="comment">// #[test]</span>
-    <span class="comment">// fn test_find_function() {</span>
-    <span class="comment">//     let pe = PE::parse(&amp;PE_DATA).expect(&quot;parse PE&quot;);</span>
-    <span class="comment">//     let exception_data = pe.exception_data.expect(&quot;get exception data&quot;);</span>
+    // #[test]
+    // fn test_find_function() {
+    //     let pe = PE::parse(&amp;PE_DATA).expect(&quot;parse PE&quot;);
+    //     let exception_data = pe.exception_data.expect(&quot;get exception data&quot;);
 
-    <span class="comment">//     let expected = RuntimeFunction {</span>
-    <span class="comment">//         begin_address: 0x1355,</span>
-    <span class="comment">//         end_address: 0x1420,</span>
-    <span class="comment">//         unwind_info_address: 0x4019,</span>
-    <span class="comment">//     };</span>
+    //     let expected = RuntimeFunction {
+    //         begin_address: 0x1355,
+    //         end_address: 0x1420,
+    //         unwind_info_address: 0x4019,
+    //     };
 
-    <span class="comment">//     assert_eq!(</span>
-    <span class="comment">//         exception_data.find_function(0x1400).expect(&quot;find function&quot;),</span>
-    <span class="comment">//         Some(expected)</span>
-    <span class="comment">//     );</span>
-    <span class="comment">// }</span>
+    //     assert_eq!(
+    //         exception_data.find_function(0x1400).expect(&quot;find function&quot;),
+    //         Some(expected)
+    //     );
+    // }
 
-    <span class="comment">// #[test]</span>
-    <span class="comment">// fn test_find_function_none() {</span>
-    <span class="comment">//     let pe = PE::parse(&amp;PE_DATA).expect(&quot;parse PE&quot;);</span>
-    <span class="comment">//     let exception_data = pe.exception_data.expect(&quot;get exception data&quot;);</span>
+    // #[test]
+    // fn test_find_function_none() {
+    //     let pe = PE::parse(&amp;PE_DATA).expect(&quot;parse PE&quot;);
+    //     let exception_data = pe.exception_data.expect(&quot;get exception data&quot;);
 
-    <span class="comment">//     // 0x1d00 is the end address of the last function.</span>
+    //     // 0x1d00 is the end address of the last function.
 
-    <span class="comment">//     assert_eq!(</span>
-    <span class="comment">//         exception_data.find_function(0x1d00).expect(&quot;find function&quot;),</span>
-    <span class="comment">//         None</span>
-    <span class="comment">//     );</span>
-    <span class="comment">// }</span>
+    //     assert_eq!(
+    //         exception_data.find_function(0x1d00).expect(&quot;find function&quot;),
+    //         None
+    //     );
+    // }
 
-    <span class="comment">// #[test]</span>
-    <span class="comment">// fn test_get_unwind_info() {</span>
-    <span class="comment">//     let pe = PE::parse(&amp;PE_DATA).expect(&quot;parse PE&quot;);</span>
-    <span class="comment">//     let exception_data = pe.exception_data.expect(&quot;get exception data&quot;);</span>
+    // #[test]
+    // fn test_get_unwind_info() {
+    //     let pe = PE::parse(&amp;PE_DATA).expect(&quot;parse PE&quot;);
+    //     let exception_data = pe.exception_data.expect(&quot;get exception data&quot;);
 
-    <span class="comment">//     // runtime function #0 directly refers to unwind info</span>
-    <span class="comment">//     let rt_function = RuntimeFunction {</span>
-    <span class="comment">//         begin_address: 0x1010,</span>
-    <span class="comment">//         end_address: 0x1090,</span>
-    <span class="comment">//         unwind_info_address: 0x25d8,</span>
-    <span class="comment">//     };</span>
+    //     // runtime function #0 directly refers to unwind info
+    //     let rt_function = RuntimeFunction {
+    //         begin_address: 0x1010,
+    //         end_address: 0x1090,
+    //         unwind_info_address: 0x25d8,
+    //     };
 
-    <span class="comment">//     let unwind_info = exception_data</span>
-    <span class="comment">//         .get_unwind_info(rt_function, &amp;pe.sections)</span>
-    <span class="comment">//         .expect(&quot;get unwind info&quot;);</span>
+    //     let unwind_info = exception_data
+    //         .get_unwind_info(rt_function, &amp;pe.sections)
+    //         .expect(&quot;get unwind info&quot;);
 
-    <span class="comment">//     // Unwind codes just used to assert that the right unwind info was resolved</span>
-    <span class="comment">//     let expected = &amp;[4, 98];</span>
+    //     // Unwind codes just used to assert that the right unwind info was resolved
+    //     let expected = &amp;[4, 98];
 
-    <span class="comment">//     assert_eq!(unwind_info.code_bytes, expected);</span>
-    <span class="comment">// }</span>
+    //     assert_eq!(unwind_info.code_bytes, expected);
+    // }
 
-    <span class="comment">// #[test]</span>
-    <span class="comment">// fn test_get_unwind_info_redirect() {</span>
-    <span class="comment">//     let pe = PE::parse(&amp;PE_DATA).expect(&quot;parse PE&quot;);</span>
-    <span class="comment">//     let exception_data = pe.exception_data.expect(&quot;get exception data&quot;);</span>
+    // #[test]
+    // fn test_get_unwind_info_redirect() {
+    //     let pe = PE::parse(&amp;PE_DATA).expect(&quot;parse PE&quot;);
+    //     let exception_data = pe.exception_data.expect(&quot;get exception data&quot;);
 
-    <span class="comment">//     // runtime function #4 has a redirect (unwind_info_address &amp; 1).</span>
-    <span class="comment">//     let rt_function = RuntimeFunction {</span>
-    <span class="comment">//         begin_address: 0x1355,</span>
-    <span class="comment">//         end_address: 0x1420,</span>
-    <span class="comment">//         unwind_info_address: 0x4019,</span>
-    <span class="comment">//     };</span>
+    //     // runtime function #4 has a redirect (unwind_info_address &amp; 1).
+    //     let rt_function = RuntimeFunction {
+    //         begin_address: 0x1355,
+    //         end_address: 0x1420,
+    //         unwind_info_address: 0x4019,
+    //     };
 
-    <span class="comment">//     let unwind_info = exception_data</span>
-    <span class="comment">//         .get_unwind_info(rt_function, &amp;pe.sections)</span>
-    <span class="comment">//         .expect(&quot;get unwind info&quot;);</span>
+    //     let unwind_info = exception_data
+    //         .get_unwind_info(rt_function, &amp;pe.sections)
+    //         .expect(&quot;get unwind info&quot;);
 
-    <span class="comment">//     // Unwind codes just used to assert that the right unwind info was resolved</span>
-    <span class="comment">//     let expected = &amp;[</span>
-    <span class="comment">//         28, 100, 15, 0, 28, 84, 14, 0, 28, 52, 12, 0, 28, 82, 24, 240, 22, 224, 20, 208, 18,</span>
-    <span class="comment">//         192, 16, 112,</span>
-    <span class="comment">//     ];</span>
+    //     // Unwind codes just used to assert that the right unwind info was resolved
+    //     let expected = &amp;[
+    //         28, 100, 15, 0, 28, 84, 14, 0, 28, 52, 12, 0, 28, 82, 24, 240, 22, 224, 20, 208, 18,
+    //         192, 16, 112,
+    //     ];
 
-    <span class="comment">//     assert_eq!(unwind_info.code_bytes, expected);</span>
-    <span class="comment">// }</span>
+    //     assert_eq!(unwind_info.code_bytes, expected);
+    // }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">test_iter_unwind_codes</span>() {
-        <span class="kw">let</span> <span class="ident">unwind_info</span> <span class="op">=</span> <span class="ident">UnwindInfo</span> {
-            <span class="ident">version</span>: <span class="number">1</span>,
-            <span class="ident">size_of_prolog</span>: <span class="number">4</span>,
-            <span class="ident">frame_register</span>: <span class="ident">Register</span>(<span class="number">0</span>),
-            <span class="ident">frame_register_offset</span>: <span class="number">0</span>,
-            <span class="ident">chained_info</span>: <span class="prelude-val">None</span>,
-            <span class="ident">handler</span>: <span class="prelude-val">None</span>,
-            <span class="ident">code_bytes</span>: <span class="kw-2">&amp;</span>[<span class="number">4</span>, <span class="number">98</span>],
+    </span><span class="attribute">#[test]
+    </span><span class="kw">fn </span>test_iter_unwind_codes() {
+        <span class="kw">let </span>unwind_info = UnwindInfo {
+            version: <span class="number">1</span>,
+            size_of_prolog: <span class="number">4</span>,
+            frame_register: Register(<span class="number">0</span>),
+            frame_register_offset: <span class="number">0</span>,
+            chained_info: <span class="prelude-val">None</span>,
+            handler: <span class="prelude-val">None</span>,
+            code_bytes: <span class="kw-2">&amp;</span>[<span class="number">4</span>, <span class="number">98</span>],
         };
 
-        <span class="kw">let</span> <span class="ident">unwind_codes</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">UnwindCode</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">unwind_info</span>
-            .<span class="ident">unwind_codes</span>()
-            .<span class="ident">map</span>(<span class="op">|</span><span class="ident">result</span><span class="op">|</span> <span class="ident">result</span>.<span class="ident">expect</span>(<span class="string">&quot;parse unwind code&quot;</span>))
-            .<span class="ident">collect</span>();
+        <span class="kw">let </span>unwind_codes: Vec&lt;UnwindCode&gt; = unwind_info
+            .unwind_codes()
+            .map(|result| result.expect(<span class="string">&quot;parse unwind code&quot;</span>))
+            .collect();
 
-        <span class="macro">assert_eq!</span>(<span class="ident">unwind_codes</span>.<span class="ident">len</span>(), <span class="number">1</span>);
+        <span class="macro">assert_eq!</span>(unwind_codes.len(), <span class="number">1</span>);
 
-        <span class="kw">let</span> <span class="ident">expected</span> <span class="op">=</span> <span class="ident">UnwindCode</span> {
-            <span class="ident">code_offset</span>: <span class="number">4</span>,
-            <span class="ident">operation</span>: <span class="ident">UnwindOperation::Alloc</span>(<span class="number">56</span>),
+        <span class="kw">let </span>expected = UnwindCode {
+            code_offset: <span class="number">4</span>,
+            operation: UnwindOperation::Alloc(<span class="number">56</span>),
         };
 
-        <span class="macro">assert_eq!</span>(<span class="ident">unwind_codes</span>[<span class="number">0</span>], <span class="ident">expected</span>);
+        <span class="macro">assert_eq!</span>(unwind_codes[<span class="number">0</span>], expected);
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="goblin" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="goblin" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (77e57db38 2022-10-30)" ></div></body></html>

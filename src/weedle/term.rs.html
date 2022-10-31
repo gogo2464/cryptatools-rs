@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/weedle2-4.0.0/src/term.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>term.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../weedle/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../weedle/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../weedle/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/weedle2-4.0.0/src/term.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>term.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../weedle/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -697,704 +697,704 @@
 <span id="697">697</span>
 <span id="698">698</span>
 <span id="699">699</span>
-</pre><pre class="rust"><code><span class="macro">macro_rules!</span> <span class="ident">generate_terms</span> {
-    ($( $(<span class="attribute">#[<span class="macro-nonterminal">$</span><span class="macro-nonterminal">attr</span>:<span class="ident">meta</span>]</span>)<span class="op">*</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">typ</span>:<span class="ident">ident</span> =&gt; <span class="macro-nonterminal">$</span><span class="macro-nonterminal">tok</span>:<span class="ident">expr</span> ),<span class="kw-2">*</span>) =&gt; {
+</pre><pre class="rust"><code><span class="macro">macro_rules! </span>generate_terms {
+    ($( $(<span class="attribute">#[<span class="macro-nonterminal">$attr</span>:meta]</span>)* <span class="macro-nonterminal">$typ</span>:ident =&gt; <span class="macro-nonterminal">$tok</span>:expr ),<span class="kw-2">*</span>) =&gt; {
         $(
-            $(<span class="attribute">#[<span class="macro-nonterminal">$</span><span class="macro-nonterminal">attr</span>]</span>)<span class="op">*</span>
-            <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Debug</span>, <span class="ident">Default</span>, <span class="ident">Eq</span>, <span class="ident">Hash</span>, <span class="ident">Ord</span>, <span class="ident">PartialEq</span>, <span class="ident">PartialOrd</span>)]</span>
-            <span class="kw">pub</span> <span class="kw">struct</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">typ</span>;
+            $(<span class="attribute">#[<span class="macro-nonterminal">$attr</span>]</span>)*
+            <span class="attribute">#[derive(Clone, Copy, Debug, Default, Eq, Hash, Ord, PartialEq, PartialOrd)]
+            </span><span class="kw">pub struct </span><span class="macro-nonterminal">$typ</span>;
 
-            <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::Parse</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">typ</span> {
-                <span class="macro">parser!</span>(<span class="ident">nom::combinator::value</span>(
-                    <span class="macro-nonterminal">$</span><span class="macro-nonterminal">typ</span>,
-                    <span class="ident"><span class="kw">crate</span>::whitespace::ws</span>(
-                        <span class="ident">nom::bytes::complete::tag</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">tok</span>)
+            <span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; <span class="macro-nonterminal">$crate::Parse</span>&lt;<span class="lifetime">&#39;a</span>&gt; <span class="kw">for </span><span class="macro-nonterminal">$typ </span>{
+                <span class="macro">parser!</span>(nom::combinator::value(
+                    <span class="macro-nonterminal">$typ</span>,
+                    <span class="kw">crate</span>::whitespace::ws(
+                        nom::bytes::complete::tag(<span class="macro-nonterminal">$tok</span>)
                     )
                 ));
             }
-        )<span class="op">*</span>
+        )*
     };
 }
 
-<span class="kw">struct</span> <span class="ident">AlphaNumUnderscoreDash</span>;
+<span class="kw">struct </span>AlphaNumUnderscoreDash;
 
-<span class="kw">impl</span> <span class="ident">nom::FindToken</span><span class="op">&lt;</span><span class="ident">char</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">AlphaNumUnderscoreDash</span> {
-    <span class="kw">fn</span> <span class="ident">find_token</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">token</span>: <span class="ident">char</span>) -&gt; <span class="ident">bool</span> {
-        <span class="ident"><span class="kw">crate</span>::common::is_alphanum_underscore_dash</span>(<span class="ident">token</span>)
+<span class="kw">impl </span>nom::FindToken&lt;char&gt; <span class="kw">for </span>AlphaNumUnderscoreDash {
+    <span class="kw">fn </span>find_token(<span class="kw-2">&amp;</span><span class="self">self</span>, token: char) -&gt; bool {
+        <span class="kw">crate</span>::common::is_alphanum_underscore_dash(token)
     }
 }
 
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">ident_tag</span>(<span class="ident">tag</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span>) -&gt; <span class="kw">impl</span> <span class="ident">FnMut</span>(<span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="ident">nom::IResult</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span> {
-    <span class="kw">move</span> <span class="op">|</span><span class="ident">input</span><span class="op">|</span> {
-        <span class="ident">nom::sequence::terminated</span>(
-            <span class="ident">nom::bytes::complete::tag</span>(<span class="ident">tag</span>),
-            <span class="ident">nom::combinator::not</span>(<span class="ident">nom::combinator::map_parser</span>(
-                <span class="ident">nom::bytes::complete::take</span>(<span class="number">1usize</span>),
-                <span class="ident">nom::bytes::complete::is_a</span>(<span class="ident">AlphaNumUnderscoreDash</span>),
+<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>ident_tag(tag: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str) -&gt; <span class="kw">impl </span>FnMut(<span class="kw-2">&amp;</span>str) -&gt; nom::IResult&lt;<span class="kw-2">&amp;</span>str, <span class="kw-2">&amp;</span>str&gt; {
+    <span class="kw">move </span>|input| {
+        nom::sequence::terminated(
+            nom::bytes::complete::tag(tag),
+            nom::combinator::not(nom::combinator::map_parser(
+                nom::bytes::complete::take(<span class="number">1usize</span>),
+                nom::bytes::complete::is_a(AlphaNumUnderscoreDash),
             )),
-        )(<span class="ident">input</span>)
+        )(input)
     }
 }
 
-<span class="macro">macro_rules!</span> <span class="ident">generate_terms_for_names</span> {
-    ($( $(<span class="attribute">#[<span class="macro-nonterminal">$</span><span class="macro-nonterminal">attr</span>:<span class="ident">meta</span>]</span>)<span class="op">*</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">typ</span>:<span class="ident">ident</span> =&gt; <span class="macro-nonterminal">$</span><span class="macro-nonterminal">tok</span>:<span class="ident">expr</span>,)<span class="kw-2">*</span>) =&gt; {
+<span class="macro">macro_rules! </span>generate_terms_for_names {
+    ($( $(<span class="attribute">#[<span class="macro-nonterminal">$attr</span>:meta]</span>)* <span class="macro-nonterminal">$typ</span>:ident =&gt; <span class="macro-nonterminal">$tok</span>:expr,)<span class="kw-2">*</span>) =&gt; {
         $(
-            $(<span class="attribute">#[<span class="macro-nonterminal">$</span><span class="macro-nonterminal">attr</span>]</span>)<span class="op">*</span>
-            <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Debug</span>, <span class="ident">Default</span>, <span class="ident">Eq</span>, <span class="ident">Hash</span>, <span class="ident">Ord</span>, <span class="ident">PartialEq</span>, <span class="ident">PartialOrd</span>)]</span>
-            <span class="kw">pub</span> <span class="kw">struct</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">typ</span>;
+            $(<span class="attribute">#[<span class="macro-nonterminal">$attr</span>]</span>)*
+            <span class="attribute">#[derive(Clone, Copy, Debug, Default, Eq, Hash, Ord, PartialEq, PartialOrd)]
+            </span><span class="kw">pub struct </span><span class="macro-nonterminal">$typ</span>;
 
-            <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::Parse</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">typ</span> {
-                <span class="macro">parser!</span>(<span class="ident">nom::combinator::value</span>(
-                    <span class="macro-nonterminal">$</span><span class="macro-nonterminal">typ</span>,
-                    <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::whitespace::ws</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::ident_tag</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">tok</span>))
+            <span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; <span class="macro-nonterminal">$crate::Parse</span>&lt;<span class="lifetime">&#39;a</span>&gt; <span class="kw">for </span><span class="macro-nonterminal">$typ </span>{
+                <span class="macro">parser!</span>(nom::combinator::value(
+                    <span class="macro-nonterminal">$typ</span>,
+                    <span class="macro-nonterminal">$crate::whitespace::ws</span>(<span class="macro-nonterminal">$crate::term::ident_tag</span>(<span class="macro-nonterminal">$tok</span>))
                 ));
             }
-        )<span class="op">*</span>
+        )*
     };
 }
 
-<span class="macro">generate_terms!</span> {
-    <span class="doccomment">/// Represents the terminal symbol `(`</span>
-    <span class="ident">OpenParen</span> =&gt; <span class="string">&quot;(&quot;</span>,
+<span class="macro">generate_terms! </span>{
+    <span class="doccomment">/// Represents the terminal symbol `(`
+    </span>OpenParen =&gt; <span class="string">&quot;(&quot;</span>,
 
-    <span class="doccomment">/// Represents the terminal symbol `)`</span>
-    <span class="ident">CloseParen</span> =&gt; <span class="string">&quot;)&quot;</span>,
+    <span class="doccomment">/// Represents the terminal symbol `)`
+    </span>CloseParen =&gt; <span class="string">&quot;)&quot;</span>,
 
-    <span class="doccomment">/// Represents the terminal symbol `[`</span>
-    <span class="ident">OpenBracket</span> =&gt; <span class="string">&quot;[&quot;</span>,
+    <span class="doccomment">/// Represents the terminal symbol `[`
+    </span>OpenBracket =&gt; <span class="string">&quot;[&quot;</span>,
 
-    <span class="doccomment">/// Represents the terminal symbol `]`</span>
-    <span class="ident">CloseBracket</span> =&gt; <span class="string">&quot;]&quot;</span>,
+    <span class="doccomment">/// Represents the terminal symbol `]`
+    </span>CloseBracket =&gt; <span class="string">&quot;]&quot;</span>,
 
-    <span class="doccomment">/// Represents the terminal symbol `{`</span>
-    <span class="ident">OpenBrace</span> =&gt; <span class="string">&quot;{&quot;</span>,
+    <span class="doccomment">/// Represents the terminal symbol `{`
+    </span>OpenBrace =&gt; <span class="string">&quot;{&quot;</span>,
 
-    <span class="doccomment">/// Represents the terminal symbol `}`</span>
-    <span class="ident">CloseBrace</span> =&gt; <span class="string">&quot;}&quot;</span>,
+    <span class="doccomment">/// Represents the terminal symbol `}`
+    </span>CloseBrace =&gt; <span class="string">&quot;}&quot;</span>,
 
-    <span class="doccomment">/// Represents the terminal symbol `,`</span>
-    <span class="ident">Comma</span> =&gt; <span class="string">&quot;,&quot;</span>,
+    <span class="doccomment">/// Represents the terminal symbol `,`
+    </span>Comma =&gt; <span class="string">&quot;,&quot;</span>,
 
-    <span class="doccomment">/// Represents the terminal symbol `-`</span>
-    <span class="ident">Minus</span> =&gt; <span class="string">&quot;-&quot;</span>,
+    <span class="doccomment">/// Represents the terminal symbol `-`
+    </span>Minus =&gt; <span class="string">&quot;-&quot;</span>,
 
-    <span class="doccomment">/// Represents the terminal symbol `.`</span>
-    <span class="ident">Dot</span> =&gt; <span class="string">&quot;.&quot;</span>,
+    <span class="doccomment">/// Represents the terminal symbol `.`
+    </span>Dot =&gt; <span class="string">&quot;.&quot;</span>,
 
-    <span class="doccomment">/// Represents the terminal symbol `...`</span>
-    <span class="ident">Ellipsis</span> =&gt; <span class="string">&quot;...&quot;</span>,
+    <span class="doccomment">/// Represents the terminal symbol `...`
+    </span>Ellipsis =&gt; <span class="string">&quot;...&quot;</span>,
 
-    <span class="doccomment">/// Represents the terminal symbol `:`</span>
-    <span class="ident">Colon</span> =&gt; <span class="string">&quot;:&quot;</span>,
+    <span class="doccomment">/// Represents the terminal symbol `:`
+    </span>Colon =&gt; <span class="string">&quot;:&quot;</span>,
 
-    <span class="doccomment">/// Represents the terminal symbol `;`</span>
-    <span class="ident">SemiColon</span> =&gt; <span class="string">&quot;;&quot;</span>,
+    <span class="doccomment">/// Represents the terminal symbol `;`
+    </span>SemiColon =&gt; <span class="string">&quot;;&quot;</span>,
 
-    <span class="doccomment">/// Represents the terminal symbol `&lt;`</span>
-    <span class="ident">LessThan</span> =&gt; <span class="string">&quot;&lt;&quot;</span>,
+    <span class="doccomment">/// Represents the terminal symbol `&lt;`
+    </span>LessThan =&gt; <span class="string">&quot;&lt;&quot;</span>,
 
-    <span class="doccomment">/// Represents the terminal symbol `=`</span>
-    <span class="ident">Assign</span> =&gt; <span class="string">&quot;=&quot;</span>,
+    <span class="doccomment">/// Represents the terminal symbol `=`
+    </span>Assign =&gt; <span class="string">&quot;=&quot;</span>,
 
-    <span class="doccomment">/// Represents the terminal symbol `&gt;`</span>
-    <span class="ident">GreaterThan</span> =&gt; <span class="string">&quot;&gt;&quot;</span>,
+    <span class="doccomment">/// Represents the terminal symbol `&gt;`
+    </span>GreaterThan =&gt; <span class="string">&quot;&gt;&quot;</span>,
 
-    <span class="doccomment">/// Represents the terminal symbol `?`</span>
-    <span class="ident">QMark</span> =&gt; <span class="string">&quot;?&quot;</span>
+    <span class="doccomment">/// Represents the terminal symbol `?`
+    </span>QMark =&gt; <span class="string">&quot;?&quot;
+</span>}
+
+<span class="macro">generate_terms_for_names! </span>{
+    <span class="doccomment">/// Represents the terminal symbol `or`
+    </span>Or =&gt; <span class="string">&quot;or&quot;</span>,
+
+    <span class="doccomment">/// Represents the terminal symbol `optional`
+    </span>Optional =&gt; <span class="string">&quot;optional&quot;</span>,
+
+    <span class="doccomment">/// Represents the terminal symbol `async`
+    </span>Async =&gt; <span class="string">&quot;async&quot;</span>,
+
+    <span class="doccomment">/// Represents the terminal symbol `attribute`
+    </span>Attribute =&gt; <span class="string">&quot;attribute&quot;</span>,
+
+    <span class="doccomment">/// Represents the terminal symbol `callback`
+    </span>Callback =&gt; <span class="string">&quot;callback&quot;</span>,
+
+    <span class="doccomment">/// Represents the terminal symbol `const`
+    </span>Const =&gt; <span class="string">&quot;const&quot;</span>,
+
+    <span class="doccomment">/// Represents the terminal symbol `deleter`
+    </span>Deleter =&gt; <span class="string">&quot;deleter&quot;</span>,
+
+    <span class="doccomment">/// Represents the terminal symbol `dictionary`
+    </span>Dictionary =&gt; <span class="string">&quot;dictionary&quot;</span>,
+
+    <span class="doccomment">/// Represents the terminal symbol `enum`
+    </span>Enum =&gt; <span class="string">&quot;enum&quot;</span>,
+
+    <span class="doccomment">/// Represents the terminal symbol `getter`
+    </span>Getter =&gt; <span class="string">&quot;getter&quot;</span>,
+
+    <span class="doccomment">/// Represents the terminal symbol `includes`
+    </span>Includes =&gt; <span class="string">&quot;includes&quot;</span>,
+
+    <span class="doccomment">/// Represents the terminal symbol `inherit`
+    </span>Inherit =&gt; <span class="string">&quot;inherit&quot;</span>,
+
+    <span class="doccomment">/// Represents the terminal symbol `interface`
+    </span>Interface =&gt; <span class="string">&quot;interface&quot;</span>,
+
+    <span class="doccomment">/// Represents the terminal symbol `iterable`
+    </span>Iterable =&gt; <span class="string">&quot;iterable&quot;</span>,
+
+    <span class="doccomment">/// Represents the terminal symbol `maplike`
+    </span>Maplike =&gt; <span class="string">&quot;maplike&quot;</span>,
+
+    <span class="doccomment">/// Represents the terminal symbol `namespace`
+    </span>Namespace =&gt; <span class="string">&quot;namespace&quot;</span>,
+
+    <span class="doccomment">/// Represents the terminal symbol `partial`
+    </span>Partial =&gt; <span class="string">&quot;partial&quot;</span>,
+
+    <span class="doccomment">/// Represents the terminal symbol `required`
+    </span>Required =&gt; <span class="string">&quot;required&quot;</span>,
+
+    <span class="doccomment">/// Represents the terminal symbol `setlike`
+    </span>Setlike =&gt; <span class="string">&quot;setlike&quot;</span>,
+
+    <span class="doccomment">/// Represents the terminal symbol `setter`
+    </span>Setter =&gt; <span class="string">&quot;setter&quot;</span>,
+
+    <span class="doccomment">/// Represents the terminal symbol `static`
+    </span>Static =&gt; <span class="string">&quot;static&quot;</span>,
+
+    <span class="doccomment">/// Represents the terminal symbol `stringifier`
+    </span>Stringifier =&gt; <span class="string">&quot;stringifier&quot;</span>,
+
+    <span class="doccomment">/// Represents the terminal symbol `typedef`
+    </span>Typedef =&gt; <span class="string">&quot;typedef&quot;</span>,
+
+    <span class="doccomment">/// Represents the terminal symbol `unrestricted`
+    </span>Unrestricted =&gt; <span class="string">&quot;unrestricted&quot;</span>,
+
+    <span class="doccomment">/// Represents the terminal symbol `symbol`
+    </span>Symbol =&gt; <span class="string">&quot;symbol&quot;</span>,
+
+    <span class="doccomment">/// Represents the terminal symbol `Infinity`
+    </span>NegInfinity =&gt; <span class="string">&quot;-Infinity&quot;</span>,
+
+    <span class="doccomment">/// Represents the terminal symbol `ByteString`
+    </span>ByteString =&gt; <span class="string">&quot;ByteString&quot;</span>,
+
+    <span class="doccomment">/// Represents the terminal symbol `DOMString`
+    </span>DOMString =&gt; <span class="string">&quot;DOMString&quot;</span>,
+
+    <span class="doccomment">/// Represents the terminal symbol `FrozenArray`
+    </span>FrozenArray =&gt; <span class="string">&quot;FrozenArray&quot;</span>,
+
+    <span class="doccomment">/// Represents the terminal symbol `Infinity`
+    </span>Infinity =&gt; <span class="string">&quot;Infinity&quot;</span>,
+
+    <span class="doccomment">/// Represents the terminal symbol `NaN`
+    </span>NaN =&gt; <span class="string">&quot;NaN&quot;</span>,
+
+    <span class="doccomment">/// Represents the terminal symbol `USVString`
+    </span>USVString =&gt; <span class="string">&quot;USVString&quot;</span>,
+
+    <span class="doccomment">/// Represents the terminal symbol `any`
+    </span>Any =&gt; <span class="string">&quot;any&quot;</span>,
+
+    <span class="doccomment">/// Represents the terminal symbol `boolean`
+    </span>Boolean =&gt; <span class="string">&quot;boolean&quot;</span>,
+
+    <span class="doccomment">/// Represents the terminal symbol `byte`
+    </span>Byte =&gt; <span class="string">&quot;byte&quot;</span>,
+
+    <span class="doccomment">/// Represents the terminal symbol `double`
+    </span>Double =&gt; <span class="string">&quot;double&quot;</span>,
+
+    <span class="doccomment">/// Represents the terminal symbol `false`
+    </span>False =&gt; <span class="string">&quot;false&quot;</span>,
+
+    <span class="doccomment">/// Represents the terminal symbol `float`
+    </span>Float =&gt; <span class="string">&quot;float&quot;</span>,
+
+    <span class="doccomment">/// Represents the terminal symbol `long`
+    </span>Long =&gt; <span class="string">&quot;long&quot;</span>,
+
+    <span class="doccomment">/// Represents the terminal symbol `null`
+    </span>Null =&gt; <span class="string">&quot;null&quot;</span>,
+
+    <span class="doccomment">/// Represents the terminal symbol `object`
+    </span>Object =&gt; <span class="string">&quot;object&quot;</span>,
+
+    <span class="doccomment">/// Represents the terminal symbol `octet`
+    </span>Octet =&gt; <span class="string">&quot;octet&quot;</span>,
+
+    <span class="doccomment">/// Represents the terminal symbol `sequence`
+    </span>Sequence =&gt; <span class="string">&quot;sequence&quot;</span>,
+
+    <span class="doccomment">/// Represents the terminal symbol `short`
+    </span>Short =&gt; <span class="string">&quot;short&quot;</span>,
+
+    <span class="doccomment">/// Represents the terminal symbol `true`
+    </span>True =&gt; <span class="string">&quot;true&quot;</span>,
+
+    <span class="doccomment">/// Represents the terminal symbol `unsigned`
+    </span>Unsigned =&gt; <span class="string">&quot;unsigned&quot;</span>,
+
+    <span class="doccomment">/// Represents the terminal symbol `undefined`
+    </span>Undefined =&gt; <span class="string">&quot;undefined&quot;</span>,
+
+    <span class="doccomment">/// Represents the terminal symbol `record`
+    </span>Record =&gt; <span class="string">&quot;record&quot;</span>,
+
+    <span class="doccomment">/// Represents the terminal symbol `ArrayBuffer`
+    </span>ArrayBuffer =&gt; <span class="string">&quot;ArrayBuffer&quot;</span>,
+
+    <span class="doccomment">/// Represents the terminal symbol `DataView`
+    </span>DataView =&gt; <span class="string">&quot;DataView&quot;</span>,
+
+    <span class="doccomment">/// Represents the terminal symbol `Int8Array`
+    </span>Int8Array =&gt; <span class="string">&quot;Int8Array&quot;</span>,
+
+    <span class="doccomment">/// Represents the terminal symbol `Int16Array`
+    </span>Int16Array =&gt; <span class="string">&quot;Int16Array&quot;</span>,
+
+    <span class="doccomment">/// Represents the terminal symbol `Int32Array`
+    </span>Int32Array =&gt; <span class="string">&quot;Int32Array&quot;</span>,
+
+    <span class="doccomment">/// Represents the terminal symbol `Uint8Array`
+    </span>Uint8Array =&gt; <span class="string">&quot;Uint8Array&quot;</span>,
+
+    <span class="doccomment">/// Represents the terminal symbol `Uint16Array`
+    </span>Uint16Array =&gt; <span class="string">&quot;Uint16Array&quot;</span>,
+
+    <span class="doccomment">/// Represents the terminal symbol `Uint32Array`
+    </span>Uint32Array =&gt; <span class="string">&quot;Uint32Array&quot;</span>,
+
+    <span class="doccomment">/// Represents the terminal symbol `Uint8ClampedArray`
+    </span>Uint8ClampedArray =&gt; <span class="string">&quot;Uint8ClampedArray&quot;</span>,
+
+    <span class="doccomment">/// Represents the terminal symbol `Float32Array`
+    </span>Float32Array =&gt; <span class="string">&quot;Float32Array&quot;</span>,
+
+    <span class="doccomment">/// Represents the terminal symbol `Float64Array`
+    </span>Float64Array =&gt; <span class="string">&quot;Float64Array&quot;</span>,
+
+    <span class="doccomment">/// Represents the terminal symbol `ArrayBufferView`
+    </span>ArrayBufferView =&gt; <span class="string">&quot;ArrayBufferView&quot;</span>,
+
+    <span class="doccomment">/// Represents the terminal symbol `BufferSource
+    </span>BufferSource =&gt; <span class="string">&quot;BufferSource&quot;</span>,
+
+    <span class="doccomment">/// Represents the terminal symbol `Promise`
+    </span>Promise =&gt; <span class="string">&quot;Promise&quot;</span>,
+
+    <span class="doccomment">/// Represents the terminal symbol `Error`
+    </span>Error =&gt; <span class="string">&quot;Error&quot;</span>,
+
+    <span class="doccomment">/// Represents the terminal symbol `readonly`
+    </span>ReadOnly =&gt; <span class="string">&quot;readonly&quot;</span>,
+
+    <span class="doccomment">/// Represents the terminal symbol `mixin`
+    </span>Mixin =&gt; <span class="string">&quot;mixin&quot;</span>,
+
+    <span class="doccomment">/// Represents the terminal symbol `implements`
+    </span>Implements =&gt; <span class="string">&quot;implements&quot;</span>,
+
+    <span class="doccomment">/// Represents the terminal symbol `legacycaller`
+    </span>LegacyCaller =&gt; <span class="string">&quot;legacycaller&quot;</span>,
+
+    <span class="doccomment">/// Represents the terminal symbol `constructor`
+    </span>Constructor =&gt; <span class="string">&quot;constructor&quot;</span>,
 }
 
-<span class="macro">generate_terms_for_names!</span> {
-    <span class="doccomment">/// Represents the terminal symbol `or`</span>
-    <span class="ident">Or</span> =&gt; <span class="string">&quot;or&quot;</span>,
-
-    <span class="doccomment">/// Represents the terminal symbol `optional`</span>
-    <span class="ident">Optional</span> =&gt; <span class="string">&quot;optional&quot;</span>,
-
-    <span class="doccomment">/// Represents the terminal symbol `async`</span>
-    <span class="ident">Async</span> =&gt; <span class="string">&quot;async&quot;</span>,
-
-    <span class="doccomment">/// Represents the terminal symbol `attribute`</span>
-    <span class="ident">Attribute</span> =&gt; <span class="string">&quot;attribute&quot;</span>,
-
-    <span class="doccomment">/// Represents the terminal symbol `callback`</span>
-    <span class="ident">Callback</span> =&gt; <span class="string">&quot;callback&quot;</span>,
-
-    <span class="doccomment">/// Represents the terminal symbol `const`</span>
-    <span class="ident">Const</span> =&gt; <span class="string">&quot;const&quot;</span>,
-
-    <span class="doccomment">/// Represents the terminal symbol `deleter`</span>
-    <span class="ident">Deleter</span> =&gt; <span class="string">&quot;deleter&quot;</span>,
-
-    <span class="doccomment">/// Represents the terminal symbol `dictionary`</span>
-    <span class="ident">Dictionary</span> =&gt; <span class="string">&quot;dictionary&quot;</span>,
-
-    <span class="doccomment">/// Represents the terminal symbol `enum`</span>
-    <span class="ident">Enum</span> =&gt; <span class="string">&quot;enum&quot;</span>,
-
-    <span class="doccomment">/// Represents the terminal symbol `getter`</span>
-    <span class="ident">Getter</span> =&gt; <span class="string">&quot;getter&quot;</span>,
-
-    <span class="doccomment">/// Represents the terminal symbol `includes`</span>
-    <span class="ident">Includes</span> =&gt; <span class="string">&quot;includes&quot;</span>,
-
-    <span class="doccomment">/// Represents the terminal symbol `inherit`</span>
-    <span class="ident">Inherit</span> =&gt; <span class="string">&quot;inherit&quot;</span>,
-
-    <span class="doccomment">/// Represents the terminal symbol `interface`</span>
-    <span class="ident">Interface</span> =&gt; <span class="string">&quot;interface&quot;</span>,
-
-    <span class="doccomment">/// Represents the terminal symbol `iterable`</span>
-    <span class="ident">Iterable</span> =&gt; <span class="string">&quot;iterable&quot;</span>,
-
-    <span class="doccomment">/// Represents the terminal symbol `maplike`</span>
-    <span class="ident">Maplike</span> =&gt; <span class="string">&quot;maplike&quot;</span>,
-
-    <span class="doccomment">/// Represents the terminal symbol `namespace`</span>
-    <span class="ident">Namespace</span> =&gt; <span class="string">&quot;namespace&quot;</span>,
-
-    <span class="doccomment">/// Represents the terminal symbol `partial`</span>
-    <span class="ident">Partial</span> =&gt; <span class="string">&quot;partial&quot;</span>,
-
-    <span class="doccomment">/// Represents the terminal symbol `required`</span>
-    <span class="ident">Required</span> =&gt; <span class="string">&quot;required&quot;</span>,
-
-    <span class="doccomment">/// Represents the terminal symbol `setlike`</span>
-    <span class="ident">Setlike</span> =&gt; <span class="string">&quot;setlike&quot;</span>,
-
-    <span class="doccomment">/// Represents the terminal symbol `setter`</span>
-    <span class="ident">Setter</span> =&gt; <span class="string">&quot;setter&quot;</span>,
-
-    <span class="doccomment">/// Represents the terminal symbol `static`</span>
-    <span class="ident">Static</span> =&gt; <span class="string">&quot;static&quot;</span>,
-
-    <span class="doccomment">/// Represents the terminal symbol `stringifier`</span>
-    <span class="ident">Stringifier</span> =&gt; <span class="string">&quot;stringifier&quot;</span>,
-
-    <span class="doccomment">/// Represents the terminal symbol `typedef`</span>
-    <span class="ident">Typedef</span> =&gt; <span class="string">&quot;typedef&quot;</span>,
-
-    <span class="doccomment">/// Represents the terminal symbol `unrestricted`</span>
-    <span class="ident">Unrestricted</span> =&gt; <span class="string">&quot;unrestricted&quot;</span>,
-
-    <span class="doccomment">/// Represents the terminal symbol `symbol`</span>
-    <span class="ident">Symbol</span> =&gt; <span class="string">&quot;symbol&quot;</span>,
-
-    <span class="doccomment">/// Represents the terminal symbol `Infinity`</span>
-    <span class="ident">NegInfinity</span> =&gt; <span class="string">&quot;-Infinity&quot;</span>,
-
-    <span class="doccomment">/// Represents the terminal symbol `ByteString`</span>
-    <span class="ident">ByteString</span> =&gt; <span class="string">&quot;ByteString&quot;</span>,
-
-    <span class="doccomment">/// Represents the terminal symbol `DOMString`</span>
-    <span class="ident">DOMString</span> =&gt; <span class="string">&quot;DOMString&quot;</span>,
-
-    <span class="doccomment">/// Represents the terminal symbol `FrozenArray`</span>
-    <span class="ident">FrozenArray</span> =&gt; <span class="string">&quot;FrozenArray&quot;</span>,
-
-    <span class="doccomment">/// Represents the terminal symbol `Infinity`</span>
-    <span class="ident">Infinity</span> =&gt; <span class="string">&quot;Infinity&quot;</span>,
-
-    <span class="doccomment">/// Represents the terminal symbol `NaN`</span>
-    <span class="ident">NaN</span> =&gt; <span class="string">&quot;NaN&quot;</span>,
-
-    <span class="doccomment">/// Represents the terminal symbol `USVString`</span>
-    <span class="ident">USVString</span> =&gt; <span class="string">&quot;USVString&quot;</span>,
-
-    <span class="doccomment">/// Represents the terminal symbol `any`</span>
-    <span class="ident">Any</span> =&gt; <span class="string">&quot;any&quot;</span>,
-
-    <span class="doccomment">/// Represents the terminal symbol `boolean`</span>
-    <span class="ident">Boolean</span> =&gt; <span class="string">&quot;boolean&quot;</span>,
-
-    <span class="doccomment">/// Represents the terminal symbol `byte`</span>
-    <span class="ident">Byte</span> =&gt; <span class="string">&quot;byte&quot;</span>,
-
-    <span class="doccomment">/// Represents the terminal symbol `double`</span>
-    <span class="ident">Double</span> =&gt; <span class="string">&quot;double&quot;</span>,
-
-    <span class="doccomment">/// Represents the terminal symbol `false`</span>
-    <span class="ident">False</span> =&gt; <span class="string">&quot;false&quot;</span>,
-
-    <span class="doccomment">/// Represents the terminal symbol `float`</span>
-    <span class="ident">Float</span> =&gt; <span class="string">&quot;float&quot;</span>,
-
-    <span class="doccomment">/// Represents the terminal symbol `long`</span>
-    <span class="ident">Long</span> =&gt; <span class="string">&quot;long&quot;</span>,
-
-    <span class="doccomment">/// Represents the terminal symbol `null`</span>
-    <span class="ident">Null</span> =&gt; <span class="string">&quot;null&quot;</span>,
-
-    <span class="doccomment">/// Represents the terminal symbol `object`</span>
-    <span class="ident">Object</span> =&gt; <span class="string">&quot;object&quot;</span>,
-
-    <span class="doccomment">/// Represents the terminal symbol `octet`</span>
-    <span class="ident">Octet</span> =&gt; <span class="string">&quot;octet&quot;</span>,
-
-    <span class="doccomment">/// Represents the terminal symbol `sequence`</span>
-    <span class="ident">Sequence</span> =&gt; <span class="string">&quot;sequence&quot;</span>,
-
-    <span class="doccomment">/// Represents the terminal symbol `short`</span>
-    <span class="ident">Short</span> =&gt; <span class="string">&quot;short&quot;</span>,
-
-    <span class="doccomment">/// Represents the terminal symbol `true`</span>
-    <span class="ident">True</span> =&gt; <span class="string">&quot;true&quot;</span>,
-
-    <span class="doccomment">/// Represents the terminal symbol `unsigned`</span>
-    <span class="ident">Unsigned</span> =&gt; <span class="string">&quot;unsigned&quot;</span>,
-
-    <span class="doccomment">/// Represents the terminal symbol `undefined`</span>
-    <span class="ident">Undefined</span> =&gt; <span class="string">&quot;undefined&quot;</span>,
-
-    <span class="doccomment">/// Represents the terminal symbol `record`</span>
-    <span class="ident">Record</span> =&gt; <span class="string">&quot;record&quot;</span>,
-
-    <span class="doccomment">/// Represents the terminal symbol `ArrayBuffer`</span>
-    <span class="ident">ArrayBuffer</span> =&gt; <span class="string">&quot;ArrayBuffer&quot;</span>,
-
-    <span class="doccomment">/// Represents the terminal symbol `DataView`</span>
-    <span class="ident">DataView</span> =&gt; <span class="string">&quot;DataView&quot;</span>,
-
-    <span class="doccomment">/// Represents the terminal symbol `Int8Array`</span>
-    <span class="ident">Int8Array</span> =&gt; <span class="string">&quot;Int8Array&quot;</span>,
-
-    <span class="doccomment">/// Represents the terminal symbol `Int16Array`</span>
-    <span class="ident">Int16Array</span> =&gt; <span class="string">&quot;Int16Array&quot;</span>,
-
-    <span class="doccomment">/// Represents the terminal symbol `Int32Array`</span>
-    <span class="ident">Int32Array</span> =&gt; <span class="string">&quot;Int32Array&quot;</span>,
-
-    <span class="doccomment">/// Represents the terminal symbol `Uint8Array`</span>
-    <span class="ident">Uint8Array</span> =&gt; <span class="string">&quot;Uint8Array&quot;</span>,
-
-    <span class="doccomment">/// Represents the terminal symbol `Uint16Array`</span>
-    <span class="ident">Uint16Array</span> =&gt; <span class="string">&quot;Uint16Array&quot;</span>,
-
-    <span class="doccomment">/// Represents the terminal symbol `Uint32Array`</span>
-    <span class="ident">Uint32Array</span> =&gt; <span class="string">&quot;Uint32Array&quot;</span>,
-
-    <span class="doccomment">/// Represents the terminal symbol `Uint8ClampedArray`</span>
-    <span class="ident">Uint8ClampedArray</span> =&gt; <span class="string">&quot;Uint8ClampedArray&quot;</span>,
-
-    <span class="doccomment">/// Represents the terminal symbol `Float32Array`</span>
-    <span class="ident">Float32Array</span> =&gt; <span class="string">&quot;Float32Array&quot;</span>,
-
-    <span class="doccomment">/// Represents the terminal symbol `Float64Array`</span>
-    <span class="ident">Float64Array</span> =&gt; <span class="string">&quot;Float64Array&quot;</span>,
-
-    <span class="doccomment">/// Represents the terminal symbol `ArrayBufferView`</span>
-    <span class="ident">ArrayBufferView</span> =&gt; <span class="string">&quot;ArrayBufferView&quot;</span>,
-
-    <span class="doccomment">/// Represents the terminal symbol `BufferSource</span>
-    <span class="ident">BufferSource</span> =&gt; <span class="string">&quot;BufferSource&quot;</span>,
-
-    <span class="doccomment">/// Represents the terminal symbol `Promise`</span>
-    <span class="ident">Promise</span> =&gt; <span class="string">&quot;Promise&quot;</span>,
-
-    <span class="doccomment">/// Represents the terminal symbol `Error`</span>
-    <span class="ident">Error</span> =&gt; <span class="string">&quot;Error&quot;</span>,
-
-    <span class="doccomment">/// Represents the terminal symbol `readonly`</span>
-    <span class="ident">ReadOnly</span> =&gt; <span class="string">&quot;readonly&quot;</span>,
-
-    <span class="doccomment">/// Represents the terminal symbol `mixin`</span>
-    <span class="ident">Mixin</span> =&gt; <span class="string">&quot;mixin&quot;</span>,
-
-    <span class="doccomment">/// Represents the terminal symbol `implements`</span>
-    <span class="ident">Implements</span> =&gt; <span class="string">&quot;implements&quot;</span>,
-
-    <span class="doccomment">/// Represents the terminal symbol `legacycaller`</span>
-    <span class="ident">LegacyCaller</span> =&gt; <span class="string">&quot;legacycaller&quot;</span>,
-
-    <span class="doccomment">/// Represents the terminal symbol `constructor`</span>
-    <span class="ident">Constructor</span> =&gt; <span class="string">&quot;constructor&quot;</span>,
-}
-
-<span class="attribute">#[<span class="ident">macro_export</span>]</span>
-<span class="macro">macro_rules!</span> <span class="ident">term</span> {
-    (<span class="ident">OpenParen</span>) =&gt; {
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::OpenParen</span>
-    };
-    (<span class="ident">CloseParen</span>) =&gt; {
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::CloseParen</span>
-    };
-    (<span class="ident">OpenBracket</span>) =&gt; {
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::OpenBracket</span>
-    };
-    (<span class="ident">CloseBracket</span>) =&gt; {
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::CloseBracket</span>
-    };
-    (<span class="ident">OpenBrace</span>) =&gt; {
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::OpenBrace</span>
-    };
-    (<span class="ident">CloseBrace</span>) =&gt; {
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::CloseBrace</span>
-    };
+<span class="attribute">#[macro_export]
+</span><span class="macro">macro_rules! </span>term {
+    (OpenParen) =&gt; {
+        <span class="macro-nonterminal">$crate::term::OpenParen
+    </span>};
+    (CloseParen) =&gt; {
+        <span class="macro-nonterminal">$crate::term::CloseParen
+    </span>};
+    (OpenBracket) =&gt; {
+        <span class="macro-nonterminal">$crate::term::OpenBracket
+    </span>};
+    (CloseBracket) =&gt; {
+        <span class="macro-nonterminal">$crate::term::CloseBracket
+    </span>};
+    (OpenBrace) =&gt; {
+        <span class="macro-nonterminal">$crate::term::OpenBrace
+    </span>};
+    (CloseBrace) =&gt; {
+        <span class="macro-nonterminal">$crate::term::CloseBrace
+    </span>};
     (,) =&gt; {
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::Comma</span>
-    };
-    (<span class="op">-</span>) =&gt; {
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::Minus</span>
-    };
+        <span class="macro-nonterminal">$crate::term::Comma
+    </span>};
+    (-) =&gt; {
+        <span class="macro-nonterminal">$crate::term::Minus
+    </span>};
     (.) =&gt; {
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::Dot</span>
-    };
+        <span class="macro-nonterminal">$crate::term::Dot
+    </span>};
     (...) =&gt; {
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::Ellipsis</span>
-    };
+        <span class="macro-nonterminal">$crate::term::Ellipsis
+    </span>};
     (:) =&gt; {
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::Colon</span>
-    };
+        <span class="macro-nonterminal">$crate::term::Colon
+    </span>};
     (;) =&gt; {
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::SemiColon</span>
-    };
-    (<span class="op">&lt;</span>) =&gt; {
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::LessThan</span>
-    };
-    (<span class="op">=</span>) =&gt; {
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::Assign</span>
-    };
-    (<span class="op">&gt;</span>) =&gt; {
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::GreaterThan</span>
-    };
+        <span class="macro-nonterminal">$crate::term::SemiColon
+    </span>};
+    (&lt;) =&gt; {
+        <span class="macro-nonterminal">$crate::term::LessThan
+    </span>};
+    (=) =&gt; {
+        <span class="macro-nonterminal">$crate::term::Assign
+    </span>};
+    (&gt;) =&gt; {
+        <span class="macro-nonterminal">$crate::term::GreaterThan
+    </span>};
     (<span class="question-mark">?</span>) =&gt; {
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::QMark</span>
-    };
-    (<span class="ident">or</span>) =&gt; {
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::Or</span>
-    };
-    (<span class="ident">optional</span>) =&gt; {
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::Optional</span>
-    };
+        <span class="macro-nonterminal">$crate::term::QMark
+    </span>};
+    (or) =&gt; {
+        <span class="macro-nonterminal">$crate::term::Or
+    </span>};
+    (optional) =&gt; {
+        <span class="macro-nonterminal">$crate::term::Optional
+    </span>};
     (<span class="kw">async</span>) =&gt; {
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::Async</span>
-    };
-    (<span class="ident">attribute</span>) =&gt; {
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::Attribute</span>
-    };
-    (<span class="ident">callback</span>) =&gt; {
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::Callback</span>
-    };
+        <span class="macro-nonterminal">$crate::term::Async
+    </span>};
+    (attribute) =&gt; {
+        <span class="macro-nonterminal">$crate::term::Attribute
+    </span>};
+    (callback) =&gt; {
+        <span class="macro-nonterminal">$crate::term::Callback
+    </span>};
     (<span class="kw">const</span>) =&gt; {
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::Const</span>
-    };
-    (<span class="ident">deleter</span>) =&gt; {
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::Deleter</span>
-    };
-    (<span class="ident">dictionary</span>) =&gt; {
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::Dictionary</span>
-    };
+        <span class="macro-nonterminal">$crate::term::Const
+    </span>};
+    (deleter) =&gt; {
+        <span class="macro-nonterminal">$crate::term::Deleter
+    </span>};
+    (dictionary) =&gt; {
+        <span class="macro-nonterminal">$crate::term::Dictionary
+    </span>};
     (<span class="kw">enum</span>) =&gt; {
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::Enum</span>
-    };
-    (<span class="ident">getter</span>) =&gt; {
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::Getter</span>
-    };
-    (<span class="ident">includes</span>) =&gt; {
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::Includes</span>
-    };
-    (<span class="ident">inherit</span>) =&gt; {
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::Inherit</span>
-    };
-    (<span class="ident">interface</span>) =&gt; {
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::Interface</span>
-    };
-    (<span class="ident">iterable</span>) =&gt; {
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::Iterable</span>
-    };
-    (<span class="ident">maplike</span>) =&gt; {
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::Maplike</span>
-    };
-    (<span class="ident">namespace</span>) =&gt; {
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::Namespace</span>
-    };
-    (<span class="ident">partial</span>) =&gt; {
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::Partial</span>
-    };
-    (<span class="ident">required</span>) =&gt; {
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::Required</span>
-    };
-    (<span class="ident">setlike</span>) =&gt; {
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::Setlike</span>
-    };
-    (<span class="ident">setter</span>) =&gt; {
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::Setter</span>
-    };
+        <span class="macro-nonterminal">$crate::term::Enum
+    </span>};
+    (getter) =&gt; {
+        <span class="macro-nonterminal">$crate::term::Getter
+    </span>};
+    (includes) =&gt; {
+        <span class="macro-nonterminal">$crate::term::Includes
+    </span>};
+    (inherit) =&gt; {
+        <span class="macro-nonterminal">$crate::term::Inherit
+    </span>};
+    (interface) =&gt; {
+        <span class="macro-nonterminal">$crate::term::Interface
+    </span>};
+    (iterable) =&gt; {
+        <span class="macro-nonterminal">$crate::term::Iterable
+    </span>};
+    (maplike) =&gt; {
+        <span class="macro-nonterminal">$crate::term::Maplike
+    </span>};
+    (namespace) =&gt; {
+        <span class="macro-nonterminal">$crate::term::Namespace
+    </span>};
+    (partial) =&gt; {
+        <span class="macro-nonterminal">$crate::term::Partial
+    </span>};
+    (required) =&gt; {
+        <span class="macro-nonterminal">$crate::term::Required
+    </span>};
+    (setlike) =&gt; {
+        <span class="macro-nonterminal">$crate::term::Setlike
+    </span>};
+    (setter) =&gt; {
+        <span class="macro-nonterminal">$crate::term::Setter
+    </span>};
     (<span class="kw">static</span>) =&gt; {
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::Static</span>
-    };
-    (<span class="ident">stringifier</span>) =&gt; {
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::Stringifier</span>
-    };
-    (<span class="ident">typedef</span>) =&gt; {
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::Typedef</span>
-    };
-    (<span class="ident">unrestricted</span>) =&gt; {
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::Unrestricted</span>
-    };
-    (<span class="ident">symbol</span>) =&gt; {
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::Symbol</span>
-    };
-    (<span class="op">-</span> <span class="ident">Infinity</span>) =&gt; {
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::NegInfinity</span>
-    };
-    (<span class="ident">ByteString</span>) =&gt; {
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::ByteString</span>
-    };
-    (<span class="ident">DOMString</span>) =&gt; {
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::DOMString</span>
-    };
-    (<span class="ident">FrozenArray</span>) =&gt; {
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::FrozenArray</span>
-    };
-    (<span class="ident">Infinity</span>) =&gt; {
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::Infinity</span>
-    };
-    (<span class="ident">NaN</span>) =&gt; {
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::NaN</span>
-    };
-    (<span class="ident">USVString</span>) =&gt; {
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::USVString</span>
-    };
-    (<span class="ident">any</span>) =&gt; {
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::Any</span>
-    };
-    (<span class="ident">boolean</span>) =&gt; {
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::Boolean</span>
-    };
-    (<span class="ident">byte</span>) =&gt; {
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::Byte</span>
-    };
-    (<span class="ident">double</span>) =&gt; {
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::Double</span>
-    };
+        <span class="macro-nonterminal">$crate::term::Static
+    </span>};
+    (stringifier) =&gt; {
+        <span class="macro-nonterminal">$crate::term::Stringifier
+    </span>};
+    (typedef) =&gt; {
+        <span class="macro-nonterminal">$crate::term::Typedef
+    </span>};
+    (unrestricted) =&gt; {
+        <span class="macro-nonterminal">$crate::term::Unrestricted
+    </span>};
+    (symbol) =&gt; {
+        <span class="macro-nonterminal">$crate::term::Symbol
+    </span>};
+    (- Infinity) =&gt; {
+        <span class="macro-nonterminal">$crate::term::NegInfinity
+    </span>};
+    (ByteString) =&gt; {
+        <span class="macro-nonterminal">$crate::term::ByteString
+    </span>};
+    (DOMString) =&gt; {
+        <span class="macro-nonterminal">$crate::term::DOMString
+    </span>};
+    (FrozenArray) =&gt; {
+        <span class="macro-nonterminal">$crate::term::FrozenArray
+    </span>};
+    (Infinity) =&gt; {
+        <span class="macro-nonterminal">$crate::term::Infinity
+    </span>};
+    (NaN) =&gt; {
+        <span class="macro-nonterminal">$crate::term::NaN
+    </span>};
+    (USVString) =&gt; {
+        <span class="macro-nonterminal">$crate::term::USVString
+    </span>};
+    (any) =&gt; {
+        <span class="macro-nonterminal">$crate::term::Any
+    </span>};
+    (boolean) =&gt; {
+        <span class="macro-nonterminal">$crate::term::Boolean
+    </span>};
+    (byte) =&gt; {
+        <span class="macro-nonterminal">$crate::term::Byte
+    </span>};
+    (double) =&gt; {
+        <span class="macro-nonterminal">$crate::term::Double
+    </span>};
     (<span class="bool-val">false</span>) =&gt; {
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::False</span>
-    };
-    (<span class="ident">float</span>) =&gt; {
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::Float</span>
-    };
-    (<span class="ident">long</span>) =&gt; {
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::Long</span>
-    };
-    (<span class="ident">null</span>) =&gt; {
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::Null</span>
-    };
-    (<span class="ident">object</span>) =&gt; {
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::Object</span>
-    };
-    (<span class="ident">octet</span>) =&gt; {
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::Octet</span>
-    };
-    (<span class="ident">sequence</span>) =&gt; {
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::Sequence</span>
-    };
-    (<span class="ident">short</span>) =&gt; {
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::Short</span>
-    };
+        <span class="macro-nonterminal">$crate::term::False
+    </span>};
+    (float) =&gt; {
+        <span class="macro-nonterminal">$crate::term::Float
+    </span>};
+    (long) =&gt; {
+        <span class="macro-nonterminal">$crate::term::Long
+    </span>};
+    (null) =&gt; {
+        <span class="macro-nonterminal">$crate::term::Null
+    </span>};
+    (object) =&gt; {
+        <span class="macro-nonterminal">$crate::term::Object
+    </span>};
+    (octet) =&gt; {
+        <span class="macro-nonterminal">$crate::term::Octet
+    </span>};
+    (sequence) =&gt; {
+        <span class="macro-nonterminal">$crate::term::Sequence
+    </span>};
+    (short) =&gt; {
+        <span class="macro-nonterminal">$crate::term::Short
+    </span>};
     (<span class="bool-val">true</span>) =&gt; {
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::True</span>
-    };
-    (<span class="ident">unsigned</span>) =&gt; {
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::Unsigned</span>
-    };
-    (<span class="ident">undefined</span>) =&gt; {
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::Undefined</span>
-    };
-    (<span class="ident">record</span>) =&gt; {
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::Record</span>
-    };
-    (<span class="ident">ArrayBuffer</span>) =&gt; {
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::ArrayBuffer</span>
-    };
-    (<span class="ident">DataView</span>) =&gt; {
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::DataView</span>
-    };
-    (<span class="ident">Int8Array</span>) =&gt; {
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::Int8Array</span>
-    };
-    (<span class="ident">Int16Array</span>) =&gt; {
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::Int16Array</span>
-    };
-    (<span class="ident">Int32Array</span>) =&gt; {
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::Int32Array</span>
-    };
-    (<span class="ident">Uint8Array</span>) =&gt; {
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::Uint8Array</span>
-    };
-    (<span class="ident">Uint16Array</span>) =&gt; {
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::Uint16Array</span>
-    };
-    (<span class="ident">Uint32Array</span>) =&gt; {
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::Uint32Array</span>
-    };
-    (<span class="ident">Uint8ClampedArray</span>) =&gt; {
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::Uint8ClampedArray</span>
-    };
-    (<span class="ident">Float32Array</span>) =&gt; {
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::Float32Array</span>
-    };
-    (<span class="ident">Float64Array</span>) =&gt; {
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::Float64Array</span>
-    };
-    (<span class="ident">ArrayBufferView</span>) =&gt; {
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::ArrayBufferView</span>
-    };
-    (<span class="ident">BufferSource</span>) =&gt; {
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::BufferSource</span>
-    };
-    (<span class="ident">Promise</span>) =&gt; {
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::Promise</span>
-    };
-    (<span class="ident">Error</span>) =&gt; {
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::Error</span>
-    };
-    (<span class="ident">readonly</span>) =&gt; {
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::ReadOnly</span>
-    };
-    (<span class="ident">mixin</span>) =&gt; {
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::Mixin</span>
-    };
-    (<span class="ident">implements</span>) =&gt; {
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::Implements</span>
-    };
-    (<span class="ident">legacycaller</span>) =&gt; {
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::LegacyCaller</span>
-    };
-    (<span class="ident">constructor</span>) =&gt; {
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::term::Constructor</span>
-    };
+        <span class="macro-nonterminal">$crate::term::True
+    </span>};
+    (unsigned) =&gt; {
+        <span class="macro-nonterminal">$crate::term::Unsigned
+    </span>};
+    (undefined) =&gt; {
+        <span class="macro-nonterminal">$crate::term::Undefined
+    </span>};
+    (record) =&gt; {
+        <span class="macro-nonterminal">$crate::term::Record
+    </span>};
+    (ArrayBuffer) =&gt; {
+        <span class="macro-nonterminal">$crate::term::ArrayBuffer
+    </span>};
+    (DataView) =&gt; {
+        <span class="macro-nonterminal">$crate::term::DataView
+    </span>};
+    (Int8Array) =&gt; {
+        <span class="macro-nonterminal">$crate::term::Int8Array
+    </span>};
+    (Int16Array) =&gt; {
+        <span class="macro-nonterminal">$crate::term::Int16Array
+    </span>};
+    (Int32Array) =&gt; {
+        <span class="macro-nonterminal">$crate::term::Int32Array
+    </span>};
+    (Uint8Array) =&gt; {
+        <span class="macro-nonterminal">$crate::term::Uint8Array
+    </span>};
+    (Uint16Array) =&gt; {
+        <span class="macro-nonterminal">$crate::term::Uint16Array
+    </span>};
+    (Uint32Array) =&gt; {
+        <span class="macro-nonterminal">$crate::term::Uint32Array
+    </span>};
+    (Uint8ClampedArray) =&gt; {
+        <span class="macro-nonterminal">$crate::term::Uint8ClampedArray
+    </span>};
+    (Float32Array) =&gt; {
+        <span class="macro-nonterminal">$crate::term::Float32Array
+    </span>};
+    (Float64Array) =&gt; {
+        <span class="macro-nonterminal">$crate::term::Float64Array
+    </span>};
+    (ArrayBufferView) =&gt; {
+        <span class="macro-nonterminal">$crate::term::ArrayBufferView
+    </span>};
+    (BufferSource) =&gt; {
+        <span class="macro-nonterminal">$crate::term::BufferSource
+    </span>};
+    (Promise) =&gt; {
+        <span class="macro-nonterminal">$crate::term::Promise
+    </span>};
+    (Error) =&gt; {
+        <span class="macro-nonterminal">$crate::term::Error
+    </span>};
+    (readonly) =&gt; {
+        <span class="macro-nonterminal">$crate::term::ReadOnly
+    </span>};
+    (mixin) =&gt; {
+        <span class="macro-nonterminal">$crate::term::Mixin
+    </span>};
+    (implements) =&gt; {
+        <span class="macro-nonterminal">$crate::term::Implements
+    </span>};
+    (legacycaller) =&gt; {
+        <span class="macro-nonterminal">$crate::term::LegacyCaller
+    </span>};
+    (constructor) =&gt; {
+        <span class="macro-nonterminal">$crate::term::Constructor
+    </span>};
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
-<span class="kw">mod</span> <span class="ident">test</span> {
-    <span class="macro">macro_rules!</span> <span class="ident">generate_tests</span> {
-        ($(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">m</span>:<span class="ident">ident</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">typ</span>:<span class="ident">ident</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">string</span>:<span class="ident">expr</span>;)<span class="kw-2">*</span>) =&gt; {
+<span class="attribute">#[cfg(test)]
+</span><span class="kw">mod </span>test {
+    <span class="macro">macro_rules! </span>generate_tests {
+        ($(<span class="macro-nonterminal">$m</span>:ident, <span class="macro-nonterminal">$typ</span>:ident, <span class="macro-nonterminal">$string</span>:expr;)<span class="kw-2">*</span>) =&gt; {
             $(
-                <span class="kw">mod</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">m</span> {
-                    <span class="kw">use</span> <span class="ident"><span class="kw">super</span>::<span class="kw">super</span></span>::<span class="macro-nonterminal">$</span><span class="macro-nonterminal">typ</span>;
-                    <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::Parse</span>;
+                <span class="kw">mod </span><span class="macro-nonterminal">$m </span>{
+                    <span class="kw">use </span><span class="kw">super</span>::<span class="kw">super</span>::<span class="macro-nonterminal">$typ</span>;
+                    <span class="kw">use </span><span class="kw">crate</span>::Parse;
 
-                    <span class="attribute">#[<span class="ident">test</span>]</span>
-                    <span class="kw">fn</span> <span class="ident">should_parse</span>() {
-                        <span class="kw">let</span> (<span class="ident">rem</span>, <span class="ident">parsed</span>) <span class="op">=</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">typ::parse</span>(<span class="macro">concat!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">string</span>)).<span class="ident">unwrap</span>();
-                        <span class="macro">assert_eq!</span>(<span class="ident">rem</span>, <span class="string">&quot;&quot;</span>);
-                        <span class="macro">assert_eq!</span>(<span class="ident">parsed</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">typ</span>);
+                    <span class="attribute">#[test]
+                    </span><span class="kw">fn </span>should_parse() {
+                        <span class="kw">let </span>(rem, parsed) = <span class="macro-nonterminal">$typ::parse</span>(<span class="macro">concat!</span>(<span class="macro-nonterminal">$string</span>)).unwrap();
+                        <span class="macro">assert_eq!</span>(rem, <span class="string">&quot;&quot;</span>);
+                        <span class="macro">assert_eq!</span>(parsed, <span class="macro-nonterminal">$typ</span>);
                     }
 
-                    <span class="attribute">#[<span class="ident">test</span>]</span>
-                    <span class="kw">fn</span> <span class="ident">should_parse_with_preceding_spaces</span>() {
-                        <span class="kw">let</span> (<span class="ident">rem</span>, <span class="ident">parsed</span>) <span class="op">=</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">typ::parse</span>(<span class="macro">concat!</span>(<span class="string">&quot;  &quot;</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">string</span>)).<span class="ident">unwrap</span>();
-                        <span class="macro">assert_eq!</span>(<span class="ident">rem</span>, <span class="string">&quot;&quot;</span>);
-                        <span class="macro">assert_eq!</span>(<span class="ident">parsed</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">typ</span>);
+                    <span class="attribute">#[test]
+                    </span><span class="kw">fn </span>should_parse_with_preceding_spaces() {
+                        <span class="kw">let </span>(rem, parsed) = <span class="macro-nonterminal">$typ::parse</span>(<span class="macro">concat!</span>(<span class="string">&quot;  &quot;</span>, <span class="macro-nonterminal">$string</span>)).unwrap();
+                        <span class="macro">assert_eq!</span>(rem, <span class="string">&quot;&quot;</span>);
+                        <span class="macro">assert_eq!</span>(parsed, <span class="macro-nonterminal">$typ</span>);
                     }
 
-                    <span class="attribute">#[<span class="ident">test</span>]</span>
-                    <span class="kw">fn</span> <span class="ident">should_parse_with_succeeding_spaces</span>() {
-                        <span class="kw">let</span> (<span class="ident">rem</span>, <span class="ident">parsed</span>) <span class="op">=</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">typ::parse</span>(<span class="macro">concat!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">string</span>, <span class="string">&quot;  &quot;</span>)).<span class="ident">unwrap</span>();
-                        <span class="macro">assert_eq!</span>(<span class="ident">rem</span>, <span class="string">&quot;&quot;</span>);
-                        <span class="macro">assert_eq!</span>(<span class="ident">parsed</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">typ</span>);
+                    <span class="attribute">#[test]
+                    </span><span class="kw">fn </span>should_parse_with_succeeding_spaces() {
+                        <span class="kw">let </span>(rem, parsed) = <span class="macro-nonterminal">$typ::parse</span>(<span class="macro">concat!</span>(<span class="macro-nonterminal">$string</span>, <span class="string">&quot;  &quot;</span>)).unwrap();
+                        <span class="macro">assert_eq!</span>(rem, <span class="string">&quot;&quot;</span>);
+                        <span class="macro">assert_eq!</span>(parsed, <span class="macro-nonterminal">$typ</span>);
                     }
 
-                    <span class="attribute">#[<span class="ident">test</span>]</span>
-                    <span class="kw">fn</span> <span class="ident">should_parse_with_surrounding_spaces</span>() {
-                        <span class="kw">let</span> (<span class="ident">rem</span>, <span class="ident">parsed</span>) <span class="op">=</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">typ::parse</span>(<span class="macro">concat!</span>(<span class="string">&quot;  &quot;</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">string</span>, <span class="string">&quot;  &quot;</span>)).<span class="ident">unwrap</span>();
-                        <span class="macro">assert_eq!</span>(<span class="ident">rem</span>, <span class="string">&quot;&quot;</span>);
-                        <span class="macro">assert_eq!</span>(<span class="ident">parsed</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">typ</span>);
+                    <span class="attribute">#[test]
+                    </span><span class="kw">fn </span>should_parse_with_surrounding_spaces() {
+                        <span class="kw">let </span>(rem, parsed) = <span class="macro-nonterminal">$typ::parse</span>(<span class="macro">concat!</span>(<span class="string">&quot;  &quot;</span>, <span class="macro-nonterminal">$string</span>, <span class="string">&quot;  &quot;</span>)).unwrap();
+                        <span class="macro">assert_eq!</span>(rem, <span class="string">&quot;&quot;</span>);
+                        <span class="macro">assert_eq!</span>(parsed, <span class="macro-nonterminal">$typ</span>);
                     }
 
-                    <span class="attribute">#[<span class="ident">test</span>]</span>
-                    <span class="kw">fn</span> <span class="ident">should_parse_if_anything_next</span>() {
-                        <span class="kw">let</span> (<span class="ident">rem</span>, <span class="ident">parsed</span>) <span class="op">=</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">typ::parse</span>(<span class="macro">concat!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">string</span>, <span class="string">&quot;  anything&quot;</span>)).<span class="ident">unwrap</span>();
-                        <span class="macro">assert_eq!</span>(<span class="ident">rem</span>, <span class="string">&quot;anything&quot;</span>);
-                        <span class="macro">assert_eq!</span>(<span class="ident">parsed</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">typ</span>);
+                    <span class="attribute">#[test]
+                    </span><span class="kw">fn </span>should_parse_if_anything_next() {
+                        <span class="kw">let </span>(rem, parsed) = <span class="macro-nonterminal">$typ::parse</span>(<span class="macro">concat!</span>(<span class="macro-nonterminal">$string</span>, <span class="string">&quot;  anything&quot;</span>)).unwrap();
+                        <span class="macro">assert_eq!</span>(rem, <span class="string">&quot;anything&quot;</span>);
+                        <span class="macro">assert_eq!</span>(parsed, <span class="macro-nonterminal">$typ</span>);
                     }
                 }
-            )<span class="op">*</span>
+            )*
         };
     }
 
     <span class="macro">generate_tests!</span>[
-        <span class="ident">openparen</span>, <span class="ident">OpenParen</span>, <span class="string">&quot;(&quot;</span>;
-        <span class="ident">closeparen</span>, <span class="ident">CloseParen</span>, <span class="string">&quot;)&quot;</span>;
-        <span class="ident">openbracket</span>, <span class="ident">OpenBracket</span>, <span class="string">&quot;[&quot;</span>;
-        <span class="ident">closebracket</span>, <span class="ident">CloseBracket</span>, <span class="string">&quot;]&quot;</span>;
-        <span class="ident">openbrace</span>, <span class="ident">OpenBrace</span>, <span class="string">&quot;{&quot;</span>;
-        <span class="ident">closebrace</span>, <span class="ident">CloseBrace</span>, <span class="string">&quot;}&quot;</span>;
-        <span class="ident">comma</span>, <span class="ident">Comma</span>, <span class="string">&quot;,&quot;</span>;
-        <span class="ident">minus</span>, <span class="ident">Minus</span>, <span class="string">&quot;-&quot;</span>;
-        <span class="ident">dot</span>, <span class="ident">Dot</span>, <span class="string">&quot;.&quot;</span>;
-        <span class="ident">ellipsis</span>, <span class="ident">Ellipsis</span>, <span class="string">&quot;...&quot;</span>;
-        <span class="ident">colon</span>, <span class="ident">Colon</span>, <span class="string">&quot;:&quot;</span>;
-        <span class="ident">semicolon</span>, <span class="ident">SemiColon</span>, <span class="string">&quot;;&quot;</span>;
-        <span class="ident">lessthan</span>, <span class="ident">LessThan</span>, <span class="string">&quot;&lt;&quot;</span>;
-        <span class="ident">assign</span>, <span class="ident">Assign</span>, <span class="string">&quot;=&quot;</span>;
-        <span class="ident">greaterthan</span>, <span class="ident">GreaterThan</span>, <span class="string">&quot;&gt;&quot;</span>;
-        <span class="ident">qmark</span>, <span class="ident">QMark</span>, <span class="string">&quot;?&quot;</span>;
-        <span class="ident">or</span>, <span class="ident">Or</span>, <span class="string">&quot;or&quot;</span>;
-        <span class="ident">optional</span>, <span class="ident">Optional</span>, <span class="string">&quot;optional&quot;</span>;
-        <span class="ident">async_</span>, <span class="ident">Async</span>, <span class="string">&quot;async&quot;</span>;
-        <span class="ident">attribute</span>, <span class="ident">Attribute</span>, <span class="string">&quot;attribute&quot;</span>;
-        <span class="ident">callback</span>, <span class="ident">Callback</span>, <span class="string">&quot;callback&quot;</span>;
-        <span class="ident">const_</span>, <span class="ident">Const</span>, <span class="string">&quot;const&quot;</span>;
-        <span class="ident">deleter</span>, <span class="ident">Deleter</span>, <span class="string">&quot;deleter&quot;</span>;
-        <span class="ident">dictionary</span>, <span class="ident">Dictionary</span>, <span class="string">&quot;dictionary&quot;</span>;
-        <span class="ident">enum_</span>, <span class="ident">Enum</span>, <span class="string">&quot;enum&quot;</span>;
-        <span class="ident">getter</span>, <span class="ident">Getter</span>, <span class="string">&quot;getter&quot;</span>;
-        <span class="ident">includes</span>, <span class="ident">Includes</span>, <span class="string">&quot;includes&quot;</span>;
-        <span class="ident">inherit</span>, <span class="ident">Inherit</span>, <span class="string">&quot;inherit&quot;</span>;
-        <span class="ident">interface</span>, <span class="ident">Interface</span>, <span class="string">&quot;interface&quot;</span>;
-        <span class="ident">iterable</span>, <span class="ident">Iterable</span>, <span class="string">&quot;iterable&quot;</span>;
-        <span class="ident">maplike</span>, <span class="ident">Maplike</span>, <span class="string">&quot;maplike&quot;</span>;
-        <span class="ident">namespace</span>, <span class="ident">Namespace</span>, <span class="string">&quot;namespace&quot;</span>;
-        <span class="ident">partial</span>, <span class="ident">Partial</span>, <span class="string">&quot;partial&quot;</span>;
-        <span class="ident">required</span>, <span class="ident">Required</span>, <span class="string">&quot;required&quot;</span>;
-        <span class="ident">setlike</span>, <span class="ident">Setlike</span>, <span class="string">&quot;setlike&quot;</span>;
-        <span class="ident">setter</span>, <span class="ident">Setter</span>, <span class="string">&quot;setter&quot;</span>;
-        <span class="ident">static_</span>, <span class="ident">Static</span>, <span class="string">&quot;static&quot;</span>;
-        <span class="ident">stringifier</span>, <span class="ident">Stringifier</span>, <span class="string">&quot;stringifier&quot;</span>;
-        <span class="ident">typedef</span>, <span class="ident">Typedef</span>, <span class="string">&quot;typedef&quot;</span>;
-        <span class="ident">unrestricted</span>, <span class="ident">Unrestricted</span>, <span class="string">&quot;unrestricted&quot;</span>;
-        <span class="ident">symbol</span>, <span class="ident">Symbol</span>, <span class="string">&quot;symbol&quot;</span>;
-        <span class="ident">neginfinity</span>, <span class="ident">NegInfinity</span>, <span class="string">&quot;-Infinity&quot;</span>;
-        <span class="ident">bytestring</span>, <span class="ident">ByteString</span>, <span class="string">&quot;ByteString&quot;</span>;
-        <span class="ident">domstring</span>, <span class="ident">DOMString</span>, <span class="string">&quot;DOMString&quot;</span>;
-        <span class="ident">frozenarray</span>, <span class="ident">FrozenArray</span>, <span class="string">&quot;FrozenArray&quot;</span>;
-        <span class="ident">infinity</span>, <span class="ident">Infinity</span>, <span class="string">&quot;Infinity&quot;</span>;
-        <span class="ident">nan</span>, <span class="ident">NaN</span>, <span class="string">&quot;NaN&quot;</span>;
-        <span class="ident">usvstring</span>, <span class="ident">USVString</span>, <span class="string">&quot;USVString&quot;</span>;
-        <span class="ident">any</span>, <span class="ident">Any</span>, <span class="string">&quot;any&quot;</span>;
-        <span class="ident">boolean</span>, <span class="ident">Boolean</span>, <span class="string">&quot;boolean&quot;</span>;
-        <span class="ident">byte</span>, <span class="ident">Byte</span>, <span class="string">&quot;byte&quot;</span>;
-        <span class="ident">double</span>, <span class="ident">Double</span>, <span class="string">&quot;double&quot;</span>;
-        <span class="ident">false_</span>, <span class="ident">False</span>, <span class="string">&quot;false&quot;</span>;
-        <span class="ident">float</span>, <span class="ident">Float</span>, <span class="string">&quot;float&quot;</span>;
-        <span class="ident">long</span>, <span class="ident">Long</span>, <span class="string">&quot;long&quot;</span>;
-        <span class="ident">null</span>, <span class="ident">Null</span>, <span class="string">&quot;null&quot;</span>;
-        <span class="ident">object</span>, <span class="ident">Object</span>, <span class="string">&quot;object&quot;</span>;
-        <span class="ident">octet</span>, <span class="ident">Octet</span>, <span class="string">&quot;octet&quot;</span>;
-        <span class="ident">sequence</span>, <span class="ident">Sequence</span>, <span class="string">&quot;sequence&quot;</span>;
-        <span class="ident">short</span>, <span class="ident">Short</span>, <span class="string">&quot;short&quot;</span>;
-        <span class="ident">true_</span>, <span class="ident">True</span>, <span class="string">&quot;true&quot;</span>;
-        <span class="ident">unsigned</span>, <span class="ident">Unsigned</span>, <span class="string">&quot;unsigned&quot;</span>;
-        <span class="ident">undefined</span>, <span class="ident">Undefined</span>, <span class="string">&quot;undefined&quot;</span>;
-        <span class="ident">record</span>, <span class="ident">Record</span>, <span class="string">&quot;record&quot;</span>;
-        <span class="ident">arraybuffer</span>, <span class="ident">ArrayBuffer</span>, <span class="string">&quot;ArrayBuffer&quot;</span>;
-        <span class="ident">dataview</span>, <span class="ident">DataView</span>, <span class="string">&quot;DataView&quot;</span>;
-        <span class="ident">int8array</span>, <span class="ident">Int8Array</span>, <span class="string">&quot;Int8Array&quot;</span>;
-        <span class="ident">int16array</span>, <span class="ident">Int16Array</span>, <span class="string">&quot;Int16Array&quot;</span>;
-        <span class="ident">int32array</span>, <span class="ident">Int32Array</span>, <span class="string">&quot;Int32Array&quot;</span>;
-        <span class="ident">uint8array</span>, <span class="ident">Uint8Array</span>, <span class="string">&quot;Uint8Array&quot;</span>;
-        <span class="ident">uint16array</span>, <span class="ident">Uint16Array</span>, <span class="string">&quot;Uint16Array&quot;</span>;
-        <span class="ident">uint32array</span>, <span class="ident">Uint32Array</span>, <span class="string">&quot;Uint32Array&quot;</span>;
-        <span class="ident">uint8clampedarray</span>, <span class="ident">Uint8ClampedArray</span>, <span class="string">&quot;Uint8ClampedArray&quot;</span>;
-        <span class="ident">float32array</span>, <span class="ident">Float32Array</span>, <span class="string">&quot;Float32Array&quot;</span>;
-        <span class="ident">float64array</span>, <span class="ident">Float64Array</span>, <span class="string">&quot;Float64Array&quot;</span>;
-        <span class="ident">promise</span>, <span class="ident">Promise</span>, <span class="string">&quot;Promise&quot;</span>;
-        <span class="ident">error</span>, <span class="ident">Error</span>, <span class="string">&quot;Error&quot;</span>;
-        <span class="ident">implements</span>, <span class="ident">Implements</span>, <span class="string">&quot;implements&quot;</span>;
-        <span class="ident">legacycaller</span>, <span class="ident">LegacyCaller</span>, <span class="string">&quot;legacycaller&quot;</span>;
-        <span class="ident">constructor</span>, <span class="ident">Constructor</span>, <span class="string">&quot;constructor&quot;</span>;
+        openparen, OpenParen, <span class="string">&quot;(&quot;</span>;
+        closeparen, CloseParen, <span class="string">&quot;)&quot;</span>;
+        openbracket, OpenBracket, <span class="string">&quot;[&quot;</span>;
+        closebracket, CloseBracket, <span class="string">&quot;]&quot;</span>;
+        openbrace, OpenBrace, <span class="string">&quot;{&quot;</span>;
+        closebrace, CloseBrace, <span class="string">&quot;}&quot;</span>;
+        comma, Comma, <span class="string">&quot;,&quot;</span>;
+        minus, Minus, <span class="string">&quot;-&quot;</span>;
+        dot, Dot, <span class="string">&quot;.&quot;</span>;
+        ellipsis, Ellipsis, <span class="string">&quot;...&quot;</span>;
+        colon, Colon, <span class="string">&quot;:&quot;</span>;
+        semicolon, SemiColon, <span class="string">&quot;;&quot;</span>;
+        lessthan, LessThan, <span class="string">&quot;&lt;&quot;</span>;
+        assign, Assign, <span class="string">&quot;=&quot;</span>;
+        greaterthan, GreaterThan, <span class="string">&quot;&gt;&quot;</span>;
+        qmark, QMark, <span class="string">&quot;?&quot;</span>;
+        or, Or, <span class="string">&quot;or&quot;</span>;
+        optional, Optional, <span class="string">&quot;optional&quot;</span>;
+        async_, Async, <span class="string">&quot;async&quot;</span>;
+        attribute, Attribute, <span class="string">&quot;attribute&quot;</span>;
+        callback, Callback, <span class="string">&quot;callback&quot;</span>;
+        const_, Const, <span class="string">&quot;const&quot;</span>;
+        deleter, Deleter, <span class="string">&quot;deleter&quot;</span>;
+        dictionary, Dictionary, <span class="string">&quot;dictionary&quot;</span>;
+        enum_, Enum, <span class="string">&quot;enum&quot;</span>;
+        getter, Getter, <span class="string">&quot;getter&quot;</span>;
+        includes, Includes, <span class="string">&quot;includes&quot;</span>;
+        inherit, Inherit, <span class="string">&quot;inherit&quot;</span>;
+        interface, Interface, <span class="string">&quot;interface&quot;</span>;
+        iterable, Iterable, <span class="string">&quot;iterable&quot;</span>;
+        maplike, Maplike, <span class="string">&quot;maplike&quot;</span>;
+        namespace, Namespace, <span class="string">&quot;namespace&quot;</span>;
+        partial, Partial, <span class="string">&quot;partial&quot;</span>;
+        required, Required, <span class="string">&quot;required&quot;</span>;
+        setlike, Setlike, <span class="string">&quot;setlike&quot;</span>;
+        setter, Setter, <span class="string">&quot;setter&quot;</span>;
+        static_, Static, <span class="string">&quot;static&quot;</span>;
+        stringifier, Stringifier, <span class="string">&quot;stringifier&quot;</span>;
+        typedef, Typedef, <span class="string">&quot;typedef&quot;</span>;
+        unrestricted, Unrestricted, <span class="string">&quot;unrestricted&quot;</span>;
+        symbol, Symbol, <span class="string">&quot;symbol&quot;</span>;
+        neginfinity, NegInfinity, <span class="string">&quot;-Infinity&quot;</span>;
+        bytestring, ByteString, <span class="string">&quot;ByteString&quot;</span>;
+        domstring, DOMString, <span class="string">&quot;DOMString&quot;</span>;
+        frozenarray, FrozenArray, <span class="string">&quot;FrozenArray&quot;</span>;
+        infinity, Infinity, <span class="string">&quot;Infinity&quot;</span>;
+        nan, NaN, <span class="string">&quot;NaN&quot;</span>;
+        usvstring, USVString, <span class="string">&quot;USVString&quot;</span>;
+        any, Any, <span class="string">&quot;any&quot;</span>;
+        boolean, Boolean, <span class="string">&quot;boolean&quot;</span>;
+        byte, Byte, <span class="string">&quot;byte&quot;</span>;
+        double, Double, <span class="string">&quot;double&quot;</span>;
+        false_, False, <span class="string">&quot;false&quot;</span>;
+        float, Float, <span class="string">&quot;float&quot;</span>;
+        long, Long, <span class="string">&quot;long&quot;</span>;
+        null, Null, <span class="string">&quot;null&quot;</span>;
+        object, Object, <span class="string">&quot;object&quot;</span>;
+        octet, Octet, <span class="string">&quot;octet&quot;</span>;
+        sequence, Sequence, <span class="string">&quot;sequence&quot;</span>;
+        short, Short, <span class="string">&quot;short&quot;</span>;
+        true_, True, <span class="string">&quot;true&quot;</span>;
+        unsigned, Unsigned, <span class="string">&quot;unsigned&quot;</span>;
+        undefined, Undefined, <span class="string">&quot;undefined&quot;</span>;
+        record, Record, <span class="string">&quot;record&quot;</span>;
+        arraybuffer, ArrayBuffer, <span class="string">&quot;ArrayBuffer&quot;</span>;
+        dataview, DataView, <span class="string">&quot;DataView&quot;</span>;
+        int8array, Int8Array, <span class="string">&quot;Int8Array&quot;</span>;
+        int16array, Int16Array, <span class="string">&quot;Int16Array&quot;</span>;
+        int32array, Int32Array, <span class="string">&quot;Int32Array&quot;</span>;
+        uint8array, Uint8Array, <span class="string">&quot;Uint8Array&quot;</span>;
+        uint16array, Uint16Array, <span class="string">&quot;Uint16Array&quot;</span>;
+        uint32array, Uint32Array, <span class="string">&quot;Uint32Array&quot;</span>;
+        uint8clampedarray, Uint8ClampedArray, <span class="string">&quot;Uint8ClampedArray&quot;</span>;
+        float32array, Float32Array, <span class="string">&quot;Float32Array&quot;</span>;
+        float64array, Float64Array, <span class="string">&quot;Float64Array&quot;</span>;
+        promise, Promise, <span class="string">&quot;Promise&quot;</span>;
+        error, Error, <span class="string">&quot;Error&quot;</span>;
+        implements, Implements, <span class="string">&quot;implements&quot;</span>;
+        legacycaller, LegacyCaller, <span class="string">&quot;legacycaller&quot;</span>;
+        constructor, Constructor, <span class="string">&quot;constructor&quot;</span>;
     ];
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="weedle" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="weedle" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (77e57db38 2022-10-30)" ></div></body></html>

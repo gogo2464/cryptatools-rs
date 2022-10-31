@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/fs-err-2.8.1/src/errors.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>errors.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../fs_err/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../fs_err/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../fs_err/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/fs-err-2.9.0/src/errors.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>errors.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../fs_err/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -196,203 +196,203 @@
 <span id="196">196</span>
 <span id="197">197</span>
 <span id="198">198</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">std::error::Error</span> <span class="kw">as</span> <span class="ident">StdError</span>;
-<span class="kw">use</span> <span class="ident">std::fmt</span>;
-<span class="kw">use</span> <span class="ident">std::io</span>;
-<span class="kw">use</span> <span class="ident">std::path::PathBuf</span>;
+</pre><pre class="rust"><code><span class="kw">use </span>std::error::Error <span class="kw">as </span>StdError;
+<span class="kw">use </span>std::fmt;
+<span class="kw">use </span>std::io;
+<span class="kw">use </span>std::path::PathBuf;
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">enum</span> <span class="ident">ErrorKind</span> {
-    <span class="ident">OpenFile</span>,
-    <span class="ident">CreateFile</span>,
-    <span class="ident">CreateDir</span>,
-    <span class="ident">SyncFile</span>,
-    <span class="ident">SetLen</span>,
-    <span class="ident">Metadata</span>,
-    <span class="ident">Clone</span>,
-    <span class="ident">SetPermissions</span>,
-    <span class="ident">Read</span>,
-    <span class="ident">Seek</span>,
-    <span class="ident">Write</span>,
-    <span class="ident">Flush</span>,
-    <span class="ident">ReadDir</span>,
-    <span class="ident">RemoveFile</span>,
-    <span class="ident">RemoveDir</span>,
-    <span class="ident">Canonicalize</span>,
-    <span class="ident">ReadLink</span>,
-    <span class="ident">SymlinkMetadata</span>,
+<span class="attribute">#[derive(Debug, Clone, Copy)]
+</span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">enum </span>ErrorKind {
+    OpenFile,
+    CreateFile,
+    CreateDir,
+    SyncFile,
+    SetLen,
+    Metadata,
+    Clone,
+    SetPermissions,
+    Read,
+    Seek,
+    Write,
+    Flush,
+    ReadDir,
+    RemoveFile,
+    RemoveDir,
+    Canonicalize,
+    ReadLink,
+    SymlinkMetadata,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">windows</span>)]</span>
-    <span class="ident">SeekRead</span>,
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">windows</span>)]</span>
-    <span class="ident">SeekWrite</span>,
+    <span class="attribute">#[cfg(windows)]
+    </span>SeekRead,
+    <span class="attribute">#[cfg(windows)]
+    </span>SeekWrite,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">unix</span>)]</span>
-    <span class="ident">ReadAt</span>,
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">unix</span>)]</span>
-    <span class="ident">WriteAt</span>,
+    <span class="attribute">#[cfg(unix)]
+    </span>ReadAt,
+    <span class="attribute">#[cfg(unix)]
+    </span>WriteAt,
 }
 
-<span class="doccomment">/// Contains an IO error that has a file path attached.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// This type is never returned directly, but is instead wrapped inside yet</span>
-<span class="doccomment">/// another IO error.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct</span> <span class="ident">Error</span> {
-    <span class="ident">kind</span>: <span class="ident">ErrorKind</span>,
-    <span class="ident">source</span>: <span class="ident">io::Error</span>,
-    <span class="ident">path</span>: <span class="ident">PathBuf</span>,
+<span class="doccomment">/// Contains an IO error that has a file path attached.
+///
+/// This type is never returned directly, but is instead wrapped inside yet
+/// another IO error.
+</span><span class="attribute">#[derive(Debug)]
+</span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct </span>Error {
+    kind: ErrorKind,
+    source: io::Error,
+    path: PathBuf,
 }
 
-<span class="kw">impl</span> <span class="ident">Error</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">build</span>(<span class="ident">source</span>: <span class="ident">io::Error</span>, <span class="ident">kind</span>: <span class="ident">ErrorKind</span>, <span class="ident">path</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">PathBuf</span><span class="op">&gt;</span>) -&gt; <span class="ident">io::Error</span> {
-        <span class="ident">io::Error::new</span>(
-            <span class="ident">source</span>.<span class="ident">kind</span>(),
-            <span class="self">Self</span> {
-                <span class="ident">kind</span>,
-                <span class="ident">source</span>,
-                <span class="ident">path</span>: <span class="ident">path</span>.<span class="ident">into</span>(),
+<span class="kw">impl </span>Error {
+    <span class="kw">pub fn </span>build(source: io::Error, kind: ErrorKind, path: <span class="kw">impl </span>Into&lt;PathBuf&gt;) -&gt; io::Error {
+        io::Error::new(
+            source.kind(),
+            <span class="self">Self </span>{
+                kind,
+                source,
+                path: path.into(),
             },
         )
     }
 }
 
-<span class="kw">impl</span> <span class="ident">fmt::Display</span> <span class="kw">for</span> <span class="ident">Error</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">formatter</span>: <span class="kw-2">&amp;mut</span> <span class="ident">fmt::Formatter</span>) -&gt; <span class="ident">fmt::Result</span> {
-        <span class="kw">use</span> <span class="ident">ErrorKind</span>::<span class="kw-2">*</span>;
+<span class="kw">impl </span>fmt::Display <span class="kw">for </span>Error {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, formatter: <span class="kw-2">&amp;mut </span>fmt::Formatter) -&gt; fmt::Result {
+        <span class="kw">use </span>ErrorKind::<span class="kw-2">*</span>;
 
-        <span class="kw">let</span> <span class="ident">path</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">path</span>.<span class="ident">display</span>();
+        <span class="kw">let </span>path = <span class="self">self</span>.path.display();
 
-        <span class="kw">match</span> <span class="self">self</span>.<span class="ident">kind</span> {
-            <span class="ident">OpenFile</span> =&gt; <span class="macro">write!</span>(<span class="ident">formatter</span>, <span class="string">&quot;failed to open file `{}`&quot;</span>, <span class="ident">path</span>),
-            <span class="ident">CreateFile</span> =&gt; <span class="macro">write!</span>(<span class="ident">formatter</span>, <span class="string">&quot;failed to create file `{}`&quot;</span>, <span class="ident">path</span>),
-            <span class="ident">CreateDir</span> =&gt; <span class="macro">write!</span>(<span class="ident">formatter</span>, <span class="string">&quot;failed to create directory `{}`&quot;</span>, <span class="ident">path</span>),
-            <span class="ident">SyncFile</span> =&gt; <span class="macro">write!</span>(<span class="ident">formatter</span>, <span class="string">&quot;failed to sync file `{}`&quot;</span>, <span class="ident">path</span>),
-            <span class="ident">SetLen</span> =&gt; <span class="macro">write!</span>(<span class="ident">formatter</span>, <span class="string">&quot;failed to set length of file `{}`&quot;</span>, <span class="ident">path</span>),
-            <span class="ident">Metadata</span> =&gt; <span class="macro">write!</span>(<span class="ident">formatter</span>, <span class="string">&quot;failed to query metadata of file `{}`&quot;</span>, <span class="ident">path</span>),
-            <span class="ident">Clone</span> =&gt; <span class="macro">write!</span>(<span class="ident">formatter</span>, <span class="string">&quot;failed to clone handle for file `{}`&quot;</span>, <span class="ident">path</span>),
-            <span class="ident">SetPermissions</span> =&gt; <span class="macro">write!</span>(<span class="ident">formatter</span>, <span class="string">&quot;failed to set permissions for file `{}`&quot;</span>, <span class="ident">path</span>),
-            <span class="ident">Read</span> =&gt; <span class="macro">write!</span>(<span class="ident">formatter</span>, <span class="string">&quot;failed to read from file `{}`&quot;</span>, <span class="ident">path</span>),
-            <span class="ident">Seek</span> =&gt; <span class="macro">write!</span>(<span class="ident">formatter</span>, <span class="string">&quot;failed to seek in file `{}`&quot;</span>, <span class="ident">path</span>),
-            <span class="ident">Write</span> =&gt; <span class="macro">write!</span>(<span class="ident">formatter</span>, <span class="string">&quot;failed to write to file `{}`&quot;</span>, <span class="ident">path</span>),
-            <span class="ident">Flush</span> =&gt; <span class="macro">write!</span>(<span class="ident">formatter</span>, <span class="string">&quot;failed to flush file `{}`&quot;</span>, <span class="ident">path</span>),
-            <span class="ident">ReadDir</span> =&gt; <span class="macro">write!</span>(<span class="ident">formatter</span>, <span class="string">&quot;failed to read directory `{}`&quot;</span>, <span class="ident">path</span>),
-            <span class="ident">RemoveFile</span> =&gt; <span class="macro">write!</span>(<span class="ident">formatter</span>, <span class="string">&quot;failed to remove file `{}`&quot;</span>, <span class="ident">path</span>),
-            <span class="ident">RemoveDir</span> =&gt; <span class="macro">write!</span>(<span class="ident">formatter</span>, <span class="string">&quot;failed to remove directory `{}`&quot;</span>, <span class="ident">path</span>),
-            <span class="ident">Canonicalize</span> =&gt; <span class="macro">write!</span>(<span class="ident">formatter</span>, <span class="string">&quot;failed to canonicalize path `{}`&quot;</span>, <span class="ident">path</span>),
-            <span class="ident">ReadLink</span> =&gt; <span class="macro">write!</span>(<span class="ident">formatter</span>, <span class="string">&quot;failed to read symbolic link `{}`&quot;</span>, <span class="ident">path</span>),
-            <span class="ident">SymlinkMetadata</span> =&gt; <span class="macro">write!</span>(<span class="ident">formatter</span>, <span class="string">&quot;failed to query metadata of symlink `{}`&quot;</span>, <span class="ident">path</span>),
+        <span class="kw">match </span><span class="self">self</span>.kind {
+            OpenFile =&gt; <span class="macro">write!</span>(formatter, <span class="string">&quot;failed to open file `{}`&quot;</span>, path),
+            CreateFile =&gt; <span class="macro">write!</span>(formatter, <span class="string">&quot;failed to create file `{}`&quot;</span>, path),
+            CreateDir =&gt; <span class="macro">write!</span>(formatter, <span class="string">&quot;failed to create directory `{}`&quot;</span>, path),
+            SyncFile =&gt; <span class="macro">write!</span>(formatter, <span class="string">&quot;failed to sync file `{}`&quot;</span>, path),
+            SetLen =&gt; <span class="macro">write!</span>(formatter, <span class="string">&quot;failed to set length of file `{}`&quot;</span>, path),
+            Metadata =&gt; <span class="macro">write!</span>(formatter, <span class="string">&quot;failed to query metadata of file `{}`&quot;</span>, path),
+            Clone =&gt; <span class="macro">write!</span>(formatter, <span class="string">&quot;failed to clone handle for file `{}`&quot;</span>, path),
+            SetPermissions =&gt; <span class="macro">write!</span>(formatter, <span class="string">&quot;failed to set permissions for file `{}`&quot;</span>, path),
+            Read =&gt; <span class="macro">write!</span>(formatter, <span class="string">&quot;failed to read from file `{}`&quot;</span>, path),
+            Seek =&gt; <span class="macro">write!</span>(formatter, <span class="string">&quot;failed to seek in file `{}`&quot;</span>, path),
+            Write =&gt; <span class="macro">write!</span>(formatter, <span class="string">&quot;failed to write to file `{}`&quot;</span>, path),
+            Flush =&gt; <span class="macro">write!</span>(formatter, <span class="string">&quot;failed to flush file `{}`&quot;</span>, path),
+            ReadDir =&gt; <span class="macro">write!</span>(formatter, <span class="string">&quot;failed to read directory `{}`&quot;</span>, path),
+            RemoveFile =&gt; <span class="macro">write!</span>(formatter, <span class="string">&quot;failed to remove file `{}`&quot;</span>, path),
+            RemoveDir =&gt; <span class="macro">write!</span>(formatter, <span class="string">&quot;failed to remove directory `{}`&quot;</span>, path),
+            Canonicalize =&gt; <span class="macro">write!</span>(formatter, <span class="string">&quot;failed to canonicalize path `{}`&quot;</span>, path),
+            ReadLink =&gt; <span class="macro">write!</span>(formatter, <span class="string">&quot;failed to read symbolic link `{}`&quot;</span>, path),
+            SymlinkMetadata =&gt; <span class="macro">write!</span>(formatter, <span class="string">&quot;failed to query metadata of symlink `{}`&quot;</span>, path),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">windows</span>)]</span>
-            <span class="ident">SeekRead</span> =&gt; <span class="macro">write!</span>(<span class="ident">formatter</span>, <span class="string">&quot;failed to seek and read from `{}`&quot;</span>, <span class="ident">path</span>),
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">windows</span>)]</span>
-            <span class="ident">SeekWrite</span> =&gt; <span class="macro">write!</span>(<span class="ident">formatter</span>, <span class="string">&quot;failed to seek and write to `{}`&quot;</span>, <span class="ident">path</span>),
+            <span class="attribute">#[cfg(windows)]
+            </span>SeekRead =&gt; <span class="macro">write!</span>(formatter, <span class="string">&quot;failed to seek and read from `{}`&quot;</span>, path),
+            <span class="attribute">#[cfg(windows)]
+            </span>SeekWrite =&gt; <span class="macro">write!</span>(formatter, <span class="string">&quot;failed to seek and write to `{}`&quot;</span>, path),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">unix</span>)]</span>
-            <span class="ident">ReadAt</span> =&gt; <span class="macro">write!</span>(<span class="ident">formatter</span>, <span class="string">&quot;failed to read with offset from `{}`&quot;</span>, <span class="ident">path</span>),
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">unix</span>)]</span>
-            <span class="ident">WriteAt</span> =&gt; <span class="macro">write!</span>(<span class="ident">formatter</span>, <span class="string">&quot;failed to write with offset to `{}`&quot;</span>, <span class="ident">path</span>),
+            <span class="attribute">#[cfg(unix)]
+            </span>ReadAt =&gt; <span class="macro">write!</span>(formatter, <span class="string">&quot;failed to read with offset from `{}`&quot;</span>, path),
+            <span class="attribute">#[cfg(unix)]
+            </span>WriteAt =&gt; <span class="macro">write!</span>(formatter, <span class="string">&quot;failed to write with offset to `{}`&quot;</span>, path),
         }
     }
 }
 
-<span class="kw">impl</span> <span class="ident">StdError</span> <span class="kw">for</span> <span class="ident">Error</span> {
-    <span class="kw">fn</span> <span class="ident">cause</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="kw">dyn</span> <span class="ident">StdError</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">source</span>()
+<span class="kw">impl </span>StdError <span class="kw">for </span>Error {
+    <span class="kw">fn </span>cause(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="kw">dyn </span>StdError&gt; {
+        <span class="self">self</span>.source()
     }
 
-    <span class="kw">fn</span> <span class="ident">source</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span>(<span class="kw">dyn</span> <span class="ident">StdError</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>)<span class="op">&gt;</span> {
-        <span class="prelude-val">Some</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">source</span>)
+    <span class="kw">fn </span>source(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>(<span class="kw">dyn </span>StdError + <span class="lifetime">&#39;static</span>)&gt; {
+        <span class="prelude-val">Some</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.source)
     }
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">enum</span> <span class="ident">SourceDestErrorKind</span> {
-    <span class="ident">Copy</span>,
-    <span class="ident">HardLink</span>,
-    <span class="ident">Rename</span>,
-    <span class="ident">SoftLink</span>,
+<span class="attribute">#[derive(Debug, Clone, Copy)]
+</span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">enum </span>SourceDestErrorKind {
+    Copy,
+    HardLink,
+    Rename,
+    SoftLink,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">unix</span>)]</span>
-    <span class="ident">Symlink</span>,
+    <span class="attribute">#[cfg(unix)]
+    </span>Symlink,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">windows</span>)]</span>
-    <span class="ident">SymlinkDir</span>,
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">windows</span>)]</span>
-    <span class="ident">SymlinkFile</span>,
+    <span class="attribute">#[cfg(windows)]
+    </span>SymlinkDir,
+    <span class="attribute">#[cfg(windows)]
+    </span>SymlinkFile,
 }
 
-<span class="doccomment">/// Error type used by functions like `fs::copy` that holds two paths.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct</span> <span class="ident">SourceDestError</span> {
-    <span class="ident">kind</span>: <span class="ident">SourceDestErrorKind</span>,
-    <span class="ident">source</span>: <span class="ident">io::Error</span>,
-    <span class="ident">from_path</span>: <span class="ident">PathBuf</span>,
-    <span class="ident">to_path</span>: <span class="ident">PathBuf</span>,
+<span class="doccomment">/// Error type used by functions like `fs::copy` that holds two paths.
+</span><span class="attribute">#[derive(Debug)]
+</span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct </span>SourceDestError {
+    kind: SourceDestErrorKind,
+    source: io::Error,
+    from_path: PathBuf,
+    to_path: PathBuf,
 }
 
-<span class="kw">impl</span> <span class="ident">SourceDestError</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">build</span>(
-        <span class="ident">source</span>: <span class="ident">io::Error</span>,
-        <span class="ident">kind</span>: <span class="ident">SourceDestErrorKind</span>,
-        <span class="ident">from_path</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">PathBuf</span><span class="op">&gt;</span>,
-        <span class="ident">to_path</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">PathBuf</span><span class="op">&gt;</span>,
-    ) -&gt; <span class="ident">io::Error</span> {
-        <span class="ident">io::Error::new</span>(
-            <span class="ident">source</span>.<span class="ident">kind</span>(),
-            <span class="self">Self</span> {
-                <span class="ident">kind</span>,
-                <span class="ident">source</span>,
-                <span class="ident">from_path</span>: <span class="ident">from_path</span>.<span class="ident">into</span>(),
-                <span class="ident">to_path</span>: <span class="ident">to_path</span>.<span class="ident">into</span>(),
+<span class="kw">impl </span>SourceDestError {
+    <span class="kw">pub fn </span>build(
+        source: io::Error,
+        kind: SourceDestErrorKind,
+        from_path: <span class="kw">impl </span>Into&lt;PathBuf&gt;,
+        to_path: <span class="kw">impl </span>Into&lt;PathBuf&gt;,
+    ) -&gt; io::Error {
+        io::Error::new(
+            source.kind(),
+            <span class="self">Self </span>{
+                kind,
+                source,
+                from_path: from_path.into(),
+                to_path: to_path.into(),
             },
         )
     }
 }
 
-<span class="kw">impl</span> <span class="ident">fmt::Display</span> <span class="kw">for</span> <span class="ident">SourceDestError</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">formatter</span>: <span class="kw-2">&amp;mut</span> <span class="ident">fmt::Formatter</span>) -&gt; <span class="ident">fmt::Result</span> {
-        <span class="kw">let</span> <span class="ident">from</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">from_path</span>.<span class="ident">display</span>();
-        <span class="kw">let</span> <span class="ident">to</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">to_path</span>.<span class="ident">display</span>();
-        <span class="kw">match</span> <span class="self">self</span>.<span class="ident">kind</span> {
-            <span class="ident">SourceDestErrorKind::Copy</span> =&gt; {
-                <span class="macro">write!</span>(<span class="ident">formatter</span>, <span class="string">&quot;failed to copy file from {} to {}&quot;</span>, <span class="ident">from</span>, <span class="ident">to</span>)
+<span class="kw">impl </span>fmt::Display <span class="kw">for </span>SourceDestError {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, formatter: <span class="kw-2">&amp;mut </span>fmt::Formatter) -&gt; fmt::Result {
+        <span class="kw">let </span>from = <span class="self">self</span>.from_path.display();
+        <span class="kw">let </span>to = <span class="self">self</span>.to_path.display();
+        <span class="kw">match </span><span class="self">self</span>.kind {
+            SourceDestErrorKind::Copy =&gt; {
+                <span class="macro">write!</span>(formatter, <span class="string">&quot;failed to copy file from {} to {}&quot;</span>, from, to)
             }
-            <span class="ident">SourceDestErrorKind::HardLink</span> =&gt; {
-                <span class="macro">write!</span>(<span class="ident">formatter</span>, <span class="string">&quot;failed to hardlink file from {} to {}&quot;</span>, <span class="ident">from</span>, <span class="ident">to</span>)
+            SourceDestErrorKind::HardLink =&gt; {
+                <span class="macro">write!</span>(formatter, <span class="string">&quot;failed to hardlink file from {} to {}&quot;</span>, from, to)
             }
-            <span class="ident">SourceDestErrorKind::Rename</span> =&gt; {
-                <span class="macro">write!</span>(<span class="ident">formatter</span>, <span class="string">&quot;failed to rename file from {} to {}&quot;</span>, <span class="ident">from</span>, <span class="ident">to</span>)
+            SourceDestErrorKind::Rename =&gt; {
+                <span class="macro">write!</span>(formatter, <span class="string">&quot;failed to rename file from {} to {}&quot;</span>, from, to)
             }
-            <span class="ident">SourceDestErrorKind::SoftLink</span> =&gt; {
-                <span class="macro">write!</span>(<span class="ident">formatter</span>, <span class="string">&quot;failed to softlink file from {} to {}&quot;</span>, <span class="ident">from</span>, <span class="ident">to</span>)
-            }
-
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">unix</span>)]</span>
-            <span class="ident">SourceDestErrorKind::Symlink</span> =&gt; {
-                <span class="macro">write!</span>(<span class="ident">formatter</span>, <span class="string">&quot;failed to symlink file from {} to {}&quot;</span>, <span class="ident">from</span>, <span class="ident">to</span>)
+            SourceDestErrorKind::SoftLink =&gt; {
+                <span class="macro">write!</span>(formatter, <span class="string">&quot;failed to softlink file from {} to {}&quot;</span>, from, to)
             }
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">windows</span>)]</span>
-            <span class="ident">SourceDestErrorKind::SymlinkFile</span> =&gt; {
-                <span class="macro">write!</span>(<span class="ident">formatter</span>, <span class="string">&quot;failed to symlink file from {} to {}&quot;</span>, <span class="ident">from</span>, <span class="ident">to</span>)
+            <span class="attribute">#[cfg(unix)]
+            </span>SourceDestErrorKind::Symlink =&gt; {
+                <span class="macro">write!</span>(formatter, <span class="string">&quot;failed to symlink file from {} to {}&quot;</span>, from, to)
             }
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">windows</span>)]</span>
-            <span class="ident">SourceDestErrorKind::SymlinkDir</span> =&gt; {
-                <span class="macro">write!</span>(<span class="ident">formatter</span>, <span class="string">&quot;failed to symlink dir from {} to {}&quot;</span>, <span class="ident">from</span>, <span class="ident">to</span>)
+
+            <span class="attribute">#[cfg(windows)]
+            </span>SourceDestErrorKind::SymlinkFile =&gt; {
+                <span class="macro">write!</span>(formatter, <span class="string">&quot;failed to symlink file from {} to {}&quot;</span>, from, to)
+            }
+            <span class="attribute">#[cfg(windows)]
+            </span>SourceDestErrorKind::SymlinkDir =&gt; {
+                <span class="macro">write!</span>(formatter, <span class="string">&quot;failed to symlink dir from {} to {}&quot;</span>, from, to)
             }
         }
     }
 }
 
-<span class="kw">impl</span> <span class="ident">StdError</span> <span class="kw">for</span> <span class="ident">SourceDestError</span> {
-    <span class="kw">fn</span> <span class="ident">cause</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="kw">dyn</span> <span class="ident">StdError</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">source</span>()
+<span class="kw">impl </span>StdError <span class="kw">for </span>SourceDestError {
+    <span class="kw">fn </span>cause(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="kw">dyn </span>StdError&gt; {
+        <span class="self">self</span>.source()
     }
 
-    <span class="kw">fn</span> <span class="ident">source</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span>(<span class="kw">dyn</span> <span class="ident">StdError</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>)<span class="op">&gt;</span> {
-        <span class="prelude-val">Some</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">source</span>)
+    <span class="kw">fn </span>source(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>(<span class="kw">dyn </span>StdError + <span class="lifetime">&#39;static</span>)&gt; {
+        <span class="prelude-val">Some</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.source)
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="fs_err" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="fs_err" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (77e57db38 2022-10-30)" ></div></body></html>

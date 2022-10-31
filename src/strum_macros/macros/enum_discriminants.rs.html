@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/strum_macros-0.24.3/src/macros/enum_discriminants.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>enum_discriminants.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../strum_macros/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../strum_macros/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../strum_macros/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/strum_macros-0.24.3/src/macros/enum_discriminants.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>enum_discriminants.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../normalize.css"><link rel="stylesheet" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../ayu.css" disabled><link rel="stylesheet" href="../../../dark.css" disabled><link rel="stylesheet" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../strum_macros/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -160,167 +160,167 @@
 <span id="160">160</span>
 <span id="161">161</span>
 <span id="162">162</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">proc_macro2</span>::{<span class="ident">Span</span>, <span class="ident">TokenStream</span>, <span class="ident">TokenTree</span>};
-<span class="kw">use</span> <span class="ident">quote</span>::{<span class="ident">quote</span>, <span class="ident">ToTokens</span>};
-<span class="kw">use</span> <span class="ident">syn::parse_quote</span>;
-<span class="kw">use</span> <span class="ident">syn</span>::{<span class="ident">Data</span>, <span class="ident">DeriveInput</span>, <span class="ident">Fields</span>};
+</pre><pre class="rust"><code><span class="kw">use </span>proc_macro2::{Span, TokenStream, TokenTree};
+<span class="kw">use </span>quote::{quote, ToTokens};
+<span class="kw">use </span>syn::parse_quote;
+<span class="kw">use </span>syn::{Data, DeriveInput, Fields};
 
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::helpers</span>::{<span class="ident">non_enum_error</span>, <span class="ident">strum_discriminants_passthrough_error</span>, <span class="ident">HasTypeProperties</span>};
+<span class="kw">use </span><span class="kw">crate</span>::helpers::{non_enum_error, strum_discriminants_passthrough_error, HasTypeProperties};
 
-<span class="doccomment">/// Attributes to copy from the main enum&#39;s variants to the discriminant enum&#39;s variants.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Attributes not in this list may be for other `proc_macro`s on the main enum, and may cause</span>
-<span class="doccomment">/// compilation problems when copied across.</span>
-<span class="kw">const</span> <span class="ident">ATTRIBUTES_TO_COPY</span>: <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span><span class="ident">str</span>] <span class="op">=</span> <span class="kw-2">&amp;</span>[<span class="string">&quot;doc&quot;</span>, <span class="string">&quot;cfg&quot;</span>, <span class="string">&quot;allow&quot;</span>, <span class="string">&quot;deny&quot;</span>, <span class="string">&quot;strum_discriminants&quot;</span>];
+<span class="doccomment">/// Attributes to copy from the main enum&#39;s variants to the discriminant enum&#39;s variants.
+///
+/// Attributes not in this list may be for other `proc_macro`s on the main enum, and may cause
+/// compilation problems when copied across.
+</span><span class="kw">const </span>ATTRIBUTES_TO_COPY: <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span>str] = <span class="kw-2">&amp;</span>[<span class="string">&quot;doc&quot;</span>, <span class="string">&quot;cfg&quot;</span>, <span class="string">&quot;allow&quot;</span>, <span class="string">&quot;deny&quot;</span>, <span class="string">&quot;strum_discriminants&quot;</span>];
 
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">enum_discriminants_inner</span>(<span class="ident">ast</span>: <span class="kw-2">&amp;</span><span class="ident">DeriveInput</span>) -&gt; <span class="ident">syn::Result</span><span class="op">&lt;</span><span class="ident">TokenStream</span><span class="op">&gt;</span> {
-    <span class="kw">let</span> <span class="ident">name</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">ast</span>.<span class="ident">ident</span>;
-    <span class="kw">let</span> <span class="ident">vis</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">ast</span>.<span class="ident">vis</span>;
+<span class="kw">pub fn </span>enum_discriminants_inner(ast: <span class="kw-2">&amp;</span>DeriveInput) -&gt; syn::Result&lt;TokenStream&gt; {
+    <span class="kw">let </span>name = <span class="kw-2">&amp;</span>ast.ident;
+    <span class="kw">let </span>vis = <span class="kw-2">&amp;</span>ast.vis;
 
-    <span class="kw">let</span> <span class="ident">variants</span> <span class="op">=</span> <span class="kw">match</span> <span class="kw-2">&amp;</span><span class="ident">ast</span>.<span class="ident">data</span> {
-        <span class="ident">Data::Enum</span>(<span class="ident">v</span>) =&gt; <span class="kw-2">&amp;</span><span class="ident">v</span>.<span class="ident">variants</span>,
-        <span class="kw">_</span> =&gt; <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">non_enum_error</span>()),
+    <span class="kw">let </span>variants = <span class="kw">match </span><span class="kw-2">&amp;</span>ast.data {
+        Data::Enum(v) =&gt; <span class="kw-2">&amp;</span>v.variants,
+        <span class="kw">_ </span>=&gt; <span class="kw">return </span><span class="prelude-val">Err</span>(non_enum_error()),
     };
 
-    <span class="comment">// Derives for the generated enum</span>
-    <span class="kw">let</span> <span class="ident">type_properties</span> <span class="op">=</span> <span class="ident">ast</span>.<span class="ident">get_type_properties</span>()<span class="question-mark">?</span>;
+    <span class="comment">// Derives for the generated enum
+    </span><span class="kw">let </span>type_properties = ast.get_type_properties()<span class="question-mark">?</span>;
 
-    <span class="kw">let</span> <span class="ident">derives</span> <span class="op">=</span> <span class="ident">type_properties</span>.<span class="ident">discriminant_derives</span>;
+    <span class="kw">let </span>derives = type_properties.discriminant_derives;
 
-    <span class="kw">let</span> <span class="ident">derives</span> <span class="op">=</span> <span class="macro">quote!</span> {
-        <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, #(#<span class="ident">derives</span>),<span class="kw-2">*</span>)]</span>
-    };
+    <span class="kw">let </span>derives = <span class="macro">quote! </span>{
+        <span class="attribute">#[derive(Clone, Copy, Debug, PartialEq, Eq, #(#derives),<span class="kw-2">*</span>)]
+    </span>};
 
-    <span class="comment">// Work out the name</span>
-    <span class="kw">let</span> <span class="ident">default_name</span> <span class="op">=</span> <span class="ident">syn::Ident::new</span>(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;{}Discriminants&quot;</span>, <span class="ident">name</span>), <span class="ident">Span::call_site</span>());
+    <span class="comment">// Work out the name
+    </span><span class="kw">let </span>default_name = syn::Ident::new(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;{}Discriminants&quot;</span>, name), Span::call_site());
 
-    <span class="kw">let</span> <span class="ident">discriminants_name</span> <span class="op">=</span> <span class="ident">type_properties</span>.<span class="ident">discriminant_name</span>.<span class="ident">unwrap_or</span>(<span class="ident">default_name</span>);
-    <span class="kw">let</span> <span class="ident">discriminants_vis</span> <span class="op">=</span> <span class="ident">type_properties</span>
-        .<span class="ident">discriminant_vis</span>
-        .<span class="ident">unwrap_or_else</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">vis</span>.<span class="ident">clone</span>());
+    <span class="kw">let </span>discriminants_name = type_properties.discriminant_name.unwrap_or(default_name);
+    <span class="kw">let </span>discriminants_vis = type_properties
+        .discriminant_vis
+        .unwrap_or_else(|| vis.clone());
 
-    <span class="comment">// Pass through all other attributes</span>
-    <span class="kw">let</span> <span class="ident">pass_though_attributes</span> <span class="op">=</span> <span class="ident">type_properties</span>.<span class="ident">discriminant_others</span>;
+    <span class="comment">// Pass through all other attributes
+    </span><span class="kw">let </span>pass_though_attributes = type_properties.discriminant_others;
 
-    <span class="comment">// Add the variants without fields, but exclude the `strum` meta item</span>
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">discriminants</span> <span class="op">=</span> <span class="ident">Vec::new</span>();
-    <span class="kw">for</span> <span class="ident">variant</span> <span class="kw">in</span> <span class="ident">variants</span> {
-        <span class="kw">let</span> <span class="ident">ident</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">variant</span>.<span class="ident">ident</span>;
+    <span class="comment">// Add the variants without fields, but exclude the `strum` meta item
+    </span><span class="kw">let </span><span class="kw-2">mut </span>discriminants = Vec::new();
+    <span class="kw">for </span>variant <span class="kw">in </span>variants {
+        <span class="kw">let </span>ident = <span class="kw-2">&amp;</span>variant.ident;
 
-        <span class="comment">// Don&#39;t copy across the &quot;strum&quot; meta attribute. Only passthrough the whitelisted</span>
-        <span class="comment">// attributes and proxy `#[strum_discriminants(...)]` attributes</span>
-        <span class="kw">let</span> <span class="ident">attrs</span> <span class="op">=</span> <span class="ident">variant</span>
-            .<span class="ident">attrs</span>
-            .<span class="ident">iter</span>()
-            .<span class="ident">filter</span>(<span class="op">|</span><span class="ident">attr</span><span class="op">|</span> {
-                <span class="ident">ATTRIBUTES_TO_COPY</span>
-                    .<span class="ident">iter</span>()
-                    .<span class="ident">any</span>(<span class="op">|</span><span class="ident">attr_whitelisted</span><span class="op">|</span> <span class="ident">attr</span>.<span class="ident">path</span>.<span class="ident">is_ident</span>(<span class="ident">attr_whitelisted</span>))
+        <span class="comment">// Don&#39;t copy across the &quot;strum&quot; meta attribute. Only passthrough the whitelisted
+        // attributes and proxy `#[strum_discriminants(...)]` attributes
+        </span><span class="kw">let </span>attrs = variant
+            .attrs
+            .iter()
+            .filter(|attr| {
+                ATTRIBUTES_TO_COPY
+                    .iter()
+                    .any(|attr_whitelisted| attr.path.is_ident(attr_whitelisted))
             })
-            .<span class="ident">map</span>(<span class="op">|</span><span class="ident">attr</span><span class="op">|</span> {
-                <span class="kw">if</span> <span class="ident">attr</span>.<span class="ident">path</span>.<span class="ident">is_ident</span>(<span class="string">&quot;strum_discriminants&quot;</span>) {
-                    <span class="kw">let</span> <span class="ident">passthrough_group</span> <span class="op">=</span> <span class="ident">attr</span>
-                        .<span class="ident">tokens</span>
-                        .<span class="ident">clone</span>()
-                        .<span class="ident">into_iter</span>()
-                        .<span class="ident">next</span>()
-                        .<span class="ident">ok_or_else</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">strum_discriminants_passthrough_error</span>(<span class="ident">attr</span>))<span class="question-mark">?</span>;
-                    <span class="kw">let</span> <span class="ident">passthrough_attribute</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">passthrough_group</span> {
-                        <span class="ident">TokenTree::Group</span>(<span class="kw-2">ref</span> <span class="ident">group</span>) =&gt; <span class="ident">group</span>.<span class="ident">stream</span>(),
-                        <span class="kw">_</span> =&gt; {
-                            <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">strum_discriminants_passthrough_error</span>(<span class="kw-2">&amp;</span><span class="ident">passthrough_group</span>));
+            .map(|attr| {
+                <span class="kw">if </span>attr.path.is_ident(<span class="string">&quot;strum_discriminants&quot;</span>) {
+                    <span class="kw">let </span>passthrough_group = attr
+                        .tokens
+                        .clone()
+                        .into_iter()
+                        .next()
+                        .ok_or_else(|| strum_discriminants_passthrough_error(attr))<span class="question-mark">?</span>;
+                    <span class="kw">let </span>passthrough_attribute = <span class="kw">match </span>passthrough_group {
+                        TokenTree::Group(<span class="kw-2">ref </span>group) =&gt; group.stream(),
+                        <span class="kw">_ </span>=&gt; {
+                            <span class="kw">return </span><span class="prelude-val">Err</span>(strum_discriminants_passthrough_error(<span class="kw-2">&amp;</span>passthrough_group));
                         }
                     };
-                    <span class="kw">if</span> <span class="ident">passthrough_attribute</span>.<span class="ident">is_empty</span>() {
-                        <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">strum_discriminants_passthrough_error</span>(<span class="kw-2">&amp;</span><span class="ident">passthrough_group</span>));
+                    <span class="kw">if </span>passthrough_attribute.is_empty() {
+                        <span class="kw">return </span><span class="prelude-val">Err</span>(strum_discriminants_passthrough_error(<span class="kw-2">&amp;</span>passthrough_group));
                     }
-                    <span class="prelude-val">Ok</span>(<span class="macro">quote!</span> { <span class="attribute">#[#<span class="ident">passthrough_attribute</span>]</span> })
-                } <span class="kw">else</span> {
-                    <span class="prelude-val">Ok</span>(<span class="ident">attr</span>.<span class="ident">to_token_stream</span>())
+                    <span class="prelude-val">Ok</span>(<span class="macro">quote! </span>{ <span class="attribute">#[#passthrough_attribute] </span>})
+                } <span class="kw">else </span>{
+                    <span class="prelude-val">Ok</span>(attr.to_token_stream())
                 }
             })
-            .<span class="ident">collect</span>::<span class="op">&lt;</span><span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="kw">_</span><span class="op">&gt;</span>, <span class="kw">_</span><span class="op">&gt;</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
+            .collect::&lt;<span class="prelude-ty">Result</span>&lt;Vec&lt;<span class="kw">_</span>&gt;, <span class="kw">_</span>&gt;&gt;()<span class="question-mark">?</span>;
 
-        <span class="ident">discriminants</span>.<span class="ident">push</span>(<span class="macro">quote!</span> { #(#<span class="ident">attrs</span>)<span class="op">*</span> #<span class="ident">ident</span> });
+        discriminants.push(<span class="macro">quote! </span>{ #(#attrs)* #ident });
     }
 
-    <span class="comment">// Ideally:</span>
-    <span class="comment">//</span>
-    <span class="comment">// * For `Copy` types, we `impl From&lt;TheEnum&gt; for TheEnumDiscriminants`</span>
-    <span class="comment">// * For `!Copy` types, we `impl&lt;&#39;enum&gt; From&lt;&amp;&#39;enum TheEnum&gt; for TheEnumDiscriminants`</span>
-    <span class="comment">//</span>
-    <span class="comment">// That way we ensure users are not able to pass a `Copy` type by reference. However, the</span>
-    <span class="comment">// `#[derive(..)]` attributes are not in the parsed tokens, so we are not able to check if a</span>
-    <span class="comment">// type is `Copy`, so we just implement both.</span>
-    <span class="comment">//</span>
-    <span class="comment">// See &lt;https://github.com/dtolnay/syn/issues/433&gt;</span>
-    <span class="comment">// ---</span>
-    <span class="comment">// let is_copy = unique_meta_list(type_meta.iter(), &quot;derive&quot;)</span>
-    <span class="comment">//     .map(extract_list_metas)</span>
-    <span class="comment">//     .map(|metas| {</span>
-    <span class="comment">//         metas</span>
-    <span class="comment">//             .filter_map(get_meta_ident)</span>
-    <span class="comment">//             .any(|derive| derive.to_string() == &quot;Copy&quot;)</span>
-    <span class="comment">//     }).unwrap_or(false);</span>
+    <span class="comment">// Ideally:
+    //
+    // * For `Copy` types, we `impl From&lt;TheEnum&gt; for TheEnumDiscriminants`
+    // * For `!Copy` types, we `impl&lt;&#39;enum&gt; From&lt;&amp;&#39;enum TheEnum&gt; for TheEnumDiscriminants`
+    //
+    // That way we ensure users are not able to pass a `Copy` type by reference. However, the
+    // `#[derive(..)]` attributes are not in the parsed tokens, so we are not able to check if a
+    // type is `Copy`, so we just implement both.
+    //
+    // See &lt;https://github.com/dtolnay/syn/issues/433&gt;
+    // ---
+    // let is_copy = unique_meta_list(type_meta.iter(), &quot;derive&quot;)
+    //     .map(extract_list_metas)
+    //     .map(|metas| {
+    //         metas
+    //             .filter_map(get_meta_ident)
+    //             .any(|derive| derive.to_string() == &quot;Copy&quot;)
+    //     }).unwrap_or(false);
 
-    <span class="kw">let</span> <span class="ident">arms</span> <span class="op">=</span> <span class="ident">variants</span>
-        .<span class="ident">iter</span>()
-        .<span class="ident">map</span>(<span class="op">|</span><span class="ident">variant</span><span class="op">|</span> {
-            <span class="kw">let</span> <span class="ident">ident</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">variant</span>.<span class="ident">ident</span>;
-            <span class="kw">let</span> <span class="ident">params</span> <span class="op">=</span> <span class="kw">match</span> <span class="kw-2">&amp;</span><span class="ident">variant</span>.<span class="ident">fields</span> {
-                <span class="ident">Fields::Unit</span> =&gt; <span class="macro">quote!</span> {},
-                <span class="ident">Fields::Unnamed</span>(<span class="ident">_fields</span>) =&gt; {
-                    <span class="macro">quote!</span> { (..) }
+    </span><span class="kw">let </span>arms = variants
+        .iter()
+        .map(|variant| {
+            <span class="kw">let </span>ident = <span class="kw-2">&amp;</span>variant.ident;
+            <span class="kw">let </span>params = <span class="kw">match </span><span class="kw-2">&amp;</span>variant.fields {
+                Fields::Unit =&gt; <span class="macro">quote! </span>{},
+                Fields::Unnamed(_fields) =&gt; {
+                    <span class="macro">quote! </span>{ (..) }
                 }
-                <span class="ident">Fields::Named</span>(<span class="ident">_fields</span>) =&gt; {
-                    <span class="macro">quote!</span> { { .. } }
+                Fields::Named(_fields) =&gt; {
+                    <span class="macro">quote! </span>{ { .. } }
                 }
             };
 
-            <span class="macro">quote!</span> { #<span class="ident">name</span>::#<span class="ident">ident</span> #<span class="ident">params</span> =&gt; #<span class="ident">discriminants_name</span>::#<span class="ident">ident</span> }
+            <span class="macro">quote! </span>{ #name::#ident #params =&gt; #discriminants_name::#ident }
         })
-        .<span class="ident">collect</span>::<span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="kw">_</span><span class="op">&gt;</span><span class="op">&gt;</span>();
+        .collect::&lt;Vec&lt;<span class="kw">_</span>&gt;&gt;();
 
-    <span class="kw">let</span> <span class="ident">from_fn_body</span> <span class="op">=</span> <span class="macro">quote!</span> { <span class="kw">match</span> <span class="ident">val</span> { #(#<span class="ident">arms</span>),<span class="op">*</span> } };
+    <span class="kw">let </span>from_fn_body = <span class="macro">quote! </span>{ <span class="kw">match </span>val { #(#arms),* } };
 
-    <span class="kw">let</span> (<span class="ident">impl_generics</span>, <span class="ident">ty_generics</span>, <span class="ident">where_clause</span>) <span class="op">=</span> <span class="ident">ast</span>.<span class="ident">generics</span>.<span class="ident">split_for_impl</span>();
-    <span class="kw">let</span> <span class="ident">impl_from</span> <span class="op">=</span> <span class="macro">quote!</span> {
-        <span class="kw">impl</span> #<span class="ident">impl_generics</span> <span class="ident">::core::convert::From</span><span class="op">&lt;</span> #<span class="ident">name</span> #<span class="ident">ty_generics</span> <span class="op">&gt;</span> <span class="kw">for</span> #<span class="ident">discriminants_name</span> #<span class="ident">where_clause</span> {
-            <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">val</span>: #<span class="ident">name</span> #<span class="ident">ty_generics</span>) -&gt; #<span class="ident">discriminants_name</span> {
-                #<span class="ident">from_fn_body</span>
+    <span class="kw">let </span>(impl_generics, ty_generics, where_clause) = ast.generics.split_for_impl();
+    <span class="kw">let </span>impl_from = <span class="macro">quote! </span>{
+        <span class="kw">impl </span>#impl_generics ::core::convert::From&lt; #name #ty_generics &gt; <span class="kw">for </span>#discriminants_name #where_clause {
+            <span class="kw">fn </span>from(val: #name #ty_generics) -&gt; #discriminants_name {
+                #from_fn_body
             }
         }
     };
-    <span class="kw">let</span> <span class="ident">impl_from_ref</span> <span class="op">=</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">generics</span> <span class="op">=</span> <span class="ident">ast</span>.<span class="ident">generics</span>.<span class="ident">clone</span>();
+    <span class="kw">let </span>impl_from_ref = {
+        <span class="kw">let </span><span class="kw-2">mut </span>generics = ast.generics.clone();
 
-        <span class="kw">let</span> <span class="ident">lifetime</span> <span class="op">=</span> <span class="macro">parse_quote!</span>(<span class="lifetime">&#39;_enum</span>);
-        <span class="kw">let</span> <span class="ident">enum_life</span> <span class="op">=</span> <span class="macro">quote!</span> { <span class="op">&amp;</span> #<span class="ident">lifetime</span> };
-        <span class="ident">generics</span>.<span class="ident">params</span>.<span class="ident">push</span>(<span class="ident">lifetime</span>);
+        <span class="kw">let </span>lifetime = <span class="macro">parse_quote!</span>(<span class="lifetime">&#39;_enum</span>);
+        <span class="kw">let </span>enum_life = <span class="macro">quote! </span>{ &amp; #lifetime };
+        generics.params.push(lifetime);
 
-        <span class="comment">// Shadows the earlier `impl_generics`</span>
-        <span class="kw">let</span> (<span class="ident">impl_generics</span>, <span class="kw">_</span>, <span class="kw">_</span>) <span class="op">=</span> <span class="ident">generics</span>.<span class="ident">split_for_impl</span>();
+        <span class="comment">// Shadows the earlier `impl_generics`
+        </span><span class="kw">let </span>(impl_generics, <span class="kw">_</span>, <span class="kw">_</span>) = generics.split_for_impl();
 
-        <span class="macro">quote!</span> {
-            <span class="kw">impl</span> #<span class="ident">impl_generics</span> <span class="ident">::core::convert::From</span><span class="op">&lt;</span> #<span class="ident">enum_life</span> #<span class="ident">name</span> #<span class="ident">ty_generics</span> <span class="op">&gt;</span> <span class="kw">for</span> #<span class="ident">discriminants_name</span> #<span class="ident">where_clause</span> {
-                <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">val</span>: #<span class="ident">enum_life</span> #<span class="ident">name</span> #<span class="ident">ty_generics</span>) -&gt; #<span class="ident">discriminants_name</span> {
-                    #<span class="ident">from_fn_body</span>
+        <span class="macro">quote! </span>{
+            <span class="kw">impl </span>#impl_generics ::core::convert::From&lt; #enum_life #name #ty_generics &gt; <span class="kw">for </span>#discriminants_name #where_clause {
+                <span class="kw">fn </span>from(val: #enum_life #name #ty_generics) -&gt; #discriminants_name {
+                    #from_fn_body
                 }
             }
         }
     };
 
-    <span class="prelude-val">Ok</span>(<span class="macro">quote!</span> {
-        <span class="doccomment">/// Auto-generated discriminant enum variants</span>
-        #<span class="ident">derives</span>
-        #(<span class="attribute">#[ #<span class="ident">pass_though_attributes</span> ]</span>)<span class="op">*</span>
-        #<span class="ident">discriminants_vis</span> <span class="kw">enum</span> #<span class="ident">discriminants_name</span> {
-            #(#<span class="ident">discriminants</span>),<span class="op">*</span>
+    <span class="prelude-val">Ok</span>(<span class="macro">quote! </span>{
+        <span class="doccomment">/// Auto-generated discriminant enum variants
+        </span>#derives
+        #(<span class="attribute">#[ #pass_though_attributes ]</span>)*
+        #discriminants_vis <span class="kw">enum </span>#discriminants_name {
+            #(#discriminants),*
         }
 
-        #<span class="ident">impl_from</span>
-        #<span class="ident">impl_from_ref</span>
+        #impl_from
+        #impl_from_ref
     })
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="strum_macros" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="strum_macros" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (77e57db38 2022-10-30)" ></div></body></html>

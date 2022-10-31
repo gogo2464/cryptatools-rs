@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/lingua-1.4.0/src/json.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>json.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../lingua/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../lingua/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../lingua/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/lingua-1.4.0/src/json.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>json.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../lingua/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -597,488 +597,488 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either expressed or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */</span>
+ */
 
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ngram::Ngram</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::Language</span>;
-<span class="kw">use</span> <span class="ident">include_dir::Dir</span>;
+</span><span class="kw">use </span><span class="kw">crate</span>::ngram::Ngram;
+<span class="kw">use </span><span class="kw">crate</span>::Language;
+<span class="kw">use </span>include_dir::Dir;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;afrikaans&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">lingua_afrikaans_language_model::AFRIKAANS_MODELS_DIRECTORY</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;afrikaans&quot;</span>)]
+</span><span class="kw">use </span>lingua_afrikaans_language_model::AFRIKAANS_MODELS_DIRECTORY;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;albanian&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">lingua_albanian_language_model::ALBANIAN_MODELS_DIRECTORY</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;albanian&quot;</span>)]
+</span><span class="kw">use </span>lingua_albanian_language_model::ALBANIAN_MODELS_DIRECTORY;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;arabic&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">lingua_arabic_language_model::ARABIC_MODELS_DIRECTORY</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;arabic&quot;</span>)]
+</span><span class="kw">use </span>lingua_arabic_language_model::ARABIC_MODELS_DIRECTORY;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;armenian&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">lingua_armenian_language_model::ARMENIAN_MODELS_DIRECTORY</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;armenian&quot;</span>)]
+</span><span class="kw">use </span>lingua_armenian_language_model::ARMENIAN_MODELS_DIRECTORY;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;azerbaijani&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">lingua_azerbaijani_language_model::AZERBAIJANI_MODELS_DIRECTORY</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;azerbaijani&quot;</span>)]
+</span><span class="kw">use </span>lingua_azerbaijani_language_model::AZERBAIJANI_MODELS_DIRECTORY;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;basque&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">lingua_basque_language_model::BASQUE_MODELS_DIRECTORY</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;basque&quot;</span>)]
+</span><span class="kw">use </span>lingua_basque_language_model::BASQUE_MODELS_DIRECTORY;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;belarusian&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">lingua_belarusian_language_model::BELARUSIAN_MODELS_DIRECTORY</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;belarusian&quot;</span>)]
+</span><span class="kw">use </span>lingua_belarusian_language_model::BELARUSIAN_MODELS_DIRECTORY;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;bengali&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">lingua_bengali_language_model::BENGALI_MODELS_DIRECTORY</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;bengali&quot;</span>)]
+</span><span class="kw">use </span>lingua_bengali_language_model::BENGALI_MODELS_DIRECTORY;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;bokmal&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">lingua_bokmal_language_model::BOKMAL_MODELS_DIRECTORY</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;bokmal&quot;</span>)]
+</span><span class="kw">use </span>lingua_bokmal_language_model::BOKMAL_MODELS_DIRECTORY;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;bosnian&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">lingua_bosnian_language_model::BOSNIAN_MODELS_DIRECTORY</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;bosnian&quot;</span>)]
+</span><span class="kw">use </span>lingua_bosnian_language_model::BOSNIAN_MODELS_DIRECTORY;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;bulgarian&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">lingua_bulgarian_language_model::BULGARIAN_MODELS_DIRECTORY</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;bulgarian&quot;</span>)]
+</span><span class="kw">use </span>lingua_bulgarian_language_model::BULGARIAN_MODELS_DIRECTORY;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;catalan&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">lingua_catalan_language_model::CATALAN_MODELS_DIRECTORY</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;catalan&quot;</span>)]
+</span><span class="kw">use </span>lingua_catalan_language_model::CATALAN_MODELS_DIRECTORY;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;chinese&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">lingua_chinese_language_model::CHINESE_MODELS_DIRECTORY</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;chinese&quot;</span>)]
+</span><span class="kw">use </span>lingua_chinese_language_model::CHINESE_MODELS_DIRECTORY;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;croatian&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">lingua_croatian_language_model::CROATIAN_MODELS_DIRECTORY</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;croatian&quot;</span>)]
+</span><span class="kw">use </span>lingua_croatian_language_model::CROATIAN_MODELS_DIRECTORY;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;czech&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">lingua_czech_language_model::CZECH_MODELS_DIRECTORY</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;czech&quot;</span>)]
+</span><span class="kw">use </span>lingua_czech_language_model::CZECH_MODELS_DIRECTORY;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;danish&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">lingua_danish_language_model::DANISH_MODELS_DIRECTORY</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;danish&quot;</span>)]
+</span><span class="kw">use </span>lingua_danish_language_model::DANISH_MODELS_DIRECTORY;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dutch&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">lingua_dutch_language_model::DUTCH_MODELS_DIRECTORY</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;dutch&quot;</span>)]
+</span><span class="kw">use </span>lingua_dutch_language_model::DUTCH_MODELS_DIRECTORY;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;english&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">lingua_english_language_model::ENGLISH_MODELS_DIRECTORY</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;english&quot;</span>)]
+</span><span class="kw">use </span>lingua_english_language_model::ENGLISH_MODELS_DIRECTORY;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;esperanto&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">lingua_esperanto_language_model::ESPERANTO_MODELS_DIRECTORY</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;esperanto&quot;</span>)]
+</span><span class="kw">use </span>lingua_esperanto_language_model::ESPERANTO_MODELS_DIRECTORY;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;estonian&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">lingua_estonian_language_model::ESTONIAN_MODELS_DIRECTORY</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;estonian&quot;</span>)]
+</span><span class="kw">use </span>lingua_estonian_language_model::ESTONIAN_MODELS_DIRECTORY;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;finnish&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">lingua_finnish_language_model::FINNISH_MODELS_DIRECTORY</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;finnish&quot;</span>)]
+</span><span class="kw">use </span>lingua_finnish_language_model::FINNISH_MODELS_DIRECTORY;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;french&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">lingua_french_language_model::FRENCH_MODELS_DIRECTORY</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;french&quot;</span>)]
+</span><span class="kw">use </span>lingua_french_language_model::FRENCH_MODELS_DIRECTORY;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;ganda&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">lingua_ganda_language_model::GANDA_MODELS_DIRECTORY</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;ganda&quot;</span>)]
+</span><span class="kw">use </span>lingua_ganda_language_model::GANDA_MODELS_DIRECTORY;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;georgian&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">lingua_georgian_language_model::GEORGIAN_MODELS_DIRECTORY</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;georgian&quot;</span>)]
+</span><span class="kw">use </span>lingua_georgian_language_model::GEORGIAN_MODELS_DIRECTORY;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;german&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">lingua_german_language_model::GERMAN_MODELS_DIRECTORY</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;german&quot;</span>)]
+</span><span class="kw">use </span>lingua_german_language_model::GERMAN_MODELS_DIRECTORY;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;greek&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">lingua_greek_language_model::GREEK_MODELS_DIRECTORY</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;greek&quot;</span>)]
+</span><span class="kw">use </span>lingua_greek_language_model::GREEK_MODELS_DIRECTORY;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;gujarati&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">lingua_gujarati_language_model::GUJARATI_MODELS_DIRECTORY</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;gujarati&quot;</span>)]
+</span><span class="kw">use </span>lingua_gujarati_language_model::GUJARATI_MODELS_DIRECTORY;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;hebrew&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">lingua_hebrew_language_model::HEBREW_MODELS_DIRECTORY</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;hebrew&quot;</span>)]
+</span><span class="kw">use </span>lingua_hebrew_language_model::HEBREW_MODELS_DIRECTORY;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;hindi&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">lingua_hindi_language_model::HINDI_MODELS_DIRECTORY</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;hindi&quot;</span>)]
+</span><span class="kw">use </span>lingua_hindi_language_model::HINDI_MODELS_DIRECTORY;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;hungarian&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">lingua_hungarian_language_model::HUNGARIAN_MODELS_DIRECTORY</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;hungarian&quot;</span>)]
+</span><span class="kw">use </span>lingua_hungarian_language_model::HUNGARIAN_MODELS_DIRECTORY;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;icelandic&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">lingua_icelandic_language_model::ICELANDIC_MODELS_DIRECTORY</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;icelandic&quot;</span>)]
+</span><span class="kw">use </span>lingua_icelandic_language_model::ICELANDIC_MODELS_DIRECTORY;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;indonesian&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">lingua_indonesian_language_model::INDONESIAN_MODELS_DIRECTORY</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;indonesian&quot;</span>)]
+</span><span class="kw">use </span>lingua_indonesian_language_model::INDONESIAN_MODELS_DIRECTORY;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;irish&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">lingua_irish_language_model::IRISH_MODELS_DIRECTORY</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;irish&quot;</span>)]
+</span><span class="kw">use </span>lingua_irish_language_model::IRISH_MODELS_DIRECTORY;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;italian&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">lingua_italian_language_model::ITALIAN_MODELS_DIRECTORY</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;italian&quot;</span>)]
+</span><span class="kw">use </span>lingua_italian_language_model::ITALIAN_MODELS_DIRECTORY;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;japanese&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">lingua_japanese_language_model::JAPANESE_MODELS_DIRECTORY</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;japanese&quot;</span>)]
+</span><span class="kw">use </span>lingua_japanese_language_model::JAPANESE_MODELS_DIRECTORY;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;kazakh&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">lingua_kazakh_language_model::KAZAKH_MODELS_DIRECTORY</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;kazakh&quot;</span>)]
+</span><span class="kw">use </span>lingua_kazakh_language_model::KAZAKH_MODELS_DIRECTORY;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;korean&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">lingua_korean_language_model::KOREAN_MODELS_DIRECTORY</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;korean&quot;</span>)]
+</span><span class="kw">use </span>lingua_korean_language_model::KOREAN_MODELS_DIRECTORY;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;latin&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">lingua_latin_language_model::LATIN_MODELS_DIRECTORY</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;latin&quot;</span>)]
+</span><span class="kw">use </span>lingua_latin_language_model::LATIN_MODELS_DIRECTORY;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;latvian&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">lingua_latvian_language_model::LATVIAN_MODELS_DIRECTORY</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;latvian&quot;</span>)]
+</span><span class="kw">use </span>lingua_latvian_language_model::LATVIAN_MODELS_DIRECTORY;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;lithuanian&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">lingua_lithuanian_language_model::LITHUANIAN_MODELS_DIRECTORY</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;lithuanian&quot;</span>)]
+</span><span class="kw">use </span>lingua_lithuanian_language_model::LITHUANIAN_MODELS_DIRECTORY;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;macedonian&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">lingua_macedonian_language_model::MACEDONIAN_MODELS_DIRECTORY</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;macedonian&quot;</span>)]
+</span><span class="kw">use </span>lingua_macedonian_language_model::MACEDONIAN_MODELS_DIRECTORY;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;malay&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">lingua_malay_language_model::MALAY_MODELS_DIRECTORY</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;malay&quot;</span>)]
+</span><span class="kw">use </span>lingua_malay_language_model::MALAY_MODELS_DIRECTORY;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;maori&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">lingua_maori_language_model::MAORI_MODELS_DIRECTORY</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;maori&quot;</span>)]
+</span><span class="kw">use </span>lingua_maori_language_model::MAORI_MODELS_DIRECTORY;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;marathi&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">lingua_marathi_language_model::MARATHI_MODELS_DIRECTORY</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;marathi&quot;</span>)]
+</span><span class="kw">use </span>lingua_marathi_language_model::MARATHI_MODELS_DIRECTORY;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;mongolian&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">lingua_mongolian_language_model::MONGOLIAN_MODELS_DIRECTORY</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;mongolian&quot;</span>)]
+</span><span class="kw">use </span>lingua_mongolian_language_model::MONGOLIAN_MODELS_DIRECTORY;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;nynorsk&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">lingua_nynorsk_language_model::NYNORSK_MODELS_DIRECTORY</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;nynorsk&quot;</span>)]
+</span><span class="kw">use </span>lingua_nynorsk_language_model::NYNORSK_MODELS_DIRECTORY;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;persian&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">lingua_persian_language_model::PERSIAN_MODELS_DIRECTORY</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;persian&quot;</span>)]
+</span><span class="kw">use </span>lingua_persian_language_model::PERSIAN_MODELS_DIRECTORY;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;polish&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">lingua_polish_language_model::POLISH_MODELS_DIRECTORY</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;polish&quot;</span>)]
+</span><span class="kw">use </span>lingua_polish_language_model::POLISH_MODELS_DIRECTORY;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;portuguese&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">lingua_portuguese_language_model::PORTUGUESE_MODELS_DIRECTORY</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;portuguese&quot;</span>)]
+</span><span class="kw">use </span>lingua_portuguese_language_model::PORTUGUESE_MODELS_DIRECTORY;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;punjabi&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">lingua_punjabi_language_model::PUNJABI_MODELS_DIRECTORY</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;punjabi&quot;</span>)]
+</span><span class="kw">use </span>lingua_punjabi_language_model::PUNJABI_MODELS_DIRECTORY;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;romanian&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">lingua_romanian_language_model::ROMANIAN_MODELS_DIRECTORY</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;romanian&quot;</span>)]
+</span><span class="kw">use </span>lingua_romanian_language_model::ROMANIAN_MODELS_DIRECTORY;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;russian&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">lingua_russian_language_model::RUSSIAN_MODELS_DIRECTORY</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;russian&quot;</span>)]
+</span><span class="kw">use </span>lingua_russian_language_model::RUSSIAN_MODELS_DIRECTORY;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serbian&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">lingua_serbian_language_model::SERBIAN_MODELS_DIRECTORY</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;serbian&quot;</span>)]
+</span><span class="kw">use </span>lingua_serbian_language_model::SERBIAN_MODELS_DIRECTORY;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;shona&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">lingua_shona_language_model::SHONA_MODELS_DIRECTORY</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;shona&quot;</span>)]
+</span><span class="kw">use </span>lingua_shona_language_model::SHONA_MODELS_DIRECTORY;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;slovak&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">lingua_slovak_language_model::SLOVAK_MODELS_DIRECTORY</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;slovak&quot;</span>)]
+</span><span class="kw">use </span>lingua_slovak_language_model::SLOVAK_MODELS_DIRECTORY;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;slovene&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">lingua_slovene_language_model::SLOVENE_MODELS_DIRECTORY</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;slovene&quot;</span>)]
+</span><span class="kw">use </span>lingua_slovene_language_model::SLOVENE_MODELS_DIRECTORY;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;somali&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">lingua_somali_language_model::SOMALI_MODELS_DIRECTORY</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;somali&quot;</span>)]
+</span><span class="kw">use </span>lingua_somali_language_model::SOMALI_MODELS_DIRECTORY;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;sotho&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">lingua_sotho_language_model::SOTHO_MODELS_DIRECTORY</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;sotho&quot;</span>)]
+</span><span class="kw">use </span>lingua_sotho_language_model::SOTHO_MODELS_DIRECTORY;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;spanish&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">lingua_spanish_language_model::SPANISH_MODELS_DIRECTORY</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;spanish&quot;</span>)]
+</span><span class="kw">use </span>lingua_spanish_language_model::SPANISH_MODELS_DIRECTORY;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;swahili&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">lingua_swahili_language_model::SWAHILI_MODELS_DIRECTORY</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;swahili&quot;</span>)]
+</span><span class="kw">use </span>lingua_swahili_language_model::SWAHILI_MODELS_DIRECTORY;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;swedish&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">lingua_swedish_language_model::SWEDISH_MODELS_DIRECTORY</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;swedish&quot;</span>)]
+</span><span class="kw">use </span>lingua_swedish_language_model::SWEDISH_MODELS_DIRECTORY;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;tagalog&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">lingua_tagalog_language_model::TAGALOG_MODELS_DIRECTORY</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;tagalog&quot;</span>)]
+</span><span class="kw">use </span>lingua_tagalog_language_model::TAGALOG_MODELS_DIRECTORY;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;tamil&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">lingua_tamil_language_model::TAMIL_MODELS_DIRECTORY</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;tamil&quot;</span>)]
+</span><span class="kw">use </span>lingua_tamil_language_model::TAMIL_MODELS_DIRECTORY;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;telugu&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">lingua_telugu_language_model::TELUGU_MODELS_DIRECTORY</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;telugu&quot;</span>)]
+</span><span class="kw">use </span>lingua_telugu_language_model::TELUGU_MODELS_DIRECTORY;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;thai&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">lingua_thai_language_model::THAI_MODELS_DIRECTORY</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;thai&quot;</span>)]
+</span><span class="kw">use </span>lingua_thai_language_model::THAI_MODELS_DIRECTORY;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;tsonga&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">lingua_tsonga_language_model::TSONGA_MODELS_DIRECTORY</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;tsonga&quot;</span>)]
+</span><span class="kw">use </span>lingua_tsonga_language_model::TSONGA_MODELS_DIRECTORY;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;tswana&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">lingua_tswana_language_model::TSWANA_MODELS_DIRECTORY</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;tswana&quot;</span>)]
+</span><span class="kw">use </span>lingua_tswana_language_model::TSWANA_MODELS_DIRECTORY;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;turkish&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">lingua_turkish_language_model::TURKISH_MODELS_DIRECTORY</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;turkish&quot;</span>)]
+</span><span class="kw">use </span>lingua_turkish_language_model::TURKISH_MODELS_DIRECTORY;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;ukrainian&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">lingua_ukrainian_language_model::UKRAINIAN_MODELS_DIRECTORY</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;ukrainian&quot;</span>)]
+</span><span class="kw">use </span>lingua_ukrainian_language_model::UKRAINIAN_MODELS_DIRECTORY;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;urdu&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">lingua_urdu_language_model::URDU_MODELS_DIRECTORY</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;urdu&quot;</span>)]
+</span><span class="kw">use </span>lingua_urdu_language_model::URDU_MODELS_DIRECTORY;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;vietnamese&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">lingua_vietnamese_language_model::VIETNAMESE_MODELS_DIRECTORY</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;vietnamese&quot;</span>)]
+</span><span class="kw">use </span>lingua_vietnamese_language_model::VIETNAMESE_MODELS_DIRECTORY;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;welsh&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">lingua_welsh_language_model::WELSH_MODELS_DIRECTORY</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;welsh&quot;</span>)]
+</span><span class="kw">use </span>lingua_welsh_language_model::WELSH_MODELS_DIRECTORY;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xhosa&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">lingua_xhosa_language_model::XHOSA_MODELS_DIRECTORY</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;xhosa&quot;</span>)]
+</span><span class="kw">use </span>lingua_xhosa_language_model::XHOSA_MODELS_DIRECTORY;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;yoruba&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">lingua_yoruba_language_model::YORUBA_MODELS_DIRECTORY</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;yoruba&quot;</span>)]
+</span><span class="kw">use </span>lingua_yoruba_language_model::YORUBA_MODELS_DIRECTORY;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;zulu&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">lingua_zulu_language_model::ZULU_MODELS_DIRECTORY</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;zulu&quot;</span>)]
+</span><span class="kw">use </span>lingua_zulu_language_model::ZULU_MODELS_DIRECTORY;
 
-<span class="kw">use</span> <span class="ident">std::io</span>::{<span class="ident">Cursor</span>, <span class="ident">ErrorKind</span>, <span class="ident">Read</span>};
-<span class="kw">use</span> <span class="ident">zip::ZipArchive</span>;
+<span class="kw">use </span>std::io::{Cursor, ErrorKind, Read};
+<span class="kw">use </span>zip::ZipArchive;
 
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">load_json</span>(<span class="ident">language</span>: <span class="ident">Language</span>, <span class="ident">ngram_length</span>: <span class="ident">usize</span>) -&gt; <span class="ident">std::io::Result</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span> {
-    <span class="kw">let</span> <span class="ident">ngram_name</span> <span class="op">=</span> <span class="ident">Ngram::find_ngram_name_by_length</span>(<span class="ident">ngram_length</span>);
-    <span class="kw">let</span> <span class="ident">file_path</span> <span class="op">=</span> <span class="macro">format!</span>(<span class="string">&quot;{}s.json.zip&quot;</span>, <span class="ident">ngram_name</span>);
-    <span class="kw">let</span> <span class="ident">directory</span> <span class="op">=</span> <span class="ident">get_language_models_directory</span>(<span class="ident">language</span>);
-    <span class="kw">let</span> <span class="ident">zip_file</span> <span class="op">=</span> <span class="ident">directory</span>.<span class="ident">get_file</span>(<span class="ident">file_path</span>).<span class="ident">ok_or</span>(<span class="ident">ErrorKind::NotFound</span>)<span class="question-mark">?</span>;
-    <span class="kw">let</span> <span class="ident">zip_file_reader</span> <span class="op">=</span> <span class="ident">Cursor::new</span>(<span class="ident">zip_file</span>.<span class="ident">contents</span>());
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">archive</span> <span class="op">=</span> <span class="ident">ZipArchive::new</span>(<span class="ident">zip_file_reader</span>).<span class="ident">unwrap</span>();
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">json_file</span> <span class="op">=</span> <span class="ident">archive</span>.<span class="ident">by_index</span>(<span class="number">0</span>).<span class="ident">unwrap</span>();
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">json</span> <span class="op">=</span> <span class="ident">String::new</span>();
-    <span class="ident">json_file</span>.<span class="ident">read_to_string</span>(<span class="kw-2">&amp;mut</span> <span class="ident">json</span>)<span class="question-mark">?</span>;
-    <span class="prelude-val">Ok</span>(<span class="ident">json</span>)
+<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>load_json(language: Language, ngram_length: usize) -&gt; std::io::Result&lt;String&gt; {
+    <span class="kw">let </span>ngram_name = Ngram::find_ngram_name_by_length(ngram_length);
+    <span class="kw">let </span>file_path = <span class="macro">format!</span>(<span class="string">&quot;{}s.json.zip&quot;</span>, ngram_name);
+    <span class="kw">let </span>directory = get_language_models_directory(language);
+    <span class="kw">let </span>zip_file = directory.get_file(file_path).ok_or(ErrorKind::NotFound)<span class="question-mark">?</span>;
+    <span class="kw">let </span>zip_file_reader = Cursor::new(zip_file.contents());
+    <span class="kw">let </span><span class="kw-2">mut </span>archive = ZipArchive::new(zip_file_reader).unwrap();
+    <span class="kw">let </span><span class="kw-2">mut </span>json_file = archive.by_index(<span class="number">0</span>).unwrap();
+    <span class="kw">let </span><span class="kw-2">mut </span>json = String::new();
+    json_file.read_to_string(<span class="kw-2">&amp;mut </span>json)<span class="question-mark">?</span>;
+    <span class="prelude-val">Ok</span>(json)
 }
 
-<span class="kw">fn</span> <span class="ident">get_language_models_directory</span>(<span class="ident">language</span>: <span class="ident">Language</span>) -&gt; <span class="ident">Dir</span><span class="op">&lt;</span><span class="lifetime">&#39;static</span><span class="op">&gt;</span> {
-    <span class="kw">match</span> <span class="ident">language</span> {
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;afrikaans&quot;</span>)]</span>
-        <span class="ident">Language::Afrikaans</span> =&gt; <span class="ident">AFRIKAANS_MODELS_DIRECTORY</span>,
+<span class="kw">fn </span>get_language_models_directory(language: Language) -&gt; Dir&lt;<span class="lifetime">&#39;static</span>&gt; {
+    <span class="kw">match </span>language {
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;afrikaans&quot;</span>)]
+        </span>Language::Afrikaans =&gt; AFRIKAANS_MODELS_DIRECTORY,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;albanian&quot;</span>)]</span>
-        <span class="ident">Language::Albanian</span> =&gt; <span class="ident">ALBANIAN_MODELS_DIRECTORY</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;albanian&quot;</span>)]
+        </span>Language::Albanian =&gt; ALBANIAN_MODELS_DIRECTORY,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;arabic&quot;</span>)]</span>
-        <span class="ident">Language::Arabic</span> =&gt; <span class="ident">ARABIC_MODELS_DIRECTORY</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;arabic&quot;</span>)]
+        </span>Language::Arabic =&gt; ARABIC_MODELS_DIRECTORY,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;armenian&quot;</span>)]</span>
-        <span class="ident">Language::Armenian</span> =&gt; <span class="ident">ARMENIAN_MODELS_DIRECTORY</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;armenian&quot;</span>)]
+        </span>Language::Armenian =&gt; ARMENIAN_MODELS_DIRECTORY,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;azerbaijani&quot;</span>)]</span>
-        <span class="ident">Language::Azerbaijani</span> =&gt; <span class="ident">AZERBAIJANI_MODELS_DIRECTORY</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;azerbaijani&quot;</span>)]
+        </span>Language::Azerbaijani =&gt; AZERBAIJANI_MODELS_DIRECTORY,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;basque&quot;</span>)]</span>
-        <span class="ident">Language::Basque</span> =&gt; <span class="ident">BASQUE_MODELS_DIRECTORY</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;basque&quot;</span>)]
+        </span>Language::Basque =&gt; BASQUE_MODELS_DIRECTORY,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;belarusian&quot;</span>)]</span>
-        <span class="ident">Language::Belarusian</span> =&gt; <span class="ident">BELARUSIAN_MODELS_DIRECTORY</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;belarusian&quot;</span>)]
+        </span>Language::Belarusian =&gt; BELARUSIAN_MODELS_DIRECTORY,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;bengali&quot;</span>)]</span>
-        <span class="ident">Language::Bengali</span> =&gt; <span class="ident">BENGALI_MODELS_DIRECTORY</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;bengali&quot;</span>)]
+        </span>Language::Bengali =&gt; BENGALI_MODELS_DIRECTORY,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;bokmal&quot;</span>)]</span>
-        <span class="ident">Language::Bokmal</span> =&gt; <span class="ident">BOKMAL_MODELS_DIRECTORY</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;bokmal&quot;</span>)]
+        </span>Language::Bokmal =&gt; BOKMAL_MODELS_DIRECTORY,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;bosnian&quot;</span>)]</span>
-        <span class="ident">Language::Bosnian</span> =&gt; <span class="ident">BOSNIAN_MODELS_DIRECTORY</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;bosnian&quot;</span>)]
+        </span>Language::Bosnian =&gt; BOSNIAN_MODELS_DIRECTORY,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;bulgarian&quot;</span>)]</span>
-        <span class="ident">Language::Bulgarian</span> =&gt; <span class="ident">BULGARIAN_MODELS_DIRECTORY</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;bulgarian&quot;</span>)]
+        </span>Language::Bulgarian =&gt; BULGARIAN_MODELS_DIRECTORY,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;catalan&quot;</span>)]</span>
-        <span class="ident">Language::Catalan</span> =&gt; <span class="ident">CATALAN_MODELS_DIRECTORY</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;catalan&quot;</span>)]
+        </span>Language::Catalan =&gt; CATALAN_MODELS_DIRECTORY,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;chinese&quot;</span>)]</span>
-        <span class="ident">Language::Chinese</span> =&gt; <span class="ident">CHINESE_MODELS_DIRECTORY</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;chinese&quot;</span>)]
+        </span>Language::Chinese =&gt; CHINESE_MODELS_DIRECTORY,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;croatian&quot;</span>)]</span>
-        <span class="ident">Language::Croatian</span> =&gt; <span class="ident">CROATIAN_MODELS_DIRECTORY</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;croatian&quot;</span>)]
+        </span>Language::Croatian =&gt; CROATIAN_MODELS_DIRECTORY,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;czech&quot;</span>)]</span>
-        <span class="ident">Language::Czech</span> =&gt; <span class="ident">CZECH_MODELS_DIRECTORY</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;czech&quot;</span>)]
+        </span>Language::Czech =&gt; CZECH_MODELS_DIRECTORY,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;danish&quot;</span>)]</span>
-        <span class="ident">Language::Danish</span> =&gt; <span class="ident">DANISH_MODELS_DIRECTORY</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;danish&quot;</span>)]
+        </span>Language::Danish =&gt; DANISH_MODELS_DIRECTORY,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dutch&quot;</span>)]</span>
-        <span class="ident">Language::Dutch</span> =&gt; <span class="ident">DUTCH_MODELS_DIRECTORY</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;dutch&quot;</span>)]
+        </span>Language::Dutch =&gt; DUTCH_MODELS_DIRECTORY,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;english&quot;</span>)]</span>
-        <span class="ident">Language::English</span> =&gt; <span class="ident">ENGLISH_MODELS_DIRECTORY</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;english&quot;</span>)]
+        </span>Language::English =&gt; ENGLISH_MODELS_DIRECTORY,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;esperanto&quot;</span>)]</span>
-        <span class="ident">Language::Esperanto</span> =&gt; <span class="ident">ESPERANTO_MODELS_DIRECTORY</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;esperanto&quot;</span>)]
+        </span>Language::Esperanto =&gt; ESPERANTO_MODELS_DIRECTORY,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;estonian&quot;</span>)]</span>
-        <span class="ident">Language::Estonian</span> =&gt; <span class="ident">ESTONIAN_MODELS_DIRECTORY</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;estonian&quot;</span>)]
+        </span>Language::Estonian =&gt; ESTONIAN_MODELS_DIRECTORY,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;finnish&quot;</span>)]</span>
-        <span class="ident">Language::Finnish</span> =&gt; <span class="ident">FINNISH_MODELS_DIRECTORY</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;finnish&quot;</span>)]
+        </span>Language::Finnish =&gt; FINNISH_MODELS_DIRECTORY,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;french&quot;</span>)]</span>
-        <span class="ident">Language::French</span> =&gt; <span class="ident">FRENCH_MODELS_DIRECTORY</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;french&quot;</span>)]
+        </span>Language::French =&gt; FRENCH_MODELS_DIRECTORY,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;ganda&quot;</span>)]</span>
-        <span class="ident">Language::Ganda</span> =&gt; <span class="ident">GANDA_MODELS_DIRECTORY</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;ganda&quot;</span>)]
+        </span>Language::Ganda =&gt; GANDA_MODELS_DIRECTORY,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;georgian&quot;</span>)]</span>
-        <span class="ident">Language::Georgian</span> =&gt; <span class="ident">GEORGIAN_MODELS_DIRECTORY</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;georgian&quot;</span>)]
+        </span>Language::Georgian =&gt; GEORGIAN_MODELS_DIRECTORY,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;german&quot;</span>)]</span>
-        <span class="ident">Language::German</span> =&gt; <span class="ident">GERMAN_MODELS_DIRECTORY</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;german&quot;</span>)]
+        </span>Language::German =&gt; GERMAN_MODELS_DIRECTORY,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;greek&quot;</span>)]</span>
-        <span class="ident">Language::Greek</span> =&gt; <span class="ident">GREEK_MODELS_DIRECTORY</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;greek&quot;</span>)]
+        </span>Language::Greek =&gt; GREEK_MODELS_DIRECTORY,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;gujarati&quot;</span>)]</span>
-        <span class="ident">Language::Gujarati</span> =&gt; <span class="ident">GUJARATI_MODELS_DIRECTORY</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;gujarati&quot;</span>)]
+        </span>Language::Gujarati =&gt; GUJARATI_MODELS_DIRECTORY,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;hebrew&quot;</span>)]</span>
-        <span class="ident">Language::Hebrew</span> =&gt; <span class="ident">HEBREW_MODELS_DIRECTORY</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;hebrew&quot;</span>)]
+        </span>Language::Hebrew =&gt; HEBREW_MODELS_DIRECTORY,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;hindi&quot;</span>)]</span>
-        <span class="ident">Language::Hindi</span> =&gt; <span class="ident">HINDI_MODELS_DIRECTORY</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;hindi&quot;</span>)]
+        </span>Language::Hindi =&gt; HINDI_MODELS_DIRECTORY,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;hungarian&quot;</span>)]</span>
-        <span class="ident">Language::Hungarian</span> =&gt; <span class="ident">HUNGARIAN_MODELS_DIRECTORY</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;hungarian&quot;</span>)]
+        </span>Language::Hungarian =&gt; HUNGARIAN_MODELS_DIRECTORY,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;icelandic&quot;</span>)]</span>
-        <span class="ident">Language::Icelandic</span> =&gt; <span class="ident">ICELANDIC_MODELS_DIRECTORY</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;icelandic&quot;</span>)]
+        </span>Language::Icelandic =&gt; ICELANDIC_MODELS_DIRECTORY,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;indonesian&quot;</span>)]</span>
-        <span class="ident">Language::Indonesian</span> =&gt; <span class="ident">INDONESIAN_MODELS_DIRECTORY</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;indonesian&quot;</span>)]
+        </span>Language::Indonesian =&gt; INDONESIAN_MODELS_DIRECTORY,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;irish&quot;</span>)]</span>
-        <span class="ident">Language::Irish</span> =&gt; <span class="ident">IRISH_MODELS_DIRECTORY</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;irish&quot;</span>)]
+        </span>Language::Irish =&gt; IRISH_MODELS_DIRECTORY,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;italian&quot;</span>)]</span>
-        <span class="ident">Language::Italian</span> =&gt; <span class="ident">ITALIAN_MODELS_DIRECTORY</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;italian&quot;</span>)]
+        </span>Language::Italian =&gt; ITALIAN_MODELS_DIRECTORY,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;japanese&quot;</span>)]</span>
-        <span class="ident">Language::Japanese</span> =&gt; <span class="ident">JAPANESE_MODELS_DIRECTORY</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;japanese&quot;</span>)]
+        </span>Language::Japanese =&gt; JAPANESE_MODELS_DIRECTORY,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;kazakh&quot;</span>)]</span>
-        <span class="ident">Language::Kazakh</span> =&gt; <span class="ident">KAZAKH_MODELS_DIRECTORY</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;kazakh&quot;</span>)]
+        </span>Language::Kazakh =&gt; KAZAKH_MODELS_DIRECTORY,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;korean&quot;</span>)]</span>
-        <span class="ident">Language::Korean</span> =&gt; <span class="ident">KOREAN_MODELS_DIRECTORY</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;korean&quot;</span>)]
+        </span>Language::Korean =&gt; KOREAN_MODELS_DIRECTORY,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;latin&quot;</span>)]</span>
-        <span class="ident">Language::Latin</span> =&gt; <span class="ident">LATIN_MODELS_DIRECTORY</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;latin&quot;</span>)]
+        </span>Language::Latin =&gt; LATIN_MODELS_DIRECTORY,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;latvian&quot;</span>)]</span>
-        <span class="ident">Language::Latvian</span> =&gt; <span class="ident">LATVIAN_MODELS_DIRECTORY</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;latvian&quot;</span>)]
+        </span>Language::Latvian =&gt; LATVIAN_MODELS_DIRECTORY,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;lithuanian&quot;</span>)]</span>
-        <span class="ident">Language::Lithuanian</span> =&gt; <span class="ident">LITHUANIAN_MODELS_DIRECTORY</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;lithuanian&quot;</span>)]
+        </span>Language::Lithuanian =&gt; LITHUANIAN_MODELS_DIRECTORY,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;macedonian&quot;</span>)]</span>
-        <span class="ident">Language::Macedonian</span> =&gt; <span class="ident">MACEDONIAN_MODELS_DIRECTORY</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;macedonian&quot;</span>)]
+        </span>Language::Macedonian =&gt; MACEDONIAN_MODELS_DIRECTORY,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;malay&quot;</span>)]</span>
-        <span class="ident">Language::Malay</span> =&gt; <span class="ident">MALAY_MODELS_DIRECTORY</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;malay&quot;</span>)]
+        </span>Language::Malay =&gt; MALAY_MODELS_DIRECTORY,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;maori&quot;</span>)]</span>
-        <span class="ident">Language::Maori</span> =&gt; <span class="ident">MAORI_MODELS_DIRECTORY</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;maori&quot;</span>)]
+        </span>Language::Maori =&gt; MAORI_MODELS_DIRECTORY,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;marathi&quot;</span>)]</span>
-        <span class="ident">Language::Marathi</span> =&gt; <span class="ident">MARATHI_MODELS_DIRECTORY</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;marathi&quot;</span>)]
+        </span>Language::Marathi =&gt; MARATHI_MODELS_DIRECTORY,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;mongolian&quot;</span>)]</span>
-        <span class="ident">Language::Mongolian</span> =&gt; <span class="ident">MONGOLIAN_MODELS_DIRECTORY</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;mongolian&quot;</span>)]
+        </span>Language::Mongolian =&gt; MONGOLIAN_MODELS_DIRECTORY,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;nynorsk&quot;</span>)]</span>
-        <span class="ident">Language::Nynorsk</span> =&gt; <span class="ident">NYNORSK_MODELS_DIRECTORY</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;nynorsk&quot;</span>)]
+        </span>Language::Nynorsk =&gt; NYNORSK_MODELS_DIRECTORY,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;persian&quot;</span>)]</span>
-        <span class="ident">Language::Persian</span> =&gt; <span class="ident">PERSIAN_MODELS_DIRECTORY</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;persian&quot;</span>)]
+        </span>Language::Persian =&gt; PERSIAN_MODELS_DIRECTORY,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;polish&quot;</span>)]</span>
-        <span class="ident">Language::Polish</span> =&gt; <span class="ident">POLISH_MODELS_DIRECTORY</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;polish&quot;</span>)]
+        </span>Language::Polish =&gt; POLISH_MODELS_DIRECTORY,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;portuguese&quot;</span>)]</span>
-        <span class="ident">Language::Portuguese</span> =&gt; <span class="ident">PORTUGUESE_MODELS_DIRECTORY</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;portuguese&quot;</span>)]
+        </span>Language::Portuguese =&gt; PORTUGUESE_MODELS_DIRECTORY,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;punjabi&quot;</span>)]</span>
-        <span class="ident">Language::Punjabi</span> =&gt; <span class="ident">PUNJABI_MODELS_DIRECTORY</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;punjabi&quot;</span>)]
+        </span>Language::Punjabi =&gt; PUNJABI_MODELS_DIRECTORY,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;romanian&quot;</span>)]</span>
-        <span class="ident">Language::Romanian</span> =&gt; <span class="ident">ROMANIAN_MODELS_DIRECTORY</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;romanian&quot;</span>)]
+        </span>Language::Romanian =&gt; ROMANIAN_MODELS_DIRECTORY,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;russian&quot;</span>)]</span>
-        <span class="ident">Language::Russian</span> =&gt; <span class="ident">RUSSIAN_MODELS_DIRECTORY</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;russian&quot;</span>)]
+        </span>Language::Russian =&gt; RUSSIAN_MODELS_DIRECTORY,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serbian&quot;</span>)]</span>
-        <span class="ident">Language::Serbian</span> =&gt; <span class="ident">SERBIAN_MODELS_DIRECTORY</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;serbian&quot;</span>)]
+        </span>Language::Serbian =&gt; SERBIAN_MODELS_DIRECTORY,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;shona&quot;</span>)]</span>
-        <span class="ident">Language::Shona</span> =&gt; <span class="ident">SHONA_MODELS_DIRECTORY</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;shona&quot;</span>)]
+        </span>Language::Shona =&gt; SHONA_MODELS_DIRECTORY,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;slovak&quot;</span>)]</span>
-        <span class="ident">Language::Slovak</span> =&gt; <span class="ident">SLOVAK_MODELS_DIRECTORY</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;slovak&quot;</span>)]
+        </span>Language::Slovak =&gt; SLOVAK_MODELS_DIRECTORY,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;slovene&quot;</span>)]</span>
-        <span class="ident">Language::Slovene</span> =&gt; <span class="ident">SLOVENE_MODELS_DIRECTORY</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;slovene&quot;</span>)]
+        </span>Language::Slovene =&gt; SLOVENE_MODELS_DIRECTORY,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;somali&quot;</span>)]</span>
-        <span class="ident">Language::Somali</span> =&gt; <span class="ident">SOMALI_MODELS_DIRECTORY</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;somali&quot;</span>)]
+        </span>Language::Somali =&gt; SOMALI_MODELS_DIRECTORY,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;sotho&quot;</span>)]</span>
-        <span class="ident">Language::Sotho</span> =&gt; <span class="ident">SOTHO_MODELS_DIRECTORY</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;sotho&quot;</span>)]
+        </span>Language::Sotho =&gt; SOTHO_MODELS_DIRECTORY,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;spanish&quot;</span>)]</span>
-        <span class="ident">Language::Spanish</span> =&gt; <span class="ident">SPANISH_MODELS_DIRECTORY</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;spanish&quot;</span>)]
+        </span>Language::Spanish =&gt; SPANISH_MODELS_DIRECTORY,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;swahili&quot;</span>)]</span>
-        <span class="ident">Language::Swahili</span> =&gt; <span class="ident">SWAHILI_MODELS_DIRECTORY</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;swahili&quot;</span>)]
+        </span>Language::Swahili =&gt; SWAHILI_MODELS_DIRECTORY,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;swedish&quot;</span>)]</span>
-        <span class="ident">Language::Swedish</span> =&gt; <span class="ident">SWEDISH_MODELS_DIRECTORY</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;swedish&quot;</span>)]
+        </span>Language::Swedish =&gt; SWEDISH_MODELS_DIRECTORY,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;tagalog&quot;</span>)]</span>
-        <span class="ident">Language::Tagalog</span> =&gt; <span class="ident">TAGALOG_MODELS_DIRECTORY</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;tagalog&quot;</span>)]
+        </span>Language::Tagalog =&gt; TAGALOG_MODELS_DIRECTORY,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;tamil&quot;</span>)]</span>
-        <span class="ident">Language::Tamil</span> =&gt; <span class="ident">TAMIL_MODELS_DIRECTORY</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;tamil&quot;</span>)]
+        </span>Language::Tamil =&gt; TAMIL_MODELS_DIRECTORY,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;telugu&quot;</span>)]</span>
-        <span class="ident">Language::Telugu</span> =&gt; <span class="ident">TELUGU_MODELS_DIRECTORY</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;telugu&quot;</span>)]
+        </span>Language::Telugu =&gt; TELUGU_MODELS_DIRECTORY,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;thai&quot;</span>)]</span>
-        <span class="ident">Language::Thai</span> =&gt; <span class="ident">THAI_MODELS_DIRECTORY</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;thai&quot;</span>)]
+        </span>Language::Thai =&gt; THAI_MODELS_DIRECTORY,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;tsonga&quot;</span>)]</span>
-        <span class="ident">Language::Tsonga</span> =&gt; <span class="ident">TSONGA_MODELS_DIRECTORY</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;tsonga&quot;</span>)]
+        </span>Language::Tsonga =&gt; TSONGA_MODELS_DIRECTORY,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;tswana&quot;</span>)]</span>
-        <span class="ident">Language::Tswana</span> =&gt; <span class="ident">TSWANA_MODELS_DIRECTORY</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;tswana&quot;</span>)]
+        </span>Language::Tswana =&gt; TSWANA_MODELS_DIRECTORY,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;turkish&quot;</span>)]</span>
-        <span class="ident">Language::Turkish</span> =&gt; <span class="ident">TURKISH_MODELS_DIRECTORY</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;turkish&quot;</span>)]
+        </span>Language::Turkish =&gt; TURKISH_MODELS_DIRECTORY,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;ukrainian&quot;</span>)]</span>
-        <span class="ident">Language::Ukrainian</span> =&gt; <span class="ident">UKRAINIAN_MODELS_DIRECTORY</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;ukrainian&quot;</span>)]
+        </span>Language::Ukrainian =&gt; UKRAINIAN_MODELS_DIRECTORY,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;urdu&quot;</span>)]</span>
-        <span class="ident">Language::Urdu</span> =&gt; <span class="ident">URDU_MODELS_DIRECTORY</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;urdu&quot;</span>)]
+        </span>Language::Urdu =&gt; URDU_MODELS_DIRECTORY,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;vietnamese&quot;</span>)]</span>
-        <span class="ident">Language::Vietnamese</span> =&gt; <span class="ident">VIETNAMESE_MODELS_DIRECTORY</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;vietnamese&quot;</span>)]
+        </span>Language::Vietnamese =&gt; VIETNAMESE_MODELS_DIRECTORY,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;welsh&quot;</span>)]</span>
-        <span class="ident">Language::Welsh</span> =&gt; <span class="ident">WELSH_MODELS_DIRECTORY</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;welsh&quot;</span>)]
+        </span>Language::Welsh =&gt; WELSH_MODELS_DIRECTORY,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xhosa&quot;</span>)]</span>
-        <span class="ident">Language::Xhosa</span> =&gt; <span class="ident">XHOSA_MODELS_DIRECTORY</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;xhosa&quot;</span>)]
+        </span>Language::Xhosa =&gt; XHOSA_MODELS_DIRECTORY,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;yoruba&quot;</span>)]</span>
-        <span class="ident">Language::Yoruba</span> =&gt; <span class="ident">YORUBA_MODELS_DIRECTORY</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;yoruba&quot;</span>)]
+        </span>Language::Yoruba =&gt; YORUBA_MODELS_DIRECTORY,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;zulu&quot;</span>)]</span>
-        <span class="ident">Language::Zulu</span> =&gt; <span class="ident">ZULU_MODELS_DIRECTORY</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;zulu&quot;</span>)]
+        </span>Language::Zulu =&gt; ZULU_MODELS_DIRECTORY,
     }
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
-<span class="kw">mod</span> <span class="ident">tests</span> {
-    <span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
-    <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::minify</span>;
+<span class="attribute">#[cfg(test)]
+</span><span class="kw">mod </span>tests {
+    <span class="kw">use super</span>::<span class="kw-2">*</span>;
+    <span class="kw">use </span><span class="kw">crate</span>::minify;
 
-    <span class="kw">const</span> <span class="ident">EXPECTED_UNIGRAM_MODEL</span>: <span class="kw-2">&amp;</span><span class="ident">str</span> <span class="op">=</span> <span class="string">r#&quot;
+    <span class="kw">const </span>EXPECTED_UNIGRAM_MODEL: <span class="kw-2">&amp;</span>str = <span class="string">r#&quot;
     {
         &quot;language&quot;:&quot;ENGLISH&quot;,
         &quot;ngrams&quot;:{
@@ -1161,12 +1161,12 @@
     }
     &quot;#</span>;
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">test_load_json</span>() {
-        <span class="kw">let</span> <span class="ident">result</span> <span class="op">=</span> <span class="ident">load_json</span>(<span class="ident">Language::English</span>, <span class="number">1</span>);
-        <span class="macro">assert!</span>(<span class="ident">result</span>.<span class="ident">is_ok</span>());
-        <span class="macro">assert_eq!</span>(<span class="ident">result</span>.<span class="ident">unwrap</span>(), <span class="ident">minify</span>(<span class="ident">EXPECTED_UNIGRAM_MODEL</span>));
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>test_load_json() {
+        <span class="kw">let </span>result = load_json(Language::English, <span class="number">1</span>);
+        <span class="macro">assert!</span>(result.is_ok());
+        <span class="macro">assert_eq!</span>(result.unwrap(), minify(EXPECTED_UNIGRAM_MODEL));
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="lingua" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="lingua" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (77e57db38 2022-10-30)" ></div></body></html>

@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/goblin-0.5.4/src/pe/optional_header.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>optional_header.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../goblin/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../goblin/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../goblin/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/goblin-0.5.4/src/pe/optional_header.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>optional_header.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../normalize.css"><link rel="stylesheet" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../ayu.css" disabled><link rel="stylesheet" href="../../../dark.css" disabled><link rel="stylesheet" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../goblin/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -317,324 +317,324 @@
 <span id="317">317</span>
 <span id="318">318</span>
 <span id="319">319</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::container</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::error</span>;
+</pre><pre class="rust"><code><span class="kw">use </span><span class="kw">crate</span>::container;
+<span class="kw">use </span><span class="kw">crate</span>::error;
 
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pe::data_directories</span>;
+<span class="kw">use </span><span class="kw">crate</span>::pe::data_directories;
 
-<span class="kw">use</span> <span class="ident">scroll</span>::{<span class="ident">ctx</span>, <span class="ident">Endian</span>, <span class="ident">LE</span>};
-<span class="kw">use</span> <span class="ident">scroll</span>::{<span class="ident">Pread</span>, <span class="ident">Pwrite</span>, <span class="ident">SizeWith</span>};
+<span class="kw">use </span>scroll::{ctx, Endian, LE};
+<span class="kw">use </span>scroll::{Pread, Pwrite, SizeWith};
 
-<span class="doccomment">/// standard COFF fields</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Default</span>, <span class="ident">Pread</span>, <span class="ident">Pwrite</span>, <span class="ident">SizeWith</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">StandardFields32</span> {
-    <span class="kw">pub</span> <span class="ident">magic</span>: <span class="ident">u16</span>,
-    <span class="kw">pub</span> <span class="ident">major_linker_version</span>: <span class="ident">u8</span>,
-    <span class="kw">pub</span> <span class="ident">minor_linker_version</span>: <span class="ident">u8</span>,
-    <span class="kw">pub</span> <span class="ident">size_of_code</span>: <span class="ident">u32</span>,
-    <span class="kw">pub</span> <span class="ident">size_of_initialized_data</span>: <span class="ident">u32</span>,
-    <span class="kw">pub</span> <span class="ident">size_of_uninitialized_data</span>: <span class="ident">u32</span>,
-    <span class="kw">pub</span> <span class="ident">address_of_entry_point</span>: <span class="ident">u32</span>,
-    <span class="kw">pub</span> <span class="ident">base_of_code</span>: <span class="ident">u32</span>,
-    <span class="doccomment">/// absent in 64-bit PE32+</span>
-    <span class="kw">pub</span> <span class="ident">base_of_data</span>: <span class="ident">u32</span>,
+<span class="doccomment">/// standard COFF fields
+</span><span class="attribute">#[repr(C)]
+#[derive(Debug, PartialEq, Copy, Clone, Default, Pread, Pwrite, SizeWith)]
+</span><span class="kw">pub struct </span>StandardFields32 {
+    <span class="kw">pub </span>magic: u16,
+    <span class="kw">pub </span>major_linker_version: u8,
+    <span class="kw">pub </span>minor_linker_version: u8,
+    <span class="kw">pub </span>size_of_code: u32,
+    <span class="kw">pub </span>size_of_initialized_data: u32,
+    <span class="kw">pub </span>size_of_uninitialized_data: u32,
+    <span class="kw">pub </span>address_of_entry_point: u32,
+    <span class="kw">pub </span>base_of_code: u32,
+    <span class="doccomment">/// absent in 64-bit PE32+
+    </span><span class="kw">pub </span>base_of_data: u32,
 }
 
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIZEOF_STANDARD_FIELDS_32</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">28</span>;
+<span class="kw">pub const </span>SIZEOF_STANDARD_FIELDS_32: usize = <span class="number">28</span>;
 
-<span class="doccomment">/// standard 64-bit COFF fields</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Default</span>, <span class="ident">Pread</span>, <span class="ident">Pwrite</span>, <span class="ident">SizeWith</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">StandardFields64</span> {
-    <span class="kw">pub</span> <span class="ident">magic</span>: <span class="ident">u16</span>,
-    <span class="kw">pub</span> <span class="ident">major_linker_version</span>: <span class="ident">u8</span>,
-    <span class="kw">pub</span> <span class="ident">minor_linker_version</span>: <span class="ident">u8</span>,
-    <span class="kw">pub</span> <span class="ident">size_of_code</span>: <span class="ident">u32</span>,
-    <span class="kw">pub</span> <span class="ident">size_of_initialized_data</span>: <span class="ident">u32</span>,
-    <span class="kw">pub</span> <span class="ident">size_of_uninitialized_data</span>: <span class="ident">u32</span>,
-    <span class="kw">pub</span> <span class="ident">address_of_entry_point</span>: <span class="ident">u32</span>,
-    <span class="kw">pub</span> <span class="ident">base_of_code</span>: <span class="ident">u32</span>,
+<span class="doccomment">/// standard 64-bit COFF fields
+</span><span class="attribute">#[repr(C)]
+#[derive(Debug, PartialEq, Copy, Clone, Default, Pread, Pwrite, SizeWith)]
+</span><span class="kw">pub struct </span>StandardFields64 {
+    <span class="kw">pub </span>magic: u16,
+    <span class="kw">pub </span>major_linker_version: u8,
+    <span class="kw">pub </span>minor_linker_version: u8,
+    <span class="kw">pub </span>size_of_code: u32,
+    <span class="kw">pub </span>size_of_initialized_data: u32,
+    <span class="kw">pub </span>size_of_uninitialized_data: u32,
+    <span class="kw">pub </span>address_of_entry_point: u32,
+    <span class="kw">pub </span>base_of_code: u32,
 }
 
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIZEOF_STANDARD_FIELDS_64</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">24</span>;
+<span class="kw">pub const </span>SIZEOF_STANDARD_FIELDS_64: usize = <span class="number">24</span>;
 
-<span class="doccomment">/// Unified 32/64-bit COFF fields</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Default</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">StandardFields</span> {
-    <span class="kw">pub</span> <span class="ident">magic</span>: <span class="ident">u16</span>,
-    <span class="kw">pub</span> <span class="ident">major_linker_version</span>: <span class="ident">u8</span>,
-    <span class="kw">pub</span> <span class="ident">minor_linker_version</span>: <span class="ident">u8</span>,
-    <span class="kw">pub</span> <span class="ident">size_of_code</span>: <span class="ident">u64</span>,
-    <span class="kw">pub</span> <span class="ident">size_of_initialized_data</span>: <span class="ident">u64</span>,
-    <span class="kw">pub</span> <span class="ident">size_of_uninitialized_data</span>: <span class="ident">u64</span>,
-    <span class="kw">pub</span> <span class="ident">address_of_entry_point</span>: <span class="ident">u64</span>,
-    <span class="kw">pub</span> <span class="ident">base_of_code</span>: <span class="ident">u64</span>,
-    <span class="doccomment">/// absent in 64-bit PE32+</span>
-    <span class="kw">pub</span> <span class="ident">base_of_data</span>: <span class="ident">u32</span>,
+<span class="doccomment">/// Unified 32/64-bit COFF fields
+</span><span class="attribute">#[derive(Debug, PartialEq, Copy, Clone, Default)]
+</span><span class="kw">pub struct </span>StandardFields {
+    <span class="kw">pub </span>magic: u16,
+    <span class="kw">pub </span>major_linker_version: u8,
+    <span class="kw">pub </span>minor_linker_version: u8,
+    <span class="kw">pub </span>size_of_code: u64,
+    <span class="kw">pub </span>size_of_initialized_data: u64,
+    <span class="kw">pub </span>size_of_uninitialized_data: u64,
+    <span class="kw">pub </span>address_of_entry_point: u64,
+    <span class="kw">pub </span>base_of_code: u64,
+    <span class="doccomment">/// absent in 64-bit PE32+
+    </span><span class="kw">pub </span>base_of_data: u32,
 }
 
-<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">StandardFields32</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">StandardFields</span> {
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">fields</span>: <span class="ident">StandardFields32</span>) -&gt; <span class="self">Self</span> {
-        <span class="ident">StandardFields</span> {
-            <span class="ident">magic</span>: <span class="ident">fields</span>.<span class="ident">magic</span>,
-            <span class="ident">major_linker_version</span>: <span class="ident">fields</span>.<span class="ident">major_linker_version</span>,
-            <span class="ident">minor_linker_version</span>: <span class="ident">fields</span>.<span class="ident">minor_linker_version</span>,
-            <span class="ident">size_of_code</span>: <span class="ident">u64::from</span>(<span class="ident">fields</span>.<span class="ident">size_of_code</span>),
-            <span class="ident">size_of_initialized_data</span>: <span class="ident">u64::from</span>(<span class="ident">fields</span>.<span class="ident">size_of_initialized_data</span>),
-            <span class="ident">size_of_uninitialized_data</span>: <span class="ident">u64::from</span>(<span class="ident">fields</span>.<span class="ident">size_of_uninitialized_data</span>),
-            <span class="ident">address_of_entry_point</span>: <span class="ident">u64::from</span>(<span class="ident">fields</span>.<span class="ident">address_of_entry_point</span>),
-            <span class="ident">base_of_code</span>: <span class="ident">u64::from</span>(<span class="ident">fields</span>.<span class="ident">base_of_code</span>),
-            <span class="ident">base_of_data</span>: <span class="ident">fields</span>.<span class="ident">base_of_data</span>,
+<span class="kw">impl </span>From&lt;StandardFields32&gt; <span class="kw">for </span>StandardFields {
+    <span class="kw">fn </span>from(fields: StandardFields32) -&gt; <span class="self">Self </span>{
+        StandardFields {
+            magic: fields.magic,
+            major_linker_version: fields.major_linker_version,
+            minor_linker_version: fields.minor_linker_version,
+            size_of_code: u64::from(fields.size_of_code),
+            size_of_initialized_data: u64::from(fields.size_of_initialized_data),
+            size_of_uninitialized_data: u64::from(fields.size_of_uninitialized_data),
+            address_of_entry_point: u64::from(fields.address_of_entry_point),
+            base_of_code: u64::from(fields.base_of_code),
+            base_of_data: fields.base_of_data,
         }
     }
 }
 
-<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">StandardFields64</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">StandardFields</span> {
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">fields</span>: <span class="ident">StandardFields64</span>) -&gt; <span class="self">Self</span> {
-        <span class="ident">StandardFields</span> {
-            <span class="ident">magic</span>: <span class="ident">fields</span>.<span class="ident">magic</span>,
-            <span class="ident">major_linker_version</span>: <span class="ident">fields</span>.<span class="ident">major_linker_version</span>,
-            <span class="ident">minor_linker_version</span>: <span class="ident">fields</span>.<span class="ident">minor_linker_version</span>,
-            <span class="ident">size_of_code</span>: <span class="ident">u64::from</span>(<span class="ident">fields</span>.<span class="ident">size_of_code</span>),
-            <span class="ident">size_of_initialized_data</span>: <span class="ident">u64::from</span>(<span class="ident">fields</span>.<span class="ident">size_of_initialized_data</span>),
-            <span class="ident">size_of_uninitialized_data</span>: <span class="ident">u64::from</span>(<span class="ident">fields</span>.<span class="ident">size_of_uninitialized_data</span>),
-            <span class="ident">address_of_entry_point</span>: <span class="ident">u64::from</span>(<span class="ident">fields</span>.<span class="ident">address_of_entry_point</span>),
-            <span class="ident">base_of_code</span>: <span class="ident">u64::from</span>(<span class="ident">fields</span>.<span class="ident">base_of_code</span>),
-            <span class="ident">base_of_data</span>: <span class="number">0</span>,
+<span class="kw">impl </span>From&lt;StandardFields64&gt; <span class="kw">for </span>StandardFields {
+    <span class="kw">fn </span>from(fields: StandardFields64) -&gt; <span class="self">Self </span>{
+        StandardFields {
+            magic: fields.magic,
+            major_linker_version: fields.major_linker_version,
+            minor_linker_version: fields.minor_linker_version,
+            size_of_code: u64::from(fields.size_of_code),
+            size_of_initialized_data: u64::from(fields.size_of_initialized_data),
+            size_of_uninitialized_data: u64::from(fields.size_of_uninitialized_data),
+            address_of_entry_point: u64::from(fields.address_of_entry_point),
+            base_of_code: u64::from(fields.base_of_code),
+            base_of_data: <span class="number">0</span>,
         }
     }
 }
 
-<span class="doccomment">/// Standard fields magic number for 32-bit binary</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">MAGIC_32</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0x10b</span>;
-<span class="doccomment">/// Standard fields magic number for 64-bit binary</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">MAGIC_64</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0x20b</span>;
+<span class="doccomment">/// Standard fields magic number for 32-bit binary
+</span><span class="kw">pub const </span>MAGIC_32: u16 = <span class="number">0x10b</span>;
+<span class="doccomment">/// Standard fields magic number for 64-bit binary
+</span><span class="kw">pub const </span>MAGIC_64: u16 = <span class="number">0x20b</span>;
 
-<span class="doccomment">/// Windows specific fields</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Default</span>, <span class="ident">Pread</span>, <span class="ident">Pwrite</span>, <span class="ident">SizeWith</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">WindowsFields32</span> {
-    <span class="kw">pub</span> <span class="ident">image_base</span>: <span class="ident">u32</span>,
-    <span class="kw">pub</span> <span class="ident">section_alignment</span>: <span class="ident">u32</span>,
-    <span class="kw">pub</span> <span class="ident">file_alignment</span>: <span class="ident">u32</span>,
-    <span class="kw">pub</span> <span class="ident">major_operating_system_version</span>: <span class="ident">u16</span>,
-    <span class="kw">pub</span> <span class="ident">minor_operating_system_version</span>: <span class="ident">u16</span>,
-    <span class="kw">pub</span> <span class="ident">major_image_version</span>: <span class="ident">u16</span>,
-    <span class="kw">pub</span> <span class="ident">minor_image_version</span>: <span class="ident">u16</span>,
-    <span class="kw">pub</span> <span class="ident">major_subsystem_version</span>: <span class="ident">u16</span>,
-    <span class="kw">pub</span> <span class="ident">minor_subsystem_version</span>: <span class="ident">u16</span>,
-    <span class="kw">pub</span> <span class="ident">win32_version_value</span>: <span class="ident">u32</span>,
-    <span class="kw">pub</span> <span class="ident">size_of_image</span>: <span class="ident">u32</span>,
-    <span class="kw">pub</span> <span class="ident">size_of_headers</span>: <span class="ident">u32</span>,
-    <span class="kw">pub</span> <span class="ident">check_sum</span>: <span class="ident">u32</span>,
-    <span class="kw">pub</span> <span class="ident">subsystem</span>: <span class="ident">u16</span>,
-    <span class="kw">pub</span> <span class="ident">dll_characteristics</span>: <span class="ident">u16</span>,
-    <span class="kw">pub</span> <span class="ident">size_of_stack_reserve</span>: <span class="ident">u32</span>,
-    <span class="kw">pub</span> <span class="ident">size_of_stack_commit</span>: <span class="ident">u32</span>,
-    <span class="kw">pub</span> <span class="ident">size_of_heap_reserve</span>: <span class="ident">u32</span>,
-    <span class="kw">pub</span> <span class="ident">size_of_heap_commit</span>: <span class="ident">u32</span>,
-    <span class="kw">pub</span> <span class="ident">loader_flags</span>: <span class="ident">u32</span>,
-    <span class="kw">pub</span> <span class="ident">number_of_rva_and_sizes</span>: <span class="ident">u32</span>,
+<span class="doccomment">/// Windows specific fields
+</span><span class="attribute">#[repr(C)]
+#[derive(Debug, PartialEq, Copy, Clone, Default, Pread, Pwrite, SizeWith)]
+</span><span class="kw">pub struct </span>WindowsFields32 {
+    <span class="kw">pub </span>image_base: u32,
+    <span class="kw">pub </span>section_alignment: u32,
+    <span class="kw">pub </span>file_alignment: u32,
+    <span class="kw">pub </span>major_operating_system_version: u16,
+    <span class="kw">pub </span>minor_operating_system_version: u16,
+    <span class="kw">pub </span>major_image_version: u16,
+    <span class="kw">pub </span>minor_image_version: u16,
+    <span class="kw">pub </span>major_subsystem_version: u16,
+    <span class="kw">pub </span>minor_subsystem_version: u16,
+    <span class="kw">pub </span>win32_version_value: u32,
+    <span class="kw">pub </span>size_of_image: u32,
+    <span class="kw">pub </span>size_of_headers: u32,
+    <span class="kw">pub </span>check_sum: u32,
+    <span class="kw">pub </span>subsystem: u16,
+    <span class="kw">pub </span>dll_characteristics: u16,
+    <span class="kw">pub </span>size_of_stack_reserve: u32,
+    <span class="kw">pub </span>size_of_stack_commit: u32,
+    <span class="kw">pub </span>size_of_heap_reserve: u32,
+    <span class="kw">pub </span>size_of_heap_commit: u32,
+    <span class="kw">pub </span>loader_flags: u32,
+    <span class="kw">pub </span>number_of_rva_and_sizes: u32,
 }
 
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIZEOF_WINDOWS_FIELDS_32</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">68</span>;
+<span class="kw">pub const </span>SIZEOF_WINDOWS_FIELDS_32: usize = <span class="number">68</span>;
 
-<span class="doccomment">/// 64-bit Windows specific fields</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Default</span>, <span class="ident">Pread</span>, <span class="ident">Pwrite</span>, <span class="ident">SizeWith</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">WindowsFields64</span> {
-    <span class="kw">pub</span> <span class="ident">image_base</span>: <span class="ident">u64</span>,
-    <span class="kw">pub</span> <span class="ident">section_alignment</span>: <span class="ident">u32</span>,
-    <span class="kw">pub</span> <span class="ident">file_alignment</span>: <span class="ident">u32</span>,
-    <span class="kw">pub</span> <span class="ident">major_operating_system_version</span>: <span class="ident">u16</span>,
-    <span class="kw">pub</span> <span class="ident">minor_operating_system_version</span>: <span class="ident">u16</span>,
-    <span class="kw">pub</span> <span class="ident">major_image_version</span>: <span class="ident">u16</span>,
-    <span class="kw">pub</span> <span class="ident">minor_image_version</span>: <span class="ident">u16</span>,
-    <span class="kw">pub</span> <span class="ident">major_subsystem_version</span>: <span class="ident">u16</span>,
-    <span class="kw">pub</span> <span class="ident">minor_subsystem_version</span>: <span class="ident">u16</span>,
-    <span class="kw">pub</span> <span class="ident">win32_version_value</span>: <span class="ident">u32</span>,
-    <span class="kw">pub</span> <span class="ident">size_of_image</span>: <span class="ident">u32</span>,
-    <span class="kw">pub</span> <span class="ident">size_of_headers</span>: <span class="ident">u32</span>,
-    <span class="kw">pub</span> <span class="ident">check_sum</span>: <span class="ident">u32</span>,
-    <span class="kw">pub</span> <span class="ident">subsystem</span>: <span class="ident">u16</span>,
-    <span class="kw">pub</span> <span class="ident">dll_characteristics</span>: <span class="ident">u16</span>,
-    <span class="kw">pub</span> <span class="ident">size_of_stack_reserve</span>: <span class="ident">u64</span>,
-    <span class="kw">pub</span> <span class="ident">size_of_stack_commit</span>: <span class="ident">u64</span>,
-    <span class="kw">pub</span> <span class="ident">size_of_heap_reserve</span>: <span class="ident">u64</span>,
-    <span class="kw">pub</span> <span class="ident">size_of_heap_commit</span>: <span class="ident">u64</span>,
-    <span class="kw">pub</span> <span class="ident">loader_flags</span>: <span class="ident">u32</span>,
-    <span class="kw">pub</span> <span class="ident">number_of_rva_and_sizes</span>: <span class="ident">u32</span>,
+<span class="doccomment">/// 64-bit Windows specific fields
+</span><span class="attribute">#[repr(C)]
+#[derive(Debug, PartialEq, Copy, Clone, Default, Pread, Pwrite, SizeWith)]
+</span><span class="kw">pub struct </span>WindowsFields64 {
+    <span class="kw">pub </span>image_base: u64,
+    <span class="kw">pub </span>section_alignment: u32,
+    <span class="kw">pub </span>file_alignment: u32,
+    <span class="kw">pub </span>major_operating_system_version: u16,
+    <span class="kw">pub </span>minor_operating_system_version: u16,
+    <span class="kw">pub </span>major_image_version: u16,
+    <span class="kw">pub </span>minor_image_version: u16,
+    <span class="kw">pub </span>major_subsystem_version: u16,
+    <span class="kw">pub </span>minor_subsystem_version: u16,
+    <span class="kw">pub </span>win32_version_value: u32,
+    <span class="kw">pub </span>size_of_image: u32,
+    <span class="kw">pub </span>size_of_headers: u32,
+    <span class="kw">pub </span>check_sum: u32,
+    <span class="kw">pub </span>subsystem: u16,
+    <span class="kw">pub </span>dll_characteristics: u16,
+    <span class="kw">pub </span>size_of_stack_reserve: u64,
+    <span class="kw">pub </span>size_of_stack_commit: u64,
+    <span class="kw">pub </span>size_of_heap_reserve: u64,
+    <span class="kw">pub </span>size_of_heap_commit: u64,
+    <span class="kw">pub </span>loader_flags: u32,
+    <span class="kw">pub </span>number_of_rva_and_sizes: u32,
 }
 
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIZEOF_WINDOWS_FIELDS_64</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">88</span>;
+<span class="kw">pub const </span>SIZEOF_WINDOWS_FIELDS_64: usize = <span class="number">88</span>;
 
-<span class="comment">// /// Generic 32/64-bit Windows specific fields</span>
-<span class="comment">// #[derive(Debug, PartialEq, Copy, Clone, Default)]</span>
-<span class="comment">// pub struct WindowsFields {</span>
-<span class="comment">//     pub image_base: u64,</span>
-<span class="comment">//     pub section_alignment: u32,</span>
-<span class="comment">//     pub file_alignment: u32,</span>
-<span class="comment">//     pub major_operating_system_version: u16,</span>
-<span class="comment">//     pub minor_operating_system_version: u16,</span>
-<span class="comment">//     pub major_image_version: u16,</span>
-<span class="comment">//     pub minor_image_version: u16,</span>
-<span class="comment">//     pub major_subsystem_version: u16,</span>
-<span class="comment">//     pub minor_subsystem_version: u16,</span>
-<span class="comment">//     pub win32_version_value: u32,</span>
-<span class="comment">//     pub size_of_image: u32,</span>
-<span class="comment">//     pub size_of_headers: u32,</span>
-<span class="comment">//     pub check_sum: u32,</span>
-<span class="comment">//     pub subsystem: u16,</span>
-<span class="comment">//     pub dll_characteristics: u16,</span>
-<span class="comment">//     pub size_of_stack_reserve: u64,</span>
-<span class="comment">//     pub size_of_stack_commit:  u64,</span>
-<span class="comment">//     pub size_of_heap_reserve:  u64,</span>
-<span class="comment">//     pub size_of_heap_commit:   u64,</span>
-<span class="comment">//     pub loader_flags: u32,</span>
-<span class="comment">//     pub number_of_rva_and_sizes: u32,</span>
-<span class="comment">// }</span>
+<span class="comment">// /// Generic 32/64-bit Windows specific fields
+// #[derive(Debug, PartialEq, Copy, Clone, Default)]
+// pub struct WindowsFields {
+//     pub image_base: u64,
+//     pub section_alignment: u32,
+//     pub file_alignment: u32,
+//     pub major_operating_system_version: u16,
+//     pub minor_operating_system_version: u16,
+//     pub major_image_version: u16,
+//     pub minor_image_version: u16,
+//     pub major_subsystem_version: u16,
+//     pub minor_subsystem_version: u16,
+//     pub win32_version_value: u32,
+//     pub size_of_image: u32,
+//     pub size_of_headers: u32,
+//     pub check_sum: u32,
+//     pub subsystem: u16,
+//     pub dll_characteristics: u16,
+//     pub size_of_stack_reserve: u64,
+//     pub size_of_stack_commit:  u64,
+//     pub size_of_heap_reserve:  u64,
+//     pub size_of_heap_commit:   u64,
+//     pub loader_flags: u32,
+//     pub number_of_rva_and_sizes: u32,
+// }
 
-<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">WindowsFields32</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">WindowsFields</span> {
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">windows</span>: <span class="ident">WindowsFields32</span>) -&gt; <span class="self">Self</span> {
-        <span class="ident">WindowsFields</span> {
-            <span class="ident">image_base</span>: <span class="ident">u64::from</span>(<span class="ident">windows</span>.<span class="ident">image_base</span>),
-            <span class="ident">section_alignment</span>: <span class="ident">windows</span>.<span class="ident">section_alignment</span>,
-            <span class="ident">file_alignment</span>: <span class="ident">windows</span>.<span class="ident">file_alignment</span>,
-            <span class="ident">major_operating_system_version</span>: <span class="ident">windows</span>.<span class="ident">major_operating_system_version</span>,
-            <span class="ident">minor_operating_system_version</span>: <span class="ident">windows</span>.<span class="ident">minor_operating_system_version</span>,
-            <span class="ident">major_image_version</span>: <span class="ident">windows</span>.<span class="ident">major_image_version</span>,
-            <span class="ident">minor_image_version</span>: <span class="ident">windows</span>.<span class="ident">minor_image_version</span>,
-            <span class="ident">major_subsystem_version</span>: <span class="ident">windows</span>.<span class="ident">major_subsystem_version</span>,
-            <span class="ident">minor_subsystem_version</span>: <span class="ident">windows</span>.<span class="ident">minor_subsystem_version</span>,
-            <span class="ident">win32_version_value</span>: <span class="ident">windows</span>.<span class="ident">win32_version_value</span>,
-            <span class="ident">size_of_image</span>: <span class="ident">windows</span>.<span class="ident">size_of_image</span>,
-            <span class="ident">size_of_headers</span>: <span class="ident">windows</span>.<span class="ident">size_of_headers</span>,
-            <span class="ident">check_sum</span>: <span class="ident">windows</span>.<span class="ident">check_sum</span>,
-            <span class="ident">subsystem</span>: <span class="ident">windows</span>.<span class="ident">subsystem</span>,
-            <span class="ident">dll_characteristics</span>: <span class="ident">windows</span>.<span class="ident">dll_characteristics</span>,
-            <span class="ident">size_of_stack_reserve</span>: <span class="ident">u64::from</span>(<span class="ident">windows</span>.<span class="ident">size_of_stack_reserve</span>),
-            <span class="ident">size_of_stack_commit</span>: <span class="ident">u64::from</span>(<span class="ident">windows</span>.<span class="ident">size_of_stack_commit</span>),
-            <span class="ident">size_of_heap_reserve</span>: <span class="ident">u64::from</span>(<span class="ident">windows</span>.<span class="ident">size_of_heap_reserve</span>),
-            <span class="ident">size_of_heap_commit</span>: <span class="ident">u64::from</span>(<span class="ident">windows</span>.<span class="ident">size_of_heap_commit</span>),
-            <span class="ident">loader_flags</span>: <span class="ident">windows</span>.<span class="ident">loader_flags</span>,
-            <span class="ident">number_of_rva_and_sizes</span>: <span class="ident">windows</span>.<span class="ident">number_of_rva_and_sizes</span>,
+</span><span class="kw">impl </span>From&lt;WindowsFields32&gt; <span class="kw">for </span>WindowsFields {
+    <span class="kw">fn </span>from(windows: WindowsFields32) -&gt; <span class="self">Self </span>{
+        WindowsFields {
+            image_base: u64::from(windows.image_base),
+            section_alignment: windows.section_alignment,
+            file_alignment: windows.file_alignment,
+            major_operating_system_version: windows.major_operating_system_version,
+            minor_operating_system_version: windows.minor_operating_system_version,
+            major_image_version: windows.major_image_version,
+            minor_image_version: windows.minor_image_version,
+            major_subsystem_version: windows.major_subsystem_version,
+            minor_subsystem_version: windows.minor_subsystem_version,
+            win32_version_value: windows.win32_version_value,
+            size_of_image: windows.size_of_image,
+            size_of_headers: windows.size_of_headers,
+            check_sum: windows.check_sum,
+            subsystem: windows.subsystem,
+            dll_characteristics: windows.dll_characteristics,
+            size_of_stack_reserve: u64::from(windows.size_of_stack_reserve),
+            size_of_stack_commit: u64::from(windows.size_of_stack_commit),
+            size_of_heap_reserve: u64::from(windows.size_of_heap_reserve),
+            size_of_heap_commit: u64::from(windows.size_of_heap_commit),
+            loader_flags: windows.loader_flags,
+            number_of_rva_and_sizes: windows.number_of_rva_and_sizes,
         }
     }
 }
 
-<span class="comment">// impl From&lt;WindowsFields32&gt; for WindowsFields {</span>
-<span class="comment">//     fn from(windows: WindowsFields32) -&gt; Self {</span>
-<span class="comment">//         WindowsFields {</span>
-<span class="comment">//             image_base: windows.image_base,</span>
-<span class="comment">//             section_alignment: windows.section_alignment,</span>
-<span class="comment">//             file_alignment: windows.file_alignment,</span>
-<span class="comment">//             major_operating_system_version: windows.major_operating_system_version,</span>
-<span class="comment">//             minor_operating_system_version: windows.minor_operating_system_version,</span>
-<span class="comment">//             major_image_version: windows.major_image_version,</span>
-<span class="comment">//             minor_image_version: windows.minor_image_version,</span>
-<span class="comment">//             major_subsystem_version: windows.major_subsystem_version,</span>
-<span class="comment">//             minor_subsystem_version: windows.minor_subsystem_version,</span>
-<span class="comment">//             win32_version_value: windows.win32_version_value,</span>
-<span class="comment">//             size_of_image: windows.size_of_image,</span>
-<span class="comment">//             size_of_headers: windows.size_of_headers,</span>
-<span class="comment">//             check_sum: windows.check_sum,</span>
-<span class="comment">//             subsystem: windows.subsystem,</span>
-<span class="comment">//             dll_characteristics: windows.dll_characteristics,</span>
-<span class="comment">//             size_of_stack_reserve: windows.size_of_stack_reserve,</span>
-<span class="comment">//             size_of_stack_commit: windows.size_of_stack_commit,</span>
-<span class="comment">//             size_of_heap_reserve: windows.size_of_heap_reserve,</span>
-<span class="comment">//             size_of_heap_commit: windows.size_of_heap_commit,</span>
-<span class="comment">//             loader_flags: windows.loader_flags,</span>
-<span class="comment">//             number_of_rva_and_sizes: windows.number_of_rva_and_sizes,</span>
-<span class="comment">//         }</span>
-<span class="comment">//     }</span>
-<span class="comment">// }</span>
+<span class="comment">// impl From&lt;WindowsFields32&gt; for WindowsFields {
+//     fn from(windows: WindowsFields32) -&gt; Self {
+//         WindowsFields {
+//             image_base: windows.image_base,
+//             section_alignment: windows.section_alignment,
+//             file_alignment: windows.file_alignment,
+//             major_operating_system_version: windows.major_operating_system_version,
+//             minor_operating_system_version: windows.minor_operating_system_version,
+//             major_image_version: windows.major_image_version,
+//             minor_image_version: windows.minor_image_version,
+//             major_subsystem_version: windows.major_subsystem_version,
+//             minor_subsystem_version: windows.minor_subsystem_version,
+//             win32_version_value: windows.win32_version_value,
+//             size_of_image: windows.size_of_image,
+//             size_of_headers: windows.size_of_headers,
+//             check_sum: windows.check_sum,
+//             subsystem: windows.subsystem,
+//             dll_characteristics: windows.dll_characteristics,
+//             size_of_stack_reserve: windows.size_of_stack_reserve,
+//             size_of_stack_commit: windows.size_of_stack_commit,
+//             size_of_heap_reserve: windows.size_of_heap_reserve,
+//             size_of_heap_commit: windows.size_of_heap_commit,
+//             loader_flags: windows.loader_flags,
+//             number_of_rva_and_sizes: windows.number_of_rva_and_sizes,
+//         }
+//     }
+// }
 
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">WindowsFields</span> <span class="op">=</span> <span class="ident">WindowsFields64</span>;
+</span><span class="kw">pub type </span>WindowsFields = WindowsFields64;
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">OptionalHeader</span> {
-    <span class="kw">pub</span> <span class="ident">standard_fields</span>: <span class="ident">StandardFields</span>,
-    <span class="kw">pub</span> <span class="ident">windows_fields</span>: <span class="ident">WindowsFields</span>,
-    <span class="kw">pub</span> <span class="ident">data_directories</span>: <span class="ident">data_directories::DataDirectories</span>,
+<span class="attribute">#[derive(Debug, PartialEq, Copy, Clone)]
+</span><span class="kw">pub struct </span>OptionalHeader {
+    <span class="kw">pub </span>standard_fields: StandardFields,
+    <span class="kw">pub </span>windows_fields: WindowsFields,
+    <span class="kw">pub </span>data_directories: data_directories::DataDirectories,
 }
 
-<span class="kw">impl</span> <span class="ident">OptionalHeader</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">container</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">error::Result</span><span class="op">&lt;</span><span class="ident">container::Container</span><span class="op">&gt;</span> {
-        <span class="kw">match</span> <span class="self">self</span>.<span class="ident">standard_fields</span>.<span class="ident">magic</span> {
-            <span class="ident">MAGIC_32</span> =&gt; <span class="prelude-val">Ok</span>(<span class="ident">container::Container::Little</span>),
-            <span class="ident">MAGIC_64</span> =&gt; <span class="prelude-val">Ok</span>(<span class="ident">container::Container::Big</span>),
-            <span class="ident">magic</span> =&gt; <span class="prelude-val">Err</span>(<span class="ident">error::Error::BadMagic</span>(<span class="ident">u64::from</span>(<span class="ident">magic</span>))),
+<span class="kw">impl </span>OptionalHeader {
+    <span class="kw">pub fn </span>container(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; error::Result&lt;container::Container&gt; {
+        <span class="kw">match </span><span class="self">self</span>.standard_fields.magic {
+            MAGIC_32 =&gt; <span class="prelude-val">Ok</span>(container::Container::Little),
+            MAGIC_64 =&gt; <span class="prelude-val">Ok</span>(container::Container::Big),
+            magic =&gt; <span class="prelude-val">Err</span>(error::Error::BadMagic(u64::from(magic))),
         }
     }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">ctx::TryFromCtx</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">Endian</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">OptionalHeader</span> {
-    <span class="kw">type</span> <span class="ident">Error</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::error::Error</span>;
-    <span class="kw">fn</span> <span class="ident">try_from_ctx</span>(<span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>], <span class="kw">_</span>: <span class="ident">Endian</span>) -&gt; <span class="ident">error::Result</span><span class="op">&lt;</span>(<span class="self">Self</span>, <span class="ident">usize</span>)<span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">magic</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">pread_with</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>(<span class="number">0</span>, <span class="ident">LE</span>)<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> <span class="kw-2">&amp;mut</span> <span class="number">0</span>;
-        <span class="kw">let</span> (<span class="ident">standard_fields</span>, <span class="ident">windows_fields</span>): (<span class="ident">StandardFields</span>, <span class="ident">WindowsFields</span>) <span class="op">=</span> <span class="kw">match</span> <span class="ident">magic</span> {
-            <span class="ident">MAGIC_32</span> =&gt; {
-                <span class="kw">let</span> <span class="ident">standard_fields</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">gread_with</span>::<span class="op">&lt;</span><span class="ident">StandardFields32</span><span class="op">&gt;</span>(<span class="ident">offset</span>, <span class="ident">LE</span>)<span class="question-mark">?</span>.<span class="ident">into</span>();
-                <span class="kw">let</span> <span class="ident">windows_fields</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">gread_with</span>::<span class="op">&lt;</span><span class="ident">WindowsFields32</span><span class="op">&gt;</span>(<span class="ident">offset</span>, <span class="ident">LE</span>)<span class="question-mark">?</span>.<span class="ident">into</span>();
-                (<span class="ident">standard_fields</span>, <span class="ident">windows_fields</span>)
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; ctx::TryFromCtx&lt;<span class="lifetime">&#39;a</span>, Endian&gt; <span class="kw">for </span>OptionalHeader {
+    <span class="kw">type </span>Error = <span class="kw">crate</span>::error::Error;
+    <span class="kw">fn </span>try_from_ctx(bytes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8], <span class="kw">_</span>: Endian) -&gt; error::Result&lt;(<span class="self">Self</span>, usize)&gt; {
+        <span class="kw">let </span>magic = bytes.pread_with::&lt;u16&gt;(<span class="number">0</span>, LE)<span class="question-mark">?</span>;
+        <span class="kw">let </span>offset = <span class="kw-2">&amp;mut </span><span class="number">0</span>;
+        <span class="kw">let </span>(standard_fields, windows_fields): (StandardFields, WindowsFields) = <span class="kw">match </span>magic {
+            MAGIC_32 =&gt; {
+                <span class="kw">let </span>standard_fields = bytes.gread_with::&lt;StandardFields32&gt;(offset, LE)<span class="question-mark">?</span>.into();
+                <span class="kw">let </span>windows_fields = bytes.gread_with::&lt;WindowsFields32&gt;(offset, LE)<span class="question-mark">?</span>.into();
+                (standard_fields, windows_fields)
             }
-            <span class="ident">MAGIC_64</span> =&gt; {
-                <span class="kw">let</span> <span class="ident">standard_fields</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">gread_with</span>::<span class="op">&lt;</span><span class="ident">StandardFields64</span><span class="op">&gt;</span>(<span class="ident">offset</span>, <span class="ident">LE</span>)<span class="question-mark">?</span>.<span class="ident">into</span>();
-                <span class="kw">let</span> <span class="ident">windows_fields</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">gread_with</span>::<span class="op">&lt;</span><span class="ident">WindowsFields64</span><span class="op">&gt;</span>(<span class="ident">offset</span>, <span class="ident">LE</span>)<span class="question-mark">?</span>;
-                (<span class="ident">standard_fields</span>, <span class="ident">windows_fields</span>)
+            MAGIC_64 =&gt; {
+                <span class="kw">let </span>standard_fields = bytes.gread_with::&lt;StandardFields64&gt;(offset, LE)<span class="question-mark">?</span>.into();
+                <span class="kw">let </span>windows_fields = bytes.gread_with::&lt;WindowsFields64&gt;(offset, LE)<span class="question-mark">?</span>;
+                (standard_fields, windows_fields)
             }
-            <span class="kw">_</span> =&gt; <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">error::Error::BadMagic</span>(<span class="ident">u64::from</span>(<span class="ident">magic</span>))),
+            <span class="kw">_ </span>=&gt; <span class="kw">return </span><span class="prelude-val">Err</span>(error::Error::BadMagic(u64::from(magic))),
         };
-        <span class="kw">let</span> <span class="ident">data_directories</span> <span class="op">=</span> <span class="ident">data_directories::DataDirectories::parse</span>(
-            <span class="kw-2">&amp;</span><span class="ident">bytes</span>,
-            <span class="ident">windows_fields</span>.<span class="ident">number_of_rva_and_sizes</span> <span class="kw">as</span> <span class="ident">usize</span>,
-            <span class="ident">offset</span>,
+        <span class="kw">let </span>data_directories = data_directories::DataDirectories::parse(
+            <span class="kw-2">&amp;</span>bytes,
+            windows_fields.number_of_rva_and_sizes <span class="kw">as </span>usize,
+            offset,
         )<span class="question-mark">?</span>;
         <span class="prelude-val">Ok</span>((
-            <span class="ident">OptionalHeader</span> {
-                <span class="ident">standard_fields</span>,
-                <span class="ident">windows_fields</span>,
-                <span class="ident">data_directories</span>,
+            OptionalHeader {
+                standard_fields,
+                windows_fields,
+                data_directories,
             },
             <span class="number">0</span>,
-        )) <span class="comment">// TODO: FIXME</span>
-    }
+        )) <span class="comment">// TODO: FIXME
+    </span>}
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
-<span class="kw">mod</span> <span class="ident">tests</span> {
-    <span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">sizeof_standards32</span>() {
+<span class="attribute">#[cfg(test)]
+</span><span class="kw">mod </span>tests {
+    <span class="kw">use super</span>::<span class="kw-2">*</span>;
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>sizeof_standards32() {
         <span class="macro">assert_eq!</span>(
-            <span class="ident">::std::mem::size_of</span>::<span class="op">&lt;</span><span class="ident">StandardFields32</span><span class="op">&gt;</span>(),
-            <span class="ident">SIZEOF_STANDARD_FIELDS_32</span>
+            ::std::mem::size_of::&lt;StandardFields32&gt;(),
+            SIZEOF_STANDARD_FIELDS_32
         );
     }
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">sizeof_windows32</span>() {
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>sizeof_windows32() {
         <span class="macro">assert_eq!</span>(
-            <span class="ident">::std::mem::size_of</span>::<span class="op">&lt;</span><span class="ident">WindowsFields32</span><span class="op">&gt;</span>(),
-            <span class="ident">SIZEOF_WINDOWS_FIELDS_32</span>
+            ::std::mem::size_of::&lt;WindowsFields32&gt;(),
+            SIZEOF_WINDOWS_FIELDS_32
         );
     }
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">sizeof_standards64</span>() {
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>sizeof_standards64() {
         <span class="macro">assert_eq!</span>(
-            <span class="ident">::std::mem::size_of</span>::<span class="op">&lt;</span><span class="ident">StandardFields64</span><span class="op">&gt;</span>(),
-            <span class="ident">SIZEOF_STANDARD_FIELDS_64</span>
+            ::std::mem::size_of::&lt;StandardFields64&gt;(),
+            SIZEOF_STANDARD_FIELDS_64
         );
     }
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">sizeof_windows64</span>() {
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>sizeof_windows64() {
         <span class="macro">assert_eq!</span>(
-            <span class="ident">::std::mem::size_of</span>::<span class="op">&lt;</span><span class="ident">WindowsFields64</span><span class="op">&gt;</span>(),
-            <span class="ident">SIZEOF_WINDOWS_FIELDS_64</span>
+            ::std::mem::size_of::&lt;WindowsFields64&gt;(),
+            SIZEOF_WINDOWS_FIELDS_64
         );
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="goblin" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="goblin" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (77e57db38 2022-10-30)" ></div></body></html>

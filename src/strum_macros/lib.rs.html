@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/strum_macros-0.24.3/src/lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../strum_macros/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../strum_macros/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../strum_macros/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/strum_macros-0.24.3/src/lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../strum_macros/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -753,760 +753,760 @@
 <span id="753">753</span>
 <span id="754">754</span>
 <span id="755">755</span>
-</pre><pre class="rust"><code><span class="doccomment">//! # Strum</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! Strum is a set of macros and traits for working with</span>
-<span class="doccomment">//! enums and strings easier in Rust.</span>
-<span class="doccomment">//!</span>
+</pre><pre class="rust"><code><span class="doccomment">//! # Strum
+//!
+//! Strum is a set of macros and traits for working with
+//! enums and strings easier in Rust.
+//!
 
-<span class="attribute">#![<span class="ident">recursion_limit</span> <span class="op">=</span> <span class="string">&quot;128&quot;</span>]</span>
+</span><span class="attribute">#![recursion_limit = <span class="string">&quot;128&quot;</span>]
 
-<span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">proc_macro</span>;
+</span><span class="kw">extern crate </span>proc_macro;
 
-<span class="kw">mod</span> <span class="ident">helpers</span>;
-<span class="kw">mod</span> <span class="ident">macros</span>;
+<span class="kw">mod </span>helpers;
+<span class="kw">mod </span>macros;
 
-<span class="kw">use</span> <span class="ident">proc_macro2::TokenStream</span>;
-<span class="kw">use</span> <span class="ident">std::env</span>;
-<span class="kw">use</span> <span class="ident">syn::DeriveInput</span>;
+<span class="kw">use </span>proc_macro2::TokenStream;
+<span class="kw">use </span>std::env;
+<span class="kw">use </span>syn::DeriveInput;
 
-<span class="kw">fn</span> <span class="ident">debug_print_generated</span>(<span class="ident">ast</span>: <span class="kw-2">&amp;</span><span class="ident">DeriveInput</span>, <span class="ident">toks</span>: <span class="kw-2">&amp;</span><span class="ident">TokenStream</span>) {
-    <span class="kw">let</span> <span class="ident">debug</span> <span class="op">=</span> <span class="ident">env::var</span>(<span class="string">&quot;STRUM_DEBUG&quot;</span>);
-    <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Ok</span>(<span class="ident">s</span>) <span class="op">=</span> <span class="ident">debug</span> {
-        <span class="kw">if</span> <span class="ident">s</span> <span class="op">==</span> <span class="string">&quot;1&quot;</span> {
-            <span class="macro">println!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">toks</span>);
+<span class="kw">fn </span>debug_print_generated(ast: <span class="kw-2">&amp;</span>DeriveInput, toks: <span class="kw-2">&amp;</span>TokenStream) {
+    <span class="kw">let </span>debug = env::var(<span class="string">&quot;STRUM_DEBUG&quot;</span>);
+    <span class="kw">if let </span><span class="prelude-val">Ok</span>(s) = debug {
+        <span class="kw">if </span>s == <span class="string">&quot;1&quot; </span>{
+            <span class="macro">println!</span>(<span class="string">&quot;{}&quot;</span>, toks);
         }
 
-        <span class="kw">if</span> <span class="ident">ast</span>.<span class="ident">ident</span> <span class="op">==</span> <span class="ident">s</span> {
-            <span class="macro">println!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">toks</span>);
+        <span class="kw">if </span>ast.ident == s {
+            <span class="macro">println!</span>(<span class="string">&quot;{}&quot;</span>, toks);
         }
     }
 }
 
-<span class="doccomment">/// Converts strings to enum variants based on their name.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// auto-derives `std::str::FromStr` on the enum (for Rust 1.34 and above, `std::convert::TryFrom&lt;&amp;str&gt;`</span>
-<span class="doccomment">/// will be derived as well). Each variant of the enum will match on it&#39;s own name.</span>
-<span class="doccomment">/// This can be overridden using `serialize=&quot;DifferentName&quot;` or `to_string=&quot;DifferentName&quot;`</span>
-<span class="doccomment">/// on the attribute as shown below.</span>
-<span class="doccomment">/// Multiple deserializations can be added to the same variant. If the variant contains additional data,</span>
-<span class="doccomment">/// they will be set to their default values upon deserialization.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// The `default` attribute can be applied to a tuple variant with a single data parameter. When a match isn&#39;t</span>
-<span class="doccomment">/// found, the given variant will be returned and the input string will be captured in the parameter.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Note that the implementation of `FromStr` by default only matches on the name of the</span>
-<span class="doccomment">/// variant. There is an option to match on different case conversions through the</span>
-<span class="doccomment">/// `#[strum(serialize_all = &quot;snake_case&quot;)]` type attribute.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// See the [Additional Attributes](https://docs.rs/strum/0.22/strum/additional_attributes/index.html)</span>
-<span class="doccomment">/// Section for more information on using this feature.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// If you have a large enum, you may want to consider using the `use_phf` attribute here. It leverages</span>
-<span class="doccomment">/// perfect hash functions to parse much quicker than a standard `match`. (MSRV 1.46)</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// # Example howto use `EnumString`</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">/// use std::str::FromStr;</span>
-<span class="doccomment">/// use strum_macros::EnumString;</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// #[derive(Debug, PartialEq, EnumString)]</span>
-<span class="doccomment">/// enum Color {</span>
-<span class="doccomment">///     Red,</span>
-<span class="doccomment">///     // The Default value will be inserted into range if we match &quot;Green&quot;.</span>
-<span class="doccomment">///     Green {</span>
-<span class="doccomment">///         range: usize,</span>
-<span class="doccomment">///     },</span>
-<span class="doccomment">///</span>
-<span class="doccomment">///     // We can match on multiple different patterns.</span>
-<span class="doccomment">///     #[strum(serialize = &quot;blue&quot;, serialize = &quot;b&quot;)]</span>
-<span class="doccomment">///     Blue(usize),</span>
-<span class="doccomment">///</span>
-<span class="doccomment">///     // Notice that we can disable certain variants from being found</span>
-<span class="doccomment">///     #[strum(disabled)]</span>
-<span class="doccomment">///     Yellow,</span>
-<span class="doccomment">///</span>
-<span class="doccomment">///     // We can make the comparison case insensitive (however Unicode is not supported at the moment)</span>
-<span class="doccomment">///     #[strum(ascii_case_insensitive)]</span>
-<span class="doccomment">///     Black,</span>
-<span class="doccomment">/// }</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// /*</span>
-<span class="doccomment">/// //The generated code will look like:</span>
-<span class="doccomment">/// impl std::str::FromStr for Color {</span>
-<span class="doccomment">///     type Err = ::strum::ParseError;</span>
-<span class="doccomment">///</span>
-<span class="doccomment">///     fn from_str(s: &amp;str) -&gt; ::core::result::Result&lt;Color, Self::Err&gt; {</span>
-<span class="doccomment">///         match s {</span>
-<span class="doccomment">///             &quot;Red&quot; =&gt; ::core::result::Result::Ok(Color::Red),</span>
-<span class="doccomment">///             &quot;Green&quot; =&gt; ::core::result::Result::Ok(Color::Green { range:Default::default() }),</span>
-<span class="doccomment">///             &quot;blue&quot; =&gt; ::core::result::Result::Ok(Color::Blue(Default::default())),</span>
-<span class="doccomment">///             &quot;b&quot; =&gt; ::core::result::Result::Ok(Color::Blue(Default::default())),</span>
-<span class="doccomment">///             s if s.eq_ignore_ascii_case(&quot;Black&quot;) =&gt; ::core::result::Result::Ok(Color::Black),</span>
-<span class="doccomment">///             _ =&gt; ::core::result::Result::Err(::strum::ParseError::VariantNotFound),</span>
-<span class="doccomment">///         }</span>
-<span class="doccomment">///     }</span>
-<span class="doccomment">/// }</span>
-<span class="doccomment">/// */</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// // simple from string</span>
-<span class="doccomment">/// let color_variant = Color::from_str(&quot;Red&quot;).unwrap();</span>
-<span class="doccomment">/// assert_eq!(Color::Red, color_variant);</span>
-<span class="doccomment">/// // short version works too</span>
-<span class="doccomment">/// let color_variant = Color::from_str(&quot;b&quot;).unwrap();</span>
-<span class="doccomment">/// assert_eq!(Color::Blue(0), color_variant);</span>
-<span class="doccomment">/// // was disabled for parsing = returns parse-error</span>
-<span class="doccomment">/// let color_variant = Color::from_str(&quot;Yellow&quot;);</span>
-<span class="doccomment">/// assert!(color_variant.is_err());</span>
-<span class="doccomment">/// // however the variant is still normally usable</span>
-<span class="doccomment">/// println!(&quot;{:?}&quot;, Color::Yellow);</span>
-<span class="doccomment">/// let color_variant = Color::from_str(&quot;bLACk&quot;).unwrap();</span>
-<span class="doccomment">/// assert_eq!(Color::Black, color_variant);</span>
-<span class="doccomment">/// ```</span>
-<span class="attribute">#[<span class="ident">proc_macro_derive</span>(<span class="ident">EnumString</span>, <span class="ident">attributes</span>(<span class="ident">strum</span>))]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_string</span>(<span class="ident">input</span>: <span class="ident">proc_macro::TokenStream</span>) -&gt; <span class="ident">proc_macro::TokenStream</span> {
-    <span class="kw">let</span> <span class="ident">ast</span> <span class="op">=</span> <span class="macro">syn::parse_macro_input!</span>(<span class="ident">input</span> <span class="kw">as</span> <span class="ident">DeriveInput</span>);
+<span class="doccomment">/// Converts strings to enum variants based on their name.
+///
+/// auto-derives `std::str::FromStr` on the enum (for Rust 1.34 and above, `std::convert::TryFrom&lt;&amp;str&gt;`
+/// will be derived as well). Each variant of the enum will match on it&#39;s own name.
+/// This can be overridden using `serialize=&quot;DifferentName&quot;` or `to_string=&quot;DifferentName&quot;`
+/// on the attribute as shown below.
+/// Multiple deserializations can be added to the same variant. If the variant contains additional data,
+/// they will be set to their default values upon deserialization.
+///
+/// The `default` attribute can be applied to a tuple variant with a single data parameter. When a match isn&#39;t
+/// found, the given variant will be returned and the input string will be captured in the parameter.
+///
+/// Note that the implementation of `FromStr` by default only matches on the name of the
+/// variant. There is an option to match on different case conversions through the
+/// `#[strum(serialize_all = &quot;snake_case&quot;)]` type attribute.
+///
+/// See the [Additional Attributes](https://docs.rs/strum/0.22/strum/additional_attributes/index.html)
+/// Section for more information on using this feature.
+///
+/// If you have a large enum, you may want to consider using the `use_phf` attribute here. It leverages
+/// perfect hash functions to parse much quicker than a standard `match`. (MSRV 1.46)
+///
+/// # Example howto use `EnumString`
+/// ```
+/// use std::str::FromStr;
+/// use strum_macros::EnumString;
+///
+/// #[derive(Debug, PartialEq, EnumString)]
+/// enum Color {
+///     Red,
+///     // The Default value will be inserted into range if we match &quot;Green&quot;.
+///     Green {
+///         range: usize,
+///     },
+///
+///     // We can match on multiple different patterns.
+///     #[strum(serialize = &quot;blue&quot;, serialize = &quot;b&quot;)]
+///     Blue(usize),
+///
+///     // Notice that we can disable certain variants from being found
+///     #[strum(disabled)]
+///     Yellow,
+///
+///     // We can make the comparison case insensitive (however Unicode is not supported at the moment)
+///     #[strum(ascii_case_insensitive)]
+///     Black,
+/// }
+///
+/// /*
+/// //The generated code will look like:
+/// impl std::str::FromStr for Color {
+///     type Err = ::strum::ParseError;
+///
+///     fn from_str(s: &amp;str) -&gt; ::core::result::Result&lt;Color, Self::Err&gt; {
+///         match s {
+///             &quot;Red&quot; =&gt; ::core::result::Result::Ok(Color::Red),
+///             &quot;Green&quot; =&gt; ::core::result::Result::Ok(Color::Green { range:Default::default() }),
+///             &quot;blue&quot; =&gt; ::core::result::Result::Ok(Color::Blue(Default::default())),
+///             &quot;b&quot; =&gt; ::core::result::Result::Ok(Color::Blue(Default::default())),
+///             s if s.eq_ignore_ascii_case(&quot;Black&quot;) =&gt; ::core::result::Result::Ok(Color::Black),
+///             _ =&gt; ::core::result::Result::Err(::strum::ParseError::VariantNotFound),
+///         }
+///     }
+/// }
+/// */
+///
+/// // simple from string
+/// let color_variant = Color::from_str(&quot;Red&quot;).unwrap();
+/// assert_eq!(Color::Red, color_variant);
+/// // short version works too
+/// let color_variant = Color::from_str(&quot;b&quot;).unwrap();
+/// assert_eq!(Color::Blue(0), color_variant);
+/// // was disabled for parsing = returns parse-error
+/// let color_variant = Color::from_str(&quot;Yellow&quot;);
+/// assert!(color_variant.is_err());
+/// // however the variant is still normally usable
+/// println!(&quot;{:?}&quot;, Color::Yellow);
+/// let color_variant = Color::from_str(&quot;bLACk&quot;).unwrap();
+/// assert_eq!(Color::Black, color_variant);
+/// ```
+</span><span class="attribute">#[proc_macro_derive(EnumString, attributes(strum))]
+</span><span class="kw">pub fn </span>from_string(input: proc_macro::TokenStream) -&gt; proc_macro::TokenStream {
+    <span class="kw">let </span>ast = <span class="macro">syn::parse_macro_input!</span>(input <span class="kw">as </span>DeriveInput);
 
-    <span class="kw">let</span> <span class="ident">toks</span> <span class="op">=</span>
-        <span class="ident">macros::from_string::from_string_inner</span>(<span class="kw-2">&amp;</span><span class="ident">ast</span>).<span class="ident">unwrap_or_else</span>(<span class="op">|</span><span class="ident">err</span><span class="op">|</span> <span class="ident">err</span>.<span class="ident">to_compile_error</span>());
-    <span class="ident">debug_print_generated</span>(<span class="kw-2">&amp;</span><span class="ident">ast</span>, <span class="kw-2">&amp;</span><span class="ident">toks</span>);
-    <span class="ident">toks</span>.<span class="ident">into</span>()
+    <span class="kw">let </span>toks =
+        macros::from_string::from_string_inner(<span class="kw-2">&amp;</span>ast).unwrap_or_else(|err| err.to_compile_error());
+    debug_print_generated(<span class="kw-2">&amp;</span>ast, <span class="kw-2">&amp;</span>toks);
+    toks.into()
 }
 
-<span class="doccomment">/// Converts enum variants to `&amp;&#39;static str`.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Implements `AsRef&lt;str&gt;` on your enum using the same rules as</span>
-<span class="doccomment">/// `Display` for determining what string is returned. The difference is that `as_ref()` returns</span>
-<span class="doccomment">/// a `&amp;str` instead of a `String` so you don&#39;t allocate any additional memory with each call.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">/// // You need to bring the AsRef trait into scope to use it</span>
-<span class="doccomment">/// use std::convert::AsRef;</span>
-<span class="doccomment">/// use strum_macros::AsRefStr;</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// #[derive(AsRefStr, Debug)]</span>
-<span class="doccomment">/// enum Color {</span>
-<span class="doccomment">///     #[strum(serialize = &quot;redred&quot;)]</span>
-<span class="doccomment">///     Red,</span>
-<span class="doccomment">///     Green {</span>
-<span class="doccomment">///         range: usize,</span>
-<span class="doccomment">///     },</span>
-<span class="doccomment">///     Blue(usize),</span>
-<span class="doccomment">///     Yellow,</span>
-<span class="doccomment">/// }</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// // uses the serialize string for Display</span>
-<span class="doccomment">/// let red = Color::Red;</span>
-<span class="doccomment">/// assert_eq!(&quot;redred&quot;, red.as_ref());</span>
-<span class="doccomment">/// // by default the variants Name</span>
-<span class="doccomment">/// let yellow = Color::Yellow;</span>
-<span class="doccomment">/// assert_eq!(&quot;Yellow&quot;, yellow.as_ref());</span>
-<span class="doccomment">/// // or for string formatting</span>
-<span class="doccomment">/// println!(</span>
-<span class="doccomment">///     &quot;blue: {} green: {}&quot;,</span>
-<span class="doccomment">///     Color::Blue(10).as_ref(),</span>
-<span class="doccomment">///     Color::Green { range: 42 }.as_ref()</span>
-<span class="doccomment">/// );</span>
-<span class="doccomment">/// ```</span>
-<span class="attribute">#[<span class="ident">proc_macro_derive</span>(<span class="ident">AsRefStr</span>, <span class="ident">attributes</span>(<span class="ident">strum</span>))]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">as_ref_str</span>(<span class="ident">input</span>: <span class="ident">proc_macro::TokenStream</span>) -&gt; <span class="ident">proc_macro::TokenStream</span> {
-    <span class="kw">let</span> <span class="ident">ast</span> <span class="op">=</span> <span class="macro">syn::parse_macro_input!</span>(<span class="ident">input</span> <span class="kw">as</span> <span class="ident">DeriveInput</span>);
+<span class="doccomment">/// Converts enum variants to `&amp;&#39;static str`.
+///
+/// Implements `AsRef&lt;str&gt;` on your enum using the same rules as
+/// `Display` for determining what string is returned. The difference is that `as_ref()` returns
+/// a `&amp;str` instead of a `String` so you don&#39;t allocate any additional memory with each call.
+///
+/// ```
+/// // You need to bring the AsRef trait into scope to use it
+/// use std::convert::AsRef;
+/// use strum_macros::AsRefStr;
+///
+/// #[derive(AsRefStr, Debug)]
+/// enum Color {
+///     #[strum(serialize = &quot;redred&quot;)]
+///     Red,
+///     Green {
+///         range: usize,
+///     },
+///     Blue(usize),
+///     Yellow,
+/// }
+///
+/// // uses the serialize string for Display
+/// let red = Color::Red;
+/// assert_eq!(&quot;redred&quot;, red.as_ref());
+/// // by default the variants Name
+/// let yellow = Color::Yellow;
+/// assert_eq!(&quot;Yellow&quot;, yellow.as_ref());
+/// // or for string formatting
+/// println!(
+///     &quot;blue: {} green: {}&quot;,
+///     Color::Blue(10).as_ref(),
+///     Color::Green { range: 42 }.as_ref()
+/// );
+/// ```
+</span><span class="attribute">#[proc_macro_derive(AsRefStr, attributes(strum))]
+</span><span class="kw">pub fn </span>as_ref_str(input: proc_macro::TokenStream) -&gt; proc_macro::TokenStream {
+    <span class="kw">let </span>ast = <span class="macro">syn::parse_macro_input!</span>(input <span class="kw">as </span>DeriveInput);
 
-    <span class="kw">let</span> <span class="ident">toks</span> <span class="op">=</span>
-        <span class="ident">macros::as_ref_str::as_ref_str_inner</span>(<span class="kw-2">&amp;</span><span class="ident">ast</span>).<span class="ident">unwrap_or_else</span>(<span class="op">|</span><span class="ident">err</span><span class="op">|</span> <span class="ident">err</span>.<span class="ident">to_compile_error</span>());
-    <span class="ident">debug_print_generated</span>(<span class="kw-2">&amp;</span><span class="ident">ast</span>, <span class="kw-2">&amp;</span><span class="ident">toks</span>);
-    <span class="ident">toks</span>.<span class="ident">into</span>()
+    <span class="kw">let </span>toks =
+        macros::as_ref_str::as_ref_str_inner(<span class="kw-2">&amp;</span>ast).unwrap_or_else(|err| err.to_compile_error());
+    debug_print_generated(<span class="kw-2">&amp;</span>ast, <span class="kw-2">&amp;</span>toks);
+    toks.into()
 }
 
-<span class="doccomment">/// Implements `Strum::VariantNames` which adds an associated constant `VARIANTS` which is an array of discriminant names.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Adds an `impl` block for the `enum` that adds a static `VARIANTS` array of `&amp;&#39;static str` that are the discriminant names.</span>
-<span class="doccomment">/// This will respect the `serialize_all` attribute on the `enum` (like `#[strum(serialize_all = &quot;snake_case&quot;)]`.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">/// // import the macros needed</span>
-<span class="doccomment">/// use strum_macros::{EnumString, EnumVariantNames};</span>
-<span class="doccomment">/// // You need to import the trait, to have access to VARIANTS</span>
-<span class="doccomment">/// use strum::VariantNames;</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// #[derive(Debug, EnumString, EnumVariantNames)]</span>
-<span class="doccomment">/// #[strum(serialize_all = &quot;kebab_case&quot;)]</span>
-<span class="doccomment">/// enum Color {</span>
-<span class="doccomment">///     Red,</span>
-<span class="doccomment">///     Blue,</span>
-<span class="doccomment">///     Yellow,</span>
-<span class="doccomment">///     RebeccaPurple,</span>
-<span class="doccomment">/// }</span>
-<span class="doccomment">/// assert_eq!([&quot;red&quot;, &quot;blue&quot;, &quot;yellow&quot;, &quot;rebecca-purple&quot;], Color::VARIANTS);</span>
-<span class="doccomment">/// ```</span>
-<span class="attribute">#[<span class="ident">proc_macro_derive</span>(<span class="ident">EnumVariantNames</span>, <span class="ident">attributes</span>(<span class="ident">strum</span>))]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">variant_names</span>(<span class="ident">input</span>: <span class="ident">proc_macro::TokenStream</span>) -&gt; <span class="ident">proc_macro::TokenStream</span> {
-    <span class="kw">let</span> <span class="ident">ast</span> <span class="op">=</span> <span class="macro">syn::parse_macro_input!</span>(<span class="ident">input</span> <span class="kw">as</span> <span class="ident">DeriveInput</span>);
+<span class="doccomment">/// Implements `Strum::VariantNames` which adds an associated constant `VARIANTS` which is an array of discriminant names.
+///
+/// Adds an `impl` block for the `enum` that adds a static `VARIANTS` array of `&amp;&#39;static str` that are the discriminant names.
+/// This will respect the `serialize_all` attribute on the `enum` (like `#[strum(serialize_all = &quot;snake_case&quot;)]`.
+///
+/// ```
+/// // import the macros needed
+/// use strum_macros::{EnumString, EnumVariantNames};
+/// // You need to import the trait, to have access to VARIANTS
+/// use strum::VariantNames;
+///
+/// #[derive(Debug, EnumString, EnumVariantNames)]
+/// #[strum(serialize_all = &quot;kebab_case&quot;)]
+/// enum Color {
+///     Red,
+///     Blue,
+///     Yellow,
+///     RebeccaPurple,
+/// }
+/// assert_eq!([&quot;red&quot;, &quot;blue&quot;, &quot;yellow&quot;, &quot;rebecca-purple&quot;], Color::VARIANTS);
+/// ```
+</span><span class="attribute">#[proc_macro_derive(EnumVariantNames, attributes(strum))]
+</span><span class="kw">pub fn </span>variant_names(input: proc_macro::TokenStream) -&gt; proc_macro::TokenStream {
+    <span class="kw">let </span>ast = <span class="macro">syn::parse_macro_input!</span>(input <span class="kw">as </span>DeriveInput);
 
-    <span class="kw">let</span> <span class="ident">toks</span> <span class="op">=</span> <span class="ident">macros::enum_variant_names::enum_variant_names_inner</span>(<span class="kw-2">&amp;</span><span class="ident">ast</span>)
-        .<span class="ident">unwrap_or_else</span>(<span class="op">|</span><span class="ident">err</span><span class="op">|</span> <span class="ident">err</span>.<span class="ident">to_compile_error</span>());
-    <span class="ident">debug_print_generated</span>(<span class="kw-2">&amp;</span><span class="ident">ast</span>, <span class="kw-2">&amp;</span><span class="ident">toks</span>);
-    <span class="ident">toks</span>.<span class="ident">into</span>()
+    <span class="kw">let </span>toks = macros::enum_variant_names::enum_variant_names_inner(<span class="kw-2">&amp;</span>ast)
+        .unwrap_or_else(|err| err.to_compile_error());
+    debug_print_generated(<span class="kw-2">&amp;</span>ast, <span class="kw-2">&amp;</span>toks);
+    toks.into()
 }
 
-<span class="attribute">#[<span class="ident">proc_macro_derive</span>(<span class="ident">AsStaticStr</span>, <span class="ident">attributes</span>(<span class="ident">strum</span>))]</span>
-<span class="attribute">#[<span class="ident">deprecated</span>(
-    <span class="ident">since</span> <span class="op">=</span> <span class="string">&quot;0.22.0&quot;</span>,
-    <span class="ident">note</span> <span class="op">=</span> <span class="string">&quot;please use `#[derive(IntoStaticStr)]` instead&quot;</span>
-)]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">as_static_str</span>(<span class="ident">input</span>: <span class="ident">proc_macro::TokenStream</span>) -&gt; <span class="ident">proc_macro::TokenStream</span> {
-    <span class="kw">let</span> <span class="ident">ast</span> <span class="op">=</span> <span class="macro">syn::parse_macro_input!</span>(<span class="ident">input</span> <span class="kw">as</span> <span class="ident">DeriveInput</span>);
+<span class="attribute">#[proc_macro_derive(AsStaticStr, attributes(strum))]
+#[deprecated(
+    since = <span class="string">&quot;0.22.0&quot;</span>,
+    note = <span class="string">&quot;please use `#[derive(IntoStaticStr)]` instead&quot;
+</span>)]
+</span><span class="kw">pub fn </span>as_static_str(input: proc_macro::TokenStream) -&gt; proc_macro::TokenStream {
+    <span class="kw">let </span>ast = <span class="macro">syn::parse_macro_input!</span>(input <span class="kw">as </span>DeriveInput);
 
-    <span class="kw">let</span> <span class="ident">toks</span> <span class="op">=</span> <span class="ident">macros::as_ref_str::as_static_str_inner</span>(
-        <span class="kw-2">&amp;</span><span class="ident">ast</span>,
-        <span class="kw-2">&amp;</span><span class="ident">macros::as_ref_str::GenerateTraitVariant::AsStaticStr</span>,
+    <span class="kw">let </span>toks = macros::as_ref_str::as_static_str_inner(
+        <span class="kw-2">&amp;</span>ast,
+        <span class="kw-2">&amp;</span>macros::as_ref_str::GenerateTraitVariant::AsStaticStr,
     )
-    .<span class="ident">unwrap_or_else</span>(<span class="op">|</span><span class="ident">err</span><span class="op">|</span> <span class="ident">err</span>.<span class="ident">to_compile_error</span>());
-    <span class="ident">debug_print_generated</span>(<span class="kw-2">&amp;</span><span class="ident">ast</span>, <span class="kw-2">&amp;</span><span class="ident">toks</span>);
-    <span class="ident">toks</span>.<span class="ident">into</span>()
+    .unwrap_or_else(|err| err.to_compile_error());
+    debug_print_generated(<span class="kw-2">&amp;</span>ast, <span class="kw-2">&amp;</span>toks);
+    toks.into()
 }
 
-<span class="doccomment">/// Implements `From&lt;MyEnum&gt; for &amp;&#39;static str` on an enum.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Implements `From&lt;YourEnum&gt;` and `From&lt;&amp;&#39;a YourEnum&gt;` for `&amp;&#39;static str`. This is</span>
-<span class="doccomment">/// useful for turning an enum variant into a static string.</span>
-<span class="doccomment">/// The Rust `std` provides a blanket impl of the reverse direction - i.e. `impl Into&lt;&amp;&#39;static str&gt; for YourEnum`.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">/// use strum_macros::IntoStaticStr;</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// #[derive(IntoStaticStr)]</span>
-<span class="doccomment">/// enum State&lt;&#39;a&gt; {</span>
-<span class="doccomment">///     Initial(&amp;&#39;a str),</span>
-<span class="doccomment">///     Finished,</span>
-<span class="doccomment">/// }</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// fn verify_state&lt;&#39;a&gt;(s: &amp;&#39;a str) {</span>
-<span class="doccomment">///     let mut state = State::Initial(s);</span>
-<span class="doccomment">///     // The following won&#39;t work because the lifetime is incorrect:</span>
-<span class="doccomment">///     // let wrong: &amp;&#39;static str = state.as_ref();</span>
-<span class="doccomment">///     // using the trait implemented by the derive works however:</span>
-<span class="doccomment">///     let right: &amp;&#39;static str = state.into();</span>
-<span class="doccomment">///     assert_eq!(&quot;Initial&quot;, right);</span>
-<span class="doccomment">///     state = State::Finished;</span>
-<span class="doccomment">///     let done: &amp;&#39;static str = state.into();</span>
-<span class="doccomment">///     assert_eq!(&quot;Finished&quot;, done);</span>
-<span class="doccomment">/// }</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// verify_state(&amp;&quot;hello world&quot;.to_string());</span>
-<span class="doccomment">/// ```</span>
-<span class="attribute">#[<span class="ident">proc_macro_derive</span>(<span class="ident">IntoStaticStr</span>, <span class="ident">attributes</span>(<span class="ident">strum</span>))]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">into_static_str</span>(<span class="ident">input</span>: <span class="ident">proc_macro::TokenStream</span>) -&gt; <span class="ident">proc_macro::TokenStream</span> {
-    <span class="kw">let</span> <span class="ident">ast</span> <span class="op">=</span> <span class="macro">syn::parse_macro_input!</span>(<span class="ident">input</span> <span class="kw">as</span> <span class="ident">DeriveInput</span>);
+<span class="doccomment">/// Implements `From&lt;MyEnum&gt; for &amp;&#39;static str` on an enum.
+///
+/// Implements `From&lt;YourEnum&gt;` and `From&lt;&amp;&#39;a YourEnum&gt;` for `&amp;&#39;static str`. This is
+/// useful for turning an enum variant into a static string.
+/// The Rust `std` provides a blanket impl of the reverse direction - i.e. `impl Into&lt;&amp;&#39;static str&gt; for YourEnum`.
+///
+/// ```
+/// use strum_macros::IntoStaticStr;
+///
+/// #[derive(IntoStaticStr)]
+/// enum State&lt;&#39;a&gt; {
+///     Initial(&amp;&#39;a str),
+///     Finished,
+/// }
+///
+/// fn verify_state&lt;&#39;a&gt;(s: &amp;&#39;a str) {
+///     let mut state = State::Initial(s);
+///     // The following won&#39;t work because the lifetime is incorrect:
+///     // let wrong: &amp;&#39;static str = state.as_ref();
+///     // using the trait implemented by the derive works however:
+///     let right: &amp;&#39;static str = state.into();
+///     assert_eq!(&quot;Initial&quot;, right);
+///     state = State::Finished;
+///     let done: &amp;&#39;static str = state.into();
+///     assert_eq!(&quot;Finished&quot;, done);
+/// }
+///
+/// verify_state(&amp;&quot;hello world&quot;.to_string());
+/// ```
+</span><span class="attribute">#[proc_macro_derive(IntoStaticStr, attributes(strum))]
+</span><span class="kw">pub fn </span>into_static_str(input: proc_macro::TokenStream) -&gt; proc_macro::TokenStream {
+    <span class="kw">let </span>ast = <span class="macro">syn::parse_macro_input!</span>(input <span class="kw">as </span>DeriveInput);
 
-    <span class="kw">let</span> <span class="ident">toks</span> <span class="op">=</span> <span class="ident">macros::as_ref_str::as_static_str_inner</span>(
-        <span class="kw-2">&amp;</span><span class="ident">ast</span>,
-        <span class="kw-2">&amp;</span><span class="ident">macros::as_ref_str::GenerateTraitVariant::From</span>,
+    <span class="kw">let </span>toks = macros::as_ref_str::as_static_str_inner(
+        <span class="kw-2">&amp;</span>ast,
+        <span class="kw-2">&amp;</span>macros::as_ref_str::GenerateTraitVariant::From,
     )
-    .<span class="ident">unwrap_or_else</span>(<span class="op">|</span><span class="ident">err</span><span class="op">|</span> <span class="ident">err</span>.<span class="ident">to_compile_error</span>());
-    <span class="ident">debug_print_generated</span>(<span class="kw-2">&amp;</span><span class="ident">ast</span>, <span class="kw-2">&amp;</span><span class="ident">toks</span>);
-    <span class="ident">toks</span>.<span class="ident">into</span>()
+    .unwrap_or_else(|err| err.to_compile_error());
+    debug_print_generated(<span class="kw-2">&amp;</span>ast, <span class="kw-2">&amp;</span>toks);
+    toks.into()
 }
 
-<span class="doccomment">/// implements `std::string::ToString` on en enum</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">/// // You need to bring the ToString trait into scope to use it</span>
-<span class="doccomment">/// use std::string::ToString;</span>
-<span class="doccomment">/// use strum_macros;</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// #[derive(strum_macros::ToString, Debug)]</span>
-<span class="doccomment">/// enum Color {</span>
-<span class="doccomment">///     #[strum(serialize = &quot;redred&quot;)]</span>
-<span class="doccomment">///     Red,</span>
-<span class="doccomment">///     Green {</span>
-<span class="doccomment">///         range: usize,</span>
-<span class="doccomment">///     },</span>
-<span class="doccomment">///     Blue(usize),</span>
-<span class="doccomment">///     Yellow,</span>
-<span class="doccomment">/// }</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// // uses the serialize string for Display</span>
-<span class="doccomment">/// let red = Color::Red;</span>
-<span class="doccomment">/// assert_eq!(String::from(&quot;redred&quot;), red.to_string());</span>
-<span class="doccomment">/// // by default the variants Name</span>
-<span class="doccomment">/// let yellow = Color::Yellow;</span>
-<span class="doccomment">/// assert_eq!(String::from(&quot;Yellow&quot;), yellow.to_string());</span>
-<span class="doccomment">/// ```</span>
-<span class="attribute">#[<span class="ident">deprecated</span>(
-    <span class="ident">since</span> <span class="op">=</span> <span class="string">&quot;0.22.0&quot;</span>,
-    <span class="ident">note</span> <span class="op">=</span> <span class="string">&quot;please use `#[derive(Display)]` instead. See issue https://github.com/Peternator7/strum/issues/132&quot;</span>
-)]</span>
-<span class="attribute">#[<span class="ident">proc_macro_derive</span>(<span class="ident">ToString</span>, <span class="ident">attributes</span>(<span class="ident">strum</span>))]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">to_string</span>(<span class="ident">input</span>: <span class="ident">proc_macro::TokenStream</span>) -&gt; <span class="ident">proc_macro::TokenStream</span> {
-    <span class="kw">let</span> <span class="ident">ast</span> <span class="op">=</span> <span class="macro">syn::parse_macro_input!</span>(<span class="ident">input</span> <span class="kw">as</span> <span class="ident">DeriveInput</span>);
+<span class="doccomment">/// implements `std::string::ToString` on en enum
+///
+/// ```
+/// // You need to bring the ToString trait into scope to use it
+/// use std::string::ToString;
+/// use strum_macros;
+///
+/// #[derive(strum_macros::ToString, Debug)]
+/// enum Color {
+///     #[strum(serialize = &quot;redred&quot;)]
+///     Red,
+///     Green {
+///         range: usize,
+///     },
+///     Blue(usize),
+///     Yellow,
+/// }
+///
+/// // uses the serialize string for Display
+/// let red = Color::Red;
+/// assert_eq!(String::from(&quot;redred&quot;), red.to_string());
+/// // by default the variants Name
+/// let yellow = Color::Yellow;
+/// assert_eq!(String::from(&quot;Yellow&quot;), yellow.to_string());
+/// ```
+</span><span class="attribute">#[deprecated(
+    since = <span class="string">&quot;0.22.0&quot;</span>,
+    note = <span class="string">&quot;please use `#[derive(Display)]` instead. See issue https://github.com/Peternator7/strum/issues/132&quot;
+</span>)]
+#[proc_macro_derive(ToString, attributes(strum))]
+</span><span class="kw">pub fn </span>to_string(input: proc_macro::TokenStream) -&gt; proc_macro::TokenStream {
+    <span class="kw">let </span>ast = <span class="macro">syn::parse_macro_input!</span>(input <span class="kw">as </span>DeriveInput);
 
-    <span class="kw">let</span> <span class="ident">toks</span> <span class="op">=</span>
-        <span class="ident">macros::to_string::to_string_inner</span>(<span class="kw-2">&amp;</span><span class="ident">ast</span>).<span class="ident">unwrap_or_else</span>(<span class="op">|</span><span class="ident">err</span><span class="op">|</span> <span class="ident">err</span>.<span class="ident">to_compile_error</span>());
-    <span class="ident">debug_print_generated</span>(<span class="kw-2">&amp;</span><span class="ident">ast</span>, <span class="kw-2">&amp;</span><span class="ident">toks</span>);
-    <span class="ident">toks</span>.<span class="ident">into</span>()
+    <span class="kw">let </span>toks =
+        macros::to_string::to_string_inner(<span class="kw-2">&amp;</span>ast).unwrap_or_else(|err| err.to_compile_error());
+    debug_print_generated(<span class="kw-2">&amp;</span>ast, <span class="kw-2">&amp;</span>toks);
+    toks.into()
 }
 
-<span class="doccomment">/// Converts enum variants to strings.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Deriving `Display` on an enum prints out the given enum. This enables you to perform round</span>
-<span class="doccomment">/// trip style conversions from enum into string and back again for unit style variants. `Display`</span>
-<span class="doccomment">/// choose which serialization to used based on the following criteria:</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// 1. If there is a `to_string` property, this value will be used. There can only be one per variant.</span>
-<span class="doccomment">/// 1. Of the various `serialize` properties, the value with the longest length is chosen. If that</span>
-<span class="doccomment">///    behavior isn&#39;t desired, you should use `to_string`.</span>
-<span class="doccomment">/// 1. The name of the variant will be used if there are no `serialize` or `to_string` attributes.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">/// // You need to bring the ToString trait into scope to use it</span>
-<span class="doccomment">/// use std::string::ToString;</span>
-<span class="doccomment">/// use strum_macros::Display;</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// #[derive(Display, Debug)]</span>
-<span class="doccomment">/// enum Color {</span>
-<span class="doccomment">///     #[strum(serialize = &quot;redred&quot;)]</span>
-<span class="doccomment">///     Red,</span>
-<span class="doccomment">///     Green {</span>
-<span class="doccomment">///         range: usize,</span>
-<span class="doccomment">///     },</span>
-<span class="doccomment">///     Blue(usize),</span>
-<span class="doccomment">///     Yellow,</span>
-<span class="doccomment">/// }</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// // uses the serialize string for Display</span>
-<span class="doccomment">/// let red = Color::Red;</span>
-<span class="doccomment">/// assert_eq!(String::from(&quot;redred&quot;), format!(&quot;{}&quot;, red));</span>
-<span class="doccomment">/// // by default the variants Name</span>
-<span class="doccomment">/// let yellow = Color::Yellow;</span>
-<span class="doccomment">/// assert_eq!(String::from(&quot;Yellow&quot;), yellow.to_string());</span>
-<span class="doccomment">/// // or for string formatting</span>
-<span class="doccomment">/// println!(</span>
-<span class="doccomment">///     &quot;blue: {} green: {}&quot;,</span>
-<span class="doccomment">///     Color::Blue(10),</span>
-<span class="doccomment">///     Color::Green { range: 42 }</span>
-<span class="doccomment">/// );</span>
-<span class="doccomment">/// ```</span>
-<span class="attribute">#[<span class="ident">proc_macro_derive</span>(<span class="ident">Display</span>, <span class="ident">attributes</span>(<span class="ident">strum</span>))]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">display</span>(<span class="ident">input</span>: <span class="ident">proc_macro::TokenStream</span>) -&gt; <span class="ident">proc_macro::TokenStream</span> {
-    <span class="kw">let</span> <span class="ident">ast</span> <span class="op">=</span> <span class="macro">syn::parse_macro_input!</span>(<span class="ident">input</span> <span class="kw">as</span> <span class="ident">DeriveInput</span>);
+<span class="doccomment">/// Converts enum variants to strings.
+///
+/// Deriving `Display` on an enum prints out the given enum. This enables you to perform round
+/// trip style conversions from enum into string and back again for unit style variants. `Display`
+/// choose which serialization to used based on the following criteria:
+///
+/// 1. If there is a `to_string` property, this value will be used. There can only be one per variant.
+/// 1. Of the various `serialize` properties, the value with the longest length is chosen. If that
+///    behavior isn&#39;t desired, you should use `to_string`.
+/// 1. The name of the variant will be used if there are no `serialize` or `to_string` attributes.
+///
+/// ```
+/// // You need to bring the ToString trait into scope to use it
+/// use std::string::ToString;
+/// use strum_macros::Display;
+///
+/// #[derive(Display, Debug)]
+/// enum Color {
+///     #[strum(serialize = &quot;redred&quot;)]
+///     Red,
+///     Green {
+///         range: usize,
+///     },
+///     Blue(usize),
+///     Yellow,
+/// }
+///
+/// // uses the serialize string for Display
+/// let red = Color::Red;
+/// assert_eq!(String::from(&quot;redred&quot;), format!(&quot;{}&quot;, red));
+/// // by default the variants Name
+/// let yellow = Color::Yellow;
+/// assert_eq!(String::from(&quot;Yellow&quot;), yellow.to_string());
+/// // or for string formatting
+/// println!(
+///     &quot;blue: {} green: {}&quot;,
+///     Color::Blue(10),
+///     Color::Green { range: 42 }
+/// );
+/// ```
+</span><span class="attribute">#[proc_macro_derive(Display, attributes(strum))]
+</span><span class="kw">pub fn </span>display(input: proc_macro::TokenStream) -&gt; proc_macro::TokenStream {
+    <span class="kw">let </span>ast = <span class="macro">syn::parse_macro_input!</span>(input <span class="kw">as </span>DeriveInput);
 
-    <span class="kw">let</span> <span class="ident">toks</span> <span class="op">=</span> <span class="ident">macros::display::display_inner</span>(<span class="kw-2">&amp;</span><span class="ident">ast</span>).<span class="ident">unwrap_or_else</span>(<span class="op">|</span><span class="ident">err</span><span class="op">|</span> <span class="ident">err</span>.<span class="ident">to_compile_error</span>());
-    <span class="ident">debug_print_generated</span>(<span class="kw-2">&amp;</span><span class="ident">ast</span>, <span class="kw-2">&amp;</span><span class="ident">toks</span>);
-    <span class="ident">toks</span>.<span class="ident">into</span>()
+    <span class="kw">let </span>toks = macros::display::display_inner(<span class="kw-2">&amp;</span>ast).unwrap_or_else(|err| err.to_compile_error());
+    debug_print_generated(<span class="kw-2">&amp;</span>ast, <span class="kw-2">&amp;</span>toks);
+    toks.into()
 }
 
-<span class="doccomment">/// Creates a new type that iterates of the variants of an enum.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Iterate over the variants of an Enum. Any additional data on your variants will be set to `Default::default()`.</span>
-<span class="doccomment">/// The macro implements `strum::IntoEnumIter` on your enum and creates a new type called `YourEnumIter` that is the iterator object.</span>
-<span class="doccomment">/// You cannot derive `EnumIter` on any type with a lifetime bound (`&lt;&#39;a&gt;`) because the iterator would surely</span>
-<span class="doccomment">/// create [unbounded lifetimes](https://doc.rust-lang.org/nightly/nomicon/unbounded-lifetimes.html).</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// // You need to bring the trait into scope to use it!</span>
-<span class="doccomment">/// use strum::IntoEnumIterator;</span>
-<span class="doccomment">/// use strum_macros::EnumIter;</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// #[derive(EnumIter, Debug, PartialEq)]</span>
-<span class="doccomment">/// enum Color {</span>
-<span class="doccomment">///     Red,</span>
-<span class="doccomment">///     Green { range: usize },</span>
-<span class="doccomment">///     Blue(usize),</span>
-<span class="doccomment">///     Yellow,</span>
-<span class="doccomment">/// }</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// // It&#39;s simple to iterate over the variants of an enum.</span>
-<span class="doccomment">/// for color in Color::iter() {</span>
-<span class="doccomment">///     println!(&quot;My favorite color is {:?}&quot;, color);</span>
-<span class="doccomment">/// }</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// let mut ci = Color::iter();</span>
-<span class="doccomment">/// assert_eq!(Some(Color::Red), ci.next());</span>
-<span class="doccomment">/// assert_eq!(Some(Color::Green {range: 0}), ci.next());</span>
-<span class="doccomment">/// assert_eq!(Some(Color::Blue(0)), ci.next());</span>
-<span class="doccomment">/// assert_eq!(Some(Color::Yellow), ci.next());</span>
-<span class="doccomment">/// assert_eq!(None, ci.next());</span>
-<span class="doccomment">/// ```</span>
-<span class="attribute">#[<span class="ident">proc_macro_derive</span>(<span class="ident">EnumIter</span>, <span class="ident">attributes</span>(<span class="ident">strum</span>))]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">enum_iter</span>(<span class="ident">input</span>: <span class="ident">proc_macro::TokenStream</span>) -&gt; <span class="ident">proc_macro::TokenStream</span> {
-    <span class="kw">let</span> <span class="ident">ast</span> <span class="op">=</span> <span class="macro">syn::parse_macro_input!</span>(<span class="ident">input</span> <span class="kw">as</span> <span class="ident">DeriveInput</span>);
+<span class="doccomment">/// Creates a new type that iterates of the variants of an enum.
+///
+/// Iterate over the variants of an Enum. Any additional data on your variants will be set to `Default::default()`.
+/// The macro implements `strum::IntoEnumIter` on your enum and creates a new type called `YourEnumIter` that is the iterator object.
+/// You cannot derive `EnumIter` on any type with a lifetime bound (`&lt;&#39;a&gt;`) because the iterator would surely
+/// create [unbounded lifetimes](https://doc.rust-lang.org/nightly/nomicon/unbounded-lifetimes.html).
+///
+/// ```
+///
+/// // You need to bring the trait into scope to use it!
+/// use strum::IntoEnumIterator;
+/// use strum_macros::EnumIter;
+///
+/// #[derive(EnumIter, Debug, PartialEq)]
+/// enum Color {
+///     Red,
+///     Green { range: usize },
+///     Blue(usize),
+///     Yellow,
+/// }
+///
+/// // It&#39;s simple to iterate over the variants of an enum.
+/// for color in Color::iter() {
+///     println!(&quot;My favorite color is {:?}&quot;, color);
+/// }
+///
+/// let mut ci = Color::iter();
+/// assert_eq!(Some(Color::Red), ci.next());
+/// assert_eq!(Some(Color::Green {range: 0}), ci.next());
+/// assert_eq!(Some(Color::Blue(0)), ci.next());
+/// assert_eq!(Some(Color::Yellow), ci.next());
+/// assert_eq!(None, ci.next());
+/// ```
+</span><span class="attribute">#[proc_macro_derive(EnumIter, attributes(strum))]
+</span><span class="kw">pub fn </span>enum_iter(input: proc_macro::TokenStream) -&gt; proc_macro::TokenStream {
+    <span class="kw">let </span>ast = <span class="macro">syn::parse_macro_input!</span>(input <span class="kw">as </span>DeriveInput);
 
-    <span class="kw">let</span> <span class="ident">toks</span> <span class="op">=</span>
-        <span class="ident">macros::enum_iter::enum_iter_inner</span>(<span class="kw-2">&amp;</span><span class="ident">ast</span>).<span class="ident">unwrap_or_else</span>(<span class="op">|</span><span class="ident">err</span><span class="op">|</span> <span class="ident">err</span>.<span class="ident">to_compile_error</span>());
-    <span class="ident">debug_print_generated</span>(<span class="kw-2">&amp;</span><span class="ident">ast</span>, <span class="kw-2">&amp;</span><span class="ident">toks</span>);
-    <span class="ident">toks</span>.<span class="ident">into</span>()
+    <span class="kw">let </span>toks =
+        macros::enum_iter::enum_iter_inner(<span class="kw-2">&amp;</span>ast).unwrap_or_else(|err| err.to_compile_error());
+    debug_print_generated(<span class="kw-2">&amp;</span>ast, <span class="kw-2">&amp;</span>toks);
+    toks.into()
 }
 
-<span class="doccomment">/// Add a function to enum that allows accessing variants by its discriminant</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// This macro adds a standalone function to obtain an enum variant by its discriminant. The macro adds</span>
-<span class="doccomment">/// `from_repr(discriminant: usize) -&gt; Option&lt;YourEnum&gt;` as a standalone function on the enum. For</span>
-<span class="doccomment">/// variants with additional data, the returned variant will use the `Default` trait to fill the</span>
-<span class="doccomment">/// data. The discriminant follows the same rules as `rustc`. The first discriminant is zero and each</span>
-<span class="doccomment">/// successive variant has a discriminant of one greater than the previous variant, expect where an</span>
-<span class="doccomment">/// explicit discriminant is specified. The type of the discriminant will match the `repr` type if</span>
-<span class="doccomment">/// it is specifed.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// When the macro is applied using rustc &gt;= 1.46 and when there is no additional data on any of</span>
-<span class="doccomment">/// the variants, the `from_repr` function is marked `const`. rustc &gt;= 1.46 is required</span>
-<span class="doccomment">/// to allow `match` statements in `const fn`. The no additional data requirement is due to the</span>
-<span class="doccomment">/// inability to use `Default::default()` in a `const fn`.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// You cannot derive `FromRepr` on any type with a lifetime bound (`&lt;&#39;a&gt;`) because the function would surely</span>
-<span class="doccomment">/// create [unbounded lifetimes](https://doc.rust-lang.org/nightly/nomicon/unbounded-lifetimes.html).</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// use strum_macros::FromRepr;</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// #[derive(FromRepr, Debug, PartialEq)]</span>
-<span class="doccomment">/// enum Color {</span>
-<span class="doccomment">///     Red,</span>
-<span class="doccomment">///     Green { range: usize },</span>
-<span class="doccomment">///     Blue(usize),</span>
-<span class="doccomment">///     Yellow,</span>
-<span class="doccomment">/// }</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// assert_eq!(Some(Color::Red), Color::from_repr(0));</span>
-<span class="doccomment">/// assert_eq!(Some(Color::Green {range: 0}), Color::from_repr(1));</span>
-<span class="doccomment">/// assert_eq!(Some(Color::Blue(0)), Color::from_repr(2));</span>
-<span class="doccomment">/// assert_eq!(Some(Color::Yellow), Color::from_repr(3));</span>
-<span class="doccomment">/// assert_eq!(None, Color::from_repr(4));</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// // Custom discriminant tests</span>
-<span class="doccomment">/// #[derive(FromRepr, Debug, PartialEq)]</span>
-<span class="doccomment">/// #[repr(u8)]</span>
-<span class="doccomment">/// enum Vehicle {</span>
-<span class="doccomment">///     Car = 1,</span>
-<span class="doccomment">///     Truck = 3,</span>
-<span class="doccomment">/// }</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// assert_eq!(None, Vehicle::from_repr(0));</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// On versions of rust &gt;= 1.46, the `from_repr` function is marked `const`.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ```rust</span>
-<span class="doccomment">/// use strum_macros::FromRepr;</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// #[derive(FromRepr, Debug, PartialEq)]</span>
-<span class="doccomment">/// #[repr(u8)]</span>
-<span class="doccomment">/// enum Number {</span>
-<span class="doccomment">///     One = 1,</span>
-<span class="doccomment">///     Three = 3,</span>
-<span class="doccomment">/// }</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// # #[rustversion::since(1.46)]</span>
-<span class="doccomment">/// const fn number_from_repr(d: u8) -&gt; Option&lt;Number&gt; {</span>
-<span class="doccomment">///     Number::from_repr(d)</span>
-<span class="doccomment">/// }</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// # #[rustversion::before(1.46)]</span>
-<span class="doccomment">/// # fn number_from_repr(d: u8) -&gt; Option&lt;Number&gt; {</span>
-<span class="doccomment">/// #     Number::from_repr(d)</span>
-<span class="doccomment">/// # }</span>
-<span class="doccomment">/// assert_eq!(None, number_from_repr(0));</span>
-<span class="doccomment">/// assert_eq!(Some(Number::One), number_from_repr(1));</span>
-<span class="doccomment">/// assert_eq!(None, number_from_repr(2));</span>
-<span class="doccomment">/// assert_eq!(Some(Number::Three), number_from_repr(3));</span>
-<span class="doccomment">/// assert_eq!(None, number_from_repr(4));</span>
-<span class="doccomment">/// ```</span>
+<span class="doccomment">/// Add a function to enum that allows accessing variants by its discriminant
+///
+/// This macro adds a standalone function to obtain an enum variant by its discriminant. The macro adds
+/// `from_repr(discriminant: usize) -&gt; Option&lt;YourEnum&gt;` as a standalone function on the enum. For
+/// variants with additional data, the returned variant will use the `Default` trait to fill the
+/// data. The discriminant follows the same rules as `rustc`. The first discriminant is zero and each
+/// successive variant has a discriminant of one greater than the previous variant, expect where an
+/// explicit discriminant is specified. The type of the discriminant will match the `repr` type if
+/// it is specifed.
+///
+/// When the macro is applied using rustc &gt;= 1.46 and when there is no additional data on any of
+/// the variants, the `from_repr` function is marked `const`. rustc &gt;= 1.46 is required
+/// to allow `match` statements in `const fn`. The no additional data requirement is due to the
+/// inability to use `Default::default()` in a `const fn`.
+///
+/// You cannot derive `FromRepr` on any type with a lifetime bound (`&lt;&#39;a&gt;`) because the function would surely
+/// create [unbounded lifetimes](https://doc.rust-lang.org/nightly/nomicon/unbounded-lifetimes.html).
+///
+/// ```
+///
+/// use strum_macros::FromRepr;
+///
+/// #[derive(FromRepr, Debug, PartialEq)]
+/// enum Color {
+///     Red,
+///     Green { range: usize },
+///     Blue(usize),
+///     Yellow,
+/// }
+///
+/// assert_eq!(Some(Color::Red), Color::from_repr(0));
+/// assert_eq!(Some(Color::Green {range: 0}), Color::from_repr(1));
+/// assert_eq!(Some(Color::Blue(0)), Color::from_repr(2));
+/// assert_eq!(Some(Color::Yellow), Color::from_repr(3));
+/// assert_eq!(None, Color::from_repr(4));
+///
+/// // Custom discriminant tests
+/// #[derive(FromRepr, Debug, PartialEq)]
+/// #[repr(u8)]
+/// enum Vehicle {
+///     Car = 1,
+///     Truck = 3,
+/// }
+///
+/// assert_eq!(None, Vehicle::from_repr(0));
+/// ```
+///
+/// On versions of rust &gt;= 1.46, the `from_repr` function is marked `const`.
+///
+/// ```rust
+/// use strum_macros::FromRepr;
+///
+/// #[derive(FromRepr, Debug, PartialEq)]
+/// #[repr(u8)]
+/// enum Number {
+///     One = 1,
+///     Three = 3,
+/// }
+///
+/// # #[rustversion::since(1.46)]
+/// const fn number_from_repr(d: u8) -&gt; Option&lt;Number&gt; {
+///     Number::from_repr(d)
+/// }
+///
+/// # #[rustversion::before(1.46)]
+/// # fn number_from_repr(d: u8) -&gt; Option&lt;Number&gt; {
+/// #     Number::from_repr(d)
+/// # }
+/// assert_eq!(None, number_from_repr(0));
+/// assert_eq!(Some(Number::One), number_from_repr(1));
+/// assert_eq!(None, number_from_repr(2));
+/// assert_eq!(Some(Number::Three), number_from_repr(3));
+/// assert_eq!(None, number_from_repr(4));
+/// ```
 
-<span class="attribute">#[<span class="ident">proc_macro_derive</span>(<span class="ident">FromRepr</span>, <span class="ident">attributes</span>(<span class="ident">strum</span>))]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_repr</span>(<span class="ident">input</span>: <span class="ident">proc_macro::TokenStream</span>) -&gt; <span class="ident">proc_macro::TokenStream</span> {
-    <span class="kw">let</span> <span class="ident">ast</span> <span class="op">=</span> <span class="macro">syn::parse_macro_input!</span>(<span class="ident">input</span> <span class="kw">as</span> <span class="ident">DeriveInput</span>);
+</span><span class="attribute">#[proc_macro_derive(FromRepr, attributes(strum))]
+</span><span class="kw">pub fn </span>from_repr(input: proc_macro::TokenStream) -&gt; proc_macro::TokenStream {
+    <span class="kw">let </span>ast = <span class="macro">syn::parse_macro_input!</span>(input <span class="kw">as </span>DeriveInput);
 
-    <span class="kw">let</span> <span class="ident">toks</span> <span class="op">=</span>
-        <span class="ident">macros::from_repr::from_repr_inner</span>(<span class="kw-2">&amp;</span><span class="ident">ast</span>).<span class="ident">unwrap_or_else</span>(<span class="op">|</span><span class="ident">err</span><span class="op">|</span> <span class="ident">err</span>.<span class="ident">to_compile_error</span>());
-    <span class="ident">debug_print_generated</span>(<span class="kw-2">&amp;</span><span class="ident">ast</span>, <span class="kw-2">&amp;</span><span class="ident">toks</span>);
-    <span class="ident">toks</span>.<span class="ident">into</span>()
+    <span class="kw">let </span>toks =
+        macros::from_repr::from_repr_inner(<span class="kw-2">&amp;</span>ast).unwrap_or_else(|err| err.to_compile_error());
+    debug_print_generated(<span class="kw-2">&amp;</span>ast, <span class="kw-2">&amp;</span>toks);
+    toks.into()
 }
 
-<span class="doccomment">/// Add a verbose message to an enum variant.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Encode strings into the enum itself. The `strum_macros::EmumMessage` macro implements the `strum::EnumMessage` trait.</span>
-<span class="doccomment">/// `EnumMessage` looks for `#[strum(message=&quot;...&quot;)]` attributes on your variants.</span>
-<span class="doccomment">/// You can also provided a `detailed_message=&quot;...&quot;` attribute to create a seperate more detailed message than the first.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// `EnumMessage` also exposes the variants doc comments through `get_documentation()`. This is useful in some scenarios,</span>
-<span class="doccomment">/// but `get_message` should generally be preferred. Rust doc comments are intended for developer facing documentation,</span>
-<span class="doccomment">/// not end user messaging.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">/// // You need to bring the trait into scope to use it</span>
-<span class="doccomment">/// use strum::EnumMessage;</span>
-<span class="doccomment">/// use strum_macros;</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// #[derive(strum_macros::EnumMessage, Debug)]</span>
-<span class="doccomment">/// #[allow(dead_code)]</span>
-<span class="doccomment">/// enum Color {</span>
-<span class="doccomment">///     /// Danger color.</span>
-<span class="doccomment">///     #[strum(message = &quot;Red&quot;, detailed_message = &quot;This is very red&quot;)]</span>
-<span class="doccomment">///     Red,</span>
-<span class="doccomment">///     #[strum(message = &quot;Simply Green&quot;)]</span>
-<span class="doccomment">///     Green { range: usize },</span>
-<span class="doccomment">///     #[strum(serialize = &quot;b&quot;, serialize = &quot;blue&quot;)]</span>
-<span class="doccomment">///     Blue(usize),</span>
-<span class="doccomment">/// }</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// // Generated code looks like more or less like this:</span>
-<span class="doccomment">/// /*</span>
-<span class="doccomment">/// impl ::strum::EnumMessage for Color {</span>
-<span class="doccomment">///     fn get_message(&amp;self) -&gt; ::core::option::Option&lt;&amp;&#39;static str&gt; {</span>
-<span class="doccomment">///         match self {</span>
-<span class="doccomment">///             &amp;Color::Red =&gt; ::core::option::Option::Some(&quot;Red&quot;),</span>
-<span class="doccomment">///             &amp;Color::Green {..} =&gt; ::core::option::Option::Some(&quot;Simply Green&quot;),</span>
-<span class="doccomment">///             _ =&gt; None</span>
-<span class="doccomment">///         }</span>
-<span class="doccomment">///     }</span>
-<span class="doccomment">///</span>
-<span class="doccomment">///     fn get_detailed_message(&amp;self) -&gt; ::core::option::Option&lt;&amp;&#39;static str&gt; {</span>
-<span class="doccomment">///         match self {</span>
-<span class="doccomment">///             &amp;Color::Red =&gt; ::core::option::Option::Some(&quot;This is very red&quot;),</span>
-<span class="doccomment">///             &amp;Color::Green {..}=&gt; ::core::option::Option::Some(&quot;Simply Green&quot;),</span>
-<span class="doccomment">///             _ =&gt; None</span>
-<span class="doccomment">///         }</span>
-<span class="doccomment">///     }</span>
-<span class="doccomment">///</span>
-<span class="doccomment">///     fn get_documentation(&amp;self) -&gt; ::std::option::Option&lt;&amp;&#39;static str&gt; {</span>
-<span class="doccomment">///         match self {</span>
-<span class="doccomment">///             &amp;Color::Red =&gt; ::std::option::Option::Some(&quot;Danger color.&quot;),</span>
-<span class="doccomment">///             _ =&gt; None</span>
-<span class="doccomment">///         }</span>
-<span class="doccomment">///     }</span>
-<span class="doccomment">///</span>
-<span class="doccomment">///     fn get_serializations(&amp;self) -&gt; &amp;&#39;static [&amp;&#39;static str] {</span>
-<span class="doccomment">///         match self {</span>
-<span class="doccomment">///             &amp;Color::Red =&gt; {</span>
-<span class="doccomment">///                 static ARR: [&amp;&#39;static str; 1] = [&quot;Red&quot;];</span>
-<span class="doccomment">///                 &amp;ARR</span>
-<span class="doccomment">///             },</span>
-<span class="doccomment">///             &amp;Color::Green {..}=&gt; {</span>
-<span class="doccomment">///                 static ARR: [&amp;&#39;static str; 1] = [&quot;Green&quot;];</span>
-<span class="doccomment">///                 &amp;ARR</span>
-<span class="doccomment">///             },</span>
-<span class="doccomment">///             &amp;Color::Blue (..) =&gt; {</span>
-<span class="doccomment">///                 static ARR: [&amp;&#39;static str; 2] = [&quot;b&quot;, &quot;blue&quot;];</span>
-<span class="doccomment">///                 &amp;ARR</span>
-<span class="doccomment">///             },</span>
-<span class="doccomment">///         }</span>
-<span class="doccomment">///     }</span>
-<span class="doccomment">/// }</span>
-<span class="doccomment">/// */</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// let c = Color::Red;</span>
-<span class="doccomment">/// assert_eq!(&quot;Red&quot;, c.get_message().unwrap());</span>
-<span class="doccomment">/// assert_eq!(&quot;This is very red&quot;, c.get_detailed_message().unwrap());</span>
-<span class="doccomment">/// assert_eq!(&quot;Danger color.&quot;, c.get_documentation().unwrap());</span>
-<span class="doccomment">/// assert_eq!([&quot;Red&quot;], c.get_serializations());</span>
-<span class="doccomment">/// ```</span>
-<span class="attribute">#[<span class="ident">proc_macro_derive</span>(<span class="ident">EnumMessage</span>, <span class="ident">attributes</span>(<span class="ident">strum</span>))]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">enum_messages</span>(<span class="ident">input</span>: <span class="ident">proc_macro::TokenStream</span>) -&gt; <span class="ident">proc_macro::TokenStream</span> {
-    <span class="kw">let</span> <span class="ident">ast</span> <span class="op">=</span> <span class="macro">syn::parse_macro_input!</span>(<span class="ident">input</span> <span class="kw">as</span> <span class="ident">DeriveInput</span>);
+<span class="doccomment">/// Add a verbose message to an enum variant.
+///
+/// Encode strings into the enum itself. The `strum_macros::EmumMessage` macro implements the `strum::EnumMessage` trait.
+/// `EnumMessage` looks for `#[strum(message=&quot;...&quot;)]` attributes on your variants.
+/// You can also provided a `detailed_message=&quot;...&quot;` attribute to create a seperate more detailed message than the first.
+///
+/// `EnumMessage` also exposes the variants doc comments through `get_documentation()`. This is useful in some scenarios,
+/// but `get_message` should generally be preferred. Rust doc comments are intended for developer facing documentation,
+/// not end user messaging.
+///
+/// ```
+/// // You need to bring the trait into scope to use it
+/// use strum::EnumMessage;
+/// use strum_macros;
+///
+/// #[derive(strum_macros::EnumMessage, Debug)]
+/// #[allow(dead_code)]
+/// enum Color {
+///     /// Danger color.
+///     #[strum(message = &quot;Red&quot;, detailed_message = &quot;This is very red&quot;)]
+///     Red,
+///     #[strum(message = &quot;Simply Green&quot;)]
+///     Green { range: usize },
+///     #[strum(serialize = &quot;b&quot;, serialize = &quot;blue&quot;)]
+///     Blue(usize),
+/// }
+///
+/// // Generated code looks like more or less like this:
+/// /*
+/// impl ::strum::EnumMessage for Color {
+///     fn get_message(&amp;self) -&gt; ::core::option::Option&lt;&amp;&#39;static str&gt; {
+///         match self {
+///             &amp;Color::Red =&gt; ::core::option::Option::Some(&quot;Red&quot;),
+///             &amp;Color::Green {..} =&gt; ::core::option::Option::Some(&quot;Simply Green&quot;),
+///             _ =&gt; None
+///         }
+///     }
+///
+///     fn get_detailed_message(&amp;self) -&gt; ::core::option::Option&lt;&amp;&#39;static str&gt; {
+///         match self {
+///             &amp;Color::Red =&gt; ::core::option::Option::Some(&quot;This is very red&quot;),
+///             &amp;Color::Green {..}=&gt; ::core::option::Option::Some(&quot;Simply Green&quot;),
+///             _ =&gt; None
+///         }
+///     }
+///
+///     fn get_documentation(&amp;self) -&gt; ::std::option::Option&lt;&amp;&#39;static str&gt; {
+///         match self {
+///             &amp;Color::Red =&gt; ::std::option::Option::Some(&quot;Danger color.&quot;),
+///             _ =&gt; None
+///         }
+///     }
+///
+///     fn get_serializations(&amp;self) -&gt; &amp;&#39;static [&amp;&#39;static str] {
+///         match self {
+///             &amp;Color::Red =&gt; {
+///                 static ARR: [&amp;&#39;static str; 1] = [&quot;Red&quot;];
+///                 &amp;ARR
+///             },
+///             &amp;Color::Green {..}=&gt; {
+///                 static ARR: [&amp;&#39;static str; 1] = [&quot;Green&quot;];
+///                 &amp;ARR
+///             },
+///             &amp;Color::Blue (..) =&gt; {
+///                 static ARR: [&amp;&#39;static str; 2] = [&quot;b&quot;, &quot;blue&quot;];
+///                 &amp;ARR
+///             },
+///         }
+///     }
+/// }
+/// */
+///
+/// let c = Color::Red;
+/// assert_eq!(&quot;Red&quot;, c.get_message().unwrap());
+/// assert_eq!(&quot;This is very red&quot;, c.get_detailed_message().unwrap());
+/// assert_eq!(&quot;Danger color.&quot;, c.get_documentation().unwrap());
+/// assert_eq!([&quot;Red&quot;], c.get_serializations());
+/// ```
+</span><span class="attribute">#[proc_macro_derive(EnumMessage, attributes(strum))]
+</span><span class="kw">pub fn </span>enum_messages(input: proc_macro::TokenStream) -&gt; proc_macro::TokenStream {
+    <span class="kw">let </span>ast = <span class="macro">syn::parse_macro_input!</span>(input <span class="kw">as </span>DeriveInput);
 
-    <span class="kw">let</span> <span class="ident">toks</span> <span class="op">=</span> <span class="ident">macros::enum_messages::enum_message_inner</span>(<span class="kw-2">&amp;</span><span class="ident">ast</span>)
-        .<span class="ident">unwrap_or_else</span>(<span class="op">|</span><span class="ident">err</span><span class="op">|</span> <span class="ident">err</span>.<span class="ident">to_compile_error</span>());
-    <span class="ident">debug_print_generated</span>(<span class="kw-2">&amp;</span><span class="ident">ast</span>, <span class="kw-2">&amp;</span><span class="ident">toks</span>);
-    <span class="ident">toks</span>.<span class="ident">into</span>()
+    <span class="kw">let </span>toks = macros::enum_messages::enum_message_inner(<span class="kw-2">&amp;</span>ast)
+        .unwrap_or_else(|err| err.to_compile_error());
+    debug_print_generated(<span class="kw-2">&amp;</span>ast, <span class="kw-2">&amp;</span>toks);
+    toks.into()
 }
 
-<span class="doccomment">/// Add custom properties to enum variants.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Enables the encoding of arbitary constants into enum variants. This method</span>
-<span class="doccomment">/// currently only supports adding additional string values. Other types of literals are still</span>
-<span class="doccomment">/// experimental in the rustc compiler. The generated code works by nesting match statements.</span>
-<span class="doccomment">/// The first match statement matches on the type of the enum, and the inner match statement</span>
-<span class="doccomment">/// matches on the name of the property requested. This design works well for enums with a small</span>
-<span class="doccomment">/// number of variants and properties, but scales linearly with the number of variants so may not</span>
-<span class="doccomment">/// be the best choice in all situations.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// use strum_macros;</span>
-<span class="doccomment">/// // bring the trait into scope</span>
-<span class="doccomment">/// use strum::EnumProperty;</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// #[derive(strum_macros::EnumProperty, Debug)]</span>
-<span class="doccomment">/// #[allow(dead_code)]</span>
-<span class="doccomment">/// enum Color {</span>
-<span class="doccomment">///     #[strum(props(Red = &quot;255&quot;, Blue = &quot;255&quot;, Green = &quot;255&quot;))]</span>
-<span class="doccomment">///     White,</span>
-<span class="doccomment">///     #[strum(props(Red = &quot;0&quot;, Blue = &quot;0&quot;, Green = &quot;0&quot;))]</span>
-<span class="doccomment">///     Black,</span>
-<span class="doccomment">///     #[strum(props(Red = &quot;0&quot;, Blue = &quot;255&quot;, Green = &quot;0&quot;))]</span>
-<span class="doccomment">///     Blue,</span>
-<span class="doccomment">///     #[strum(props(Red = &quot;255&quot;, Blue = &quot;0&quot;, Green = &quot;0&quot;))]</span>
-<span class="doccomment">///     Red,</span>
-<span class="doccomment">///     #[strum(props(Red = &quot;0&quot;, Blue = &quot;0&quot;, Green = &quot;255&quot;))]</span>
-<span class="doccomment">///     Green,</span>
-<span class="doccomment">/// }</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// let my_color = Color::Red;</span>
-<span class="doccomment">/// let display = format!(</span>
-<span class="doccomment">///     &quot;My color is {:?}. It&#39;s RGB is {},{},{}&quot;,</span>
-<span class="doccomment">///     my_color,</span>
-<span class="doccomment">///     my_color.get_str(&quot;Red&quot;).unwrap(),</span>
-<span class="doccomment">///     my_color.get_str(&quot;Green&quot;).unwrap(),</span>
-<span class="doccomment">///     my_color.get_str(&quot;Blue&quot;).unwrap()</span>
-<span class="doccomment">/// );</span>
-<span class="doccomment">/// assert_eq!(&quot;My color is Red. It\&#39;s RGB is 255,0,0&quot;, &amp;display);</span>
-<span class="doccomment">/// ```</span>
+<span class="doccomment">/// Add custom properties to enum variants.
+///
+/// Enables the encoding of arbitary constants into enum variants. This method
+/// currently only supports adding additional string values. Other types of literals are still
+/// experimental in the rustc compiler. The generated code works by nesting match statements.
+/// The first match statement matches on the type of the enum, and the inner match statement
+/// matches on the name of the property requested. This design works well for enums with a small
+/// number of variants and properties, but scales linearly with the number of variants so may not
+/// be the best choice in all situations.
+///
+/// ```
+///
+/// use strum_macros;
+/// // bring the trait into scope
+/// use strum::EnumProperty;
+///
+/// #[derive(strum_macros::EnumProperty, Debug)]
+/// #[allow(dead_code)]
+/// enum Color {
+///     #[strum(props(Red = &quot;255&quot;, Blue = &quot;255&quot;, Green = &quot;255&quot;))]
+///     White,
+///     #[strum(props(Red = &quot;0&quot;, Blue = &quot;0&quot;, Green = &quot;0&quot;))]
+///     Black,
+///     #[strum(props(Red = &quot;0&quot;, Blue = &quot;255&quot;, Green = &quot;0&quot;))]
+///     Blue,
+///     #[strum(props(Red = &quot;255&quot;, Blue = &quot;0&quot;, Green = &quot;0&quot;))]
+///     Red,
+///     #[strum(props(Red = &quot;0&quot;, Blue = &quot;0&quot;, Green = &quot;255&quot;))]
+///     Green,
+/// }
+///
+/// let my_color = Color::Red;
+/// let display = format!(
+///     &quot;My color is {:?}. It&#39;s RGB is {},{},{}&quot;,
+///     my_color,
+///     my_color.get_str(&quot;Red&quot;).unwrap(),
+///     my_color.get_str(&quot;Green&quot;).unwrap(),
+///     my_color.get_str(&quot;Blue&quot;).unwrap()
+/// );
+/// assert_eq!(&quot;My color is Red. It\&#39;s RGB is 255,0,0&quot;, &amp;display);
+/// ```
 
-<span class="attribute">#[<span class="ident">proc_macro_derive</span>(<span class="ident">EnumProperty</span>, <span class="ident">attributes</span>(<span class="ident">strum</span>))]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">enum_properties</span>(<span class="ident">input</span>: <span class="ident">proc_macro::TokenStream</span>) -&gt; <span class="ident">proc_macro::TokenStream</span> {
-    <span class="kw">let</span> <span class="ident">ast</span> <span class="op">=</span> <span class="macro">syn::parse_macro_input!</span>(<span class="ident">input</span> <span class="kw">as</span> <span class="ident">DeriveInput</span>);
+</span><span class="attribute">#[proc_macro_derive(EnumProperty, attributes(strum))]
+</span><span class="kw">pub fn </span>enum_properties(input: proc_macro::TokenStream) -&gt; proc_macro::TokenStream {
+    <span class="kw">let </span>ast = <span class="macro">syn::parse_macro_input!</span>(input <span class="kw">as </span>DeriveInput);
 
-    <span class="kw">let</span> <span class="ident">toks</span> <span class="op">=</span> <span class="ident">macros::enum_properties::enum_properties_inner</span>(<span class="kw-2">&amp;</span><span class="ident">ast</span>)
-        .<span class="ident">unwrap_or_else</span>(<span class="op">|</span><span class="ident">err</span><span class="op">|</span> <span class="ident">err</span>.<span class="ident">to_compile_error</span>());
-    <span class="ident">debug_print_generated</span>(<span class="kw-2">&amp;</span><span class="ident">ast</span>, <span class="kw-2">&amp;</span><span class="ident">toks</span>);
-    <span class="ident">toks</span>.<span class="ident">into</span>()
+    <span class="kw">let </span>toks = macros::enum_properties::enum_properties_inner(<span class="kw-2">&amp;</span>ast)
+        .unwrap_or_else(|err| err.to_compile_error());
+    debug_print_generated(<span class="kw-2">&amp;</span>ast, <span class="kw-2">&amp;</span>toks);
+    toks.into()
 }
 
-<span class="doccomment">/// Generate a new type with only the discriminant names.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Given an enum named `MyEnum`, generates another enum called `MyEnumDiscriminants` with the same</span>
-<span class="doccomment">/// variants but without any data fields. This is useful when you wish to determine the variant of</span>
-<span class="doccomment">/// an `enum` but one or more of the variants contains a non-`Default` field. `From`</span>
-<span class="doccomment">/// implementations are generated so that you can easily convert from `MyEnum` to</span>
-<span class="doccomment">/// `MyEnumDiscriminants`.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// By default, the generated enum has the following derives: `Clone, Copy, Debug, PartialEq, Eq`.</span>
-<span class="doccomment">/// You can add additional derives using the `#[strum_discriminants(derive(AdditionalDerive))]`</span>
-<span class="doccomment">/// attribute.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Note, the variant attributes passed to the discriminant enum are filtered to avoid compilation</span>
-<span class="doccomment">/// errors due to the derives mismatches, thus only `#[doc]`, `#[cfg]`, `#[allow]`, and `#[deny]`</span>
-<span class="doccomment">/// are passed through by default. If you want to specify a custom attribute on the discriminant</span>
-<span class="doccomment">/// variant, wrap it with `#[strum_discriminants(...)]` attribute.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">/// // Bring trait into scope</span>
-<span class="doccomment">/// use std::str::FromStr;</span>
-<span class="doccomment">/// use strum::{IntoEnumIterator, EnumMessage};</span>
-<span class="doccomment">/// use strum_macros::{EnumDiscriminants, EnumIter, EnumString, EnumMessage};</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// #[derive(Debug)]</span>
-<span class="doccomment">/// struct NonDefault;</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// // simple example</span>
-<span class="doccomment">/// # #[allow(dead_code)]</span>
-<span class="doccomment">/// #[derive(Debug, EnumDiscriminants)]</span>
-<span class="doccomment">/// #[strum_discriminants(derive(EnumString, EnumMessage))]</span>
-<span class="doccomment">/// enum MyEnum {</span>
-<span class="doccomment">///     #[strum_discriminants(strum(message = &quot;Variant zero&quot;))]</span>
-<span class="doccomment">///     Variant0(NonDefault),</span>
-<span class="doccomment">///     Variant1 { a: NonDefault },</span>
-<span class="doccomment">/// }</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// // You can rename the generated enum using the `#[strum_discriminants(name(OtherName))]` attribute:</span>
-<span class="doccomment">/// # #[allow(dead_code)]</span>
-<span class="doccomment">/// #[derive(Debug, EnumDiscriminants)]</span>
-<span class="doccomment">/// #[strum_discriminants(derive(EnumIter))]</span>
-<span class="doccomment">/// #[strum_discriminants(name(MyVariants))]</span>
-<span class="doccomment">/// enum MyEnumR {</span>
-<span class="doccomment">///     Variant0(bool),</span>
-<span class="doccomment">///     Variant1 { a: bool },</span>
-<span class="doccomment">/// }</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// // test simple example</span>
-<span class="doccomment">/// assert_eq!(</span>
-<span class="doccomment">///     MyEnumDiscriminants::Variant0,</span>
-<span class="doccomment">///     MyEnumDiscriminants::from_str(&quot;Variant0&quot;).unwrap()</span>
-<span class="doccomment">/// );</span>
-<span class="doccomment">/// // test rename example combined with EnumIter</span>
-<span class="doccomment">/// assert_eq!(</span>
-<span class="doccomment">///     vec![MyVariants::Variant0, MyVariants::Variant1],</span>
-<span class="doccomment">///     MyVariants::iter().collect::&lt;Vec&lt;_&gt;&gt;()</span>
-<span class="doccomment">/// );</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// // Make use of the auto-From conversion to check whether an instance of `MyEnum` matches a</span>
-<span class="doccomment">/// // `MyEnumDiscriminants` discriminant.</span>
-<span class="doccomment">/// assert_eq!(</span>
-<span class="doccomment">///     MyEnumDiscriminants::Variant0,</span>
-<span class="doccomment">///     MyEnum::Variant0(NonDefault).into()</span>
-<span class="doccomment">/// );</span>
-<span class="doccomment">/// assert_eq!(</span>
-<span class="doccomment">///     MyEnumDiscriminants::Variant0,</span>
-<span class="doccomment">///     MyEnumDiscriminants::from(MyEnum::Variant0(NonDefault))</span>
-<span class="doccomment">/// );</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// // Make use of the EnumMessage on the `MyEnumDiscriminants` discriminant.</span>
-<span class="doccomment">/// assert_eq!(</span>
-<span class="doccomment">///     MyEnumDiscriminants::Variant0.get_message(),</span>
-<span class="doccomment">///     Some(&quot;Variant zero&quot;)</span>
-<span class="doccomment">/// );</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// It is also possible to specify the visibility (e.g. `pub`/`pub(crate)`/etc.)</span>
-<span class="doccomment">/// of the generated enum. By default, the generated enum inherits the</span>
-<span class="doccomment">/// visibility of the parent enum it was generated from.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ```nocompile</span>
-<span class="doccomment">/// use strum_macros::EnumDiscriminants;</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// // You can set the visibility of the generated enum using the `#[strum_discriminants(vis(..))]` attribute:</span>
-<span class="doccomment">/// mod inner {</span>
-<span class="doccomment">///     use strum_macros::EnumDiscriminants;</span>
-<span class="doccomment">///</span>
-<span class="doccomment">///     # #[allow(dead_code)]</span>
-<span class="doccomment">///     #[derive(Debug, EnumDiscriminants)]</span>
-<span class="doccomment">///     #[strum_discriminants(vis(pub))]</span>
-<span class="doccomment">///     #[strum_discriminants(name(PubDiscriminants))]</span>
-<span class="doccomment">///     enum PrivateEnum {</span>
-<span class="doccomment">///         Variant0(bool),</span>
-<span class="doccomment">///         Variant1 { a: bool },</span>
-<span class="doccomment">///     }</span>
-<span class="doccomment">/// }</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// // test visibility example, `PrivateEnum` should not be accessible here</span>
-<span class="doccomment">/// assert_ne!(</span>
-<span class="doccomment">///     inner::PubDiscriminants::Variant0,</span>
-<span class="doccomment">///     inner::PubDiscriminants::Variant1,</span>
-<span class="doccomment">/// );</span>
-<span class="doccomment">/// ```</span>
-<span class="attribute">#[<span class="ident">proc_macro_derive</span>(<span class="ident">EnumDiscriminants</span>, <span class="ident">attributes</span>(<span class="ident">strum</span>, <span class="ident">strum_discriminants</span>))]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">enum_discriminants</span>(<span class="ident">input</span>: <span class="ident">proc_macro::TokenStream</span>) -&gt; <span class="ident">proc_macro::TokenStream</span> {
-    <span class="kw">let</span> <span class="ident">ast</span> <span class="op">=</span> <span class="macro">syn::parse_macro_input!</span>(<span class="ident">input</span> <span class="kw">as</span> <span class="ident">DeriveInput</span>);
+<span class="doccomment">/// Generate a new type with only the discriminant names.
+///
+/// Given an enum named `MyEnum`, generates another enum called `MyEnumDiscriminants` with the same
+/// variants but without any data fields. This is useful when you wish to determine the variant of
+/// an `enum` but one or more of the variants contains a non-`Default` field. `From`
+/// implementations are generated so that you can easily convert from `MyEnum` to
+/// `MyEnumDiscriminants`.
+///
+/// By default, the generated enum has the following derives: `Clone, Copy, Debug, PartialEq, Eq`.
+/// You can add additional derives using the `#[strum_discriminants(derive(AdditionalDerive))]`
+/// attribute.
+///
+/// Note, the variant attributes passed to the discriminant enum are filtered to avoid compilation
+/// errors due to the derives mismatches, thus only `#[doc]`, `#[cfg]`, `#[allow]`, and `#[deny]`
+/// are passed through by default. If you want to specify a custom attribute on the discriminant
+/// variant, wrap it with `#[strum_discriminants(...)]` attribute.
+///
+/// ```
+/// // Bring trait into scope
+/// use std::str::FromStr;
+/// use strum::{IntoEnumIterator, EnumMessage};
+/// use strum_macros::{EnumDiscriminants, EnumIter, EnumString, EnumMessage};
+///
+/// #[derive(Debug)]
+/// struct NonDefault;
+///
+/// // simple example
+/// # #[allow(dead_code)]
+/// #[derive(Debug, EnumDiscriminants)]
+/// #[strum_discriminants(derive(EnumString, EnumMessage))]
+/// enum MyEnum {
+///     #[strum_discriminants(strum(message = &quot;Variant zero&quot;))]
+///     Variant0(NonDefault),
+///     Variant1 { a: NonDefault },
+/// }
+///
+/// // You can rename the generated enum using the `#[strum_discriminants(name(OtherName))]` attribute:
+/// # #[allow(dead_code)]
+/// #[derive(Debug, EnumDiscriminants)]
+/// #[strum_discriminants(derive(EnumIter))]
+/// #[strum_discriminants(name(MyVariants))]
+/// enum MyEnumR {
+///     Variant0(bool),
+///     Variant1 { a: bool },
+/// }
+///
+/// // test simple example
+/// assert_eq!(
+///     MyEnumDiscriminants::Variant0,
+///     MyEnumDiscriminants::from_str(&quot;Variant0&quot;).unwrap()
+/// );
+/// // test rename example combined with EnumIter
+/// assert_eq!(
+///     vec![MyVariants::Variant0, MyVariants::Variant1],
+///     MyVariants::iter().collect::&lt;Vec&lt;_&gt;&gt;()
+/// );
+///
+/// // Make use of the auto-From conversion to check whether an instance of `MyEnum` matches a
+/// // `MyEnumDiscriminants` discriminant.
+/// assert_eq!(
+///     MyEnumDiscriminants::Variant0,
+///     MyEnum::Variant0(NonDefault).into()
+/// );
+/// assert_eq!(
+///     MyEnumDiscriminants::Variant0,
+///     MyEnumDiscriminants::from(MyEnum::Variant0(NonDefault))
+/// );
+///
+/// // Make use of the EnumMessage on the `MyEnumDiscriminants` discriminant.
+/// assert_eq!(
+///     MyEnumDiscriminants::Variant0.get_message(),
+///     Some(&quot;Variant zero&quot;)
+/// );
+/// ```
+///
+/// It is also possible to specify the visibility (e.g. `pub`/`pub(crate)`/etc.)
+/// of the generated enum. By default, the generated enum inherits the
+/// visibility of the parent enum it was generated from.
+///
+/// ```nocompile
+/// use strum_macros::EnumDiscriminants;
+///
+/// // You can set the visibility of the generated enum using the `#[strum_discriminants(vis(..))]` attribute:
+/// mod inner {
+///     use strum_macros::EnumDiscriminants;
+///
+///     # #[allow(dead_code)]
+///     #[derive(Debug, EnumDiscriminants)]
+///     #[strum_discriminants(vis(pub))]
+///     #[strum_discriminants(name(PubDiscriminants))]
+///     enum PrivateEnum {
+///         Variant0(bool),
+///         Variant1 { a: bool },
+///     }
+/// }
+///
+/// // test visibility example, `PrivateEnum` should not be accessible here
+/// assert_ne!(
+///     inner::PubDiscriminants::Variant0,
+///     inner::PubDiscriminants::Variant1,
+/// );
+/// ```
+</span><span class="attribute">#[proc_macro_derive(EnumDiscriminants, attributes(strum, strum_discriminants))]
+</span><span class="kw">pub fn </span>enum_discriminants(input: proc_macro::TokenStream) -&gt; proc_macro::TokenStream {
+    <span class="kw">let </span>ast = <span class="macro">syn::parse_macro_input!</span>(input <span class="kw">as </span>DeriveInput);
 
-    <span class="kw">let</span> <span class="ident">toks</span> <span class="op">=</span> <span class="ident">macros::enum_discriminants::enum_discriminants_inner</span>(<span class="kw-2">&amp;</span><span class="ident">ast</span>)
-        .<span class="ident">unwrap_or_else</span>(<span class="op">|</span><span class="ident">err</span><span class="op">|</span> <span class="ident">err</span>.<span class="ident">to_compile_error</span>());
-    <span class="ident">debug_print_generated</span>(<span class="kw-2">&amp;</span><span class="ident">ast</span>, <span class="kw-2">&amp;</span><span class="ident">toks</span>);
-    <span class="ident">toks</span>.<span class="ident">into</span>()
+    <span class="kw">let </span>toks = macros::enum_discriminants::enum_discriminants_inner(<span class="kw-2">&amp;</span>ast)
+        .unwrap_or_else(|err| err.to_compile_error());
+    debug_print_generated(<span class="kw-2">&amp;</span>ast, <span class="kw-2">&amp;</span>toks);
+    toks.into()
 }
 
-<span class="doccomment">/// Add a constant `usize` equal to the number of variants.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// For a given enum generates implementation of `strum::EnumCount`,</span>
-<span class="doccomment">/// which adds a static property `COUNT` of type usize that holds the number of variants.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">/// use strum::{EnumCount, IntoEnumIterator};</span>
-<span class="doccomment">/// use strum_macros::{EnumCount as EnumCountMacro, EnumIter};</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// #[derive(Debug, EnumCountMacro, EnumIter)]</span>
-<span class="doccomment">/// enum Week {</span>
-<span class="doccomment">///     Sunday,</span>
-<span class="doccomment">///     Monday,</span>
-<span class="doccomment">///     Tuesday,</span>
-<span class="doccomment">///     Wednesday,</span>
-<span class="doccomment">///     Thursday,</span>
-<span class="doccomment">///     Friday,</span>
-<span class="doccomment">///     Saturday,</span>
-<span class="doccomment">/// }</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// assert_eq!(7, Week::COUNT);</span>
-<span class="doccomment">/// assert_eq!(Week::iter().count(), Week::COUNT);</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ```</span>
-<span class="attribute">#[<span class="ident">proc_macro_derive</span>(<span class="ident">EnumCount</span>, <span class="ident">attributes</span>(<span class="ident">strum</span>))]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">enum_count</span>(<span class="ident">input</span>: <span class="ident">proc_macro::TokenStream</span>) -&gt; <span class="ident">proc_macro::TokenStream</span> {
-    <span class="kw">let</span> <span class="ident">ast</span> <span class="op">=</span> <span class="macro">syn::parse_macro_input!</span>(<span class="ident">input</span> <span class="kw">as</span> <span class="ident">DeriveInput</span>);
-    <span class="kw">let</span> <span class="ident">toks</span> <span class="op">=</span>
-        <span class="ident">macros::enum_count::enum_count_inner</span>(<span class="kw-2">&amp;</span><span class="ident">ast</span>).<span class="ident">unwrap_or_else</span>(<span class="op">|</span><span class="ident">err</span><span class="op">|</span> <span class="ident">err</span>.<span class="ident">to_compile_error</span>());
-    <span class="ident">debug_print_generated</span>(<span class="kw-2">&amp;</span><span class="ident">ast</span>, <span class="kw-2">&amp;</span><span class="ident">toks</span>);
-    <span class="ident">toks</span>.<span class="ident">into</span>()
+<span class="doccomment">/// Add a constant `usize` equal to the number of variants.
+///
+/// For a given enum generates implementation of `strum::EnumCount`,
+/// which adds a static property `COUNT` of type usize that holds the number of variants.
+///
+/// ```
+/// use strum::{EnumCount, IntoEnumIterator};
+/// use strum_macros::{EnumCount as EnumCountMacro, EnumIter};
+///
+/// #[derive(Debug, EnumCountMacro, EnumIter)]
+/// enum Week {
+///     Sunday,
+///     Monday,
+///     Tuesday,
+///     Wednesday,
+///     Thursday,
+///     Friday,
+///     Saturday,
+/// }
+///
+/// assert_eq!(7, Week::COUNT);
+/// assert_eq!(Week::iter().count(), Week::COUNT);
+///
+/// ```
+</span><span class="attribute">#[proc_macro_derive(EnumCount, attributes(strum))]
+</span><span class="kw">pub fn </span>enum_count(input: proc_macro::TokenStream) -&gt; proc_macro::TokenStream {
+    <span class="kw">let </span>ast = <span class="macro">syn::parse_macro_input!</span>(input <span class="kw">as </span>DeriveInput);
+    <span class="kw">let </span>toks =
+        macros::enum_count::enum_count_inner(<span class="kw-2">&amp;</span>ast).unwrap_or_else(|err| err.to_compile_error());
+    debug_print_generated(<span class="kw-2">&amp;</span>ast, <span class="kw-2">&amp;</span>toks);
+    toks.into()
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="strum_macros" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="strum_macros" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (77e57db38 2022-10-30)" ></div></body></html>

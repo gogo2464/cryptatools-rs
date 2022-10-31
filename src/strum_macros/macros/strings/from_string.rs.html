@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/strum_macros-0.24.3/src/macros/strings/from_string.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>from_string.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../../storage.js"></script><script defer src="../../../../source-script.js"></script><script defer src="../../../../source-files.js"></script><script defer src="../../../../main.js"></script><noscript><link rel="stylesheet" href="../../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../../strum_macros/index.html"><div class="logo-container"><img class="rust-logo" src="../../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../../strum_macros/index.html"><div class="logo-container"><img class="rust-logo" src="../../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../../strum_macros/index.html"><img class="rust-logo" src="../../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/strum_macros-0.24.3/src/macros/strings/from_string.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>from_string.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../../normalize.css"><link rel="stylesheet" href="../../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../../ayu.css" disabled><link rel="stylesheet" href="../../../../dark.css" disabled><link rel="stylesheet" href="../../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../../storage.js"></script><script defer src="../../../../source-script.js"></script><script defer src="../../../../source-files.js"></script><script defer src="../../../../main.js"></script><noscript><link rel="stylesheet" href="../../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../../strum_macros/index.html"><img class="rust-logo" src="../../../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -178,185 +178,185 @@
 <span id="178">178</span>
 <span id="179">179</span>
 <span id="180">180</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">proc_macro2::TokenStream</span>;
-<span class="kw">use</span> <span class="ident">quote::quote</span>;
-<span class="kw">use</span> <span class="ident">syn</span>::{<span class="ident">Data</span>, <span class="ident">DeriveInput</span>, <span class="ident">Fields</span>};
+</pre><pre class="rust"><code><span class="kw">use </span>proc_macro2::TokenStream;
+<span class="kw">use </span>quote::quote;
+<span class="kw">use </span>syn::{Data, DeriveInput, Fields};
 
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::helpers</span>::{
-    <span class="ident">non_enum_error</span>, <span class="ident">occurrence_error</span>, <span class="ident">HasStrumVariantProperties</span>, <span class="ident">HasTypeProperties</span>,
+<span class="kw">use </span><span class="kw">crate</span>::helpers::{
+    non_enum_error, occurrence_error, HasStrumVariantProperties, HasTypeProperties,
 };
 
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_string_inner</span>(<span class="ident">ast</span>: <span class="kw-2">&amp;</span><span class="ident">DeriveInput</span>) -&gt; <span class="ident">syn::Result</span><span class="op">&lt;</span><span class="ident">TokenStream</span><span class="op">&gt;</span> {
-    <span class="kw">let</span> <span class="ident">name</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">ast</span>.<span class="ident">ident</span>;
-    <span class="kw">let</span> (<span class="ident">impl_generics</span>, <span class="ident">ty_generics</span>, <span class="ident">where_clause</span>) <span class="op">=</span> <span class="ident">ast</span>.<span class="ident">generics</span>.<span class="ident">split_for_impl</span>();
-    <span class="kw">let</span> <span class="ident">variants</span> <span class="op">=</span> <span class="kw">match</span> <span class="kw-2">&amp;</span><span class="ident">ast</span>.<span class="ident">data</span> {
-        <span class="ident">Data::Enum</span>(<span class="ident">v</span>) =&gt; <span class="kw-2">&amp;</span><span class="ident">v</span>.<span class="ident">variants</span>,
-        <span class="kw">_</span> =&gt; <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">non_enum_error</span>()),
+<span class="kw">pub fn </span>from_string_inner(ast: <span class="kw-2">&amp;</span>DeriveInput) -&gt; syn::Result&lt;TokenStream&gt; {
+    <span class="kw">let </span>name = <span class="kw-2">&amp;</span>ast.ident;
+    <span class="kw">let </span>(impl_generics, ty_generics, where_clause) = ast.generics.split_for_impl();
+    <span class="kw">let </span>variants = <span class="kw">match </span><span class="kw-2">&amp;</span>ast.data {
+        Data::Enum(v) =&gt; <span class="kw-2">&amp;</span>v.variants,
+        <span class="kw">_ </span>=&gt; <span class="kw">return </span><span class="prelude-val">Err</span>(non_enum_error()),
     };
 
-    <span class="kw">let</span> <span class="ident">type_properties</span> <span class="op">=</span> <span class="ident">ast</span>.<span class="ident">get_type_properties</span>()<span class="question-mark">?</span>;
-    <span class="kw">let</span> <span class="ident">strum_module_path</span> <span class="op">=</span> <span class="ident">type_properties</span>.<span class="ident">crate_module_path</span>();
+    <span class="kw">let </span>type_properties = ast.get_type_properties()<span class="question-mark">?</span>;
+    <span class="kw">let </span>strum_module_path = type_properties.crate_module_path();
 
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">default_kw</span> <span class="op">=</span> <span class="prelude-val">None</span>;
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">default</span> <span class="op">=</span>
-        <span class="macro">quote!</span> { <span class="ident">::core::result::Result::Err</span>(#<span class="ident">strum_module_path::ParseError::VariantNotFound</span>) };
+    <span class="kw">let </span><span class="kw-2">mut </span>default_kw = <span class="prelude-val">None</span>;
+    <span class="kw">let </span><span class="kw-2">mut </span>default =
+        <span class="macro">quote! </span>{ ::core::result::Result::Err(#strum_module_path::ParseError::VariantNotFound) };
 
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">phf_exact_match_arms</span> <span class="op">=</span> <span class="ident">Vec::new</span>();
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">standard_match_arms</span> <span class="op">=</span> <span class="ident">Vec::new</span>();
-    <span class="kw">for</span> <span class="ident">variant</span> <span class="kw">in</span> <span class="ident">variants</span> {
-        <span class="kw">let</span> <span class="ident">ident</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">variant</span>.<span class="ident">ident</span>;
-        <span class="kw">let</span> <span class="ident">variant_properties</span> <span class="op">=</span> <span class="ident">variant</span>.<span class="ident">get_variant_properties</span>()<span class="question-mark">?</span>;
+    <span class="kw">let </span><span class="kw-2">mut </span>phf_exact_match_arms = Vec::new();
+    <span class="kw">let </span><span class="kw-2">mut </span>standard_match_arms = Vec::new();
+    <span class="kw">for </span>variant <span class="kw">in </span>variants {
+        <span class="kw">let </span>ident = <span class="kw-2">&amp;</span>variant.ident;
+        <span class="kw">let </span>variant_properties = variant.get_variant_properties()<span class="question-mark">?</span>;
 
-        <span class="kw">if</span> <span class="ident">variant_properties</span>.<span class="ident">disabled</span>.<span class="ident">is_some</span>() {
+        <span class="kw">if </span>variant_properties.disabled.is_some() {
             <span class="kw">continue</span>;
         }
 
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">kw</span>) <span class="op">=</span> <span class="ident">variant_properties</span>.<span class="ident">default</span> {
-            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">fst_kw</span>) <span class="op">=</span> <span class="ident">default_kw</span> {
-                <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">occurrence_error</span>(<span class="ident">fst_kw</span>, <span class="ident">kw</span>, <span class="string">&quot;default&quot;</span>));
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(kw) = variant_properties.default {
+            <span class="kw">if let </span><span class="prelude-val">Some</span>(fst_kw) = default_kw {
+                <span class="kw">return </span><span class="prelude-val">Err</span>(occurrence_error(fst_kw, kw, <span class="string">&quot;default&quot;</span>));
             }
 
-            <span class="kw">match</span> <span class="kw-2">&amp;</span><span class="ident">variant</span>.<span class="ident">fields</span> {
-                <span class="ident">Fields::Unnamed</span>(<span class="ident">fields</span>) <span class="kw">if</span> <span class="ident">fields</span>.<span class="ident">unnamed</span>.<span class="ident">len</span>() <span class="op">==</span> <span class="number">1</span> =&gt; {}
-                <span class="kw">_</span> =&gt; {
-                    <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">syn::Error::new_spanned</span>(
-                        <span class="ident">variant</span>,
+            <span class="kw">match </span><span class="kw-2">&amp;</span>variant.fields {
+                Fields::Unnamed(fields) <span class="kw">if </span>fields.unnamed.len() == <span class="number">1 </span>=&gt; {}
+                <span class="kw">_ </span>=&gt; {
+                    <span class="kw">return </span><span class="prelude-val">Err</span>(syn::Error::new_spanned(
+                        variant,
                         <span class="string">&quot;Default only works on newtype structs with a single String field&quot;</span>,
                     ))
                 }
             }
 
-            <span class="ident">default_kw</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">kw</span>);
-            <span class="ident">default</span> <span class="op">=</span> <span class="macro">quote!</span> {
-                <span class="ident">::core::result::Result::Ok</span>(#<span class="ident">name</span>::#<span class="ident">ident</span>(<span class="ident">s</span>.<span class="ident">into</span>()))
+            default_kw = <span class="prelude-val">Some</span>(kw);
+            default = <span class="macro">quote! </span>{
+                ::core::result::Result::Ok(#name::#ident(s.into()))
             };
             <span class="kw">continue</span>;
         }
 
-        <span class="kw">let</span> <span class="ident">params</span> <span class="op">=</span> <span class="kw">match</span> <span class="kw-2">&amp;</span><span class="ident">variant</span>.<span class="ident">fields</span> {
-            <span class="ident">Fields::Unit</span> =&gt; <span class="macro">quote!</span> {},
-            <span class="ident">Fields::Unnamed</span>(<span class="ident">fields</span>) =&gt; {
-                <span class="kw">let</span> <span class="ident">defaults</span> <span class="op">=</span>
-                    <span class="ident">::core::iter::repeat</span>(<span class="macro">quote!</span>(<span class="ident">Default::default</span>())).<span class="ident">take</span>(<span class="ident">fields</span>.<span class="ident">unnamed</span>.<span class="ident">len</span>());
-                <span class="macro">quote!</span> { (#(#<span class="ident">defaults</span>),<span class="kw-2">*</span>) }
+        <span class="kw">let </span>params = <span class="kw">match </span><span class="kw-2">&amp;</span>variant.fields {
+            Fields::Unit =&gt; <span class="macro">quote! </span>{},
+            Fields::Unnamed(fields) =&gt; {
+                <span class="kw">let </span>defaults =
+                    ::core::iter::repeat(<span class="macro">quote!</span>(Default::default())).take(fields.unnamed.len());
+                <span class="macro">quote! </span>{ (#(#defaults),<span class="kw-2">*</span>) }
             }
-            <span class="ident">Fields::Named</span>(<span class="ident">fields</span>) =&gt; {
-                <span class="kw">let</span> <span class="ident">fields</span> <span class="op">=</span> <span class="ident">fields</span>
-                    .<span class="ident">named</span>
-                    .<span class="ident">iter</span>()
-                    .<span class="ident">map</span>(<span class="op">|</span><span class="ident">field</span><span class="op">|</span> <span class="ident">field</span>.<span class="ident">ident</span>.<span class="ident">as_ref</span>().<span class="ident">unwrap</span>());
-                <span class="macro">quote!</span> { {#(#<span class="ident">fields</span>: <span class="ident">Default::default</span>()),<span class="kw-2">*</span>} }
+            Fields::Named(fields) =&gt; {
+                <span class="kw">let </span>fields = fields
+                    .named
+                    .iter()
+                    .map(|field| field.ident.as_ref().unwrap());
+                <span class="macro">quote! </span>{ {#(#fields: Default::default()),<span class="kw-2">*</span>} }
             }
         };
 
-        <span class="kw">let</span> <span class="ident">is_ascii_case_insensitive</span> <span class="op">=</span> <span class="ident">variant_properties</span>
-            .<span class="ident">ascii_case_insensitive</span>
-            .<span class="ident">unwrap_or</span>(<span class="ident">type_properties</span>.<span class="ident">ascii_case_insensitive</span>);
+        <span class="kw">let </span>is_ascii_case_insensitive = variant_properties
+            .ascii_case_insensitive
+            .unwrap_or(type_properties.ascii_case_insensitive);
 
-        <span class="comment">// If we don&#39;t have any custom variants, add the default serialized name.</span>
-        <span class="kw">for</span> <span class="ident">serialization</span> <span class="kw">in</span> <span class="ident">variant_properties</span>.<span class="ident">get_serializations</span>(<span class="ident">type_properties</span>.<span class="ident">case_style</span>) {
-            <span class="kw">if</span> <span class="ident">type_properties</span>.<span class="ident">use_phf</span> {
-                <span class="ident">phf_exact_match_arms</span>.<span class="ident">push</span>(<span class="macro">quote!</span> { #<span class="ident">serialization</span> =&gt; #<span class="ident">name</span>::#<span class="ident">ident</span> #<span class="ident">params</span>, });
+        <span class="comment">// If we don&#39;t have any custom variants, add the default serialized name.
+        </span><span class="kw">for </span>serialization <span class="kw">in </span>variant_properties.get_serializations(type_properties.case_style) {
+            <span class="kw">if </span>type_properties.use_phf {
+                phf_exact_match_arms.push(<span class="macro">quote! </span>{ #serialization =&gt; #name::#ident #params, });
 
-                <span class="kw">if</span> <span class="ident">is_ascii_case_insensitive</span> {
-                    <span class="comment">// Store the lowercase and UPPERCASE variants in the phf map to capture </span>
-                    <span class="kw">let</span> <span class="ident">ser_string</span> <span class="op">=</span> <span class="ident">serialization</span>.<span class="ident">value</span>();
+                <span class="kw">if </span>is_ascii_case_insensitive {
+                    <span class="comment">// Store the lowercase and UPPERCASE variants in the phf map to capture 
+                    </span><span class="kw">let </span>ser_string = serialization.value();
 
-                    <span class="kw">let</span> <span class="ident">lower</span> <span class="op">=</span>
-                        <span class="ident">syn::LitStr::new</span>(<span class="kw-2">&amp;</span><span class="ident">ser_string</span>.<span class="ident">to_ascii_lowercase</span>(), <span class="ident">serialization</span>.<span class="ident">span</span>());
-                    <span class="kw">let</span> <span class="ident">upper</span> <span class="op">=</span>
-                        <span class="ident">syn::LitStr::new</span>(<span class="kw-2">&amp;</span><span class="ident">ser_string</span>.<span class="ident">to_ascii_uppercase</span>(), <span class="ident">serialization</span>.<span class="ident">span</span>());
-                    <span class="ident">phf_exact_match_arms</span>.<span class="ident">push</span>(<span class="macro">quote!</span> { #<span class="ident">lower</span> =&gt; #<span class="ident">name</span>::#<span class="ident">ident</span> #<span class="ident">params</span>, });
-                    <span class="ident">phf_exact_match_arms</span>.<span class="ident">push</span>(<span class="macro">quote!</span> { #<span class="ident">upper</span> =&gt; #<span class="ident">name</span>::#<span class="ident">ident</span> #<span class="ident">params</span>, });
-                    <span class="ident">standard_match_arms</span>.<span class="ident">push</span>(<span class="macro">quote!</span> { <span class="ident">s</span> <span class="kw">if</span> <span class="ident">s</span>.<span class="ident">eq_ignore_ascii_case</span>(#<span class="ident">serialization</span>) =&gt; #<span class="ident">name</span>::#<span class="ident">ident</span> #<span class="ident">params</span>, });
+                    <span class="kw">let </span>lower =
+                        syn::LitStr::new(<span class="kw-2">&amp;</span>ser_string.to_ascii_lowercase(), serialization.span());
+                    <span class="kw">let </span>upper =
+                        syn::LitStr::new(<span class="kw-2">&amp;</span>ser_string.to_ascii_uppercase(), serialization.span());
+                    phf_exact_match_arms.push(<span class="macro">quote! </span>{ #lower =&gt; #name::#ident #params, });
+                    phf_exact_match_arms.push(<span class="macro">quote! </span>{ #upper =&gt; #name::#ident #params, });
+                    standard_match_arms.push(<span class="macro">quote! </span>{ s <span class="kw">if </span>s.eq_ignore_ascii_case(#serialization) =&gt; #name::#ident #params, });
                 }
-            } <span class="kw">else</span> {
-                <span class="ident">standard_match_arms</span>.<span class="ident">push</span>(<span class="kw">if</span> <span class="op">!</span><span class="ident">is_ascii_case_insensitive</span> {
-                    <span class="macro">quote!</span> { #<span class="ident">serialization</span> =&gt; #<span class="ident">name</span>::#<span class="ident">ident</span> #<span class="ident">params</span>, }
-                } <span class="kw">else</span> {
-                    <span class="macro">quote!</span> { <span class="ident">s</span> <span class="kw">if</span> <span class="ident">s</span>.<span class="ident">eq_ignore_ascii_case</span>(#<span class="ident">serialization</span>) =&gt; #<span class="ident">name</span>::#<span class="ident">ident</span> #<span class="ident">params</span>, }
+            } <span class="kw">else </span>{
+                standard_match_arms.push(<span class="kw">if </span>!is_ascii_case_insensitive {
+                    <span class="macro">quote! </span>{ #serialization =&gt; #name::#ident #params, }
+                } <span class="kw">else </span>{
+                    <span class="macro">quote! </span>{ s <span class="kw">if </span>s.eq_ignore_ascii_case(#serialization) =&gt; #name::#ident #params, }
                 });
             }
         }
     }
 
-    <span class="kw">let</span> <span class="ident">phf_body</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">phf_exact_match_arms</span>.<span class="ident">is_empty</span>() {
+    <span class="kw">let </span>phf_body = <span class="kw">if </span>phf_exact_match_arms.is_empty() {
         <span class="macro">quote!</span>()
-    } <span class="kw">else</span> {
-        <span class="macro">quote!</span> {
-            <span class="kw">use</span> #<span class="ident">strum_module_path::_private_phf_reexport_for_macro_if_phf_feature</span> <span class="kw">as</span> <span class="ident">phf</span>;
-            <span class="kw">static</span> <span class="ident">PHF</span>: <span class="ident">phf::Map</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span>, #<span class="ident">name</span><span class="op">&gt;</span> <span class="op">=</span> <span class="macro">phf::phf_map!</span> {
-                #(#<span class="ident">phf_exact_match_arms</span>)<span class="op">*</span>
+    } <span class="kw">else </span>{
+        <span class="macro">quote! </span>{
+            <span class="kw">use </span>#strum_module_path::_private_phf_reexport_for_macro_if_phf_feature <span class="kw">as </span>phf;
+            <span class="kw">static </span>PHF: phf::Map&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str, #name&gt; = <span class="macro">phf::phf_map! </span>{
+                #(#phf_exact_match_arms)*
             };
-            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">value</span>) <span class="op">=</span> <span class="ident">PHF</span>.<span class="ident">get</span>(<span class="ident">s</span>).<span class="ident">cloned</span>() {
-                <span class="kw">return</span> <span class="ident">::core::result::Result::Ok</span>(<span class="ident">value</span>);
+            <span class="kw">if let </span><span class="prelude-val">Some</span>(value) = PHF.get(s).cloned() {
+                <span class="kw">return </span>::core::result::Result::Ok(value);
             }
         }
     };
-    <span class="kw">let</span> <span class="ident">standard_match_body</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">standard_match_arms</span>.<span class="ident">is_empty</span>() {
-        <span class="ident">default</span>
-    } <span class="kw">else</span> {
-        <span class="macro">quote!</span> {
-            <span class="ident">::core::result::Result::Ok</span>(<span class="kw">match</span> <span class="ident">s</span> {
-                #(#<span class="ident">standard_match_arms</span>)<span class="op">*</span>
-                <span class="kw">_</span> =&gt; <span class="kw">return</span> #<span class="ident">default</span>,
+    <span class="kw">let </span>standard_match_body = <span class="kw">if </span>standard_match_arms.is_empty() {
+        default
+    } <span class="kw">else </span>{
+        <span class="macro">quote! </span>{
+            ::core::result::Result::Ok(<span class="kw">match </span>s {
+                #(#standard_match_arms)*
+                <span class="kw">_ </span>=&gt; <span class="kw">return </span>#default,
             })
         }
     };
 
-    <span class="kw">let</span> <span class="ident">from_str</span> <span class="op">=</span> <span class="macro">quote!</span> {
-        <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::use_self</span>)]</span>
-        <span class="kw">impl</span> #<span class="ident">impl_generics</span> <span class="ident">::core::str::FromStr</span> <span class="kw">for</span> #<span class="ident">name</span> #<span class="ident">ty_generics</span> #<span class="ident">where_clause</span> {
-            <span class="kw">type</span> <span class="prelude-val">Err</span> <span class="op">=</span> #<span class="ident">strum_module_path::ParseError</span>;
-            <span class="kw">fn</span> <span class="ident">from_str</span>(<span class="ident">s</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="ident">::core::result::Result</span><span class="op">&lt;</span> #<span class="ident">name</span> #<span class="ident">ty_generics</span> , <span class="op">&lt;</span><span class="self">Self</span> <span class="kw">as</span> <span class="ident">::core::str::FromStr</span><span class="op">&gt;</span><span class="ident">::Err</span><span class="op">&gt;</span> {
-                #<span class="ident">phf_body</span>
-                #<span class="ident">standard_match_body</span>
+    <span class="kw">let </span>from_str = <span class="macro">quote! </span>{
+        <span class="attribute">#[allow(clippy::use_self)]
+        </span><span class="kw">impl </span>#impl_generics ::core::str::FromStr <span class="kw">for </span>#name #ty_generics #where_clause {
+            <span class="kw">type </span><span class="prelude-val">Err </span>= #strum_module_path::ParseError;
+            <span class="kw">fn </span>from_str(s: <span class="kw-2">&amp;</span>str) -&gt; ::core::result::Result&lt; #name #ty_generics , &lt;<span class="self">Self </span><span class="kw">as </span>::core::str::FromStr&gt;::Err&gt; {
+                #phf_body
+                #standard_match_body
             }
         }
     };
 
-    <span class="kw">let</span> <span class="ident">try_from_str</span> <span class="op">=</span> <span class="ident">try_from_str</span>(
-        <span class="ident">name</span>,
-        <span class="kw-2">&amp;</span><span class="ident">impl_generics</span>,
-        <span class="kw-2">&amp;</span><span class="ident">ty_generics</span>,
-        <span class="ident">where_clause</span>,
-        <span class="kw-2">&amp;</span><span class="ident">strum_module_path</span>,
+    <span class="kw">let </span>try_from_str = try_from_str(
+        name,
+        <span class="kw-2">&amp;</span>impl_generics,
+        <span class="kw-2">&amp;</span>ty_generics,
+        where_clause,
+        <span class="kw-2">&amp;</span>strum_module_path,
     );
 
-    <span class="prelude-val">Ok</span>(<span class="macro">quote!</span> {
-        #<span class="ident">from_str</span>
-        #<span class="ident">try_from_str</span>
+    <span class="prelude-val">Ok</span>(<span class="macro">quote! </span>{
+        #from_str
+        #try_from_str
     })
 }
 
-<span class="attribute">#[<span class="ident">rustversion::before</span>(<span class="number">1.34</span>)]</span>
-<span class="kw">fn</span> <span class="ident">try_from_str</span>(
-    <span class="ident">_name</span>: <span class="kw-2">&amp;</span><span class="ident">proc_macro2::Ident</span>,
-    <span class="ident">_impl_generics</span>: <span class="kw-2">&amp;</span><span class="ident">syn::ImplGenerics</span>,
-    <span class="ident">_ty_generics</span>: <span class="kw-2">&amp;</span><span class="ident">syn::TypeGenerics</span>,
-    <span class="ident">_where_clause</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">syn::WhereClause</span><span class="op">&gt;</span>,
-    <span class="ident">_strum_module_path</span>: <span class="kw-2">&amp;</span><span class="ident">syn::Path</span>,
-) -&gt; <span class="ident">TokenStream</span> {
-    <span class="ident">Default::default</span>()
+<span class="attribute">#[rustversion::before(<span class="number">1.34</span>)]
+</span><span class="kw">fn </span>try_from_str(
+    _name: <span class="kw-2">&amp;</span>proc_macro2::Ident,
+    _impl_generics: <span class="kw-2">&amp;</span>syn::ImplGenerics,
+    _ty_generics: <span class="kw-2">&amp;</span>syn::TypeGenerics,
+    _where_clause: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>syn::WhereClause&gt;,
+    _strum_module_path: <span class="kw-2">&amp;</span>syn::Path,
+) -&gt; TokenStream {
+    Default::default()
 }
 
-<span class="attribute">#[<span class="ident">rustversion::since</span>(<span class="number">1.34</span>)]</span>
-<span class="kw">fn</span> <span class="ident">try_from_str</span>(
-    <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">proc_macro2::Ident</span>,
-    <span class="ident">impl_generics</span>: <span class="kw-2">&amp;</span><span class="ident">syn::ImplGenerics</span>,
-    <span class="ident">ty_generics</span>: <span class="kw-2">&amp;</span><span class="ident">syn::TypeGenerics</span>,
-    <span class="ident">where_clause</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">syn::WhereClause</span><span class="op">&gt;</span>,
-    <span class="ident">strum_module_path</span>: <span class="kw-2">&amp;</span><span class="ident">syn::Path</span>,
-) -&gt; <span class="ident">TokenStream</span> {
-    <span class="macro">quote!</span> {
-        <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::use_self</span>)]</span>
-        <span class="kw">impl</span> #<span class="ident">impl_generics</span> <span class="ident">::core::convert::TryFrom</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span> <span class="kw">for</span> #<span class="ident">name</span> #<span class="ident">ty_generics</span> #<span class="ident">where_clause</span> {
-            <span class="kw">type</span> <span class="ident">Error</span> <span class="op">=</span> #<span class="ident">strum_module_path::ParseError</span>;
-            <span class="kw">fn</span> <span class="ident">try_from</span>(<span class="ident">s</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="ident">::core::result::Result</span><span class="op">&lt;</span> #<span class="ident">name</span> #<span class="ident">ty_generics</span> , <span class="op">&lt;</span><span class="self">Self</span> <span class="kw">as</span> <span class="ident">::core::convert::TryFrom</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="ident">::Error</span><span class="op">&gt;</span> {
-                <span class="ident">::core::str::FromStr::from_str</span>(<span class="ident">s</span>)
+<span class="attribute">#[rustversion::since(<span class="number">1.34</span>)]
+</span><span class="kw">fn </span>try_from_str(
+    name: <span class="kw-2">&amp;</span>proc_macro2::Ident,
+    impl_generics: <span class="kw-2">&amp;</span>syn::ImplGenerics,
+    ty_generics: <span class="kw-2">&amp;</span>syn::TypeGenerics,
+    where_clause: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>syn::WhereClause&gt;,
+    strum_module_path: <span class="kw-2">&amp;</span>syn::Path,
+) -&gt; TokenStream {
+    <span class="macro">quote! </span>{
+        <span class="attribute">#[allow(clippy::use_self)]
+        </span><span class="kw">impl </span>#impl_generics ::core::convert::TryFrom&lt;<span class="kw-2">&amp;</span>str&gt; <span class="kw">for </span>#name #ty_generics #where_clause {
+            <span class="kw">type </span>Error = #strum_module_path::ParseError;
+            <span class="kw">fn </span>try_from(s: <span class="kw-2">&amp;</span>str) -&gt; ::core::result::Result&lt; #name #ty_generics , &lt;<span class="self">Self </span><span class="kw">as </span>::core::convert::TryFrom&lt;<span class="kw-2">&amp;</span>str&gt;&gt;::Error&gt; {
+                ::core::str::FromStr::from_str(s)
             }
         }
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="strum_macros" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="strum_macros" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (77e57db38 2022-10-30)" ></div></body></html>

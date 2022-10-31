@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/goblin-0.5.4/src/pe/export.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>export.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../goblin/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../goblin/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../goblin/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/goblin-0.5.4/src/pe/export.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>export.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../normalize.css"><link rel="stylesheet" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../ayu.css" disabled><link rel="stylesheet" href="../../../dark.css" disabled><link rel="stylesheet" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../goblin/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -531,431 +531,431 @@
 <span id="531">531</span>
 <span id="532">532</span>
 <span id="533">533</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">alloc::vec::Vec</span>;
-<span class="kw">use</span> <span class="ident">scroll</span>::{<span class="ident">Pread</span>, <span class="ident">Pwrite</span>};
+</pre><pre class="rust"><code><span class="kw">use </span>alloc::vec::Vec;
+<span class="kw">use </span>scroll::{Pread, Pwrite};
 
-<span class="kw">use</span> <span class="ident">log::debug</span>;
+<span class="kw">use </span>log::debug;
 
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::error</span>;
+<span class="kw">use </span><span class="kw">crate</span>::error;
 
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pe::data_directories</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pe::options</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pe::section_table</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pe::utils</span>;
+<span class="kw">use </span><span class="kw">crate</span>::pe::data_directories;
+<span class="kw">use </span><span class="kw">crate</span>::pe::options;
+<span class="kw">use </span><span class="kw">crate</span>::pe::section_table;
+<span class="kw">use </span><span class="kw">crate</span>::pe::utils;
 
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Default</span>, <span class="ident">Pread</span>, <span class="ident">Pwrite</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ExportDirectoryTable</span> {
-    <span class="kw">pub</span> <span class="ident">export_flags</span>: <span class="ident">u32</span>,
-    <span class="kw">pub</span> <span class="ident">time_date_stamp</span>: <span class="ident">u32</span>,
-    <span class="kw">pub</span> <span class="ident">major_version</span>: <span class="ident">u16</span>,
-    <span class="kw">pub</span> <span class="ident">minor_version</span>: <span class="ident">u16</span>,
-    <span class="kw">pub</span> <span class="ident">name_rva</span>: <span class="ident">u32</span>,
-    <span class="kw">pub</span> <span class="ident">ordinal_base</span>: <span class="ident">u32</span>,
-    <span class="kw">pub</span> <span class="ident">address_table_entries</span>: <span class="ident">u32</span>,
-    <span class="kw">pub</span> <span class="ident">number_of_name_pointers</span>: <span class="ident">u32</span>,
-    <span class="kw">pub</span> <span class="ident">export_address_table_rva</span>: <span class="ident">u32</span>,
-    <span class="kw">pub</span> <span class="ident">name_pointer_rva</span>: <span class="ident">u32</span>,
-    <span class="kw">pub</span> <span class="ident">ordinal_table_rva</span>: <span class="ident">u32</span>,
+<span class="attribute">#[repr(C)]
+#[derive(Debug, PartialEq, Copy, Clone, Default, Pread, Pwrite)]
+</span><span class="kw">pub struct </span>ExportDirectoryTable {
+    <span class="kw">pub </span>export_flags: u32,
+    <span class="kw">pub </span>time_date_stamp: u32,
+    <span class="kw">pub </span>major_version: u16,
+    <span class="kw">pub </span>minor_version: u16,
+    <span class="kw">pub </span>name_rva: u32,
+    <span class="kw">pub </span>ordinal_base: u32,
+    <span class="kw">pub </span>address_table_entries: u32,
+    <span class="kw">pub </span>number_of_name_pointers: u32,
+    <span class="kw">pub </span>export_address_table_rva: u32,
+    <span class="kw">pub </span>name_pointer_rva: u32,
+    <span class="kw">pub </span>ordinal_table_rva: u32,
 }
 
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIZEOF_EXPORT_DIRECTORY_TABLE</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">40</span>;
+<span class="kw">pub const </span>SIZEOF_EXPORT_DIRECTORY_TABLE: usize = <span class="number">40</span>;
 
-<span class="kw">impl</span> <span class="ident">ExportDirectoryTable</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">bytes</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>], <span class="ident">offset</span>: <span class="ident">usize</span>) -&gt; <span class="ident">error::Result</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">res</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">pread_with</span>(<span class="ident">offset</span>, <span class="ident">scroll::LE</span>)<span class="question-mark">?</span>;
-        <span class="prelude-val">Ok</span>(<span class="ident">res</span>)
+<span class="kw">impl </span>ExportDirectoryTable {
+    <span class="kw">pub fn </span>parse(bytes: <span class="kw-2">&amp;</span>[u8], offset: usize) -&gt; error::Result&lt;<span class="self">Self</span>&gt; {
+        <span class="kw">let </span>res = bytes.pread_with(offset, scroll::LE)<span class="question-mark">?</span>;
+        <span class="prelude-val">Ok</span>(res)
     }
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">ExportAddressTableEntry</span> {
-    <span class="ident">ExportRVA</span>(<span class="ident">u32</span>),
-    <span class="ident">ForwarderRVA</span>(<span class="ident">u32</span>),
+<span class="attribute">#[derive(Debug)]
+</span><span class="kw">pub enum </span>ExportAddressTableEntry {
+    ExportRVA(u32),
+    ForwarderRVA(u32),
 }
 
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIZEOF_EXPORT_ADDRESS_TABLE_ENTRY</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">4</span>;
+<span class="kw">pub const </span>SIZEOF_EXPORT_ADDRESS_TABLE_ENTRY: usize = <span class="number">4</span>;
 
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">ExportAddressTable</span> <span class="op">=</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">ExportAddressTableEntry</span><span class="op">&gt;</span>;
+<span class="kw">pub type </span>ExportAddressTable = Vec&lt;ExportAddressTableEntry&gt;;
 
-<span class="doccomment">/// Array of rvas into the export name table</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Export name is defined iff pointer table has pointer to the name</span>
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">ExportNamePointerTable</span> <span class="op">=</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>;
+<span class="doccomment">/// Array of rvas into the export name table
+///
+/// Export name is defined iff pointer table has pointer to the name
+</span><span class="kw">pub type </span>ExportNamePointerTable = Vec&lt;u32&gt;;
 
-<span class="doccomment">/// Array of indexes into the export address table.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Should obey the formula `idx = ordinal - ordinalbase`</span>
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">ExportOrdinalTable</span> <span class="op">=</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>;
+<span class="doccomment">/// Array of indexes into the export address table.
+///
+/// Should obey the formula `idx = ordinal - ordinalbase`
+</span><span class="kw">pub type </span>ExportOrdinalTable = Vec&lt;u16&gt;;
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Default</span>)]</span>
-<span class="doccomment">/// Export data contains the `dll` name which other libraries can import symbols by (two-level namespace), as well as other important indexing data allowing symbol lookups</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ExportData</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">pub</span> <span class="ident">name</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span><span class="op">&gt;</span>,
-    <span class="kw">pub</span> <span class="ident">export_directory_table</span>: <span class="ident">ExportDirectoryTable</span>,
-    <span class="kw">pub</span> <span class="ident">export_name_pointer_table</span>: <span class="ident">ExportNamePointerTable</span>,
-    <span class="kw">pub</span> <span class="ident">export_ordinal_table</span>: <span class="ident">ExportOrdinalTable</span>,
-    <span class="kw">pub</span> <span class="ident">export_address_table</span>: <span class="ident">ExportAddressTable</span>,
+<span class="attribute">#[derive(Debug, Default)]
+</span><span class="doccomment">/// Export data contains the `dll` name which other libraries can import symbols by (two-level namespace), as well as other important indexing data allowing symbol lookups
+</span><span class="kw">pub struct </span>ExportData&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">pub </span>name: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str&gt;,
+    <span class="kw">pub </span>export_directory_table: ExportDirectoryTable,
+    <span class="kw">pub </span>export_name_pointer_table: ExportNamePointerTable,
+    <span class="kw">pub </span>export_ordinal_table: ExportOrdinalTable,
+    <span class="kw">pub </span>export_address_table: ExportAddressTable,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">ExportData</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">parse</span>(
-        <span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
-        <span class="ident">dd</span>: <span class="ident">data_directories::DataDirectory</span>,
-        <span class="ident">sections</span>: <span class="kw-2">&amp;</span>[<span class="ident">section_table::SectionTable</span>],
-        <span class="ident">file_alignment</span>: <span class="ident">u32</span>,
-    ) -&gt; <span class="ident">error::Result</span><span class="op">&lt;</span><span class="ident">ExportData</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-        <span class="ident"><span class="self">Self</span>::parse_with_opts</span>(
-            <span class="ident">bytes</span>,
-            <span class="ident">dd</span>,
-            <span class="ident">sections</span>,
-            <span class="ident">file_alignment</span>,
-            <span class="kw-2">&amp;</span><span class="ident">options::ParseOptions::default</span>(),
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; ExportData&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">pub fn </span>parse(
+        bytes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8],
+        dd: data_directories::DataDirectory,
+        sections: <span class="kw-2">&amp;</span>[section_table::SectionTable],
+        file_alignment: u32,
+    ) -&gt; error::Result&lt;ExportData&lt;<span class="lifetime">&#39;a</span>&gt;&gt; {
+        <span class="self">Self</span>::parse_with_opts(
+            bytes,
+            dd,
+            sections,
+            file_alignment,
+            <span class="kw-2">&amp;</span>options::ParseOptions::default(),
         )
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">parse_with_opts</span>(
-        <span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
-        <span class="ident">dd</span>: <span class="ident">data_directories::DataDirectory</span>,
-        <span class="ident">sections</span>: <span class="kw-2">&amp;</span>[<span class="ident">section_table::SectionTable</span>],
-        <span class="ident">file_alignment</span>: <span class="ident">u32</span>,
-        <span class="ident">opts</span>: <span class="kw-2">&amp;</span><span class="ident">options::ParseOptions</span>,
-    ) -&gt; <span class="ident">error::Result</span><span class="op">&lt;</span><span class="ident">ExportData</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">export_rva</span> <span class="op">=</span> <span class="ident">dd</span>.<span class="ident">virtual_address</span> <span class="kw">as</span> <span class="ident">usize</span>;
-        <span class="kw">let</span> <span class="ident">size</span> <span class="op">=</span> <span class="ident">dd</span>.<span class="ident">size</span> <span class="kw">as</span> <span class="ident">usize</span>;
-        <span class="macro">debug!</span>(<span class="string">&quot;export_rva {:#x} size {:#}&quot;</span>, <span class="ident">export_rva</span>, <span class="ident">size</span>);
-        <span class="kw">let</span> <span class="ident">export_offset</span> <span class="op">=</span> <span class="ident">utils::find_offset_or</span>(
-            <span class="ident">export_rva</span>,
-            <span class="ident">sections</span>,
-            <span class="ident">file_alignment</span>,
-            <span class="ident">opts</span>,
-            <span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;cannot map export_rva ({:#x}) into offset&quot;</span>, <span class="ident">export_rva</span>),
+    <span class="kw">pub fn </span>parse_with_opts(
+        bytes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8],
+        dd: data_directories::DataDirectory,
+        sections: <span class="kw-2">&amp;</span>[section_table::SectionTable],
+        file_alignment: u32,
+        opts: <span class="kw-2">&amp;</span>options::ParseOptions,
+    ) -&gt; error::Result&lt;ExportData&lt;<span class="lifetime">&#39;a</span>&gt;&gt; {
+        <span class="kw">let </span>export_rva = dd.virtual_address <span class="kw">as </span>usize;
+        <span class="kw">let </span>size = dd.size <span class="kw">as </span>usize;
+        <span class="macro">debug!</span>(<span class="string">&quot;export_rva {:#x} size {:#}&quot;</span>, export_rva, size);
+        <span class="kw">let </span>export_offset = utils::find_offset_or(
+            export_rva,
+            sections,
+            file_alignment,
+            opts,
+            <span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;cannot map export_rva ({:#x}) into offset&quot;</span>, export_rva),
         )<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">export_directory_table</span> <span class="op">=</span>
-            <span class="ident">ExportDirectoryTable::parse</span>(<span class="ident">bytes</span>, <span class="ident">export_offset</span>).<span class="ident">map_err</span>(<span class="op">|</span><span class="kw">_</span><span class="op">|</span> {
-                <span class="ident">error::Error::Malformed</span>(<span class="macro">format!</span>(
+        <span class="kw">let </span>export_directory_table =
+            ExportDirectoryTable::parse(bytes, export_offset).map_err(|<span class="kw">_</span>| {
+                error::Error::Malformed(<span class="macro">format!</span>(
                     <span class="string">&quot;cannot parse export_directory_table (offset {:#x})&quot;</span>,
-                    <span class="ident">export_offset</span>
+                    export_offset
                 ))
             })<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">number_of_name_pointers</span> <span class="op">=</span> <span class="ident">export_directory_table</span>.<span class="ident">number_of_name_pointers</span> <span class="kw">as</span> <span class="ident">usize</span>;
-        <span class="kw">let</span> <span class="ident">address_table_entries</span> <span class="op">=</span> <span class="ident">export_directory_table</span>.<span class="ident">address_table_entries</span> <span class="kw">as</span> <span class="ident">usize</span>;
+        <span class="kw">let </span>number_of_name_pointers = export_directory_table.number_of_name_pointers <span class="kw">as </span>usize;
+        <span class="kw">let </span>address_table_entries = export_directory_table.address_table_entries <span class="kw">as </span>usize;
 
-        <span class="kw">if</span> <span class="ident">number_of_name_pointers</span> <span class="op">&gt;</span> <span class="ident">bytes</span>.<span class="ident">len</span>() {
-            <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">error::Error::BufferTooShort</span>(
-                <span class="ident">number_of_name_pointers</span>,
+        <span class="kw">if </span>number_of_name_pointers &gt; bytes.len() {
+            <span class="kw">return </span><span class="prelude-val">Err</span>(error::Error::BufferTooShort(
+                number_of_name_pointers,
                 <span class="string">&quot;name pointers&quot;</span>,
             ));
         }
-        <span class="kw">if</span> <span class="ident">address_table_entries</span> <span class="op">&gt;</span> <span class="ident">bytes</span>.<span class="ident">len</span>() {
-            <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">error::Error::BufferTooShort</span>(
-                <span class="ident">address_table_entries</span>,
+        <span class="kw">if </span>address_table_entries &gt; bytes.len() {
+            <span class="kw">return </span><span class="prelude-val">Err</span>(error::Error::BufferTooShort(
+                address_table_entries,
                 <span class="string">&quot;address table entries&quot;</span>,
             ));
         }
 
-        <span class="kw">let</span> <span class="ident">export_name_pointer_table</span> <span class="op">=</span> <span class="ident">utils::find_offset</span>(
-            <span class="ident">export_directory_table</span>.<span class="ident">name_pointer_rva</span> <span class="kw">as</span> <span class="ident">usize</span>,
-            <span class="ident">sections</span>,
-            <span class="ident">file_alignment</span>,
-            <span class="ident">opts</span>,
+        <span class="kw">let </span>export_name_pointer_table = utils::find_offset(
+            export_directory_table.name_pointer_rva <span class="kw">as </span>usize,
+            sections,
+            file_alignment,
+            opts,
         )
-        .<span class="ident">map_or</span>(<span class="macro">vec!</span>[], <span class="op">|</span><span class="ident">table_offset</span><span class="op">|</span> {
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">offset</span> <span class="op">=</span> <span class="ident">table_offset</span>;
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">table</span>: <span class="ident">ExportNamePointerTable</span> <span class="op">=</span> <span class="ident">Vec::with_capacity</span>(<span class="ident">number_of_name_pointers</span>);
+        .map_or(<span class="macro">vec!</span>[], |table_offset| {
+            <span class="kw">let </span><span class="kw-2">mut </span>offset = table_offset;
+            <span class="kw">let </span><span class="kw-2">mut </span>table: ExportNamePointerTable = Vec::with_capacity(number_of_name_pointers);
 
-            <span class="kw">for</span> <span class="kw">_</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">number_of_name_pointers</span> {
-                <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Ok</span>(<span class="ident">name_rva</span>) <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">gread_with</span>(<span class="kw-2">&amp;mut</span> <span class="ident">offset</span>, <span class="ident">scroll::LE</span>) {
-                    <span class="ident">table</span>.<span class="ident">push</span>(<span class="ident">name_rva</span>);
-                } <span class="kw">else</span> {
+            <span class="kw">for _ in </span><span class="number">0</span>..number_of_name_pointers {
+                <span class="kw">if let </span><span class="prelude-val">Ok</span>(name_rva) = bytes.gread_with(<span class="kw-2">&amp;mut </span>offset, scroll::LE) {
+                    table.push(name_rva);
+                } <span class="kw">else </span>{
                     <span class="kw">break</span>;
                 }
             }
 
-            <span class="ident">table</span>
+            table
         });
 
-        <span class="kw">let</span> <span class="ident">export_ordinal_table</span> <span class="op">=</span> <span class="ident">utils::find_offset</span>(
-            <span class="ident">export_directory_table</span>.<span class="ident">ordinal_table_rva</span> <span class="kw">as</span> <span class="ident">usize</span>,
-            <span class="ident">sections</span>,
-            <span class="ident">file_alignment</span>,
-            <span class="ident">opts</span>,
+        <span class="kw">let </span>export_ordinal_table = utils::find_offset(
+            export_directory_table.ordinal_table_rva <span class="kw">as </span>usize,
+            sections,
+            file_alignment,
+            opts,
         )
-        .<span class="ident">map_or</span>(<span class="macro">vec!</span>[], <span class="op">|</span><span class="ident">table_offset</span><span class="op">|</span> {
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">offset</span> <span class="op">=</span> <span class="ident">table_offset</span>;
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">table</span>: <span class="ident">ExportOrdinalTable</span> <span class="op">=</span> <span class="ident">Vec::with_capacity</span>(<span class="ident">number_of_name_pointers</span>);
+        .map_or(<span class="macro">vec!</span>[], |table_offset| {
+            <span class="kw">let </span><span class="kw-2">mut </span>offset = table_offset;
+            <span class="kw">let </span><span class="kw-2">mut </span>table: ExportOrdinalTable = Vec::with_capacity(number_of_name_pointers);
 
-            <span class="kw">for</span> <span class="kw">_</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">number_of_name_pointers</span> {
-                <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Ok</span>(<span class="ident">name_ordinal</span>) <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">gread_with</span>(<span class="kw-2">&amp;mut</span> <span class="ident">offset</span>, <span class="ident">scroll::LE</span>) {
-                    <span class="ident">table</span>.<span class="ident">push</span>(<span class="ident">name_ordinal</span>);
-                } <span class="kw">else</span> {
+            <span class="kw">for _ in </span><span class="number">0</span>..number_of_name_pointers {
+                <span class="kw">if let </span><span class="prelude-val">Ok</span>(name_ordinal) = bytes.gread_with(<span class="kw-2">&amp;mut </span>offset, scroll::LE) {
+                    table.push(name_ordinal);
+                } <span class="kw">else </span>{
                     <span class="kw">break</span>;
                 }
             }
 
-            <span class="ident">table</span>
+            table
         });
 
-        <span class="kw">let</span> <span class="ident">export_address_table</span> <span class="op">=</span> <span class="ident">utils::find_offset</span>(
-            <span class="ident">export_directory_table</span>.<span class="ident">export_address_table_rva</span> <span class="kw">as</span> <span class="ident">usize</span>,
-            <span class="ident">sections</span>,
-            <span class="ident">file_alignment</span>,
-            <span class="ident">opts</span>,
+        <span class="kw">let </span>export_address_table = utils::find_offset(
+            export_directory_table.export_address_table_rva <span class="kw">as </span>usize,
+            sections,
+            file_alignment,
+            opts,
         )
-        .<span class="ident">map_or</span>(<span class="macro">vec!</span>[], <span class="op">|</span><span class="ident">table_offset</span><span class="op">|</span> {
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">offset</span> <span class="op">=</span> <span class="ident">table_offset</span>;
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">table</span>: <span class="ident">ExportAddressTable</span> <span class="op">=</span> <span class="ident">Vec::with_capacity</span>(<span class="ident">address_table_entries</span>);
-            <span class="kw">let</span> <span class="ident">export_end</span> <span class="op">=</span> <span class="ident">export_rva</span> <span class="op">+</span> <span class="ident">size</span>;
+        .map_or(<span class="macro">vec!</span>[], |table_offset| {
+            <span class="kw">let </span><span class="kw-2">mut </span>offset = table_offset;
+            <span class="kw">let </span><span class="kw-2">mut </span>table: ExportAddressTable = Vec::with_capacity(address_table_entries);
+            <span class="kw">let </span>export_end = export_rva + size;
 
-            <span class="kw">for</span> <span class="kw">_</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">address_table_entries</span> {
-                <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Ok</span>(<span class="ident">func_rva</span>) <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">gread_with</span>::<span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>(<span class="kw-2">&amp;mut</span> <span class="ident">offset</span>, <span class="ident">scroll::LE</span>) {
-                    <span class="kw">if</span> <span class="ident">utils::is_in_range</span>(<span class="ident">func_rva</span> <span class="kw">as</span> <span class="ident">usize</span>, <span class="ident">export_rva</span>, <span class="ident">export_end</span>) {
-                        <span class="ident">table</span>.<span class="ident">push</span>(<span class="ident">ExportAddressTableEntry::ForwarderRVA</span>(<span class="ident">func_rva</span>));
-                    } <span class="kw">else</span> {
-                        <span class="ident">table</span>.<span class="ident">push</span>(<span class="ident">ExportAddressTableEntry::ExportRVA</span>(<span class="ident">func_rva</span>));
+            <span class="kw">for _ in </span><span class="number">0</span>..address_table_entries {
+                <span class="kw">if let </span><span class="prelude-val">Ok</span>(func_rva) = bytes.gread_with::&lt;u32&gt;(<span class="kw-2">&amp;mut </span>offset, scroll::LE) {
+                    <span class="kw">if </span>utils::is_in_range(func_rva <span class="kw">as </span>usize, export_rva, export_end) {
+                        table.push(ExportAddressTableEntry::ForwarderRVA(func_rva));
+                    } <span class="kw">else </span>{
+                        table.push(ExportAddressTableEntry::ExportRVA(func_rva));
                     }
-                } <span class="kw">else</span> {
+                } <span class="kw">else </span>{
                     <span class="kw">break</span>;
                 }
             }
 
-            <span class="ident">table</span>
+            table
         });
 
-        <span class="kw">let</span> <span class="ident">name</span> <span class="op">=</span> <span class="ident">utils::find_offset</span>(
-            <span class="ident">export_directory_table</span>.<span class="ident">name_rva</span> <span class="kw">as</span> <span class="ident">usize</span>,
-            <span class="ident">sections</span>,
-            <span class="ident">file_alignment</span>,
-            <span class="ident">opts</span>,
+        <span class="kw">let </span>name = utils::find_offset(
+            export_directory_table.name_rva <span class="kw">as </span>usize,
+            sections,
+            file_alignment,
+            opts,
         )
-        .<span class="ident">and_then</span>(<span class="op">|</span><span class="ident">offset</span><span class="op">|</span> <span class="ident">bytes</span>.<span class="ident">pread</span>(<span class="ident">offset</span>).<span class="ident">ok</span>());
+        .and_then(|offset| bytes.pread(offset).ok());
 
-        <span class="prelude-val">Ok</span>(<span class="ident">ExportData</span> {
-            <span class="ident">name</span>,
-            <span class="ident">export_directory_table</span>,
-            <span class="ident">export_name_pointer_table</span>,
-            <span class="ident">export_ordinal_table</span>,
-            <span class="ident">export_address_table</span>,
+        <span class="prelude-val">Ok</span>(ExportData {
+            name,
+            export_directory_table,
+            export_name_pointer_table,
+            export_ordinal_table,
+            export_address_table,
         })
     }
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
-<span class="doccomment">/// PE binaries have two kinds of reexports, either specifying the dll&#39;s name, or the ordinal value of the dll</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Reexport</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="ident">DLLName</span> { <span class="ident">export</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>, <span class="ident">lib</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span> },
-    <span class="ident">DLLOrdinal</span> { <span class="ident">ordinal</span>: <span class="ident">usize</span>, <span class="ident">lib</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span> },
+<span class="attribute">#[derive(Debug)]
+</span><span class="doccomment">/// PE binaries have two kinds of reexports, either specifying the dll&#39;s name, or the ordinal value of the dll
+</span><span class="kw">pub enum </span>Reexport&lt;<span class="lifetime">&#39;a</span>&gt; {
+    DLLName { export: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str, lib: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str },
+    DLLOrdinal { ordinal: usize, lib: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str },
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">scroll::ctx::TryFromCtx</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">scroll::Endian</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Reexport</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">type</span> <span class="ident">Error</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::error::Error</span>;
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">try_from_ctx</span>(<span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>], <span class="ident">_ctx</span>: <span class="ident">scroll::Endian</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(<span class="self">Self</span>, <span class="ident">usize</span>), <span class="ident"><span class="self">Self</span>::Error</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">reexport</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">pread</span>::<span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>(<span class="number">0</span>)<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">reexport_len</span> <span class="op">=</span> <span class="ident">reexport</span>.<span class="ident">len</span>();
-        <span class="macro">debug!</span>(<span class="string">&quot;reexport: {}&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">reexport</span>);
-        <span class="kw">for</span> <span class="ident">o</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">reexport_len</span> {
-            <span class="kw">let</span> <span class="ident">c</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">pread</span>(<span class="ident">o</span>)<span class="question-mark">?</span>;
-            <span class="macro">debug!</span>(<span class="string">&quot;reexport offset: {:#x} char: {:#x}&quot;</span>, <span class="ident">o</span>, <span class="ident">c</span>);
-            <span class="kw">if</span> <span class="ident">c</span> <span class="op">==</span> <span class="string">b&#39;.&#39;</span> {
-                <span class="kw">let</span> <span class="ident">dll</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">pread_with</span>(<span class="number">0</span>, <span class="ident">scroll::ctx::StrCtx::Length</span>(<span class="ident">o</span>))<span class="question-mark">?</span>;
-                <span class="macro">debug!</span>(<span class="string">&quot;dll: {:?}&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">dll</span>);
-                <span class="kw">if</span> <span class="ident">o</span> <span class="op">+</span> <span class="number">1</span> <span class="op">==</span> <span class="ident">reexport_len</span> {
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; scroll::ctx::TryFromCtx&lt;<span class="lifetime">&#39;a</span>, scroll::Endian&gt; <span class="kw">for </span>Reexport&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">type </span>Error = <span class="kw">crate</span>::error::Error;
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>try_from_ctx(bytes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8], _ctx: scroll::Endian) -&gt; <span class="prelude-ty">Result</span>&lt;(<span class="self">Self</span>, usize), <span class="self">Self</span>::Error&gt; {
+        <span class="kw">let </span>reexport = bytes.pread::&lt;<span class="kw-2">&amp;</span>str&gt;(<span class="number">0</span>)<span class="question-mark">?</span>;
+        <span class="kw">let </span>reexport_len = reexport.len();
+        <span class="macro">debug!</span>(<span class="string">&quot;reexport: {}&quot;</span>, <span class="kw-2">&amp;</span>reexport);
+        <span class="kw">for </span>o <span class="kw">in </span><span class="number">0</span>..reexport_len {
+            <span class="kw">let </span>c: u8 = bytes.pread(o)<span class="question-mark">?</span>;
+            <span class="macro">debug!</span>(<span class="string">&quot;reexport offset: {:#x} char: {:#x}&quot;</span>, o, c);
+            <span class="kw">if </span>c == <span class="string">b&#39;.&#39; </span>{
+                <span class="kw">let </span>dll: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str = bytes.pread_with(<span class="number">0</span>, scroll::ctx::StrCtx::Length(o))<span class="question-mark">?</span>;
+                <span class="macro">debug!</span>(<span class="string">&quot;dll: {:?}&quot;</span>, <span class="kw-2">&amp;</span>dll);
+                <span class="kw">if </span>o + <span class="number">1 </span>== reexport_len {
                     <span class="kw">break</span>;
                 }
-                <span class="kw">let</span> <span class="ident">len</span> <span class="op">=</span> <span class="ident">reexport_len</span> <span class="op">-</span> <span class="ident">o</span> <span class="op">-</span> <span class="number">1</span>;
-                <span class="kw">let</span> <span class="ident">rest</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>] <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">pread_with</span>(<span class="ident">o</span> <span class="op">+</span> <span class="number">1</span>, <span class="ident">len</span>)<span class="question-mark">?</span>;
-                <span class="macro">debug!</span>(<span class="string">&quot;rest: {:?}&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">rest</span>);
-                <span class="kw">if</span> <span class="ident">rest</span>[<span class="number">0</span>] <span class="op">==</span> <span class="string">b&#39;#&#39;</span> {
-                    <span class="kw">let</span> <span class="ident">ordinal</span> <span class="op">=</span>
-                        <span class="ident">rest</span>.<span class="ident">pread_with</span>::<span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>(<span class="number">1</span>, <span class="ident">scroll::ctx::StrCtx::Length</span>(<span class="ident">len</span> <span class="op">-</span> <span class="number">1</span>))<span class="question-mark">?</span>;
-                    <span class="kw">let</span> <span class="ident">ordinal</span> <span class="op">=</span> <span class="ident">ordinal</span>.<span class="ident">parse</span>::<span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>().<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">_e</span><span class="op">|</span> {
-                        <span class="ident">error::Error::Malformed</span>(<span class="macro">format!</span>(
+                <span class="kw">let </span>len = reexport_len - o - <span class="number">1</span>;
+                <span class="kw">let </span>rest: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8] = bytes.pread_with(o + <span class="number">1</span>, len)<span class="question-mark">?</span>;
+                <span class="macro">debug!</span>(<span class="string">&quot;rest: {:?}&quot;</span>, <span class="kw-2">&amp;</span>rest);
+                <span class="kw">if </span>rest[<span class="number">0</span>] == <span class="string">b&#39;#&#39; </span>{
+                    <span class="kw">let </span>ordinal =
+                        rest.pread_with::&lt;<span class="kw-2">&amp;</span>str&gt;(<span class="number">1</span>, scroll::ctx::StrCtx::Length(len - <span class="number">1</span>))<span class="question-mark">?</span>;
+                    <span class="kw">let </span>ordinal = ordinal.parse::&lt;u32&gt;().map_err(|_e| {
+                        error::Error::Malformed(<span class="macro">format!</span>(
                             <span class="string">&quot;Cannot parse reexport ordinal from {} bytes&quot;</span>,
-                            <span class="ident">bytes</span>.<span class="ident">len</span>()
+                            bytes.len()
                         ))
                     })<span class="question-mark">?</span>;
-                    <span class="kw">return</span> <span class="prelude-val">Ok</span>((
-                        <span class="ident">Reexport::DLLOrdinal</span> {
-                            <span class="ident">ordinal</span>: <span class="ident">ordinal</span> <span class="kw">as</span> <span class="ident">usize</span>,
-                            <span class="ident">lib</span>: <span class="ident">dll</span>,
+                    <span class="kw">return </span><span class="prelude-val">Ok</span>((
+                        Reexport::DLLOrdinal {
+                            ordinal: ordinal <span class="kw">as </span>usize,
+                            lib: dll,
                         },
-                        <span class="ident">reexport_len</span> <span class="op">+</span> <span class="number">1</span>,
+                        reexport_len + <span class="number">1</span>,
                     ));
-                } <span class="kw">else</span> {
-                    <span class="kw">let</span> <span class="ident">export</span> <span class="op">=</span> <span class="ident">rest</span>.<span class="ident">pread_with</span>::<span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>(<span class="number">0</span>, <span class="ident">scroll::ctx::StrCtx::Length</span>(<span class="ident">len</span>))<span class="question-mark">?</span>;
-                    <span class="kw">return</span> <span class="prelude-val">Ok</span>((<span class="ident">Reexport::DLLName</span> { <span class="ident">export</span>, <span class="ident">lib</span>: <span class="ident">dll</span> }, <span class="ident">reexport_len</span> <span class="op">+</span> <span class="number">1</span>));
+                } <span class="kw">else </span>{
+                    <span class="kw">let </span>export = rest.pread_with::&lt;<span class="kw-2">&amp;</span>str&gt;(<span class="number">0</span>, scroll::ctx::StrCtx::Length(len))<span class="question-mark">?</span>;
+                    <span class="kw">return </span><span class="prelude-val">Ok</span>((Reexport::DLLName { export, lib: dll }, reexport_len + <span class="number">1</span>));
                 }
             }
         }
-        <span class="prelude-val">Err</span>(<span class="ident">error::Error::Malformed</span>(<span class="macro">format!</span>(
+        <span class="prelude-val">Err</span>(error::Error::Malformed(<span class="macro">format!</span>(
             <span class="string">&quot;Reexport {:#} is malformed&quot;</span>,
-            <span class="ident">reexport</span>
+            reexport
         )))
     }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Reexport</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>], <span class="ident">offset</span>: <span class="ident">usize</span>) -&gt; <span class="ident"><span class="kw">crate</span>::error::Result</span><span class="op">&lt;</span><span class="ident">Reexport</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-        <span class="ident">bytes</span>.<span class="ident">pread</span>(<span class="ident">offset</span>)
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Reexport&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">pub fn </span>parse(bytes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8], offset: usize) -&gt; <span class="kw">crate</span>::error::Result&lt;Reexport&lt;<span class="lifetime">&#39;a</span>&gt;&gt; {
+        bytes.pread(offset)
     }
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Default</span>)]</span>
-<span class="doccomment">/// An exported symbol in this binary, contains synthetic data (name offset, etc., are computed)</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Export</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">pub</span> <span class="ident">name</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span><span class="op">&gt;</span>,
-    <span class="kw">pub</span> <span class="ident">offset</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span>,
-    <span class="kw">pub</span> <span class="ident">rva</span>: <span class="ident">usize</span>,
-    <span class="kw">pub</span> <span class="ident">size</span>: <span class="ident">usize</span>,
-    <span class="kw">pub</span> <span class="ident">reexport</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Reexport</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+<span class="attribute">#[derive(Debug, Default)]
+</span><span class="doccomment">/// An exported symbol in this binary, contains synthetic data (name offset, etc., are computed)
+</span><span class="kw">pub struct </span>Export&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">pub </span>name: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str&gt;,
+    <span class="kw">pub </span>offset: <span class="prelude-ty">Option</span>&lt;usize&gt;,
+    <span class="kw">pub </span>rva: usize,
+    <span class="kw">pub </span>size: usize,
+    <span class="kw">pub </span>reexport: <span class="prelude-ty">Option</span>&lt;Reexport&lt;<span class="lifetime">&#39;a</span>&gt;&gt;,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">struct</span> <span class="ident">ExportCtx</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">pub</span> <span class="ident">ptr</span>: <span class="ident">u32</span>,
-    <span class="kw">pub</span> <span class="ident">idx</span>: <span class="ident">usize</span>,
-    <span class="kw">pub</span> <span class="ident">sections</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">section_table::SectionTable</span>],
-    <span class="kw">pub</span> <span class="ident">file_alignment</span>: <span class="ident">u32</span>,
-    <span class="kw">pub</span> <span class="ident">addresses</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">ExportAddressTable</span>,
-    <span class="kw">pub</span> <span class="ident">ordinals</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">ExportOrdinalTable</span>,
-    <span class="kw">pub</span> <span class="ident">opts</span>: <span class="ident">options::ParseOptions</span>,
+<span class="attribute">#[derive(Debug, Copy, Clone)]
+</span><span class="kw">struct </span>ExportCtx&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">pub </span>ptr: u32,
+    <span class="kw">pub </span>idx: usize,
+    <span class="kw">pub </span>sections: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[section_table::SectionTable],
+    <span class="kw">pub </span>file_alignment: u32,
+    <span class="kw">pub </span>addresses: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>ExportAddressTable,
+    <span class="kw">pub </span>ordinals: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>ExportOrdinalTable,
+    <span class="kw">pub </span>opts: options::ParseOptions,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="lifetime">&#39;b</span><span class="op">&gt;</span> <span class="ident">scroll::ctx::TryFromCtx</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">ExportCtx</span><span class="op">&lt;</span><span class="lifetime">&#39;b</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Export</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">type</span> <span class="ident">Error</span> <span class="op">=</span> <span class="ident">error::Error</span>;
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">try_from_ctx</span>(
-        <span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
-        <span class="ident">ExportCtx</span> {
-            <span class="ident">ptr</span>,
-            <span class="ident">idx</span>,
-            <span class="ident">sections</span>,
-            <span class="ident">file_alignment</span>,
-            <span class="ident">addresses</span>,
-            <span class="ident">ordinals</span>,
-            <span class="ident">opts</span>,
-        }: <span class="ident">ExportCtx</span><span class="op">&lt;</span><span class="lifetime">&#39;b</span><span class="op">&gt;</span>,
-    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(<span class="self">Self</span>, <span class="ident">usize</span>), <span class="ident"><span class="self">Self</span>::Error</span><span class="op">&gt;</span> {
-        <span class="kw">use</span> <span class="ident"><span class="self">self</span>::ExportAddressTableEntry</span>::<span class="kw-2">*</span>;
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>, <span class="lifetime">&#39;b</span>&gt; scroll::ctx::TryFromCtx&lt;<span class="lifetime">&#39;a</span>, ExportCtx&lt;<span class="lifetime">&#39;b</span>&gt;&gt; <span class="kw">for </span>Export&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">type </span>Error = error::Error;
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>try_from_ctx(
+        bytes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8],
+        ExportCtx {
+            ptr,
+            idx,
+            sections,
+            file_alignment,
+            addresses,
+            ordinals,
+            opts,
+        }: ExportCtx&lt;<span class="lifetime">&#39;b</span>&gt;,
+    ) -&gt; <span class="prelude-ty">Result</span>&lt;(<span class="self">Self</span>, usize), <span class="self">Self</span>::Error&gt; {
+        <span class="kw">use </span><span class="self">self</span>::ExportAddressTableEntry::<span class="kw-2">*</span>;
 
-        <span class="kw">let</span> <span class="ident">name</span> <span class="op">=</span> <span class="ident">utils::find_offset</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="ident">usize</span>, <span class="ident">sections</span>, <span class="ident">file_alignment</span>, <span class="kw-2">&amp;</span><span class="ident">opts</span>)
-            .<span class="ident">and_then</span>(<span class="op">|</span><span class="ident">offset</span><span class="op">|</span> <span class="ident">bytes</span>.<span class="ident">pread</span>::<span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>(<span class="ident">offset</span>).<span class="ident">ok</span>());
+        <span class="kw">let </span>name = utils::find_offset(ptr <span class="kw">as </span>usize, sections, file_alignment, <span class="kw-2">&amp;</span>opts)
+            .and_then(|offset| bytes.pread::&lt;<span class="kw-2">&amp;</span>str&gt;(offset).ok());
 
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">ordinal</span>) <span class="op">=</span> <span class="ident">ordinals</span>.<span class="ident">get</span>(<span class="ident">idx</span>) {
-            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">rva</span>) <span class="op">=</span> <span class="ident">addresses</span>.<span class="ident">get</span>(<span class="kw-2">*</span><span class="ident">ordinal</span> <span class="kw">as</span> <span class="ident">usize</span>) {
-                <span class="kw">match</span> <span class="kw-2">*</span><span class="ident">rva</span> {
-                    <span class="ident">ExportRVA</span>(<span class="ident">rva</span>) =&gt; {
-                        <span class="kw">let</span> <span class="ident">rva</span> <span class="op">=</span> <span class="ident">rva</span> <span class="kw">as</span> <span class="ident">usize</span>;
-                        <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> <span class="ident">utils::find_offset</span>(<span class="ident">rva</span>, <span class="ident">sections</span>, <span class="ident">file_alignment</span>, <span class="kw-2">&amp;</span><span class="ident">opts</span>);
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(ordinal) = ordinals.get(idx) {
+            <span class="kw">if let </span><span class="prelude-val">Some</span>(rva) = addresses.get(<span class="kw-2">*</span>ordinal <span class="kw">as </span>usize) {
+                <span class="kw">match </span><span class="kw-2">*</span>rva {
+                    ExportRVA(rva) =&gt; {
+                        <span class="kw">let </span>rva = rva <span class="kw">as </span>usize;
+                        <span class="kw">let </span>offset = utils::find_offset(rva, sections, file_alignment, <span class="kw-2">&amp;</span>opts);
                         <span class="prelude-val">Ok</span>((
-                            <span class="ident">Export</span> {
-                                <span class="ident">name</span>,
-                                <span class="ident">offset</span>,
-                                <span class="ident">rva</span>,
-                                <span class="ident">reexport</span>: <span class="prelude-val">None</span>,
-                                <span class="ident">size</span>: <span class="number">0</span>,
+                            Export {
+                                name,
+                                offset,
+                                rva,
+                                reexport: <span class="prelude-val">None</span>,
+                                size: <span class="number">0</span>,
                             },
                             <span class="number">0</span>,
                         ))
                     }
 
-                    <span class="ident">ForwarderRVA</span>(<span class="ident">rva</span>) =&gt; {
-                        <span class="kw">let</span> <span class="ident">rva</span> <span class="op">=</span> <span class="ident">rva</span> <span class="kw">as</span> <span class="ident">usize</span>;
-                        <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> <span class="ident">utils::find_offset_or</span>(
-                            <span class="ident">rva</span>,
-                            <span class="ident">sections</span>,
-                            <span class="ident">file_alignment</span>,
-                            <span class="kw-2">&amp;</span><span class="ident">opts</span>,
+                    ForwarderRVA(rva) =&gt; {
+                        <span class="kw">let </span>rva = rva <span class="kw">as </span>usize;
+                        <span class="kw">let </span>offset = utils::find_offset_or(
+                            rva,
+                            sections,
+                            file_alignment,
+                            <span class="kw-2">&amp;</span>opts,
                             <span class="kw-2">&amp;</span><span class="macro">format!</span>(
                                 <span class="string">&quot;cannot map RVA ({:#x}) of export ordinal {} into offset&quot;</span>,
-                                <span class="ident">rva</span>, <span class="ident">ordinal</span>
+                                rva, ordinal
                             ),
                         )<span class="question-mark">?</span>;
-                        <span class="kw">let</span> <span class="ident">reexport</span> <span class="op">=</span> <span class="ident">Reexport::parse</span>(<span class="ident">bytes</span>, <span class="ident">offset</span>)<span class="question-mark">?</span>;
+                        <span class="kw">let </span>reexport = Reexport::parse(bytes, offset)<span class="question-mark">?</span>;
                         <span class="prelude-val">Ok</span>((
-                            <span class="ident">Export</span> {
-                                <span class="ident">name</span>,
-                                <span class="ident">offset</span>: <span class="prelude-val">Some</span>(<span class="ident">offset</span>),
-                                <span class="ident">rva</span>,
-                                <span class="ident">reexport</span>: <span class="prelude-val">Some</span>(<span class="ident">reexport</span>),
-                                <span class="ident">size</span>: <span class="number">0</span>,
+                            Export {
+                                name,
+                                offset: <span class="prelude-val">Some</span>(offset),
+                                rva,
+                                reexport: <span class="prelude-val">Some</span>(reexport),
+                                size: <span class="number">0</span>,
                             },
                             <span class="number">0</span>,
                         ))
                     }
                 }
-            } <span class="kw">else</span> {
-                <span class="prelude-val">Err</span>(<span class="ident">error::Error::Malformed</span>(<span class="macro">format!</span>(
+            } <span class="kw">else </span>{
+                <span class="prelude-val">Err</span>(error::Error::Malformed(<span class="macro">format!</span>(
                     <span class="string">&quot;cannot get RVA of export ordinal {}&quot;</span>,
-                    <span class="ident">ordinal</span>
+                    ordinal
                 )))
             }
-        } <span class="kw">else</span> {
-            <span class="prelude-val">Err</span>(<span class="ident">error::Error::Malformed</span>(<span class="macro">format!</span>(
+        } <span class="kw">else </span>{
+            <span class="prelude-val">Err</span>(error::Error::Malformed(<span class="macro">format!</span>(
                 <span class="string">&quot;cannot get ordinal of export name entry {}&quot;</span>,
-                <span class="ident">idx</span>
+                idx
             )))
         }
     }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Export</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">parse</span>(
-        <span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
-        <span class="ident">export_data</span>: <span class="kw-2">&amp;</span><span class="ident">ExportData</span>,
-        <span class="ident">sections</span>: <span class="kw-2">&amp;</span>[<span class="ident">section_table::SectionTable</span>],
-        <span class="ident">file_alignment</span>: <span class="ident">u32</span>,
-    ) -&gt; <span class="ident">error::Result</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Export</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-        <span class="ident"><span class="self">Self</span>::parse_with_opts</span>(
-            <span class="ident">bytes</span>,
-            <span class="ident">export_data</span>,
-            <span class="ident">sections</span>,
-            <span class="ident">file_alignment</span>,
-            <span class="kw-2">&amp;</span><span class="ident">options::ParseOptions::default</span>(),
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Export&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">pub fn </span>parse(
+        bytes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8],
+        export_data: <span class="kw-2">&amp;</span>ExportData,
+        sections: <span class="kw-2">&amp;</span>[section_table::SectionTable],
+        file_alignment: u32,
+    ) -&gt; error::Result&lt;Vec&lt;Export&lt;<span class="lifetime">&#39;a</span>&gt;&gt;&gt; {
+        <span class="self">Self</span>::parse_with_opts(
+            bytes,
+            export_data,
+            sections,
+            file_alignment,
+            <span class="kw-2">&amp;</span>options::ParseOptions::default(),
         )
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">parse_with_opts</span>(
-        <span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
-        <span class="ident">export_data</span>: <span class="kw-2">&amp;</span><span class="ident">ExportData</span>,
-        <span class="ident">sections</span>: <span class="kw-2">&amp;</span>[<span class="ident">section_table::SectionTable</span>],
-        <span class="ident">file_alignment</span>: <span class="ident">u32</span>,
-        <span class="ident">opts</span>: <span class="kw-2">&amp;</span><span class="ident">options::ParseOptions</span>,
-    ) -&gt; <span class="ident">error::Result</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Export</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">pointers</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">export_data</span>.<span class="ident">export_name_pointer_table</span>;
-        <span class="kw">let</span> <span class="ident">addresses</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">export_data</span>.<span class="ident">export_address_table</span>;
-        <span class="kw">let</span> <span class="ident">ordinals</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">export_data</span>.<span class="ident">export_ordinal_table</span>;
+    <span class="kw">pub fn </span>parse_with_opts(
+        bytes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8],
+        export_data: <span class="kw-2">&amp;</span>ExportData,
+        sections: <span class="kw-2">&amp;</span>[section_table::SectionTable],
+        file_alignment: u32,
+        opts: <span class="kw-2">&amp;</span>options::ParseOptions,
+    ) -&gt; error::Result&lt;Vec&lt;Export&lt;<span class="lifetime">&#39;a</span>&gt;&gt;&gt; {
+        <span class="kw">let </span>pointers = <span class="kw-2">&amp;</span>export_data.export_name_pointer_table;
+        <span class="kw">let </span>addresses = <span class="kw-2">&amp;</span>export_data.export_address_table;
+        <span class="kw">let </span>ordinals = <span class="kw-2">&amp;</span>export_data.export_ordinal_table;
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">exports</span> <span class="op">=</span> <span class="ident">Vec::with_capacity</span>(<span class="ident">pointers</span>.<span class="ident">len</span>());
-        <span class="kw">for</span> (<span class="ident">idx</span>, <span class="kw-2">&amp;</span><span class="ident">ptr</span>) <span class="kw">in</span> <span class="ident">pointers</span>.<span class="ident">iter</span>().<span class="ident">enumerate</span>() {
-            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Ok</span>(<span class="ident">export</span>) <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">pread_with</span>(
+        <span class="kw">let </span><span class="kw-2">mut </span>exports = Vec::with_capacity(pointers.len());
+        <span class="kw">for </span>(idx, <span class="kw-2">&amp;</span>ptr) <span class="kw">in </span>pointers.iter().enumerate() {
+            <span class="kw">if let </span><span class="prelude-val">Ok</span>(export) = bytes.pread_with(
                 <span class="number">0</span>,
-                <span class="ident">ExportCtx</span> {
-                    <span class="ident">ptr</span>,
-                    <span class="ident">idx</span>,
-                    <span class="ident">sections</span>,
-                    <span class="ident">file_alignment</span>,
-                    <span class="ident">addresses</span>,
-                    <span class="ident">ordinals</span>,
-                    <span class="ident">opts</span>: <span class="kw-2">*</span><span class="ident">opts</span>,
+                ExportCtx {
+                    ptr,
+                    idx,
+                    sections,
+                    file_alignment,
+                    addresses,
+                    ordinals,
+                    opts: <span class="kw-2">*</span>opts,
                 },
             ) {
-                <span class="ident">exports</span>.<span class="ident">push</span>(<span class="ident">export</span>);
+                exports.push(export);
             }
         }
 
-        <span class="comment">// TODO: sort + compute size</span>
-        <span class="prelude-val">Ok</span>(<span class="ident">exports</span>)
+        <span class="comment">// TODO: sort + compute size
+        </span><span class="prelude-val">Ok</span>(exports)
     }
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
-<span class="kw">mod</span> <span class="ident">tests</span> {
-    <span class="kw">use</span> <span class="ident"><span class="self">self</span>::data_directories</span>::<span class="kw-2">*</span>;
-    <span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
+<span class="attribute">#[cfg(test)]
+</span><span class="kw">mod </span>tests {
+    <span class="kw">use </span><span class="self">self</span>::data_directories::<span class="kw-2">*</span>;
+    <span class="kw">use super</span>::<span class="kw-2">*</span>;
 
-    <span class="kw">static</span> <span class="ident">CORKAMI_POCS_PE_EXPORTSDATA_EXE</span>: [<span class="ident">u8</span>; <span class="number">0x400</span>] <span class="op">=</span> [
+    <span class="kw">static </span>CORKAMI_POCS_PE_EXPORTSDATA_EXE: [u8; <span class="number">0x400</span>] = [
         <span class="number">0x4d</span>, <span class="number">0x5a</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>,
         <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>,
         <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>,
@@ -1027,42 +1027,42 @@
         <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>,
     ];
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">size_export_directory_table</span>() {
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>size_export_directory_table() {
         <span class="macro">assert_eq!</span>(
-            <span class="ident">::std::mem::size_of</span>::<span class="op">&lt;</span><span class="ident">ExportDirectoryTable</span><span class="op">&gt;</span>(),
-            <span class="ident">SIZEOF_EXPORT_DIRECTORY_TABLE</span>
+            ::std::mem::size_of::&lt;ExportDirectoryTable&gt;(),
+            SIZEOF_EXPORT_DIRECTORY_TABLE
         );
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">parse_export_table</span>() {
-        <span class="kw">let</span> <span class="ident">data_dirs</span> <span class="op">=</span>
-            <span class="ident">DataDirectories::parse</span>(<span class="kw-2">&amp;</span><span class="ident">CORKAMI_POCS_PE_EXPORTSDATA_EXE</span>[..], <span class="number">16</span>, <span class="kw-2">&amp;mut</span> <span class="number">0xb8</span>).<span class="ident">unwrap</span>();
-        <span class="kw">let</span> <span class="ident">export_table</span> <span class="op">=</span> <span class="ident">data_dirs</span>.<span class="ident">get_export_table</span>().<span class="ident">unwrap</span>();
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>parse_export_table() {
+        <span class="kw">let </span>data_dirs =
+            DataDirectories::parse(<span class="kw-2">&amp;</span>CORKAMI_POCS_PE_EXPORTSDATA_EXE[..], <span class="number">16</span>, <span class="kw-2">&amp;mut </span><span class="number">0xb8</span>).unwrap();
+        <span class="kw">let </span>export_table = data_dirs.get_export_table().unwrap();
 
-        <span class="macro">assert_eq!</span>(<span class="ident">export_table</span>.<span class="ident">virtual_address</span>, <span class="number">0x10b0</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">export_table</span>.<span class="ident">size</span>, <span class="number">0x0</span>);
+        <span class="macro">assert_eq!</span>(export_table.virtual_address, <span class="number">0x10b0</span>);
+        <span class="macro">assert_eq!</span>(export_table.size, <span class="number">0x0</span>);
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">parse_export_directory</span>() {
-        <span class="kw">let</span> <span class="ident">data_dir</span> <span class="op">=</span> <span class="ident">ExportDirectoryTable::parse</span>(<span class="kw-2">&amp;</span><span class="ident">CORKAMI_POCS_PE_EXPORTSDATA_EXE</span>[..], <span class="number">0x2b0</span>);
-        <span class="macro">assert!</span>(<span class="ident">data_dir</span>.<span class="ident">is_ok</span>());
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>parse_export_directory() {
+        <span class="kw">let </span>data_dir = ExportDirectoryTable::parse(<span class="kw-2">&amp;</span>CORKAMI_POCS_PE_EXPORTSDATA_EXE[..], <span class="number">0x2b0</span>);
+        <span class="macro">assert!</span>(data_dir.is_ok());
 
-        <span class="kw">let</span> <span class="ident">data_dir</span> <span class="op">=</span> <span class="ident">data_dir</span>.<span class="ident">unwrap</span>();
-        <span class="macro">assert_eq!</span>(<span class="ident">data_dir</span>.<span class="ident">export_flags</span>, <span class="number">0x0</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">data_dir</span>.<span class="ident">time_date_stamp</span>, <span class="number">0x0</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">data_dir</span>.<span class="ident">major_version</span>, <span class="number">0x0</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">data_dir</span>.<span class="ident">minor_version</span>, <span class="number">0x0</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">data_dir</span>.<span class="ident">name_rva</span>, <span class="number">0x0</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">data_dir</span>.<span class="ident">ordinal_base</span>, <span class="number">0x0</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">data_dir</span>.<span class="ident">address_table_entries</span>, <span class="number">0x4</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">data_dir</span>.<span class="ident">number_of_name_pointers</span>, <span class="number">0x0</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">data_dir</span>.<span class="ident">export_address_table_rva</span>, <span class="number">0x10e0</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">data_dir</span>.<span class="ident">name_pointer_rva</span>, <span class="number">0x0</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">data_dir</span>.<span class="ident">ordinal_table_rva</span>, <span class="number">0x1100</span>);
+        <span class="kw">let </span>data_dir = data_dir.unwrap();
+        <span class="macro">assert_eq!</span>(data_dir.export_flags, <span class="number">0x0</span>);
+        <span class="macro">assert_eq!</span>(data_dir.time_date_stamp, <span class="number">0x0</span>);
+        <span class="macro">assert_eq!</span>(data_dir.major_version, <span class="number">0x0</span>);
+        <span class="macro">assert_eq!</span>(data_dir.minor_version, <span class="number">0x0</span>);
+        <span class="macro">assert_eq!</span>(data_dir.name_rva, <span class="number">0x0</span>);
+        <span class="macro">assert_eq!</span>(data_dir.ordinal_base, <span class="number">0x0</span>);
+        <span class="macro">assert_eq!</span>(data_dir.address_table_entries, <span class="number">0x4</span>);
+        <span class="macro">assert_eq!</span>(data_dir.number_of_name_pointers, <span class="number">0x0</span>);
+        <span class="macro">assert_eq!</span>(data_dir.export_address_table_rva, <span class="number">0x10e0</span>);
+        <span class="macro">assert_eq!</span>(data_dir.name_pointer_rva, <span class="number">0x0</span>);
+        <span class="macro">assert_eq!</span>(data_dir.ordinal_table_rva, <span class="number">0x1100</span>);
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="goblin" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="goblin" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (77e57db38 2022-10-30)" ></div></body></html>

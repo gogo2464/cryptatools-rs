@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/lingua-1.4.0/src/isocode.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>isocode.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../lingua/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../lingua/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../lingua/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/lingua-1.4.0/src/isocode.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>isocode.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../lingua/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -686,665 +686,665 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either expressed or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */</span>
-
-<span class="kw">use</span> <span class="ident">std::fmt</span>::{<span class="ident">Debug</span>, <span class="ident">Display</span>, <span class="ident">Formatter</span>, <span class="prelude-ty">Result</span>};
-<span class="kw">use</span> <span class="ident">strum_macros::EnumString</span>;
-
-<span class="doccomment">/// This enum specifies the ISO 639-1 code representations for the supported languages.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ISO 639 is a standardized nomenclature used to classify languages.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Eq</span>, <span class="ident">PartialEq</span>, <span class="ident">EnumString</span>)]</span>
-<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::upper_case_acronyms</span>)]</span>
-<span class="attribute">#[<span class="ident">strum</span>(<span class="ident">ascii_case_insensitive</span>)]</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">IsoCode639_1</span> {
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;afrikaans&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-1 code for [`Afrikaans`](crate::language::Language::Afrikaans)</span>
-    <span class="ident">AF</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;arabic&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-1 code for [`Arabic`](crate::language::Language::Arabic)</span>
-    <span class="ident">AR</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;azerbaijani&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-1 code for [`Azerbaijani`](crate::language::Language::Azerbaijani)</span>
-    <span class="ident">AZ</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;belarusian&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-1 code for [`Belarusian`](crate::language::Language::Belarusian)</span>
-    <span class="ident">BE</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;bulgarian&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-1 code for [`Bulgarian`](crate::language::Language::Bulgarian)</span>
-    <span class="ident">BG</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;bengali&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-1 code for [`Bengali`](crate::language::Language::Bengali)</span>
-    <span class="ident">BN</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;bosnian&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-1 code for [`Bosnian`](crate::language::Language::Bosnian)</span>
-    <span class="ident">BS</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;catalan&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-1 code for [`Catalan`](crate::language::Language::Catalan)</span>
-    <span class="ident">CA</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;czech&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-1 code for [`Czech`](crate::language::Language::Czech)</span>
-    <span class="ident">CS</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;welsh&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-1 code for [`Welsh`](crate::language::Language::Welsh)</span>
-    <span class="ident">CY</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;danish&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-1 code for [`Danish`](crate::language::Language::Danish)</span>
-    <span class="ident">DA</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;german&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-1 code for [`German`](crate::language::Language::German)</span>
-    <span class="ident">DE</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;greek&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-1 code for [`Greek`](crate::language::Language::Greek)</span>
-    <span class="ident">EL</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;english&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-1 code for [`English`](crate::language::Language::English)</span>
-    <span class="ident">EN</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;esperanto&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-1 code for [`Esperanto`](crate::language::Language::Esperanto)</span>
-    <span class="ident">EO</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;spanish&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-1 code for [`Spanish`](crate::language::Language::Spanish)</span>
-    <span class="ident">ES</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;estonian&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-1 code for [`Estonian`](crate::language::Language::Estonian)</span>
-    <span class="ident">ET</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;basque&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-1 code for [`Basque`](crate::language::Language::Basque)</span>
-    <span class="ident">EU</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;persian&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-1 code for [`Persian`](crate::language::Language::Persian)</span>
-    <span class="ident">FA</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;finnish&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-1 code for [`Finnish`](crate::language::Language::Finnish)</span>
-    <span class="ident">FI</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;french&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-1 code for [`French`](crate::language::Language::French)</span>
-    <span class="ident">FR</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;irish&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-1 code for [`Irish`](crate::language::Language::Irish)</span>
-    <span class="ident">GA</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;gujarati&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-1 code for [`Gujarati`](crate::language::Language::Gujarati)</span>
-    <span class="ident">GU</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;hebrew&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-1 code for [`Hebrew`](crate::language::Language::Hebrew)</span>
-    <span class="ident">HE</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;hindi&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-1 code for [`Hindi`](crate::language::Language::Hindi)</span>
-    <span class="ident">HI</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;croatian&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-1 code for [`Croatian`](crate::language::Language::Croatian)</span>
-    <span class="ident">HR</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;hungarian&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-1 code for [`Hungarian`](crate::language::Language::Hungarian)</span>
-    <span class="ident">HU</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;armenian&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-1 code for [`Armenian`](crate::language::Language::Armenian)</span>
-    <span class="ident">HY</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;indonesian&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-1 code for [`Indonesian`](crate::language::Language::Indonesian)</span>
-    <span class="ident">ID</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;icelandic&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-1 code for [`Icelandic`](crate::language::Language::Icelandic)</span>
-    <span class="ident">IS</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;italian&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-1 code for [`Italian`](crate::language::Language::Italian)</span>
-    <span class="ident">IT</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;japanese&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-1 code for [`Japanese`](crate::language::Language::Japanese)</span>
-    <span class="ident">JA</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;georgian&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-1 code for [`Georgian`](crate::language::Language::Georgian)</span>
-    <span class="ident">KA</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;kazakh&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-1 code for [`Kazakh`](crate::language::Language::Kazakh)</span>
-    <span class="ident">KK</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;korean&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-1 code for [`Korean`](crate::language::Language::Korean)</span>
-    <span class="ident">KO</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;latin&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-1 code for [`Latin`](crate::language::Language::Latin)</span>
-    <span class="ident">LA</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;ganda&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-1 code for [`Ganda`](crate::language::Language::Ganda)</span>
-    <span class="ident">LG</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;lithuanian&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-1 code for [`Lithuanian`](crate::language::Language::Lithuanian)</span>
-    <span class="ident">LT</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;latvian&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-1 code for [`Latvian`](crate::language::Language::Latvian)</span>
-    <span class="ident">LV</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;maori&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-1 code for [`Maori`](crate::language::Language::Maori)</span>
-    <span class="ident">MI</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;macedonian&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-1 code for [`Macedonian`](crate::language::Language::Macedonian)</span>
-    <span class="ident">MK</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;mongolian&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-1 code for [`Mongolian`](crate::language::Language::Mongolian)</span>
-    <span class="ident">MN</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;marathi&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-1 code for [`Marathi`](crate::language::Language::Marathi)</span>
-    <span class="ident">MR</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;malay&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-1 code for [`Malay`](crate::language::Language::Malay)</span>
-    <span class="ident">MS</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;bokmal&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-1 code for [`Norwegian Bokmal`](crate::language::Language::Bokmal)</span>
-    <span class="ident">NB</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dutch&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-1 code for [`Dutch`](crate::language::Language::Dutch)</span>
-    <span class="ident">NL</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;nynorsk&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-1 code for [`Norwegian Nynorsk`](crate::language::Language::Nynorsk)</span>
-    <span class="ident">NN</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;punjabi&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-1 code for [`Punjabi`](crate::language::Language::Punjabi)</span>
-    <span class="ident">PA</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;polish&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-1 code for [`Polish`](crate::language::Language::Polish)</span>
-    <span class="ident">PL</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;portuguese&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-1 code for [`Portuguese`](crate::language::Language::Portuguese)</span>
-    <span class="ident">PT</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;romanian&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-1 code for [`Romanian`](crate::language::Language::Romanian)</span>
-    <span class="ident">RO</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;russian&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-1 code for [`Russian`](crate::language::Language::Russian)</span>
-    <span class="ident">RU</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;slovak&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-1 code for [`Slovak`](crate::language::Language::Slovak)</span>
-    <span class="ident">SK</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;slovene&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-1 code for [`Slovene`](crate::language::Language::Slovene)</span>
-    <span class="ident">SL</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;shona&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-1 code for [`Shona`](crate::language::Language::Shona)</span>
-    <span class="ident">SN</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;somali&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-1 code for [`Somali`](crate::language::Language::Somali)</span>
-    <span class="ident">SO</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;albanian&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-1 code for [`Albanian`](crate::language::Language::Albanian)</span>
-    <span class="ident">SQ</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serbian&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-1 code for [`Serbian`](crate::language::Language::Serbian)</span>
-    <span class="ident">SR</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;sotho&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-1 code for [`Sotho`](crate::language::Language::Sotho)</span>
-    <span class="ident">ST</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;swedish&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-1 code for [`Swedish`](crate::language::Language::Swedish)</span>
-    <span class="ident">SV</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;swahili&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-1 code for [`Swahili`](crate::language::Language::Swahili)</span>
-    <span class="ident">SW</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;tamil&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-1 code for [`Tamil`](crate::language::Language::Tamil)</span>
-    <span class="ident">TA</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;telugu&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-1 code for [`Telugu`](crate::language::Language::Telugu)</span>
-    <span class="ident">TE</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;thai&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-1 code for [`Thai`](crate::language::Language::Thai)</span>
-    <span class="ident">TH</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;tagalog&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-1 code for [`Tagalog`](crate::language::Language::Tagalog)</span>
-    <span class="ident">TL</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;tswana&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-1 code for [`Tswana`](crate::language::Language::Tswana)</span>
-    <span class="ident">TN</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;turkish&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-1 code for [`Turkish`](crate::language::Language::Turkish)</span>
-    <span class="ident">TR</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;tsonga&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-1 code for [`Tsonga`](crate::language::Language::Tsonga)</span>
-    <span class="ident">TS</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;ukrainian&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-1 code for [`Ukrainian`](crate::language::Language::Ukrainian)</span>
-    <span class="ident">UK</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;urdu&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-1 code for [`Urdu`](crate::language::Language::Urdu)</span>
-    <span class="ident">UR</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;vietnamese&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-1 code for [`Vietnamese`](crate::language::Language::Vietnamese)</span>
-    <span class="ident">VI</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xhosa&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-1 code for [`Xhosa`](crate::language::Language::Xhosa)</span>
-    <span class="ident">XH</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;yoruba&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-1 code for [`Yoruba`](crate::language::Language::Yoruba)</span>
-    <span class="ident">YO</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;chinese&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-1 code for [`Chinese`](crate::language::Language::Chinese)</span>
-    <span class="ident">ZH</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;zulu&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-1 code for [`Zulu`](crate::language::Language::Zulu)</span>
-    <span class="ident">ZU</span>,
+ */
+
+</span><span class="kw">use </span>std::fmt::{Debug, Display, Formatter, <span class="prelude-ty">Result</span>};
+<span class="kw">use </span>strum_macros::EnumString;
+
+<span class="doccomment">/// This enum specifies the ISO 639-1 code representations for the supported languages.
+///
+/// ISO 639 is a standardized nomenclature used to classify languages.
+</span><span class="attribute">#[derive(Debug, Eq, PartialEq, EnumString)]
+#[allow(clippy::upper_case_acronyms)]
+#[strum(ascii_case_insensitive)]
+</span><span class="kw">pub enum </span>IsoCode639_1 {
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;afrikaans&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-1 code for [`Afrikaans`](crate::language::Language::Afrikaans)
+    </span>AF,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;arabic&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-1 code for [`Arabic`](crate::language::Language::Arabic)
+    </span>AR,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;azerbaijani&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-1 code for [`Azerbaijani`](crate::language::Language::Azerbaijani)
+    </span>AZ,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;belarusian&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-1 code for [`Belarusian`](crate::language::Language::Belarusian)
+    </span>BE,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;bulgarian&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-1 code for [`Bulgarian`](crate::language::Language::Bulgarian)
+    </span>BG,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;bengali&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-1 code for [`Bengali`](crate::language::Language::Bengali)
+    </span>BN,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;bosnian&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-1 code for [`Bosnian`](crate::language::Language::Bosnian)
+    </span>BS,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;catalan&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-1 code for [`Catalan`](crate::language::Language::Catalan)
+    </span>CA,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;czech&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-1 code for [`Czech`](crate::language::Language::Czech)
+    </span>CS,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;welsh&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-1 code for [`Welsh`](crate::language::Language::Welsh)
+    </span>CY,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;danish&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-1 code for [`Danish`](crate::language::Language::Danish)
+    </span>DA,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;german&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-1 code for [`German`](crate::language::Language::German)
+    </span>DE,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;greek&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-1 code for [`Greek`](crate::language::Language::Greek)
+    </span>EL,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;english&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-1 code for [`English`](crate::language::Language::English)
+    </span>EN,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;esperanto&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-1 code for [`Esperanto`](crate::language::Language::Esperanto)
+    </span>EO,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;spanish&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-1 code for [`Spanish`](crate::language::Language::Spanish)
+    </span>ES,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;estonian&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-1 code for [`Estonian`](crate::language::Language::Estonian)
+    </span>ET,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;basque&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-1 code for [`Basque`](crate::language::Language::Basque)
+    </span>EU,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;persian&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-1 code for [`Persian`](crate::language::Language::Persian)
+    </span>FA,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;finnish&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-1 code for [`Finnish`](crate::language::Language::Finnish)
+    </span>FI,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;french&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-1 code for [`French`](crate::language::Language::French)
+    </span>FR,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;irish&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-1 code for [`Irish`](crate::language::Language::Irish)
+    </span>GA,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;gujarati&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-1 code for [`Gujarati`](crate::language::Language::Gujarati)
+    </span>GU,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;hebrew&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-1 code for [`Hebrew`](crate::language::Language::Hebrew)
+    </span>HE,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;hindi&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-1 code for [`Hindi`](crate::language::Language::Hindi)
+    </span>HI,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;croatian&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-1 code for [`Croatian`](crate::language::Language::Croatian)
+    </span>HR,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;hungarian&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-1 code for [`Hungarian`](crate::language::Language::Hungarian)
+    </span>HU,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;armenian&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-1 code for [`Armenian`](crate::language::Language::Armenian)
+    </span>HY,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;indonesian&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-1 code for [`Indonesian`](crate::language::Language::Indonesian)
+    </span>ID,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;icelandic&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-1 code for [`Icelandic`](crate::language::Language::Icelandic)
+    </span>IS,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;italian&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-1 code for [`Italian`](crate::language::Language::Italian)
+    </span>IT,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;japanese&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-1 code for [`Japanese`](crate::language::Language::Japanese)
+    </span>JA,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;georgian&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-1 code for [`Georgian`](crate::language::Language::Georgian)
+    </span>KA,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;kazakh&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-1 code for [`Kazakh`](crate::language::Language::Kazakh)
+    </span>KK,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;korean&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-1 code for [`Korean`](crate::language::Language::Korean)
+    </span>KO,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;latin&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-1 code for [`Latin`](crate::language::Language::Latin)
+    </span>LA,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;ganda&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-1 code for [`Ganda`](crate::language::Language::Ganda)
+    </span>LG,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;lithuanian&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-1 code for [`Lithuanian`](crate::language::Language::Lithuanian)
+    </span>LT,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;latvian&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-1 code for [`Latvian`](crate::language::Language::Latvian)
+    </span>LV,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;maori&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-1 code for [`Maori`](crate::language::Language::Maori)
+    </span>MI,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;macedonian&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-1 code for [`Macedonian`](crate::language::Language::Macedonian)
+    </span>MK,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;mongolian&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-1 code for [`Mongolian`](crate::language::Language::Mongolian)
+    </span>MN,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;marathi&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-1 code for [`Marathi`](crate::language::Language::Marathi)
+    </span>MR,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;malay&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-1 code for [`Malay`](crate::language::Language::Malay)
+    </span>MS,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;bokmal&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-1 code for [`Norwegian Bokmal`](crate::language::Language::Bokmal)
+    </span>NB,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;dutch&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-1 code for [`Dutch`](crate::language::Language::Dutch)
+    </span>NL,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;nynorsk&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-1 code for [`Norwegian Nynorsk`](crate::language::Language::Nynorsk)
+    </span>NN,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;punjabi&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-1 code for [`Punjabi`](crate::language::Language::Punjabi)
+    </span>PA,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;polish&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-1 code for [`Polish`](crate::language::Language::Polish)
+    </span>PL,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;portuguese&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-1 code for [`Portuguese`](crate::language::Language::Portuguese)
+    </span>PT,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;romanian&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-1 code for [`Romanian`](crate::language::Language::Romanian)
+    </span>RO,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;russian&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-1 code for [`Russian`](crate::language::Language::Russian)
+    </span>RU,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;slovak&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-1 code for [`Slovak`](crate::language::Language::Slovak)
+    </span>SK,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;slovene&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-1 code for [`Slovene`](crate::language::Language::Slovene)
+    </span>SL,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;shona&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-1 code for [`Shona`](crate::language::Language::Shona)
+    </span>SN,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;somali&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-1 code for [`Somali`](crate::language::Language::Somali)
+    </span>SO,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;albanian&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-1 code for [`Albanian`](crate::language::Language::Albanian)
+    </span>SQ,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;serbian&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-1 code for [`Serbian`](crate::language::Language::Serbian)
+    </span>SR,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;sotho&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-1 code for [`Sotho`](crate::language::Language::Sotho)
+    </span>ST,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;swedish&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-1 code for [`Swedish`](crate::language::Language::Swedish)
+    </span>SV,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;swahili&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-1 code for [`Swahili`](crate::language::Language::Swahili)
+    </span>SW,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;tamil&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-1 code for [`Tamil`](crate::language::Language::Tamil)
+    </span>TA,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;telugu&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-1 code for [`Telugu`](crate::language::Language::Telugu)
+    </span>TE,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;thai&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-1 code for [`Thai`](crate::language::Language::Thai)
+    </span>TH,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;tagalog&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-1 code for [`Tagalog`](crate::language::Language::Tagalog)
+    </span>TL,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;tswana&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-1 code for [`Tswana`](crate::language::Language::Tswana)
+    </span>TN,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;turkish&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-1 code for [`Turkish`](crate::language::Language::Turkish)
+    </span>TR,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;tsonga&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-1 code for [`Tsonga`](crate::language::Language::Tsonga)
+    </span>TS,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;ukrainian&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-1 code for [`Ukrainian`](crate::language::Language::Ukrainian)
+    </span>UK,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;urdu&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-1 code for [`Urdu`](crate::language::Language::Urdu)
+    </span>UR,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;vietnamese&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-1 code for [`Vietnamese`](crate::language::Language::Vietnamese)
+    </span>VI,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;xhosa&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-1 code for [`Xhosa`](crate::language::Language::Xhosa)
+    </span>XH,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;yoruba&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-1 code for [`Yoruba`](crate::language::Language::Yoruba)
+    </span>YO,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;chinese&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-1 code for [`Chinese`](crate::language::Language::Chinese)
+    </span>ZH,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;zulu&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-1 code for [`Zulu`](crate::language::Language::Zulu)
+    </span>ZU,
 }
 
-<span class="doccomment">/// This enum specifies the ISO 639-3 code representations for the supported languages.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ISO 639 is a standardized nomenclature used to classify languages.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Eq</span>, <span class="ident">PartialEq</span>, <span class="ident">EnumString</span>)]</span>
-<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::upper_case_acronyms</span>)]</span>
-<span class="attribute">#[<span class="ident">strum</span>(<span class="ident">ascii_case_insensitive</span>)]</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">IsoCode639_3</span> {
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;afrikaans&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-3 code for [`Afrikaans`](crate::language::Language::Afrikaans)</span>
-    <span class="ident">AFR</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;arabic&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-3 code for [`Arabic`](crate::language::Language::Arabic)</span>
-    <span class="ident">ARA</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;azerbaijani&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-3 code for [`Azerbaijani`](crate::language::Language::Azerbaijani)</span>
-    <span class="ident">AZE</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;belarusian&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-3 code for [`Belarusian`](crate::language::Language::Belarusian)</span>
-    <span class="ident">BEL</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;bengali&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-3 code for [`Bengali`](crate::language::Language::Bengali)</span>
-    <span class="ident">BEN</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;bosnian&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-3 code for [`Bosnian`](crate::language::Language::Bosnian)</span>
-    <span class="ident">BOS</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;bulgarian&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-3 code for [`Bulgarian`](crate::language::Language::Bulgarian)</span>
-    <span class="ident">BUL</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;catalan&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-3 code for [`Catalan`](crate::language::Language::Catalan)</span>
-    <span class="ident">CAT</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;czech&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-3 code for [`Czech`](crate::language::Language::Czech)</span>
-    <span class="ident">CES</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;welsh&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-3 code for [`Welsh`](crate::language::Language::Welsh)</span>
-    <span class="ident">CYM</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;danish&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-3 code for [`Danish`](crate::language::Language::Danish)</span>
-    <span class="ident">DAN</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;german&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-3 code for [`German`](crate::language::Language::German)</span>
-    <span class="ident">DEU</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;greek&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-3 code for [`Greek`](crate::language::Language::Greek)</span>
-    <span class="ident">ELL</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;english&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-3 code for [`English`](crate::language::Language::English)</span>
-    <span class="ident">ENG</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;esperanto&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-3 code for [`Esperanto`](crate::language::Language::Esperanto)</span>
-    <span class="ident">EPO</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;estonian&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-3 code for [`Estonian`](crate::language::Language::Estonian)</span>
-    <span class="ident">EST</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;basque&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-3 code for [`Basque`](crate::language::Language::Basque)</span>
-    <span class="ident">EUS</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;persian&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-3 code for [`Persian`](crate::language::Language::Persian)</span>
-    <span class="ident">FAS</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;finnish&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-3 code for [`Finnish`](crate::language::Language::Finnish)</span>
-    <span class="ident">FIN</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;french&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-3 code for [`French`](crate::language::Language::French)</span>
-    <span class="ident">FRA</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;irish&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-3 code for [`Irish`](crate::language::Language::Irish)</span>
-    <span class="ident">GLE</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;gujarati&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-3 code for [`Gujarati`](crate::language::Language::Gujarati)</span>
-    <span class="ident">GUJ</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;hebrew&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-3 code for [`Hebrew`](crate::language::Language::Hebrew)</span>
-    <span class="ident">HEB</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;hindi&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-3 code for [`Hindi`](crate::language::Language::Hindi)</span>
-    <span class="ident">HIN</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;croatian&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-3 code for [`Croatian`](crate::language::Language::Croatian)</span>
-    <span class="ident">HRV</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;hungarian&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-3 code for [`Hungarian`](crate::language::Language::Hungarian)</span>
-    <span class="ident">HUN</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;armenian&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-3 code for [`Armenian`](crate::language::Language::Armenian)</span>
-    <span class="ident">HYE</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;indonesian&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-3 code for [`Indonesian`](crate::language::Language::Indonesian)</span>
-    <span class="ident">IND</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;icelandic&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-3 code for [`Icelandic`](crate::language::Language::Icelandic)</span>
-    <span class="ident">ISL</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;italian&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-3 code for [`Italian`](crate::language::Language::Italian)</span>
-    <span class="ident">ITA</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;japanese&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-3 code for [`Japanese`](crate::language::Language::Japanese)</span>
-    <span class="ident">JPN</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;georgian&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-3 code for [`Georgian`](crate::language::Language::Georgian)</span>
-    <span class="ident">KAT</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;kazakh&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-3 code for [`Kazakh`](crate::language::Language::Kazakh)</span>
-    <span class="ident">KAZ</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;korean&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-3 code for [`Korean`](crate::language::Language::Korean)</span>
-    <span class="ident">KOR</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;latin&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-3 code for [`Latin`](crate::language::Language::Latin)</span>
-    <span class="ident">LAT</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;latvian&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-3 code for [`Latvian`](crate::language::Language::Latvian)</span>
-    <span class="ident">LAV</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;lithuanian&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-3 code for [`Lithuanian`](crate::language::Language::Lithuanian)</span>
-    <span class="ident">LIT</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;ganda&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-3 code for [`Ganda`](crate::language::Language::Ganda)</span>
-    <span class="ident">LUG</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;marathi&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-3 code for [`Marathi`](crate::language::Language::Marathi)</span>
-    <span class="ident">MAR</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;macedonian&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-3 code for [`Macedonian`](crate::language::Language::Macedonian)</span>
-    <span class="ident">MKD</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;mongolian&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-3 code for [`Mongolian`](crate::language::Language::Mongolian)</span>
-    <span class="ident">MON</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;maori&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-3 code for [`Maori`](crate::language::Language::Maori)</span>
-    <span class="ident">MRI</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;malay&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-3 code for [`Malay`](crate::language::Language::Malay)</span>
-    <span class="ident">MSA</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dutch&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-3 code for [`Dutch`](crate::language::Language::Dutch)</span>
-    <span class="ident">NLD</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;nynorsk&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-3 code for [`Norwegian Nynorsk`](crate::language::Language::Nynorsk)</span>
-    <span class="ident">NNO</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;bokmal&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-3 code for [`Norwegian Bokmal`](crate::language::Language::Bokmal)</span>
-    <span class="ident">NOB</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;punjabi&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-3 code for [`Punjabi`](crate::language::Language::Punjabi)</span>
-    <span class="ident">PAN</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;polish&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-3 code for [`Polish`](crate::language::Language::Polish)</span>
-    <span class="ident">POL</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;portuguese&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-3 code for [`Portuguese`](crate::language::Language::Portuguese)</span>
-    <span class="ident">POR</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;romanian&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-3 code for [`Romanian`](crate::language::Language::Romanian)</span>
-    <span class="ident">RON</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;russian&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-3 code for [`Russian`](crate::language::Language::Russian)</span>
-    <span class="ident">RUS</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;slovak&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-3 code for [`Slovak`](crate::language::Language::Slovak)</span>
-    <span class="ident">SLK</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;slovene&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-3 code for [`Slovene`](crate::language::Language::Slovene)</span>
-    <span class="ident">SLV</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;shona&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-3 code for [`Shona`](crate::language::Language::Shona)</span>
-    <span class="ident">SNA</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;somali&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-3 code for [`Somali`](crate::language::Language::Somali)</span>
-    <span class="ident">SOM</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;sotho&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-3 code for [`Sotho`](crate::language::Language::Sotho)</span>
-    <span class="ident">SOT</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;spanish&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-3 code for [`Spanish`](crate::language::Language::Spanish)</span>
-    <span class="ident">SPA</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;albanian&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-3 code for [`Albanian`](crate::language::Language::Albanian)</span>
-    <span class="ident">SQI</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serbian&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-3 code for [`Serbian`](crate::language::Language::Serbian)</span>
-    <span class="ident">SRP</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;swahili&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-3 code for [`Swahili`](crate::language::Language::Swahili)</span>
-    <span class="ident">SWA</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;swedish&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-3 code for [`Swedish`](crate::language::Language::Swedish)</span>
-    <span class="ident">SWE</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;tamil&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-3 code for [`Tamil`](crate::language::Language::Tamil)</span>
-    <span class="ident">TAM</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;telugu&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-3 code for [`Telugu`](crate::language::Language::Telugu)</span>
-    <span class="ident">TEL</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;tagalog&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-3 code for [`Tagalog`](crate::language::Language::Tagalog)</span>
-    <span class="ident">TGL</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;thai&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-3 code for [`Thai`](crate::language::Language::Thai)</span>
-    <span class="ident">THA</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;tswana&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-3 code for [`Tswana`](crate::language::Language::Tswana)</span>
-    <span class="ident">TSN</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;tsonga&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-3 code for [`Tsonga`](crate::language::Language::Tsonga)</span>
-    <span class="ident">TSO</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;turkish&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-3 code for [`Turkish`](crate::language::Language::Turkish)</span>
-    <span class="ident">TUR</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;ukrainian&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-3 code for [`Ukrainian`](crate::language::Language::Ukrainian)</span>
-    <span class="ident">UKR</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;urdu&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-3 code for [`Urdu`](crate::language::Language::Urdu)</span>
-    <span class="ident">URD</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;vietnamese&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-3 code for [`Vietnamese`](crate::language::Language::Vietnamese)</span>
-    <span class="ident">VIE</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xhosa&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-3 code for [`Xhosa`](crate::language::Language::Xhosa)</span>
-    <span class="ident">XHO</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;yoruba&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-3 code for [`Yoruba`](crate::language::Language::Yoruba)</span>
-    <span class="ident">YOR</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;chinese&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-3 code for [`Chinese`](crate::language::Language::Chinese)</span>
-    <span class="ident">ZHO</span>,
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;zulu&quot;</span>)]</span>
-    <span class="doccomment">/// The ISO 639-3 code for [`Zulu`](crate::language::Language::Zulu)</span>
-    <span class="ident">ZUL</span>,
+<span class="doccomment">/// This enum specifies the ISO 639-3 code representations for the supported languages.
+///
+/// ISO 639 is a standardized nomenclature used to classify languages.
+</span><span class="attribute">#[derive(Debug, Eq, PartialEq, EnumString)]
+#[allow(clippy::upper_case_acronyms)]
+#[strum(ascii_case_insensitive)]
+</span><span class="kw">pub enum </span>IsoCode639_3 {
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;afrikaans&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-3 code for [`Afrikaans`](crate::language::Language::Afrikaans)
+    </span>AFR,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;arabic&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-3 code for [`Arabic`](crate::language::Language::Arabic)
+    </span>ARA,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;azerbaijani&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-3 code for [`Azerbaijani`](crate::language::Language::Azerbaijani)
+    </span>AZE,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;belarusian&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-3 code for [`Belarusian`](crate::language::Language::Belarusian)
+    </span>BEL,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;bengali&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-3 code for [`Bengali`](crate::language::Language::Bengali)
+    </span>BEN,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;bosnian&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-3 code for [`Bosnian`](crate::language::Language::Bosnian)
+    </span>BOS,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;bulgarian&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-3 code for [`Bulgarian`](crate::language::Language::Bulgarian)
+    </span>BUL,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;catalan&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-3 code for [`Catalan`](crate::language::Language::Catalan)
+    </span>CAT,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;czech&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-3 code for [`Czech`](crate::language::Language::Czech)
+    </span>CES,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;welsh&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-3 code for [`Welsh`](crate::language::Language::Welsh)
+    </span>CYM,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;danish&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-3 code for [`Danish`](crate::language::Language::Danish)
+    </span>DAN,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;german&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-3 code for [`German`](crate::language::Language::German)
+    </span>DEU,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;greek&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-3 code for [`Greek`](crate::language::Language::Greek)
+    </span>ELL,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;english&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-3 code for [`English`](crate::language::Language::English)
+    </span>ENG,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;esperanto&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-3 code for [`Esperanto`](crate::language::Language::Esperanto)
+    </span>EPO,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;estonian&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-3 code for [`Estonian`](crate::language::Language::Estonian)
+    </span>EST,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;basque&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-3 code for [`Basque`](crate::language::Language::Basque)
+    </span>EUS,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;persian&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-3 code for [`Persian`](crate::language::Language::Persian)
+    </span>FAS,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;finnish&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-3 code for [`Finnish`](crate::language::Language::Finnish)
+    </span>FIN,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;french&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-3 code for [`French`](crate::language::Language::French)
+    </span>FRA,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;irish&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-3 code for [`Irish`](crate::language::Language::Irish)
+    </span>GLE,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;gujarati&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-3 code for [`Gujarati`](crate::language::Language::Gujarati)
+    </span>GUJ,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;hebrew&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-3 code for [`Hebrew`](crate::language::Language::Hebrew)
+    </span>HEB,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;hindi&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-3 code for [`Hindi`](crate::language::Language::Hindi)
+    </span>HIN,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;croatian&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-3 code for [`Croatian`](crate::language::Language::Croatian)
+    </span>HRV,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;hungarian&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-3 code for [`Hungarian`](crate::language::Language::Hungarian)
+    </span>HUN,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;armenian&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-3 code for [`Armenian`](crate::language::Language::Armenian)
+    </span>HYE,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;indonesian&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-3 code for [`Indonesian`](crate::language::Language::Indonesian)
+    </span>IND,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;icelandic&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-3 code for [`Icelandic`](crate::language::Language::Icelandic)
+    </span>ISL,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;italian&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-3 code for [`Italian`](crate::language::Language::Italian)
+    </span>ITA,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;japanese&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-3 code for [`Japanese`](crate::language::Language::Japanese)
+    </span>JPN,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;georgian&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-3 code for [`Georgian`](crate::language::Language::Georgian)
+    </span>KAT,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;kazakh&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-3 code for [`Kazakh`](crate::language::Language::Kazakh)
+    </span>KAZ,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;korean&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-3 code for [`Korean`](crate::language::Language::Korean)
+    </span>KOR,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;latin&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-3 code for [`Latin`](crate::language::Language::Latin)
+    </span>LAT,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;latvian&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-3 code for [`Latvian`](crate::language::Language::Latvian)
+    </span>LAV,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;lithuanian&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-3 code for [`Lithuanian`](crate::language::Language::Lithuanian)
+    </span>LIT,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;ganda&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-3 code for [`Ganda`](crate::language::Language::Ganda)
+    </span>LUG,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;marathi&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-3 code for [`Marathi`](crate::language::Language::Marathi)
+    </span>MAR,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;macedonian&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-3 code for [`Macedonian`](crate::language::Language::Macedonian)
+    </span>MKD,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;mongolian&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-3 code for [`Mongolian`](crate::language::Language::Mongolian)
+    </span>MON,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;maori&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-3 code for [`Maori`](crate::language::Language::Maori)
+    </span>MRI,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;malay&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-3 code for [`Malay`](crate::language::Language::Malay)
+    </span>MSA,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;dutch&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-3 code for [`Dutch`](crate::language::Language::Dutch)
+    </span>NLD,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;nynorsk&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-3 code for [`Norwegian Nynorsk`](crate::language::Language::Nynorsk)
+    </span>NNO,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;bokmal&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-3 code for [`Norwegian Bokmal`](crate::language::Language::Bokmal)
+    </span>NOB,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;punjabi&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-3 code for [`Punjabi`](crate::language::Language::Punjabi)
+    </span>PAN,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;polish&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-3 code for [`Polish`](crate::language::Language::Polish)
+    </span>POL,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;portuguese&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-3 code for [`Portuguese`](crate::language::Language::Portuguese)
+    </span>POR,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;romanian&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-3 code for [`Romanian`](crate::language::Language::Romanian)
+    </span>RON,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;russian&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-3 code for [`Russian`](crate::language::Language::Russian)
+    </span>RUS,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;slovak&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-3 code for [`Slovak`](crate::language::Language::Slovak)
+    </span>SLK,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;slovene&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-3 code for [`Slovene`](crate::language::Language::Slovene)
+    </span>SLV,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;shona&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-3 code for [`Shona`](crate::language::Language::Shona)
+    </span>SNA,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;somali&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-3 code for [`Somali`](crate::language::Language::Somali)
+    </span>SOM,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;sotho&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-3 code for [`Sotho`](crate::language::Language::Sotho)
+    </span>SOT,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;spanish&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-3 code for [`Spanish`](crate::language::Language::Spanish)
+    </span>SPA,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;albanian&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-3 code for [`Albanian`](crate::language::Language::Albanian)
+    </span>SQI,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;serbian&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-3 code for [`Serbian`](crate::language::Language::Serbian)
+    </span>SRP,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;swahili&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-3 code for [`Swahili`](crate::language::Language::Swahili)
+    </span>SWA,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;swedish&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-3 code for [`Swedish`](crate::language::Language::Swedish)
+    </span>SWE,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;tamil&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-3 code for [`Tamil`](crate::language::Language::Tamil)
+    </span>TAM,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;telugu&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-3 code for [`Telugu`](crate::language::Language::Telugu)
+    </span>TEL,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;tagalog&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-3 code for [`Tagalog`](crate::language::Language::Tagalog)
+    </span>TGL,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;thai&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-3 code for [`Thai`](crate::language::Language::Thai)
+    </span>THA,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;tswana&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-3 code for [`Tswana`](crate::language::Language::Tswana)
+    </span>TSN,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;tsonga&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-3 code for [`Tsonga`](crate::language::Language::Tsonga)
+    </span>TSO,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;turkish&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-3 code for [`Turkish`](crate::language::Language::Turkish)
+    </span>TUR,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;ukrainian&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-3 code for [`Ukrainian`](crate::language::Language::Ukrainian)
+    </span>UKR,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;urdu&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-3 code for [`Urdu`](crate::language::Language::Urdu)
+    </span>URD,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;vietnamese&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-3 code for [`Vietnamese`](crate::language::Language::Vietnamese)
+    </span>VIE,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;xhosa&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-3 code for [`Xhosa`](crate::language::Language::Xhosa)
+    </span>XHO,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;yoruba&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-3 code for [`Yoruba`](crate::language::Language::Yoruba)
+    </span>YOR,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;chinese&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-3 code for [`Chinese`](crate::language::Language::Chinese)
+    </span>ZHO,
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;zulu&quot;</span>)]
+    </span><span class="doccomment">/// The ISO 639-3 code for [`Zulu`](crate::language::Language::Zulu)
+    </span>ZUL,
 }
 
-<span class="kw">impl</span> <span class="ident">Display</span> <span class="kw">for</span> <span class="ident">IsoCode639_1</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Result</span> {
-        <span class="kw">let</span> <span class="ident">debug_repr</span> <span class="op">=</span> <span class="macro">format!</span>(<span class="string">&quot;{:?}&quot;</span>, <span class="self">self</span>);
-        <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;{}&quot;</span>, <span class="ident">debug_repr</span>.<span class="ident">to_lowercase</span>())
-    }
-}
-
-<span class="kw">impl</span> <span class="ident">Display</span> <span class="kw">for</span> <span class="ident">IsoCode639_3</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Result</span> {
-        <span class="kw">let</span> <span class="ident">debug_repr</span> <span class="op">=</span> <span class="macro">format!</span>(<span class="string">&quot;{:?}&quot;</span>, <span class="self">self</span>);
-        <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;{}&quot;</span>, <span class="ident">debug_repr</span>.<span class="ident">to_lowercase</span>())
+<span class="kw">impl </span>Display <span class="kw">for </span>IsoCode639_1 {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; <span class="prelude-ty">Result </span>{
+        <span class="kw">let </span>debug_repr = <span class="macro">format!</span>(<span class="string">&quot;{:?}&quot;</span>, <span class="self">self</span>);
+        <span class="macro">write!</span>(f, <span class="string">&quot;{}&quot;</span>, debug_repr.to_lowercase())
     }
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
-<span class="kw">mod</span> <span class="ident">tests</span> {
-    <span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
-    <span class="kw">use</span> <span class="ident">std::str::FromStr</span>;
+<span class="kw">impl </span>Display <span class="kw">for </span>IsoCode639_3 {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; <span class="prelude-ty">Result </span>{
+        <span class="kw">let </span>debug_repr = <span class="macro">format!</span>(<span class="string">&quot;{:?}&quot;</span>, <span class="self">self</span>);
+        <span class="macro">write!</span>(f, <span class="string">&quot;{}&quot;</span>, debug_repr.to_lowercase())
+    }
+}
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">assert_iso_code_639_1_string_representation_is_correct</span>() {
-        <span class="macro">assert_eq!</span>(<span class="ident">IsoCode639_1::EN</span>.<span class="ident">to_string</span>(), <span class="string">&quot;en&quot;</span>);
+<span class="attribute">#[cfg(test)]
+</span><span class="kw">mod </span>tests {
+    <span class="kw">use super</span>::<span class="kw-2">*</span>;
+    <span class="kw">use </span>std::str::FromStr;
+
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>assert_iso_code_639_1_string_representation_is_correct() {
+        <span class="macro">assert_eq!</span>(IsoCode639_1::EN.to_string(), <span class="string">&quot;en&quot;</span>);
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">assert_iso_code_639_3_string_representation_is_correct</span>() {
-        <span class="macro">assert_eq!</span>(<span class="ident">IsoCode639_3::ENG</span>.<span class="ident">to_string</span>(), <span class="string">&quot;eng&quot;</span>);
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>assert_iso_code_639_3_string_representation_is_correct() {
+        <span class="macro">assert_eq!</span>(IsoCode639_3::ENG.to_string(), <span class="string">&quot;eng&quot;</span>);
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">assert_string_to_iso_code_639_1_is_correct</span>() {
-        <span class="macro">assert_eq!</span>(<span class="ident">IsoCode639_1::from_str</span>(<span class="string">&quot;en&quot;</span>).<span class="ident">unwrap</span>(), <span class="ident">IsoCode639_1::EN</span>);
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>assert_string_to_iso_code_639_1_is_correct() {
+        <span class="macro">assert_eq!</span>(IsoCode639_1::from_str(<span class="string">&quot;en&quot;</span>).unwrap(), IsoCode639_1::EN);
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">assert_string_to_iso_code_639_3_is_correct</span>() {
-        <span class="macro">assert_eq!</span>(<span class="ident">IsoCode639_3::from_str</span>(<span class="string">&quot;eng&quot;</span>).<span class="ident">unwrap</span>(), <span class="ident">IsoCode639_3::ENG</span>);
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>assert_string_to_iso_code_639_3_is_correct() {
+        <span class="macro">assert_eq!</span>(IsoCode639_3::from_str(<span class="string">&quot;eng&quot;</span>).unwrap(), IsoCode639_3::ENG);
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="lingua" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="lingua" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (77e57db38 2022-10-30)" ></div></body></html>

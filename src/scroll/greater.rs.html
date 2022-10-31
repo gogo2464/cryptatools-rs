@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/scroll-0.11.0/src/greater.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>greater.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../scroll/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../scroll/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../scroll/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/scroll-0.11.0/src/greater.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>greater.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../scroll/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -167,174 +167,174 @@
 <span id="167">167</span>
 <span id="168">168</span>
 <span id="169">169</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">core::ops</span>::{<span class="ident">Index</span>, <span class="ident">IndexMut</span>, <span class="ident">RangeFrom</span>};
+</pre><pre class="rust"><code><span class="kw">use </span>core::ops::{Index, IndexMut, RangeFrom};
 
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ctx</span>::{<span class="ident">FromCtx</span>, <span class="ident">IntoCtx</span>};
+<span class="kw">use </span><span class="kw">crate</span>::ctx::{FromCtx, IntoCtx};
 
-<span class="doccomment">/// Core-read - core, no_std friendly trait for reading basic traits from byte buffers. Cannot fail</span>
-<span class="doccomment">/// unless the buffer is too small, in which case an assert fires and the program panics.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// If your type implements [FromCtx](ctx/trait.FromCtx.html) then you can `cread::&lt;YourType&gt;(offset)`.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// # Example</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ```rust</span>
-<span class="doccomment">/// use scroll::{ctx, Cread, LE};</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// #[repr(packed)]</span>
-<span class="doccomment">/// struct Bar {</span>
-<span class="doccomment">///     foo: i32,</span>
-<span class="doccomment">///     bar: u32,</span>
-<span class="doccomment">/// }</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// impl ctx::FromCtx&lt;scroll::Endian&gt; for Bar {</span>
-<span class="doccomment">///     fn from_ctx(bytes: &amp;[u8], ctx: scroll::Endian) -&gt; Self {</span>
-<span class="doccomment">///         use scroll::Cread;</span>
-<span class="doccomment">///         Bar { foo: bytes.cread_with(0, ctx), bar: bytes.cread_with(4, ctx) }</span>
-<span class="doccomment">///     }</span>
-<span class="doccomment">/// }</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// let bytes = [0xff, 0xff, 0xff, 0xff, 0xef,0xbe,0xad,0xde,];</span>
-<span class="doccomment">/// let bar = bytes.cread_with::&lt;Bar&gt;(0, LE);</span>
-<span class="doccomment">/// // Remember that you need to copy out fields from packed structs</span>
-<span class="doccomment">/// // with a `{}` block instead of borrowing them directly</span>
-<span class="doccomment">/// // ref: https://github.com/rust-lang/rust/issues/46043</span>
-<span class="doccomment">/// assert_eq!({bar.foo}, -1);</span>
-<span class="doccomment">/// assert_eq!({bar.bar}, 0xdeadbeef);</span>
-<span class="doccomment">/// ```</span>
-<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">Cread</span><span class="op">&lt;</span><span class="ident">Ctx</span>, <span class="ident">I</span> <span class="op">=</span> <span class="ident">usize</span><span class="op">&gt;</span>: <span class="ident">Index</span><span class="op">&lt;</span><span class="ident">I</span><span class="op">&gt;</span> <span class="op">+</span> <span class="ident">Index</span><span class="op">&lt;</span><span class="ident">RangeFrom</span><span class="op">&lt;</span><span class="ident">I</span><span class="op">&gt;</span><span class="op">&gt;</span>
-<span class="kw">where</span>
-    <span class="ident">Ctx</span>: <span class="ident">Copy</span>,
+<span class="doccomment">/// Core-read - core, no_std friendly trait for reading basic traits from byte buffers. Cannot fail
+/// unless the buffer is too small, in which case an assert fires and the program panics.
+///
+/// If your type implements [FromCtx](ctx/trait.FromCtx.html) then you can `cread::&lt;YourType&gt;(offset)`.
+///
+/// # Example
+///
+/// ```rust
+/// use scroll::{ctx, Cread, LE};
+///
+/// #[repr(packed)]
+/// struct Bar {
+///     foo: i32,
+///     bar: u32,
+/// }
+///
+/// impl ctx::FromCtx&lt;scroll::Endian&gt; for Bar {
+///     fn from_ctx(bytes: &amp;[u8], ctx: scroll::Endian) -&gt; Self {
+///         use scroll::Cread;
+///         Bar { foo: bytes.cread_with(0, ctx), bar: bytes.cread_with(4, ctx) }
+///     }
+/// }
+///
+/// let bytes = [0xff, 0xff, 0xff, 0xff, 0xef,0xbe,0xad,0xde,];
+/// let bar = bytes.cread_with::&lt;Bar&gt;(0, LE);
+/// // Remember that you need to copy out fields from packed structs
+/// // with a `{}` block instead of borrowing them directly
+/// // ref: https://github.com/rust-lang/rust/issues/46043
+/// assert_eq!({bar.foo}, -1);
+/// assert_eq!({bar.bar}, 0xdeadbeef);
+/// ```
+</span><span class="kw">pub trait </span>Cread&lt;Ctx, I = usize&gt;: Index&lt;I&gt; + Index&lt;RangeFrom&lt;I&gt;&gt;
+<span class="kw">where
+    </span>Ctx: Copy,
 {
-    <span class="doccomment">/// Reads a value from `Self` at `offset` with `ctx`. Cannot fail.</span>
-    <span class="doccomment">/// If the buffer is too small for the value requested, this will panic.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// # Example</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// ```rust</span>
-    <span class="doccomment">/// use scroll::{Cread, BE, LE};</span>
-    <span class="doccomment">/// use std::i64::MAX;</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// let bytes = [0x7f,0xff,0xff,0xff,0xff,0xff,0xff,0xff, 0xef,0xbe,0xad,0xde,];</span>
-    <span class="doccomment">/// let foo = bytes.cread_with::&lt;i64&gt;(0, BE);</span>
-    <span class="doccomment">/// let bar = bytes.cread_with::&lt;u32&gt;(8, LE);</span>
-    <span class="doccomment">/// assert_eq!(foo, MAX);</span>
-    <span class="doccomment">/// assert_eq!(bar, 0xdeadbeef);</span>
-    <span class="doccomment">/// ```</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">cread_with</span><span class="op">&lt;</span><span class="ident">N</span>: <span class="ident">FromCtx</span><span class="op">&lt;</span><span class="ident">Ctx</span>, <span class="op">&lt;</span><span class="self">Self</span> <span class="kw">as</span> <span class="ident">Index</span><span class="op">&lt;</span><span class="ident">RangeFrom</span><span class="op">&lt;</span><span class="ident">I</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="ident">::Output</span><span class="op">&gt;</span><span class="op">&gt;</span>(
+    <span class="doccomment">/// Reads a value from `Self` at `offset` with `ctx`. Cannot fail.
+    /// If the buffer is too small for the value requested, this will panic.
+    ///
+    /// # Example
+    ///
+    /// ```rust
+    /// use scroll::{Cread, BE, LE};
+    /// use std::i64::MAX;
+    ///
+    /// let bytes = [0x7f,0xff,0xff,0xff,0xff,0xff,0xff,0xff, 0xef,0xbe,0xad,0xde,];
+    /// let foo = bytes.cread_with::&lt;i64&gt;(0, BE);
+    /// let bar = bytes.cread_with::&lt;u32&gt;(8, LE);
+    /// assert_eq!(foo, MAX);
+    /// assert_eq!(bar, 0xdeadbeef);
+    /// ```
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">fn </span>cread_with&lt;N: FromCtx&lt;Ctx, &lt;<span class="self">Self </span><span class="kw">as </span>Index&lt;RangeFrom&lt;I&gt;&gt;&gt;::Output&gt;&gt;(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">offset</span>: <span class="ident">I</span>,
-        <span class="ident">ctx</span>: <span class="ident">Ctx</span>,
-    ) -&gt; <span class="ident">N</span> {
-        <span class="ident">N::from_ctx</span>(<span class="kw-2">&amp;</span><span class="self">self</span>[<span class="ident">offset</span>..], <span class="ident">ctx</span>)
+        offset: I,
+        ctx: Ctx,
+    ) -&gt; N {
+        N::from_ctx(<span class="kw-2">&amp;</span><span class="self">self</span>[offset..], ctx)
     }
-    <span class="doccomment">/// Reads a value implementing `FromCtx` from `Self` at `offset`,</span>
-    <span class="doccomment">/// with the **target machine**&#39;s endianness.</span>
-    <span class="doccomment">/// For the primitive types, this will be the **target machine**&#39;s endianness.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// # Example</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// ```rust</span>
-    <span class="doccomment">/// use scroll::Cread;</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// let bytes = [0x01,0x00,0x00,0x00,0x00,0x00,0x00,0x00, 0xef,0xbe,0x00,0x00,];</span>
-    <span class="doccomment">/// let foo = bytes.cread::&lt;i64&gt;(0);</span>
-    <span class="doccomment">/// let bar = bytes.cread::&lt;u32&gt;(8);</span>
-    <span class="doccomment">/// #[cfg(target_endian = &quot;little&quot;)]</span>
-    <span class="doccomment">/// assert_eq!(foo, 1);</span>
-    <span class="doccomment">/// #[cfg(target_endian = &quot;big&quot;)]</span>
-    <span class="doccomment">/// assert_eq!(foo, 0x100_0000_0000_0000);</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// #[cfg(target_endian = &quot;little&quot;)]</span>
-    <span class="doccomment">/// assert_eq!(bar, 0xbeef);</span>
-    <span class="doccomment">/// #[cfg(target_endian = &quot;big&quot;)]</span>
-    <span class="doccomment">/// assert_eq!(bar, 0xefbe0000);</span>
-    <span class="doccomment">/// ```</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">cread</span><span class="op">&lt;</span><span class="ident">N</span>: <span class="ident">FromCtx</span><span class="op">&lt;</span><span class="ident">Ctx</span>, <span class="op">&lt;</span><span class="self">Self</span> <span class="kw">as</span> <span class="ident">Index</span><span class="op">&lt;</span><span class="ident">RangeFrom</span><span class="op">&lt;</span><span class="ident">I</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="ident">::Output</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">offset</span>: <span class="ident">I</span>) -&gt; <span class="ident">N</span>
-    <span class="kw">where</span>
-        <span class="ident">Ctx</span>: <span class="ident">Default</span>,
+    <span class="doccomment">/// Reads a value implementing `FromCtx` from `Self` at `offset`,
+    /// with the **target machine**&#39;s endianness.
+    /// For the primitive types, this will be the **target machine**&#39;s endianness.
+    ///
+    /// # Example
+    ///
+    /// ```rust
+    /// use scroll::Cread;
+    ///
+    /// let bytes = [0x01,0x00,0x00,0x00,0x00,0x00,0x00,0x00, 0xef,0xbe,0x00,0x00,];
+    /// let foo = bytes.cread::&lt;i64&gt;(0);
+    /// let bar = bytes.cread::&lt;u32&gt;(8);
+    /// #[cfg(target_endian = &quot;little&quot;)]
+    /// assert_eq!(foo, 1);
+    /// #[cfg(target_endian = &quot;big&quot;)]
+    /// assert_eq!(foo, 0x100_0000_0000_0000);
+    ///
+    /// #[cfg(target_endian = &quot;little&quot;)]
+    /// assert_eq!(bar, 0xbeef);
+    /// #[cfg(target_endian = &quot;big&quot;)]
+    /// assert_eq!(bar, 0xefbe0000);
+    /// ```
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">fn </span>cread&lt;N: FromCtx&lt;Ctx, &lt;<span class="self">Self </span><span class="kw">as </span>Index&lt;RangeFrom&lt;I&gt;&gt;&gt;::Output&gt;&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, offset: I) -&gt; N
+    <span class="kw">where
+        </span>Ctx: Default,
     {
-        <span class="kw">let</span> <span class="ident">ctx</span> <span class="op">=</span> <span class="ident">Ctx::default</span>();
-        <span class="ident">N::from_ctx</span>(<span class="kw-2">&amp;</span><span class="self">self</span>[<span class="ident">offset</span>..], <span class="ident">ctx</span>)
+        <span class="kw">let </span>ctx = Ctx::default();
+        N::from_ctx(<span class="kw-2">&amp;</span><span class="self">self</span>[offset..], ctx)
     }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">Ctx</span>: <span class="ident">Copy</span>, <span class="ident">I</span>, <span class="ident">R</span>: <span class="question-mark">?</span><span class="ident">Sized</span> <span class="op">+</span> <span class="ident">Index</span><span class="op">&lt;</span><span class="ident">I</span><span class="op">&gt;</span> <span class="op">+</span> <span class="ident">Index</span><span class="op">&lt;</span><span class="ident">RangeFrom</span><span class="op">&lt;</span><span class="ident">I</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="ident">Cread</span><span class="op">&lt;</span><span class="ident">Ctx</span>, <span class="ident">I</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">R</span> {}
+<span class="kw">impl</span>&lt;Ctx: Copy, I, R: <span class="question-mark">?</span>Sized + Index&lt;I&gt; + Index&lt;RangeFrom&lt;I&gt;&gt;&gt; Cread&lt;Ctx, I&gt; <span class="kw">for </span>R {}
 
-<span class="doccomment">/// Core-write - core, no_std friendly trait for writing basic types into byte buffers. Cannot fail</span>
-<span class="doccomment">/// unless the buffer is too small, in which case an assert fires and the program panics.</span>
-<span class="doccomment">/// Similar to [Cread](trait.Cread.html), if your type implements [IntoCtx](ctx/trait.IntoCtx.html)</span>
-<span class="doccomment">/// then you can `cwrite(your_type, offset)`.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// # Example</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ```rust</span>
-<span class="doccomment">/// use scroll::{ctx, Cwrite};</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// #[repr(packed)]</span>
-<span class="doccomment">/// struct Bar {</span>
-<span class="doccomment">///     foo: i32,</span>
-<span class="doccomment">///     bar: u32,</span>
-<span class="doccomment">/// }</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// impl ctx::IntoCtx&lt;scroll::Endian&gt; for Bar {</span>
-<span class="doccomment">///     fn into_ctx(self, bytes: &amp;mut [u8], ctx: scroll::Endian) {</span>
-<span class="doccomment">///         use scroll::Cwrite;</span>
-<span class="doccomment">///         bytes.cwrite_with(self.foo, 0, ctx);</span>
-<span class="doccomment">///         bytes.cwrite_with(self.bar, 4, ctx);</span>
-<span class="doccomment">///     }</span>
-<span class="doccomment">/// }</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// let bar = Bar { foo: -1, bar: 0xdeadbeef };</span>
-<span class="doccomment">/// let mut bytes = [0x0; 16];</span>
-<span class="doccomment">/// bytes.cwrite::&lt;Bar&gt;(bar, 0);</span>
-<span class="doccomment">/// ```</span>
-<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">Cwrite</span><span class="op">&lt;</span><span class="ident">Ctx</span>: <span class="ident">Copy</span>, <span class="ident">I</span> <span class="op">=</span> <span class="ident">usize</span><span class="op">&gt;</span>: <span class="ident">Index</span><span class="op">&lt;</span><span class="ident">I</span><span class="op">&gt;</span> <span class="op">+</span> <span class="ident">IndexMut</span><span class="op">&lt;</span><span class="ident">RangeFrom</span><span class="op">&lt;</span><span class="ident">I</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// Writes `n` into `Self` at `offset`; uses default context.</span>
-    <span class="doccomment">/// For the primitive types, this will be the **target machine**&#39;s endianness.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// # Example</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// ```</span>
-    <span class="doccomment">/// use scroll::{Cwrite, Cread};</span>
-    <span class="doccomment">/// let mut bytes = [0x0; 16];</span>
-    <span class="doccomment">/// bytes.cwrite::&lt;i64&gt;(42, 0);</span>
-    <span class="doccomment">/// bytes.cwrite::&lt;u32&gt;(0xdeadbeef, 8);</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// assert_eq!(bytes.cread::&lt;i64&gt;(0), 42);</span>
-    <span class="doccomment">/// assert_eq!(bytes.cread::&lt;u32&gt;(8), 0xdeadbeef);</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">cwrite</span><span class="op">&lt;</span><span class="ident">N</span>: <span class="ident">IntoCtx</span><span class="op">&lt;</span><span class="ident">Ctx</span>, <span class="op">&lt;</span><span class="self">Self</span> <span class="kw">as</span> <span class="ident">Index</span><span class="op">&lt;</span><span class="ident">RangeFrom</span><span class="op">&lt;</span><span class="ident">I</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="ident">::Output</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">n</span>: <span class="ident">N</span>, <span class="ident">offset</span>: <span class="ident">I</span>)
-    <span class="kw">where</span>
-        <span class="ident">Ctx</span>: <span class="ident">Default</span>,
+<span class="doccomment">/// Core-write - core, no_std friendly trait for writing basic types into byte buffers. Cannot fail
+/// unless the buffer is too small, in which case an assert fires and the program panics.
+/// Similar to [Cread](trait.Cread.html), if your type implements [IntoCtx](ctx/trait.IntoCtx.html)
+/// then you can `cwrite(your_type, offset)`.
+///
+/// # Example
+///
+/// ```rust
+/// use scroll::{ctx, Cwrite};
+///
+/// #[repr(packed)]
+/// struct Bar {
+///     foo: i32,
+///     bar: u32,
+/// }
+///
+/// impl ctx::IntoCtx&lt;scroll::Endian&gt; for Bar {
+///     fn into_ctx(self, bytes: &amp;mut [u8], ctx: scroll::Endian) {
+///         use scroll::Cwrite;
+///         bytes.cwrite_with(self.foo, 0, ctx);
+///         bytes.cwrite_with(self.bar, 4, ctx);
+///     }
+/// }
+///
+/// let bar = Bar { foo: -1, bar: 0xdeadbeef };
+/// let mut bytes = [0x0; 16];
+/// bytes.cwrite::&lt;Bar&gt;(bar, 0);
+/// ```
+</span><span class="kw">pub trait </span>Cwrite&lt;Ctx: Copy, I = usize&gt;: Index&lt;I&gt; + IndexMut&lt;RangeFrom&lt;I&gt;&gt; {
+    <span class="doccomment">/// Writes `n` into `Self` at `offset`; uses default context.
+    /// For the primitive types, this will be the **target machine**&#39;s endianness.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// use scroll::{Cwrite, Cread};
+    /// let mut bytes = [0x0; 16];
+    /// bytes.cwrite::&lt;i64&gt;(42, 0);
+    /// bytes.cwrite::&lt;u32&gt;(0xdeadbeef, 8);
+    ///
+    /// assert_eq!(bytes.cread::&lt;i64&gt;(0), 42);
+    /// assert_eq!(bytes.cread::&lt;u32&gt;(8), 0xdeadbeef);
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">fn </span>cwrite&lt;N: IntoCtx&lt;Ctx, &lt;<span class="self">Self </span><span class="kw">as </span>Index&lt;RangeFrom&lt;I&gt;&gt;&gt;::Output&gt;&gt;(<span class="kw-2">&amp;mut </span><span class="self">self</span>, n: N, offset: I)
+    <span class="kw">where
+        </span>Ctx: Default,
     {
-        <span class="kw">let</span> <span class="ident">ctx</span> <span class="op">=</span> <span class="ident">Ctx::default</span>();
-        <span class="ident">n</span>.<span class="ident">into_ctx</span>(<span class="self">self</span>.<span class="ident">index_mut</span>(<span class="ident">offset</span>..), <span class="ident">ctx</span>)
+        <span class="kw">let </span>ctx = Ctx::default();
+        n.into_ctx(<span class="self">self</span>.index_mut(offset..), ctx)
     }
-    <span class="doccomment">/// Writes `n` into `Self` at `offset` with `ctx`</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// # Example</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// ```</span>
-    <span class="doccomment">/// use scroll::{Cwrite, Cread, LE, BE};</span>
-    <span class="doccomment">/// let mut bytes = [0x0; 0x10];</span>
-    <span class="doccomment">/// bytes.cwrite_with::&lt;i64&gt;(42, 0, LE);</span>
-    <span class="doccomment">/// bytes.cwrite_with::&lt;u32&gt;(0xdeadbeef, 8, BE);</span>
-    <span class="doccomment">/// assert_eq!(bytes.cread_with::&lt;i64&gt;(0, LE), 42);</span>
-    <span class="doccomment">/// assert_eq!(bytes.cread_with::&lt;u32&gt;(8, LE), 0xefbeadde);</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">cwrite_with</span><span class="op">&lt;</span><span class="ident">N</span>: <span class="ident">IntoCtx</span><span class="op">&lt;</span><span class="ident">Ctx</span>, <span class="op">&lt;</span><span class="self">Self</span> <span class="kw">as</span> <span class="ident">Index</span><span class="op">&lt;</span><span class="ident">RangeFrom</span><span class="op">&lt;</span><span class="ident">I</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="ident">::Output</span><span class="op">&gt;</span><span class="op">&gt;</span>(
-        <span class="kw-2">&amp;mut</span> <span class="self">self</span>,
-        <span class="ident">n</span>: <span class="ident">N</span>,
-        <span class="ident">offset</span>: <span class="ident">I</span>,
-        <span class="ident">ctx</span>: <span class="ident">Ctx</span>,
+    <span class="doccomment">/// Writes `n` into `Self` at `offset` with `ctx`
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// use scroll::{Cwrite, Cread, LE, BE};
+    /// let mut bytes = [0x0; 0x10];
+    /// bytes.cwrite_with::&lt;i64&gt;(42, 0, LE);
+    /// bytes.cwrite_with::&lt;u32&gt;(0xdeadbeef, 8, BE);
+    /// assert_eq!(bytes.cread_with::&lt;i64&gt;(0, LE), 42);
+    /// assert_eq!(bytes.cread_with::&lt;u32&gt;(8, LE), 0xefbeadde);
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">fn </span>cwrite_with&lt;N: IntoCtx&lt;Ctx, &lt;<span class="self">Self </span><span class="kw">as </span>Index&lt;RangeFrom&lt;I&gt;&gt;&gt;::Output&gt;&gt;(
+        <span class="kw-2">&amp;mut </span><span class="self">self</span>,
+        n: N,
+        offset: I,
+        ctx: Ctx,
     ) {
-        <span class="ident">n</span>.<span class="ident">into_ctx</span>(<span class="self">self</span>.<span class="ident">index_mut</span>(<span class="ident">offset</span>..), <span class="ident">ctx</span>)
+        n.into_ctx(<span class="self">self</span>.index_mut(offset..), ctx)
     }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">Ctx</span>: <span class="ident">Copy</span>, <span class="ident">I</span>, <span class="ident">W</span>: <span class="question-mark">?</span><span class="ident">Sized</span> <span class="op">+</span> <span class="ident">Index</span><span class="op">&lt;</span><span class="ident">I</span><span class="op">&gt;</span> <span class="op">+</span> <span class="ident">IndexMut</span><span class="op">&lt;</span><span class="ident">RangeFrom</span><span class="op">&lt;</span><span class="ident">I</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="ident">Cwrite</span><span class="op">&lt;</span><span class="ident">Ctx</span>, <span class="ident">I</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">W</span> {}
+<span class="kw">impl</span>&lt;Ctx: Copy, I, W: <span class="question-mark">?</span>Sized + Index&lt;I&gt; + IndexMut&lt;RangeFrom&lt;I&gt;&gt;&gt; Cwrite&lt;Ctx, I&gt; <span class="kw">for </span>W {}
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="scroll" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="scroll" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (77e57db38 2022-10-30)" ></div></body></html>

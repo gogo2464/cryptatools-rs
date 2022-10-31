@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/scroll-0.11.0/src/leb128.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>leb128.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../scroll/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../scroll/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../scroll/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/scroll-0.11.0/src/leb128.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>leb128.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../scroll/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -247,254 +247,254 @@
 <span id="247">247</span>
 <span id="248">248</span>
 <span id="249">249</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ctx::TryFromCtx</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::error</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::Pread</span>;
-<span class="kw">use</span> <span class="ident">core::convert</span>::{<span class="ident">AsRef</span>, <span class="ident">From</span>};
-<span class="kw">use</span> <span class="ident">core::result</span>;
-<span class="kw">use</span> <span class="ident">core::u8</span>;
+</pre><pre class="rust"><code><span class="kw">use </span><span class="kw">crate</span>::ctx::TryFromCtx;
+<span class="kw">use </span><span class="kw">crate</span>::error;
+<span class="kw">use </span><span class="kw">crate</span>::Pread;
+<span class="kw">use </span>core::convert::{AsRef, From};
+<span class="kw">use </span>core::result;
+<span class="kw">use </span>core::u8;
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="doccomment">/// An unsigned leb128 integer</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Uleb128</span> {
-    <span class="ident">value</span>: <span class="ident">u64</span>,
-    <span class="ident">count</span>: <span class="ident">usize</span>,
+<span class="attribute">#[derive(Debug, PartialEq, Copy, Clone)]
+</span><span class="doccomment">/// An unsigned leb128 integer
+</span><span class="kw">pub struct </span>Uleb128 {
+    value: u64,
+    count: usize,
 }
 
-<span class="kw">impl</span> <span class="ident">Uleb128</span> {
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="doccomment">/// Return how many bytes this Uleb128 takes up in memory</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">size</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">usize</span> {
-        <span class="self">self</span>.<span class="ident">count</span>
+<span class="kw">impl </span>Uleb128 {
+    <span class="attribute">#[inline]
+    </span><span class="doccomment">/// Return how many bytes this Uleb128 takes up in memory
+    </span><span class="kw">pub fn </span>size(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; usize {
+        <span class="self">self</span>.count
     }
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="doccomment">/// Read a variable length u64 from `bytes` at `offset`</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">read</span>(<span class="ident">bytes</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>], <span class="ident">offset</span>: <span class="kw-2">&amp;mut</span> <span class="ident">usize</span>) -&gt; <span class="ident">error::Result</span><span class="op">&lt;</span><span class="ident">u64</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">tmp</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">pread</span>::<span class="op">&lt;</span><span class="ident">Uleb128</span><span class="op">&gt;</span>(<span class="kw-2">*</span><span class="ident">offset</span>)<span class="question-mark">?</span>;
-        <span class="kw-2">*</span><span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">tmp</span>.<span class="ident">size</span>();
-        <span class="prelude-val">Ok</span>(<span class="ident">tmp</span>.<span class="ident">into</span>())
-    }
-}
-
-<span class="kw">impl</span> <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">u64</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Uleb128</span> {
-    <span class="kw">fn</span> <span class="ident">as_ref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident">u64</span> {
-        <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">value</span>
+    <span class="attribute">#[inline]
+    </span><span class="doccomment">/// Read a variable length u64 from `bytes` at `offset`
+    </span><span class="kw">pub fn </span>read(bytes: <span class="kw-2">&amp;</span>[u8], offset: <span class="kw-2">&amp;mut </span>usize) -&gt; error::Result&lt;u64&gt; {
+        <span class="kw">let </span>tmp = bytes.pread::&lt;Uleb128&gt;(<span class="kw-2">*</span>offset)<span class="question-mark">?</span>;
+        <span class="kw-2">*</span>offset += tmp.size();
+        <span class="prelude-val">Ok</span>(tmp.into())
     }
 }
 
-<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">Uleb128</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">u64</span> {
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">uleb128</span>: <span class="ident">Uleb128</span>) -&gt; <span class="ident">u64</span> {
-        <span class="ident">uleb128</span>.<span class="ident">value</span>
+<span class="kw">impl </span>AsRef&lt;u64&gt; <span class="kw">for </span>Uleb128 {
+    <span class="kw">fn </span>as_ref(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>u64 {
+        <span class="kw-2">&amp;</span><span class="self">self</span>.value
     }
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="doccomment">/// An signed leb128 integer</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Sleb128</span> {
-    <span class="ident">value</span>: <span class="ident">i64</span>,
-    <span class="ident">count</span>: <span class="ident">usize</span>,
-}
-
-<span class="kw">impl</span> <span class="ident">Sleb128</span> {
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="doccomment">/// Return how many bytes this Sleb128 takes up in memory</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">size</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">usize</span> {
-        <span class="self">self</span>.<span class="ident">count</span>
-    }
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="doccomment">/// Read a variable length i64 from `bytes` at `offset`</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">read</span>(<span class="ident">bytes</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>], <span class="ident">offset</span>: <span class="kw-2">&amp;mut</span> <span class="ident">usize</span>) -&gt; <span class="ident">error::Result</span><span class="op">&lt;</span><span class="ident">i64</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">tmp</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">pread</span>::<span class="op">&lt;</span><span class="ident">Sleb128</span><span class="op">&gt;</span>(<span class="kw-2">*</span><span class="ident">offset</span>)<span class="question-mark">?</span>;
-        <span class="kw-2">*</span><span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">tmp</span>.<span class="ident">size</span>();
-        <span class="prelude-val">Ok</span>(<span class="ident">tmp</span>.<span class="ident">into</span>())
+<span class="kw">impl </span>From&lt;Uleb128&gt; <span class="kw">for </span>u64 {
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>from(uleb128: Uleb128) -&gt; u64 {
+        uleb128.value
     }
 }
 
-<span class="kw">impl</span> <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">i64</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Sleb128</span> {
-    <span class="kw">fn</span> <span class="ident">as_ref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident">i64</span> {
-        <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">value</span>
+<span class="attribute">#[derive(Debug, PartialEq, Copy, Clone)]
+</span><span class="doccomment">/// An signed leb128 integer
+</span><span class="kw">pub struct </span>Sleb128 {
+    value: i64,
+    count: usize,
+}
+
+<span class="kw">impl </span>Sleb128 {
+    <span class="attribute">#[inline]
+    </span><span class="doccomment">/// Return how many bytes this Sleb128 takes up in memory
+    </span><span class="kw">pub fn </span>size(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; usize {
+        <span class="self">self</span>.count
+    }
+    <span class="attribute">#[inline]
+    </span><span class="doccomment">/// Read a variable length i64 from `bytes` at `offset`
+    </span><span class="kw">pub fn </span>read(bytes: <span class="kw-2">&amp;</span>[u8], offset: <span class="kw-2">&amp;mut </span>usize) -&gt; error::Result&lt;i64&gt; {
+        <span class="kw">let </span>tmp = bytes.pread::&lt;Sleb128&gt;(<span class="kw-2">*</span>offset)<span class="question-mark">?</span>;
+        <span class="kw-2">*</span>offset += tmp.size();
+        <span class="prelude-val">Ok</span>(tmp.into())
     }
 }
 
-<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">Sleb128</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">i64</span> {
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">sleb128</span>: <span class="ident">Sleb128</span>) -&gt; <span class="ident">i64</span> {
-        <span class="ident">sleb128</span>.<span class="ident">value</span>
+<span class="kw">impl </span>AsRef&lt;i64&gt; <span class="kw">for </span>Sleb128 {
+    <span class="kw">fn </span>as_ref(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>i64 {
+        <span class="kw-2">&amp;</span><span class="self">self</span>.value
     }
 }
 
-<span class="comment">// Below implementation heavily adapted from: https://github.com/fitzgen/leb128</span>
-<span class="kw">const</span> <span class="ident">CONTINUATION_BIT</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">7</span>;
-<span class="kw">const</span> <span class="ident">SIGN_BIT</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">6</span>;
-
-<span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">fn</span> <span class="ident">mask_continuation</span>(<span class="ident">byte</span>: <span class="ident">u8</span>) -&gt; <span class="ident">u8</span> {
-    <span class="ident">byte</span> <span class="op">&amp;</span> <span class="op">!</span><span class="ident">CONTINUATION_BIT</span>
+<span class="kw">impl </span>From&lt;Sleb128&gt; <span class="kw">for </span>i64 {
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>from(sleb128: Sleb128) -&gt; i64 {
+        sleb128.value
+    }
 }
 
-<span class="comment">// #[inline]</span>
-<span class="comment">// fn mask_continuation_u64(val: u64) -&gt; u8 {</span>
-<span class="comment">//     let byte = val &amp; (u8::MAX as u64);</span>
-<span class="comment">//     mask_continuation(byte as u8)</span>
-<span class="comment">// }</span>
+<span class="comment">// Below implementation heavily adapted from: https://github.com/fitzgen/leb128
+</span><span class="kw">const </span>CONTINUATION_BIT: u8 = <span class="number">1 </span>&lt;&lt; <span class="number">7</span>;
+<span class="kw">const </span>SIGN_BIT: u8 = <span class="number">1 </span>&lt;&lt; <span class="number">6</span>;
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">TryFromCtx</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Uleb128</span> {
-    <span class="kw">type</span> <span class="ident">Error</span> <span class="op">=</span> <span class="ident">error::Error</span>;
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">try_from_ctx</span>(<span class="ident">src</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>], <span class="ident">_ctx</span>: ()) -&gt; <span class="ident">result::Result</span><span class="op">&lt;</span>(<span class="self">Self</span>, <span class="ident">usize</span>), <span class="ident"><span class="self">Self</span>::Error</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">result</span> <span class="op">=</span> <span class="number">0</span>;
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">shift</span> <span class="op">=</span> <span class="number">0</span>;
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">count</span> <span class="op">=</span> <span class="number">0</span>;
-        <span class="kw">loop</span> {
-            <span class="kw">let</span> <span class="ident">byte</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="ident">src</span>.<span class="ident">pread</span>(<span class="ident">count</span>)<span class="question-mark">?</span>;
+<span class="attribute">#[inline]
+</span><span class="kw">fn </span>mask_continuation(byte: u8) -&gt; u8 {
+    byte &amp; !CONTINUATION_BIT
+}
 
-            <span class="kw">if</span> <span class="ident">shift</span> <span class="op">==</span> <span class="number">63</span> <span class="op">&amp;&amp;</span> <span class="ident">byte</span> <span class="op">!</span><span class="op">=</span> <span class="number">0x00</span> <span class="op">&amp;&amp;</span> <span class="ident">byte</span> <span class="op">!</span><span class="op">=</span> <span class="number">0x01</span> {
-                <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">error::Error::BadInput</span> {
-                    <span class="ident">size</span>: <span class="ident">src</span>.<span class="ident">len</span>(),
-                    <span class="ident">msg</span>: <span class="string">&quot;failed to parse&quot;</span>,
+<span class="comment">// #[inline]
+// fn mask_continuation_u64(val: u64) -&gt; u8 {
+//     let byte = val &amp; (u8::MAX as u64);
+//     mask_continuation(byte as u8)
+// }
+
+</span><span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; TryFromCtx&lt;<span class="lifetime">&#39;a</span>&gt; <span class="kw">for </span>Uleb128 {
+    <span class="kw">type </span>Error = error::Error;
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>try_from_ctx(src: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8], _ctx: ()) -&gt; result::Result&lt;(<span class="self">Self</span>, usize), <span class="self">Self</span>::Error&gt; {
+        <span class="kw">let </span><span class="kw-2">mut </span>result = <span class="number">0</span>;
+        <span class="kw">let </span><span class="kw-2">mut </span>shift = <span class="number">0</span>;
+        <span class="kw">let </span><span class="kw-2">mut </span>count = <span class="number">0</span>;
+        <span class="kw">loop </span>{
+            <span class="kw">let </span>byte: u8 = src.pread(count)<span class="question-mark">?</span>;
+
+            <span class="kw">if </span>shift == <span class="number">63 </span>&amp;&amp; byte != <span class="number">0x00 </span>&amp;&amp; byte != <span class="number">0x01 </span>{
+                <span class="kw">return </span><span class="prelude-val">Err</span>(error::Error::BadInput {
+                    size: src.len(),
+                    msg: <span class="string">&quot;failed to parse&quot;</span>,
                 });
             }
 
-            <span class="kw">let</span> <span class="ident">low_bits</span> <span class="op">=</span> <span class="ident">u64::from</span>(<span class="ident">mask_continuation</span>(<span class="ident">byte</span>));
-            <span class="ident">result</span> <span class="op">|</span><span class="op">=</span> <span class="ident">low_bits</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="ident">shift</span>;
+            <span class="kw">let </span>low_bits = u64::from(mask_continuation(byte));
+            result |= low_bits &lt;&lt; shift;
 
-            <span class="ident">count</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
-            <span class="ident">shift</span> <span class="op">+</span><span class="op">=</span> <span class="number">7</span>;
+            count += <span class="number">1</span>;
+            shift += <span class="number">7</span>;
 
-            <span class="kw">if</span> <span class="ident">byte</span> <span class="op">&amp;</span> <span class="ident">CONTINUATION_BIT</span> <span class="op">==</span> <span class="number">0</span> {
-                <span class="kw">return</span> <span class="prelude-val">Ok</span>((
-                    <span class="ident">Uleb128</span> {
-                        <span class="ident">value</span>: <span class="ident">result</span>,
-                        <span class="ident">count</span>,
+            <span class="kw">if </span>byte &amp; CONTINUATION_BIT == <span class="number">0 </span>{
+                <span class="kw">return </span><span class="prelude-val">Ok</span>((
+                    Uleb128 {
+                        value: result,
+                        count,
                     },
-                    <span class="ident">count</span>,
+                    count,
                 ));
             }
         }
     }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">TryFromCtx</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Sleb128</span> {
-    <span class="kw">type</span> <span class="ident">Error</span> <span class="op">=</span> <span class="ident">error::Error</span>;
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">try_from_ctx</span>(<span class="ident">src</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>], <span class="ident">_ctx</span>: ()) -&gt; <span class="ident">result::Result</span><span class="op">&lt;</span>(<span class="self">Self</span>, <span class="ident">usize</span>), <span class="ident"><span class="self">Self</span>::Error</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">o</span> <span class="op">=</span> <span class="number">0</span>;
-        <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> <span class="kw-2">&amp;mut</span> <span class="number">0</span>;
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">result</span> <span class="op">=</span> <span class="number">0</span>;
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">shift</span> <span class="op">=</span> <span class="number">0</span>;
-        <span class="kw">let</span> <span class="ident">size</span> <span class="op">=</span> <span class="number">64</span>;
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">byte</span>: <span class="ident">u8</span>;
-        <span class="kw">loop</span> {
-            <span class="ident">byte</span> <span class="op">=</span> <span class="ident">src</span>.<span class="ident">gread</span>(<span class="ident">offset</span>)<span class="question-mark">?</span>;
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; TryFromCtx&lt;<span class="lifetime">&#39;a</span>&gt; <span class="kw">for </span>Sleb128 {
+    <span class="kw">type </span>Error = error::Error;
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>try_from_ctx(src: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8], _ctx: ()) -&gt; result::Result&lt;(<span class="self">Self</span>, usize), <span class="self">Self</span>::Error&gt; {
+        <span class="kw">let </span>o = <span class="number">0</span>;
+        <span class="kw">let </span>offset = <span class="kw-2">&amp;mut </span><span class="number">0</span>;
+        <span class="kw">let </span><span class="kw-2">mut </span>result = <span class="number">0</span>;
+        <span class="kw">let </span><span class="kw-2">mut </span>shift = <span class="number">0</span>;
+        <span class="kw">let </span>size = <span class="number">64</span>;
+        <span class="kw">let </span><span class="kw-2">mut </span>byte: u8;
+        <span class="kw">loop </span>{
+            byte = src.gread(offset)<span class="question-mark">?</span>;
 
-            <span class="kw">if</span> <span class="ident">shift</span> <span class="op">==</span> <span class="number">63</span> <span class="op">&amp;&amp;</span> <span class="ident">byte</span> <span class="op">!</span><span class="op">=</span> <span class="number">0x00</span> <span class="op">&amp;&amp;</span> <span class="ident">byte</span> <span class="op">!</span><span class="op">=</span> <span class="number">0x7f</span> {
-                <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">error::Error::BadInput</span> {
-                    <span class="ident">size</span>: <span class="ident">src</span>.<span class="ident">len</span>(),
-                    <span class="ident">msg</span>: <span class="string">&quot;failed to parse&quot;</span>,
+            <span class="kw">if </span>shift == <span class="number">63 </span>&amp;&amp; byte != <span class="number">0x00 </span>&amp;&amp; byte != <span class="number">0x7f </span>{
+                <span class="kw">return </span><span class="prelude-val">Err</span>(error::Error::BadInput {
+                    size: src.len(),
+                    msg: <span class="string">&quot;failed to parse&quot;</span>,
                 });
             }
 
-            <span class="kw">let</span> <span class="ident">low_bits</span> <span class="op">=</span> <span class="ident">i64::from</span>(<span class="ident">mask_continuation</span>(<span class="ident">byte</span>));
-            <span class="ident">result</span> <span class="op">|</span><span class="op">=</span> <span class="ident">low_bits</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="ident">shift</span>;
-            <span class="ident">shift</span> <span class="op">+</span><span class="op">=</span> <span class="number">7</span>;
+            <span class="kw">let </span>low_bits = i64::from(mask_continuation(byte));
+            result |= low_bits &lt;&lt; shift;
+            shift += <span class="number">7</span>;
 
-            <span class="kw">if</span> <span class="ident">byte</span> <span class="op">&amp;</span> <span class="ident">CONTINUATION_BIT</span> <span class="op">==</span> <span class="number">0</span> {
+            <span class="kw">if </span>byte &amp; CONTINUATION_BIT == <span class="number">0 </span>{
                 <span class="kw">break</span>;
             }
         }
 
-        <span class="kw">if</span> <span class="ident">shift</span> <span class="op">&lt;</span> <span class="ident">size</span> <span class="op">&amp;&amp;</span> (<span class="ident">SIGN_BIT</span> <span class="op">&amp;</span> <span class="ident">byte</span>) <span class="op">==</span> <span class="ident">SIGN_BIT</span> {
-            <span class="comment">// Sign extend the result.</span>
-            <span class="ident">result</span> <span class="op">|</span><span class="op">=</span> <span class="op">!</span><span class="number">0</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="ident">shift</span>;
+        <span class="kw">if </span>shift &lt; size &amp;&amp; (SIGN_BIT &amp; byte) == SIGN_BIT {
+            <span class="comment">// Sign extend the result.
+            </span>result |= !<span class="number">0 </span>&lt;&lt; shift;
         }
-        <span class="kw">let</span> <span class="ident">count</span> <span class="op">=</span> <span class="kw-2">*</span><span class="ident">offset</span> <span class="op">-</span> <span class="ident">o</span>;
+        <span class="kw">let </span>count = <span class="kw-2">*</span>offset - o;
         <span class="prelude-val">Ok</span>((
-            <span class="ident">Sleb128</span> {
-                <span class="ident">value</span>: <span class="ident">result</span>,
-                <span class="ident">count</span>,
+            Sleb128 {
+                value: result,
+                count,
             },
-            <span class="ident">count</span>,
+            count,
         ))
     }
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
-<span class="kw">mod</span> <span class="ident">tests</span> {
-    <span class="kw">use</span> <span class="ident"><span class="kw">super</span>::<span class="kw">super</span>::LE</span>;
-    <span class="kw">use</span> <span class="kw">super</span>::{<span class="ident">Sleb128</span>, <span class="ident">Uleb128</span>};
+<span class="attribute">#[cfg(test)]
+</span><span class="kw">mod </span>tests {
+    <span class="kw">use </span><span class="kw">super</span>::<span class="kw">super</span>::LE;
+    <span class="kw">use super</span>::{Sleb128, Uleb128};
 
-    <span class="kw">const</span> <span class="ident">CONTINUATION_BIT</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">7</span>;
-    <span class="comment">//const SIGN_BIT: u8 = 1 &lt;&lt; 6;</span>
+    <span class="kw">const </span>CONTINUATION_BIT: u8 = <span class="number">1 </span>&lt;&lt; <span class="number">7</span>;
+    <span class="comment">//const SIGN_BIT: u8 = 1 &lt;&lt; 6;
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">uleb_size</span>() {
-        <span class="kw">use</span> <span class="ident"><span class="kw">super</span>::<span class="kw">super</span>::Pread</span>;
-        <span class="kw">let</span> <span class="ident">buf</span> <span class="op">=</span> [<span class="number">2u8</span> <span class="op">|</span> <span class="ident">CONTINUATION_BIT</span>, <span class="number">1</span>];
-        <span class="kw">let</span> <span class="ident">bytes</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">buf</span>[..];
-        <span class="kw">let</span> <span class="ident">num</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">pread</span>::<span class="op">&lt;</span><span class="ident">Uleb128</span><span class="op">&gt;</span>(<span class="number">0</span>).<span class="ident">unwrap</span>();
-        <span class="macro">println!</span>(<span class="string">&quot;num: {:?}&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">num</span>);
-        <span class="macro">assert_eq!</span>(<span class="number">130u64</span>, <span class="ident">num</span>.<span class="ident">into</span>());
-        <span class="macro">assert_eq!</span>(<span class="ident">num</span>.<span class="ident">size</span>(), <span class="number">2</span>);
+    </span><span class="attribute">#[test]
+    </span><span class="kw">fn </span>uleb_size() {
+        <span class="kw">use </span><span class="kw">super</span>::<span class="kw">super</span>::Pread;
+        <span class="kw">let </span>buf = [<span class="number">2u8 </span>| CONTINUATION_BIT, <span class="number">1</span>];
+        <span class="kw">let </span>bytes = <span class="kw-2">&amp;</span>buf[..];
+        <span class="kw">let </span>num = bytes.pread::&lt;Uleb128&gt;(<span class="number">0</span>).unwrap();
+        <span class="macro">println!</span>(<span class="string">&quot;num: {:?}&quot;</span>, <span class="kw-2">&amp;</span>num);
+        <span class="macro">assert_eq!</span>(<span class="number">130u64</span>, num.into());
+        <span class="macro">assert_eq!</span>(num.size(), <span class="number">2</span>);
 
-        <span class="kw">let</span> <span class="ident">buf</span> <span class="op">=</span> [<span class="number">0x00</span>, <span class="number">0x01</span>];
-        <span class="kw">let</span> <span class="ident">bytes</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">buf</span>[..];
-        <span class="kw">let</span> <span class="ident">num</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">pread</span>::<span class="op">&lt;</span><span class="ident">Uleb128</span><span class="op">&gt;</span>(<span class="number">0</span>).<span class="ident">unwrap</span>();
-        <span class="macro">println!</span>(<span class="string">&quot;num: {:?}&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">num</span>);
-        <span class="macro">assert_eq!</span>(<span class="number">0u64</span>, <span class="ident">num</span>.<span class="ident">into</span>());
-        <span class="macro">assert_eq!</span>(<span class="ident">num</span>.<span class="ident">size</span>(), <span class="number">1</span>);
+        <span class="kw">let </span>buf = [<span class="number">0x00</span>, <span class="number">0x01</span>];
+        <span class="kw">let </span>bytes = <span class="kw-2">&amp;</span>buf[..];
+        <span class="kw">let </span>num = bytes.pread::&lt;Uleb128&gt;(<span class="number">0</span>).unwrap();
+        <span class="macro">println!</span>(<span class="string">&quot;num: {:?}&quot;</span>, <span class="kw-2">&amp;</span>num);
+        <span class="macro">assert_eq!</span>(<span class="number">0u64</span>, num.into());
+        <span class="macro">assert_eq!</span>(num.size(), <span class="number">1</span>);
 
-        <span class="kw">let</span> <span class="ident">buf</span> <span class="op">=</span> [<span class="number">0x21</span>];
-        <span class="kw">let</span> <span class="ident">bytes</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">buf</span>[..];
-        <span class="kw">let</span> <span class="ident">num</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">pread</span>::<span class="op">&lt;</span><span class="ident">Uleb128</span><span class="op">&gt;</span>(<span class="number">0</span>).<span class="ident">unwrap</span>();
-        <span class="macro">println!</span>(<span class="string">&quot;num: {:?}&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">num</span>);
-        <span class="macro">assert_eq!</span>(<span class="number">0x21u64</span>, <span class="ident">num</span>.<span class="ident">into</span>());
-        <span class="macro">assert_eq!</span>(<span class="ident">num</span>.<span class="ident">size</span>(), <span class="number">1</span>);
+        <span class="kw">let </span>buf = [<span class="number">0x21</span>];
+        <span class="kw">let </span>bytes = <span class="kw-2">&amp;</span>buf[..];
+        <span class="kw">let </span>num = bytes.pread::&lt;Uleb128&gt;(<span class="number">0</span>).unwrap();
+        <span class="macro">println!</span>(<span class="string">&quot;num: {:?}&quot;</span>, <span class="kw-2">&amp;</span>num);
+        <span class="macro">assert_eq!</span>(<span class="number">0x21u64</span>, num.into());
+        <span class="macro">assert_eq!</span>(num.size(), <span class="number">1</span>);
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">uleb128</span>() {
-        <span class="kw">use</span> <span class="ident"><span class="kw">super</span>::<span class="kw">super</span>::Pread</span>;
-        <span class="kw">let</span> <span class="ident">buf</span> <span class="op">=</span> [<span class="number">2u8</span> <span class="op">|</span> <span class="ident">CONTINUATION_BIT</span>, <span class="number">1</span>];
-        <span class="kw">let</span> <span class="ident">bytes</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">buf</span>[..];
-        <span class="kw">let</span> <span class="ident">num</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">pread</span>::<span class="op">&lt;</span><span class="ident">Uleb128</span><span class="op">&gt;</span>(<span class="number">0</span>).<span class="ident">expect</span>(<span class="string">&quot;Should read Uleb128&quot;</span>);
-        <span class="macro">assert_eq!</span>(<span class="number">130u64</span>, <span class="ident">num</span>.<span class="ident">into</span>());
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>uleb128() {
+        <span class="kw">use </span><span class="kw">super</span>::<span class="kw">super</span>::Pread;
+        <span class="kw">let </span>buf = [<span class="number">2u8 </span>| CONTINUATION_BIT, <span class="number">1</span>];
+        <span class="kw">let </span>bytes = <span class="kw-2">&amp;</span>buf[..];
+        <span class="kw">let </span>num = bytes.pread::&lt;Uleb128&gt;(<span class="number">0</span>).expect(<span class="string">&quot;Should read Uleb128&quot;</span>);
+        <span class="macro">assert_eq!</span>(<span class="number">130u64</span>, num.into());
         <span class="macro">assert_eq!</span>(
             <span class="number">386</span>,
-            <span class="ident">bytes</span>.<span class="ident">pread_with</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>(<span class="number">0</span>, <span class="ident">LE</span>).<span class="ident">expect</span>(<span class="string">&quot;Should read number&quot;</span>)
+            bytes.pread_with::&lt;u16&gt;(<span class="number">0</span>, LE).expect(<span class="string">&quot;Should read number&quot;</span>)
         );
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">uleb128_overflow</span>() {
-        <span class="kw">use</span> <span class="ident"><span class="kw">super</span>::<span class="kw">super</span>::Pread</span>;
-        <span class="kw">let</span> <span class="ident">buf</span> <span class="op">=</span> [
-            <span class="number">2u8</span> <span class="op">|</span> <span class="ident">CONTINUATION_BIT</span>,
-            <span class="number">2</span> <span class="op">|</span> <span class="ident">CONTINUATION_BIT</span>,
-            <span class="number">2</span> <span class="op">|</span> <span class="ident">CONTINUATION_BIT</span>,
-            <span class="number">2</span> <span class="op">|</span> <span class="ident">CONTINUATION_BIT</span>,
-            <span class="number">2</span> <span class="op">|</span> <span class="ident">CONTINUATION_BIT</span>,
-            <span class="number">2</span> <span class="op">|</span> <span class="ident">CONTINUATION_BIT</span>,
-            <span class="number">2</span> <span class="op">|</span> <span class="ident">CONTINUATION_BIT</span>,
-            <span class="number">2</span> <span class="op">|</span> <span class="ident">CONTINUATION_BIT</span>,
-            <span class="number">2</span> <span class="op">|</span> <span class="ident">CONTINUATION_BIT</span>,
-            <span class="number">2</span> <span class="op">|</span> <span class="ident">CONTINUATION_BIT</span>,
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>uleb128_overflow() {
+        <span class="kw">use </span><span class="kw">super</span>::<span class="kw">super</span>::Pread;
+        <span class="kw">let </span>buf = [
+            <span class="number">2u8 </span>| CONTINUATION_BIT,
+            <span class="number">2 </span>| CONTINUATION_BIT,
+            <span class="number">2 </span>| CONTINUATION_BIT,
+            <span class="number">2 </span>| CONTINUATION_BIT,
+            <span class="number">2 </span>| CONTINUATION_BIT,
+            <span class="number">2 </span>| CONTINUATION_BIT,
+            <span class="number">2 </span>| CONTINUATION_BIT,
+            <span class="number">2 </span>| CONTINUATION_BIT,
+            <span class="number">2 </span>| CONTINUATION_BIT,
+            <span class="number">2 </span>| CONTINUATION_BIT,
             <span class="number">1</span>,
         ];
-        <span class="kw">let</span> <span class="ident">bytes</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">buf</span>[..];
-        <span class="macro">assert!</span>(<span class="ident">bytes</span>.<span class="ident">pread</span>::<span class="op">&lt;</span><span class="ident">Uleb128</span><span class="op">&gt;</span>(<span class="number">0</span>).<span class="ident">is_err</span>());
+        <span class="kw">let </span>bytes = <span class="kw-2">&amp;</span>buf[..];
+        <span class="macro">assert!</span>(bytes.pread::&lt;Uleb128&gt;(<span class="number">0</span>).is_err());
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">sleb128</span>() {
-        <span class="kw">use</span> <span class="ident"><span class="kw">super</span>::<span class="kw">super</span>::Pread</span>;
-        <span class="kw">let</span> <span class="ident">bytes</span> <span class="op">=</span> [<span class="number">0x7fu8</span> <span class="op">|</span> <span class="ident">CONTINUATION_BIT</span>, <span class="number">0x7e</span>];
-        <span class="kw">let</span> <span class="ident">num</span>: <span class="ident">i64</span> <span class="op">=</span> <span class="ident">bytes</span>
-            .<span class="ident">pread</span>::<span class="op">&lt;</span><span class="ident">Sleb128</span><span class="op">&gt;</span>(<span class="number">0</span>)
-            .<span class="ident">expect</span>(<span class="string">&quot;Should read Sleb128&quot;</span>)
-            .<span class="ident">into</span>();
-        <span class="macro">assert_eq!</span>(<span class="op">-</span><span class="number">129</span>, <span class="ident">num</span>);
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>sleb128() {
+        <span class="kw">use </span><span class="kw">super</span>::<span class="kw">super</span>::Pread;
+        <span class="kw">let </span>bytes = [<span class="number">0x7fu8 </span>| CONTINUATION_BIT, <span class="number">0x7e</span>];
+        <span class="kw">let </span>num: i64 = bytes
+            .pread::&lt;Sleb128&gt;(<span class="number">0</span>)
+            .expect(<span class="string">&quot;Should read Sleb128&quot;</span>)
+            .into();
+        <span class="macro">assert_eq!</span>(-<span class="number">129</span>, num);
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="scroll" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="scroll" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (77e57db38 2022-10-30)" ></div></body></html>

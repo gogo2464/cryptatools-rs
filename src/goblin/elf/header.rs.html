@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/goblin-0.5.4/src/elf/header.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>header.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../goblin/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../goblin/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../goblin/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/goblin-0.5.4/src/elf/header.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>header.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../normalize.css"><link rel="stylesheet" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../ayu.css" disabled><link rel="stylesheet" href="../../../dark.css" disabled><link rel="stylesheet" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../goblin/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -630,276 +630,276 @@
 <span id="630">630</span>
 </pre><pre class="rust"><code><span class="macro">include!</span>(<span class="string">&quot;constants_header.rs&quot;</span>);
 
-<span class="macro">macro_rules!</span> <span class="ident">elf_header</span> {
-    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">size</span>:<span class="ident">ident</span>) =&gt; {
-        <span class="kw">use</span> <span class="ident">core::fmt</span>;
+<span class="macro">macro_rules! </span>elf_header {
+    (<span class="macro-nonterminal">$size</span>:ident) =&gt; {
+        <span class="kw">use </span>core::fmt;
 
-        <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-        <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Default</span>, <span class="ident">PartialEq</span>)]</span>
-        <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Header</span> {
-            <span class="doccomment">/// Magic number and other info</span>
-            <span class="kw">pub</span> <span class="ident">e_ident</span>: [<span class="ident">u8</span>; <span class="ident">SIZEOF_IDENT</span>],
-            <span class="doccomment">/// Object file type</span>
-            <span class="kw">pub</span> <span class="ident">e_type</span>: <span class="ident">u16</span>,
-            <span class="doccomment">/// Architecture</span>
-            <span class="kw">pub</span> <span class="ident">e_machine</span>: <span class="ident">u16</span>,
-            <span class="doccomment">/// Object file version</span>
-            <span class="kw">pub</span> <span class="ident">e_version</span>: <span class="ident">u32</span>,
-            <span class="doccomment">/// Entry point virtual address</span>
-            <span class="kw">pub</span> <span class="ident">e_entry</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">size</span>,
-            <span class="doccomment">/// Program header table file offset</span>
-            <span class="kw">pub</span> <span class="ident">e_phoff</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">size</span>,
-            <span class="doccomment">/// Section header table file offset</span>
-            <span class="kw">pub</span> <span class="ident">e_shoff</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">size</span>,
-            <span class="doccomment">/// Processor-specific flags</span>
-            <span class="kw">pub</span> <span class="ident">e_flags</span>: <span class="ident">u32</span>,
-            <span class="doccomment">/// ELF header size in bytes</span>
-            <span class="kw">pub</span> <span class="ident">e_ehsize</span>: <span class="ident">u16</span>,
-            <span class="doccomment">/// Program header table entry size</span>
-            <span class="kw">pub</span> <span class="ident">e_phentsize</span>: <span class="ident">u16</span>,
-            <span class="doccomment">/// Program header table entry count</span>
-            <span class="kw">pub</span> <span class="ident">e_phnum</span>: <span class="ident">u16</span>,
-            <span class="doccomment">/// Section header table entry size</span>
-            <span class="kw">pub</span> <span class="ident">e_shentsize</span>: <span class="ident">u16</span>,
-            <span class="doccomment">/// Section header table entry count</span>
-            <span class="kw">pub</span> <span class="ident">e_shnum</span>: <span class="ident">u16</span>,
-            <span class="doccomment">/// Section header string table index</span>
-            <span class="kw">pub</span> <span class="ident">e_shstrndx</span>: <span class="ident">u16</span>,
+        <span class="attribute">#[repr(C)]
+        #[derive(Clone, Copy, Default, PartialEq)]
+        </span><span class="kw">pub struct </span>Header {
+            <span class="doccomment">/// Magic number and other info
+            </span><span class="kw">pub </span>e_ident: [u8; SIZEOF_IDENT],
+            <span class="doccomment">/// Object file type
+            </span><span class="kw">pub </span>e_type: u16,
+            <span class="doccomment">/// Architecture
+            </span><span class="kw">pub </span>e_machine: u16,
+            <span class="doccomment">/// Object file version
+            </span><span class="kw">pub </span>e_version: u32,
+            <span class="doccomment">/// Entry point virtual address
+            </span><span class="kw">pub </span>e_entry: <span class="macro-nonterminal">$size</span>,
+            <span class="doccomment">/// Program header table file offset
+            </span><span class="kw">pub </span>e_phoff: <span class="macro-nonterminal">$size</span>,
+            <span class="doccomment">/// Section header table file offset
+            </span><span class="kw">pub </span>e_shoff: <span class="macro-nonterminal">$size</span>,
+            <span class="doccomment">/// Processor-specific flags
+            </span><span class="kw">pub </span>e_flags: u32,
+            <span class="doccomment">/// ELF header size in bytes
+            </span><span class="kw">pub </span>e_ehsize: u16,
+            <span class="doccomment">/// Program header table entry size
+            </span><span class="kw">pub </span>e_phentsize: u16,
+            <span class="doccomment">/// Program header table entry count
+            </span><span class="kw">pub </span>e_phnum: u16,
+            <span class="doccomment">/// Section header table entry size
+            </span><span class="kw">pub </span>e_shentsize: u16,
+            <span class="doccomment">/// Section header table entry count
+            </span><span class="kw">pub </span>e_shnum: u16,
+            <span class="doccomment">/// Section header string table index
+            </span><span class="kw">pub </span>e_shstrndx: u16,
         }
 
-        <span class="kw">use</span> <span class="ident">plain</span>;
-        <span class="comment">// Declare that this is a plain type.</span>
-        <span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">plain::Plain</span> <span class="kw">for</span> <span class="ident">Header</span> {}
+        <span class="kw">use </span>plain;
+        <span class="comment">// Declare that this is a plain type.
+        </span><span class="kw">unsafe impl </span>plain::Plain <span class="kw">for </span>Header {}
 
-        <span class="kw">impl</span> <span class="ident">Header</span> {
-            <span class="doccomment">/// Returns the corresponding ELF header from the given byte array.</span>
-            <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_bytes</span>(<span class="ident">bytes</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>; <span class="ident">SIZEOF_EHDR</span>]) -&gt; <span class="kw-2">&amp;</span><span class="ident">Header</span> {
-                <span class="comment">// FIXME: Length is ensured correct because it&#39;s encoded in the type,</span>
-                <span class="comment">// but it can still panic due to invalid alignment.</span>
-                <span class="ident">plain::from_bytes</span>(<span class="ident">bytes</span>).<span class="ident">unwrap</span>()
+        <span class="kw">impl </span>Header {
+            <span class="doccomment">/// Returns the corresponding ELF header from the given byte array.
+            </span><span class="kw">pub fn </span>from_bytes(bytes: <span class="kw-2">&amp;</span>[u8; SIZEOF_EHDR]) -&gt; <span class="kw-2">&amp;</span>Header {
+                <span class="comment">// FIXME: Length is ensured correct because it&#39;s encoded in the type,
+                // but it can still panic due to invalid alignment.
+                </span>plain::from_bytes(bytes).unwrap()
             }
         }
-        <span class="kw">impl</span> <span class="ident">fmt::Debug</span> <span class="kw">for</span> <span class="ident">Header</span> {
-            <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">fmt::Formatter</span>) -&gt; <span class="ident">fmt::Result</span> {
-                <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;Header&quot;</span>)
-                    .<span class="ident">field</span>(<span class="string">&quot;e_ident&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{:?}&quot;</span>, <span class="self">self</span>.<span class="ident">e_ident</span>))
-                    .<span class="ident">field</span>(<span class="string">&quot;e_type&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">et_to_str</span>(<span class="self">self</span>.<span class="ident">e_type</span>))
-                    .<span class="ident">field</span>(<span class="string">&quot;e_machine&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;0x{:x}&quot;</span>, <span class="self">self</span>.<span class="ident">e_machine</span>))
-                    .<span class="ident">field</span>(<span class="string">&quot;e_version&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;0x{:x}&quot;</span>, <span class="self">self</span>.<span class="ident">e_version</span>))
-                    .<span class="ident">field</span>(<span class="string">&quot;e_entry&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;0x{:x}&quot;</span>, <span class="self">self</span>.<span class="ident">e_entry</span>))
-                    .<span class="ident">field</span>(<span class="string">&quot;e_phoff&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;0x{:x}&quot;</span>, <span class="self">self</span>.<span class="ident">e_phoff</span>))
-                    .<span class="ident">field</span>(<span class="string">&quot;e_shoff&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;0x{:x}&quot;</span>, <span class="self">self</span>.<span class="ident">e_shoff</span>))
-                    .<span class="ident">field</span>(<span class="string">&quot;e_flags&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{:x}&quot;</span>, <span class="self">self</span>.<span class="ident">e_flags</span>))
-                    .<span class="ident">field</span>(<span class="string">&quot;e_ehsize&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">e_ehsize</span>)
-                    .<span class="ident">field</span>(<span class="string">&quot;e_phentsize&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">e_phentsize</span>)
-                    .<span class="ident">field</span>(<span class="string">&quot;e_phnum&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">e_phnum</span>)
-                    .<span class="ident">field</span>(<span class="string">&quot;e_shentsize&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">e_shentsize</span>)
-                    .<span class="ident">field</span>(<span class="string">&quot;e_shnum&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">e_shnum</span>)
-                    .<span class="ident">field</span>(<span class="string">&quot;e_shstrndx&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">e_shstrndx</span>)
-                    .<span class="ident">finish</span>()
+        <span class="kw">impl </span>fmt::Debug <span class="kw">for </span>Header {
+            <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>fmt::Formatter) -&gt; fmt::Result {
+                f.debug_struct(<span class="string">&quot;Header&quot;</span>)
+                    .field(<span class="string">&quot;e_ident&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{:?}&quot;</span>, <span class="self">self</span>.e_ident))
+                    .field(<span class="string">&quot;e_type&quot;</span>, <span class="kw-2">&amp;</span>et_to_str(<span class="self">self</span>.e_type))
+                    .field(<span class="string">&quot;e_machine&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;0x{:x}&quot;</span>, <span class="self">self</span>.e_machine))
+                    .field(<span class="string">&quot;e_version&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;0x{:x}&quot;</span>, <span class="self">self</span>.e_version))
+                    .field(<span class="string">&quot;e_entry&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;0x{:x}&quot;</span>, <span class="self">self</span>.e_entry))
+                    .field(<span class="string">&quot;e_phoff&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;0x{:x}&quot;</span>, <span class="self">self</span>.e_phoff))
+                    .field(<span class="string">&quot;e_shoff&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;0x{:x}&quot;</span>, <span class="self">self</span>.e_shoff))
+                    .field(<span class="string">&quot;e_flags&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{:x}&quot;</span>, <span class="self">self</span>.e_flags))
+                    .field(<span class="string">&quot;e_ehsize&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.e_ehsize)
+                    .field(<span class="string">&quot;e_phentsize&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.e_phentsize)
+                    .field(<span class="string">&quot;e_phnum&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.e_phnum)
+                    .field(<span class="string">&quot;e_shentsize&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.e_shentsize)
+                    .field(<span class="string">&quot;e_shnum&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.e_shnum)
+                    .field(<span class="string">&quot;e_shstrndx&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.e_shstrndx)
+                    .finish()
             }
         }
     };
 }
 
-<span class="doccomment">/// No file type.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ET_NONE</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0</span>;
-<span class="doccomment">/// Relocatable file.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ET_REL</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">1</span>;
-<span class="doccomment">/// Executable file.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ET_EXEC</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">2</span>;
-<span class="doccomment">/// Shared object file.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ET_DYN</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">3</span>;
-<span class="doccomment">/// Core file.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ET_CORE</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">4</span>;
-<span class="doccomment">/// Number of defined types.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ET_NUM</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">5</span>;
-<span class="doccomment">/// OS-specific range start</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ET_LOOS</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0xfe00</span>;
-<span class="doccomment">/// OS-specific range end</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ET_HIOS</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0xfeff</span>;
-<span class="doccomment">/// Processor-specific range start</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ET_LOPROC</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0xff00</span>;
-<span class="doccomment">/// Processor-specific range end</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ET_HIPROC</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0xffff</span>;
+<span class="doccomment">/// No file type.
+</span><span class="kw">pub const </span>ET_NONE: u16 = <span class="number">0</span>;
+<span class="doccomment">/// Relocatable file.
+</span><span class="kw">pub const </span>ET_REL: u16 = <span class="number">1</span>;
+<span class="doccomment">/// Executable file.
+</span><span class="kw">pub const </span>ET_EXEC: u16 = <span class="number">2</span>;
+<span class="doccomment">/// Shared object file.
+</span><span class="kw">pub const </span>ET_DYN: u16 = <span class="number">3</span>;
+<span class="doccomment">/// Core file.
+</span><span class="kw">pub const </span>ET_CORE: u16 = <span class="number">4</span>;
+<span class="doccomment">/// Number of defined types.
+</span><span class="kw">pub const </span>ET_NUM: u16 = <span class="number">5</span>;
+<span class="doccomment">/// OS-specific range start
+</span><span class="kw">pub const </span>ET_LOOS: u16 = <span class="number">0xfe00</span>;
+<span class="doccomment">/// OS-specific range end
+</span><span class="kw">pub const </span>ET_HIOS: u16 = <span class="number">0xfeff</span>;
+<span class="doccomment">/// Processor-specific range start
+</span><span class="kw">pub const </span>ET_LOPROC: u16 = <span class="number">0xff00</span>;
+<span class="doccomment">/// Processor-specific range end
+</span><span class="kw">pub const </span>ET_HIPROC: u16 = <span class="number">0xffff</span>;
 
-<span class="doccomment">/// The ELF magic number.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ELFMAG</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>; <span class="number">4</span>] <span class="op">=</span> <span class="string">b&quot;\x7FELF&quot;</span>;
-<span class="doccomment">/// Sizeof ELF magic number.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SELFMAG</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">4</span>;
+<span class="doccomment">/// The ELF magic number.
+</span><span class="kw">pub const </span>ELFMAG: <span class="kw-2">&amp;</span>[u8; <span class="number">4</span>] = <span class="string">b&quot;\x7FELF&quot;</span>;
+<span class="doccomment">/// Sizeof ELF magic number.
+</span><span class="kw">pub const </span>SELFMAG: usize = <span class="number">4</span>;
 
-<span class="doccomment">/// File class byte index.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EI_CLASS</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">4</span>;
-<span class="doccomment">/// Invalid class.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ELFCLASSNONE</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">0</span>;
-<span class="doccomment">/// 32-bit objects.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ELFCLASS32</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">1</span>;
-<span class="doccomment">/// 64-bit objects.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ELFCLASS64</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">2</span>;
-<span class="doccomment">/// ELF class number.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ELFCLASSNUM</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">3</span>;
+<span class="doccomment">/// File class byte index.
+</span><span class="kw">pub const </span>EI_CLASS: usize = <span class="number">4</span>;
+<span class="doccomment">/// Invalid class.
+</span><span class="kw">pub const </span>ELFCLASSNONE: u8 = <span class="number">0</span>;
+<span class="doccomment">/// 32-bit objects.
+</span><span class="kw">pub const </span>ELFCLASS32: u8 = <span class="number">1</span>;
+<span class="doccomment">/// 64-bit objects.
+</span><span class="kw">pub const </span>ELFCLASS64: u8 = <span class="number">2</span>;
+<span class="doccomment">/// ELF class number.
+</span><span class="kw">pub const </span>ELFCLASSNUM: u8 = <span class="number">3</span>;
 
-<span class="doccomment">/// Data encoding byte index.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EI_DATA</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">5</span>;
-<span class="doccomment">/// Invalid data encoding.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ELFDATANONE</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">0</span>;
-<span class="doccomment">/// 2&#39;s complement, little endian.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ELFDATA2LSB</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">1</span>;
-<span class="doccomment">/// 2&#39;s complement, big endian.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ELFDATA2MSB</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">2</span>;
+<span class="doccomment">/// Data encoding byte index.
+</span><span class="kw">pub const </span>EI_DATA: usize = <span class="number">5</span>;
+<span class="doccomment">/// Invalid data encoding.
+</span><span class="kw">pub const </span>ELFDATANONE: u8 = <span class="number">0</span>;
+<span class="doccomment">/// 2&#39;s complement, little endian.
+</span><span class="kw">pub const </span>ELFDATA2LSB: u8 = <span class="number">1</span>;
+<span class="doccomment">/// 2&#39;s complement, big endian.
+</span><span class="kw">pub const </span>ELFDATA2MSB: u8 = <span class="number">2</span>;
 
-<span class="doccomment">/// File version byte index.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EI_VERSION</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">6</span>;
-<span class="doccomment">/// Current ELF version.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EV_CURRENT</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">1</span>;
+<span class="doccomment">/// File version byte index.
+</span><span class="kw">pub const </span>EI_VERSION: usize = <span class="number">6</span>;
+<span class="doccomment">/// Current ELF version.
+</span><span class="kw">pub const </span>EV_CURRENT: u8 = <span class="number">1</span>;
 
-<span class="doccomment">/// OS ABI byte index.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EI_OSABI</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">7</span>;
-<span class="doccomment">/// UNIX System V ABI.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ELFOSABI_NONE</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">0</span>;
-<span class="doccomment">/// UNIX System V ABI.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Alias.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ELFOSABI_SYSV</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="ident">ELFOSABI_NONE</span>;
-<span class="doccomment">/// HP-UX.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ELFOSABI_HPUX</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">1</span>;
-<span class="doccomment">/// NetBSD.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ELFOSABI_NETBSD</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">2</span>;
-<span class="doccomment">/// Object uses GNU ELF extensions.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ELFOSABI_GNU</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">3</span>;
-<span class="doccomment">/// Object uses GNU ELF extensions.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Alias.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ELFOSABI_LINUX</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="ident">ELFOSABI_GNU</span>;
-<span class="doccomment">/// Sun Solaris.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ELFOSABI_SOLARIS</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">6</span>;
-<span class="doccomment">/// IBM AIX.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ELFOSABI_AIX</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">7</span>;
-<span class="doccomment">/// SGI Irix.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ELFOSABI_IRIX</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">8</span>;
-<span class="doccomment">/// FreeBSD</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ELFOSABI_FREEBSD</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">9</span>;
-<span class="doccomment">/// Compaq TRU64 UNIX.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ELFOSABI_TRU64</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">10</span>;
-<span class="doccomment">/// Novell Modesto.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ELFOSABI_MODESTO</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">11</span>;
-<span class="doccomment">/// OpenBSD.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ELFOSABI_OPENBSD</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">12</span>;
-<span class="doccomment">/// ARM EABI.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ELFOSABI_ARM_AEABI</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">64</span>;
-<span class="doccomment">/// ARM.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ELFOSABI_ARM</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">97</span>;
-<span class="doccomment">/// Standalone (embedded) application.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ELFOSABI_STANDALONE</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">255</span>;
+<span class="doccomment">/// OS ABI byte index.
+</span><span class="kw">pub const </span>EI_OSABI: usize = <span class="number">7</span>;
+<span class="doccomment">/// UNIX System V ABI.
+</span><span class="kw">pub const </span>ELFOSABI_NONE: u8 = <span class="number">0</span>;
+<span class="doccomment">/// UNIX System V ABI.
+///
+/// Alias.
+</span><span class="kw">pub const </span>ELFOSABI_SYSV: u8 = ELFOSABI_NONE;
+<span class="doccomment">/// HP-UX.
+</span><span class="kw">pub const </span>ELFOSABI_HPUX: u8 = <span class="number">1</span>;
+<span class="doccomment">/// NetBSD.
+</span><span class="kw">pub const </span>ELFOSABI_NETBSD: u8 = <span class="number">2</span>;
+<span class="doccomment">/// Object uses GNU ELF extensions.
+</span><span class="kw">pub const </span>ELFOSABI_GNU: u8 = <span class="number">3</span>;
+<span class="doccomment">/// Object uses GNU ELF extensions.
+///
+/// Alias.
+</span><span class="kw">pub const </span>ELFOSABI_LINUX: u8 = ELFOSABI_GNU;
+<span class="doccomment">/// Sun Solaris.
+</span><span class="kw">pub const </span>ELFOSABI_SOLARIS: u8 = <span class="number">6</span>;
+<span class="doccomment">/// IBM AIX.
+</span><span class="kw">pub const </span>ELFOSABI_AIX: u8 = <span class="number">7</span>;
+<span class="doccomment">/// SGI Irix.
+</span><span class="kw">pub const </span>ELFOSABI_IRIX: u8 = <span class="number">8</span>;
+<span class="doccomment">/// FreeBSD
+</span><span class="kw">pub const </span>ELFOSABI_FREEBSD: u8 = <span class="number">9</span>;
+<span class="doccomment">/// Compaq TRU64 UNIX.
+</span><span class="kw">pub const </span>ELFOSABI_TRU64: u8 = <span class="number">10</span>;
+<span class="doccomment">/// Novell Modesto.
+</span><span class="kw">pub const </span>ELFOSABI_MODESTO: u8 = <span class="number">11</span>;
+<span class="doccomment">/// OpenBSD.
+</span><span class="kw">pub const </span>ELFOSABI_OPENBSD: u8 = <span class="number">12</span>;
+<span class="doccomment">/// ARM EABI.
+</span><span class="kw">pub const </span>ELFOSABI_ARM_AEABI: u8 = <span class="number">64</span>;
+<span class="doccomment">/// ARM.
+</span><span class="kw">pub const </span>ELFOSABI_ARM: u8 = <span class="number">97</span>;
+<span class="doccomment">/// Standalone (embedded) application.
+</span><span class="kw">pub const </span>ELFOSABI_STANDALONE: u8 = <span class="number">255</span>;
 
-<span class="doccomment">/// ABI version byte index.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EI_ABIVERSION</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">8</span>;
+<span class="doccomment">/// ABI version byte index.
+</span><span class="kw">pub const </span>EI_ABIVERSION: usize = <span class="number">8</span>;
 
-<span class="doccomment">/// Number of bytes in an identifier.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIZEOF_IDENT</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">16</span>;
+<span class="doccomment">/// Number of bytes in an identifier.
+</span><span class="kw">pub const </span>SIZEOF_IDENT: usize = <span class="number">16</span>;
 
-<span class="doccomment">/// Convert a ELF class byte to the associated string.</span>
-<span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">class_to_str</span>(<span class="ident">et</span>: <span class="ident">u8</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> {
-    <span class="kw">match</span> <span class="ident">et</span> {
-        <span class="ident">ELFCLASSNONE</span> =&gt; <span class="string">&quot;NONE&quot;</span>,
-        <span class="ident">ELFCLASS32</span> =&gt; <span class="string">&quot;ELF32&quot;</span>,
-        <span class="ident">ELFCLASS64</span> =&gt; <span class="string">&quot;ELF64&quot;</span>,
-        <span class="kw">_</span> =&gt; <span class="string">&quot;UNKNOWN_CLASS&quot;</span>,
+<span class="doccomment">/// Convert a ELF class byte to the associated string.
+</span><span class="attribute">#[inline]
+</span><span class="kw">pub fn </span>class_to_str(et: u8) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str {
+    <span class="kw">match </span>et {
+        ELFCLASSNONE =&gt; <span class="string">&quot;NONE&quot;</span>,
+        ELFCLASS32 =&gt; <span class="string">&quot;ELF32&quot;</span>,
+        ELFCLASS64 =&gt; <span class="string">&quot;ELF64&quot;</span>,
+        <span class="kw">_ </span>=&gt; <span class="string">&quot;UNKNOWN_CLASS&quot;</span>,
     }
 }
 
-<span class="doccomment">/// Convert an ET value to their associated string.</span>
-<span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">et_to_str</span>(<span class="ident">et</span>: <span class="ident">u16</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> {
-    <span class="kw">match</span> <span class="ident">et</span> {
-        <span class="ident">ET_NONE</span> =&gt; <span class="string">&quot;NONE&quot;</span>,
-        <span class="ident">ET_REL</span> =&gt; <span class="string">&quot;REL&quot;</span>,
-        <span class="ident">ET_EXEC</span> =&gt; <span class="string">&quot;EXEC&quot;</span>,
-        <span class="ident">ET_DYN</span> =&gt; <span class="string">&quot;DYN&quot;</span>,
-        <span class="ident">ET_CORE</span> =&gt; <span class="string">&quot;CORE&quot;</span>,
-        <span class="ident">ET_NUM</span> =&gt; <span class="string">&quot;NUM&quot;</span>,
-        <span class="kw">_</span> =&gt; <span class="string">&quot;UNKNOWN_ET&quot;</span>,
+<span class="doccomment">/// Convert an ET value to their associated string.
+</span><span class="attribute">#[inline]
+</span><span class="kw">pub fn </span>et_to_str(et: u16) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str {
+    <span class="kw">match </span>et {
+        ET_NONE =&gt; <span class="string">&quot;NONE&quot;</span>,
+        ET_REL =&gt; <span class="string">&quot;REL&quot;</span>,
+        ET_EXEC =&gt; <span class="string">&quot;EXEC&quot;</span>,
+        ET_DYN =&gt; <span class="string">&quot;DYN&quot;</span>,
+        ET_CORE =&gt; <span class="string">&quot;CORE&quot;</span>,
+        ET_NUM =&gt; <span class="string">&quot;NUM&quot;</span>,
+        <span class="kw">_ </span>=&gt; <span class="string">&quot;UNKNOWN_ET&quot;</span>,
     }
 }
 
-<span class="macro">if_alloc!</span> {
-    <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::error</span>;
-    <span class="kw">use</span> <span class="ident">scroll</span>::{<span class="ident">ctx</span>, <span class="ident">Endian</span>};
-    <span class="kw">use</span> <span class="ident">core::fmt</span>;
-    <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::container</span>::{<span class="ident">Ctx</span>, <span class="ident">Container</span>};
-    <span class="kw">use</span> <span class="ident">alloc::string::ToString</span>;
+<span class="macro">if_alloc! </span>{
+    <span class="kw">use </span><span class="kw">crate</span>::error;
+    <span class="kw">use </span>scroll::{ctx, Endian};
+    <span class="kw">use </span>core::fmt;
+    <span class="kw">use </span><span class="kw">crate</span>::container::{Ctx, Container};
+    <span class="kw">use </span>alloc::string::ToString;
 
-    <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">PartialEq</span>)]</span>
-    <span class="doccomment">/// An ELF header</span>
-    <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Header</span> {
-        <span class="kw">pub</span> <span class="ident">e_ident</span>           : [<span class="ident">u8</span>; <span class="ident">SIZEOF_IDENT</span>],
-        <span class="kw">pub</span> <span class="ident">e_type</span>            : <span class="ident">u16</span>,
-        <span class="kw">pub</span> <span class="ident">e_machine</span>         : <span class="ident">u16</span>,
-        <span class="kw">pub</span> <span class="ident">e_version</span>         : <span class="ident">u32</span>,
-        <span class="kw">pub</span> <span class="ident">e_entry</span>           : <span class="ident">u64</span>,
-        <span class="kw">pub</span> <span class="ident">e_phoff</span>           : <span class="ident">u64</span>,
-        <span class="kw">pub</span> <span class="ident">e_shoff</span>           : <span class="ident">u64</span>,
-        <span class="kw">pub</span> <span class="ident">e_flags</span>           : <span class="ident">u32</span>,
-        <span class="kw">pub</span> <span class="ident">e_ehsize</span>          : <span class="ident">u16</span>,
-        <span class="kw">pub</span> <span class="ident">e_phentsize</span>       : <span class="ident">u16</span>,
-        <span class="kw">pub</span> <span class="ident">e_phnum</span>           : <span class="ident">u16</span>,
-        <span class="kw">pub</span> <span class="ident">e_shentsize</span>       : <span class="ident">u16</span>,
-        <span class="kw">pub</span> <span class="ident">e_shnum</span>           : <span class="ident">u16</span>,
-        <span class="kw">pub</span> <span class="ident">e_shstrndx</span>        : <span class="ident">u16</span>,
+    <span class="attribute">#[derive(Copy, Clone, PartialEq)]
+    </span><span class="doccomment">/// An ELF header
+    </span><span class="kw">pub struct </span>Header {
+        <span class="kw">pub </span>e_ident           : [u8; SIZEOF_IDENT],
+        <span class="kw">pub </span>e_type            : u16,
+        <span class="kw">pub </span>e_machine         : u16,
+        <span class="kw">pub </span>e_version         : u32,
+        <span class="kw">pub </span>e_entry           : u64,
+        <span class="kw">pub </span>e_phoff           : u64,
+        <span class="kw">pub </span>e_shoff           : u64,
+        <span class="kw">pub </span>e_flags           : u32,
+        <span class="kw">pub </span>e_ehsize          : u16,
+        <span class="kw">pub </span>e_phentsize       : u16,
+        <span class="kw">pub </span>e_phnum           : u16,
+        <span class="kw">pub </span>e_shentsize       : u16,
+        <span class="kw">pub </span>e_shnum           : u16,
+        <span class="kw">pub </span>e_shstrndx        : u16,
     }
 
-    <span class="kw">impl</span> <span class="ident">Header</span> {
-        <span class="doccomment">/// Return the size of the underlying program header, given a `container`</span>
-        <span class="attribute">#[<span class="ident">inline</span>]</span>
-        <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">size</span>(<span class="ident">ctx</span>: <span class="ident">Ctx</span>) -&gt; <span class="ident">usize</span> {
-            <span class="kw">use</span> <span class="ident">scroll::ctx::SizeWith</span>;
-            <span class="ident"><span class="self">Self</span>::size_with</span>(<span class="kw-2">&amp;</span><span class="ident">ctx</span>)
+    <span class="kw">impl </span>Header {
+        <span class="doccomment">/// Return the size of the underlying program header, given a `container`
+        </span><span class="attribute">#[inline]
+        </span><span class="kw">pub fn </span>size(ctx: Ctx) -&gt; usize {
+            <span class="kw">use </span>scroll::ctx::SizeWith;
+            <span class="self">Self</span>::size_with(<span class="kw-2">&amp;</span>ctx)
         }
-        <span class="doccomment">/// Returns the container type this header specifies</span>
-        <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">container</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">error::Result</span><span class="op">&lt;</span><span class="ident">Container</span><span class="op">&gt;</span> {
-            <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::error::Error</span>;
-            <span class="kw">match</span> <span class="self">self</span>.<span class="ident">e_ident</span>[<span class="ident">EI_CLASS</span>] {
-                <span class="ident">ELFCLASS32</span> =&gt; { <span class="prelude-val">Ok</span>(<span class="ident">Container::Little</span>) },
-                <span class="ident">ELFCLASS64</span> =&gt; { <span class="prelude-val">Ok</span>(<span class="ident">Container::Big</span>) },
-                <span class="ident">class</span> =&gt; <span class="prelude-val">Err</span>(<span class="ident">Error::Malformed</span>(<span class="macro">format!</span>(<span class="string">&quot;Invalid class in Header: {}&quot;</span>, <span class="ident">class</span>)))
+        <span class="doccomment">/// Returns the container type this header specifies
+        </span><span class="kw">pub fn </span>container(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; error::Result&lt;Container&gt; {
+            <span class="kw">use </span><span class="kw">crate</span>::error::Error;
+            <span class="kw">match </span><span class="self">self</span>.e_ident[EI_CLASS] {
+                ELFCLASS32 =&gt; { <span class="prelude-val">Ok</span>(Container::Little) },
+                ELFCLASS64 =&gt; { <span class="prelude-val">Ok</span>(Container::Big) },
+                class =&gt; <span class="prelude-val">Err</span>(Error::Malformed(<span class="macro">format!</span>(<span class="string">&quot;Invalid class in Header: {}&quot;</span>, class)))
             }
         }
-        <span class="doccomment">/// Returns the byte order this header specifies</span>
-        <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">endianness</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">error::Result</span><span class="op">&lt;</span><span class="ident">scroll::Endian</span><span class="op">&gt;</span> {
-            <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::error::Error</span>;
-            <span class="kw">match</span> <span class="self">self</span>.<span class="ident">e_ident</span>[<span class="ident">EI_DATA</span>] {
-                <span class="ident">ELFDATA2LSB</span> =&gt; { <span class="prelude-val">Ok</span>(<span class="ident">scroll::LE</span>) },
-                <span class="ident">ELFDATA2MSB</span> =&gt; { <span class="prelude-val">Ok</span>(<span class="ident">scroll::BE</span>) },
-                <span class="ident">class</span> =&gt; <span class="prelude-val">Err</span>(<span class="ident">Error::Malformed</span>(<span class="macro">format!</span>(<span class="string">&quot;Invalid endianness in Header: {}&quot;</span>, <span class="ident">class</span>)))
+        <span class="doccomment">/// Returns the byte order this header specifies
+        </span><span class="kw">pub fn </span>endianness(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; error::Result&lt;scroll::Endian&gt; {
+            <span class="kw">use </span><span class="kw">crate</span>::error::Error;
+            <span class="kw">match </span><span class="self">self</span>.e_ident[EI_DATA] {
+                ELFDATA2LSB =&gt; { <span class="prelude-val">Ok</span>(scroll::LE) },
+                ELFDATA2MSB =&gt; { <span class="prelude-val">Ok</span>(scroll::BE) },
+                class =&gt; <span class="prelude-val">Err</span>(Error::Malformed(<span class="macro">format!</span>(<span class="string">&quot;Invalid endianness in Header: {}&quot;</span>, class)))
             }
         }
-        <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">ctx</span>: <span class="ident">Ctx</span>) -&gt; <span class="self">Self</span> {
-            <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::elf32</span>;
-            <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::elf64</span>;
-            <span class="kw">let</span> (<span class="ident">typ</span>, <span class="ident">ehsize</span>, <span class="ident">phentsize</span>, <span class="ident">shentsize</span>) <span class="op">=</span> <span class="kw">match</span> <span class="ident">ctx</span>.<span class="ident">container</span> {
-                <span class="ident">Container::Little</span> =&gt; {
-                    (<span class="ident">ELFCLASS32</span>, <span class="ident">header32::SIZEOF_EHDR</span>,
-                     <span class="ident">elf32::program_header::SIZEOF_PHDR</span>,
-                     <span class="ident">elf32::section_header::SIZEOF_SHDR</span>)
+        <span class="kw">pub fn </span>new(ctx: Ctx) -&gt; <span class="self">Self </span>{
+            <span class="kw">use </span><span class="kw">crate</span>::elf32;
+            <span class="kw">use </span><span class="kw">crate</span>::elf64;
+            <span class="kw">let </span>(typ, ehsize, phentsize, shentsize) = <span class="kw">match </span>ctx.container {
+                Container::Little =&gt; {
+                    (ELFCLASS32, header32::SIZEOF_EHDR,
+                     elf32::program_header::SIZEOF_PHDR,
+                     elf32::section_header::SIZEOF_SHDR)
                 },
-                <span class="ident">Container::Big</span> =&gt; {
-                    (<span class="ident">ELFCLASS64</span>, <span class="ident">header64::SIZEOF_EHDR</span>,
-                     <span class="ident">elf64::program_header::SIZEOF_PHDR</span>,
-                     <span class="ident">elf64::section_header::SIZEOF_SHDR</span>)
+                Container::Big =&gt; {
+                    (ELFCLASS64, header64::SIZEOF_EHDR,
+                     elf64::program_header::SIZEOF_PHDR,
+                     elf64::section_header::SIZEOF_SHDR)
                 }
             };
-            <span class="kw">let</span> <span class="ident">byteorder</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">ctx</span>.<span class="ident">le</span> { <span class="ident">Endian::Little</span> =&gt; <span class="ident">ELFDATA2LSB</span>, <span class="ident">Endian::Big</span> =&gt; <span class="ident">ELFDATA2MSB</span> };
-            <span class="ident">Header</span> {
-                <span class="ident">e_ident</span>: [
+            <span class="kw">let </span>byteorder = <span class="kw">match </span>ctx.le { Endian::Little =&gt; ELFDATA2LSB, Endian::Big =&gt; ELFDATA2MSB };
+            Header {
+                e_ident: [
                     <span class="number">127</span>,
                     <span class="number">69</span>,
                     <span class="number">76</span>,
                     <span class="number">70</span>,
-                    <span class="ident">typ</span>,
-                    <span class="ident">byteorder</span>,
-                    <span class="ident">EV_CURRENT</span>,
-                    <span class="ident">ELFOSABI_NONE</span>,
+                    typ,
+                    byteorder,
+                    EV_CURRENT,
+                    ELFOSABI_NONE,
                     <span class="number">0</span>,
                     <span class="number">0</span>,
                     <span class="number">0</span>,
@@ -907,356 +907,356 @@
                     <span class="number">0</span>,
                     <span class="number">0</span>,
                     <span class="number">0</span>,
-                    <span class="number">0</span>
-                ],
-                <span class="ident">e_type</span>: <span class="ident">ET_DYN</span>,
-                <span class="ident">e_machine</span>: <span class="ident">EM_NONE</span>,
-                <span class="ident">e_version</span>: <span class="number">1</span>,
-                <span class="ident">e_entry</span>: <span class="number">0x0</span>,
-                <span class="ident">e_phoff</span>: <span class="number">0x0</span>,
-                <span class="ident">e_shoff</span>: <span class="number">0x0</span>,
-                <span class="ident">e_flags</span>: <span class="number">0</span>,
-                <span class="ident">e_ehsize</span>: <span class="ident">ehsize</span> <span class="kw">as</span> <span class="ident">u16</span>,
-                <span class="ident">e_phentsize</span>: <span class="ident">phentsize</span> <span class="kw">as</span> <span class="ident">u16</span>,
-                <span class="ident">e_phnum</span>: <span class="number">0</span>,
-                <span class="ident">e_shentsize</span>: <span class="ident">shentsize</span> <span class="kw">as</span> <span class="ident">u16</span>,
-                <span class="ident">e_shnum</span>: <span class="number">0</span>,
-                <span class="ident">e_shstrndx</span>: <span class="number">0</span>,
+                    <span class="number">0
+                </span>],
+                e_type: ET_DYN,
+                e_machine: EM_NONE,
+                e_version: <span class="number">1</span>,
+                e_entry: <span class="number">0x0</span>,
+                e_phoff: <span class="number">0x0</span>,
+                e_shoff: <span class="number">0x0</span>,
+                e_flags: <span class="number">0</span>,
+                e_ehsize: ehsize <span class="kw">as </span>u16,
+                e_phentsize: phentsize <span class="kw">as </span>u16,
+                e_phnum: <span class="number">0</span>,
+                e_shentsize: shentsize <span class="kw">as </span>u16,
+                e_shnum: <span class="number">0</span>,
+                e_shstrndx: <span class="number">0</span>,
             }
         }
     }
 
-    <span class="kw">impl</span> <span class="ident">fmt::Debug</span> <span class="kw">for</span> <span class="ident">Header</span> {
-        <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">fmt::Formatter</span>) -&gt; <span class="ident">fmt::Result</span> {
-            <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;Header&quot;</span>)
-               .<span class="ident">field</span>(<span class="string">&quot;e_ident&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{:?}&quot;</span>, <span class="self">self</span>.<span class="ident">e_ident</span>))
-               .<span class="ident">field</span>(<span class="string">&quot;e_type&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">et_to_str</span>(<span class="self">self</span>.<span class="ident">e_type</span>))
-               .<span class="ident">field</span>(<span class="string">&quot;e_machine&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;0x{:x}&quot;</span>, <span class="self">self</span>.<span class="ident">e_machine</span>))
-               .<span class="ident">field</span>(<span class="string">&quot;e_version&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;0x{:x}&quot;</span>, <span class="self">self</span>.<span class="ident">e_version</span>))
-               .<span class="ident">field</span>(<span class="string">&quot;e_entry&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;0x{:x}&quot;</span>, <span class="self">self</span>.<span class="ident">e_entry</span>))
-               .<span class="ident">field</span>(<span class="string">&quot;e_phoff&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;0x{:x}&quot;</span>, <span class="self">self</span>.<span class="ident">e_phoff</span>))
-               .<span class="ident">field</span>(<span class="string">&quot;e_shoff&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;0x{:x}&quot;</span>, <span class="self">self</span>.<span class="ident">e_shoff</span>))
-               .<span class="ident">field</span>(<span class="string">&quot;e_flags&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{:x}&quot;</span>, <span class="self">self</span>.<span class="ident">e_flags</span>))
-               .<span class="ident">field</span>(<span class="string">&quot;e_ehsize&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">e_ehsize</span>)
-               .<span class="ident">field</span>(<span class="string">&quot;e_phentsize&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">e_phentsize</span>)
-               .<span class="ident">field</span>(<span class="string">&quot;e_phnum&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">e_phnum</span>)
-               .<span class="ident">field</span>(<span class="string">&quot;e_shentsize&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">e_shentsize</span>)
-               .<span class="ident">field</span>(<span class="string">&quot;e_shnum&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">e_shnum</span>)
-               .<span class="ident">field</span>(<span class="string">&quot;e_shstrndx&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">e_shstrndx</span>)
-               .<span class="ident">finish</span>()
+    <span class="kw">impl </span>fmt::Debug <span class="kw">for </span>Header {
+        <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>fmt::Formatter) -&gt; fmt::Result {
+            f.debug_struct(<span class="string">&quot;Header&quot;</span>)
+               .field(<span class="string">&quot;e_ident&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{:?}&quot;</span>, <span class="self">self</span>.e_ident))
+               .field(<span class="string">&quot;e_type&quot;</span>, <span class="kw-2">&amp;</span>et_to_str(<span class="self">self</span>.e_type))
+               .field(<span class="string">&quot;e_machine&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;0x{:x}&quot;</span>, <span class="self">self</span>.e_machine))
+               .field(<span class="string">&quot;e_version&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;0x{:x}&quot;</span>, <span class="self">self</span>.e_version))
+               .field(<span class="string">&quot;e_entry&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;0x{:x}&quot;</span>, <span class="self">self</span>.e_entry))
+               .field(<span class="string">&quot;e_phoff&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;0x{:x}&quot;</span>, <span class="self">self</span>.e_phoff))
+               .field(<span class="string">&quot;e_shoff&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;0x{:x}&quot;</span>, <span class="self">self</span>.e_shoff))
+               .field(<span class="string">&quot;e_flags&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{:x}&quot;</span>, <span class="self">self</span>.e_flags))
+               .field(<span class="string">&quot;e_ehsize&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.e_ehsize)
+               .field(<span class="string">&quot;e_phentsize&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.e_phentsize)
+               .field(<span class="string">&quot;e_phnum&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.e_phnum)
+               .field(<span class="string">&quot;e_shentsize&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.e_shentsize)
+               .field(<span class="string">&quot;e_shnum&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.e_shnum)
+               .field(<span class="string">&quot;e_shstrndx&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.e_shstrndx)
+               .finish()
         }
     }
 
-    <span class="kw">impl</span> <span class="ident">ctx::SizeWith</span><span class="op">&lt;</span><span class="ident"><span class="kw">crate</span>::container::Ctx</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Header</span> {
-        <span class="kw">fn</span> <span class="ident">size_with</span>(<span class="ident">ctx</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="kw">crate</span>::container::Ctx</span>) -&gt; <span class="ident">usize</span> {
-            <span class="kw">match</span> <span class="ident">ctx</span>.<span class="ident">container</span> {
-                <span class="ident">Container::Little</span> =&gt; {
-                    <span class="ident">header32::SIZEOF_EHDR</span>
+    <span class="kw">impl </span>ctx::SizeWith&lt;<span class="kw">crate</span>::container::Ctx&gt; <span class="kw">for </span>Header {
+        <span class="kw">fn </span>size_with(ctx: <span class="kw-2">&amp;</span><span class="kw">crate</span>::container::Ctx) -&gt; usize {
+            <span class="kw">match </span>ctx.container {
+                Container::Little =&gt; {
+                    header32::SIZEOF_EHDR
                 },
-                <span class="ident">Container::Big</span> =&gt; {
-                    <span class="ident">header64::SIZEOF_EHDR</span>
+                Container::Big =&gt; {
+                    header64::SIZEOF_EHDR
                 },
             }
         }
     }
 
-    <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">ctx::TryFromCtx</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">scroll::Endian</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Header</span> {
-        <span class="kw">type</span> <span class="ident">Error</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::error::Error</span>;
-        <span class="kw">fn</span> <span class="ident">try_from_ctx</span>(<span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>], <span class="ident">_ctx</span>: <span class="ident">scroll::Endian</span>) -&gt; <span class="ident">error::Result</span><span class="op">&lt;</span>(<span class="self">Self</span>, <span class="ident">usize</span>)<span class="op">&gt;</span> {
-            <span class="kw">use</span> <span class="ident">scroll::Pread</span>;
-            <span class="kw">if</span> <span class="ident">bytes</span>.<span class="ident">len</span>() <span class="op">&lt;</span> <span class="ident">SIZEOF_IDENT</span> {
-                <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">error::Error::Malformed</span>(<span class="string">&quot;Too small&quot;</span>.<span class="ident">to_string</span>()));
+    <span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; ctx::TryFromCtx&lt;<span class="lifetime">&#39;a</span>, scroll::Endian&gt; <span class="kw">for </span>Header {
+        <span class="kw">type </span>Error = <span class="kw">crate</span>::error::Error;
+        <span class="kw">fn </span>try_from_ctx(bytes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8], _ctx: scroll::Endian) -&gt; error::Result&lt;(<span class="self">Self</span>, usize)&gt; {
+            <span class="kw">use </span>scroll::Pread;
+            <span class="kw">if </span>bytes.len() &lt; SIZEOF_IDENT {
+                <span class="kw">return </span><span class="prelude-val">Err</span>(error::Error::Malformed(<span class="string">&quot;Too small&quot;</span>.to_string()));
             }
-            <span class="kw">let</span> <span class="ident">ident</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>] <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">bytes</span>[..<span class="ident">SIZEOF_IDENT</span>];
-            <span class="kw">if</span> <span class="kw-2">&amp;</span><span class="ident">ident</span>[<span class="number">0</span>..<span class="ident">SELFMAG</span>] <span class="op">!</span><span class="op">=</span> <span class="ident">ELFMAG</span> {
-                <span class="kw">let</span> <span class="ident">magic</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="ident">ident</span>.<span class="ident">pread_with</span>(<span class="number">0</span>, <span class="ident">scroll::LE</span>)<span class="question-mark">?</span>;
-                <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">error::Error::BadMagic</span>(<span class="ident">magic</span>));
+            <span class="kw">let </span>ident: <span class="kw-2">&amp;</span>[u8] = <span class="kw-2">&amp;</span>bytes[..SIZEOF_IDENT];
+            <span class="kw">if </span><span class="kw-2">&amp;</span>ident[<span class="number">0</span>..SELFMAG] != ELFMAG {
+                <span class="kw">let </span>magic: u64 = ident.pread_with(<span class="number">0</span>, scroll::LE)<span class="question-mark">?</span>;
+                <span class="kw">return </span><span class="prelude-val">Err</span>(error::Error::BadMagic(magic));
             }
-            <span class="kw">let</span> <span class="ident">class</span> <span class="op">=</span> <span class="ident">ident</span>[<span class="ident">EI_CLASS</span>];
-            <span class="kw">match</span> <span class="ident">class</span> {
-                <span class="ident">ELFCLASS32</span> =&gt; {
-                    <span class="prelude-val">Ok</span>((<span class="ident">Header::from</span>(<span class="ident">bytes</span>.<span class="ident">pread</span>::<span class="op">&lt;</span><span class="ident">header32::Header</span><span class="op">&gt;</span>(<span class="number">0</span>)<span class="question-mark">?</span>), <span class="ident">header32::SIZEOF_EHDR</span>))
+            <span class="kw">let </span>class = ident[EI_CLASS];
+            <span class="kw">match </span>class {
+                ELFCLASS32 =&gt; {
+                    <span class="prelude-val">Ok</span>((Header::from(bytes.pread::&lt;header32::Header&gt;(<span class="number">0</span>)<span class="question-mark">?</span>), header32::SIZEOF_EHDR))
                 },
-                <span class="ident">ELFCLASS64</span> =&gt; {
-                    <span class="prelude-val">Ok</span>((<span class="ident">Header::from</span>(<span class="ident">bytes</span>.<span class="ident">pread</span>::<span class="op">&lt;</span><span class="ident">header64::Header</span><span class="op">&gt;</span>(<span class="number">0</span>)<span class="question-mark">?</span>), <span class="ident">header64::SIZEOF_EHDR</span>))
+                ELFCLASS64 =&gt; {
+                    <span class="prelude-val">Ok</span>((Header::from(bytes.pread::&lt;header64::Header&gt;(<span class="number">0</span>)<span class="question-mark">?</span>), header64::SIZEOF_EHDR))
                 },
-                <span class="kw">_</span> =&gt; {
-                    <span class="prelude-val">Err</span>(<span class="ident">error::Error::Malformed</span>(<span class="macro">format!</span>(<span class="string">&quot;invalid ELF class {:x}&quot;</span>, <span class="ident">class</span>)))
+                <span class="kw">_ </span>=&gt; {
+                    <span class="prelude-val">Err</span>(error::Error::Malformed(<span class="macro">format!</span>(<span class="string">&quot;invalid ELF class {:x}&quot;</span>, class)))
                 }
             }
         }
     }
 
-    <span class="kw">impl</span> <span class="ident">ctx::TryIntoCtx</span><span class="op">&lt;</span><span class="ident">scroll::Endian</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Header</span> {
-        <span class="kw">type</span> <span class="ident">Error</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::error::Error</span>;
-        <span class="kw">fn</span> <span class="ident">try_into_ctx</span>(<span class="self">self</span>, <span class="ident">bytes</span>: <span class="kw-2">&amp;mut</span> [<span class="ident">u8</span>], <span class="ident">_ctx</span>: <span class="ident">scroll::Endian</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">usize</span>, <span class="ident"><span class="self">Self</span>::Error</span><span class="op">&gt;</span> {
-            <span class="kw">use</span> <span class="ident">scroll::Pwrite</span>;
-            <span class="kw">match</span> <span class="self">self</span>.<span class="ident">container</span>()<span class="question-mark">?</span> {
-                <span class="ident">Container::Little</span> =&gt; {
-                    <span class="ident">bytes</span>.<span class="ident">pwrite</span>(<span class="ident">header32::Header::from</span>(<span class="self">self</span>), <span class="number">0</span>)
+    <span class="kw">impl </span>ctx::TryIntoCtx&lt;scroll::Endian&gt; <span class="kw">for </span>Header {
+        <span class="kw">type </span>Error = <span class="kw">crate</span>::error::Error;
+        <span class="kw">fn </span>try_into_ctx(<span class="self">self</span>, bytes: <span class="kw-2">&amp;mut </span>[u8], _ctx: scroll::Endian) -&gt; <span class="prelude-ty">Result</span>&lt;usize, <span class="self">Self</span>::Error&gt; {
+            <span class="kw">use </span>scroll::Pwrite;
+            <span class="kw">match </span><span class="self">self</span>.container()<span class="question-mark">? </span>{
+                Container::Little =&gt; {
+                    bytes.pwrite(header32::Header::from(<span class="self">self</span>), <span class="number">0</span>)
                 },
-                <span class="ident">Container::Big</span> =&gt; {
-                    <span class="ident">bytes</span>.<span class="ident">pwrite</span>(<span class="ident">header64::Header::from</span>(<span class="self">self</span>), <span class="number">0</span>)
+                Container::Big =&gt; {
+                    bytes.pwrite(header64::Header::from(<span class="self">self</span>), <span class="number">0</span>)
                 }
             }
         }
     }
-    <span class="kw">impl</span> <span class="ident">ctx::IntoCtx</span><span class="op">&lt;</span><span class="ident"><span class="kw">crate</span>::container::Ctx</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Header</span> {
-        <span class="kw">fn</span> <span class="ident">into_ctx</span>(<span class="self">self</span>, <span class="ident">bytes</span>: <span class="kw-2">&amp;mut</span> [<span class="ident">u8</span>], <span class="ident">ctx</span>: <span class="ident"><span class="kw">crate</span>::container::Ctx</span>) {
-            <span class="kw">use</span> <span class="ident">scroll::Pwrite</span>;
-            <span class="kw">match</span> <span class="ident">ctx</span>.<span class="ident">container</span> {
-                <span class="ident">Container::Little</span> =&gt; {
-                    <span class="ident">bytes</span>.<span class="ident">pwrite_with</span>(<span class="ident">header32::Header::from</span>(<span class="self">self</span>), <span class="number">0</span>, <span class="ident">ctx</span>.<span class="ident">le</span>).<span class="ident">unwrap</span>()
+    <span class="kw">impl </span>ctx::IntoCtx&lt;<span class="kw">crate</span>::container::Ctx&gt; <span class="kw">for </span>Header {
+        <span class="kw">fn </span>into_ctx(<span class="self">self</span>, bytes: <span class="kw-2">&amp;mut </span>[u8], ctx: <span class="kw">crate</span>::container::Ctx) {
+            <span class="kw">use </span>scroll::Pwrite;
+            <span class="kw">match </span>ctx.container {
+                Container::Little =&gt; {
+                    bytes.pwrite_with(header32::Header::from(<span class="self">self</span>), <span class="number">0</span>, ctx.le).unwrap()
                 },
-                <span class="ident">Container::Big</span> =&gt; {
-                    <span class="ident">bytes</span>.<span class="ident">pwrite_with</span>(<span class="ident">header64::Header::from</span>(<span class="self">self</span>), <span class="number">0</span>, <span class="ident">ctx</span>.<span class="ident">le</span>).<span class="ident">unwrap</span>()
+                Container::Big =&gt; {
+                    bytes.pwrite_with(header64::Header::from(<span class="self">self</span>), <span class="number">0</span>, ctx.le).unwrap()
                 }
             };
         }
     }
-} <span class="comment">// end if_alloc</span>
+} <span class="comment">// end if_alloc
 
-<span class="macro">macro_rules!</span> <span class="ident">elf_header_std_impl</span> {
-    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">size</span>:<span class="ident">expr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">width</span>:<span class="ident">ty</span>) =&gt; {
+</span><span class="macro">macro_rules! </span>elf_header_std_impl {
+    (<span class="macro-nonterminal">$size</span>:expr, <span class="macro-nonterminal">$width</span>:ty) =&gt; {
 
-        <span class="macro">if_alloc!</span> {
-            <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::elf::header::Header</span> <span class="kw">as</span> <span class="ident">ElfHeader</span>;
-            <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::error::Error</span>;
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;std&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;endian_fd&quot;</span>))]</span>
-            <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::error::Result</span>;
+        <span class="macro">if_alloc! </span>{
+            <span class="kw">use </span><span class="kw">crate</span>::elf::header::Header <span class="kw">as </span>ElfHeader;
+            <span class="kw">use </span><span class="kw">crate</span>::error::Error;
+            <span class="attribute">#[cfg(any(feature = <span class="string">&quot;std&quot;</span>, feature = <span class="string">&quot;endian_fd&quot;</span>))]
+            </span><span class="kw">use </span><span class="kw">crate</span>::error::Result;
 
-            <span class="kw">use</span> <span class="ident">scroll</span>::{<span class="ident">ctx</span>, <span class="ident">Pread</span>};
+            <span class="kw">use </span>scroll::{ctx, Pread};
 
-            <span class="kw">use</span> <span class="ident">core::result</span>;
+            <span class="kw">use </span>core::result;
 
-            <span class="macro">if_std!</span> {
-                <span class="kw">use</span> <span class="ident">std::fs::File</span>;
-                <span class="kw">use</span> <span class="ident">std::io</span>::{<span class="ident">Read</span>};
+            <span class="macro">if_std! </span>{
+                <span class="kw">use </span>std::fs::File;
+                <span class="kw">use </span>std::io::{Read};
             }
 
-            <span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">ElfHeader</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Header</span> {
-                <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">eh</span>: <span class="ident">ElfHeader</span>) -&gt; <span class="self">Self</span> {
-                    <span class="ident">Header</span> {
-                        <span class="ident">e_ident</span>: <span class="ident">eh</span>.<span class="ident">e_ident</span>,
-                        <span class="ident">e_type</span>: <span class="ident">eh</span>.<span class="ident">e_type</span>,
-                        <span class="ident">e_machine</span>: <span class="ident">eh</span>.<span class="ident">e_machine</span>,
-                        <span class="ident">e_version</span>: <span class="ident">eh</span>.<span class="ident">e_version</span>,
-                        <span class="ident">e_entry</span>: <span class="ident">eh</span>.<span class="ident">e_entry</span> <span class="kw">as</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">width</span>,
-                        <span class="ident">e_phoff</span>: <span class="ident">eh</span>.<span class="ident">e_phoff</span> <span class="kw">as</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">width</span>,
-                        <span class="ident">e_shoff</span>: <span class="ident">eh</span>.<span class="ident">e_shoff</span> <span class="kw">as</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">width</span>,
-                        <span class="ident">e_flags</span>: <span class="ident">eh</span>.<span class="ident">e_flags</span>,
-                        <span class="ident">e_ehsize</span>: <span class="ident">eh</span>.<span class="ident">e_ehsize</span>,
-                        <span class="ident">e_phentsize</span>: <span class="ident">eh</span>.<span class="ident">e_phentsize</span>,
-                        <span class="ident">e_phnum</span>: <span class="ident">eh</span>.<span class="ident">e_phnum</span>,
-                        <span class="ident">e_shentsize</span>: <span class="ident">eh</span>.<span class="ident">e_shentsize</span>,
-                        <span class="ident">e_shnum</span>: <span class="ident">eh</span>.<span class="ident">e_shnum</span>,
-                        <span class="ident">e_shstrndx</span>: <span class="ident">eh</span>.<span class="ident">e_shstrndx</span>,
+            <span class="kw">impl </span>From&lt;ElfHeader&gt; <span class="kw">for </span>Header {
+                <span class="kw">fn </span>from(eh: ElfHeader) -&gt; <span class="self">Self </span>{
+                    Header {
+                        e_ident: eh.e_ident,
+                        e_type: eh.e_type,
+                        e_machine: eh.e_machine,
+                        e_version: eh.e_version,
+                        e_entry: eh.e_entry <span class="kw">as </span><span class="macro-nonterminal">$width</span>,
+                        e_phoff: eh.e_phoff <span class="kw">as </span><span class="macro-nonterminal">$width</span>,
+                        e_shoff: eh.e_shoff <span class="kw">as </span><span class="macro-nonterminal">$width</span>,
+                        e_flags: eh.e_flags,
+                        e_ehsize: eh.e_ehsize,
+                        e_phentsize: eh.e_phentsize,
+                        e_phnum: eh.e_phnum,
+                        e_shentsize: eh.e_shentsize,
+                        e_shnum: eh.e_shnum,
+                        e_shstrndx: eh.e_shstrndx,
                     }
                 }
             }
 
-            <span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">Header</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">ElfHeader</span> {
-                <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">eh</span>: <span class="ident">Header</span>) -&gt; <span class="self">Self</span> {
-                    <span class="ident">ElfHeader</span> {
-                        <span class="ident">e_ident</span>: <span class="ident">eh</span>.<span class="ident">e_ident</span>,
-                        <span class="ident">e_type</span>: <span class="ident">eh</span>.<span class="ident">e_type</span>,
-                        <span class="ident">e_machine</span>: <span class="ident">eh</span>.<span class="ident">e_machine</span>,
-                        <span class="ident">e_version</span>: <span class="ident">eh</span>.<span class="ident">e_version</span>,
-                        <span class="ident">e_entry</span>: <span class="ident">u64::from</span>(<span class="ident">eh</span>.<span class="ident">e_entry</span>),
-                        <span class="ident">e_phoff</span>: <span class="ident">u64::from</span>(<span class="ident">eh</span>.<span class="ident">e_phoff</span>),
-                        <span class="ident">e_shoff</span>: <span class="ident">u64::from</span>(<span class="ident">eh</span>.<span class="ident">e_shoff</span>),
-                        <span class="ident">e_flags</span>: <span class="ident">eh</span>.<span class="ident">e_flags</span>,
-                        <span class="ident">e_ehsize</span>: <span class="ident">eh</span>.<span class="ident">e_ehsize</span>,
-                        <span class="ident">e_phentsize</span>: <span class="ident">eh</span>.<span class="ident">e_phentsize</span>,
-                        <span class="ident">e_phnum</span>: <span class="ident">eh</span>.<span class="ident">e_phnum</span>,
-                        <span class="ident">e_shentsize</span>: <span class="ident">eh</span>.<span class="ident">e_shentsize</span>,
-                        <span class="ident">e_shnum</span>: <span class="ident">eh</span>.<span class="ident">e_shnum</span>,
-                        <span class="ident">e_shstrndx</span>: <span class="ident">eh</span>.<span class="ident">e_shstrndx</span>,
+            <span class="kw">impl </span>From&lt;Header&gt; <span class="kw">for </span>ElfHeader {
+                <span class="kw">fn </span>from(eh: Header) -&gt; <span class="self">Self </span>{
+                    ElfHeader {
+                        e_ident: eh.e_ident,
+                        e_type: eh.e_type,
+                        e_machine: eh.e_machine,
+                        e_version: eh.e_version,
+                        e_entry: u64::from(eh.e_entry),
+                        e_phoff: u64::from(eh.e_phoff),
+                        e_shoff: u64::from(eh.e_shoff),
+                        e_flags: eh.e_flags,
+                        e_ehsize: eh.e_ehsize,
+                        e_phentsize: eh.e_phentsize,
+                        e_phnum: eh.e_phnum,
+                        e_shentsize: eh.e_shentsize,
+                        e_shnum: eh.e_shnum,
+                        e_shstrndx: eh.e_shstrndx,
                     }
                 }
             }
 
-            <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">ctx::TryFromCtx</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">scroll::Endian</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Header</span> {
-                <span class="kw">type</span> <span class="ident">Error</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::error::Error</span>;
-                <span class="kw">fn</span> <span class="ident">try_from_ctx</span>(<span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>], <span class="kw">_</span>: <span class="ident">scroll::Endian</span>) -&gt; <span class="ident">result::Result</span><span class="op">&lt;</span>(<span class="self">Self</span>, <span class="ident">usize</span>), <span class="ident"><span class="self">Self</span>::Error</span><span class="op">&gt;</span> {
-                    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">elf_header</span> <span class="op">=</span> <span class="ident">Header::default</span>();
-                    <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> <span class="kw-2">&amp;mut</span> <span class="number">0</span>;
-                    <span class="ident">bytes</span>.<span class="ident">gread_inout</span>(<span class="ident">offset</span>, <span class="kw-2">&amp;mut</span> <span class="ident">elf_header</span>.<span class="ident">e_ident</span>)<span class="question-mark">?</span>;
-                    <span class="kw">let</span> <span class="ident">endianness</span> <span class="op">=</span>
-                        <span class="kw">match</span> <span class="ident">elf_header</span>.<span class="ident">e_ident</span>[<span class="ident">EI_DATA</span>] {
-                            <span class="ident">ELFDATA2LSB</span> =&gt; <span class="ident">scroll::LE</span>,
-                            <span class="ident">ELFDATA2MSB</span> =&gt; <span class="ident">scroll::BE</span>,
-                            <span class="ident">d</span> =&gt; <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">Error::Malformed</span>(<span class="macro">format!</span>(<span class="string">&quot;invalid ELF endianness DATA type {:x}&quot;</span>, <span class="ident">d</span>)).<span class="ident">into</span>()),
+            <span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; ctx::TryFromCtx&lt;<span class="lifetime">&#39;a</span>, scroll::Endian&gt; <span class="kw">for </span>Header {
+                <span class="kw">type </span>Error = <span class="kw">crate</span>::error::Error;
+                <span class="kw">fn </span>try_from_ctx(bytes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8], <span class="kw">_</span>: scroll::Endian) -&gt; result::Result&lt;(<span class="self">Self</span>, usize), <span class="self">Self</span>::Error&gt; {
+                    <span class="kw">let </span><span class="kw-2">mut </span>elf_header = Header::default();
+                    <span class="kw">let </span>offset = <span class="kw-2">&amp;mut </span><span class="number">0</span>;
+                    bytes.gread_inout(offset, <span class="kw-2">&amp;mut </span>elf_header.e_ident)<span class="question-mark">?</span>;
+                    <span class="kw">let </span>endianness =
+                        <span class="kw">match </span>elf_header.e_ident[EI_DATA] {
+                            ELFDATA2LSB =&gt; scroll::LE,
+                            ELFDATA2MSB =&gt; scroll::BE,
+                            d =&gt; <span class="kw">return </span><span class="prelude-val">Err</span>(Error::Malformed(<span class="macro">format!</span>(<span class="string">&quot;invalid ELF endianness DATA type {:x}&quot;</span>, d)).into()),
                         };
-                    <span class="ident">elf_header</span>.<span class="ident">e_type</span> <span class="op">=</span>      <span class="ident">bytes</span>.<span class="ident">gread_with</span>(<span class="ident">offset</span>, <span class="ident">endianness</span>)<span class="question-mark">?</span>;
-                    <span class="ident">elf_header</span>.<span class="ident">e_machine</span> <span class="op">=</span>   <span class="ident">bytes</span>.<span class="ident">gread_with</span>(<span class="ident">offset</span>, <span class="ident">endianness</span>)<span class="question-mark">?</span>;
-                    <span class="ident">elf_header</span>.<span class="ident">e_version</span> <span class="op">=</span>   <span class="ident">bytes</span>.<span class="ident">gread_with</span>(<span class="ident">offset</span>, <span class="ident">endianness</span>)<span class="question-mark">?</span>;
-                    <span class="ident">elf_header</span>.<span class="ident">e_entry</span> <span class="op">=</span>     <span class="ident">bytes</span>.<span class="ident">gread_with</span>(<span class="ident">offset</span>, <span class="ident">endianness</span>)<span class="question-mark">?</span>;
-                    <span class="ident">elf_header</span>.<span class="ident">e_phoff</span> <span class="op">=</span>     <span class="ident">bytes</span>.<span class="ident">gread_with</span>(<span class="ident">offset</span>, <span class="ident">endianness</span>)<span class="question-mark">?</span>;
-                    <span class="ident">elf_header</span>.<span class="ident">e_shoff</span> <span class="op">=</span>     <span class="ident">bytes</span>.<span class="ident">gread_with</span>(<span class="ident">offset</span>, <span class="ident">endianness</span>)<span class="question-mark">?</span>;
-                    <span class="ident">elf_header</span>.<span class="ident">e_flags</span> <span class="op">=</span>     <span class="ident">bytes</span>.<span class="ident">gread_with</span>(<span class="ident">offset</span>, <span class="ident">endianness</span>)<span class="question-mark">?</span>;
-                    <span class="ident">elf_header</span>.<span class="ident">e_ehsize</span> <span class="op">=</span>    <span class="ident">bytes</span>.<span class="ident">gread_with</span>(<span class="ident">offset</span>, <span class="ident">endianness</span>)<span class="question-mark">?</span>;
-                    <span class="ident">elf_header</span>.<span class="ident">e_phentsize</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">gread_with</span>(<span class="ident">offset</span>, <span class="ident">endianness</span>)<span class="question-mark">?</span>;
-                    <span class="ident">elf_header</span>.<span class="ident">e_phnum</span> <span class="op">=</span>     <span class="ident">bytes</span>.<span class="ident">gread_with</span>(<span class="ident">offset</span>, <span class="ident">endianness</span>)<span class="question-mark">?</span>;
-                    <span class="ident">elf_header</span>.<span class="ident">e_shentsize</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">gread_with</span>(<span class="ident">offset</span>, <span class="ident">endianness</span>)<span class="question-mark">?</span>;
-                    <span class="ident">elf_header</span>.<span class="ident">e_shnum</span> <span class="op">=</span>     <span class="ident">bytes</span>.<span class="ident">gread_with</span>(<span class="ident">offset</span>, <span class="ident">endianness</span>)<span class="question-mark">?</span>;
-                    <span class="ident">elf_header</span>.<span class="ident">e_shstrndx</span> <span class="op">=</span>  <span class="ident">bytes</span>.<span class="ident">gread_with</span>(<span class="ident">offset</span>, <span class="ident">endianness</span>)<span class="question-mark">?</span>;
-                    <span class="prelude-val">Ok</span>((<span class="ident">elf_header</span>, <span class="ident">SIZEOF_EHDR</span>))
+                    elf_header.e_type =      bytes.gread_with(offset, endianness)<span class="question-mark">?</span>;
+                    elf_header.e_machine =   bytes.gread_with(offset, endianness)<span class="question-mark">?</span>;
+                    elf_header.e_version =   bytes.gread_with(offset, endianness)<span class="question-mark">?</span>;
+                    elf_header.e_entry =     bytes.gread_with(offset, endianness)<span class="question-mark">?</span>;
+                    elf_header.e_phoff =     bytes.gread_with(offset, endianness)<span class="question-mark">?</span>;
+                    elf_header.e_shoff =     bytes.gread_with(offset, endianness)<span class="question-mark">?</span>;
+                    elf_header.e_flags =     bytes.gread_with(offset, endianness)<span class="question-mark">?</span>;
+                    elf_header.e_ehsize =    bytes.gread_with(offset, endianness)<span class="question-mark">?</span>;
+                    elf_header.e_phentsize = bytes.gread_with(offset, endianness)<span class="question-mark">?</span>;
+                    elf_header.e_phnum =     bytes.gread_with(offset, endianness)<span class="question-mark">?</span>;
+                    elf_header.e_shentsize = bytes.gread_with(offset, endianness)<span class="question-mark">?</span>;
+                    elf_header.e_shnum =     bytes.gread_with(offset, endianness)<span class="question-mark">?</span>;
+                    elf_header.e_shstrndx =  bytes.gread_with(offset, endianness)<span class="question-mark">?</span>;
+                    <span class="prelude-val">Ok</span>((elf_header, SIZEOF_EHDR))
                 }
             }
 
-            <span class="kw">impl</span> <span class="ident">ctx::TryIntoCtx</span><span class="op">&lt;</span><span class="ident">scroll::Endian</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Header</span> {
-                <span class="kw">type</span> <span class="ident">Error</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::error::Error</span>;
-                <span class="doccomment">/// a Pwrite impl for Header: **note** we use the endianness value in the header, and not a parameter</span>
-                <span class="kw">fn</span> <span class="ident">try_into_ctx</span>(<span class="self">self</span>, <span class="ident">bytes</span>: <span class="kw-2">&amp;mut</span> [<span class="ident">u8</span>], <span class="ident">_endianness</span>: <span class="ident">scroll::Endian</span>) -&gt; <span class="ident">result::Result</span><span class="op">&lt;</span><span class="ident">usize</span>, <span class="ident"><span class="self">Self</span>::Error</span><span class="op">&gt;</span> {
-                    <span class="kw">use</span> <span class="ident">scroll</span>::{<span class="ident">Pwrite</span>};
-                    <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> <span class="kw-2">&amp;mut</span> <span class="number">0</span>;
-                    <span class="kw">let</span> <span class="ident">endianness</span> <span class="op">=</span>
-                        <span class="kw">match</span> <span class="self">self</span>.<span class="ident">e_ident</span>[<span class="ident">EI_DATA</span>] {
-                            <span class="ident">ELFDATA2LSB</span> =&gt; <span class="ident">scroll::LE</span>,
-                            <span class="ident">ELFDATA2MSB</span> =&gt; <span class="ident">scroll::BE</span>,
-                            <span class="ident">d</span> =&gt; <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">Error::Malformed</span>(<span class="macro">format!</span>(<span class="string">&quot;invalid ELF DATA type {:x}&quot;</span>, <span class="ident">d</span>)).<span class="ident">into</span>()),
+            <span class="kw">impl </span>ctx::TryIntoCtx&lt;scroll::Endian&gt; <span class="kw">for </span>Header {
+                <span class="kw">type </span>Error = <span class="kw">crate</span>::error::Error;
+                <span class="doccomment">/// a Pwrite impl for Header: **note** we use the endianness value in the header, and not a parameter
+                </span><span class="kw">fn </span>try_into_ctx(<span class="self">self</span>, bytes: <span class="kw-2">&amp;mut </span>[u8], _endianness: scroll::Endian) -&gt; result::Result&lt;usize, <span class="self">Self</span>::Error&gt; {
+                    <span class="kw">use </span>scroll::{Pwrite};
+                    <span class="kw">let </span>offset = <span class="kw-2">&amp;mut </span><span class="number">0</span>;
+                    <span class="kw">let </span>endianness =
+                        <span class="kw">match </span><span class="self">self</span>.e_ident[EI_DATA] {
+                            ELFDATA2LSB =&gt; scroll::LE,
+                            ELFDATA2MSB =&gt; scroll::BE,
+                            d =&gt; <span class="kw">return </span><span class="prelude-val">Err</span>(Error::Malformed(<span class="macro">format!</span>(<span class="string">&quot;invalid ELF DATA type {:x}&quot;</span>, d)).into()),
                         };
-                    <span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> <span class="number">0</span>..<span class="self">self</span>.<span class="ident">e_ident</span>.<span class="ident">len</span>() {
-                        <span class="ident">bytes</span>.<span class="ident">gwrite</span>(<span class="self">self</span>.<span class="ident">e_ident</span>[<span class="ident">i</span>], <span class="ident">offset</span>)<span class="question-mark">?</span>;
+                    <span class="kw">for </span>i <span class="kw">in </span><span class="number">0</span>..<span class="self">self</span>.e_ident.len() {
+                        bytes.gwrite(<span class="self">self</span>.e_ident[i], offset)<span class="question-mark">?</span>;
                     }
-                    <span class="ident">bytes</span>.<span class="ident">gwrite_with</span>(<span class="self">self</span>.<span class="ident">e_type</span>      , <span class="ident">offset</span>, <span class="ident">endianness</span>)<span class="question-mark">?</span>;
-                    <span class="ident">bytes</span>.<span class="ident">gwrite_with</span>(<span class="self">self</span>.<span class="ident">e_machine</span>   , <span class="ident">offset</span>, <span class="ident">endianness</span>)<span class="question-mark">?</span>;
-                    <span class="ident">bytes</span>.<span class="ident">gwrite_with</span>(<span class="self">self</span>.<span class="ident">e_version</span>   , <span class="ident">offset</span>, <span class="ident">endianness</span>)<span class="question-mark">?</span>;
-                    <span class="ident">bytes</span>.<span class="ident">gwrite_with</span>(<span class="self">self</span>.<span class="ident">e_entry</span>     , <span class="ident">offset</span>, <span class="ident">endianness</span>)<span class="question-mark">?</span>;
-                    <span class="ident">bytes</span>.<span class="ident">gwrite_with</span>(<span class="self">self</span>.<span class="ident">e_phoff</span>     , <span class="ident">offset</span>, <span class="ident">endianness</span>)<span class="question-mark">?</span>;
-                    <span class="ident">bytes</span>.<span class="ident">gwrite_with</span>(<span class="self">self</span>.<span class="ident">e_shoff</span>     , <span class="ident">offset</span>, <span class="ident">endianness</span>)<span class="question-mark">?</span>;
-                    <span class="ident">bytes</span>.<span class="ident">gwrite_with</span>(<span class="self">self</span>.<span class="ident">e_flags</span>     , <span class="ident">offset</span>, <span class="ident">endianness</span>)<span class="question-mark">?</span>;
-                    <span class="ident">bytes</span>.<span class="ident">gwrite_with</span>(<span class="self">self</span>.<span class="ident">e_ehsize</span>    , <span class="ident">offset</span>, <span class="ident">endianness</span>)<span class="question-mark">?</span>;
-                    <span class="ident">bytes</span>.<span class="ident">gwrite_with</span>(<span class="self">self</span>.<span class="ident">e_phentsize</span> , <span class="ident">offset</span>, <span class="ident">endianness</span>)<span class="question-mark">?</span>;
-                    <span class="ident">bytes</span>.<span class="ident">gwrite_with</span>(<span class="self">self</span>.<span class="ident">e_phnum</span>     , <span class="ident">offset</span>, <span class="ident">endianness</span>)<span class="question-mark">?</span>;
-                    <span class="ident">bytes</span>.<span class="ident">gwrite_with</span>(<span class="self">self</span>.<span class="ident">e_shentsize</span> , <span class="ident">offset</span>, <span class="ident">endianness</span>)<span class="question-mark">?</span>;
-                    <span class="ident">bytes</span>.<span class="ident">gwrite_with</span>(<span class="self">self</span>.<span class="ident">e_shnum</span>     , <span class="ident">offset</span>, <span class="ident">endianness</span>)<span class="question-mark">?</span>;
-                    <span class="ident">bytes</span>.<span class="ident">gwrite_with</span>(<span class="self">self</span>.<span class="ident">e_shstrndx</span>  , <span class="ident">offset</span>, <span class="ident">endianness</span>)<span class="question-mark">?</span>;
-                    <span class="prelude-val">Ok</span>(<span class="ident">SIZEOF_EHDR</span>)
+                    bytes.gwrite_with(<span class="self">self</span>.e_type      , offset, endianness)<span class="question-mark">?</span>;
+                    bytes.gwrite_with(<span class="self">self</span>.e_machine   , offset, endianness)<span class="question-mark">?</span>;
+                    bytes.gwrite_with(<span class="self">self</span>.e_version   , offset, endianness)<span class="question-mark">?</span>;
+                    bytes.gwrite_with(<span class="self">self</span>.e_entry     , offset, endianness)<span class="question-mark">?</span>;
+                    bytes.gwrite_with(<span class="self">self</span>.e_phoff     , offset, endianness)<span class="question-mark">?</span>;
+                    bytes.gwrite_with(<span class="self">self</span>.e_shoff     , offset, endianness)<span class="question-mark">?</span>;
+                    bytes.gwrite_with(<span class="self">self</span>.e_flags     , offset, endianness)<span class="question-mark">?</span>;
+                    bytes.gwrite_with(<span class="self">self</span>.e_ehsize    , offset, endianness)<span class="question-mark">?</span>;
+                    bytes.gwrite_with(<span class="self">self</span>.e_phentsize , offset, endianness)<span class="question-mark">?</span>;
+                    bytes.gwrite_with(<span class="self">self</span>.e_phnum     , offset, endianness)<span class="question-mark">?</span>;
+                    bytes.gwrite_with(<span class="self">self</span>.e_shentsize , offset, endianness)<span class="question-mark">?</span>;
+                    bytes.gwrite_with(<span class="self">self</span>.e_shnum     , offset, endianness)<span class="question-mark">?</span>;
+                    bytes.gwrite_with(<span class="self">self</span>.e_shstrndx  , offset, endianness)<span class="question-mark">?</span>;
+                    <span class="prelude-val">Ok</span>(SIZEOF_EHDR)
                 }
             }
 
-            <span class="kw">impl</span> <span class="ident">Header</span> {
-                <span class="doccomment">/// Load a header from a file. **You must** ensure the seek is at the correct position.</span>
-                <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;std&quot;</span>)]</span>
-                <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_fd</span>(<span class="ident">bytes</span>: <span class="kw-2">&amp;mut</span> <span class="ident">File</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Header</span><span class="op">&gt;</span> {
-                    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">elf_header</span> <span class="op">=</span> [<span class="number">0</span>; <span class="macro-nonterminal">$</span><span class="macro-nonterminal">size</span>];
-                    <span class="ident">bytes</span>.<span class="ident">read_exact</span>(<span class="kw-2">&amp;mut</span> <span class="ident">elf_header</span>)<span class="question-mark">?</span>;
-                    <span class="prelude-val">Ok</span>(<span class="kw-2">*</span><span class="ident">Header::from_bytes</span>(<span class="kw-2">&amp;</span><span class="ident">elf_header</span>))
+            <span class="kw">impl </span>Header {
+                <span class="doccomment">/// Load a header from a file. **You must** ensure the seek is at the correct position.
+                </span><span class="attribute">#[cfg(feature = <span class="string">&quot;std&quot;</span>)]
+                </span><span class="kw">pub fn </span>from_fd(bytes: <span class="kw-2">&amp;mut </span>File) -&gt; <span class="prelude-ty">Result</span>&lt;Header&gt; {
+                    <span class="kw">let </span><span class="kw-2">mut </span>elf_header = [<span class="number">0</span>; <span class="macro-nonterminal">$size</span>];
+                    bytes.read_exact(<span class="kw-2">&amp;mut </span>elf_header)<span class="question-mark">?</span>;
+                    <span class="prelude-val">Ok</span>(<span class="kw-2">*</span>Header::from_bytes(<span class="kw-2">&amp;</span>elf_header))
                 }
 
-                <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;endian_fd&quot;</span>)]</span>
-                <span class="doccomment">/// Parses an ELF header from the given bytes</span>
-                <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">bytes</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>]) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Header</span><span class="op">&gt;</span> {
-                    <span class="kw">use</span> <span class="kw">super</span>::{<span class="ident">EI_DATA</span>, <span class="ident">ELFDATA2LSB</span>, <span class="ident">ELFDATA2MSB</span>, <span class="ident">SIZEOF_IDENT</span>};
+                <span class="attribute">#[cfg(feature = <span class="string">&quot;endian_fd&quot;</span>)]
+                </span><span class="doccomment">/// Parses an ELF header from the given bytes
+                </span><span class="kw">pub fn </span>parse(bytes: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;Header&gt; {
+                    <span class="kw">use super</span>::{EI_DATA, ELFDATA2LSB, ELFDATA2MSB, SIZEOF_IDENT};
 
-                    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">elf_header</span> <span class="op">=</span> <span class="ident">Header::default</span>();
-                    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">offset</span> <span class="op">=</span> <span class="kw-2">&amp;mut</span> <span class="number">0</span>;
-                    <span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">SIZEOF_IDENT</span> {
-                        <span class="ident">elf_header</span>.<span class="ident">e_ident</span>[<span class="ident">i</span>] <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">gread</span>(<span class="kw-2">&amp;mut</span> <span class="ident">offset</span>)<span class="question-mark">?</span>;
+                    <span class="kw">let </span><span class="kw-2">mut </span>elf_header = Header::default();
+                    <span class="kw">let </span><span class="kw-2">mut </span>offset = <span class="kw-2">&amp;mut </span><span class="number">0</span>;
+                    <span class="kw">for </span>i <span class="kw">in </span><span class="number">0</span>..SIZEOF_IDENT {
+                        elf_header.e_ident[i] = bytes.gread(<span class="kw-2">&amp;mut </span>offset)<span class="question-mark">?</span>;
                     }
-                    <span class="kw">let</span> <span class="ident">endianness</span> <span class="op">=</span>
-                        <span class="kw">match</span> <span class="ident">elf_header</span>.<span class="ident">e_ident</span>[<span class="ident">EI_DATA</span>] {
-                            <span class="ident">ELFDATA2LSB</span> =&gt; <span class="ident">scroll::LE</span>,
-                            <span class="ident">ELFDATA2MSB</span> =&gt; <span class="ident">scroll::BE</span>,
-                            <span class="ident">d</span> =&gt; <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">Error::Malformed</span>(<span class="macro">format!</span>(<span class="string">&quot;invalid ELF DATA type {:x}&quot;</span>, <span class="ident">d</span>)).<span class="ident">into</span>()),
+                    <span class="kw">let </span>endianness =
+                        <span class="kw">match </span>elf_header.e_ident[EI_DATA] {
+                            ELFDATA2LSB =&gt; scroll::LE,
+                            ELFDATA2MSB =&gt; scroll::BE,
+                            d =&gt; <span class="kw">return </span><span class="prelude-val">Err</span>(Error::Malformed(<span class="macro">format!</span>(<span class="string">&quot;invalid ELF DATA type {:x}&quot;</span>, d)).into()),
                         };
-                    <span class="ident">elf_header</span>.<span class="ident">e_type</span> <span class="op">=</span>      <span class="ident">bytes</span>.<span class="ident">gread_with</span>(<span class="ident">offset</span>, <span class="ident">endianness</span>)<span class="question-mark">?</span>;
-                    <span class="ident">elf_header</span>.<span class="ident">e_machine</span> <span class="op">=</span>   <span class="ident">bytes</span>.<span class="ident">gread_with</span>(<span class="ident">offset</span>, <span class="ident">endianness</span>)<span class="question-mark">?</span>;
-                    <span class="ident">elf_header</span>.<span class="ident">e_version</span> <span class="op">=</span>   <span class="ident">bytes</span>.<span class="ident">gread_with</span>(<span class="ident">offset</span>, <span class="ident">endianness</span>)<span class="question-mark">?</span>;
-                    <span class="ident">elf_header</span>.<span class="ident">e_entry</span> <span class="op">=</span>     <span class="ident">bytes</span>.<span class="ident">gread_with</span>(<span class="ident">offset</span>, <span class="ident">endianness</span>)<span class="question-mark">?</span>;
-                    <span class="ident">elf_header</span>.<span class="ident">e_phoff</span> <span class="op">=</span>     <span class="ident">bytes</span>.<span class="ident">gread_with</span>(<span class="ident">offset</span>, <span class="ident">endianness</span>)<span class="question-mark">?</span>;
-                    <span class="ident">elf_header</span>.<span class="ident">e_shoff</span> <span class="op">=</span>     <span class="ident">bytes</span>.<span class="ident">gread_with</span>(<span class="ident">offset</span>, <span class="ident">endianness</span>)<span class="question-mark">?</span>;
-                    <span class="ident">elf_header</span>.<span class="ident">e_flags</span> <span class="op">=</span>     <span class="ident">bytes</span>.<span class="ident">gread_with</span>(<span class="ident">offset</span>, <span class="ident">endianness</span>)<span class="question-mark">?</span>;
-                    <span class="ident">elf_header</span>.<span class="ident">e_ehsize</span> <span class="op">=</span>    <span class="ident">bytes</span>.<span class="ident">gread_with</span>(<span class="ident">offset</span>, <span class="ident">endianness</span>)<span class="question-mark">?</span>;
-                    <span class="ident">elf_header</span>.<span class="ident">e_phentsize</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">gread_with</span>(<span class="ident">offset</span>, <span class="ident">endianness</span>)<span class="question-mark">?</span>;
-                    <span class="ident">elf_header</span>.<span class="ident">e_phnum</span> <span class="op">=</span>     <span class="ident">bytes</span>.<span class="ident">gread_with</span>(<span class="ident">offset</span>, <span class="ident">endianness</span>)<span class="question-mark">?</span>;
-                    <span class="ident">elf_header</span>.<span class="ident">e_shentsize</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">gread_with</span>(<span class="ident">offset</span>, <span class="ident">endianness</span>)<span class="question-mark">?</span>;
-                    <span class="ident">elf_header</span>.<span class="ident">e_shnum</span> <span class="op">=</span>     <span class="ident">bytes</span>.<span class="ident">gread_with</span>(<span class="ident">offset</span>, <span class="ident">endianness</span>)<span class="question-mark">?</span>;
-                    <span class="ident">elf_header</span>.<span class="ident">e_shstrndx</span> <span class="op">=</span>  <span class="ident">bytes</span>.<span class="ident">gread_with</span>(<span class="ident">offset</span>, <span class="ident">endianness</span>)<span class="question-mark">?</span>;
-                    <span class="prelude-val">Ok</span>(<span class="ident">elf_header</span>)
+                    elf_header.e_type =      bytes.gread_with(offset, endianness)<span class="question-mark">?</span>;
+                    elf_header.e_machine =   bytes.gread_with(offset, endianness)<span class="question-mark">?</span>;
+                    elf_header.e_version =   bytes.gread_with(offset, endianness)<span class="question-mark">?</span>;
+                    elf_header.e_entry =     bytes.gread_with(offset, endianness)<span class="question-mark">?</span>;
+                    elf_header.e_phoff =     bytes.gread_with(offset, endianness)<span class="question-mark">?</span>;
+                    elf_header.e_shoff =     bytes.gread_with(offset, endianness)<span class="question-mark">?</span>;
+                    elf_header.e_flags =     bytes.gread_with(offset, endianness)<span class="question-mark">?</span>;
+                    elf_header.e_ehsize =    bytes.gread_with(offset, endianness)<span class="question-mark">?</span>;
+                    elf_header.e_phentsize = bytes.gread_with(offset, endianness)<span class="question-mark">?</span>;
+                    elf_header.e_phnum =     bytes.gread_with(offset, endianness)<span class="question-mark">?</span>;
+                    elf_header.e_shentsize = bytes.gread_with(offset, endianness)<span class="question-mark">?</span>;
+                    elf_header.e_shnum =     bytes.gread_with(offset, endianness)<span class="question-mark">?</span>;
+                    elf_header.e_shstrndx =  bytes.gread_with(offset, endianness)<span class="question-mark">?</span>;
+                    <span class="prelude-val">Ok</span>(elf_header)
                 }
             }
-        } <span class="comment">// end if_alloc</span>
-    };
+        } <span class="comment">// end if_alloc
+    </span>};
 }
 
-<span class="comment">// tests</span>
+<span class="comment">// tests
 
-<span class="macro">macro_rules!</span> <span class="ident">elf_header_test</span> {
-    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">class</span>:<span class="ident">expr</span>) =&gt; {
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
-        <span class="kw">mod</span> <span class="ident">tests</span> {
-            <span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
-            <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::container</span>::{<span class="ident">Container</span>, <span class="ident">Ctx</span>};
-            <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::elf::header::Header</span> <span class="kw">as</span> <span class="ident">ElfHeader</span>;
-            <span class="kw">use</span> <span class="ident">alloc::vec::Vec</span>;
-            <span class="kw">use</span> <span class="ident">scroll</span>::{<span class="ident">Pread</span>, <span class="ident">Pwrite</span>};
-            <span class="attribute">#[<span class="ident">test</span>]</span>
-            <span class="kw">fn</span> <span class="ident">size_of</span>() {
-                <span class="macro">assert_eq!</span>(<span class="ident">::std::mem::size_of</span>::<span class="op">&lt;</span><span class="ident">Header</span><span class="op">&gt;</span>(), <span class="ident">SIZEOF_EHDR</span>);
+</span><span class="macro">macro_rules! </span>elf_header_test {
+    (<span class="macro-nonterminal">$class</span>:expr) =&gt; {
+        <span class="attribute">#[cfg(test)]
+        </span><span class="kw">mod </span>tests {
+            <span class="kw">use super</span>::<span class="kw-2">*</span>;
+            <span class="kw">use </span><span class="kw">crate</span>::container::{Container, Ctx};
+            <span class="kw">use </span><span class="kw">crate</span>::elf::header::Header <span class="kw">as </span>ElfHeader;
+            <span class="kw">use </span>alloc::vec::Vec;
+            <span class="kw">use </span>scroll::{Pread, Pwrite};
+            <span class="attribute">#[test]
+            </span><span class="kw">fn </span>size_of() {
+                <span class="macro">assert_eq!</span>(::std::mem::size_of::&lt;Header&gt;(), SIZEOF_EHDR);
             }
-            <span class="attribute">#[<span class="ident">test</span>]</span>
-            <span class="kw">fn</span> <span class="ident">header_read_write</span>() {
-                <span class="kw">let</span> <span class="ident">crt1</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span> <span class="op">=</span> <span class="kw">if</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">class</span> <span class="op">==</span> <span class="ident">ELFCLASS64</span> {
+            <span class="attribute">#[test]
+            </span><span class="kw">fn </span>header_read_write() {
+                <span class="kw">let </span>crt1: Vec&lt;u8&gt; = <span class="kw">if </span><span class="macro-nonterminal">$class </span>== ELFCLASS64 {
                     <span class="macro">include!</span>(<span class="string">&quot;../../etc/crt1.rs&quot;</span>)
-                } <span class="kw">else</span> {
+                } <span class="kw">else </span>{
                     <span class="macro">include!</span>(<span class="string">&quot;../../etc/crt132.rs&quot;</span>)
                 };
-                <span class="kw">let</span> <span class="ident">header</span>: <span class="ident">Header</span> <span class="op">=</span> <span class="ident">crt1</span>.<span class="ident">pread</span>(<span class="number">0</span>).<span class="ident">unwrap</span>();
-                <span class="macro">assert_eq!</span>(<span class="ident">header</span>.<span class="ident">e_type</span>, <span class="ident">ET_REL</span>);
-                <span class="macro">println!</span>(<span class="string">&quot;header: {:?}&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">header</span>);
-                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">bytes</span> <span class="op">=</span> [<span class="number">0u8</span>; <span class="ident">SIZEOF_EHDR</span>];
-                <span class="ident">bytes</span>.<span class="ident">pwrite</span>(<span class="ident">header</span>, <span class="number">0</span>).<span class="ident">unwrap</span>();
-                <span class="kw">let</span> <span class="ident">header2</span>: <span class="ident">Header</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">pread</span>(<span class="number">0</span>).<span class="ident">unwrap</span>();
-                <span class="macro">assert_eq!</span>(<span class="ident">header</span>, <span class="ident">header2</span>);
+                <span class="kw">let </span>header: Header = crt1.pread(<span class="number">0</span>).unwrap();
+                <span class="macro">assert_eq!</span>(header.e_type, ET_REL);
+                <span class="macro">println!</span>(<span class="string">&quot;header: {:?}&quot;</span>, <span class="kw-2">&amp;</span>header);
+                <span class="kw">let </span><span class="kw-2">mut </span>bytes = [<span class="number">0u8</span>; SIZEOF_EHDR];
+                bytes.pwrite(header, <span class="number">0</span>).unwrap();
+                <span class="kw">let </span>header2: Header = bytes.pread(<span class="number">0</span>).unwrap();
+                <span class="macro">assert_eq!</span>(header, header2);
             }
-            <span class="attribute">#[<span class="ident">test</span>]</span>
-            <span class="kw">fn</span> <span class="ident">elfheader_read_write</span>() {
-                <span class="kw">let</span> (<span class="ident">container</span>, <span class="ident">crt1</span>): (<span class="ident">Container</span>, <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>) <span class="op">=</span> <span class="kw">if</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">class</span> <span class="op">==</span> <span class="ident">ELFCLASS64</span> {
-                    (<span class="ident">Container::Big</span>, <span class="macro">include!</span>(<span class="string">&quot;../../etc/crt1.rs&quot;</span>))
-                } <span class="kw">else</span> {
-                    (<span class="ident">Container::Little</span>, <span class="macro">include!</span>(<span class="string">&quot;../../etc/crt132.rs&quot;</span>))
+            <span class="attribute">#[test]
+            </span><span class="kw">fn </span>elfheader_read_write() {
+                <span class="kw">let </span>(container, crt1): (Container, Vec&lt;u8&gt;) = <span class="kw">if </span><span class="macro-nonterminal">$class </span>== ELFCLASS64 {
+                    (Container::Big, <span class="macro">include!</span>(<span class="string">&quot;../../etc/crt1.rs&quot;</span>))
+                } <span class="kw">else </span>{
+                    (Container::Little, <span class="macro">include!</span>(<span class="string">&quot;../../etc/crt132.rs&quot;</span>))
                 };
-                <span class="kw">let</span> <span class="ident">header</span>: <span class="ident">Header</span> <span class="op">=</span> <span class="ident">crt1</span>.<span class="ident">pread</span>(<span class="number">0</span>).<span class="ident">unwrap</span>();
-                <span class="macro">assert_eq!</span>(<span class="ident">header</span>.<span class="ident">e_type</span>, <span class="ident">ET_REL</span>);
-                <span class="macro">println!</span>(<span class="string">&quot;header: {:?}&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">header</span>);
-                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">bytes</span> <span class="op">=</span> [<span class="number">0u8</span>; <span class="ident">SIZEOF_EHDR</span>];
-                <span class="kw">let</span> <span class="ident">header_</span> <span class="op">=</span> <span class="ident">Header::from</span>(<span class="ident">header</span>.<span class="ident">clone</span>());
-                <span class="ident">bytes</span>.<span class="ident">pwrite</span>(<span class="ident">header_</span>, <span class="number">0</span>).<span class="ident">unwrap</span>();
-                <span class="kw">let</span> <span class="ident">header2</span>: <span class="ident">Header</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">pread</span>(<span class="number">0</span>).<span class="ident">unwrap</span>();
-                <span class="macro">assert_eq!</span>(<span class="ident">header</span>, <span class="ident">header2</span>);
-                <span class="kw">let</span> <span class="ident">header</span> <span class="op">=</span> <span class="ident">ElfHeader::new</span>(<span class="ident">Ctx::from</span>(<span class="ident">container</span>));
-                <span class="macro">println!</span>(<span class="string">&quot;header: {:?}&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">header</span>);
+                <span class="kw">let </span>header: Header = crt1.pread(<span class="number">0</span>).unwrap();
+                <span class="macro">assert_eq!</span>(header.e_type, ET_REL);
+                <span class="macro">println!</span>(<span class="string">&quot;header: {:?}&quot;</span>, <span class="kw-2">&amp;</span>header);
+                <span class="kw">let </span><span class="kw-2">mut </span>bytes = [<span class="number">0u8</span>; SIZEOF_EHDR];
+                <span class="kw">let </span>header_ = Header::from(header.clone());
+                bytes.pwrite(header_, <span class="number">0</span>).unwrap();
+                <span class="kw">let </span>header2: Header = bytes.pread(<span class="number">0</span>).unwrap();
+                <span class="macro">assert_eq!</span>(header, header2);
+                <span class="kw">let </span>header = ElfHeader::new(Ctx::from(container));
+                <span class="macro">println!</span>(<span class="string">&quot;header: {:?}&quot;</span>, <span class="kw-2">&amp;</span>header);
 
-                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">bytes</span> <span class="op">=</span> <span class="macro">vec!</span>[<span class="number">0</span>; <span class="number">100</span>];
-                <span class="ident">bytes</span>.<span class="ident">pwrite</span>(<span class="ident">header</span>, <span class="number">0</span>).<span class="ident">unwrap</span>();
+                <span class="kw">let </span><span class="kw-2">mut </span>bytes = <span class="macro">vec!</span>[<span class="number">0</span>; <span class="number">100</span>];
+                bytes.pwrite(header, <span class="number">0</span>).unwrap();
             }
         }
     };
 }
 
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">header32</span> {
-    <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
+<span class="kw">pub mod </span>header32 {
+    <span class="kw">pub use super</span>::<span class="kw-2">*</span>;
 
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIZEOF_EHDR</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">52</span>;
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ELFCLASS</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="ident">ELFCLASS32</span>;
+    <span class="kw">pub const </span>SIZEOF_EHDR: usize = <span class="number">52</span>;
+    <span class="kw">pub const </span>ELFCLASS: u8 = ELFCLASS32;
 
-    <span class="macro">elf_header!</span>(<span class="ident">u32</span>);
-    <span class="macro">elf_header_std_impl!</span>(<span class="ident">SIZEOF_EHDR</span>, <span class="ident">u32</span>);
-    <span class="macro">elf_header_test!</span>(<span class="ident">ELFCLASS</span>);
+    <span class="macro">elf_header!</span>(u32);
+    <span class="macro">elf_header_std_impl!</span>(SIZEOF_EHDR, u32);
+    <span class="macro">elf_header_test!</span>(ELFCLASS);
 }
 
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">header64</span> {
-    <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
+<span class="kw">pub mod </span>header64 {
+    <span class="kw">pub use super</span>::<span class="kw-2">*</span>;
 
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIZEOF_EHDR</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">64</span>;
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ELFCLASS</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="ident">ELFCLASS64</span>;
+    <span class="kw">pub const </span>SIZEOF_EHDR: usize = <span class="number">64</span>;
+    <span class="kw">pub const </span>ELFCLASS: u8 = ELFCLASS64;
 
-    <span class="macro">elf_header!</span>(<span class="ident">u64</span>);
-    <span class="macro">elf_header_std_impl!</span>(<span class="ident">SIZEOF_EHDR</span>, <span class="ident">u64</span>);
-    <span class="macro">elf_header_test!</span>(<span class="ident">ELFCLASS</span>);
+    <span class="macro">elf_header!</span>(u64);
+    <span class="macro">elf_header_std_impl!</span>(SIZEOF_EHDR, u64);
+    <span class="macro">elf_header_test!</span>(ELFCLASS);
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="goblin" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="goblin" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (77e57db38 2022-10-30)" ></div></body></html>

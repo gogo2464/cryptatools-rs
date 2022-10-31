@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/weedle2-4.0.0/src/types.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>types.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../weedle/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../weedle/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../weedle/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/weedle2-4.0.0/src/types.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>types.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../weedle/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -383,390 +383,390 @@
 <span id="383">383</span>
 <span id="384">384</span>
 <span id="385">385</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::attribute::ExtendedAttributeList</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::common</span>::{<span class="ident">Generics</span>, <span class="ident">Identifier</span>, <span class="ident">Parenthesized</span>, <span class="ident">Punctuated</span>};
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::term</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::Parse</span>;
+</pre><pre class="rust"><code><span class="kw">use </span><span class="kw">crate</span>::attribute::ExtendedAttributeList;
+<span class="kw">use </span><span class="kw">crate</span>::common::{Generics, Identifier, Parenthesized, Punctuated};
+<span class="kw">use </span><span class="kw">crate</span>::term;
+<span class="kw">use </span><span class="kw">crate</span>::Parse;
 
-<span class="doccomment">/// Parses a union of types</span>
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">UnionType</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Parenthesized</span><span class="op">&lt;</span><span class="ident">Punctuated</span><span class="op">&lt;</span><span class="ident">UnionMemberType</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>, <span class="macro">term!</span>(<span class="ident">or</span>)<span class="op">&gt;</span><span class="op">&gt;</span>;
+<span class="doccomment">/// Parses a union of types
+</span><span class="kw">pub type </span>UnionType&lt;<span class="lifetime">&#39;a</span>&gt; = Parenthesized&lt;Punctuated&lt;UnionMemberType&lt;<span class="lifetime">&#39;a</span>&gt;, <span class="macro">term!</span>(or)&gt;&gt;;
 
-<span class="macro">ast_types!</span> {
-    <span class="doccomment">/// Parses either single type or a union type</span>
-    <span class="kw">enum</span> <span class="ident">Type</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-        <span class="doccomment">/// Parses one of the single types</span>
-        <span class="ident">Single</span>(<span class="kw">enum</span> <span class="ident">SingleType</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-            <span class="ident">Any</span>(<span class="macro">term!</span>(<span class="ident">any</span>)),
-            <span class="ident">NonAny</span>(<span class="ident">NonAnyType</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>),
+<span class="macro">ast_types! </span>{
+    <span class="doccomment">/// Parses either single type or a union type
+    </span><span class="kw">enum </span>Type&lt;<span class="lifetime">&#39;a</span>&gt; {
+        <span class="doccomment">/// Parses one of the single types
+        </span>Single(<span class="kw">enum </span>SingleType&lt;<span class="lifetime">&#39;a</span>&gt; {
+            Any(<span class="macro">term!</span>(any)),
+            NonAny(NonAnyType&lt;<span class="lifetime">&#39;a</span>&gt;),
         }),
-        <span class="ident">Union</span>(<span class="ident">MayBeNull</span><span class="op">&lt;</span><span class="ident">UnionType</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span>),
+        Union(MayBeNull&lt;UnionType&lt;<span class="lifetime">&#39;a</span>&gt;&gt;),
     }
 
-    <span class="comment">// Parses any single non-any type</span>
-    <span class="kw">enum</span> <span class="ident">NonAnyType</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-        <span class="ident">Promise</span>(<span class="ident">PromiseType</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>),
-        <span class="ident">Integer</span>(<span class="ident">MayBeNull</span><span class="op">&lt;</span><span class="ident">IntegerType</span><span class="op">&gt;</span>),
-        <span class="ident">FloatingPoint</span>(<span class="ident">MayBeNull</span><span class="op">&lt;</span><span class="ident">FloatingPointType</span><span class="op">&gt;</span>),
-        <span class="ident">Boolean</span>(<span class="ident">MayBeNull</span><span class="op">&lt;</span><span class="macro">term!</span>(<span class="ident">boolean</span>)<span class="op">&gt;</span>),
-        <span class="ident">Byte</span>(<span class="ident">MayBeNull</span><span class="op">&lt;</span><span class="macro">term!</span>(<span class="ident">byte</span>)<span class="op">&gt;</span>),
-        <span class="ident">Octet</span>(<span class="ident">MayBeNull</span><span class="op">&lt;</span><span class="macro">term!</span>(<span class="ident">octet</span>)<span class="op">&gt;</span>),
-        <span class="ident">ByteString</span>(<span class="ident">MayBeNull</span><span class="op">&lt;</span><span class="macro">term!</span>(<span class="ident">ByteString</span>)<span class="op">&gt;</span>),
-        <span class="ident">DOMString</span>(<span class="ident">MayBeNull</span><span class="op">&lt;</span><span class="macro">term!</span>(<span class="ident">DOMString</span>)<span class="op">&gt;</span>),
-        <span class="ident">USVString</span>(<span class="ident">MayBeNull</span><span class="op">&lt;</span><span class="macro">term!</span>(<span class="ident">USVString</span>)<span class="op">&gt;</span>),
-        <span class="ident">Sequence</span>(<span class="ident">MayBeNull</span><span class="op">&lt;</span><span class="ident">SequenceType</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span>),
-        <span class="ident">Object</span>(<span class="ident">MayBeNull</span><span class="op">&lt;</span><span class="macro">term!</span>(<span class="ident">object</span>)<span class="op">&gt;</span>),
-        <span class="ident">Symbol</span>(<span class="ident">MayBeNull</span><span class="op">&lt;</span><span class="macro">term!</span>(<span class="ident">symbol</span>)<span class="op">&gt;</span>),
-        <span class="ident">Error</span>(<span class="ident">MayBeNull</span><span class="op">&lt;</span><span class="macro">term!</span>(<span class="ident">Error</span>)<span class="op">&gt;</span>),
-        <span class="ident">ArrayBuffer</span>(<span class="ident">MayBeNull</span><span class="op">&lt;</span><span class="macro">term!</span>(<span class="ident">ArrayBuffer</span>)<span class="op">&gt;</span>),
-        <span class="ident">DataView</span>(<span class="ident">MayBeNull</span><span class="op">&lt;</span><span class="macro">term!</span>(<span class="ident">DataView</span>)<span class="op">&gt;</span>),
-        <span class="ident">Int8Array</span>(<span class="ident">MayBeNull</span><span class="op">&lt;</span><span class="macro">term!</span>(<span class="ident">Int8Array</span>)<span class="op">&gt;</span>),
-        <span class="ident">Int16Array</span>(<span class="ident">MayBeNull</span><span class="op">&lt;</span><span class="macro">term!</span>(<span class="ident">Int16Array</span>)<span class="op">&gt;</span>),
-        <span class="ident">Int32Array</span>(<span class="ident">MayBeNull</span><span class="op">&lt;</span><span class="macro">term!</span>(<span class="ident">Int32Array</span>)<span class="op">&gt;</span>),
-        <span class="ident">Uint8Array</span>(<span class="ident">MayBeNull</span><span class="op">&lt;</span><span class="macro">term!</span>(<span class="ident">Uint8Array</span>)<span class="op">&gt;</span>),
-        <span class="ident">Uint16Array</span>(<span class="ident">MayBeNull</span><span class="op">&lt;</span><span class="macro">term!</span>(<span class="ident">Uint16Array</span>)<span class="op">&gt;</span>),
-        <span class="ident">Uint32Array</span>(<span class="ident">MayBeNull</span><span class="op">&lt;</span><span class="macro">term!</span>(<span class="ident">Uint32Array</span>)<span class="op">&gt;</span>),
-        <span class="ident">Uint8ClampedArray</span>(<span class="ident">MayBeNull</span><span class="op">&lt;</span><span class="macro">term!</span>(<span class="ident">Uint8ClampedArray</span>)<span class="op">&gt;</span>),
-        <span class="ident">Float32Array</span>(<span class="ident">MayBeNull</span><span class="op">&lt;</span><span class="macro">term!</span>(<span class="ident">Float32Array</span>)<span class="op">&gt;</span>),
-        <span class="ident">Float64Array</span>(<span class="ident">MayBeNull</span><span class="op">&lt;</span><span class="macro">term!</span>(<span class="ident">Float64Array</span>)<span class="op">&gt;</span>),
-        <span class="ident">ArrayBufferView</span>(<span class="ident">MayBeNull</span><span class="op">&lt;</span><span class="macro">term!</span>(<span class="ident">ArrayBufferView</span>)<span class="op">&gt;</span>),
-        <span class="ident">BufferSource</span>(<span class="ident">MayBeNull</span><span class="op">&lt;</span><span class="macro">term!</span>(<span class="ident">BufferSource</span>)<span class="op">&gt;</span>),
-        <span class="ident">FrozenArrayType</span>(<span class="ident">MayBeNull</span><span class="op">&lt;</span><span class="ident">FrozenArrayType</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span>),
-        <span class="ident">RecordType</span>(<span class="ident">MayBeNull</span><span class="op">&lt;</span><span class="ident">RecordType</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span>),
-        <span class="ident">Identifier</span>(<span class="ident">MayBeNull</span><span class="op">&lt;</span><span class="ident">Identifier</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span>),
+    <span class="comment">// Parses any single non-any type
+    </span><span class="kw">enum </span>NonAnyType&lt;<span class="lifetime">&#39;a</span>&gt; {
+        Promise(PromiseType&lt;<span class="lifetime">&#39;a</span>&gt;),
+        Integer(MayBeNull&lt;IntegerType&gt;),
+        FloatingPoint(MayBeNull&lt;FloatingPointType&gt;),
+        Boolean(MayBeNull&lt;<span class="macro">term!</span>(boolean)&gt;),
+        Byte(MayBeNull&lt;<span class="macro">term!</span>(byte)&gt;),
+        Octet(MayBeNull&lt;<span class="macro">term!</span>(octet)&gt;),
+        ByteString(MayBeNull&lt;<span class="macro">term!</span>(ByteString)&gt;),
+        DOMString(MayBeNull&lt;<span class="macro">term!</span>(DOMString)&gt;),
+        USVString(MayBeNull&lt;<span class="macro">term!</span>(USVString)&gt;),
+        Sequence(MayBeNull&lt;SequenceType&lt;<span class="lifetime">&#39;a</span>&gt;&gt;),
+        Object(MayBeNull&lt;<span class="macro">term!</span>(object)&gt;),
+        Symbol(MayBeNull&lt;<span class="macro">term!</span>(symbol)&gt;),
+        Error(MayBeNull&lt;<span class="macro">term!</span>(Error)&gt;),
+        ArrayBuffer(MayBeNull&lt;<span class="macro">term!</span>(ArrayBuffer)&gt;),
+        DataView(MayBeNull&lt;<span class="macro">term!</span>(DataView)&gt;),
+        Int8Array(MayBeNull&lt;<span class="macro">term!</span>(Int8Array)&gt;),
+        Int16Array(MayBeNull&lt;<span class="macro">term!</span>(Int16Array)&gt;),
+        Int32Array(MayBeNull&lt;<span class="macro">term!</span>(Int32Array)&gt;),
+        Uint8Array(MayBeNull&lt;<span class="macro">term!</span>(Uint8Array)&gt;),
+        Uint16Array(MayBeNull&lt;<span class="macro">term!</span>(Uint16Array)&gt;),
+        Uint32Array(MayBeNull&lt;<span class="macro">term!</span>(Uint32Array)&gt;),
+        Uint8ClampedArray(MayBeNull&lt;<span class="macro">term!</span>(Uint8ClampedArray)&gt;),
+        Float32Array(MayBeNull&lt;<span class="macro">term!</span>(Float32Array)&gt;),
+        Float64Array(MayBeNull&lt;<span class="macro">term!</span>(Float64Array)&gt;),
+        ArrayBufferView(MayBeNull&lt;<span class="macro">term!</span>(ArrayBufferView)&gt;),
+        BufferSource(MayBeNull&lt;<span class="macro">term!</span>(BufferSource)&gt;),
+        FrozenArrayType(MayBeNull&lt;FrozenArrayType&lt;<span class="lifetime">&#39;a</span>&gt;&gt;),
+        RecordType(MayBeNull&lt;RecordType&lt;<span class="lifetime">&#39;a</span>&gt;&gt;),
+        Identifier(MayBeNull&lt;Identifier&lt;<span class="lifetime">&#39;a</span>&gt;&gt;),
     }
 
-    <span class="doccomment">/// Parses `sequence&lt;Type&gt;`</span>
-    <span class="kw">struct</span> <span class="ident">SequenceType</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-        <span class="ident">sequence</span>: <span class="macro">term!</span>(<span class="ident">sequence</span>),
-        <span class="ident">generics</span>: <span class="ident">Generics</span><span class="op">&lt;</span><span class="ident">Box</span><span class="op">&lt;</span><span class="ident">Type</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+    <span class="doccomment">/// Parses `sequence&lt;Type&gt;`
+    </span><span class="kw">struct </span>SequenceType&lt;<span class="lifetime">&#39;a</span>&gt; {
+        sequence: <span class="macro">term!</span>(sequence),
+        generics: Generics&lt;Box&lt;Type&lt;<span class="lifetime">&#39;a</span>&gt;&gt;&gt;,
     }
 
-    <span class="doccomment">/// Parses `FrozenArray&lt;Type&gt;`</span>
-    <span class="kw">struct</span> <span class="ident">FrozenArrayType</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-        <span class="ident">frozen_array</span>: <span class="macro">term!</span>(<span class="ident">FrozenArray</span>),
-        <span class="ident">generics</span>: <span class="ident">Generics</span><span class="op">&lt;</span><span class="ident">Box</span><span class="op">&lt;</span><span class="ident">Type</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+    <span class="doccomment">/// Parses `FrozenArray&lt;Type&gt;`
+    </span><span class="kw">struct </span>FrozenArrayType&lt;<span class="lifetime">&#39;a</span>&gt; {
+        frozen_array: <span class="macro">term!</span>(FrozenArray),
+        generics: Generics&lt;Box&lt;Type&lt;<span class="lifetime">&#39;a</span>&gt;&gt;&gt;,
     }
 
-    <span class="doccomment">/// Parses a nullable type. Ex: `object | object??`</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// `??` means an actual ? not an optional requirement</span>
-    <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>)]</span>
-    <span class="kw">struct</span> <span class="ident">MayBeNull</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="kw">where</span> [<span class="ident">T</span>: <span class="ident">Parse</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>] {
-        <span class="ident">type_</span>: <span class="ident">T</span>,
-        <span class="ident">q_mark</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">term::QMark</span><span class="op">&gt;</span>,
+    <span class="doccomment">/// Parses a nullable type. Ex: `object | object??`
+    ///
+    /// `??` means an actual ? not an optional requirement
+    </span><span class="attribute">#[derive(Copy)]
+    </span><span class="kw">struct </span>MayBeNull&lt;T&gt; <span class="kw">where </span>[T: Parse&lt;<span class="lifetime">&#39;a</span>&gt;] {
+        type_: T,
+        q_mark: <span class="prelude-ty">Option</span>&lt;term::QMark&gt;,
     }
 
-    <span class="doccomment">/// Parses a `Promise&lt;Type|undefined&gt;` type</span>
-    <span class="kw">struct</span> <span class="ident">PromiseType</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-        <span class="ident">promise</span>: <span class="macro">term!</span>(<span class="ident">Promise</span>),
-        <span class="ident">generics</span>: <span class="ident">Generics</span><span class="op">&lt;</span><span class="ident">Box</span><span class="op">&lt;</span><span class="ident">ReturnType</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+    <span class="doccomment">/// Parses a `Promise&lt;Type|undefined&gt;` type
+    </span><span class="kw">struct </span>PromiseType&lt;<span class="lifetime">&#39;a</span>&gt; {
+        promise: <span class="macro">term!</span>(Promise),
+        generics: Generics&lt;Box&lt;ReturnType&lt;<span class="lifetime">&#39;a</span>&gt;&gt;&gt;,
     }
 
-    <span class="doccomment">/// Parses `unsigned? short|long|(long long)`</span>
-    <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>)]</span>
-    <span class="kw">enum</span> <span class="ident">IntegerType</span> {
-        <span class="doccomment">/// Parses `unsigned? long long`</span>
-        <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>)]</span>
-        <span class="ident">LongLong</span>(<span class="kw">struct</span> <span class="ident">LongLongType</span> {
-            <span class="ident">unsigned</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="macro">term!</span>(<span class="ident">unsigned</span>)<span class="op">&gt;</span>,
-            <span class="ident">long_long</span>: (<span class="macro">term!</span>(<span class="ident">long</span>), <span class="macro">term!</span>(<span class="ident">long</span>)),
+    <span class="doccomment">/// Parses `unsigned? short|long|(long long)`
+    </span><span class="attribute">#[derive(Copy)]
+    </span><span class="kw">enum </span>IntegerType {
+        <span class="doccomment">/// Parses `unsigned? long long`
+        </span><span class="attribute">#[derive(Copy)]
+        </span>LongLong(<span class="kw">struct </span>LongLongType {
+            unsigned: <span class="prelude-ty">Option</span>&lt;<span class="macro">term!</span>(unsigned)&gt;,
+            long_long: (<span class="macro">term!</span>(long), <span class="macro">term!</span>(long)),
         }),
-        <span class="doccomment">/// Parses `unsigned? long`</span>
-        <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>)]</span>
-        <span class="ident">Long</span>(<span class="kw">struct</span> <span class="ident">LongType</span> {
-            <span class="ident">unsigned</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="macro">term!</span>(<span class="ident">unsigned</span>)<span class="op">&gt;</span>,
-            <span class="ident">long</span>: <span class="macro">term!</span>(<span class="ident">long</span>),
+        <span class="doccomment">/// Parses `unsigned? long`
+        </span><span class="attribute">#[derive(Copy)]
+        </span>Long(<span class="kw">struct </span>LongType {
+            unsigned: <span class="prelude-ty">Option</span>&lt;<span class="macro">term!</span>(unsigned)&gt;,
+            long: <span class="macro">term!</span>(long),
         }),
-        <span class="doccomment">/// Parses `unsigned? short`</span>
-        <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>)]</span>
-        <span class="ident">Short</span>(<span class="kw">struct</span> <span class="ident">ShortType</span> {
-            <span class="ident">unsigned</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="macro">term!</span>(<span class="ident">unsigned</span>)<span class="op">&gt;</span>,
-            <span class="ident">short</span>: <span class="macro">term!</span>(<span class="ident">short</span>),
-        }),
-    }
-
-    <span class="doccomment">/// Parses `unrestricted? float|double`</span>
-    <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>)]</span>
-    <span class="kw">enum</span> <span class="ident">FloatingPointType</span> {
-        <span class="doccomment">/// Parses `unrestricted? float`</span>
-        <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>)]</span>
-        <span class="ident">Float</span>(<span class="kw">struct</span> <span class="ident">FloatType</span> {
-            <span class="ident">unrestricted</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="macro">term!</span>(<span class="ident">unrestricted</span>)<span class="op">&gt;</span>,
-            <span class="ident">float</span>: <span class="macro">term!</span>(<span class="ident">float</span>),
-        }),
-        <span class="doccomment">/// Parses `unrestricted? double`</span>
-        <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>)]</span>
-        <span class="ident">Double</span>(<span class="kw">struct</span> <span class="ident">DoubleType</span> {
-            <span class="ident">unrestricted</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="macro">term!</span>(<span class="ident">unrestricted</span>)<span class="op">&gt;</span>,
-            <span class="ident">double</span>: <span class="macro">term!</span>(<span class="ident">double</span>),
+        <span class="doccomment">/// Parses `unsigned? short`
+        </span><span class="attribute">#[derive(Copy)]
+        </span>Short(<span class="kw">struct </span>ShortType {
+            unsigned: <span class="prelude-ty">Option</span>&lt;<span class="macro">term!</span>(unsigned)&gt;,
+            short: <span class="macro">term!</span>(short),
         }),
     }
 
-    <span class="doccomment">/// Parses `record&lt;StringType, Type&gt;`</span>
-    <span class="kw">struct</span> <span class="ident">RecordType</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-        <span class="ident">record</span>: <span class="macro">term!</span>(<span class="ident">record</span>),
-        <span class="ident">generics</span>: <span class="ident">Generics</span><span class="op">&lt;</span>(<span class="ident">Box</span><span class="op">&lt;</span><span class="ident">RecordKeyType</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span>, <span class="macro">term!</span>(,), <span class="ident">Box</span><span class="op">&lt;</span><span class="ident">Type</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span>)<span class="op">&gt;</span>,
+    <span class="doccomment">/// Parses `unrestricted? float|double`
+    </span><span class="attribute">#[derive(Copy)]
+    </span><span class="kw">enum </span>FloatingPointType {
+        <span class="doccomment">/// Parses `unrestricted? float`
+        </span><span class="attribute">#[derive(Copy)]
+        </span>Float(<span class="kw">struct </span>FloatType {
+            unrestricted: <span class="prelude-ty">Option</span>&lt;<span class="macro">term!</span>(unrestricted)&gt;,
+            float: <span class="macro">term!</span>(float),
+        }),
+        <span class="doccomment">/// Parses `unrestricted? double`
+        </span><span class="attribute">#[derive(Copy)]
+        </span>Double(<span class="kw">struct </span>DoubleType {
+            unrestricted: <span class="prelude-ty">Option</span>&lt;<span class="macro">term!</span>(unrestricted)&gt;,
+            double: <span class="macro">term!</span>(double),
+        }),
     }
 
-    <span class="doccomment">/// Parses one of the string types `ByteString|DOMString|USVString` or any other type.</span>
-    <span class="kw">enum</span> <span class="ident">RecordKeyType</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-        <span class="ident">Byte</span>(<span class="macro">term!</span>(<span class="ident">ByteString</span>)),
-        <span class="ident">DOM</span>(<span class="macro">term!</span>(<span class="ident">DOMString</span>)),
-        <span class="ident">USV</span>(<span class="macro">term!</span>(<span class="ident">USVString</span>)),
-        <span class="ident">NonAny</span>(<span class="ident">NonAnyType</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>),
+    <span class="doccomment">/// Parses `record&lt;StringType, Type&gt;`
+    </span><span class="kw">struct </span>RecordType&lt;<span class="lifetime">&#39;a</span>&gt; {
+        record: <span class="macro">term!</span>(record),
+        generics: Generics&lt;(Box&lt;RecordKeyType&lt;<span class="lifetime">&#39;a</span>&gt;&gt;, <span class="macro">term!</span>(,), Box&lt;Type&lt;<span class="lifetime">&#39;a</span>&gt;&gt;)&gt;,
     }
 
-    <span class="doccomment">/// Parses one of the member of a union type</span>
-    <span class="kw">enum</span> <span class="ident">UnionMemberType</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-        <span class="ident">Single</span>(<span class="ident">AttributedNonAnyType</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>),
-        <span class="ident">Union</span>(<span class="ident">MayBeNull</span><span class="op">&lt;</span><span class="ident">UnionType</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span>),
+    <span class="doccomment">/// Parses one of the string types `ByteString|DOMString|USVString` or any other type.
+    </span><span class="kw">enum </span>RecordKeyType&lt;<span class="lifetime">&#39;a</span>&gt; {
+        Byte(<span class="macro">term!</span>(ByteString)),
+        DOM(<span class="macro">term!</span>(DOMString)),
+        USV(<span class="macro">term!</span>(USVString)),
+        NonAny(NonAnyType&lt;<span class="lifetime">&#39;a</span>&gt;),
     }
 
-    <span class="doccomment">/// Parses a const type</span>
-    <span class="kw">enum</span> <span class="ident">ConstType</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-        <span class="ident">Integer</span>(<span class="ident">MayBeNull</span><span class="op">&lt;</span><span class="ident">IntegerType</span><span class="op">&gt;</span>),
-        <span class="ident">FloatingPoint</span>(<span class="ident">MayBeNull</span><span class="op">&lt;</span><span class="ident">FloatingPointType</span><span class="op">&gt;</span>),
-        <span class="ident">Boolean</span>(<span class="ident">MayBeNull</span><span class="op">&lt;</span><span class="macro">term!</span>(<span class="ident">boolean</span>)<span class="op">&gt;</span>),
-        <span class="ident">Byte</span>(<span class="ident">MayBeNull</span><span class="op">&lt;</span><span class="macro">term!</span>(<span class="ident">byte</span>)<span class="op">&gt;</span>),
-        <span class="ident">Octet</span>(<span class="ident">MayBeNull</span><span class="op">&lt;</span><span class="macro">term!</span>(<span class="ident">octet</span>)<span class="op">&gt;</span>),
-        <span class="ident">Identifier</span>(<span class="ident">MayBeNull</span><span class="op">&lt;</span><span class="ident">Identifier</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span>),
+    <span class="doccomment">/// Parses one of the member of a union type
+    </span><span class="kw">enum </span>UnionMemberType&lt;<span class="lifetime">&#39;a</span>&gt; {
+        Single(AttributedNonAnyType&lt;<span class="lifetime">&#39;a</span>&gt;),
+        Union(MayBeNull&lt;UnionType&lt;<span class="lifetime">&#39;a</span>&gt;&gt;),
     }
 
-    <span class="doccomment">/// Parses the return type which may be `undefined` or any given Type</span>
-    <span class="kw">enum</span> <span class="ident">ReturnType</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-        <span class="ident">Undefined</span>(<span class="macro">term!</span>(<span class="ident">undefined</span>)),
-        <span class="ident">Type</span>(<span class="ident">Type</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>),
+    <span class="doccomment">/// Parses a const type
+    </span><span class="kw">enum </span>ConstType&lt;<span class="lifetime">&#39;a</span>&gt; {
+        Integer(MayBeNull&lt;IntegerType&gt;),
+        FloatingPoint(MayBeNull&lt;FloatingPointType&gt;),
+        Boolean(MayBeNull&lt;<span class="macro">term!</span>(boolean)&gt;),
+        Byte(MayBeNull&lt;<span class="macro">term!</span>(byte)&gt;),
+        Octet(MayBeNull&lt;<span class="macro">term!</span>(octet)&gt;),
+        Identifier(MayBeNull&lt;Identifier&lt;<span class="lifetime">&#39;a</span>&gt;&gt;),
     }
 
-    <span class="doccomment">/// Parses `[attributes]? type`</span>
-    <span class="kw">struct</span> <span class="ident">AttributedType</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-        <span class="ident">attributes</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ExtendedAttributeList</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-        <span class="ident">type_</span>: <span class="ident">Type</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>,
+    <span class="doccomment">/// Parses the return type which may be `undefined` or any given Type
+    </span><span class="kw">enum </span>ReturnType&lt;<span class="lifetime">&#39;a</span>&gt; {
+        Undefined(<span class="macro">term!</span>(undefined)),
+        Type(Type&lt;<span class="lifetime">&#39;a</span>&gt;),
     }
 
-    <span class="doccomment">/// Parses `[attributes]? type` where the type is a single non-any type</span>
-    <span class="kw">struct</span> <span class="ident">AttributedNonAnyType</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-        <span class="ident">attributes</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ExtendedAttributeList</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-        <span class="ident">type_</span>: <span class="ident">NonAnyType</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>,
+    <span class="doccomment">/// Parses `[attributes]? type`
+    </span><span class="kw">struct </span>AttributedType&lt;<span class="lifetime">&#39;a</span>&gt; {
+        attributes: <span class="prelude-ty">Option</span>&lt;ExtendedAttributeList&lt;<span class="lifetime">&#39;a</span>&gt;&gt;,
+        type_: Type&lt;<span class="lifetime">&#39;a</span>&gt;,
+    }
+
+    <span class="doccomment">/// Parses `[attributes]? type` where the type is a single non-any type
+    </span><span class="kw">struct </span>AttributedNonAnyType&lt;<span class="lifetime">&#39;a</span>&gt; {
+        attributes: <span class="prelude-ty">Option</span>&lt;ExtendedAttributeList&lt;<span class="lifetime">&#39;a</span>&gt;&gt;,
+        type_: NonAnyType&lt;<span class="lifetime">&#39;a</span>&gt;,
     }
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
-<span class="kw">mod</span> <span class="ident">test</span> {
-    <span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
+<span class="attribute">#[cfg(test)]
+</span><span class="kw">mod </span>test {
+    <span class="kw">use super</span>::<span class="kw-2">*</span>;
 
-    <span class="macro">test!</span>(<span class="ident">should_parse_may_be_null</span> { <span class="string">&quot;short&quot;</span> =&gt;
+    <span class="macro">test!</span>(should_parse_may_be_null { <span class="string">&quot;short&quot; </span>=&gt;
         <span class="string">&quot;&quot;</span>;
-        <span class="ident">MayBeNull</span><span class="op">&lt;</span><span class="ident"><span class="kw">crate</span>::types::IntegerType</span><span class="op">&gt;</span>;
-        <span class="ident">q_mark</span>.<span class="ident">is_none</span>();
+        MayBeNull&lt;<span class="kw">crate</span>::types::IntegerType&gt;;
+        q_mark.is_none();
     });
 
-    <span class="macro">test!</span>(<span class="ident">should_parse_nullable</span> { <span class="string">&quot;short?&quot;</span> =&gt;
+    <span class="macro">test!</span>(should_parse_nullable { <span class="string">&quot;short?&quot; </span>=&gt;
         <span class="string">&quot;&quot;</span>;
-        <span class="ident">MayBeNull</span><span class="op">&lt;</span><span class="ident"><span class="kw">crate</span>::types::IntegerType</span><span class="op">&gt;</span>;
-        <span class="ident">q_mark</span>.<span class="ident">is_some</span>();
+        MayBeNull&lt;<span class="kw">crate</span>::types::IntegerType&gt;;
+        q_mark.is_some();
     });
 
     <span class="macro">test_variants!</span>(
-        <span class="ident">ReturnType</span> {
-            <span class="ident">Undefined</span> <span class="op">==</span> <span class="string">&quot;undefined&quot;</span>,
-            <span class="ident">Type</span> <span class="op">==</span> <span class="string">&quot;any&quot;</span>,
+        ReturnType {
+            Undefined == <span class="string">&quot;undefined&quot;</span>,
+            Type == <span class="string">&quot;any&quot;</span>,
         }
     );
 
     <span class="macro">test_variants!</span>(
-        <span class="ident">ConstType</span> {
-            <span class="ident">Integer</span> <span class="op">==</span> <span class="string">&quot;short&quot;</span>,
-            <span class="ident">FloatingPoint</span> <span class="op">==</span> <span class="string">&quot;float&quot;</span>,
-            <span class="ident">Boolean</span> <span class="op">==</span> <span class="string">&quot;boolean&quot;</span>,
-            <span class="ident">Byte</span> <span class="op">==</span> <span class="string">&quot;byte&quot;</span>,
-            <span class="ident">Octet</span> <span class="op">==</span> <span class="string">&quot;octet&quot;</span>,
-            <span class="ident">Identifier</span> <span class="op">==</span> <span class="string">&quot;name&quot;</span>,
+        ConstType {
+            Integer == <span class="string">&quot;short&quot;</span>,
+            FloatingPoint == <span class="string">&quot;float&quot;</span>,
+            Boolean == <span class="string">&quot;boolean&quot;</span>,
+            Byte == <span class="string">&quot;byte&quot;</span>,
+            Octet == <span class="string">&quot;octet&quot;</span>,
+            Identifier == <span class="string">&quot;name&quot;</span>,
         }
     );
 
     <span class="macro">test_variants!</span>(
-        <span class="ident">NonAnyType</span> {
-            <span class="ident">Promise</span> <span class="op">==</span> <span class="string">&quot;Promise&lt;long&gt;&quot;</span>,
-            <span class="ident">Integer</span> <span class="op">==</span> <span class="string">&quot;long&quot;</span>,
-            <span class="ident">FloatingPoint</span> <span class="op">==</span> <span class="string">&quot;float&quot;</span>,
-            <span class="ident">Boolean</span> <span class="op">==</span> <span class="string">&quot;boolean&quot;</span>,
-            <span class="ident">Byte</span> <span class="op">==</span> <span class="string">&quot;byte&quot;</span>,
-            <span class="ident">Octet</span> <span class="op">==</span> <span class="string">&quot;octet&quot;</span>,
-            <span class="ident">ByteString</span> <span class="op">==</span> <span class="string">&quot;ByteString&quot;</span>,
-            <span class="ident">DOMString</span> <span class="op">==</span> <span class="string">&quot;DOMString&quot;</span>,
-            <span class="ident">USVString</span> <span class="op">==</span> <span class="string">&quot;USVString&quot;</span>,
-            <span class="ident">Sequence</span> <span class="op">==</span> <span class="string">&quot;sequence&lt;short&gt;&quot;</span>,
-            <span class="ident">Object</span> <span class="op">==</span> <span class="string">&quot;object&quot;</span>,
-            <span class="ident">Symbol</span> <span class="op">==</span> <span class="string">&quot;symbol&quot;</span>,
-            <span class="ident">Error</span> <span class="op">==</span> <span class="string">&quot;Error&quot;</span>,
-            <span class="ident">ArrayBuffer</span> <span class="op">==</span> <span class="string">&quot;ArrayBuffer&quot;</span>,
-            <span class="ident">DataView</span> <span class="op">==</span> <span class="string">&quot;DataView&quot;</span>,
-            <span class="ident">Int8Array</span> <span class="op">==</span> <span class="string">&quot;Int8Array&quot;</span>,
-            <span class="ident">Int16Array</span> <span class="op">==</span> <span class="string">&quot;Int16Array&quot;</span>,
-            <span class="ident">Int32Array</span> <span class="op">==</span> <span class="string">&quot;Int32Array&quot;</span>,
-            <span class="ident">Uint8Array</span> <span class="op">==</span> <span class="string">&quot;Uint8Array&quot;</span>,
-            <span class="ident">Uint16Array</span> <span class="op">==</span> <span class="string">&quot;Uint16Array&quot;</span>,
-            <span class="ident">Uint32Array</span> <span class="op">==</span> <span class="string">&quot;Uint32Array&quot;</span>,
-            <span class="ident">Uint8ClampedArray</span> <span class="op">==</span> <span class="string">&quot;Uint8ClampedArray&quot;</span>,
-            <span class="ident">Float32Array</span> <span class="op">==</span> <span class="string">&quot;Float32Array&quot;</span>,
-            <span class="ident">Float64Array</span> <span class="op">==</span> <span class="string">&quot;Float64Array&quot;</span>,
-            <span class="ident">ArrayBufferView</span> <span class="op">==</span> <span class="string">&quot;ArrayBufferView&quot;</span>,
-            <span class="ident">BufferSource</span> <span class="op">==</span> <span class="string">&quot;BufferSource&quot;</span>,
-            <span class="ident">FrozenArrayType</span> <span class="op">==</span> <span class="string">&quot;FrozenArray&lt;short&gt;&quot;</span>,
-            <span class="ident">RecordType</span> <span class="op">==</span> <span class="string">&quot;record&lt;DOMString, short&gt;&quot;</span>,
-            <span class="ident">Identifier</span> <span class="op">==</span> <span class="string">&quot;mango&quot;</span>
+        NonAnyType {
+            Promise == <span class="string">&quot;Promise&lt;long&gt;&quot;</span>,
+            Integer == <span class="string">&quot;long&quot;</span>,
+            FloatingPoint == <span class="string">&quot;float&quot;</span>,
+            Boolean == <span class="string">&quot;boolean&quot;</span>,
+            Byte == <span class="string">&quot;byte&quot;</span>,
+            Octet == <span class="string">&quot;octet&quot;</span>,
+            ByteString == <span class="string">&quot;ByteString&quot;</span>,
+            DOMString == <span class="string">&quot;DOMString&quot;</span>,
+            USVString == <span class="string">&quot;USVString&quot;</span>,
+            Sequence == <span class="string">&quot;sequence&lt;short&gt;&quot;</span>,
+            Object == <span class="string">&quot;object&quot;</span>,
+            Symbol == <span class="string">&quot;symbol&quot;</span>,
+            Error == <span class="string">&quot;Error&quot;</span>,
+            ArrayBuffer == <span class="string">&quot;ArrayBuffer&quot;</span>,
+            DataView == <span class="string">&quot;DataView&quot;</span>,
+            Int8Array == <span class="string">&quot;Int8Array&quot;</span>,
+            Int16Array == <span class="string">&quot;Int16Array&quot;</span>,
+            Int32Array == <span class="string">&quot;Int32Array&quot;</span>,
+            Uint8Array == <span class="string">&quot;Uint8Array&quot;</span>,
+            Uint16Array == <span class="string">&quot;Uint16Array&quot;</span>,
+            Uint32Array == <span class="string">&quot;Uint32Array&quot;</span>,
+            Uint8ClampedArray == <span class="string">&quot;Uint8ClampedArray&quot;</span>,
+            Float32Array == <span class="string">&quot;Float32Array&quot;</span>,
+            Float64Array == <span class="string">&quot;Float64Array&quot;</span>,
+            ArrayBufferView == <span class="string">&quot;ArrayBufferView&quot;</span>,
+            BufferSource == <span class="string">&quot;BufferSource&quot;</span>,
+            FrozenArrayType == <span class="string">&quot;FrozenArray&lt;short&gt;&quot;</span>,
+            RecordType == <span class="string">&quot;record&lt;DOMString, short&gt;&quot;</span>,
+            Identifier == <span class="string">&quot;mango&quot;
+        </span>}
+    );
+
+    <span class="macro">test_variants!</span>(
+        UnionMemberType {
+            Single == <span class="string">&quot;byte&quot;</span>,
+            Union == <span class="string">&quot;([Clamp] unsigned long or byte)&quot;
+        </span>}
+    );
+
+    <span class="macro">test_variants!</span>(
+        RecordKeyType {
+            DOM == <span class="string">&quot;DOMString&quot;</span>,
+            USV == <span class="string">&quot;USVString&quot;</span>,
+            Byte == <span class="string">&quot;ByteString&quot;
+        </span>}
+    );
+
+    <span class="macro">test!</span>(should_parse_record_type { <span class="string">&quot;record&lt;DOMString, short&gt;&quot; </span>=&gt;
+        <span class="string">&quot;&quot;</span>;
+        RecordType;
+    });
+
+    <span class="macro">test!</span>(should_parse_record_type_alt_types { <span class="string">&quot;record&lt;u64, short&gt;&quot; </span>=&gt;
+        <span class="string">&quot;&quot;</span>;
+        RecordType;
+    });
+
+    <span class="macro">test!</span>(should_parse_double_type { <span class="string">&quot;double&quot; </span>=&gt;
+        <span class="string">&quot;&quot;</span>;
+        DoubleType;
+    });
+
+    <span class="macro">test!</span>(should_parse_float_type { <span class="string">&quot;float&quot; </span>=&gt;
+        <span class="string">&quot;&quot;</span>;
+        FloatType;
+    });
+
+    <span class="macro">test_variants!</span>(
+        FloatingPointType {
+            Float == <span class="string">&quot;float&quot;</span>,
+            Double == <span class="string">&quot;double&quot;
+        </span>}
+    );
+
+    <span class="macro">test!</span>(should_parse_long_long_type { <span class="string">&quot;long long&quot; </span>=&gt;
+        <span class="string">&quot;&quot;</span>;
+        LongLongType;
+    });
+
+    <span class="macro">test!</span>(should_parse_long_type { <span class="string">&quot;long&quot; </span>=&gt;
+        <span class="string">&quot;&quot;</span>;
+        LongType;
+    });
+
+    <span class="macro">test!</span>(should_parse_short_type { <span class="string">&quot;short&quot; </span>=&gt;
+        <span class="string">&quot;&quot;</span>;
+        ShortType;
+    });
+
+    <span class="macro">test_variants!</span>(
+        IntegerType {
+            Short == <span class="string">&quot;short&quot;</span>,
+            Long == <span class="string">&quot;long&quot;</span>,
+            LongLong == <span class="string">&quot;long long&quot;
+        </span>}
+    );
+
+    <span class="macro">test!</span>(should_parse_promise_type { <span class="string">&quot;Promise&lt;short&gt;&quot; </span>=&gt;
+        <span class="string">&quot;&quot;</span>;
+        PromiseType;
+    });
+
+    <span class="macro">test!</span>(should_parse_frozen_array_type { <span class="string">&quot;FrozenArray&lt;short&gt;&quot; </span>=&gt;
+        <span class="string">&quot;&quot;</span>;
+        FrozenArrayType;
+    });
+
+    <span class="macro">test!</span>(should_parse_sequence_type { <span class="string">&quot;sequence&lt;short&gt;&quot; </span>=&gt;
+        <span class="string">&quot;&quot;</span>;
+        SequenceType;
+    });
+
+    <span class="macro">test_variants!</span>(
+        SingleType {
+            Any == <span class="string">&quot;any&quot;</span>,
+            NonAny == <span class="string">&quot;Promise&lt;short&gt;&quot;</span>,
         }
     );
 
     <span class="macro">test_variants!</span>(
-        <span class="ident">UnionMemberType</span> {
-            <span class="ident">Single</span> <span class="op">==</span> <span class="string">&quot;byte&quot;</span>,
-            <span class="ident">Union</span> <span class="op">==</span> <span class="string">&quot;([Clamp] unsigned long or byte)&quot;</span>
-        }
+        Type {
+            Single == <span class="string">&quot;short&quot;</span>,
+            Union == <span class="string">&quot;(short or float)&quot;
+        </span>}
     );
 
-    <span class="macro">test_variants!</span>(
-        <span class="ident">RecordKeyType</span> {
-            <span class="ident">DOM</span> <span class="op">==</span> <span class="string">&quot;DOMString&quot;</span>,
-            <span class="ident">USV</span> <span class="op">==</span> <span class="string">&quot;USVString&quot;</span>,
-            <span class="ident">Byte</span> <span class="op">==</span> <span class="string">&quot;ByteString&quot;</span>
-        }
-    );
-
-    <span class="macro">test!</span>(<span class="ident">should_parse_record_type</span> { <span class="string">&quot;record&lt;DOMString, short&gt;&quot;</span> =&gt;
+    <span class="macro">test!</span>(should_parse_attributed_type { <span class="string">&quot;[Named] short&quot; </span>=&gt;
         <span class="string">&quot;&quot;</span>;
-        <span class="ident">RecordType</span>;
+        AttributedType;
+        attributes.is_some();
     });
 
-    <span class="macro">test!</span>(<span class="ident">should_parse_record_type_alt_types</span> { <span class="string">&quot;record&lt;u64, short&gt;&quot;</span> =&gt;
-        <span class="string">&quot;&quot;</span>;
-        <span class="ident">RecordType</span>;
+    <span class="macro">test!</span>(should_parse_type_as_identifier { <span class="string">&quot;DOMStringMap&quot; </span>=&gt;
+        <span class="comment">// if type is not parsed as identifier, it is parsed as `DOMString` and &#39;Map&#39; is left
+        </span><span class="string">&quot;&quot;</span>;
+        <span class="kw">crate</span>::types::Type;
     });
 
-    <span class="macro">test!</span>(<span class="ident">should_parse_double_type</span> { <span class="string">&quot;double&quot;</span> =&gt;
-        <span class="string">&quot;&quot;</span>;
-        <span class="ident">DoubleType</span>;
-    });
-
-    <span class="macro">test!</span>(<span class="ident">should_parse_float_type</span> { <span class="string">&quot;float&quot;</span> =&gt;
-        <span class="string">&quot;&quot;</span>;
-        <span class="ident">FloatType</span>;
-    });
-
-    <span class="macro">test_variants!</span>(
-        <span class="ident">FloatingPointType</span> {
-            <span class="ident">Float</span> <span class="op">==</span> <span class="string">&quot;float&quot;</span>,
-            <span class="ident">Double</span> <span class="op">==</span> <span class="string">&quot;double&quot;</span>
-        }
-    );
-
-    <span class="macro">test!</span>(<span class="ident">should_parse_long_long_type</span> { <span class="string">&quot;long long&quot;</span> =&gt;
-        <span class="string">&quot;&quot;</span>;
-        <span class="ident">LongLongType</span>;
-    });
-
-    <span class="macro">test!</span>(<span class="ident">should_parse_long_type</span> { <span class="string">&quot;long&quot;</span> =&gt;
-        <span class="string">&quot;&quot;</span>;
-        <span class="ident">LongType</span>;
-    });
-
-    <span class="macro">test!</span>(<span class="ident">should_parse_short_type</span> { <span class="string">&quot;short&quot;</span> =&gt;
-        <span class="string">&quot;&quot;</span>;
-        <span class="ident">ShortType</span>;
-    });
-
-    <span class="macro">test_variants!</span>(
-        <span class="ident">IntegerType</span> {
-            <span class="ident">Short</span> <span class="op">==</span> <span class="string">&quot;short&quot;</span>,
-            <span class="ident">Long</span> <span class="op">==</span> <span class="string">&quot;long&quot;</span>,
-            <span class="ident">LongLong</span> <span class="op">==</span> <span class="string">&quot;long long&quot;</span>
-        }
-    );
-
-    <span class="macro">test!</span>(<span class="ident">should_parse_promise_type</span> { <span class="string">&quot;Promise&lt;short&gt;&quot;</span> =&gt;
-        <span class="string">&quot;&quot;</span>;
-        <span class="ident">PromiseType</span>;
-    });
-
-    <span class="macro">test!</span>(<span class="ident">should_parse_frozen_array_type</span> { <span class="string">&quot;FrozenArray&lt;short&gt;&quot;</span> =&gt;
-        <span class="string">&quot;&quot;</span>;
-        <span class="ident">FrozenArrayType</span>;
-    });
-
-    <span class="macro">test!</span>(<span class="ident">should_parse_sequence_type</span> { <span class="string">&quot;sequence&lt;short&gt;&quot;</span> =&gt;
-        <span class="string">&quot;&quot;</span>;
-        <span class="ident">SequenceType</span>;
-    });
-
-    <span class="macro">test_variants!</span>(
-        <span class="ident">SingleType</span> {
-            <span class="ident">Any</span> <span class="op">==</span> <span class="string">&quot;any&quot;</span>,
-            <span class="ident">NonAny</span> <span class="op">==</span> <span class="string">&quot;Promise&lt;short&gt;&quot;</span>,
-        }
-    );
-
-    <span class="macro">test_variants!</span>(
-        <span class="ident">Type</span> {
-            <span class="ident">Single</span> <span class="op">==</span> <span class="string">&quot;short&quot;</span>,
-            <span class="ident">Union</span> <span class="op">==</span> <span class="string">&quot;(short or float)&quot;</span>
-        }
-    );
-
-    <span class="macro">test!</span>(<span class="ident">should_parse_attributed_type</span> { <span class="string">&quot;[Named] short&quot;</span> =&gt;
-        <span class="string">&quot;&quot;</span>;
-        <span class="ident">AttributedType</span>;
-        <span class="ident">attributes</span>.<span class="ident">is_some</span>();
-    });
-
-    <span class="macro">test!</span>(<span class="ident">should_parse_type_as_identifier</span> { <span class="string">&quot;DOMStringMap&quot;</span> =&gt;
-        <span class="comment">// if type is not parsed as identifier, it is parsed as `DOMString` and &#39;Map&#39; is left</span>
-        <span class="string">&quot;&quot;</span>;
-        <span class="ident"><span class="kw">crate</span>::types::Type</span>;
-    });
-
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">should_parse_union_member_type_attributed_union</span>() {
-        <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::types::UnionMemberType</span>;
-        <span class="kw">let</span> (<span class="ident">rem</span>, <span class="ident">parsed</span>) <span class="op">=</span> <span class="ident">UnionMemberType::parse</span>(<span class="string">&quot;([Clamp] byte or [Named] byte)&quot;</span>).<span class="ident">unwrap</span>();
-        <span class="macro">assert_eq!</span>(<span class="ident">rem</span>, <span class="string">&quot;&quot;</span>);
-        <span class="kw">match</span> <span class="ident">parsed</span> {
-            <span class="ident">UnionMemberType::Union</span>(<span class="ident">MayBeNull</span> {
-                <span class="ident">type_</span>:
-                    <span class="ident">Parenthesized</span> {
-                        <span class="ident">body</span>: <span class="ident">Punctuated</span> { <span class="ident">list</span>, .. },
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>should_parse_union_member_type_attributed_union() {
+        <span class="kw">use </span><span class="kw">crate</span>::types::UnionMemberType;
+        <span class="kw">let </span>(rem, parsed) = UnionMemberType::parse(<span class="string">&quot;([Clamp] byte or [Named] byte)&quot;</span>).unwrap();
+        <span class="macro">assert_eq!</span>(rem, <span class="string">&quot;&quot;</span>);
+        <span class="kw">match </span>parsed {
+            UnionMemberType::Union(MayBeNull {
+                type_:
+                    Parenthesized {
+                        body: Punctuated { list, .. },
                         ..
                     },
                 ..
             }) =&gt; {
-                <span class="macro">assert_eq!</span>(<span class="ident">list</span>.<span class="ident">len</span>(), <span class="number">2</span>);
+                <span class="macro">assert_eq!</span>(list.len(), <span class="number">2</span>);
 
-                <span class="kw">match</span> <span class="ident">list</span>[<span class="number">0</span>] {
-                    <span class="ident">UnionMemberType::Single</span>(<span class="ident">AttributedNonAnyType</span> { <span class="kw-2">ref</span> <span class="ident">attributes</span>, .. }) =&gt; {
-                        <span class="macro">assert!</span>(<span class="ident">attributes</span>.<span class="ident">is_some</span>());
+                <span class="kw">match </span>list[<span class="number">0</span>] {
+                    UnionMemberType::Single(AttributedNonAnyType { <span class="kw-2">ref </span>attributes, .. }) =&gt; {
+                        <span class="macro">assert!</span>(attributes.is_some());
                     }
 
-                    <span class="kw">_</span> =&gt; {
+                    <span class="kw">_ </span>=&gt; {
                         <span class="macro">panic!</span>(<span class="string">&quot;Failed to parse list[0] attributes&quot;</span>);
                     }
                 };
 
-                <span class="kw">match</span> <span class="ident">list</span>[<span class="number">1</span>] {
-                    <span class="ident">UnionMemberType::Single</span>(<span class="ident">AttributedNonAnyType</span> { <span class="kw-2">ref</span> <span class="ident">attributes</span>, .. }) =&gt; {
-                        <span class="macro">assert!</span>(<span class="ident">attributes</span>.<span class="ident">is_some</span>());
+                <span class="kw">match </span>list[<span class="number">1</span>] {
+                    UnionMemberType::Single(AttributedNonAnyType { <span class="kw-2">ref </span>attributes, .. }) =&gt; {
+                        <span class="macro">assert!</span>(attributes.is_some());
                     }
 
-                    <span class="kw">_</span> =&gt; {
+                    <span class="kw">_ </span>=&gt; {
                         <span class="macro">panic!</span>(<span class="string">&quot;Failed to parse list[1] attributes&quot;</span>);
                     }
                 };
             }
 
-            <span class="kw">_</span> =&gt; {
+            <span class="kw">_ </span>=&gt; {
                 <span class="macro">panic!</span>(<span class="string">&quot;Failed to parse&quot;</span>);
             }
         }
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="weedle" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="weedle" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (77e57db38 2022-10-30)" ></div></body></html>

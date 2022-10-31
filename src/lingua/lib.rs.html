@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/lingua-1.4.0/src/lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../lingua/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../lingua/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../lingua/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/lingua-1.4.0/src/lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../lingua/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -315,294 +315,294 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either expressed or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */</span>
+ */
 
-<span class="doccomment">//! ## 1. What does this library do?</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! Its task is simple: It tells you which language some provided textual data is written in.</span>
-<span class="doccomment">//! This is very useful as a preprocessing step for linguistic data in natural language</span>
-<span class="doccomment">//! processing applications such as text classification and spell checking.</span>
-<span class="doccomment">//! Other use cases, for instance, might include routing e-mails to the right geographically</span>
-<span class="doccomment">//! located customer service department, based on the e-mails&#39; languages.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! ## 2. Why does this library exist?</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! Language detection is often done as part of large machine learning frameworks or natural</span>
-<span class="doccomment">//! language processing applications. In cases where you don&#39;t need the full-fledged</span>
-<span class="doccomment">//! functionality of those systems or don&#39;t want to learn the ropes of those,</span>
-<span class="doccomment">//! a small flexible library comes in handy.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! So far, the only other comprehensive open source libraries in the Rust ecosystem for</span>
-<span class="doccomment">//! this task are [*CLD2*](https://github.com/emk/rust-cld2)</span>
-<span class="doccomment">//! and [*Whatlang*](https://github.com/greyblake/whatlang-rs).</span>
-<span class="doccomment">//! Unfortunately, they have two major drawbacks:</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! 1. Detection only works with quite lengthy text fragments. For very short text snippets</span>
-<span class="doccomment">//! such as Twitter messages, it does not provide adequate results.</span>
-<span class="doccomment">//! 2. The more languages take part in the decision process, the less accurate are the</span>
-<span class="doccomment">//! detection results.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! *Lingua* aims at eliminating these problems. It nearly does not need any configuration and</span>
-<span class="doccomment">//! yields pretty accurate results on both long and short text, even on single words and phrases.</span>
-<span class="doccomment">//! It draws on both rule-based and statistical methods but does not use any dictionaries of words.</span>
-<span class="doccomment">//! It does not need a connection to any external API or service either.</span>
-<span class="doccomment">//! Once the library has been downloaded, it can be used completely offline.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! ## 3. Which languages are supported?</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! Compared to other language detection libraries, *Lingua&#39;s* focus is on *quality over quantity*,</span>
-<span class="doccomment">//! that is, getting detection right for a small set of languages first before adding new ones.</span>
-<span class="doccomment">//! Currently, 75 languages are supported. They are listed as variants in the [Language] enum.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! ## 4. How good is it?</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! *Lingua* is able to report accuracy statistics for some bundled test data available for each</span>
-<span class="doccomment">//! supported language. The test data for each language is split into three parts:</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! 1. a list of single words with a minimum length of 5 characters</span>
-<span class="doccomment">//! 2. a list of word pairs with a minimum length of 10 characters</span>
-<span class="doccomment">//! 3. a list of complete grammatical sentences of various lengths</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! Both the language models and the test data have been created from separate documents of the</span>
-<span class="doccomment">//! [Wortschatz corpora](https://wortschatz.uni-leipzig.de) offered by Leipzig University, Germany.</span>
-<span class="doccomment">//! Data crawled from various news websites have been used for training, each corpus comprising one</span>
-<span class="doccomment">//! million sentences. For testing, corpora made of arbitrarily chosen websites have been used,</span>
-<span class="doccomment">//! each comprising ten thousand sentences. From each test corpus, a random unsorted subset of</span>
-<span class="doccomment">//! 1000 single words, 1000 word pairs and 1000 sentences has been extracted, respectively.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! Given the generated test data, I have compared the detection results of *Lingua*, *CLD2* and</span>
-<span class="doccomment">//! *Whatlang* running over the data of *Lingua&#39;s* supported 75 languages. Languages that are not</span>
-<span class="doccomment">//! supported by *Whatlang* are simply ignored for this library during the detection process.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! The [bar and box plots](https://github.com/pemistahl/lingua-rs/blob/main/ACCURACY_PLOTS.md)</span>
-<span class="doccomment">//! show the measured accuracy values for all three performed tasks: Single word detection,</span>
-<span class="doccomment">//! word pair detection and sentence detection. *Lingua* clearly outperforms its contenders.</span>
-<span class="doccomment">//! Detailed statistics including mean, median and standard deviation values for each language</span>
-<span class="doccomment">//! and classifier are available in</span>
-<span class="doccomment">//! [tabular form](https://github.com/pemistahl/lingua-rs/blob/main/ACCURACY_TABLE.md) as well.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! ## 5. Why is it better than other libraries?</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! Every language detector uses a probabilistic [n-gram](https://en.wikipedia.org/wiki/N-gram)</span>
-<span class="doccomment">//! model trained on the character distribution in some training corpus. Most libraries only use</span>
-<span class="doccomment">//! n-grams of size 3 (trigrams) which is satisfactory for detecting the language of longer text</span>
-<span class="doccomment">//! fragments consisting of multiple sentences. For short phrases or single words, however,</span>
-<span class="doccomment">//! trigrams are not enough. The shorter the input text is, the less n-grams are available.</span>
-<span class="doccomment">//! The probabilities estimated from such few n-grams are not reliable. This is why *Lingua* makes</span>
-<span class="doccomment">//! use of n-grams of sizes 1 up to 5 which results in much more accurate prediction of the correct</span>
-<span class="doccomment">//! language.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! A second important difference is that *Lingua* does not only use such a statistical model, but</span>
-<span class="doccomment">//! also a rule-based engine. This engine first determines the alphabet of the input text and</span>
-<span class="doccomment">//! searches for characters which are unique in one or more languages. If exactly one language can</span>
-<span class="doccomment">//! be reliably chosen this way, the statistical model is not necessary anymore. In any case, the</span>
-<span class="doccomment">//! rule-based engine filters out languages that do not satisfy the conditions of the input text.</span>
-<span class="doccomment">//! Only then, in a second step, the probabilistic n-gram model is taken into consideration.</span>
-<span class="doccomment">//! This makes sense because loading less language models means less memory consumption and better</span>
-<span class="doccomment">//! runtime performance.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! In general, it is always a good idea to restrict the set of languages to be considered in the</span>
-<span class="doccomment">//! classification process using the respective api methods. If you know beforehand that certain</span>
-<span class="doccomment">//! languages are never to occur in an input text, do not let those take part in the classifcation</span>
-<span class="doccomment">//! process. The filtering mechanism of the rule-based engine is quite good, however, filtering</span>
-<span class="doccomment">//! based on your own knowledge of the input text is always preferable.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! ## 6. How to add it to your project?</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! Add *Lingua* to your `Cargo.toml` file like so:</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! ```toml</span>
-<span class="doccomment">//! [dependencies]</span>
-<span class="doccomment">//! lingua = &quot;1.4.0&quot;</span>
-<span class="doccomment">//! ```</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! By default, this will download the language model dependencies for all 75 supported languages,</span>
-<span class="doccomment">//! a total of approximately 100 MB. If your bandwidth or hard drive space is limited, or you simply</span>
-<span class="doccomment">//! do not need all languages, you can specify a subset of the language models to be downloaded as</span>
-<span class="doccomment">//! separate features in your `Cargo.toml`:</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! ```toml</span>
-<span class="doccomment">//! [dependencies]</span>
-<span class="doccomment">//! lingua = { version = &quot;1.4.0&quot;, default-features = false, features = [&quot;french&quot;, &quot;italian&quot;, &quot;spanish&quot;] }</span>
-<span class="doccomment">//! ```</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! ## 7. How to use?</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! ### 7.1 Basic usage</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! ```</span>
-<span class="doccomment">//! use lingua::{Language, LanguageDetector, LanguageDetectorBuilder};</span>
-<span class="doccomment">//! use lingua::Language::{English, French, German, Spanish};</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! let languages = vec![English, French, German, Spanish];</span>
-<span class="doccomment">//! let detector: LanguageDetector = LanguageDetectorBuilder::from_languages(&amp;languages).build();</span>
-<span class="doccomment">//! let detected_language: Option&lt;Language&gt; = detector.detect_language_of(&quot;languages are awesome&quot;);</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! assert_eq!(detected_language, Some(English));</span>
-<span class="doccomment">//! ```</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! ### 7.2 Minimum relative distance</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! By default, *Lingua* returns the most likely language for a given input text. However, there are</span>
-<span class="doccomment">//! certain words that are spelled the same in more than one language. The word *prologue*, for</span>
-<span class="doccomment">//! instance, is both a valid English and French word. *Lingua* would output either English or</span>
-<span class="doccomment">//! French which might be wrong in the given context. For cases like that, it is possible to</span>
-<span class="doccomment">//! specify a minimum relative distance that the logarithmized and summed up probabilities for</span>
-<span class="doccomment">//! each possible language have to satisfy. It can be stated in the following way:</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! ```</span>
-<span class="doccomment">//! use lingua::LanguageDetectorBuilder;</span>
-<span class="doccomment">//! use lingua::Language::{English, French, German, Spanish};</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! let detector = LanguageDetectorBuilder::from_languages(&amp;[English, French, German, Spanish])</span>
-<span class="doccomment">//!     .with_minimum_relative_distance(0.25) // minimum: 0.00 maximum: 0.99 default: 0.00</span>
-<span class="doccomment">//!     .build();</span>
-<span class="doccomment">//! let detected_language = detector.detect_language_of(&quot;languages are awesome&quot;);</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! assert_eq!(detected_language, None);</span>
-<span class="doccomment">//! ```</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! Be aware that the distance between the language probabilities is dependent on the length of the</span>
-<span class="doccomment">//! input text. The longer the input text, the larger the distance between the languages. So if you</span>
-<span class="doccomment">//! want to classify very short text phrases, do not set the minimum relative distance too high.</span>
-<span class="doccomment">//! Otherwise [`None`](https://doc.rust-lang.org/std/option/enum.Option.html#variant.None) will be</span>
-<span class="doccomment">//! returned most of the time as in the example above. This is the return value for cases where</span>
-<span class="doccomment">//! language detection is not reliably possible.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! ### 7.3 Confidence values</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! Knowing about the most likely language is nice but how reliable is the computed likelihood?</span>
-<span class="doccomment">//! And how less likely are the other examined languages in comparison to the most likely one?</span>
-<span class="doccomment">//! These questions can be answered as well:</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! ```</span>
-<span class="doccomment">//! use lingua::{LanguageDetectorBuilder, Language};</span>
-<span class="doccomment">//! use lingua::Language::{English, French, German, Spanish};</span>
-<span class="doccomment">//! use float_cmp::approx_eq;</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! let languages = vec![English, French, German, Spanish];</span>
-<span class="doccomment">//! let detector = LanguageDetectorBuilder::from_languages(&amp;languages).build();</span>
-<span class="doccomment">//! let confidence_values: Vec&lt;(Language, f64)&gt; = detector.compute_language_confidence_values(</span>
-<span class="doccomment">//!     &quot;languages are awesome&quot;</span>
-<span class="doccomment">//! );</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! // The more readable version of the assertions below:</span>
-<span class="doccomment">//! // assert_eq!(</span>
-<span class="doccomment">//! //     confidence_values,</span>
-<span class="doccomment">//! //     vec![(English, 1.0), (French, 0.79), (German, 0.75), (Spanish, 0.72)]</span>
-<span class="doccomment">//! // );</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! assert_eq!(confidence_values[0], (English, 1.0_f64));</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! assert_eq!(confidence_values[1].0, French);</span>
-<span class="doccomment">//! assert!(approx_eq!(f64, confidence_values[1].1, 0.7917282993701181, ulps = 2));</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! assert_eq!(confidence_values[2].0, German);</span>
-<span class="doccomment">//! assert!(approx_eq!(f64, confidence_values[2].1, 0.7532048914992281, ulps = 2));</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! assert_eq!(confidence_values[3].0, Spanish);</span>
-<span class="doccomment">//! assert!(approx_eq!(f64, confidence_values[3].1, 0.7229637749926444, ulps = 2));</span>
-<span class="doccomment">//! ```</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! In the example above, a vector of all possible languages is returned, sorted by their confidence</span>
-<span class="doccomment">//! value in descending order. The values that the detector computes are part of a **relative**</span>
-<span class="doccomment">//! confidence metric, not of an absolute one. Each value is a number between 0.0 and 1.0.</span>
-<span class="doccomment">//! The most likely language is always returned with value 1.0. All other languages get values</span>
-<span class="doccomment">//! assigned which are lower than 1.0, denoting how less likely those languages are in comparison</span>
-<span class="doccomment">//! to the most likely language.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! The vector returned by this method does not necessarily contain all languages which the calling</span>
-<span class="doccomment">//! instance of [LanguageDetector] was built from. If the rule-based engine decides that a specific</span>
-<span class="doccomment">//! language is truly impossible, then it will not be part of the returned vector. Likewise, if no</span>
-<span class="doccomment">//! ngram probabilities can be found within the detector&#39;s languages for the given input text, the</span>
-<span class="doccomment">//! returned vector will be empty. The confidence value for each language not being part of the</span>
-<span class="doccomment">//! returned vector is assumed to be 0.0.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! ### 7.4 Eager loading versus lazy loading</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! By default, *Lingua* uses lazy-loading to load only those language models on demand which are</span>
-<span class="doccomment">//! considered relevant by the rule-based filter engine. For web services, for instance, it is</span>
-<span class="doccomment">//! rather beneficial to preload all language models into memory to avoid unexpected latency while</span>
-<span class="doccomment">//! waiting for the service response. If you want to enable the eager-loading mode, you can do it</span>
-<span class="doccomment">//! like this:</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! ```</span>
-<span class="doccomment">//! use lingua::LanguageDetectorBuilder;</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! LanguageDetectorBuilder::from_all_languages().with_preloaded_language_models().build();</span>
-<span class="doccomment">//! ```</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! Multiple instances of `LanguageDetector` share the same language models in memory which are</span>
-<span class="doccomment">//! accessed asynchronously by the instances.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! ### 7.5 Methods to build the LanguageDetector</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! There might be classification tasks where you know beforehand that your language data is</span>
-<span class="doccomment">//! definitely not written in Latin, for instance (what a surprise :-). The detection accuracy can</span>
-<span class="doccomment">//! become better in such cases if you exclude certain languages from the decision process or just</span>
-<span class="doccomment">//! explicitly include relevant languages:</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! ```</span>
-<span class="doccomment">//! use lingua::{LanguageDetectorBuilder, Language, IsoCode639_1, IsoCode639_3};</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! // Including all languages available in the library</span>
-<span class="doccomment">//! // consumes approximately 2GB of memory and might</span>
-<span class="doccomment">//! // lead to slow runtime performance.</span>
-<span class="doccomment">//! LanguageDetectorBuilder::from_all_languages();</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! // Include only languages that are not yet extinct (= currently excludes Latin).</span>
-<span class="doccomment">//! LanguageDetectorBuilder::from_all_spoken_languages();</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! // Include only languages written with Cyrillic script.</span>
-<span class="doccomment">//! LanguageDetectorBuilder::from_all_languages_with_cyrillic_script();</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! // Exclude only the Spanish language from the decision algorithm.</span>
-<span class="doccomment">//! LanguageDetectorBuilder::from_all_languages_without(&amp;[Language::Spanish]);</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! // Only decide between English and German.</span>
-<span class="doccomment">//! LanguageDetectorBuilder::from_languages(&amp;[Language::English, Language::German]);</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! // Select languages by ISO 639-1 code.</span>
-<span class="doccomment">//! LanguageDetectorBuilder::from_iso_codes_639_1(&amp;[IsoCode639_1::EN, IsoCode639_1::DE]);</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! // Select languages by ISO 639-3 code.</span>
-<span class="doccomment">//! LanguageDetectorBuilder::from_iso_codes_639_3(&amp;[IsoCode639_3::ENG, IsoCode639_3::DEU]);</span>
-<span class="doccomment">//! ```</span>
+</span><span class="doccomment">//! ## 1. What does this library do?
+//!
+//! Its task is simple: It tells you which language some provided textual data is written in.
+//! This is very useful as a preprocessing step for linguistic data in natural language
+//! processing applications such as text classification and spell checking.
+//! Other use cases, for instance, might include routing e-mails to the right geographically
+//! located customer service department, based on the e-mails&#39; languages.
+//!
+//! ## 2. Why does this library exist?
+//!
+//! Language detection is often done as part of large machine learning frameworks or natural
+//! language processing applications. In cases where you don&#39;t need the full-fledged
+//! functionality of those systems or don&#39;t want to learn the ropes of those,
+//! a small flexible library comes in handy.
+//!
+//! So far, the only other comprehensive open source libraries in the Rust ecosystem for
+//! this task are [*CLD2*](https://github.com/emk/rust-cld2)
+//! and [*Whatlang*](https://github.com/greyblake/whatlang-rs).
+//! Unfortunately, they have two major drawbacks:
+//!
+//! 1. Detection only works with quite lengthy text fragments. For very short text snippets
+//! such as Twitter messages, it does not provide adequate results.
+//! 2. The more languages take part in the decision process, the less accurate are the
+//! detection results.
+//!
+//! *Lingua* aims at eliminating these problems. It nearly does not need any configuration and
+//! yields pretty accurate results on both long and short text, even on single words and phrases.
+//! It draws on both rule-based and statistical methods but does not use any dictionaries of words.
+//! It does not need a connection to any external API or service either.
+//! Once the library has been downloaded, it can be used completely offline.
+//!
+//! ## 3. Which languages are supported?
+//!
+//! Compared to other language detection libraries, *Lingua&#39;s* focus is on *quality over quantity*,
+//! that is, getting detection right for a small set of languages first before adding new ones.
+//! Currently, 75 languages are supported. They are listed as variants in the [Language] enum.
+//!
+//! ## 4. How good is it?
+//!
+//! *Lingua* is able to report accuracy statistics for some bundled test data available for each
+//! supported language. The test data for each language is split into three parts:
+//!
+//! 1. a list of single words with a minimum length of 5 characters
+//! 2. a list of word pairs with a minimum length of 10 characters
+//! 3. a list of complete grammatical sentences of various lengths
+//!
+//! Both the language models and the test data have been created from separate documents of the
+//! [Wortschatz corpora](https://wortschatz.uni-leipzig.de) offered by Leipzig University, Germany.
+//! Data crawled from various news websites have been used for training, each corpus comprising one
+//! million sentences. For testing, corpora made of arbitrarily chosen websites have been used,
+//! each comprising ten thousand sentences. From each test corpus, a random unsorted subset of
+//! 1000 single words, 1000 word pairs and 1000 sentences has been extracted, respectively.
+//!
+//! Given the generated test data, I have compared the detection results of *Lingua*, *CLD2* and
+//! *Whatlang* running over the data of *Lingua&#39;s* supported 75 languages. Languages that are not
+//! supported by *Whatlang* are simply ignored for this library during the detection process.
+//!
+//! The [bar and box plots](https://github.com/pemistahl/lingua-rs/blob/main/ACCURACY_PLOTS.md)
+//! show the measured accuracy values for all three performed tasks: Single word detection,
+//! word pair detection and sentence detection. *Lingua* clearly outperforms its contenders.
+//! Detailed statistics including mean, median and standard deviation values for each language
+//! and classifier are available in
+//! [tabular form](https://github.com/pemistahl/lingua-rs/blob/main/ACCURACY_TABLE.md) as well.
+//!
+//! ## 5. Why is it better than other libraries?
+//!
+//! Every language detector uses a probabilistic [n-gram](https://en.wikipedia.org/wiki/N-gram)
+//! model trained on the character distribution in some training corpus. Most libraries only use
+//! n-grams of size 3 (trigrams) which is satisfactory for detecting the language of longer text
+//! fragments consisting of multiple sentences. For short phrases or single words, however,
+//! trigrams are not enough. The shorter the input text is, the less n-grams are available.
+//! The probabilities estimated from such few n-grams are not reliable. This is why *Lingua* makes
+//! use of n-grams of sizes 1 up to 5 which results in much more accurate prediction of the correct
+//! language.
+//!
+//! A second important difference is that *Lingua* does not only use such a statistical model, but
+//! also a rule-based engine. This engine first determines the alphabet of the input text and
+//! searches for characters which are unique in one or more languages. If exactly one language can
+//! be reliably chosen this way, the statistical model is not necessary anymore. In any case, the
+//! rule-based engine filters out languages that do not satisfy the conditions of the input text.
+//! Only then, in a second step, the probabilistic n-gram model is taken into consideration.
+//! This makes sense because loading less language models means less memory consumption and better
+//! runtime performance.
+//!
+//! In general, it is always a good idea to restrict the set of languages to be considered in the
+//! classification process using the respective api methods. If you know beforehand that certain
+//! languages are never to occur in an input text, do not let those take part in the classifcation
+//! process. The filtering mechanism of the rule-based engine is quite good, however, filtering
+//! based on your own knowledge of the input text is always preferable.
+//!
+//! ## 6. How to add it to your project?
+//!
+//! Add *Lingua* to your `Cargo.toml` file like so:
+//!
+//! ```toml
+//! [dependencies]
+//! lingua = &quot;1.4.0&quot;
+//! ```
+//!
+//! By default, this will download the language model dependencies for all 75 supported languages,
+//! a total of approximately 100 MB. If your bandwidth or hard drive space is limited, or you simply
+//! do not need all languages, you can specify a subset of the language models to be downloaded as
+//! separate features in your `Cargo.toml`:
+//!
+//! ```toml
+//! [dependencies]
+//! lingua = { version = &quot;1.4.0&quot;, default-features = false, features = [&quot;french&quot;, &quot;italian&quot;, &quot;spanish&quot;] }
+//! ```
+//!
+//! ## 7. How to use?
+//!
+//! ### 7.1 Basic usage
+//!
+//! ```
+//! use lingua::{Language, LanguageDetector, LanguageDetectorBuilder};
+//! use lingua::Language::{English, French, German, Spanish};
+//!
+//! let languages = vec![English, French, German, Spanish];
+//! let detector: LanguageDetector = LanguageDetectorBuilder::from_languages(&amp;languages).build();
+//! let detected_language: Option&lt;Language&gt; = detector.detect_language_of(&quot;languages are awesome&quot;);
+//!
+//! assert_eq!(detected_language, Some(English));
+//! ```
+//!
+//! ### 7.2 Minimum relative distance
+//!
+//! By default, *Lingua* returns the most likely language for a given input text. However, there are
+//! certain words that are spelled the same in more than one language. The word *prologue*, for
+//! instance, is both a valid English and French word. *Lingua* would output either English or
+//! French which might be wrong in the given context. For cases like that, it is possible to
+//! specify a minimum relative distance that the logarithmized and summed up probabilities for
+//! each possible language have to satisfy. It can be stated in the following way:
+//!
+//! ```
+//! use lingua::LanguageDetectorBuilder;
+//! use lingua::Language::{English, French, German, Spanish};
+//!
+//! let detector = LanguageDetectorBuilder::from_languages(&amp;[English, French, German, Spanish])
+//!     .with_minimum_relative_distance(0.25) // minimum: 0.00 maximum: 0.99 default: 0.00
+//!     .build();
+//! let detected_language = detector.detect_language_of(&quot;languages are awesome&quot;);
+//!
+//! assert_eq!(detected_language, None);
+//! ```
+//!
+//! Be aware that the distance between the language probabilities is dependent on the length of the
+//! input text. The longer the input text, the larger the distance between the languages. So if you
+//! want to classify very short text phrases, do not set the minimum relative distance too high.
+//! Otherwise [`None`](https://doc.rust-lang.org/std/option/enum.Option.html#variant.None) will be
+//! returned most of the time as in the example above. This is the return value for cases where
+//! language detection is not reliably possible.
+//!
+//! ### 7.3 Confidence values
+//!
+//! Knowing about the most likely language is nice but how reliable is the computed likelihood?
+//! And how less likely are the other examined languages in comparison to the most likely one?
+//! These questions can be answered as well:
+//!
+//! ```
+//! use lingua::{LanguageDetectorBuilder, Language};
+//! use lingua::Language::{English, French, German, Spanish};
+//! use float_cmp::approx_eq;
+//!
+//! let languages = vec![English, French, German, Spanish];
+//! let detector = LanguageDetectorBuilder::from_languages(&amp;languages).build();
+//! let confidence_values: Vec&lt;(Language, f64)&gt; = detector.compute_language_confidence_values(
+//!     &quot;languages are awesome&quot;
+//! );
+//!
+//! // The more readable version of the assertions below:
+//! // assert_eq!(
+//! //     confidence_values,
+//! //     vec![(English, 1.0), (French, 0.79), (German, 0.75), (Spanish, 0.72)]
+//! // );
+//!
+//! assert_eq!(confidence_values[0], (English, 1.0_f64));
+//!
+//! assert_eq!(confidence_values[1].0, French);
+//! assert!(approx_eq!(f64, confidence_values[1].1, 0.7917282993701181, ulps = 2));
+//!
+//! assert_eq!(confidence_values[2].0, German);
+//! assert!(approx_eq!(f64, confidence_values[2].1, 0.7532048914992281, ulps = 2));
+//!
+//! assert_eq!(confidence_values[3].0, Spanish);
+//! assert!(approx_eq!(f64, confidence_values[3].1, 0.7229637749926444, ulps = 2));
+//! ```
+//!
+//! In the example above, a vector of all possible languages is returned, sorted by their confidence
+//! value in descending order. The values that the detector computes are part of a **relative**
+//! confidence metric, not of an absolute one. Each value is a number between 0.0 and 1.0.
+//! The most likely language is always returned with value 1.0. All other languages get values
+//! assigned which are lower than 1.0, denoting how less likely those languages are in comparison
+//! to the most likely language.
+//!
+//! The vector returned by this method does not necessarily contain all languages which the calling
+//! instance of [LanguageDetector] was built from. If the rule-based engine decides that a specific
+//! language is truly impossible, then it will not be part of the returned vector. Likewise, if no
+//! ngram probabilities can be found within the detector&#39;s languages for the given input text, the
+//! returned vector will be empty. The confidence value for each language not being part of the
+//! returned vector is assumed to be 0.0.
+//!
+//! ### 7.4 Eager loading versus lazy loading
+//!
+//! By default, *Lingua* uses lazy-loading to load only those language models on demand which are
+//! considered relevant by the rule-based filter engine. For web services, for instance, it is
+//! rather beneficial to preload all language models into memory to avoid unexpected latency while
+//! waiting for the service response. If you want to enable the eager-loading mode, you can do it
+//! like this:
+//!
+//! ```
+//! use lingua::LanguageDetectorBuilder;
+//!
+//! LanguageDetectorBuilder::from_all_languages().with_preloaded_language_models().build();
+//! ```
+//!
+//! Multiple instances of `LanguageDetector` share the same language models in memory which are
+//! accessed asynchronously by the instances.
+//!
+//! ### 7.5 Methods to build the LanguageDetector
+//!
+//! There might be classification tasks where you know beforehand that your language data is
+//! definitely not written in Latin, for instance (what a surprise :-). The detection accuracy can
+//! become better in such cases if you exclude certain languages from the decision process or just
+//! explicitly include relevant languages:
+//!
+//! ```
+//! use lingua::{LanguageDetectorBuilder, Language, IsoCode639_1, IsoCode639_3};
+//!
+//! // Including all languages available in the library
+//! // consumes approximately 2GB of memory and might
+//! // lead to slow runtime performance.
+//! LanguageDetectorBuilder::from_all_languages();
+//!
+//! // Include only languages that are not yet extinct (= currently excludes Latin).
+//! LanguageDetectorBuilder::from_all_spoken_languages();
+//!
+//! // Include only languages written with Cyrillic script.
+//! LanguageDetectorBuilder::from_all_languages_with_cyrillic_script();
+//!
+//! // Exclude only the Spanish language from the decision algorithm.
+//! LanguageDetectorBuilder::from_all_languages_without(&amp;[Language::Spanish]);
+//!
+//! // Only decide between English and German.
+//! LanguageDetectorBuilder::from_languages(&amp;[Language::English, Language::German]);
+//!
+//! // Select languages by ISO 639-1 code.
+//! LanguageDetectorBuilder::from_iso_codes_639_1(&amp;[IsoCode639_1::EN, IsoCode639_1::DE]);
+//!
+//! // Select languages by ISO 639-3 code.
+//! LanguageDetectorBuilder::from_iso_codes_639_3(&amp;[IsoCode639_3::ENG, IsoCode639_3::DEU]);
+//! ```
 
-<span class="attribute">#[<span class="ident">macro_use</span>]</span>
-<span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">maplit</span>;
+</span><span class="attribute">#[macro_use]
+</span><span class="kw">extern crate </span>maplit;
 
-<span class="kw">mod</span> <span class="ident">alphabet</span>;
-<span class="kw">mod</span> <span class="ident">builder</span>;
-<span class="kw">mod</span> <span class="ident">constant</span>;
-<span class="kw">mod</span> <span class="ident">detector</span>;
-<span class="kw">mod</span> <span class="ident">fraction</span>;
-<span class="kw">mod</span> <span class="ident">isocode</span>;
-<span class="kw">mod</span> <span class="ident">json</span>;
-<span class="kw">mod</span> <span class="ident">language</span>;
-<span class="kw">mod</span> <span class="ident">model</span>;
-<span class="kw">mod</span> <span class="ident">ngram</span>;
-<span class="kw">mod</span> <span class="ident">writer</span>;
+<span class="kw">mod </span>alphabet;
+<span class="kw">mod </span>builder;
+<span class="kw">mod </span>constant;
+<span class="kw">mod </span>detector;
+<span class="kw">mod </span>fraction;
+<span class="kw">mod </span>isocode;
+<span class="kw">mod </span>json;
+<span class="kw">mod </span>language;
+<span class="kw">mod </span>model;
+<span class="kw">mod </span>ngram;
+<span class="kw">mod </span>writer;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">target_family</span> <span class="op">=</span> <span class="string">&quot;wasm&quot;</span>)]</span>
-<span class="kw">mod</span> <span class="ident">wasm</span>;
+<span class="attribute">#[cfg(target_family = <span class="string">&quot;wasm&quot;</span>)]
+</span><span class="kw">mod </span>wasm;
 
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">builder::LanguageDetectorBuilder</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">detector::LanguageDetector</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">isocode</span>::{<span class="ident">IsoCode639_1</span>, <span class="ident">IsoCode639_3</span>};
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">language::Language</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">writer</span>::{<span class="ident">LanguageModelFilesWriter</span>, <span class="ident">TestDataFilesWriter</span>};
+<span class="kw">pub use </span>builder::LanguageDetectorBuilder;
+<span class="kw">pub use </span>detector::LanguageDetector;
+<span class="kw">pub use </span>isocode::{IsoCode639_1, IsoCode639_3};
+<span class="kw">pub use </span>language::Language;
+<span class="kw">pub use </span>writer::{LanguageModelFilesWriter, TestDataFilesWriter};
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">target_family</span> <span class="op">=</span> <span class="string">&quot;wasm&quot;</span>)]</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">wasm::LanguageDetectorBuilder</span> <span class="kw">as</span> <span class="ident">WasmLanguageDetectorBuilder</span>;
+<span class="attribute">#[cfg(target_family = <span class="string">&quot;wasm&quot;</span>)]
+</span><span class="kw">pub use </span>wasm::LanguageDetectorBuilder <span class="kw">as </span>WasmLanguageDetectorBuilder;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
-<span class="kw">use</span> <span class="ident">regex::Regex</span>;
+<span class="attribute">#[cfg(test)]
+</span><span class="kw">use </span>regex::Regex;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">minify</span>(<span class="ident">json</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="ident">String</span> {
-    <span class="kw">let</span> <span class="ident">re</span> <span class="op">=</span> <span class="ident">Regex::new</span>(<span class="string">&quot;\n\\s*&quot;</span>).<span class="ident">unwrap</span>();
-    <span class="ident">re</span>.<span class="ident">replace_all</span>(<span class="ident">json</span>, <span class="string">&quot;&quot;</span>).<span class="ident">to_string</span>()
+<span class="attribute">#[cfg(test)]
+</span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>minify(json: <span class="kw-2">&amp;</span>str) -&gt; String {
+    <span class="kw">let </span>re = Regex::new(<span class="string">&quot;\n\\s*&quot;</span>).unwrap();
+    re.replace_all(json, <span class="string">&quot;&quot;</span>).to_string()
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="lingua" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="lingua" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (77e57db38 2022-10-30)" ></div></body></html>

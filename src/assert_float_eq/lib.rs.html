@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/assert_float_eq-1.1.3/src/lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../assert_float_eq/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../assert_float_eq/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../assert_float_eq/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/assert_float_eq-1.1.3/src/lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../assert_float_eq/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -724,731 +724,731 @@
 <span id="724">724</span>
 <span id="725">725</span>
 <span id="726">726</span>
-</pre><pre class="rust"><code><span class="doccomment">//! Assertions that two floating point numbers are approximately equal.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! Floating-point equality is difficult, and therefore numerous macros</span>
-<span class="doccomment">//! are provided. At the most simple, [`assert_float_absolute_eq`] and</span>
-<span class="doccomment">//! [`assert_float_relative_eq`] assert that the difference between two</span>
-<span class="doccomment">//! floats is smaller than epsilon (default 1e-6) absolutely or</span>
-<span class="doccomment">//! relatively, respectively.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! However, due to the decreasing precision of floating-point numbers</span>
-<span class="doccomment">//! at large values, and the desire for high-stringency, macros to detect</span>
-<span class="doccomment">//! whether a floating point is within a number of &quot;steps&quot; of another</span>
-<span class="doccomment">//! are provided. [`assert_f32_near`] and [`assert_f64_near`] assert whether</span>
-<span class="doccomment">//! an f32 or f64 is within n &quot;steps&quot; (default 4) of another, respectively.</span>
-<span class="doccomment">//! A floating-point step is an increment to the bit-wise pattern of the</span>
-<span class="doccomment">//! float, for example, if a float is represented in-memory as `0x0000FFFF`,</span>
-<span class="doccomment">//! then the next float would be `0x00010000`. This allows float equality</span>
-<span class="doccomment">//! comparisons to floating-point numbers at any precision, simplifying</span>
-<span class="doccomment">//! equality checks for extremely high or low floats without sacrificing</span>
-<span class="doccomment">//! accuracy.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! For example, for a 32-bit float of value `3e37`, each step is `~4e30`,</span>
-<span class="doccomment">//! a gargantuan value (but only a small fraction, ~0.00001% of the total</span>
-<span class="doccomment">//! value).</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! In addition to the `assert_*` macros, which panic if the condition</span>
-<span class="doccomment">//! is not true, assert_float_eq also has `expect_*` macros, which</span>
-<span class="doccomment">//! return a `Result&lt;(), T: Display&gt;`, when panicking is not desirable.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! [`assert_float_absolute_eq`]: macro.assert_float_absolute_eq.html</span>
-<span class="doccomment">//! [`assert_float_relative_eq`]: macro.assert_float_relative_eq.html</span>
-<span class="doccomment">//! [`assert_f64_near`]: macro.assert_f64_near.html</span>
-<span class="doccomment">//! [`assert_f32_near`]: macro.assert_f32_near.html</span>
+</pre><pre class="rust"><code><span class="doccomment">//! Assertions that two floating point numbers are approximately equal.
+//!
+//! Floating-point equality is difficult, and therefore numerous macros
+//! are provided. At the most simple, [`assert_float_absolute_eq`] and
+//! [`assert_float_relative_eq`] assert that the difference between two
+//! floats is smaller than epsilon (default 1e-6) absolutely or
+//! relatively, respectively.
+//!
+//! However, due to the decreasing precision of floating-point numbers
+//! at large values, and the desire for high-stringency, macros to detect
+//! whether a floating point is within a number of &quot;steps&quot; of another
+//! are provided. [`assert_f32_near`] and [`assert_f64_near`] assert whether
+//! an f32 or f64 is within n &quot;steps&quot; (default 4) of another, respectively.
+//! A floating-point step is an increment to the bit-wise pattern of the
+//! float, for example, if a float is represented in-memory as `0x0000FFFF`,
+//! then the next float would be `0x00010000`. This allows float equality
+//! comparisons to floating-point numbers at any precision, simplifying
+//! equality checks for extremely high or low floats without sacrificing
+//! accuracy.
+//!
+//! For example, for a 32-bit float of value `3e37`, each step is `~4e30`,
+//! a gargantuan value (but only a small fraction, ~0.00001% of the total
+//! value).
+//!
+//! In addition to the `assert_*` macros, which panic if the condition
+//! is not true, assert_float_eq also has `expect_*` macros, which
+//! return a `Result&lt;(), T: Display&gt;`, when panicking is not desirable.
+//!
+//! [`assert_float_absolute_eq`]: macro.assert_float_absolute_eq.html
+//! [`assert_float_relative_eq`]: macro.assert_float_relative_eq.html
+//! [`assert_f64_near`]: macro.assert_f64_near.html
+//! [`assert_f32_near`]: macro.assert_f32_near.html
 
-<span class="comment">// FEATURES</span>
+</span><span class="comment">// FEATURES
 
-<span class="comment">// Allow fully-functional implementation even with no-std.</span>
+// Allow fully-functional implementation even with no-std.
 
-<span class="attribute">#![<span class="ident">cfg_attr</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;std&quot;</span>), <span class="ident">no_std</span>)]</span>
+</span><span class="attribute">#![cfg_attr(not(feature = <span class="string">&quot;std&quot;</span>), no_std)]
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;std&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">std::fmt</span>::{<span class="ident">Debug</span>, <span class="ident">Display</span>, <span class="ident">Formatter</span>, <span class="prelude-ty">Result</span> <span class="kw">as</span> <span class="ident">FmtResult</span>};
+#[cfg(feature = <span class="string">&quot;std&quot;</span>)]
+</span><span class="kw">use </span>std::fmt::{Debug, Display, Formatter, <span class="prelude-ty">Result </span><span class="kw">as </span>FmtResult};
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;std&quot;</span>))]</span>
-<span class="kw">use</span> <span class="ident">core::fmt</span>::{<span class="ident">Debug</span>, <span class="ident">Display</span>, <span class="ident">Formatter</span>, <span class="prelude-ty">Result</span> <span class="kw">as</span> <span class="ident">FmtResult</span>};
+<span class="attribute">#[cfg(not(feature = <span class="string">&quot;std&quot;</span>))]
+</span><span class="kw">use </span>core::fmt::{Debug, Display, Formatter, <span class="prelude-ty">Result </span><span class="kw">as </span>FmtResult};
 
-<span class="comment">// IMPLEMENTATION</span>
+<span class="comment">// IMPLEMENTATION
 
-<span class="comment">// Make sure we export all functions so they can be visible</span>
-<span class="comment">// outside of the crate.</span>
+// Make sure we export all functions so they can be visible
+// outside of the crate.
 
-<span class="comment">// F32</span>
+// F32
 
-<span class="comment">// IEEE754 CONSTANTS</span>
-<span class="comment">// 32 bit floats have the following representation:</span>
-<span class="comment">// Sign:        10000000000000000000000000000000</span>
-<span class="comment">// Exponent:    01111111100000000000000000000000</span>
-<span class="comment">// Hidden:      00000000100000000000000000000000</span>
-<span class="comment">// Fraction:    00000000011111111111111111111111</span>
-<span class="kw">const</span> <span class="ident">U32_SIGN_MASK</span>: <span class="ident">u32</span> <span class="op">=</span>          <span class="number">0x80000000</span>;
-<span class="kw">const</span> <span class="ident">U32_EXPONENT_MASK</span>: <span class="ident">u32</span> <span class="op">=</span>      <span class="number">0x7F800000</span>;
-<span class="kw">const</span> <span class="ident">U32_HIDDEN_BIT</span>: <span class="ident">u32</span> <span class="op">=</span>         <span class="number">0x00800000</span>;
-<span class="kw">const</span> <span class="ident">U32_SIGNIFICAND_MASK</span>: <span class="ident">u32</span> <span class="op">=</span>   <span class="number">0x007FFFFF</span>;
-<span class="kw">const</span> <span class="ident">U32_INFINITY</span>: <span class="ident">u32</span> <span class="op">=</span>           <span class="number">0x7F800000</span>;
+// IEEE754 CONSTANTS
+// 32 bit floats have the following representation:
+// Sign:        10000000000000000000000000000000
+// Exponent:    01111111100000000000000000000000
+// Hidden:      00000000100000000000000000000000
+// Fraction:    00000000011111111111111111111111
+</span><span class="kw">const </span>U32_SIGN_MASK: u32 =          <span class="number">0x80000000</span>;
+<span class="kw">const </span>U32_EXPONENT_MASK: u32 =      <span class="number">0x7F800000</span>;
+<span class="kw">const </span>U32_HIDDEN_BIT: u32 =         <span class="number">0x00800000</span>;
+<span class="kw">const </span>U32_SIGNIFICAND_MASK: u32 =   <span class="number">0x007FFFFF</span>;
+<span class="kw">const </span>U32_INFINITY: u32 =           <span class="number">0x7F800000</span>;
 
-<span class="doccomment">/// Check if value is denormal, has leading zeros in significand.</span>
-<span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_denormal_f32</span>(<span class="ident">f</span>: <span class="ident">f32</span>) -&gt; <span class="ident">bool</span>
+<span class="doccomment">/// Check if value is denormal, has leading zeros in significand.
+</span><span class="attribute">#[inline]
+#[doc(hidden)]
+</span><span class="kw">pub fn </span>is_denormal_f32(f: f32) -&gt; bool
 {
-    <span class="kw">let</span> <span class="ident">u</span> <span class="op">=</span> <span class="ident">f</span>.<span class="ident">to_bits</span>();
-    (<span class="ident">u</span> <span class="op">&amp;</span> <span class="ident">U32_EXPONENT_MASK</span>) <span class="op">==</span> <span class="number">0</span>
+    <span class="kw">let </span>u = f.to_bits();
+    (u &amp; U32_EXPONENT_MASK) == <span class="number">0
+</span>}
+
+<span class="doccomment">/// Get the sign of a 64-bit float.
+</span><span class="attribute">#[inline]
+#[doc(hidden)]
+</span><span class="kw">pub fn </span>sign_f32(f: f32) -&gt; i32 {
+    <span class="kw">let </span>u = f.to_bits();
+    <span class="kw">if </span>(u &amp; U32_SIGN_MASK) == <span class="number">0 </span>{ <span class="number">1 </span>} <span class="kw">else </span>{ -<span class="number">1 </span>}
 }
 
-<span class="doccomment">/// Get the sign of a 64-bit float.</span>
-<span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">sign_f32</span>(<span class="ident">f</span>: <span class="ident">f32</span>) -&gt; <span class="ident">i32</span> {
-    <span class="kw">let</span> <span class="ident">u</span> <span class="op">=</span> <span class="ident">f</span>.<span class="ident">to_bits</span>();
-    <span class="kw">if</span> (<span class="ident">u</span> <span class="op">&amp;</span> <span class="ident">U32_SIGN_MASK</span>) <span class="op">==</span> <span class="number">0</span> { <span class="number">1</span> } <span class="kw">else</span> { <span class="op">-</span><span class="number">1</span> }
-}
-
-<span class="doccomment">/// Get the significand of a 32-bit float.</span>
-<span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">significand_f32</span>(<span class="ident">f</span>: <span class="ident">f32</span>) -&gt; <span class="ident">u32</span> {
-    <span class="kw">let</span> <span class="ident">u</span> <span class="op">=</span> <span class="ident">f</span>.<span class="ident">to_bits</span>();
-    <span class="kw">let</span> <span class="ident">s</span> <span class="op">=</span> <span class="ident">u</span> <span class="op">&amp;</span> <span class="ident">U32_SIGNIFICAND_MASK</span>;
-    <span class="kw">if</span> <span class="ident">is_denormal_f32</span>(<span class="ident">f</span>) {
-        <span class="ident">s</span>
-    } <span class="kw">else</span> {
-        <span class="ident">s</span> <span class="op">+</span> <span class="ident">U32_HIDDEN_BIT</span>
+<span class="doccomment">/// Get the significand of a 32-bit float.
+</span><span class="attribute">#[inline]
+#[doc(hidden)]
+</span><span class="kw">pub fn </span>significand_f32(f: f32) -&gt; u32 {
+    <span class="kw">let </span>u = f.to_bits();
+    <span class="kw">let </span>s = u &amp; U32_SIGNIFICAND_MASK;
+    <span class="kw">if </span>is_denormal_f32(f) {
+        s
+    } <span class="kw">else </span>{
+        s + U32_HIDDEN_BIT
     }
 }
 
-<span class="doccomment">/// Get the next 32-bit float.</span>
-<span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">next_f32</span>(<span class="ident">f</span>: <span class="ident">f32</span>) -&gt; <span class="ident">f32</span> {
-    <span class="kw">let</span> <span class="ident">u</span> <span class="op">=</span> <span class="ident">f</span>.<span class="ident">to_bits</span>();
-    <span class="kw">if</span> <span class="ident">u</span> <span class="op">==</span> <span class="ident">U32_INFINITY</span> {
-        <span class="ident">f32::from_bits</span>(<span class="ident">U32_INFINITY</span>)
-    } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">sign_f32</span>(<span class="ident">f</span>) <span class="op">&lt;</span> <span class="number">0</span> <span class="op">&amp;&amp;</span> <span class="ident">significand_f32</span>(<span class="ident">f</span>) <span class="op">==</span> <span class="number">0</span> {
-        <span class="number">0.0</span>
-    } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">sign_f32</span>(<span class="ident">f</span>) <span class="op">&lt;</span> <span class="number">0</span> {
-        <span class="ident">f32::from_bits</span>(<span class="ident">u</span> <span class="op">-</span> <span class="number">1</span>)
-    } <span class="kw">else</span> {
-        <span class="ident">f32::from_bits</span>(<span class="ident">u</span> <span class="op">+</span> <span class="number">1</span>)
+<span class="doccomment">/// Get the next 32-bit float.
+</span><span class="attribute">#[inline]
+#[doc(hidden)]
+</span><span class="kw">pub fn </span>next_f32(f: f32) -&gt; f32 {
+    <span class="kw">let </span>u = f.to_bits();
+    <span class="kw">if </span>u == U32_INFINITY {
+        f32::from_bits(U32_INFINITY)
+    } <span class="kw">else if </span>sign_f32(f) &lt; <span class="number">0 </span>&amp;&amp; significand_f32(f) == <span class="number">0 </span>{
+        <span class="number">0.0
+    </span>} <span class="kw">else if </span>sign_f32(f) &lt; <span class="number">0 </span>{
+        f32::from_bits(u - <span class="number">1</span>)
+    } <span class="kw">else </span>{
+        f32::from_bits(u + <span class="number">1</span>)
     }
 }
 
-<span class="doccomment">/// Get the next N steps from a 32-bit float.</span>
-<span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">next_n_f32</span>(<span class="kw-2">mut</span> <span class="ident">f</span>: <span class="ident">f32</span>, <span class="ident">n</span>: <span class="ident">u32</span>) -&gt; <span class="ident">f32</span> {
-    <span class="kw">for</span> <span class="kw">_</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">n</span> {
-        <span class="ident">f</span> <span class="op">=</span> <span class="ident">next_f32</span>(<span class="ident">f</span>);
+<span class="doccomment">/// Get the next N steps from a 32-bit float.
+</span><span class="attribute">#[inline]
+#[doc(hidden)]
+</span><span class="kw">pub fn </span>next_n_f32(<span class="kw-2">mut </span>f: f32, n: u32) -&gt; f32 {
+    <span class="kw">for _ in </span><span class="number">0</span>..n {
+        f = next_f32(f);
     }
-    <span class="ident">f</span>
+    f
 }
 
-<span class="doccomment">/// Get the previous 32-bit float.</span>
-<span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">previous_f32</span>(<span class="ident">f</span>: <span class="ident">f32</span>) -&gt; <span class="ident">f32</span> {
-    <span class="kw">let</span> <span class="ident">u</span> <span class="op">=</span> <span class="ident">f</span>.<span class="ident">to_bits</span>();
-    <span class="kw">if</span> <span class="ident">u</span> <span class="op">==</span> (<span class="ident">U32_INFINITY</span> <span class="op">|</span> <span class="ident">U32_SIGN_MASK</span>) {
-        <span class="op">-</span><span class="ident">f32::from_bits</span>(<span class="ident">U32_INFINITY</span>)
-    } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">sign_f32</span>(<span class="ident">f</span>) <span class="op">&lt;</span> <span class="number">0</span> {
-        <span class="ident">f32::from_bits</span>(<span class="ident">u</span> <span class="op">+</span> <span class="number">1</span>)
-    } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">significand_f32</span>(<span class="ident">f</span>) <span class="op">==</span> <span class="number">0</span> {
-        <span class="op">-</span><span class="number">0.0</span>
-    } <span class="kw">else</span> {
-        <span class="ident">f32::from_bits</span>(<span class="ident">u</span> <span class="op">-</span> <span class="number">1</span>)
+<span class="doccomment">/// Get the previous 32-bit float.
+</span><span class="attribute">#[inline]
+#[doc(hidden)]
+</span><span class="kw">pub fn </span>previous_f32(f: f32) -&gt; f32 {
+    <span class="kw">let </span>u = f.to_bits();
+    <span class="kw">if </span>u == (U32_INFINITY | U32_SIGN_MASK) {
+        -f32::from_bits(U32_INFINITY)
+    } <span class="kw">else if </span>sign_f32(f) &lt; <span class="number">0 </span>{
+        f32::from_bits(u + <span class="number">1</span>)
+    } <span class="kw">else if </span>significand_f32(f) == <span class="number">0 </span>{
+        -<span class="number">0.0
+    </span>} <span class="kw">else </span>{
+        f32::from_bits(u - <span class="number">1</span>)
     }
 }
 
-<span class="doccomment">/// Get the previous N steps from a 32-bit float.</span>
-<span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">previous_n_f32</span>(<span class="kw-2">mut</span> <span class="ident">f</span>: <span class="ident">f32</span>, <span class="ident">n</span>: <span class="ident">u32</span>) -&gt; <span class="ident">f32</span> {
-    <span class="kw">for</span> <span class="kw">_</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">n</span> {
-        <span class="ident">f</span> <span class="op">=</span> <span class="ident">previous_f32</span>(<span class="ident">f</span>);
+<span class="doccomment">/// Get the previous N steps from a 32-bit float.
+</span><span class="attribute">#[inline]
+#[doc(hidden)]
+</span><span class="kw">pub fn </span>previous_n_f32(<span class="kw-2">mut </span>f: f32, n: u32) -&gt; f32 {
+    <span class="kw">for _ in </span><span class="number">0</span>..n {
+        f = previous_f32(f);
     }
-    <span class="ident">f</span>
+    f
 }
 
-<span class="comment">// F64</span>
+<span class="comment">// F64
 
-<span class="comment">// IEEE754 CONSTANTS</span>
-<span class="comment">// 64 bit floats have the following representation:</span>
-<span class="comment">// Sign:        1000000000000000000000000000000000000000000000000000000000000000</span>
-<span class="comment">// Exponent:    0111111111110000000000000000000000000000000000000000000000000000</span>
-<span class="comment">// Hidden:      0000000000010000000000000000000000000000000000000000000000000000</span>
-<span class="comment">// Significand: 0000000000001111111111111111111111111111111111111111111111111111</span>
-<span class="kw">const</span> <span class="ident">U64_SIGN_MASK</span>: <span class="ident">u64</span> <span class="op">=</span>          <span class="number">0x8000000000000000</span>;
-<span class="kw">const</span> <span class="ident">U64_EXPONENT_MASK</span>: <span class="ident">u64</span> <span class="op">=</span>      <span class="number">0x7FF0000000000000</span>;
-<span class="kw">const</span> <span class="ident">U64_HIDDEN_BIT</span>: <span class="ident">u64</span> <span class="op">=</span>         <span class="number">0x0010000000000000</span>;
-<span class="kw">const</span> <span class="ident">U64_SIGNIFICAND_MASK</span>: <span class="ident">u64</span> <span class="op">=</span>   <span class="number">0x000FFFFFFFFFFFFF</span>;
-<span class="kw">const</span> <span class="ident">U64_INFINITY</span>: <span class="ident">u64</span> <span class="op">=</span>           <span class="number">0x7FF0000000000000</span>;
+// IEEE754 CONSTANTS
+// 64 bit floats have the following representation:
+// Sign:        1000000000000000000000000000000000000000000000000000000000000000
+// Exponent:    0111111111110000000000000000000000000000000000000000000000000000
+// Hidden:      0000000000010000000000000000000000000000000000000000000000000000
+// Significand: 0000000000001111111111111111111111111111111111111111111111111111
+</span><span class="kw">const </span>U64_SIGN_MASK: u64 =          <span class="number">0x8000000000000000</span>;
+<span class="kw">const </span>U64_EXPONENT_MASK: u64 =      <span class="number">0x7FF0000000000000</span>;
+<span class="kw">const </span>U64_HIDDEN_BIT: u64 =         <span class="number">0x0010000000000000</span>;
+<span class="kw">const </span>U64_SIGNIFICAND_MASK: u64 =   <span class="number">0x000FFFFFFFFFFFFF</span>;
+<span class="kw">const </span>U64_INFINITY: u64 =           <span class="number">0x7FF0000000000000</span>;
 
-<span class="doccomment">/// Check if value is denormal, has leading zeros in significand.</span>
-<span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_denormal_f64</span>(<span class="ident">f</span>: <span class="ident">f64</span>) -&gt; <span class="ident">bool</span>
+<span class="doccomment">/// Check if value is denormal, has leading zeros in significand.
+</span><span class="attribute">#[inline]
+#[doc(hidden)]
+</span><span class="kw">pub fn </span>is_denormal_f64(f: f64) -&gt; bool
 {
-    <span class="kw">let</span> <span class="ident">u</span> <span class="op">=</span> <span class="ident">f</span>.<span class="ident">to_bits</span>();
-    (<span class="ident">u</span> <span class="op">&amp;</span> <span class="ident">U64_EXPONENT_MASK</span>) <span class="op">==</span> <span class="number">0</span>
+    <span class="kw">let </span>u = f.to_bits();
+    (u &amp; U64_EXPONENT_MASK) == <span class="number">0
+</span>}
+
+<span class="doccomment">/// Get the sign of a 64-bit float.
+</span><span class="attribute">#[inline]
+#[doc(hidden)]
+</span><span class="kw">pub fn </span>sign_f64(f: f64) -&gt; i32 {
+    <span class="kw">let </span>u = f.to_bits();
+    <span class="kw">if </span>(u &amp; U64_SIGN_MASK) == <span class="number">0 </span>{ <span class="number">1 </span>} <span class="kw">else </span>{ -<span class="number">1 </span>}
 }
 
-<span class="doccomment">/// Get the sign of a 64-bit float.</span>
-<span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">sign_f64</span>(<span class="ident">f</span>: <span class="ident">f64</span>) -&gt; <span class="ident">i32</span> {
-    <span class="kw">let</span> <span class="ident">u</span> <span class="op">=</span> <span class="ident">f</span>.<span class="ident">to_bits</span>();
-    <span class="kw">if</span> (<span class="ident">u</span> <span class="op">&amp;</span> <span class="ident">U64_SIGN_MASK</span>) <span class="op">==</span> <span class="number">0</span> { <span class="number">1</span> } <span class="kw">else</span> { <span class="op">-</span><span class="number">1</span> }
-}
-
-<span class="doccomment">/// Get the significand of a 64-bit float.</span>
-<span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">significand_f64</span>(<span class="ident">f</span>: <span class="ident">f64</span>) -&gt; <span class="ident">u64</span> {
-    <span class="kw">let</span> <span class="ident">u</span> <span class="op">=</span> <span class="ident">f</span>.<span class="ident">to_bits</span>();
-    <span class="kw">let</span> <span class="ident">s</span> <span class="op">=</span> <span class="ident">u</span> <span class="op">&amp;</span> <span class="ident">U64_SIGNIFICAND_MASK</span>;
-    <span class="kw">if</span> <span class="ident">is_denormal_f64</span>(<span class="ident">f</span>) {
-        <span class="ident">s</span>
-    } <span class="kw">else</span> {
-        <span class="ident">s</span> <span class="op">+</span> <span class="ident">U64_HIDDEN_BIT</span>
+<span class="doccomment">/// Get the significand of a 64-bit float.
+</span><span class="attribute">#[inline]
+#[doc(hidden)]
+</span><span class="kw">pub fn </span>significand_f64(f: f64) -&gt; u64 {
+    <span class="kw">let </span>u = f.to_bits();
+    <span class="kw">let </span>s = u &amp; U64_SIGNIFICAND_MASK;
+    <span class="kw">if </span>is_denormal_f64(f) {
+        s
+    } <span class="kw">else </span>{
+        s + U64_HIDDEN_BIT
     }
 }
 
-<span class="doccomment">/// Get the next 64-bit float.</span>
-<span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">next_f64</span>(<span class="ident">f</span>: <span class="ident">f64</span>) -&gt; <span class="ident">f64</span> {
-    <span class="kw">let</span> <span class="ident">u</span> <span class="op">=</span> <span class="ident">f</span>.<span class="ident">to_bits</span>();
-    <span class="kw">if</span> <span class="ident">u</span> <span class="op">==</span> <span class="ident">U64_INFINITY</span> {
-        <span class="ident">f64::from_bits</span>(<span class="ident">U64_INFINITY</span>)
-    } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">sign_f64</span>(<span class="ident">f</span>) <span class="op">&lt;</span> <span class="number">0</span> <span class="op">&amp;&amp;</span> <span class="ident">significand_f64</span>(<span class="ident">f</span>) <span class="op">==</span> <span class="number">0</span> {
-        <span class="number">0.0</span>
-    } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">sign_f64</span>(<span class="ident">f</span>) <span class="op">&lt;</span> <span class="number">0</span> {
-        <span class="ident">f64::from_bits</span>(<span class="ident">u</span> <span class="op">-</span> <span class="number">1</span>)
-    } <span class="kw">else</span> {
-        <span class="ident">f64::from_bits</span>(<span class="ident">u</span> <span class="op">+</span> <span class="number">1</span>)
+<span class="doccomment">/// Get the next 64-bit float.
+</span><span class="attribute">#[inline]
+#[doc(hidden)]
+</span><span class="kw">pub fn </span>next_f64(f: f64) -&gt; f64 {
+    <span class="kw">let </span>u = f.to_bits();
+    <span class="kw">if </span>u == U64_INFINITY {
+        f64::from_bits(U64_INFINITY)
+    } <span class="kw">else if </span>sign_f64(f) &lt; <span class="number">0 </span>&amp;&amp; significand_f64(f) == <span class="number">0 </span>{
+        <span class="number">0.0
+    </span>} <span class="kw">else if </span>sign_f64(f) &lt; <span class="number">0 </span>{
+        f64::from_bits(u - <span class="number">1</span>)
+    } <span class="kw">else </span>{
+        f64::from_bits(u + <span class="number">1</span>)
     }
 }
 
-<span class="doccomment">/// Get the next N steps from a 64-bit float.</span>
-<span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">next_n_f64</span>(<span class="kw-2">mut</span> <span class="ident">f</span>: <span class="ident">f64</span>, <span class="ident">n</span>: <span class="ident">u32</span>) -&gt; <span class="ident">f64</span> {
-    <span class="kw">for</span> <span class="kw">_</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">n</span> {
-        <span class="ident">f</span> <span class="op">=</span> <span class="ident">next_f64</span>(<span class="ident">f</span>);
+<span class="doccomment">/// Get the next N steps from a 64-bit float.
+</span><span class="attribute">#[inline]
+#[doc(hidden)]
+</span><span class="kw">pub fn </span>next_n_f64(<span class="kw-2">mut </span>f: f64, n: u32) -&gt; f64 {
+    <span class="kw">for _ in </span><span class="number">0</span>..n {
+        f = next_f64(f);
     }
-    <span class="ident">f</span>
+    f
 }
 
-<span class="doccomment">/// Get the previous 64-bit float.</span>
-<span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">previous_f64</span>(<span class="ident">f</span>: <span class="ident">f64</span>) -&gt; <span class="ident">f64</span> {
-    <span class="kw">let</span> <span class="ident">u</span> <span class="op">=</span> <span class="ident">f</span>.<span class="ident">to_bits</span>();
-    <span class="kw">if</span> <span class="ident">u</span> <span class="op">==</span> (<span class="ident">U64_INFINITY</span> <span class="op">|</span> <span class="ident">U64_SIGN_MASK</span>) {
-        <span class="op">-</span><span class="ident">f64::from_bits</span>(<span class="ident">U64_INFINITY</span>)
-    } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">sign_f64</span>(<span class="ident">f</span>) <span class="op">&lt;</span> <span class="number">0</span> {
-        <span class="ident">f64::from_bits</span>(<span class="ident">u</span> <span class="op">+</span> <span class="number">1</span>)
-    } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">significand_f64</span>(<span class="ident">f</span>) <span class="op">==</span> <span class="number">0</span> {
-        <span class="op">-</span><span class="number">0.0</span>
-    } <span class="kw">else</span> {
-        <span class="ident">f64::from_bits</span>(<span class="ident">u</span> <span class="op">-</span> <span class="number">1</span>)
+<span class="doccomment">/// Get the previous 64-bit float.
+</span><span class="attribute">#[inline]
+#[doc(hidden)]
+</span><span class="kw">pub fn </span>previous_f64(f: f64) -&gt; f64 {
+    <span class="kw">let </span>u = f.to_bits();
+    <span class="kw">if </span>u == (U64_INFINITY | U64_SIGN_MASK) {
+        -f64::from_bits(U64_INFINITY)
+    } <span class="kw">else if </span>sign_f64(f) &lt; <span class="number">0 </span>{
+        f64::from_bits(u + <span class="number">1</span>)
+    } <span class="kw">else if </span>significand_f64(f) == <span class="number">0 </span>{
+        -<span class="number">0.0
+    </span>} <span class="kw">else </span>{
+        f64::from_bits(u - <span class="number">1</span>)
     }
 }
 
-<span class="doccomment">/// Get the previous N steps from a 64-bit float.</span>
-<span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">previous_n_f64</span>(<span class="kw-2">mut</span> <span class="ident">f</span>: <span class="ident">f64</span>, <span class="ident">n</span>: <span class="ident">u32</span>) -&gt; <span class="ident">f64</span> {
-    <span class="kw">for</span> <span class="kw">_</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">n</span> {
-        <span class="ident">f</span> <span class="op">=</span> <span class="ident">previous_f64</span>(<span class="ident">f</span>);
+<span class="doccomment">/// Get the previous N steps from a 64-bit float.
+</span><span class="attribute">#[inline]
+#[doc(hidden)]
+</span><span class="kw">pub fn </span>previous_n_f64(<span class="kw-2">mut </span>f: f64, n: u32) -&gt; f64 {
+    <span class="kw">for _ in </span><span class="number">0</span>..n {
+        f = previous_f64(f);
     }
-    <span class="ident">f</span>
+    f
 }
 
-<span class="comment">// GENERAL</span>
+<span class="comment">// GENERAL
 
-<span class="doccomment">/// Message for absolute errors.</span>
-<span class="attribute">#[<span class="ident">macro_export</span>]</span>
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
-<span class="macro">macro_rules!</span> <span class="ident">afe_absolute_error_msg</span> {
+</span><span class="doccomment">/// Message for absolute errors.
+</span><span class="attribute">#[macro_export]
+#[doc(hidden)]
+</span><span class="macro">macro_rules! </span>afe_absolute_error_msg {
     () =&gt; (<span class="string">&quot;assertion failed: `|a-b| &lt; epsilon` a: {:?}, b: {:?}, epsilon: {:?}&quot;</span>)
 }
 
-<span class="doccomment">/// Message for relative errors.</span>
-<span class="attribute">#[<span class="ident">macro_export</span>]</span>
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
-<span class="macro">macro_rules!</span> <span class="ident">afe_relative_error_msg</span> {
+<span class="doccomment">/// Message for relative errors.
+</span><span class="attribute">#[macro_export]
+#[doc(hidden)]
+</span><span class="macro">macro_rules! </span>afe_relative_error_msg {
     () =&gt; (<span class="string">&quot;assertion failed: `|(a-b) / a| &lt; epsilon` a: {:?}, b: {:?}, epsilon: {:?}&quot;</span>)
 }
 
-<span class="doccomment">/// Message for near errors.</span>
-<span class="attribute">#[<span class="ident">macro_export</span>]</span>
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
-<span class="macro">macro_rules!</span> <span class="ident">afe_near_error_msg</span> {
+<span class="doccomment">/// Message for near errors.
+</span><span class="attribute">#[macro_export]
+#[doc(hidden)]
+</span><span class="macro">macro_rules! </span>afe_near_error_msg {
     () =&gt; (<span class="string">&quot;assertion failed: `b is outside of n steps from a` a: {:?}, b: {:?}, n: {:?}, previous: {:?}, next: {:?}&quot;</span>)
 }
 
-<span class="doccomment">/// Generate the classes for the threshold errors.</span>
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
-<span class="macro">macro_rules!</span> <span class="ident">threshold_error_impl</span> {
-    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">t</span>:<span class="ident">ident</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">msg</span>:<span class="ident">expr</span>) =&gt; (
-        <span class="doccomment">/// Error result for an error threshold.</span>
-        <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
-        <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
-        <span class="kw">pub</span> <span class="kw">struct</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">t</span><span class="op">&lt;</span><span class="ident">Float</span>: <span class="ident">Debug</span><span class="op">&gt;</span> {
-            <span class="ident">a</span>: <span class="ident">Float</span>,
-            <span class="ident">b</span>: <span class="ident">Float</span>,
-            <span class="ident">epsilon</span>: <span class="ident">Float</span>
+<span class="doccomment">/// Generate the classes for the threshold errors.
+</span><span class="attribute">#[doc(hidden)]
+</span><span class="macro">macro_rules! </span>threshold_error_impl {
+    (<span class="macro-nonterminal">$t</span>:ident, <span class="macro-nonterminal">$msg</span>:expr) =&gt; (
+        <span class="doccomment">/// Error result for an error threshold.
+        </span><span class="attribute">#[derive(Debug)]
+        #[doc(hidden)]
+        </span><span class="kw">pub struct </span><span class="macro-nonterminal">$t</span>&lt;Float: Debug&gt; {
+            a: Float,
+            b: Float,
+            epsilon: Float
         }
 
-        <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">Float</span>: <span class="ident">Debug</span><span class="op">&gt;</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">t</span><span class="op">&lt;</span><span class="ident">Float</span><span class="op">&gt;</span> {
-            <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">a</span>: <span class="ident">Float</span>, <span class="ident">b</span>: <span class="ident">Float</span>, <span class="ident">epsilon</span>: <span class="ident">Float</span>) -&gt; <span class="self">Self</span> {
-                <span class="macro-nonterminal">$</span><span class="macro-nonterminal">t</span>{ <span class="ident">a</span>: <span class="ident">a</span>, <span class="ident">b</span>: <span class="ident">b</span>, <span class="ident">epsilon</span>: <span class="ident">epsilon</span>}
+        <span class="kw">impl</span>&lt;Float: Debug&gt; <span class="macro-nonterminal">$t</span>&lt;Float&gt; {
+            <span class="kw">pub fn </span>new(a: Float, b: Float, epsilon: Float) -&gt; <span class="self">Self </span>{
+                <span class="macro-nonterminal">$t</span>{ a: a, b: b, epsilon: epsilon}
             }
         }
 
-        <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">Float</span>: <span class="ident">Debug</span><span class="op">&gt;</span> <span class="ident">Display</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">t</span><span class="op">&lt;</span><span class="ident">Float</span><span class="op">&gt;</span> {
-            <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Formatter</span>) -&gt; <span class="ident">FmtResult</span> {
-                <span class="macro">write!</span>(<span class="ident">f</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">msg</span>, <span class="self">self</span>.<span class="ident">a</span>, <span class="self">self</span>.<span class="ident">b</span>, <span class="self">self</span>.<span class="ident">epsilon</span>)
+        <span class="kw">impl</span>&lt;Float: Debug&gt; Display <span class="kw">for </span><span class="macro-nonterminal">$t</span>&lt;Float&gt; {
+            <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter) -&gt; FmtResult {
+                <span class="macro">write!</span>(f, <span class="macro-nonterminal">$msg</span>, <span class="self">self</span>.a, <span class="self">self</span>.b, <span class="self">self</span>.epsilon)
             }
         }
     )
 }
 
-<span class="macro">threshold_error_impl!</span>(<span class="ident">AbsoluteEqError</span>, <span class="macro">afe_absolute_error_msg!</span>());
-<span class="macro">threshold_error_impl!</span>(<span class="ident">RelativeEqError</span>, <span class="macro">afe_relative_error_msg!</span>());
+<span class="macro">threshold_error_impl!</span>(AbsoluteEqError, <span class="macro">afe_absolute_error_msg!</span>());
+<span class="macro">threshold_error_impl!</span>(RelativeEqError, <span class="macro">afe_relative_error_msg!</span>());
 
-<span class="doccomment">/// Error result for a the `expect_f*_near` methods.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">FloatNearError</span><span class="op">&lt;</span><span class="ident">Float</span>: <span class="ident">Debug</span>, <span class="ident">Int</span>: <span class="ident">Debug</span><span class="op">&gt;</span> {
-    <span class="ident">a</span>: <span class="ident">Float</span>,
-    <span class="ident">b</span>: <span class="ident">Float</span>,
-    <span class="ident">n</span>: <span class="ident">Int</span>,
-    <span class="ident">previous</span>: <span class="ident">Float</span>,
-    <span class="ident">next</span>: <span class="ident">Float</span>
+<span class="doccomment">/// Error result for a the `expect_f*_near` methods.
+</span><span class="attribute">#[derive(Debug)]
+#[doc(hidden)]
+</span><span class="kw">pub struct </span>FloatNearError&lt;Float: Debug, Int: Debug&gt; {
+    a: Float,
+    b: Float,
+    n: Int,
+    previous: Float,
+    next: Float
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">Float</span>: <span class="ident">Debug</span>, <span class="ident">Int</span>: <span class="ident">Debug</span><span class="op">&gt;</span> <span class="ident">FloatNearError</span><span class="op">&lt;</span><span class="ident">Float</span>, <span class="ident">Int</span><span class="op">&gt;</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">a</span>: <span class="ident">Float</span>, <span class="ident">b</span>: <span class="ident">Float</span>, <span class="ident">n</span>: <span class="ident">Int</span>, <span class="ident">previous</span>: <span class="ident">Float</span>, <span class="ident">next</span>: <span class="ident">Float</span>) -&gt; <span class="self">Self</span> {
-        <span class="ident">FloatNearError</span>{ <span class="ident">a</span>: <span class="ident">a</span>, <span class="ident">b</span>: <span class="ident">b</span>, <span class="ident">n</span>: <span class="ident">n</span>, <span class="ident">previous</span>: <span class="ident">previous</span>, <span class="ident">next</span>: <span class="ident">next</span> }
+<span class="kw">impl</span>&lt;Float: Debug, Int: Debug&gt; FloatNearError&lt;Float, Int&gt; {
+    <span class="kw">pub fn </span>new(a: Float, b: Float, n: Int, previous: Float, next: Float) -&gt; <span class="self">Self </span>{
+        FloatNearError{ a: a, b: b, n: n, previous: previous, next: next }
     }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">Float</span>: <span class="ident">Debug</span>, <span class="ident">Int</span>: <span class="ident">Debug</span><span class="op">&gt;</span> <span class="ident">Display</span> <span class="kw">for</span> <span class="ident">FloatNearError</span><span class="op">&lt;</span><span class="ident">Float</span>, <span class="ident">Int</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Formatter</span>) -&gt; <span class="ident">FmtResult</span> {
-        <span class="macro">write!</span>(<span class="ident">f</span>, <span class="macro">afe_near_error_msg!</span>(), <span class="self">self</span>.<span class="ident">a</span>, <span class="self">self</span>.<span class="ident">b</span>, <span class="self">self</span>.<span class="ident">n</span>, <span class="self">self</span>.<span class="ident">previous</span>, <span class="self">self</span>.<span class="ident">next</span>)
+<span class="kw">impl</span>&lt;Float: Debug, Int: Debug&gt; Display <span class="kw">for </span>FloatNearError&lt;Float, Int&gt; {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter) -&gt; FmtResult {
+        <span class="macro">write!</span>(f, <span class="macro">afe_near_error_msg!</span>(), <span class="self">self</span>.a, <span class="self">self</span>.b, <span class="self">self</span>.n, <span class="self">self</span>.previous, <span class="self">self</span>.next)
     }
 }
 
-<span class="doccomment">/// Convert a boolean and String to a result.</span>
-<span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">bool_to_result</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Display</span><span class="op">&gt;</span>(<span class="ident">r</span>: <span class="ident">bool</span>, <span class="ident">err</span>: <span class="ident">T</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">T</span><span class="op">&gt;</span>
+<span class="doccomment">/// Convert a boolean and String to a result.
+</span><span class="attribute">#[inline(always)]
+#[doc(hidden)]
+</span><span class="kw">pub fn </span>bool_to_result&lt;T: Display&gt;(r: bool, err: T) -&gt; <span class="prelude-ty">Result</span>&lt;(), T&gt;
 {
-    <span class="kw">match</span> <span class="ident">r</span> {
-        <span class="bool-val">true</span>  =&gt; <span class="prelude-val">Ok</span>(()),
-        <span class="bool-val">false</span> =&gt; <span class="prelude-val">Err</span>(<span class="ident">err</span>),
+    <span class="kw">match </span>r {
+        <span class="bool-val">true  </span>=&gt; <span class="prelude-val">Ok</span>(()),
+        <span class="bool-val">false </span>=&gt; <span class="prelude-val">Err</span>(err),
     }
 }
 
-<span class="doccomment">/// Maximum implementation.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Don&#39;t worry about propagating NaN, for our use-case, any NaN value</span>
-<span class="doccomment">/// will remain after comparison and lead to a diagnostic error.</span>
-<span class="attribute">#[<span class="ident">macro_export</span>]</span>
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
-<span class="macro">macro_rules!</span> <span class="ident">afe_max</span> {
-    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">a</span>:<span class="ident">expr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">b</span>:<span class="ident">expr</span>) =&gt; ({
-        <span class="kw">let</span> (<span class="ident">a</span>, <span class="ident">b</span>) <span class="op">=</span> (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">a</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">b</span>);
-        <span class="kw">if</span> <span class="ident">a</span> <span class="op">&lt;</span> <span class="ident">b</span> { <span class="ident">b</span> } <span class="kw">else</span> { <span class="ident">a</span> }
+<span class="doccomment">/// Maximum implementation.
+///
+/// Don&#39;t worry about propagating NaN, for our use-case, any NaN value
+/// will remain after comparison and lead to a diagnostic error.
+</span><span class="attribute">#[macro_export]
+#[doc(hidden)]
+</span><span class="macro">macro_rules! </span>afe_max {
+    (<span class="macro-nonterminal">$a</span>:expr, <span class="macro-nonterminal">$b</span>:expr) =&gt; ({
+        <span class="kw">let </span>(a, b) = (<span class="macro-nonterminal">$a</span>, <span class="macro-nonterminal">$b</span>);
+        <span class="kw">if </span>a &lt; b { b } <span class="kw">else </span>{ a }
     })
 }
 
-<span class="doccomment">/// Absolute value implementation.</span>
-<span class="attribute">#[<span class="ident">macro_export</span>]</span>
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
-<span class="macro">macro_rules!</span> <span class="ident">afe_abs</span> {
-    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">f</span>:<span class="ident">expr</span>) =&gt; ({
-        <span class="kw">let</span> <span class="ident">f</span> <span class="op">=</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">f</span>;
-        <span class="kw">if</span> <span class="ident">f</span> <span class="op">&lt;</span> <span class="number">0.0</span> { <span class="op">-</span><span class="ident">f</span> } <span class="kw">else</span> { <span class="ident">f</span> }
+<span class="doccomment">/// Absolute value implementation.
+</span><span class="attribute">#[macro_export]
+#[doc(hidden)]
+</span><span class="macro">macro_rules! </span>afe_abs {
+    (<span class="macro-nonterminal">$f</span>:expr) =&gt; ({
+        <span class="kw">let </span>f = <span class="macro-nonterminal">$f</span>;
+        <span class="kw">if </span>f &lt; <span class="number">0.0 </span>{ -f } <span class="kw">else </span>{ f }
     })
 }
 
-<span class="doccomment">/// Returns true if the values are absolutely equal within a tolerance.</span>
-<span class="attribute">#[<span class="ident">macro_export</span>]</span>
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
-<span class="macro">macro_rules!</span> <span class="ident">afe_is_absolute_eq</span> {
-    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">a</span>:<span class="ident">ident</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">b</span>:<span class="ident">ident</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">epsilon</span>:<span class="ident">ident</span>) =&gt; (<span class="macro">afe_abs!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">a</span><span class="op">-</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">b</span>) <span class="op">&lt;</span><span class="op">=</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">epsilon</span>)
+<span class="doccomment">/// Returns true if the values are absolutely equal within a tolerance.
+</span><span class="attribute">#[macro_export]
+#[doc(hidden)]
+</span><span class="macro">macro_rules! </span>afe_is_absolute_eq {
+    (<span class="macro-nonterminal">$a</span>:ident, <span class="macro-nonterminal">$b</span>:ident, <span class="macro-nonterminal">$epsilon</span>:ident) =&gt; (<span class="macro">afe_abs!</span>(<span class="macro-nonterminal">$a</span>-<span class="macro-nonterminal">$b</span>) &lt;= <span class="macro-nonterminal">$epsilon</span>)
 }
 
-<span class="doccomment">/// Returns true if the values are relatively equal within a tolerance.</span>
-<span class="attribute">#[<span class="ident">macro_export</span>]</span>
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
-<span class="macro">macro_rules!</span> <span class="ident">afe_is_relative_eq</span> {
-    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">a</span>:<span class="ident">ident</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">b</span>:<span class="ident">ident</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">epsilon</span>:<span class="ident">ident</span>) =&gt; (
-        <span class="kw">if</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">a</span> <span class="op">==</span> <span class="number">0.0</span> {
-            <span class="macro-nonterminal">$</span><span class="macro-nonterminal">b</span> <span class="op">==</span> <span class="number">0.0</span>
-        } <span class="kw">else</span> {
-            <span class="comment">// Only care about the magnitude, not the sign.</span>
-            <span class="kw">let</span> <span class="ident">denom</span> <span class="op">=</span> <span class="macro">afe_abs!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">a</span>);
-            (<span class="macro">afe_abs!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">a</span><span class="op">-</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">b</span>) <span class="op">/</span> <span class="ident">denom</span>) <span class="op">&lt;</span><span class="op">=</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">epsilon</span>
-        }
+<span class="doccomment">/// Returns true if the values are relatively equal within a tolerance.
+</span><span class="attribute">#[macro_export]
+#[doc(hidden)]
+</span><span class="macro">macro_rules! </span>afe_is_relative_eq {
+    (<span class="macro-nonterminal">$a</span>:ident, <span class="macro-nonterminal">$b</span>:ident, <span class="macro-nonterminal">$epsilon</span>:ident) =&gt; (
+        <span class="kw">if </span><span class="macro-nonterminal">$a </span>== <span class="number">0.0 </span>{
+            <span class="macro-nonterminal">$b </span>== <span class="number">0.0
+        </span>} <span class="kw">else </span>{
+            <span class="comment">// Only care about the magnitude, not the sign.
+            </span><span class="kw">let </span>denom = <span class="macro">afe_abs!</span>(<span class="macro-nonterminal">$a</span>);
+            (<span class="macro">afe_abs!</span>(<span class="macro-nonterminal">$a</span>-<span class="macro-nonterminal">$b</span>) / denom) &lt;= <span class="macro-nonterminal">$epsilon
+        </span>}
     )
 }
 
-<span class="doccomment">/// Returns true if two 32-bit floats are within n steps of each other.</span>
-<span class="attribute">#[<span class="ident">macro_export</span>]</span>
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
-<span class="macro">macro_rules!</span> <span class="ident">afe_is_f32_near</span> {
-    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">a</span>:<span class="ident">ident</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">b</span>:<span class="ident">ident</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">n</span>:<span class="ident">ident</span>) =&gt; ({
-        <span class="kw">let</span> <span class="ident">previous</span> <span class="op">=</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::previous_n_f32</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">a</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">n</span>);
-        <span class="kw">let</span> <span class="ident">next</span> <span class="op">=</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::next_n_f32</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">a</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">n</span>);
-        <span class="kw">let</span> <span class="ident">r</span> <span class="op">=</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">b</span> <span class="op">&gt;</span><span class="op">=</span> <span class="ident">previous</span> <span class="op">&amp;&amp;</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">b</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">next</span>;
-        (<span class="ident">r</span>, <span class="ident">previous</span>, <span class="ident">next</span>)
+<span class="doccomment">/// Returns true if two 32-bit floats are within n steps of each other.
+</span><span class="attribute">#[macro_export]
+#[doc(hidden)]
+</span><span class="macro">macro_rules! </span>afe_is_f32_near {
+    (<span class="macro-nonterminal">$a</span>:ident, <span class="macro-nonterminal">$b</span>:ident, <span class="macro-nonterminal">$n</span>:ident) =&gt; ({
+        <span class="kw">let </span>previous = <span class="macro-nonterminal">$crate::previous_n_f32</span>(<span class="macro-nonterminal">$a</span>, <span class="macro-nonterminal">$n</span>);
+        <span class="kw">let </span>next = <span class="macro-nonterminal">$crate::next_n_f32</span>(<span class="macro-nonterminal">$a</span>, <span class="macro-nonterminal">$n</span>);
+        <span class="kw">let </span>r = <span class="macro-nonterminal">$b </span>&gt;= previous &amp;&amp; <span class="macro-nonterminal">$b </span>&lt;= next;
+        (r, previous, next)
     })
 }
 
-<span class="doccomment">/// Returns true if two 64-bit floats are within n steps of each other.</span>
-<span class="attribute">#[<span class="ident">macro_export</span>]</span>
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
-<span class="macro">macro_rules!</span> <span class="ident">afe_is_f64_near</span> {
-    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">a</span>:<span class="ident">ident</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">b</span>:<span class="ident">ident</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">n</span>:<span class="ident">ident</span>) =&gt; ({
-        <span class="kw">let</span> <span class="ident">previous</span> <span class="op">=</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::previous_n_f64</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">a</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">n</span>);
-        <span class="kw">let</span> <span class="ident">next</span> <span class="op">=</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::next_n_f64</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">a</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">n</span>);
-        <span class="kw">let</span> <span class="ident">r</span> <span class="op">=</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">b</span> <span class="op">&gt;</span><span class="op">=</span> <span class="ident">previous</span> <span class="op">&amp;&amp;</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">b</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">next</span>;
-        (<span class="ident">r</span>, <span class="ident">previous</span>, <span class="ident">next</span>)
+<span class="doccomment">/// Returns true if two 64-bit floats are within n steps of each other.
+</span><span class="attribute">#[macro_export]
+#[doc(hidden)]
+</span><span class="macro">macro_rules! </span>afe_is_f64_near {
+    (<span class="macro-nonterminal">$a</span>:ident, <span class="macro-nonterminal">$b</span>:ident, <span class="macro-nonterminal">$n</span>:ident) =&gt; ({
+        <span class="kw">let </span>previous = <span class="macro-nonterminal">$crate::previous_n_f64</span>(<span class="macro-nonterminal">$a</span>, <span class="macro-nonterminal">$n</span>);
+        <span class="kw">let </span>next = <span class="macro-nonterminal">$crate::next_n_f64</span>(<span class="macro-nonterminal">$a</span>, <span class="macro-nonterminal">$n</span>);
+        <span class="kw">let </span>r = <span class="macro-nonterminal">$b </span>&gt;= previous &amp;&amp; <span class="macro-nonterminal">$b </span>&lt;= next;
+        (r, previous, next)
     })
 }
 
-<span class="comment">// API</span>
+<span class="comment">// API
 
-<span class="comment">// EXPECT</span>
+// EXPECT
 
-<span class="doccomment">/// Expect the absolute error between two values is less than epsilon.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Returns an error if `| a - b | &gt; epsilon`.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// * `a`       - First float.</span>
-<span class="doccomment">/// * `b`       - Second float.</span>
-<span class="doccomment">/// * `epsilon` - Absolute error tolerance between floats.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// # Examples</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">/// # #[macro_use] extern crate assert_float_eq;</span>
-<span class="doccomment">/// # pub fn main() {</span>
-<span class="doccomment">/// assert!(expect_float_absolute_eq!(3.0, 4.0, 1.0).is_ok());</span>
-<span class="doccomment">/// assert!(expect_float_absolute_eq!(3.0, 4.0, 0.9).is_err());</span>
-<span class="doccomment">/// assert!(expect_float_absolute_eq!(1.0, 0.5 + 0.5).is_ok());</span>
-<span class="doccomment">/// # }</span>
-<span class="doccomment">/// ```</span>
-<span class="attribute">#[<span class="ident">macro_export</span>]</span>
-<span class="macro">macro_rules!</span> <span class="ident">expect_float_absolute_eq</span> {
-    <span class="comment">// Explicit epsilon, fail.</span>
-    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">a</span>:<span class="ident">expr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">b</span>:<span class="ident">expr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">epsilon</span>:<span class="ident">expr</span>) =&gt; ({
-        <span class="kw">let</span> (<span class="ident">a</span>, <span class="ident">b</span>, <span class="ident">eps</span>) <span class="op">=</span> (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">a</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">b</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">epsilon</span>);
-        <span class="kw">let</span> <span class="ident">r</span> <span class="op">=</span> <span class="macro">afe_is_absolute_eq!</span>(<span class="ident">a</span>, <span class="ident">b</span>, <span class="ident">eps</span>);
-        <span class="kw">let</span> <span class="ident">e</span> <span class="op">=</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::AbsoluteEqError::new</span>(<span class="ident">a</span>, <span class="ident">b</span>, <span class="ident">eps</span>);
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::bool_to_result</span>(<span class="ident">r</span>, <span class="ident">e</span>)
+</span><span class="doccomment">/// Expect the absolute error between two values is less than epsilon.
+///
+/// Returns an error if `| a - b | &gt; epsilon`.
+///
+/// * `a`       - First float.
+/// * `b`       - Second float.
+/// * `epsilon` - Absolute error tolerance between floats.
+///
+/// # Examples
+///
+/// ```
+/// # #[macro_use] extern crate assert_float_eq;
+/// # pub fn main() {
+/// assert!(expect_float_absolute_eq!(3.0, 4.0, 1.0).is_ok());
+/// assert!(expect_float_absolute_eq!(3.0, 4.0, 0.9).is_err());
+/// assert!(expect_float_absolute_eq!(1.0, 0.5 + 0.5).is_ok());
+/// # }
+/// ```
+</span><span class="attribute">#[macro_export]
+</span><span class="macro">macro_rules! </span>expect_float_absolute_eq {
+    <span class="comment">// Explicit epsilon, fail.
+    </span>(<span class="macro-nonterminal">$a</span>:expr, <span class="macro-nonterminal">$b</span>:expr, <span class="macro-nonterminal">$epsilon</span>:expr) =&gt; ({
+        <span class="kw">let </span>(a, b, eps) = (<span class="macro-nonterminal">$a</span>, <span class="macro-nonterminal">$b</span>, <span class="macro-nonterminal">$epsilon</span>);
+        <span class="kw">let </span>r = <span class="macro">afe_is_absolute_eq!</span>(a, b, eps);
+        <span class="kw">let </span>e = <span class="macro-nonterminal">$crate::AbsoluteEqError::new</span>(a, b, eps);
+        <span class="macro-nonterminal">$crate::bool_to_result</span>(r, e)
     });
-    <span class="comment">// No explicit epsilon, use default.</span>
-    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">a</span>:<span class="ident">expr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">b</span>:<span class="ident">expr</span>) =&gt; (<span class="macro">expect_float_absolute_eq!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">a</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">b</span>, <span class="number">1.0e-6</span>));
+    <span class="comment">// No explicit epsilon, use default.
+    </span>(<span class="macro-nonterminal">$a</span>:expr, <span class="macro-nonterminal">$b</span>:expr) =&gt; (<span class="macro">expect_float_absolute_eq!</span>(<span class="macro-nonterminal">$a</span>, <span class="macro-nonterminal">$b</span>, <span class="number">1.0e-6</span>));
 }
 
-<span class="doccomment">/// Expect the relative error between two values is less than epsilon.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Returns an error if `|(a - b) / a| &gt; epsilon`.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// * `a`       - First float.</span>
-<span class="doccomment">/// * `b`       - Second float.</span>
-<span class="doccomment">/// * `epsilon` - Relative error tolerance between floats.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// # Examples</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">/// # #[macro_use] extern crate assert_float_eq;</span>
-<span class="doccomment">/// # pub fn main() {</span>
-<span class="doccomment">/// assert!(expect_float_relative_eq!(4.0, 3.0, 0.25).is_ok());</span>
-<span class="doccomment">/// assert!(expect_float_relative_eq!(4.0, 3.0, 0.20).is_err());</span>
-<span class="doccomment">/// assert!(expect_float_relative_eq!(1.0, 0.5 + 0.5).is_ok());</span>
-<span class="doccomment">/// # }</span>
-<span class="doccomment">/// ```</span>
-<span class="attribute">#[<span class="ident">macro_export</span>]</span>
-<span class="macro">macro_rules!</span> <span class="ident">expect_float_relative_eq</span> {
-    <span class="comment">// Explicit epsilon, fail.</span>
-    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">a</span>:<span class="ident">expr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">b</span>:<span class="ident">expr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">epsilon</span>:<span class="ident">expr</span>) =&gt; ({
-        <span class="kw">let</span> (<span class="ident">a</span>, <span class="ident">b</span>, <span class="ident">eps</span>) <span class="op">=</span> (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">a</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">b</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">epsilon</span>);
-        <span class="kw">let</span> <span class="ident">r</span> <span class="op">=</span> <span class="macro">afe_is_relative_eq!</span>(<span class="ident">a</span>, <span class="ident">b</span>, <span class="ident">eps</span>);
-        <span class="kw">let</span> <span class="ident">e</span> <span class="op">=</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::RelativeEqError::new</span>(<span class="ident">a</span>, <span class="ident">b</span>, <span class="ident">eps</span>);
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::bool_to_result</span>(<span class="ident">r</span>, <span class="ident">e</span>)
+<span class="doccomment">/// Expect the relative error between two values is less than epsilon.
+///
+/// Returns an error if `|(a - b) / a| &gt; epsilon`.
+///
+/// * `a`       - First float.
+/// * `b`       - Second float.
+/// * `epsilon` - Relative error tolerance between floats.
+///
+/// # Examples
+///
+/// ```
+/// # #[macro_use] extern crate assert_float_eq;
+/// # pub fn main() {
+/// assert!(expect_float_relative_eq!(4.0, 3.0, 0.25).is_ok());
+/// assert!(expect_float_relative_eq!(4.0, 3.0, 0.20).is_err());
+/// assert!(expect_float_relative_eq!(1.0, 0.5 + 0.5).is_ok());
+/// # }
+/// ```
+</span><span class="attribute">#[macro_export]
+</span><span class="macro">macro_rules! </span>expect_float_relative_eq {
+    <span class="comment">// Explicit epsilon, fail.
+    </span>(<span class="macro-nonterminal">$a</span>:expr, <span class="macro-nonterminal">$b</span>:expr, <span class="macro-nonterminal">$epsilon</span>:expr) =&gt; ({
+        <span class="kw">let </span>(a, b, eps) = (<span class="macro-nonterminal">$a</span>, <span class="macro-nonterminal">$b</span>, <span class="macro-nonterminal">$epsilon</span>);
+        <span class="kw">let </span>r = <span class="macro">afe_is_relative_eq!</span>(a, b, eps);
+        <span class="kw">let </span>e = <span class="macro-nonterminal">$crate::RelativeEqError::new</span>(a, b, eps);
+        <span class="macro-nonterminal">$crate::bool_to_result</span>(r, e)
     });
-    <span class="comment">// No explicit epsilon, use default.</span>
-    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">a</span>:<span class="ident">expr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">b</span>:<span class="ident">expr</span>) =&gt; (<span class="macro">expect_float_relative_eq!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">a</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">b</span>, <span class="number">1.0e-6</span>));
+    <span class="comment">// No explicit epsilon, use default.
+    </span>(<span class="macro-nonterminal">$a</span>:expr, <span class="macro-nonterminal">$b</span>:expr) =&gt; (<span class="macro">expect_float_relative_eq!</span>(<span class="macro-nonterminal">$a</span>, <span class="macro-nonterminal">$b</span>, <span class="number">1.0e-6</span>));
 }
 
-<span class="doccomment">/// Expect two 32-bit floats are within `n` steps of each other.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Returns an error if the two floats are more than `n` steps away</span>
-<span class="doccomment">/// from each other.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// * `a`       - First float.</span>
-<span class="doccomment">/// * `b`       - Second float.</span>
-<span class="doccomment">/// * `n`       - Step tolerance between floats.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Each step is derived from the previous float by incrementing</span>
-<span class="doccomment">/// the float&#39;s bits, as if they were an integer, by 1.</span>
-<span class="doccomment">/// For example, the next float from 1e-45 (`0x00000001`) would be</span>
-<span class="doccomment">/// 3e-45 (`0x00000002`).</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// # Examples</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ```rust</span>
-<span class="doccomment">/// # #[macro_use] extern crate assert_float_eq;</span>
-<span class="doccomment">/// # pub fn main() {</span>
-<span class="doccomment">/// assert!(expect_f32_near!(1e-45, 7e-45).is_ok());</span>
-<span class="doccomment">/// assert!(expect_f32_near!(1e-45, 1.4e-44, 9).is_ok());</span>
-<span class="doccomment">/// assert!(expect_f32_near!(1e-45, 1.4e-44, 8).is_err());</span>
-<span class="doccomment">/// assert!(expect_f32_near!(3e37, 3.000001e+37).is_ok());</span>
-<span class="doccomment">/// # }</span>
-<span class="doccomment">/// ```</span>
-<span class="attribute">#[<span class="ident">macro_export</span>]</span>
-<span class="macro">macro_rules!</span> <span class="ident">expect_f32_near</span> {
-    <span class="comment">// Explicit steps.</span>
-    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">a</span>:<span class="ident">expr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">b</span>:<span class="ident">expr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">n</span>:<span class="ident">expr</span>) =&gt; ({
-        <span class="kw">let</span> (<span class="ident">a</span>, <span class="ident">b</span>, <span class="ident">n</span>) <span class="op">=</span> (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">a</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">b</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">n</span>);
-        <span class="kw">let</span> (<span class="ident">r</span>, <span class="ident">previous</span>, <span class="ident">next</span>) <span class="op">=</span> <span class="macro">afe_is_f32_near!</span>(<span class="ident">a</span>, <span class="ident">b</span>, <span class="ident">n</span>);
-        <span class="kw">let</span> <span class="ident">e</span> <span class="op">=</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::FloatNearError::new</span>(<span class="ident">a</span>, <span class="ident">b</span>, <span class="ident">n</span>, <span class="ident">previous</span>, <span class="ident">next</span>);
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::bool_to_result</span>(<span class="ident">r</span>, <span class="ident">e</span>)
+<span class="doccomment">/// Expect two 32-bit floats are within `n` steps of each other.
+///
+/// Returns an error if the two floats are more than `n` steps away
+/// from each other.
+///
+/// * `a`       - First float.
+/// * `b`       - Second float.
+/// * `n`       - Step tolerance between floats.
+///
+/// Each step is derived from the previous float by incrementing
+/// the float&#39;s bits, as if they were an integer, by 1.
+/// For example, the next float from 1e-45 (`0x00000001`) would be
+/// 3e-45 (`0x00000002`).
+///
+/// # Examples
+///
+/// ```rust
+/// # #[macro_use] extern crate assert_float_eq;
+/// # pub fn main() {
+/// assert!(expect_f32_near!(1e-45, 7e-45).is_ok());
+/// assert!(expect_f32_near!(1e-45, 1.4e-44, 9).is_ok());
+/// assert!(expect_f32_near!(1e-45, 1.4e-44, 8).is_err());
+/// assert!(expect_f32_near!(3e37, 3.000001e+37).is_ok());
+/// # }
+/// ```
+</span><span class="attribute">#[macro_export]
+</span><span class="macro">macro_rules! </span>expect_f32_near {
+    <span class="comment">// Explicit steps.
+    </span>(<span class="macro-nonterminal">$a</span>:expr, <span class="macro-nonterminal">$b</span>:expr, <span class="macro-nonterminal">$n</span>:expr) =&gt; ({
+        <span class="kw">let </span>(a, b, n) = (<span class="macro-nonterminal">$a</span>, <span class="macro-nonterminal">$b</span>, <span class="macro-nonterminal">$n</span>);
+        <span class="kw">let </span>(r, previous, next) = <span class="macro">afe_is_f32_near!</span>(a, b, n);
+        <span class="kw">let </span>e = <span class="macro-nonterminal">$crate::FloatNearError::new</span>(a, b, n, previous, next);
+        <span class="macro-nonterminal">$crate::bool_to_result</span>(r, e)
     });
-    <span class="comment">// No explicit steps, use default.</span>
-    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">a</span>:<span class="ident">expr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">b</span>:<span class="ident">expr</span>) =&gt; (<span class="macro">expect_f32_near!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">a</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">b</span>, <span class="number">4</span>));
+    <span class="comment">// No explicit steps, use default.
+    </span>(<span class="macro-nonterminal">$a</span>:expr, <span class="macro-nonterminal">$b</span>:expr) =&gt; (<span class="macro">expect_f32_near!</span>(<span class="macro-nonterminal">$a</span>, <span class="macro-nonterminal">$b</span>, <span class="number">4</span>));
 }
 
-<span class="doccomment">/// Expect two 64-bit floats are within `n` steps of each other.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Returns an error if the two floats are more than `n` steps away</span>
-<span class="doccomment">/// from each other.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// * `a`       - First float.</span>
-<span class="doccomment">/// * `b`       - Second float.</span>
-<span class="doccomment">/// * `n`       - Step tolerance between floats.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Each step is derived from the previous float by incrementing</span>
-<span class="doccomment">/// the float&#39;s bits, as if they were an integer, by 1.</span>
-<span class="doccomment">/// For example, the next float from 1e-45 (`0x00000001`) would be</span>
-<span class="doccomment">/// 3e-45 (`0x00000002`).</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// # Examples</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ```rust</span>
-<span class="doccomment">/// # #[macro_use] extern crate assert_float_eq;</span>
-<span class="doccomment">/// # pub fn main() {</span>
-<span class="doccomment">/// assert!(expect_f64_near!(5e-324, 2.5e-323).is_ok());</span>
-<span class="doccomment">/// assert!(expect_f64_near!(5e-324, 2.5e-323, 3).is_err());</span>
-<span class="doccomment">/// assert!(expect_f64_near!(5e-324, 5e-323, 9).is_ok());</span>
-<span class="doccomment">/// assert!(expect_f64_near!(5e-324, 5e-323, 8).is_err());</span>
-<span class="doccomment">/// assert!(expect_f64_near!(3e300, 3.0000000000000025e+300).is_ok());</span>
-<span class="doccomment">/// # }</span>
-<span class="doccomment">/// ```</span>
-<span class="attribute">#[<span class="ident">macro_export</span>]</span>
-<span class="macro">macro_rules!</span> <span class="ident">expect_f64_near</span> {
-    <span class="comment">// Explicit steps.</span>
-    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">a</span>:<span class="ident">expr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">b</span>:<span class="ident">expr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">n</span>:<span class="ident">expr</span>) =&gt; ({
-        <span class="kw">let</span> (<span class="ident">a</span>, <span class="ident">b</span>, <span class="ident">n</span>) <span class="op">=</span> (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">a</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">b</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">n</span>);
-        <span class="kw">let</span> (<span class="ident">r</span>, <span class="ident">previous</span>, <span class="ident">next</span>) <span class="op">=</span> <span class="macro">afe_is_f64_near!</span>(<span class="ident">a</span>, <span class="ident">b</span>, <span class="ident">n</span>);
-        <span class="kw">let</span> <span class="ident">e</span> <span class="op">=</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::FloatNearError::new</span>(<span class="ident">a</span>, <span class="ident">b</span>, <span class="ident">n</span>, <span class="ident">previous</span>, <span class="ident">next</span>);
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::bool_to_result</span>(<span class="ident">r</span>, <span class="ident">e</span>)
+<span class="doccomment">/// Expect two 64-bit floats are within `n` steps of each other.
+///
+/// Returns an error if the two floats are more than `n` steps away
+/// from each other.
+///
+/// * `a`       - First float.
+/// * `b`       - Second float.
+/// * `n`       - Step tolerance between floats.
+///
+/// Each step is derived from the previous float by incrementing
+/// the float&#39;s bits, as if they were an integer, by 1.
+/// For example, the next float from 1e-45 (`0x00000001`) would be
+/// 3e-45 (`0x00000002`).
+///
+/// # Examples
+///
+/// ```rust
+/// # #[macro_use] extern crate assert_float_eq;
+/// # pub fn main() {
+/// assert!(expect_f64_near!(5e-324, 2.5e-323).is_ok());
+/// assert!(expect_f64_near!(5e-324, 2.5e-323, 3).is_err());
+/// assert!(expect_f64_near!(5e-324, 5e-323, 9).is_ok());
+/// assert!(expect_f64_near!(5e-324, 5e-323, 8).is_err());
+/// assert!(expect_f64_near!(3e300, 3.0000000000000025e+300).is_ok());
+/// # }
+/// ```
+</span><span class="attribute">#[macro_export]
+</span><span class="macro">macro_rules! </span>expect_f64_near {
+    <span class="comment">// Explicit steps.
+    </span>(<span class="macro-nonterminal">$a</span>:expr, <span class="macro-nonterminal">$b</span>:expr, <span class="macro-nonterminal">$n</span>:expr) =&gt; ({
+        <span class="kw">let </span>(a, b, n) = (<span class="macro-nonterminal">$a</span>, <span class="macro-nonterminal">$b</span>, <span class="macro-nonterminal">$n</span>);
+        <span class="kw">let </span>(r, previous, next) = <span class="macro">afe_is_f64_near!</span>(a, b, n);
+        <span class="kw">let </span>e = <span class="macro-nonterminal">$crate::FloatNearError::new</span>(a, b, n, previous, next);
+        <span class="macro-nonterminal">$crate::bool_to_result</span>(r, e)
     });
-    <span class="comment">// No explicit steps, use default.</span>
-    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">a</span>:<span class="ident">expr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">b</span>:<span class="ident">expr</span>) =&gt; (<span class="macro">expect_f64_near!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">a</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">b</span>, <span class="number">4</span>));
+    <span class="comment">// No explicit steps, use default.
+    </span>(<span class="macro-nonterminal">$a</span>:expr, <span class="macro-nonterminal">$b</span>:expr) =&gt; (<span class="macro">expect_f64_near!</span>(<span class="macro-nonterminal">$a</span>, <span class="macro-nonterminal">$b</span>, <span class="number">4</span>));
 }
 
-<span class="comment">// ASSERT</span>
+<span class="comment">// ASSERT
 
-<span class="doccomment">/// Assert the absolute error between two values is less than epsilon.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Panics if `| a - b | &gt; epsilon`.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// * `a`       - First float.</span>
-<span class="doccomment">/// * `b`       - Second float.</span>
-<span class="doccomment">/// * `epsilon` - Absolute error tolerance between floats.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// # Examples</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">/// # #[macro_use] extern crate assert_float_eq;</span>
-<span class="doccomment">/// # pub fn main() {</span>
-<span class="doccomment">/// assert_float_absolute_eq!(3.0, 4.0, 1.0);</span>
-<span class="doccomment">/// assert_float_absolute_eq!(1.0, 0.5 + 0.5);</span>
-<span class="doccomment">/// # }</span>
-<span class="doccomment">/// ```</span>
-<span class="attribute">#[<span class="ident">macro_export</span>]</span>
-<span class="macro">macro_rules!</span> <span class="ident">assert_float_absolute_eq</span> {
-    <span class="comment">// Explicit epsilon, fail.</span>
-    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">a</span>:<span class="ident">expr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">b</span>:<span class="ident">expr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">epsilon</span>:<span class="ident">expr</span>) =&gt; ({
-        <span class="kw">let</span> (<span class="ident">a</span>, <span class="ident">b</span>, <span class="ident">eps</span>) <span class="op">=</span> (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">a</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">b</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">epsilon</span>);
-        <span class="kw">let</span> <span class="ident">r</span> <span class="op">=</span> <span class="macro">afe_is_absolute_eq!</span>(<span class="ident">a</span>, <span class="ident">b</span>, <span class="ident">eps</span>);
-        <span class="macro">assert!</span>(<span class="ident">r</span>, <span class="macro">afe_absolute_error_msg!</span>(), <span class="ident">a</span>, <span class="ident">b</span>, <span class="ident">eps</span>)
+</span><span class="doccomment">/// Assert the absolute error between two values is less than epsilon.
+///
+/// Panics if `| a - b | &gt; epsilon`.
+///
+/// * `a`       - First float.
+/// * `b`       - Second float.
+/// * `epsilon` - Absolute error tolerance between floats.
+///
+/// # Examples
+///
+/// ```
+/// # #[macro_use] extern crate assert_float_eq;
+/// # pub fn main() {
+/// assert_float_absolute_eq!(3.0, 4.0, 1.0);
+/// assert_float_absolute_eq!(1.0, 0.5 + 0.5);
+/// # }
+/// ```
+</span><span class="attribute">#[macro_export]
+</span><span class="macro">macro_rules! </span>assert_float_absolute_eq {
+    <span class="comment">// Explicit epsilon, fail.
+    </span>(<span class="macro-nonterminal">$a</span>:expr, <span class="macro-nonterminal">$b</span>:expr, <span class="macro-nonterminal">$epsilon</span>:expr) =&gt; ({
+        <span class="kw">let </span>(a, b, eps) = (<span class="macro-nonterminal">$a</span>, <span class="macro-nonterminal">$b</span>, <span class="macro-nonterminal">$epsilon</span>);
+        <span class="kw">let </span>r = <span class="macro">afe_is_absolute_eq!</span>(a, b, eps);
+        <span class="macro">assert!</span>(r, <span class="macro">afe_absolute_error_msg!</span>(), a, b, eps)
     });
-    <span class="comment">// No explicit epsilon, use default.</span>
-    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">a</span>:<span class="ident">expr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">b</span>:<span class="ident">expr</span>) =&gt; (<span class="macro">assert_float_absolute_eq!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">a</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">b</span>, <span class="number">1.0e-6</span>));
+    <span class="comment">// No explicit epsilon, use default.
+    </span>(<span class="macro-nonterminal">$a</span>:expr, <span class="macro-nonterminal">$b</span>:expr) =&gt; (<span class="macro">assert_float_absolute_eq!</span>(<span class="macro-nonterminal">$a</span>, <span class="macro-nonterminal">$b</span>, <span class="number">1.0e-6</span>));
 }
 
-<span class="doccomment">/// Assert the relative error between two values is less than epsilon.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Panics if `|(a - b) / a| &gt; epsilon`.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// * `a`       - First float.</span>
-<span class="doccomment">/// * `b`       - Second float.</span>
-<span class="doccomment">/// * `epsilon` - Relative error tolerance between floats.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// # Examples</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">/// # #[macro_use] extern crate assert_float_eq;</span>
-<span class="doccomment">/// # pub fn main() {</span>
-<span class="doccomment">/// assert_float_relative_eq!(4.0, 3.0, 0.25);</span>
-<span class="doccomment">/// assert_float_relative_eq!(1.0, 0.5 + 0.5);</span>
-<span class="doccomment">/// # }</span>
-<span class="doccomment">/// ```</span>
-<span class="attribute">#[<span class="ident">macro_export</span>]</span>
-<span class="macro">macro_rules!</span> <span class="ident">assert_float_relative_eq</span> {
-    <span class="comment">// Explicit epsilon, fail.</span>
-    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">a</span>:<span class="ident">expr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">b</span>:<span class="ident">expr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">epsilon</span>:<span class="ident">expr</span>) =&gt; ({
-        <span class="kw">let</span> (<span class="ident">a</span>, <span class="ident">b</span>, <span class="ident">eps</span>) <span class="op">=</span> (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">a</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">b</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">epsilon</span>);
-        <span class="kw">let</span> <span class="ident">r</span> <span class="op">=</span> <span class="macro">afe_is_relative_eq!</span>(<span class="ident">a</span>, <span class="ident">b</span>, <span class="ident">eps</span>);
-        <span class="macro">assert!</span>(<span class="ident">r</span>, <span class="macro">afe_relative_error_msg!</span>(), <span class="ident">a</span>, <span class="ident">b</span>, <span class="ident">eps</span>)
+<span class="doccomment">/// Assert the relative error between two values is less than epsilon.
+///
+/// Panics if `|(a - b) / a| &gt; epsilon`.
+///
+/// * `a`       - First float.
+/// * `b`       - Second float.
+/// * `epsilon` - Relative error tolerance between floats.
+///
+/// # Examples
+///
+/// ```
+/// # #[macro_use] extern crate assert_float_eq;
+/// # pub fn main() {
+/// assert_float_relative_eq!(4.0, 3.0, 0.25);
+/// assert_float_relative_eq!(1.0, 0.5 + 0.5);
+/// # }
+/// ```
+</span><span class="attribute">#[macro_export]
+</span><span class="macro">macro_rules! </span>assert_float_relative_eq {
+    <span class="comment">// Explicit epsilon, fail.
+    </span>(<span class="macro-nonterminal">$a</span>:expr, <span class="macro-nonterminal">$b</span>:expr, <span class="macro-nonterminal">$epsilon</span>:expr) =&gt; ({
+        <span class="kw">let </span>(a, b, eps) = (<span class="macro-nonterminal">$a</span>, <span class="macro-nonterminal">$b</span>, <span class="macro-nonterminal">$epsilon</span>);
+        <span class="kw">let </span>r = <span class="macro">afe_is_relative_eq!</span>(a, b, eps);
+        <span class="macro">assert!</span>(r, <span class="macro">afe_relative_error_msg!</span>(), a, b, eps)
     });
-    <span class="comment">// No explicit epsilon, use default.</span>
-    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">a</span>:<span class="ident">expr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">b</span>:<span class="ident">expr</span>) =&gt; (<span class="macro">assert_float_relative_eq!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">a</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">b</span>, <span class="number">1.0e-6</span>));
+    <span class="comment">// No explicit epsilon, use default.
+    </span>(<span class="macro-nonterminal">$a</span>:expr, <span class="macro-nonterminal">$b</span>:expr) =&gt; (<span class="macro">assert_float_relative_eq!</span>(<span class="macro-nonterminal">$a</span>, <span class="macro-nonterminal">$b</span>, <span class="number">1.0e-6</span>));
 }
 
-<span class="doccomment">/// Assert two 32-bit floats are within `n` steps of each other.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Panics if the two floats are more than `n` steps away from each other.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// * `a`       - First float.</span>
-<span class="doccomment">/// * `b`       - Second float.</span>
-<span class="doccomment">/// * `n`       - Step tolerance between floats.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Each step is derived from the previous float by incrementing</span>
-<span class="doccomment">/// the float&#39;s bits, as if they were an integer, by 1.</span>
-<span class="doccomment">/// For example, the next float from 1e-45 (`0x00000001`) would be</span>
-<span class="doccomment">/// 3e-45 (`0x00000002`).</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// # Examples</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ```rust</span>
-<span class="doccomment">/// # #[macro_use] extern crate assert_float_eq;</span>
-<span class="doccomment">/// # pub fn main() {</span>
-<span class="doccomment">/// assert_f32_near!(1e-45, 7e-45);</span>
-<span class="doccomment">/// assert_f32_near!(1e-45, 1.4e-44, 9);</span>
-<span class="doccomment">/// assert_f32_near!(3e37, 3.000001e+37);</span>
-<span class="doccomment">/// # }</span>
-<span class="doccomment">/// ```</span>
-<span class="attribute">#[<span class="ident">macro_export</span>]</span>
-<span class="macro">macro_rules!</span> <span class="ident">assert_f32_near</span> {
-    <span class="comment">// Explicit steps.</span>
-    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">a</span>:<span class="ident">expr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">b</span>:<span class="ident">expr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">n</span>:<span class="ident">expr</span>) =&gt; ({
-        <span class="kw">let</span> (<span class="ident">a</span>, <span class="ident">b</span>, <span class="ident">n</span>) <span class="op">=</span> (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">a</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">b</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">n</span>);
-        <span class="kw">let</span> (<span class="ident">r</span>, <span class="ident">previous</span>, <span class="ident">next</span>) <span class="op">=</span> <span class="macro">afe_is_f32_near!</span>(<span class="ident">a</span>, <span class="ident">b</span>, <span class="ident">n</span>);
-        <span class="macro">assert!</span>(<span class="ident">r</span>, <span class="macro">afe_near_error_msg!</span>(), <span class="ident">a</span>, <span class="ident">b</span>, <span class="ident">n</span>, <span class="ident">previous</span>, <span class="ident">next</span>)
+<span class="doccomment">/// Assert two 32-bit floats are within `n` steps of each other.
+///
+/// Panics if the two floats are more than `n` steps away from each other.
+///
+/// * `a`       - First float.
+/// * `b`       - Second float.
+/// * `n`       - Step tolerance between floats.
+///
+/// Each step is derived from the previous float by incrementing
+/// the float&#39;s bits, as if they were an integer, by 1.
+/// For example, the next float from 1e-45 (`0x00000001`) would be
+/// 3e-45 (`0x00000002`).
+///
+/// # Examples
+///
+/// ```rust
+/// # #[macro_use] extern crate assert_float_eq;
+/// # pub fn main() {
+/// assert_f32_near!(1e-45, 7e-45);
+/// assert_f32_near!(1e-45, 1.4e-44, 9);
+/// assert_f32_near!(3e37, 3.000001e+37);
+/// # }
+/// ```
+</span><span class="attribute">#[macro_export]
+</span><span class="macro">macro_rules! </span>assert_f32_near {
+    <span class="comment">// Explicit steps.
+    </span>(<span class="macro-nonterminal">$a</span>:expr, <span class="macro-nonterminal">$b</span>:expr, <span class="macro-nonterminal">$n</span>:expr) =&gt; ({
+        <span class="kw">let </span>(a, b, n) = (<span class="macro-nonterminal">$a</span>, <span class="macro-nonterminal">$b</span>, <span class="macro-nonterminal">$n</span>);
+        <span class="kw">let </span>(r, previous, next) = <span class="macro">afe_is_f32_near!</span>(a, b, n);
+        <span class="macro">assert!</span>(r, <span class="macro">afe_near_error_msg!</span>(), a, b, n, previous, next)
     });
-    <span class="comment">// No explicit steps, use default.</span>
-    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">a</span>:<span class="ident">expr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">b</span>:<span class="ident">expr</span>) =&gt; (<span class="macro">assert_f32_near!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">a</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">b</span>, <span class="number">4</span>));
+    <span class="comment">// No explicit steps, use default.
+    </span>(<span class="macro-nonterminal">$a</span>:expr, <span class="macro-nonterminal">$b</span>:expr) =&gt; (<span class="macro">assert_f32_near!</span>(<span class="macro-nonterminal">$a</span>, <span class="macro-nonterminal">$b</span>, <span class="number">4</span>));
 }
 
-<span class="doccomment">/// Assert two 64-bit floats are within `n` steps of each other.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Panics if the two floats are more than `n` steps away from each other.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// * `a`       - First float.</span>
-<span class="doccomment">/// * `b`       - Second float.</span>
-<span class="doccomment">/// * `n`       - Step tolerance between floats.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Each step is derived from the previous float by incrementing</span>
-<span class="doccomment">/// the float&#39;s bits, as if they were an integer, by 1.</span>
-<span class="doccomment">/// For example, the next float from 5.e-324 (`0x0000000000000001`) would be</span>
-<span class="doccomment">/// 1.e-323 (`0x0000000000000002`).</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// # Examples</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ```rust</span>
-<span class="doccomment">/// # #[macro_use] extern crate assert_float_eq;</span>
-<span class="doccomment">/// # pub fn main() {</span>
-<span class="doccomment">/// assert_f64_near!(5e-324, 2.5e-323);</span>
-<span class="doccomment">/// assert_f64_near!(5e-324, 5e-323, 9);</span>
-<span class="doccomment">/// assert_f64_near!(3e300, 3.0000000000000025e+300);</span>
-<span class="doccomment">/// # }</span>
-<span class="doccomment">/// ```</span>
-<span class="attribute">#[<span class="ident">macro_export</span>]</span>
-<span class="macro">macro_rules!</span> <span class="ident">assert_f64_near</span> {
-    <span class="comment">// Explicit steps.</span>
-    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">a</span>:<span class="ident">expr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">b</span>:<span class="ident">expr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">n</span>:<span class="ident">expr</span>) =&gt; ({
-        <span class="kw">let</span> (<span class="ident">a</span>, <span class="ident">b</span>, <span class="ident">n</span>) <span class="op">=</span> (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">a</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">b</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">n</span>);
-        <span class="kw">let</span> (<span class="ident">r</span>, <span class="ident">previous</span>, <span class="ident">next</span>) <span class="op">=</span> <span class="macro">afe_is_f64_near!</span>(<span class="ident">a</span>, <span class="ident">b</span>, <span class="ident">n</span>);
-        <span class="macro">assert!</span>(<span class="ident">r</span>, <span class="macro">afe_near_error_msg!</span>(), <span class="ident">a</span>, <span class="ident">b</span>, <span class="ident">n</span>, <span class="ident">previous</span>, <span class="ident">next</span>)
+<span class="doccomment">/// Assert two 64-bit floats are within `n` steps of each other.
+///
+/// Panics if the two floats are more than `n` steps away from each other.
+///
+/// * `a`       - First float.
+/// * `b`       - Second float.
+/// * `n`       - Step tolerance between floats.
+///
+/// Each step is derived from the previous float by incrementing
+/// the float&#39;s bits, as if they were an integer, by 1.
+/// For example, the next float from 5.e-324 (`0x0000000000000001`) would be
+/// 1.e-323 (`0x0000000000000002`).
+///
+/// # Examples
+///
+/// ```rust
+/// # #[macro_use] extern crate assert_float_eq;
+/// # pub fn main() {
+/// assert_f64_near!(5e-324, 2.5e-323);
+/// assert_f64_near!(5e-324, 5e-323, 9);
+/// assert_f64_near!(3e300, 3.0000000000000025e+300);
+/// # }
+/// ```
+</span><span class="attribute">#[macro_export]
+</span><span class="macro">macro_rules! </span>assert_f64_near {
+    <span class="comment">// Explicit steps.
+    </span>(<span class="macro-nonterminal">$a</span>:expr, <span class="macro-nonterminal">$b</span>:expr, <span class="macro-nonterminal">$n</span>:expr) =&gt; ({
+        <span class="kw">let </span>(a, b, n) = (<span class="macro-nonterminal">$a</span>, <span class="macro-nonterminal">$b</span>, <span class="macro-nonterminal">$n</span>);
+        <span class="kw">let </span>(r, previous, next) = <span class="macro">afe_is_f64_near!</span>(a, b, n);
+        <span class="macro">assert!</span>(r, <span class="macro">afe_near_error_msg!</span>(), a, b, n, previous, next)
     });
-    <span class="comment">// No explicit steps, use default.</span>
-    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">a</span>:<span class="ident">expr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">b</span>:<span class="ident">expr</span>) =&gt; (<span class="macro">assert_f64_near!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">a</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">b</span>, <span class="number">4</span>));
+    <span class="comment">// No explicit steps, use default.
+    </span>(<span class="macro-nonterminal">$a</span>:expr, <span class="macro-nonterminal">$b</span>:expr) =&gt; (<span class="macro">assert_f64_near!</span>(<span class="macro-nonterminal">$a</span>, <span class="macro-nonterminal">$b</span>, <span class="number">4</span>));
 }
 
-<span class="comment">// TESTS</span>
-<span class="comment">// -----</span>
+<span class="comment">// TESTS
+// -----
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
-<span class="kw">mod</span> <span class="ident">tests</span> {
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="attribute">#[<span class="ident">should_panic</span>]</span>
-    <span class="kw">fn</span> <span class="ident">absolute_eq_fail</span>() {
+</span><span class="attribute">#[cfg(test)]
+</span><span class="kw">mod </span>tests {
+    <span class="attribute">#[test]
+    #[should_panic]
+    </span><span class="kw">fn </span>absolute_eq_fail() {
         <span class="macro">assert_float_absolute_eq!</span>(<span class="number">3.0</span>, <span class="number">4.0</span>, <span class="number">0.9</span>);
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">absolute_eq_succeed</span>() {
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>absolute_eq_succeed() {
         <span class="macro">assert_float_absolute_eq!</span>(<span class="number">3.0</span>, <span class="number">4.0</span>, <span class="number">1.0</span>);
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="attribute">#[<span class="ident">should_panic</span>]</span>
-    <span class="kw">fn</span> <span class="ident">relative_eq_fail</span>() {
+    <span class="attribute">#[test]
+    #[should_panic]
+    </span><span class="kw">fn </span>relative_eq_fail() {
         <span class="macro">assert_float_relative_eq!</span>(<span class="number">4.0</span>, <span class="number">3.0</span>, <span class="number">0.2</span>);
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">relative_eq_succeed</span>() {
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>relative_eq_succeed() {
         <span class="macro">assert_float_relative_eq!</span>(<span class="number">4.0</span>, <span class="number">3.0</span>, <span class="number">0.26</span>);
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="attribute">#[<span class="ident">should_panic</span>]</span>
-    <span class="kw">fn</span> <span class="ident">relative_eq_negative_zero_fail</span>() {
-        <span class="macro">assert_float_relative_eq!</span>(<span class="op">-</span><span class="number">0.1</span>, <span class="number">0.0</span>);
+    <span class="attribute">#[test]
+    #[should_panic]
+    </span><span class="kw">fn </span>relative_eq_negative_zero_fail() {
+        <span class="macro">assert_float_relative_eq!</span>(-<span class="number">0.1</span>, <span class="number">0.0</span>);
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="attribute">#[<span class="ident">should_panic</span>]</span>
-    <span class="kw">fn</span> <span class="ident">f32_near_fail</span>() {
+    <span class="attribute">#[test]
+    #[should_panic]
+    </span><span class="kw">fn </span>f32_near_fail() {
         <span class="macro">assert_f32_near!</span>(<span class="number">1.0e-45</span>, <span class="number">7.0e-45</span>, <span class="number">3</span>);
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">f32_near_succeed</span>() {
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>f32_near_succeed() {
         <span class="macro">assert_f32_near!</span>(<span class="number">1.0e-45</span>, <span class="number">7.0e-45</span>, <span class="number">4</span>);
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="attribute">#[<span class="ident">should_panic</span>]</span>
-    <span class="kw">fn</span> <span class="ident">f64_near_fail</span>() {
+    <span class="attribute">#[test]
+    #[should_panic]
+    </span><span class="kw">fn </span>f64_near_fail() {
         <span class="macro">assert_f64_near!</span>(<span class="number">5.0e-324</span>, <span class="number">2.5e-323</span>, <span class="number">3</span>);
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">f64_near_succeed</span>() {
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>f64_near_succeed() {
         <span class="macro">assert_f64_near!</span>(<span class="number">5.0e-324</span>, <span class="number">2.5e-323</span>, <span class="number">4</span>);
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="assert_float_eq" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="assert_float_eq" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (77e57db38 2022-10-30)" ></div></body></html>

@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/weedle2-4.0.0/src/macros.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>macros.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../weedle/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../weedle/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../weedle/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/weedle2-4.0.0/src/macros.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>macros.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../weedle/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -562,569 +562,569 @@
 <span id="562">562</span>
 <span id="563">563</span>
 <span id="564">564</span>
-</pre><pre class="rust"><code><span class="macro">macro_rules!</span> <span class="ident">parser</span> {
-    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">parse</span>:<span class="ident">expr</span>) =&gt; {
-        <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">input</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>) -&gt; <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::IResult</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>, <span class="self">Self</span><span class="op">&gt;</span> {
-            <span class="macro-nonterminal">$</span><span class="macro-nonterminal">parse</span>(<span class="ident">input</span>)
+</pre><pre class="rust"><code><span class="macro">macro_rules! </span>parser {
+    (<span class="macro-nonterminal">$parse</span>:expr) =&gt; {
+        <span class="kw">fn </span>parse(input: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str) -&gt; <span class="macro-nonterminal">$crate::IResult</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str, <span class="self">Self</span>&gt; {
+            <span class="macro-nonterminal">$parse</span>(input)
         }
     };
 }
 
-<span class="macro">macro_rules!</span> <span class="ident">weedle</span> {
-    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">t</span>:<span class="ident">ty</span>) =&gt; {
-        <span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">t</span> <span class="kw">as</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::Parse</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="ident">::parse</span>
+<span class="macro">macro_rules! </span>weedle {
+    (<span class="macro-nonterminal">$t</span>:ty) =&gt; {
+        &lt;<span class="macro-nonterminal">$t </span><span class="kw">as </span><span class="macro-nonterminal">$crate::Parse</span>&lt;<span class="lifetime">&#39;a</span>&gt;&gt;::parse
     };
 }
 
-<span class="comment">// nom::branch::alt supports at-most 21 parsers, increasing to 42 ones.</span>
-<span class="macro">macro_rules!</span> <span class="ident">alt</span> {
-    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">member0</span>:<span class="ident">expr</span>, $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">member1</span>:<span class="ident">expr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">member2</span>:<span class="ident">expr</span>,)<span class="kw-2">*</span>) =&gt; {
-       <span class="macro">alt!</span>(@<span class="ident">as_expr</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">member0</span>, $(<span class="ident">nom::branch::alt</span>((<span class="macro-nonterminal">$</span><span class="macro-nonterminal">member1</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">member2</span>)),)<span class="op">+</span>)
+<span class="comment">// nom::branch::alt supports at-most 21 parsers, increasing to 42 ones.
+</span><span class="macro">macro_rules! </span>alt {
+    (<span class="macro-nonterminal">$member0</span>:expr, $(<span class="macro-nonterminal">$member1</span>:expr, <span class="macro-nonterminal">$member2</span>:expr,)<span class="kw-2">*</span>) =&gt; {
+       <span class="macro">alt!</span>(@as_expr <span class="macro-nonterminal">$member0</span>, $(nom::branch::alt((<span class="macro-nonterminal">$member1</span>, <span class="macro-nonterminal">$member2</span>)),)+)
     };
-    ($(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">member0</span>:<span class="ident">expr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">member1</span>:<span class="ident">expr</span>,)<span class="kw-2">*</span>) =&gt; {
-       <span class="macro">alt!</span>(@<span class="ident">as_expr</span> $(<span class="ident">nom::branch::alt</span>((<span class="macro-nonterminal">$</span><span class="macro-nonterminal">member0</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">member1</span>)),)<span class="op">+</span>)
+    ($(<span class="macro-nonterminal">$member0</span>:expr, <span class="macro-nonterminal">$member1</span>:expr,)<span class="kw-2">*</span>) =&gt; {
+       <span class="macro">alt!</span>(@as_expr $(nom::branch::alt((<span class="macro-nonterminal">$member0</span>, <span class="macro-nonterminal">$member1</span>)),)+)
     };
-    (@<span class="ident">as_expr</span> $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">member</span>:<span class="ident">expr</span>,)<span class="kw-2">*</span>) =&gt; {
-        <span class="ident">nom::branch::alt</span>(($(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">member</span>,)<span class="op">+</span>))
+    (@as_expr $(<span class="macro-nonterminal">$member</span>:expr,)<span class="kw-2">*</span>) =&gt; {
+        nom::branch::alt(($(<span class="macro-nonterminal">$member</span>,)+))
     };
 }
 
-<span class="macro">macro_rules!</span> <span class="ident">ast_types</span> {
-    (@<span class="ident">extract_type</span> <span class="kw">struct</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>:<span class="ident">ident</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">rest</span>:<span class="ident">tt</span>)<span class="kw-2">*</span>) =&gt; (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>);
-    (@<span class="ident">extract_type</span> <span class="kw">struct</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>:<span class="ident">ident</span> $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">rest</span>:<span class="ident">tt</span>)<span class="kw-2">*</span>) =&gt; (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>);
-    (@<span class="ident">extract_type</span> <span class="kw">enum</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>:<span class="ident">ident</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">rest</span>:<span class="ident">tt</span>)<span class="kw-2">*</span>) =&gt; (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>);
-    (@<span class="ident">extract_type</span> <span class="kw">enum</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>:<span class="ident">ident</span> $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">rest</span>:<span class="ident">tt</span>)<span class="kw-2">*</span>) =&gt; (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>);
+<span class="macro">macro_rules! </span>ast_types {
+    (@extract_type <span class="kw">struct </span><span class="macro-nonterminal">$name</span>:ident&lt;<span class="lifetime">&#39;a</span>&gt; $(<span class="macro-nonterminal">$rest</span>:tt)<span class="kw-2">*</span>) =&gt; (<span class="macro-nonterminal">$name</span>&lt;<span class="lifetime">&#39;a</span>&gt;);
+    (@extract_type <span class="kw">struct </span><span class="macro-nonterminal">$name</span>:ident $(<span class="macro-nonterminal">$rest</span>:tt)<span class="kw-2">*</span>) =&gt; (<span class="macro-nonterminal">$name</span>);
+    (@extract_type <span class="kw">enum </span><span class="macro-nonterminal">$name</span>:ident&lt;<span class="lifetime">&#39;a</span>&gt; $(<span class="macro-nonterminal">$rest</span>:tt)<span class="kw-2">*</span>) =&gt; (<span class="macro-nonterminal">$name</span>&lt;<span class="lifetime">&#39;a</span>&gt;);
+    (@extract_type <span class="kw">enum </span><span class="macro-nonterminal">$name</span>:ident $(<span class="macro-nonterminal">$rest</span>:tt)<span class="kw-2">*</span>) =&gt; (<span class="macro-nonterminal">$name</span>);
 
     () =&gt; ();
     (
-        $(<span class="attribute">#[<span class="macro-nonterminal">$</span><span class="macro-nonterminal">attr</span>:<span class="ident">meta</span>]</span>)<span class="op">*</span>
-        <span class="kw">struct</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>:<span class="ident">ident</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-            $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">fields</span>:<span class="ident">tt</span>)<span class="op">*</span>
+        $(<span class="attribute">#[<span class="macro-nonterminal">$attr</span>:meta]</span>)*
+        <span class="kw">struct </span><span class="macro-nonterminal">$name</span>:ident&lt;<span class="lifetime">&#39;a</span>&gt; {
+            $(<span class="macro-nonterminal">$fields</span>:tt)*
         }
-        $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">rest</span>:<span class="ident">tt</span>)<span class="op">*</span>
+        $(<span class="macro-nonterminal">$rest</span>:tt)*
     ) =&gt; (
-        <span class="macro">__ast_struct!</span> {
-            @<span class="ident">launch_pad</span>
-            $(<span class="attribute">#[<span class="macro-nonterminal">$</span><span class="macro-nonterminal">attr</span>]</span>)<span class="op">*</span>
-            <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>
-            [ <span class="lifetime">&#39;a</span> ]
+        <span class="macro">__ast_struct! </span>{
+            @launch_pad
+            $(<span class="attribute">#[<span class="macro-nonterminal">$attr</span>]</span>)*
+            <span class="macro-nonterminal">$name
+            </span>[ <span class="lifetime">&#39;a </span>]
             [ ]
-            { $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">fields</span>)<span class="op">*</span> }
+            { $(<span class="macro-nonterminal">$fields</span>)* }
         }
-        <span class="macro">ast_types!</span>($(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">rest</span>)<span class="kw-2">*</span>);
+        <span class="macro">ast_types!</span>($(<span class="macro-nonterminal">$rest</span>)<span class="kw-2">*</span>);
     );
     (
-        $(<span class="attribute">#[<span class="macro-nonterminal">$</span><span class="macro-nonterminal">attr</span>:<span class="ident">meta</span>]</span>)<span class="op">*</span>
-        <span class="kw">struct</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>:<span class="ident">ident</span><span class="op">&lt;</span>$(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">generics</span>:<span class="ident">ident</span>),<span class="op">+</span><span class="op">&gt;</span> <span class="kw">where</span> [$(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">bounds</span>:<span class="ident">tt</span>)<span class="op">+</span>] {
-            $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">fields</span>:<span class="ident">tt</span>)<span class="op">*</span>
+        $(<span class="attribute">#[<span class="macro-nonterminal">$attr</span>:meta]</span>)*
+        <span class="kw">struct </span><span class="macro-nonterminal">$name</span>:ident&lt;$(<span class="macro-nonterminal">$generics</span>:ident),+&gt; <span class="kw">where </span>[$(<span class="macro-nonterminal">$bounds</span>:tt)+] {
+            $(<span class="macro-nonterminal">$fields</span>:tt)*
         }
-        $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">rest</span>:<span class="ident">tt</span>)<span class="op">*</span>
+        $(<span class="macro-nonterminal">$rest</span>:tt)*
     ) =&gt; (
-        <span class="macro">__ast_struct!</span> {
-            @<span class="ident">launch_pad</span>
-            $(<span class="attribute">#[<span class="macro-nonterminal">$</span><span class="macro-nonterminal">attr</span>]</span>)<span class="op">*</span>
-            <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>
-            [$(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">generics</span>)<span class="op">+</span>]
-            [$(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">bounds</span>)<span class="op">+</span>]
-            { $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">fields</span>)<span class="op">*</span> }
+        <span class="macro">__ast_struct! </span>{
+            @launch_pad
+            $(<span class="attribute">#[<span class="macro-nonterminal">$attr</span>]</span>)*
+            <span class="macro-nonterminal">$name
+            </span>[$(<span class="macro-nonterminal">$generics</span>)+]
+            [$(<span class="macro-nonterminal">$bounds</span>)+]
+            { $(<span class="macro-nonterminal">$fields</span>)* }
         }
-        <span class="macro">ast_types!</span>($(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">rest</span>)<span class="kw-2">*</span>);
+        <span class="macro">ast_types!</span>($(<span class="macro-nonterminal">$rest</span>)<span class="kw-2">*</span>);
     );
     (
-        $(<span class="attribute">#[<span class="macro-nonterminal">$</span><span class="macro-nonterminal">attr</span>:<span class="ident">meta</span>]</span>)<span class="op">*</span>
-        <span class="kw">struct</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>:<span class="ident">ident</span> {
-            $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">fields</span>:<span class="ident">tt</span>)<span class="op">*</span>
+        $(<span class="attribute">#[<span class="macro-nonterminal">$attr</span>:meta]</span>)*
+        <span class="kw">struct </span><span class="macro-nonterminal">$name</span>:ident {
+            $(<span class="macro-nonterminal">$fields</span>:tt)*
         }
-        $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">rest</span>:<span class="ident">tt</span>)<span class="op">*</span>
+        $(<span class="macro-nonterminal">$rest</span>:tt)*
     ) =&gt; (
-        <span class="macro">__ast_struct!</span> {
-            @<span class="ident">launch_pad</span>
-            $(<span class="attribute">#[<span class="macro-nonterminal">$</span><span class="macro-nonterminal">attr</span>]</span>)<span class="op">*</span>
-            <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>
+        <span class="macro">__ast_struct! </span>{
+            @launch_pad
+            $(<span class="attribute">#[<span class="macro-nonterminal">$attr</span>]</span>)*
+            <span class="macro-nonterminal">$name
+            </span>[ ]
             [ ]
-            [ ]
-            { $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">fields</span>)<span class="op">*</span> }
+            { $(<span class="macro-nonterminal">$fields</span>)* }
         }
-        <span class="macro">ast_types!</span>($(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">rest</span>)<span class="kw-2">*</span>);
+        <span class="macro">ast_types!</span>($(<span class="macro-nonterminal">$rest</span>)<span class="kw-2">*</span>);
     );
 
     (
-        $(<span class="attribute">#[<span class="macro-nonterminal">$</span><span class="macro-nonterminal">attr</span>:<span class="ident">meta</span>]</span>)<span class="op">*</span>
-        <span class="kw">struct</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>:<span class="ident">ident</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> (
-            $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">fields</span>:<span class="ident">tt</span>)<span class="op">*</span>
+        $(<span class="attribute">#[<span class="macro-nonterminal">$attr</span>:meta]</span>)*
+        <span class="kw">struct </span><span class="macro-nonterminal">$name</span>:ident&lt;<span class="lifetime">&#39;a</span>&gt; (
+            $(<span class="macro-nonterminal">$fields</span>:tt)*
         )
-        $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">rest</span>:<span class="ident">tt</span>)<span class="op">*</span>
+        $(<span class="macro-nonterminal">$rest</span>:tt)*
     ) =&gt; (
-        <span class="macro">__ast_tuple_struct!</span> {
-            @<span class="ident">launch_pad</span>
-            $(<span class="attribute">#[<span class="macro-nonterminal">$</span><span class="macro-nonterminal">attr</span>]</span>)<span class="op">*</span>
-            <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>
-            [ <span class="lifetime">&#39;a</span> ]
-            ( $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">fields</span>)<span class="op">*</span> )
+        <span class="macro">__ast_tuple_struct! </span>{
+            @launch_pad
+            $(<span class="attribute">#[<span class="macro-nonterminal">$attr</span>]</span>)*
+            <span class="macro-nonterminal">$name
+            </span>[ <span class="lifetime">&#39;a </span>]
+            ( $(<span class="macro-nonterminal">$fields</span>)* )
         }
-        <span class="macro">ast_types!</span>($(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">rest</span>)<span class="kw-2">*</span>);
+        <span class="macro">ast_types!</span>($(<span class="macro-nonterminal">$rest</span>)<span class="kw-2">*</span>);
     );
     (
-        $(<span class="attribute">#[<span class="macro-nonterminal">$</span><span class="macro-nonterminal">attr</span>:<span class="ident">meta</span>]</span>)<span class="op">*</span>
-        <span class="kw">struct</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>:<span class="ident">ident</span> (
-            $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">fields</span>:<span class="ident">tt</span>)<span class="op">*</span>
+        $(<span class="attribute">#[<span class="macro-nonterminal">$attr</span>:meta]</span>)*
+        <span class="kw">struct </span><span class="macro-nonterminal">$name</span>:ident (
+            $(<span class="macro-nonterminal">$fields</span>:tt)*
         )
-        $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">rest</span>:<span class="ident">tt</span>)<span class="op">*</span>
+        $(<span class="macro-nonterminal">$rest</span>:tt)*
     ) =&gt; (
-        <span class="macro">__ast_tuple_struct!</span> {
-            @<span class="ident">launch_pad</span>
-            $(<span class="attribute">#[<span class="macro-nonterminal">$</span><span class="macro-nonterminal">attr</span>]</span>)<span class="op">*</span>
-            <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>
-            [ ]
-            ( $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">fields</span>)<span class="op">*</span> )
+        <span class="macro">__ast_tuple_struct! </span>{
+            @launch_pad
+            $(<span class="attribute">#[<span class="macro-nonterminal">$attr</span>]</span>)*
+            <span class="macro-nonterminal">$name
+            </span>[ ]
+            ( $(<span class="macro-nonterminal">$fields</span>)* )
         }
-        <span class="macro">ast_types!</span>($(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">rest</span>)<span class="kw-2">*</span>);
+        <span class="macro">ast_types!</span>($(<span class="macro-nonterminal">$rest</span>)<span class="kw-2">*</span>);
     );
 
     (
-        $(<span class="attribute">#[<span class="macro-nonterminal">$</span><span class="macro-nonterminal">attr</span>:<span class="ident">meta</span>]</span>)<span class="op">*</span>
-        <span class="kw">enum</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>:<span class="ident">ident</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-            $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">variants</span>:<span class="ident">tt</span>)<span class="op">*</span>
+        $(<span class="attribute">#[<span class="macro-nonterminal">$attr</span>:meta]</span>)*
+        <span class="kw">enum </span><span class="macro-nonterminal">$name</span>:ident&lt;<span class="lifetime">&#39;a</span>&gt; {
+            $(<span class="macro-nonterminal">$variants</span>:tt)*
         }
-        $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">rest</span>:<span class="ident">tt</span>)<span class="op">*</span>
+        $(<span class="macro-nonterminal">$rest</span>:tt)*
     ) =&gt; (
-        <span class="macro">__ast_enum!</span> {
-            @<span class="ident">launch_pad</span>
-            $(<span class="attribute">#[<span class="macro-nonterminal">$</span><span class="macro-nonterminal">attr</span>]</span>)<span class="op">*</span>
-            <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>
-            [ <span class="lifetime">&#39;a</span> ]
-            { $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">variants</span>)<span class="op">*</span> }
+        <span class="macro">__ast_enum! </span>{
+            @launch_pad
+            $(<span class="attribute">#[<span class="macro-nonterminal">$attr</span>]</span>)*
+            <span class="macro-nonterminal">$name
+            </span>[ <span class="lifetime">&#39;a </span>]
+            { $(<span class="macro-nonterminal">$variants</span>)* }
         }
-        <span class="macro">ast_types!</span>($(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">rest</span>)<span class="kw-2">*</span>);
+        <span class="macro">ast_types!</span>($(<span class="macro-nonterminal">$rest</span>)<span class="kw-2">*</span>);
     );
     (
-        $(<span class="attribute">#[<span class="macro-nonterminal">$</span><span class="macro-nonterminal">attr</span>:<span class="ident">meta</span>]</span>)<span class="op">*</span>
-        <span class="kw">enum</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>:<span class="ident">ident</span> {
-            $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">variants</span>:<span class="ident">tt</span>)<span class="op">*</span>
+        $(<span class="attribute">#[<span class="macro-nonterminal">$attr</span>:meta]</span>)*
+        <span class="kw">enum </span><span class="macro-nonterminal">$name</span>:ident {
+            $(<span class="macro-nonterminal">$variants</span>:tt)*
         }
-        $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">rest</span>:<span class="ident">tt</span>)<span class="op">*</span>
+        $(<span class="macro-nonterminal">$rest</span>:tt)*
     ) =&gt; (
-        <span class="macro">__ast_enum!</span> {
-            @<span class="ident">launch_pad</span>
-            $(<span class="attribute">#[<span class="macro-nonterminal">$</span><span class="macro-nonterminal">attr</span>]</span>)<span class="op">*</span>
-            <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>
-            [ ]
-            { $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">variants</span>)<span class="op">*</span> }
+        <span class="macro">__ast_enum! </span>{
+            @launch_pad
+            $(<span class="attribute">#[<span class="macro-nonterminal">$attr</span>]</span>)*
+            <span class="macro-nonterminal">$name
+            </span>[ ]
+            { $(<span class="macro-nonterminal">$variants</span>)* }
         }
-        <span class="macro">ast_types!</span>($(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">rest</span>)<span class="kw-2">*</span>);
+        <span class="macro">ast_types!</span>($(<span class="macro-nonterminal">$rest</span>)<span class="kw-2">*</span>);
     );
 }
 
-<span class="macro">macro_rules!</span> <span class="ident">__ast_tuple_struct</span> {
-    (@<span class="ident">launch_pad</span>
-        $(<span class="attribute">#[<span class="macro-nonterminal">$</span><span class="macro-nonterminal">attr</span>:<span class="ident">meta</span>]</span>)<span class="op">*</span>
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>:<span class="ident">ident</span>
-        [ $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">maybe_a</span>:<span class="ident">tt</span>)<span class="op">*</span> ]
-        ( <span class="macro-nonterminal">$</span><span class="macro-nonterminal">inner</span>:<span class="ident">ty</span> <span class="op">=</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">parser</span>:<span class="ident">expr</span>, )
+<span class="macro">macro_rules! </span>__ast_tuple_struct {
+    (@launch_pad
+        $(<span class="attribute">#[<span class="macro-nonterminal">$attr</span>:meta]</span>)*
+        <span class="macro-nonterminal">$name</span>:ident
+        [ $(<span class="macro-nonterminal">$maybe_a</span>:tt)* ]
+        ( <span class="macro-nonterminal">$inner</span>:ty = <span class="macro-nonterminal">$parser</span>:expr, )
     ) =&gt; (
-        $(<span class="attribute">#[<span class="macro-nonterminal">$</span><span class="macro-nonterminal">attr</span>]</span>)<span class="op">*</span>
-        <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">Eq</span>, <span class="ident">PartialEq</span>, <span class="ident">Ord</span>, <span class="ident">PartialOrd</span>, <span class="ident">Hash</span>)]</span>
-        <span class="kw">pub</span> <span class="kw">struct</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span><span class="op">&lt;</span>$(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">maybe_a</span>)<span class="kw-2">*</span><span class="op">&gt;</span>(<span class="kw">pub</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">inner</span>);
+        $(<span class="attribute">#[<span class="macro-nonterminal">$attr</span>]</span>)*
+        <span class="attribute">#[derive(Clone, Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
+        </span><span class="kw">pub struct </span><span class="macro-nonterminal">$name</span>&lt;$(<span class="macro-nonterminal">$maybe_a</span>)<span class="kw-2">*</span>&gt;(<span class="kw">pub </span><span class="macro-nonterminal">$inner</span>);
 
-        <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::Parse</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span><span class="op">&lt;</span>$(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">maybe_a</span>)<span class="kw-2">*</span><span class="op">&gt;</span> {
-            <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">input</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>) -&gt; <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::IResult</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>, <span class="self">Self</span><span class="op">&gt;</span> {
-                <span class="kw">use</span> <span class="ident">nom::lib::std::result::Result</span>::<span class="kw-2">*</span>;
+        <span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; <span class="macro-nonterminal">$crate::Parse</span>&lt;<span class="lifetime">&#39;a</span>&gt; <span class="kw">for </span><span class="macro-nonterminal">$name</span>&lt;$(<span class="macro-nonterminal">$maybe_a</span>)<span class="kw-2">*</span>&gt; {
+            <span class="kw">fn </span>parse(input: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str) -&gt; <span class="macro-nonterminal">$crate::IResult</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str, <span class="self">Self</span>&gt; {
+                <span class="kw">use </span>nom::lib::std::result::Result::<span class="kw-2">*</span>;
 
-                <span class="kw">match</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">parser</span>(<span class="ident">input</span>) {
-                    <span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; <span class="prelude-val">Err</span>(<span class="ident">e</span>),
-                    <span class="prelude-val">Ok</span>((<span class="ident">i</span>, <span class="ident">inner</span>)) =&gt; <span class="prelude-val">Ok</span>((<span class="ident">i</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>(<span class="ident">inner</span>))),
+                <span class="kw">match </span><span class="macro-nonterminal">$parser</span>(input) {
+                    <span class="prelude-val">Err</span>(e) =&gt; <span class="prelude-val">Err</span>(e),
+                    <span class="prelude-val">Ok</span>((i, inner)) =&gt; <span class="prelude-val">Ok</span>((i, <span class="macro-nonterminal">$name</span>(inner))),
                 }
             }
         }
     );
-    (@<span class="ident">launch_pad</span>
-        $(<span class="attribute">#[<span class="macro-nonterminal">$</span><span class="macro-nonterminal">attr</span>:<span class="ident">meta</span>]</span>)<span class="op">*</span>
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>:<span class="ident">ident</span>
-        [ $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">maybe_a</span>:<span class="ident">tt</span>)<span class="op">*</span> ]
-        ( <span class="macro-nonterminal">$</span><span class="macro-nonterminal">inner</span>:<span class="ident">ty</span>, )
+    (@launch_pad
+        $(<span class="attribute">#[<span class="macro-nonterminal">$attr</span>:meta]</span>)*
+        <span class="macro-nonterminal">$name</span>:ident
+        [ $(<span class="macro-nonterminal">$maybe_a</span>:tt)* ]
+        ( <span class="macro-nonterminal">$inner</span>:ty, )
     ) =&gt; (
-        <span class="macro">__ast_tuple_struct!</span> {
-            @<span class="ident">launch_pad</span>
-            $(<span class="attribute">#[<span class="macro-nonterminal">$</span><span class="macro-nonterminal">attr</span>]</span>)<span class="op">*</span>
-            <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>
-            [ $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">maybe_a</span>)<span class="op">*</span> ]
-            ( <span class="macro-nonterminal">$</span><span class="macro-nonterminal">inner</span> <span class="op">=</span> <span class="macro">weedle!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">inner</span>), )
+        <span class="macro">__ast_tuple_struct! </span>{
+            @launch_pad
+            $(<span class="attribute">#[<span class="macro-nonterminal">$attr</span>]</span>)*
+            <span class="macro-nonterminal">$name
+            </span>[ $(<span class="macro-nonterminal">$maybe_a</span>)* ]
+            ( <span class="macro-nonterminal">$inner </span>= <span class="macro">weedle!</span>(<span class="macro-nonterminal">$inner</span>), )
         }
     );
 }
 
-<span class="macro">macro_rules!</span> <span class="ident">__ast_struct</span> {
-    (@<span class="ident">build_struct_decl</span>
+<span class="macro">macro_rules! </span>__ast_struct {
+    (@build_struct_decl
         {
-            $(<span class="attribute">#[<span class="macro-nonterminal">$</span><span class="macro-nonterminal">attr</span>:<span class="ident">meta</span>]</span>)<span class="op">*</span>
-            <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>:<span class="ident">ident</span>
-            [ $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">generics</span>:<span class="ident">tt</span>)<span class="op">*</span> ]
-            $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">field</span>:<span class="ident">ident</span> : <span class="macro-nonterminal">$</span><span class="kw">type</span>:<span class="macro-nonterminal">ty</span>)<span class="op">*</span>
+            $(<span class="attribute">#[<span class="macro-nonterminal">$attr</span>:meta]</span>)*
+            <span class="macro-nonterminal">$name</span>:ident
+            [ $(<span class="macro-nonterminal">$generics</span>:tt)* ]
+            $(<span class="macro-nonterminal">$field</span>:ident : <span class="macro-nonterminal">$</span><span class="kw">type</span>:<span class="macro-nonterminal">ty</span>)*
         }
         { }
     ) =&gt; {
-        $(<span class="attribute">#[<span class="macro-nonterminal">$</span><span class="macro-nonterminal">attr</span>]</span>)<span class="op">*</span>
-        <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">Eq</span>, <span class="ident">PartialEq</span>, <span class="ident">Ord</span>, <span class="ident">PartialOrd</span>, <span class="ident">Hash</span>)]</span>
-        <span class="kw">pub</span> <span class="kw">struct</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span><span class="op">&lt;</span>$(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">generics</span>)<span class="kw-2">*</span><span class="op">&gt;</span> {
-            $(<span class="kw">pub</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">field</span> : <span class="macro-nonterminal">$</span><span class="kw">type</span>,)<span class="op">*</span>
+        $(<span class="attribute">#[<span class="macro-nonterminal">$attr</span>]</span>)*
+        <span class="attribute">#[derive(Clone, Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
+        </span><span class="kw">pub struct </span><span class="macro-nonterminal">$name</span>&lt;$(<span class="macro-nonterminal">$generics</span>)<span class="kw-2">*</span>&gt; {
+            $(<span class="kw">pub </span><span class="macro-nonterminal">$field </span>: <span class="macro-nonterminal">$</span><span class="kw">type</span>,)*
         }
     };
-    (@<span class="macro-nonterminal">build_struct_decl</span>
-        { $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">prev</span>:<span class="ident">tt</span>)<span class="op">*</span> }
-        { <span class="macro-nonterminal">$</span><span class="macro-nonterminal">field</span>:<span class="ident">ident</span> : <span class="macro-nonterminal">$</span><span class="kw">type</span>:<span class="macro-nonterminal">ty</span>, $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">rest</span>:<span class="ident">tt</span>)<span class="op">*</span> }
+    (@<span class="macro-nonterminal">build_struct_decl
+        </span>{ $(<span class="macro-nonterminal">$prev</span>:tt)* }
+        { <span class="macro-nonterminal">$field</span>:ident : <span class="macro-nonterminal">$</span><span class="kw">type</span>:<span class="macro-nonterminal">ty</span>, $(<span class="macro-nonterminal">$rest</span>:tt)* }
     ) =&gt; (
-        <span class="macro">__ast_struct!</span> {
-            @<span class="ident">build_struct_decl</span>
-            { $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">prev</span>)<span class="op">*</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">field</span> : <span class="macro-nonterminal">$</span><span class="kw">type</span> }
-            { $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">rest</span>)<span class="op">*</span> }
+        <span class="macro">__ast_struct! </span>{
+            @build_struct_decl
+            { $(<span class="macro-nonterminal">$prev</span>)* <span class="macro-nonterminal">$field </span>: <span class="macro-nonterminal">$</span><span class="kw">type </span>}
+            { $(<span class="macro-nonterminal">$rest</span>)* }
         }
     );
-    (@<span class="ident">build_struct_decl</span>
-        { $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">prev</span>:<span class="ident">tt</span>)<span class="op">*</span> }
-        { <span class="macro-nonterminal">$</span><span class="macro-nonterminal">field</span>:<span class="ident">ident</span> : <span class="macro-nonterminal">$</span><span class="kw">type</span>:<span class="macro-nonterminal">ty</span> <span class="op">=</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">parser</span>:<span class="ident">expr</span>, $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">rest</span>:<span class="ident">tt</span>)<span class="op">*</span> }
+    (@build_struct_decl
+        { $(<span class="macro-nonterminal">$prev</span>:tt)* }
+        { <span class="macro-nonterminal">$field</span>:ident : <span class="macro-nonterminal">$</span><span class="kw">type</span>:<span class="macro-nonterminal">ty </span>= <span class="macro-nonterminal">$parser</span>:expr, $(<span class="macro-nonterminal">$rest</span>:tt)* }
     ) =&gt; (
-        <span class="macro">__ast_struct!</span> {
-            @<span class="ident">build_struct_decl</span>
-            { $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">prev</span>)<span class="op">*</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">field</span> : <span class="macro-nonterminal">$</span><span class="kw">type</span> }
-            { $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">rest</span>)<span class="op">*</span> }
+        <span class="macro">__ast_struct! </span>{
+            @build_struct_decl
+            { $(<span class="macro-nonterminal">$prev</span>)* <span class="macro-nonterminal">$field </span>: <span class="macro-nonterminal">$</span><span class="kw">type </span>}
+            { $(<span class="macro-nonterminal">$rest</span>)* }
         }
     );
 
-    (@<span class="ident">build_parser</span>
-        { <span class="macro-nonterminal">$</span><span class="macro-nonterminal">i</span>:<span class="ident">expr</span>, $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">field</span>:<span class="ident">ident</span>)<span class="op">*</span> }
+    (@build_parser
+        { <span class="macro-nonterminal">$i</span>:expr, $(<span class="macro-nonterminal">$field</span>:ident)* }
         { }
     ) =&gt; ({
-        <span class="kw">use</span> <span class="ident">nom::lib::std::result::Result::Ok</span>;
-        <span class="prelude-val">Ok</span>((<span class="macro-nonterminal">$</span><span class="macro-nonterminal">i</span>, <span class="self">Self</span> { $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">field</span>,)<span class="op">*</span> }))
+        <span class="kw">use </span>nom::lib::std::result::Result::Ok;
+        <span class="prelude-val">Ok</span>((<span class="macro-nonterminal">$i</span>, <span class="self">Self </span>{ $(<span class="macro-nonterminal">$field</span>,)* }))
     });
-    (@<span class="ident">build_parser</span>
-        { <span class="macro-nonterminal">$</span><span class="macro-nonterminal">i</span>:<span class="ident">expr</span>, $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">prev</span>:<span class="ident">tt</span>)<span class="op">*</span> }
-        { <span class="macro-nonterminal">$</span><span class="macro-nonterminal">field</span>:<span class="ident">ident</span> : <span class="macro-nonterminal">$</span><span class="kw">type</span>:<span class="macro-nonterminal">ty</span> <span class="op">=</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">parser</span>:<span class="ident">expr</span>, $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">rest</span>:<span class="ident">tt</span>)<span class="op">*</span> }
+    (@build_parser
+        { <span class="macro-nonterminal">$i</span>:expr, $(<span class="macro-nonterminal">$prev</span>:tt)* }
+        { <span class="macro-nonterminal">$field</span>:ident : <span class="macro-nonterminal">$</span><span class="kw">type</span>:<span class="macro-nonterminal">ty </span>= <span class="macro-nonterminal">$parser</span>:expr, $(<span class="macro-nonterminal">$rest</span>:tt)* }
     ) =&gt; ({
-        <span class="kw">use</span> <span class="ident">nom::lib::std::result::Result</span>::<span class="kw-2">*</span>;
+        <span class="kw">use </span>nom::lib::std::result::Result::<span class="kw-2">*</span>;
 
-        <span class="kw">match</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">parser</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">i</span>) {
-            <span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; <span class="prelude-val">Err</span>(<span class="ident">e</span>),
-            <span class="prelude-val">Ok</span>((<span class="ident">i</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">field</span>)) =&gt; {
-                <span class="macro">__ast_struct!</span> {
-                    @<span class="ident">build_parser</span>
-                    { <span class="ident">i</span>, $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">prev</span>)<span class="op">*</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">field</span> }
-                    { $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">rest</span>)<span class="op">*</span> }
+        <span class="kw">match </span><span class="macro-nonterminal">$parser</span>(<span class="macro-nonterminal">$i</span>) {
+            <span class="prelude-val">Err</span>(e) =&gt; <span class="prelude-val">Err</span>(e),
+            <span class="prelude-val">Ok</span>((i, <span class="macro-nonterminal">$field</span>)) =&gt; {
+                <span class="macro">__ast_struct! </span>{
+                    @build_parser
+                    { i, $(<span class="macro-nonterminal">$prev</span>)* <span class="macro-nonterminal">$field </span>}
+                    { $(<span class="macro-nonterminal">$rest</span>)* }
                 }
             },
         }
     });
-    (@<span class="ident">build_parser</span>
-        { $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">prev</span>:<span class="ident">tt</span>)<span class="op">*</span> }
-        { <span class="macro-nonterminal">$</span><span class="macro-nonterminal">field</span>:<span class="ident">ident</span> : <span class="macro-nonterminal">$</span><span class="kw">type</span>:<span class="macro-nonterminal">ty</span>, $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">rest</span>:<span class="ident">tt</span>)<span class="op">*</span> }
+    (@build_parser
+        { $(<span class="macro-nonterminal">$prev</span>:tt)* }
+        { <span class="macro-nonterminal">$field</span>:ident : <span class="macro-nonterminal">$</span><span class="kw">type</span>:<span class="macro-nonterminal">ty</span>, $(<span class="macro-nonterminal">$rest</span>:tt)* }
     ) =&gt; (
-        <span class="macro">__ast_struct!</span> {
-            @<span class="ident">build_parser</span>
-            { $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">prev</span>)<span class="op">*</span> }
-            { <span class="macro-nonterminal">$</span><span class="macro-nonterminal">field</span> : <span class="macro-nonterminal">$</span><span class="kw">type</span> <span class="op">=</span> <span class="macro">weedle!</span>(<span class="macro-nonterminal">$</span><span class="kw">type</span>), $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">rest</span>)<span class="op">*</span> }
+        <span class="macro">__ast_struct! </span>{
+            @build_parser
+            { $(<span class="macro-nonterminal">$prev</span>)* }
+            { <span class="macro-nonterminal">$field </span>: <span class="macro-nonterminal">$</span><span class="kw">type </span>= <span class="macro">weedle!</span>(<span class="macro-nonterminal">$</span><span class="kw">type</span>), $(<span class="macro-nonterminal">$rest</span>)* }
         }
     );
 
     (
-        @<span class="ident">launch_pad</span>
-        $(<span class="attribute">#[<span class="macro-nonterminal">$</span><span class="macro-nonterminal">attr</span>:<span class="ident">meta</span>]</span>)<span class="op">*</span>
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>:<span class="ident">ident</span>
+        @launch_pad
+        $(<span class="attribute">#[<span class="macro-nonterminal">$attr</span>:meta]</span>)*
+        <span class="macro-nonterminal">$name</span>:ident
         [ ]
         [ ]
-        { $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">fields</span>:<span class="ident">tt</span>)<span class="op">*</span> }
+        { $(<span class="macro-nonterminal">$fields</span>:tt)* }
     ) =&gt; {
-        <span class="macro">__ast_struct!</span> {
-            @<span class="ident">build_struct_decl</span>
+        <span class="macro">__ast_struct! </span>{
+            @build_struct_decl
             {
-                $(<span class="attribute">#[<span class="macro-nonterminal">$</span><span class="macro-nonterminal">attr</span>]</span>)<span class="op">*</span>
-                <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>
-                [ ]
+                $(<span class="attribute">#[<span class="macro-nonterminal">$attr</span>]</span>)*
+                <span class="macro-nonterminal">$name
+                </span>[ ]
             }
-            { $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">fields</span>)<span class="op">*</span> }
+            { $(<span class="macro-nonterminal">$fields</span>)* }
         }
 
-        <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::Parse</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span> {
-            <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">input</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>) -&gt; <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::IResult</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>, <span class="self">Self</span><span class="op">&gt;</span> {
-                <span class="macro">__ast_struct!</span> {
-                    @<span class="ident">build_parser</span>
-                    { <span class="ident">input</span>, }
-                    { $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">fields</span>)<span class="op">*</span> }
+        <span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; <span class="macro-nonterminal">$crate::Parse</span>&lt;<span class="lifetime">&#39;a</span>&gt; <span class="kw">for </span><span class="macro-nonterminal">$name </span>{
+            <span class="kw">fn </span>parse(input: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str) -&gt; <span class="macro-nonterminal">$crate::IResult</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str, <span class="self">Self</span>&gt; {
+                <span class="macro">__ast_struct! </span>{
+                    @build_parser
+                    { input, }
+                    { $(<span class="macro-nonterminal">$fields</span>)* }
                 }
             }
         }
     };
     (
-        @<span class="ident">launch_pad</span>
-        $(<span class="attribute">#[<span class="macro-nonterminal">$</span><span class="macro-nonterminal">attr</span>:<span class="ident">meta</span>]</span>)<span class="op">*</span>
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>:<span class="ident">ident</span>
-        [ <span class="lifetime">&#39;a</span> ]
+        @launch_pad
+        $(<span class="attribute">#[<span class="macro-nonterminal">$attr</span>:meta]</span>)*
+        <span class="macro-nonterminal">$name</span>:ident
+        [ <span class="lifetime">&#39;a </span>]
         [ ]
-        { $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">fields</span>:<span class="ident">tt</span>)<span class="op">*</span> }
+        { $(<span class="macro-nonterminal">$fields</span>:tt)* }
     ) =&gt; {
-        <span class="macro">__ast_struct!</span> {
-            @<span class="ident">build_struct_decl</span>
+        <span class="macro">__ast_struct! </span>{
+            @build_struct_decl
             {
-                $(<span class="attribute">#[<span class="macro-nonterminal">$</span><span class="macro-nonterminal">attr</span>]</span>)<span class="op">*</span>
-                <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>
-                [ <span class="lifetime">&#39;a</span> ]
+                $(<span class="attribute">#[<span class="macro-nonterminal">$attr</span>]</span>)*
+                <span class="macro-nonterminal">$name
+                </span>[ <span class="lifetime">&#39;a </span>]
             }
-            { $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">fields</span>)<span class="op">*</span> }
+            { $(<span class="macro-nonterminal">$fields</span>)* }
         }
 
-        <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::Parse</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-            <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">input</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>) -&gt; <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::IResult</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>, <span class="self">Self</span><span class="op">&gt;</span> {
-                <span class="macro">__ast_struct!</span> {
-                    @<span class="ident">build_parser</span>
-                    { <span class="ident">input</span>, }
-                    { $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">fields</span>)<span class="op">*</span> }
+        <span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; <span class="macro-nonterminal">$crate::Parse</span>&lt;<span class="lifetime">&#39;a</span>&gt; <span class="kw">for </span><span class="macro-nonterminal">$name</span>&lt;<span class="lifetime">&#39;a</span>&gt; {
+            <span class="kw">fn </span>parse(input: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str) -&gt; <span class="macro-nonterminal">$crate::IResult</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str, <span class="self">Self</span>&gt; {
+                <span class="macro">__ast_struct! </span>{
+                    @build_parser
+                    { input, }
+                    { $(<span class="macro-nonterminal">$fields</span>)* }
                 }
             }
         }
     };
     (
-        @<span class="ident">launch_pad</span>
-        $(<span class="attribute">#[<span class="macro-nonterminal">$</span><span class="macro-nonterminal">attr</span>:<span class="ident">meta</span>]</span>)<span class="op">*</span>
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>:<span class="ident">ident</span>
-        [$(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">generics</span>:<span class="ident">ident</span>)<span class="op">+</span>]
-        [$(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">bounds</span>:<span class="ident">tt</span>)<span class="op">+</span>]
-        { $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">fields</span>:<span class="ident">tt</span>)<span class="op">*</span> }
+        @launch_pad
+        $(<span class="attribute">#[<span class="macro-nonterminal">$attr</span>:meta]</span>)*
+        <span class="macro-nonterminal">$name</span>:ident
+        [$(<span class="macro-nonterminal">$generics</span>:ident)+]
+        [$(<span class="macro-nonterminal">$bounds</span>:tt)+]
+        { $(<span class="macro-nonterminal">$fields</span>:tt)* }
     ) =&gt; {
-        <span class="macro">__ast_struct!</span> {
-            @<span class="ident">build_struct_decl</span>
+        <span class="macro">__ast_struct! </span>{
+            @build_struct_decl
             {
-                $(<span class="attribute">#[<span class="macro-nonterminal">$</span><span class="macro-nonterminal">attr</span>]</span>)<span class="op">*</span>
-                <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>
-                [$(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">generics</span>),<span class="op">+</span>]
+                $(<span class="attribute">#[<span class="macro-nonterminal">$attr</span>]</span>)*
+                <span class="macro-nonterminal">$name
+                </span>[$(<span class="macro-nonterminal">$generics</span>),+]
             }
-            { $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">fields</span>)<span class="op">*</span> }
+            { $(<span class="macro-nonterminal">$fields</span>)* }
         }
 
-        <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">generics</span>),<span class="op">+</span><span class="op">&gt;</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::Parse</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span><span class="op">&lt;</span>$(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">generics</span>),<span class="op">+</span><span class="op">&gt;</span> <span class="kw">where</span> $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">bounds</span>)<span class="op">+</span> {
-            <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">input</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>) -&gt; <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::IResult</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>, <span class="self">Self</span><span class="op">&gt;</span> {
-                <span class="macro">__ast_struct!</span> {
-                    @<span class="ident">build_parser</span>
-                    { <span class="ident">input</span>, }
-                    { $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">fields</span>)<span class="op">*</span> }
+        <span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>, $(<span class="macro-nonterminal">$generics</span>),+&gt; <span class="macro-nonterminal">$crate::Parse</span>&lt;<span class="lifetime">&#39;a</span>&gt; <span class="kw">for </span><span class="macro-nonterminal">$name</span>&lt;$(<span class="macro-nonterminal">$generics</span>),+&gt; <span class="kw">where </span>$(<span class="macro-nonterminal">$bounds</span>)+ {
+            <span class="kw">fn </span>parse(input: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str) -&gt; <span class="macro-nonterminal">$crate::IResult</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str, <span class="self">Self</span>&gt; {
+                <span class="macro">__ast_struct! </span>{
+                    @build_parser
+                    { input, }
+                    { $(<span class="macro-nonterminal">$fields</span>)* }
                 }
             }
         }
     };
 }
 
-<span class="macro">macro_rules!</span> <span class="ident">__ast_enum</span> {
-    (@<span class="ident">build_enum_decl</span>
+<span class="macro">macro_rules! </span>__ast_enum {
+    (@build_enum_decl
         {
-            $(<span class="attribute">#[<span class="macro-nonterminal">$</span><span class="macro-nonterminal">attr</span>:<span class="ident">meta</span>]</span>)<span class="op">*</span>
-            <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>:<span class="ident">ident</span>
-            [ $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">maybe_a</span>:<span class="ident">tt</span>)<span class="op">*</span> ]
-            $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">variant</span>:<span class="ident">ident</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">member</span>:<span class="ident">ty</span>))<span class="op">*</span>
+            $(<span class="attribute">#[<span class="macro-nonterminal">$attr</span>:meta]</span>)*
+            <span class="macro-nonterminal">$name</span>:ident
+            [ $(<span class="macro-nonterminal">$maybe_a</span>:tt)* ]
+            $(<span class="macro-nonterminal">$variant</span>:ident(<span class="macro-nonterminal">$member</span>:ty))*
         }
         { }
     ) =&gt; (
-        $(<span class="attribute">#[<span class="macro-nonterminal">$</span><span class="macro-nonterminal">attr</span>]</span>)<span class="op">*</span>
-        <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">Eq</span>, <span class="ident">PartialEq</span>, <span class="ident">Ord</span>, <span class="ident">PartialOrd</span>, <span class="ident">Hash</span>)]</span>
-        <span class="kw">pub</span> <span class="kw">enum</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span><span class="op">&lt;</span>$(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">maybe_a</span>)<span class="kw-2">*</span><span class="op">&gt;</span> {
-            $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">variant</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">member</span>),)<span class="op">*</span>
+        $(<span class="attribute">#[<span class="macro-nonterminal">$attr</span>]</span>)*
+        <span class="attribute">#[derive(Clone, Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
+        </span><span class="kw">pub enum </span><span class="macro-nonterminal">$name</span>&lt;$(<span class="macro-nonterminal">$maybe_a</span>)<span class="kw-2">*</span>&gt; {
+            $(<span class="macro-nonterminal">$variant</span>(<span class="macro-nonterminal">$member</span>),)*
         }
     );
-    (@<span class="ident">build_enum_decl</span>
-        { $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">prev</span>:<span class="ident">tt</span>)<span class="op">*</span> }
-        { <span class="macro-nonterminal">$</span><span class="macro-nonterminal">variant</span>:<span class="ident">ident</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">member</span>:<span class="ident">ty</span>), $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">rest</span>:<span class="ident">tt</span>)<span class="op">*</span> }
+    (@build_enum_decl
+        { $(<span class="macro-nonterminal">$prev</span>:tt)* }
+        { <span class="macro-nonterminal">$variant</span>:ident(<span class="macro-nonterminal">$member</span>:ty), $(<span class="macro-nonterminal">$rest</span>:tt)* }
     ) =&gt; (
-        <span class="macro">__ast_enum!</span> {
-            @<span class="ident">build_enum_decl</span>
-            { $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">prev</span>)<span class="op">*</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">variant</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">member</span>) }
-            { $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">rest</span>)<span class="op">*</span> }
+        <span class="macro">__ast_enum! </span>{
+            @build_enum_decl
+            { $(<span class="macro-nonterminal">$prev</span>)* <span class="macro-nonterminal">$variant</span>(<span class="macro-nonterminal">$member</span>) }
+            { $(<span class="macro-nonterminal">$rest</span>)* }
         }
     );
-    (@<span class="ident">build_enum_decl</span>
-        { $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">prev</span>:<span class="ident">tt</span>)<span class="op">*</span> }
-        { $(<span class="attribute">#[<span class="macro-nonterminal">$</span><span class="macro-nonterminal">attr</span>:<span class="ident">meta</span>]</span>)<span class="op">*</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">variant</span>:<span class="ident">ident</span>( $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">member</span>:<span class="ident">tt</span>)<span class="op">*</span> ), $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">rest</span>:<span class="ident">tt</span>)<span class="op">*</span> }
+    (@build_enum_decl
+        { $(<span class="macro-nonterminal">$prev</span>:tt)* }
+        { $(<span class="attribute">#[<span class="macro-nonterminal">$attr</span>:meta]</span>)* <span class="macro-nonterminal">$variant</span>:ident( $(<span class="macro-nonterminal">$member</span>:tt)* ), $(<span class="macro-nonterminal">$rest</span>:tt)* }
     ) =&gt; (
-        <span class="macro">__ast_enum!</span> {
-            @<span class="ident">build_enum_decl</span>
-            { $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">prev</span>)<span class="op">*</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">variant</span>(<span class="macro">ast_types!</span> { @<span class="ident">extract_type</span> $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">member</span>)<span class="op">*</span> }) }
-            { $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">rest</span>)<span class="op">*</span> }
-        }
-    );
-
-    (@<span class="ident">build_sub_types</span> { }) =&gt; ();
-    (@<span class="ident">build_sub_types</span>
-        { <span class="macro-nonterminal">$</span><span class="macro-nonterminal">variant</span>:<span class="ident">ident</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">member</span>:<span class="ident">ty</span>), $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">rest</span>:<span class="ident">tt</span>)<span class="op">*</span> }
-    ) =&gt; (
-        <span class="macro">__ast_enum!</span> {
-            @<span class="ident">build_sub_types</span>
-            { $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">rest</span>)<span class="op">*</span> }
-        }
-    );
-    (@<span class="ident">build_sub_types</span>
-        { $(<span class="attribute">#[<span class="macro-nonterminal">$</span><span class="macro-nonterminal">attr</span>:<span class="ident">meta</span>]</span>)<span class="op">*</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">variant</span>:<span class="ident">ident</span>( $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">member</span>:<span class="ident">tt</span>)<span class="op">*</span> ), $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">rest</span>:<span class="ident">tt</span>)<span class="op">*</span> }
-    ) =&gt; (
-        <span class="macro">ast_types!</span> {
-            $(<span class="attribute">#[<span class="macro-nonterminal">$</span><span class="macro-nonterminal">attr</span>]</span>)<span class="op">*</span>
-            $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">member</span>)<span class="op">*</span>
-        }
-        <span class="macro">__ast_enum!</span> {
-            @<span class="ident">build_sub_types</span>
-            { $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">rest</span>)<span class="op">*</span> }
+        <span class="macro">__ast_enum! </span>{
+            @build_enum_decl
+            { $(<span class="macro-nonterminal">$prev</span>)* <span class="macro-nonterminal">$variant</span>(<span class="macro">ast_types! </span>{ @extract_type $(<span class="macro-nonterminal">$member</span>)* }) }
+            { $(<span class="macro-nonterminal">$rest</span>)* }
         }
     );
 
-
-    (@<span class="ident">build_conversions</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>:<span class="ident">ident</span> [ $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">maybe_a</span>:<span class="ident">tt</span>)<span class="op">*</span> ] { }) =&gt; ();
-    (@<span class="ident">build_conversions</span>
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>:<span class="ident">ident</span>
-        [ $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">maybe_a</span>:<span class="ident">tt</span>)<span class="op">*</span> ]
-        { <span class="macro-nonterminal">$</span><span class="macro-nonterminal">variant</span>:<span class="ident">ident</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">member</span>:<span class="ident">ty</span>), $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">rest</span>:<span class="ident">tt</span>)<span class="op">*</span> }
+    (@build_sub_types { }) =&gt; ();
+    (@build_sub_types
+        { <span class="macro-nonterminal">$variant</span>:ident(<span class="macro-nonterminal">$member</span>:ty), $(<span class="macro-nonterminal">$rest</span>:tt)* }
     ) =&gt; (
-        <span class="kw">impl</span><span class="op">&lt;</span>$(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">maybe_a</span>)<span class="kw-2">*</span><span class="op">&gt;</span> <span class="ident">From</span><span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">member</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span><span class="op">&lt;</span>$(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">maybe_a</span>)<span class="kw-2">*</span><span class="op">&gt;</span> {
-            <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">x</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">member</span>) -&gt; <span class="self">Self</span> {
-                <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>::<span class="macro-nonterminal">$</span><span class="macro-nonterminal">variant</span>(<span class="ident">x</span>)
+        <span class="macro">__ast_enum! </span>{
+            @build_sub_types
+            { $(<span class="macro-nonterminal">$rest</span>)* }
+        }
+    );
+    (@build_sub_types
+        { $(<span class="attribute">#[<span class="macro-nonterminal">$attr</span>:meta]</span>)* <span class="macro-nonterminal">$variant</span>:ident( $(<span class="macro-nonterminal">$member</span>:tt)* ), $(<span class="macro-nonterminal">$rest</span>:tt)* }
+    ) =&gt; (
+        <span class="macro">ast_types! </span>{
+            $(<span class="attribute">#[<span class="macro-nonterminal">$attr</span>]</span>)*
+            $(<span class="macro-nonterminal">$member</span>)*
+        }
+        <span class="macro">__ast_enum! </span>{
+            @build_sub_types
+            { $(<span class="macro-nonterminal">$rest</span>)* }
+        }
+    );
+
+
+    (@build_conversions <span class="macro-nonterminal">$name</span>:ident [ $(<span class="macro-nonterminal">$maybe_a</span>:tt)* ] { }) =&gt; ();
+    (@build_conversions
+        <span class="macro-nonterminal">$name</span>:ident
+        [ $(<span class="macro-nonterminal">$maybe_a</span>:tt)* ]
+        { <span class="macro-nonterminal">$variant</span>:ident(<span class="macro-nonterminal">$member</span>:ty), $(<span class="macro-nonterminal">$rest</span>:tt)* }
+    ) =&gt; (
+        <span class="kw">impl</span>&lt;$(<span class="macro-nonterminal">$maybe_a</span>)<span class="kw-2">*</span>&gt; From&lt;<span class="macro-nonterminal">$member</span>&gt; <span class="kw">for </span><span class="macro-nonterminal">$name</span>&lt;$(<span class="macro-nonterminal">$maybe_a</span>)<span class="kw-2">*</span>&gt; {
+            <span class="kw">fn </span>from(x: <span class="macro-nonterminal">$member</span>) -&gt; <span class="self">Self </span>{
+                <span class="macro-nonterminal">$name</span>::<span class="macro-nonterminal">$variant</span>(x)
             }
         }
-        <span class="macro">__ast_enum!</span> {
-            @<span class="ident">build_conversions</span>
-            <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>
-            [ $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">maybe_a</span>)<span class="op">*</span> ]
-            { $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">rest</span>)<span class="op">*</span> }
+        <span class="macro">__ast_enum! </span>{
+            @build_conversions
+            <span class="macro-nonterminal">$name
+            </span>[ $(<span class="macro-nonterminal">$maybe_a</span>)* ]
+            { $(<span class="macro-nonterminal">$rest</span>)* }
         }
     );
-    (@<span class="ident">build_conversions</span>
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>:<span class="ident">ident</span>
-        [ $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">maybe_a</span>:<span class="ident">tt</span>)<span class="op">*</span> ]
-        { $(<span class="attribute">#[<span class="macro-nonterminal">$</span><span class="macro-nonterminal">attr</span>:<span class="ident">meta</span>]</span>)<span class="op">*</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">variant</span>:<span class="ident">ident</span>( $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">member</span>:<span class="ident">tt</span>)<span class="op">*</span> ), $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">rest</span>:<span class="ident">tt</span>)<span class="op">*</span> }
+    (@build_conversions
+        <span class="macro-nonterminal">$name</span>:ident
+        [ $(<span class="macro-nonterminal">$maybe_a</span>:tt)* ]
+        { $(<span class="attribute">#[<span class="macro-nonterminal">$attr</span>:meta]</span>)* <span class="macro-nonterminal">$variant</span>:ident( $(<span class="macro-nonterminal">$member</span>:tt)* ), $(<span class="macro-nonterminal">$rest</span>:tt)* }
     ) =&gt; (
-        <span class="macro">__ast_enum!</span> {
-            @<span class="ident">build_conversions</span>
-            <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>
-            [ $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">maybe_a</span>)<span class="op">*</span> ]
-            { <span class="macro-nonterminal">$</span><span class="macro-nonterminal">variant</span>(<span class="macro">ast_types!</span> { @<span class="ident">extract_type</span> $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">member</span>)<span class="op">*</span> }), $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">rest</span>)<span class="op">*</span> }
+        <span class="macro">__ast_enum! </span>{
+            @build_conversions
+            <span class="macro-nonterminal">$name
+            </span>[ $(<span class="macro-nonterminal">$maybe_a</span>)* ]
+            { <span class="macro-nonterminal">$variant</span>(<span class="macro">ast_types! </span>{ @extract_type $(<span class="macro-nonterminal">$member</span>)* }), $(<span class="macro-nonterminal">$rest</span>)* }
         }
     );
 
-    (@<span class="ident">build_parse</span>
-        { <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>:<span class="ident">ident</span> [ $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">maybe_a</span>:<span class="ident">tt</span>)<span class="op">*</span> ] $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">member</span>:<span class="ident">ty</span>)<span class="op">*</span> }
+    (@build_parse
+        { <span class="macro-nonterminal">$name</span>:ident [ $(<span class="macro-nonterminal">$maybe_a</span>:tt)* ] $(<span class="macro-nonterminal">$member</span>:ty)* }
         { }
     ) =&gt; (
-        <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::Parse</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span><span class="op">&lt;</span>$(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">maybe_a</span>)<span class="kw-2">*</span><span class="op">&gt;</span> {
+        <span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; <span class="macro-nonterminal">$crate::Parse</span>&lt;<span class="lifetime">&#39;a</span>&gt; <span class="kw">for </span><span class="macro-nonterminal">$name</span>&lt;$(<span class="macro-nonterminal">$maybe_a</span>)<span class="kw-2">*</span>&gt; {
             <span class="macro">parser!</span>(<span class="macro">alt!</span>(
-                $(<span class="ident">nom::combinator::map</span>(<span class="macro">weedle!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">member</span>), <span class="ident">From::from</span>),)<span class="op">*</span>
+                $(nom::combinator::map(<span class="macro">weedle!</span>(<span class="macro-nonterminal">$member</span>), From::from),)*
             ));
         }
     );
-    (@<span class="ident">build_parse</span>
-        { $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">prev</span>:<span class="ident">tt</span>)<span class="op">*</span> }
-        { <span class="macro-nonterminal">$</span><span class="macro-nonterminal">variant</span>:<span class="ident">ident</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">member</span>:<span class="ident">ty</span>), $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">rest</span>:<span class="ident">tt</span>)<span class="op">*</span> }
+    (@build_parse
+        { $(<span class="macro-nonterminal">$prev</span>:tt)* }
+        { <span class="macro-nonterminal">$variant</span>:ident(<span class="macro-nonterminal">$member</span>:ty), $(<span class="macro-nonterminal">$rest</span>:tt)* }
     ) =&gt; (
-        <span class="macro">__ast_enum!</span> {
-            @<span class="ident">build_parse</span>
-            { $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">prev</span>)<span class="op">*</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">member</span> }
-            { $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">rest</span>)<span class="op">*</span> }
+        <span class="macro">__ast_enum! </span>{
+            @build_parse
+            { $(<span class="macro-nonterminal">$prev</span>)* <span class="macro-nonterminal">$member </span>}
+            { $(<span class="macro-nonterminal">$rest</span>)* }
         }
     );
-    (@<span class="ident">build_parse</span>
-        { $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">prev</span>:<span class="ident">tt</span>)<span class="op">*</span> }
-        { $(<span class="attribute">#[<span class="macro-nonterminal">$</span><span class="macro-nonterminal">attr</span>:<span class="ident">meta</span>]</span>)<span class="op">*</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">variant</span>:<span class="ident">ident</span>( $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">member</span>:<span class="ident">tt</span>)<span class="op">*</span> ), $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">rest</span>:<span class="ident">tt</span>)<span class="op">*</span> }
+    (@build_parse
+        { $(<span class="macro-nonterminal">$prev</span>:tt)* }
+        { $(<span class="attribute">#[<span class="macro-nonterminal">$attr</span>:meta]</span>)* <span class="macro-nonterminal">$variant</span>:ident( $(<span class="macro-nonterminal">$member</span>:tt)* ), $(<span class="macro-nonterminal">$rest</span>:tt)* }
     ) =&gt; (
-        <span class="macro">__ast_enum!</span> {
-            @<span class="ident">build_parse</span>
-            { $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">prev</span>)<span class="op">*</span> <span class="macro">ast_types!</span> { @<span class="ident">extract_type</span> $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">member</span>)<span class="op">*</span> } }
-            { $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">rest</span>)<span class="op">*</span> }
+        <span class="macro">__ast_enum! </span>{
+            @build_parse
+            { $(<span class="macro-nonterminal">$prev</span>)* <span class="macro">ast_types! </span>{ @extract_type $(<span class="macro-nonterminal">$member</span>)* } }
+            { $(<span class="macro-nonterminal">$rest</span>)* }
         }
     );
 
-    (@<span class="ident">launch_pad</span>
-        $(<span class="attribute">#[<span class="macro-nonterminal">$</span><span class="macro-nonterminal">attr</span>:<span class="ident">meta</span>]</span>)<span class="op">*</span>
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>:<span class="ident">ident</span>
-        [ $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">maybe_a</span>:<span class="ident">tt</span>)<span class="op">*</span> ]
-        { $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">variants</span>:<span class="ident">tt</span>)<span class="op">*</span> }
+    (@launch_pad
+        $(<span class="attribute">#[<span class="macro-nonterminal">$attr</span>:meta]</span>)*
+        <span class="macro-nonterminal">$name</span>:ident
+        [ $(<span class="macro-nonterminal">$maybe_a</span>:tt)* ]
+        { $(<span class="macro-nonterminal">$variants</span>:tt)* }
     ) =&gt; (
-        <span class="macro">__ast_enum!</span> {
-            @<span class="ident">build_enum_decl</span>
-            { $(<span class="attribute">#[<span class="macro-nonterminal">$</span><span class="macro-nonterminal">attr</span>]</span>)<span class="op">*</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span> [ $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">maybe_a</span>)<span class="op">*</span> ] }
-            { $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">variants</span>)<span class="op">*</span> }
+        <span class="macro">__ast_enum! </span>{
+            @build_enum_decl
+            { $(<span class="attribute">#[<span class="macro-nonterminal">$attr</span>]</span>)* <span class="macro-nonterminal">$name </span>[ $(<span class="macro-nonterminal">$maybe_a</span>)* ] }
+            { $(<span class="macro-nonterminal">$variants</span>)* }
         }
 
-        <span class="macro">__ast_enum!</span> {
-            @<span class="ident">build_sub_types</span>
-            { $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">variants</span>)<span class="op">*</span> }
+        <span class="macro">__ast_enum! </span>{
+            @build_sub_types
+            { $(<span class="macro-nonterminal">$variants</span>)* }
         }
 
-        <span class="macro">__ast_enum!</span> {
-            @<span class="ident">build_conversions</span>
-            <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>
-            [ $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">maybe_a</span>)<span class="op">*</span> ]
-            { $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">variants</span>)<span class="op">*</span> }
+        <span class="macro">__ast_enum! </span>{
+            @build_conversions
+            <span class="macro-nonterminal">$name
+            </span>[ $(<span class="macro-nonterminal">$maybe_a</span>)* ]
+            { $(<span class="macro-nonterminal">$variants</span>)* }
         }
 
-        <span class="macro">__ast_enum!</span> {
-            @<span class="ident">build_parse</span>
-            { <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span> [ $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">maybe_a</span>)<span class="op">*</span> ] }
-            { $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">variants</span>)<span class="op">*</span> }
+        <span class="macro">__ast_enum! </span>{
+            @build_parse
+            { <span class="macro-nonterminal">$name </span>[ $(<span class="macro-nonterminal">$maybe_a</span>)* ] }
+            { $(<span class="macro-nonterminal">$variants</span>)* }
         }
     );
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
-<span class="macro">macro_rules!</span> <span class="ident">test</span> {
-    (@<span class="ident">arg</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">parsed</span>:<span class="ident">ident</span>) =&gt; {};
-    (@<span class="ident">arg</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">parsed</span>:<span class="ident">ident</span> $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">lhs</span>:<span class="ident">tt</span>).<span class="op">+</span> <span class="op">==</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">rhs</span>:<span class="ident">expr</span>; $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">rest</span>:<span class="ident">tt</span>)<span class="kw-2">*</span>) =&gt; {
-        <span class="macro">assert_eq!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">parsed</span>.$(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">lhs</span>).<span class="op">+</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">rhs</span>);
-        <span class="macro">test!</span>(@<span class="ident">arg</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">parsed</span> $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">rest</span>)<span class="kw-2">*</span>);
+<span class="attribute">#[cfg(test)]
+</span><span class="macro">macro_rules! </span>test {
+    (@arg <span class="macro-nonterminal">$parsed</span>:ident) =&gt; {};
+    (@arg <span class="macro-nonterminal">$parsed</span>:ident $(<span class="macro-nonterminal">$lhs</span>:tt).+ == <span class="macro-nonterminal">$rhs</span>:expr; $(<span class="macro-nonterminal">$rest</span>:tt)<span class="kw-2">*</span>) =&gt; {
+        <span class="macro">assert_eq!</span>(<span class="macro-nonterminal">$parsed</span>.$(<span class="macro-nonterminal">$lhs</span>).+, <span class="macro-nonterminal">$rhs</span>);
+        <span class="macro">test!</span>(@arg <span class="macro-nonterminal">$parsed </span>$(<span class="macro-nonterminal">$rest</span>)<span class="kw-2">*</span>);
     };
-    (@<span class="ident">arg</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">parsed</span>:<span class="ident">ident</span> $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">lhs</span>:<span class="ident">tt</span>).<span class="op">+</span>(); $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">rest</span>:<span class="ident">tt</span>)<span class="kw-2">*</span>) =&gt; {
-        <span class="macro">assert!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">parsed</span>.$(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">lhs</span>).<span class="op">+</span>());
-        <span class="macro">test!</span>(@<span class="ident">arg</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">parsed</span> $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">rest</span>)<span class="kw-2">*</span>);
+    (@arg <span class="macro-nonterminal">$parsed</span>:ident $(<span class="macro-nonterminal">$lhs</span>:tt).+(); $(<span class="macro-nonterminal">$rest</span>:tt)<span class="kw-2">*</span>) =&gt; {
+        <span class="macro">assert!</span>(<span class="macro-nonterminal">$parsed</span>.$(<span class="macro-nonterminal">$lhs</span>).+());
+        <span class="macro">test!</span>(@arg <span class="macro-nonterminal">$parsed </span>$(<span class="macro-nonterminal">$rest</span>)<span class="kw-2">*</span>);
     };
-    (@<span class="ident">arg</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">parsed</span>:<span class="ident">ident</span> $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">lhs</span>:<span class="ident">tt</span>).<span class="op">+</span>() <span class="op">==</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">rhs</span>:<span class="ident">expr</span>; $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">rest</span>:<span class="ident">tt</span>)<span class="kw-2">*</span>) =&gt; {
-        <span class="macro">assert_eq!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">parsed</span>.$(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">lhs</span>).<span class="op">+</span>(), <span class="macro-nonterminal">$</span><span class="macro-nonterminal">rhs</span>);
-        <span class="macro">test!</span>(@<span class="ident">arg</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">parsed</span> $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">rest</span>)<span class="kw-2">*</span>);
+    (@arg <span class="macro-nonterminal">$parsed</span>:ident $(<span class="macro-nonterminal">$lhs</span>:tt).+() == <span class="macro-nonterminal">$rhs</span>:expr; $(<span class="macro-nonterminal">$rest</span>:tt)<span class="kw-2">*</span>) =&gt; {
+        <span class="macro">assert_eq!</span>(<span class="macro-nonterminal">$parsed</span>.$(<span class="macro-nonterminal">$lhs</span>).+(), <span class="macro-nonterminal">$rhs</span>);
+        <span class="macro">test!</span>(@arg <span class="macro-nonterminal">$parsed </span>$(<span class="macro-nonterminal">$rest</span>)<span class="kw-2">*</span>);
     };
-    (<span class="ident">err</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>:<span class="ident">ident</span> { <span class="macro-nonterminal">$</span><span class="macro-nonterminal">raw</span>:<span class="ident">expr</span> =&gt; <span class="macro-nonterminal">$</span><span class="macro-nonterminal">typ</span>:<span class="ident">ty</span> }) =&gt; {
-        <span class="attribute">#[<span class="ident">test</span>]</span>
-        <span class="kw">fn</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>() {
-            <span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">typ</span><span class="op">&gt;</span><span class="ident">::parse</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">raw</span>).<span class="ident">unwrap_err</span>();
+    (err <span class="macro-nonterminal">$name</span>:ident { <span class="macro-nonterminal">$raw</span>:expr =&gt; <span class="macro-nonterminal">$typ</span>:ty }) =&gt; {
+        <span class="attribute">#[test]
+        </span><span class="kw">fn </span><span class="macro-nonterminal">$name</span>() {
+            &lt;<span class="macro-nonterminal">$typ</span>&gt;::parse(<span class="macro-nonterminal">$raw</span>).unwrap_err();
         }
     };
-    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>:<span class="ident">ident</span> { <span class="macro-nonterminal">$</span><span class="macro-nonterminal">raw</span>:<span class="ident">expr</span> =&gt; <span class="macro-nonterminal">$</span><span class="macro-nonterminal">rem</span>:<span class="ident">expr</span>; <span class="macro-nonterminal">$</span><span class="macro-nonterminal">typ</span>:<span class="ident">ty</span> =&gt; <span class="macro-nonterminal">$</span><span class="macro-nonterminal">val</span>:<span class="ident">expr</span> }) =&gt; {
-        <span class="attribute">#[<span class="ident">test</span>]</span>
-        <span class="kw">fn</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>() {
-            <span class="kw">let</span> (<span class="ident">rem</span>, <span class="ident">parsed</span>) <span class="op">=</span> <span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">typ</span><span class="op">&gt;</span><span class="ident">::parse</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">raw</span>).<span class="ident">unwrap</span>();
-            <span class="macro">assert_eq!</span>(<span class="ident">rem</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">rem</span>);
-            <span class="macro">assert_eq!</span>(<span class="ident">parsed</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">val</span>);
+    (<span class="macro-nonterminal">$name</span>:ident { <span class="macro-nonterminal">$raw</span>:expr =&gt; <span class="macro-nonterminal">$rem</span>:expr; <span class="macro-nonterminal">$typ</span>:ty =&gt; <span class="macro-nonterminal">$val</span>:expr }) =&gt; {
+        <span class="attribute">#[test]
+        </span><span class="kw">fn </span><span class="macro-nonterminal">$name</span>() {
+            <span class="kw">let </span>(rem, parsed) = &lt;<span class="macro-nonterminal">$typ</span>&gt;::parse(<span class="macro-nonterminal">$raw</span>).unwrap();
+            <span class="macro">assert_eq!</span>(rem, <span class="macro-nonterminal">$rem</span>);
+            <span class="macro">assert_eq!</span>(parsed, <span class="macro-nonterminal">$val</span>);
         }
     };
-    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>:<span class="ident">ident</span> { <span class="macro-nonterminal">$</span><span class="macro-nonterminal">raw</span>:<span class="ident">expr</span> =&gt; <span class="macro-nonterminal">$</span><span class="macro-nonterminal">rem</span>:<span class="ident">expr</span>; <span class="macro-nonterminal">$</span><span class="macro-nonterminal">typ</span>:<span class="ident">ty</span>; $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">body</span>:<span class="ident">tt</span>)<span class="op">*</span> }) =&gt; {
-        <span class="attribute">#[<span class="ident">test</span>]</span>
-        <span class="kw">fn</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>() {
-            <span class="kw">let</span> (<span class="ident">_rem</span>, <span class="ident">_parsed</span>) <span class="op">=</span> <span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">typ</span><span class="op">&gt;</span><span class="ident">::parse</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">raw</span>).<span class="ident">unwrap</span>();
-            <span class="macro">assert_eq!</span>(<span class="ident">_rem</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">rem</span>);
-            <span class="macro">test!</span>(@<span class="ident">arg</span> <span class="ident">_parsed</span> $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">body</span>)<span class="kw-2">*</span>);
+    (<span class="macro-nonterminal">$name</span>:ident { <span class="macro-nonterminal">$raw</span>:expr =&gt; <span class="macro-nonterminal">$rem</span>:expr; <span class="macro-nonterminal">$typ</span>:ty; $(<span class="macro-nonterminal">$body</span>:tt)* }) =&gt; {
+        <span class="attribute">#[test]
+        </span><span class="kw">fn </span><span class="macro-nonterminal">$name</span>() {
+            <span class="kw">let </span>(_rem, _parsed) = &lt;<span class="macro-nonterminal">$typ</span>&gt;::parse(<span class="macro-nonterminal">$raw</span>).unwrap();
+            <span class="macro">assert_eq!</span>(_rem, <span class="macro-nonterminal">$rem</span>);
+            <span class="macro">test!</span>(@arg _parsed $(<span class="macro-nonterminal">$body</span>)<span class="kw-2">*</span>);
         }
     };
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
-<span class="macro">macro_rules!</span> <span class="ident">test_variants</span> {
-    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">struct_</span>:<span class="ident">ident</span> { $( <span class="macro-nonterminal">$</span><span class="macro-nonterminal">variant</span>:<span class="ident">ident</span> <span class="op">==</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">value</span>:<span class="ident">expr</span> ),<span class="op">*</span> $(,)<span class="op">*</span> }) =&gt; {
-        <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">non_snake_case</span>)]</span>
-        <span class="kw">mod</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">struct_</span> {
+<span class="attribute">#[cfg(test)]
+</span><span class="macro">macro_rules! </span>test_variants {
+    (<span class="macro-nonterminal">$struct_</span>:ident { $( <span class="macro-nonterminal">$variant</span>:ident == <span class="macro-nonterminal">$value</span>:expr ),* $(,)* }) =&gt; {
+        <span class="attribute">#[allow(non_snake_case)]
+        </span><span class="kw">mod </span><span class="macro-nonterminal">$struct_ </span>{
             $(
-                <span class="kw">mod</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">variant</span> {
-                    <span class="kw">use</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">crate::types</span>::<span class="kw-2">*</span>;
-                    <span class="attribute">#[<span class="ident">test</span>]</span>
-                    <span class="kw">fn</span> <span class="ident">should_parse</span>() {
-                        <span class="kw">let</span> (<span class="ident">rem</span>, <span class="ident">parsed</span>) <span class="op">=</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">struct_::parse</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">value</span>).<span class="ident">unwrap</span>();
-                        <span class="macro">assert_eq!</span>(<span class="ident">rem</span>, <span class="string">&quot;&quot;</span>);
-                        <span class="kw">match</span> <span class="ident">parsed</span> {
-                            <span class="macro-nonterminal">$</span><span class="macro-nonterminal">struct_</span>::<span class="macro-nonterminal">$</span><span class="macro-nonterminal">variant</span>(<span class="kw">_</span>) =&gt; {},
-                            <span class="kw">_</span> =&gt; { <span class="macro">panic!</span>(<span class="string">&quot;Failed to parse&quot;</span>); }
+                <span class="kw">mod </span><span class="macro-nonterminal">$variant </span>{
+                    <span class="kw">use </span><span class="macro-nonterminal">$crate::types</span>::<span class="kw-2">*</span>;
+                    <span class="attribute">#[test]
+                    </span><span class="kw">fn </span>should_parse() {
+                        <span class="kw">let </span>(rem, parsed) = <span class="macro-nonterminal">$struct_::parse</span>(<span class="macro-nonterminal">$value</span>).unwrap();
+                        <span class="macro">assert_eq!</span>(rem, <span class="string">&quot;&quot;</span>);
+                        <span class="kw">match </span>parsed {
+                            <span class="macro-nonterminal">$struct_</span>::<span class="macro-nonterminal">$variant</span>(<span class="kw">_</span>) =&gt; {},
+                            <span class="kw">_ </span>=&gt; { <span class="macro">panic!</span>(<span class="string">&quot;Failed to parse&quot;</span>); }
                         }
                     }
                 }
-            )<span class="op">*</span>
+            )*
         }
     };
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="weedle" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="weedle" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (77e57db38 2022-10-30)" ></div></body></html>

@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/goblin-0.5.4/src/elf/reloc.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>reloc.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../goblin/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../goblin/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../goblin/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/goblin-0.5.4/src/elf/reloc.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>reloc.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../normalize.css"><link rel="stylesheet" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../ayu.css" disabled><link rel="stylesheet" href="../../../dark.css" disabled><link rel="stylesheet" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../goblin/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -516,523 +516,523 @@
 <span id="516">516</span>
 <span id="517">517</span>
 <span id="518">518</span>
-</pre><pre class="rust"><code><span class="doccomment">//! # Relocation computations</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! The following notation is used to describe relocation computations</span>
-<span class="doccomment">//! specific to x86_64 ELF.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//!  * A: The addend used to compute the value of the relocatable field.</span>
-<span class="doccomment">//!  * B: The base address at which a shared object is loaded into memory</span>
-<span class="doccomment">//!       during execution. Generally, a shared object file is built with a</span>
-<span class="doccomment">//!       base virtual address of 0. However, the execution address of the</span>
-<span class="doccomment">//!       shared object is different.</span>
-<span class="doccomment">//!  * G: The offset into the global offset table at which the address of</span>
-<span class="doccomment">//!       the relocation entry&#39;s symbol resides during execution.</span>
-<span class="doccomment">//!  * GOT: The address of the global offset table.</span>
-<span class="doccomment">//!  * L: The section offset or address of the procedure linkage table entry</span>
-<span class="doccomment">//!       for a symbol.</span>
-<span class="doccomment">//!  * P: The section offset or address of the storage unit being relocated,</span>
-<span class="doccomment">//!       computed using r_offset.</span>
-<span class="doccomment">//!  * S: The value of the symbol whose index resides in the relocation entry.</span>
-<span class="doccomment">//!  * Z: The size of the symbol whose index resides in the relocation entry.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! Below are some common x86_64 relocation computations you might find useful:</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! | Relocation                | Value | Size      | Formula           |</span>
-<span class="doccomment">//! |:--------------------------|:------|:----------|:------------------|</span>
-<span class="doccomment">//! | `R_X86_64_NONE`           | 0     | NONE      | NONE              |</span>
-<span class="doccomment">//! | `R_X86_64_64`             | 1     | 64        | S + A             |</span>
-<span class="doccomment">//! | `R_X86_64_PC32`           | 2     | 32        | S + A - P         |</span>
-<span class="doccomment">//! | `R_X86_64_GOT32`          | 3     | 32        | G + A             |</span>
-<span class="doccomment">//! | `R_X86_64_PLT32`          | 4     | 32        | L + A - P         |</span>
-<span class="doccomment">//! | `R_X86_64_COPY`           | 5     | NONE      | NONE              |</span>
-<span class="doccomment">//! | `R_X86_64_GLOB_DAT`       | 6     | 64        | S                 |</span>
-<span class="doccomment">//! | `R_X86_64_JUMP_SLOT`      | 7     | 64        | S                 |</span>
-<span class="doccomment">//! | `R_X86_64_RELATIVE`       | 8     | 64        | B + A             |</span>
-<span class="doccomment">//! | `R_X86_64_GOTPCREL`       | 9     | 32        | G + GOT + A - P   |</span>
-<span class="doccomment">//! | `R_X86_64_32`             | 10    | 32        | S + A             |</span>
-<span class="doccomment">//! | `R_X86_64_32S`            | 11    | 32        | S + A             |</span>
-<span class="doccomment">//! | `R_X86_64_16`             | 12    | 16        | S + A             |</span>
-<span class="doccomment">//! | `R_X86_64_PC16`           | 13    | 16        | S + A - P         |</span>
-<span class="doccomment">//! | `R_X86_64_8`              | 14    | 8         | S + A             |</span>
-<span class="doccomment">//! | `R_X86_64_PC8`            | 15    | 8         | S + A - P         |</span>
-<span class="doccomment">//! | `R_X86_64_DTPMOD64`       | 16    | 64        |                   |</span>
-<span class="doccomment">//! | `R_X86_64_DTPOFF64`       | 17    | 64        |                   |</span>
-<span class="doccomment">//! | `R_X86_64_TPOFF64`        | 18    | 64        |                   |</span>
-<span class="doccomment">//! | `R_X86_64_TLSGD`          | 19    | 32        |                   |</span>
-<span class="doccomment">//! | `R_X86_64_TLSLD`          | 20    | 32        |                   |</span>
-<span class="doccomment">//! | `R_X86_64_DTPOFF32`       | 21    | 32        |                   |</span>
-<span class="doccomment">//! | `R_X86_64_GOTTPOFF`       | 22    | 32        |                   |</span>
-<span class="doccomment">//! | `R_X86_64_TPOFF32`        | 23    | 32        |                   |</span>
-<span class="doccomment">//! | `R_X86_64_PC64`           | 24    | 64        | S + A - P         |</span>
-<span class="doccomment">//! | `R_X86_64_GOTOFF64`       | 25    | 64        | S + A - GOT       |</span>
-<span class="doccomment">//! | `R_X86_64_GOTPC32`        | 26    | 32        | GOT + A - P       |</span>
-<span class="doccomment">//! | `R_X86_64_SIZE32`         | 32    | 32        | Z + A             |</span>
-<span class="doccomment">//! | `R_X86_64_SIZE64`         | 33    | 64        | Z + A             |</span>
-<span class="doccomment">//! | `R_X86_64_GOTPC32_TLSDESC`  34    | 32        |                   |</span>
-<span class="doccomment">//! | `R_X86_64_TLSDESC_CALL`   | 35    | NONE      |                   |</span>
-<span class="doccomment">//! | `R_X86_64_TLSDESC`        | 36    | 64 × 2    |                   |</span>
-<span class="doccomment">//! | `R_X86_64_IRELATIVE`      | 37    | 64        | indirect (B + A)  |</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! TLS information is at http://people.redhat.com/aoliva/writeups/TLS/RFC-TLSDESC-x86.txt</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! `R_X86_64_IRELATIVE` is similar to `R_X86_64_RELATIVE` except that</span>
-<span class="doccomment">//! the value used in this relocation is the program address returned by the function,</span>
-<span class="doccomment">//! which takes no arguments, at the address of the result of the corresponding</span>
-<span class="doccomment">//! `R_X86_64_RELATIVE` relocation.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! Read more https://docs.oracle.com/cd/E23824_01/html/819-0690/chapter6-54839.html</span>
+</pre><pre class="rust"><code><span class="doccomment">//! # Relocation computations
+//!
+//! The following notation is used to describe relocation computations
+//! specific to x86_64 ELF.
+//!
+//!  * A: The addend used to compute the value of the relocatable field.
+//!  * B: The base address at which a shared object is loaded into memory
+//!       during execution. Generally, a shared object file is built with a
+//!       base virtual address of 0. However, the execution address of the
+//!       shared object is different.
+//!  * G: The offset into the global offset table at which the address of
+//!       the relocation entry&#39;s symbol resides during execution.
+//!  * GOT: The address of the global offset table.
+//!  * L: The section offset or address of the procedure linkage table entry
+//!       for a symbol.
+//!  * P: The section offset or address of the storage unit being relocated,
+//!       computed using r_offset.
+//!  * S: The value of the symbol whose index resides in the relocation entry.
+//!  * Z: The size of the symbol whose index resides in the relocation entry.
+//!
+//! Below are some common x86_64 relocation computations you might find useful:
+//!
+//! | Relocation                | Value | Size      | Formula           |
+//! |:--------------------------|:------|:----------|:------------------|
+//! | `R_X86_64_NONE`           | 0     | NONE      | NONE              |
+//! | `R_X86_64_64`             | 1     | 64        | S + A             |
+//! | `R_X86_64_PC32`           | 2     | 32        | S + A - P         |
+//! | `R_X86_64_GOT32`          | 3     | 32        | G + A             |
+//! | `R_X86_64_PLT32`          | 4     | 32        | L + A - P         |
+//! | `R_X86_64_COPY`           | 5     | NONE      | NONE              |
+//! | `R_X86_64_GLOB_DAT`       | 6     | 64        | S                 |
+//! | `R_X86_64_JUMP_SLOT`      | 7     | 64        | S                 |
+//! | `R_X86_64_RELATIVE`       | 8     | 64        | B + A             |
+//! | `R_X86_64_GOTPCREL`       | 9     | 32        | G + GOT + A - P   |
+//! | `R_X86_64_32`             | 10    | 32        | S + A             |
+//! | `R_X86_64_32S`            | 11    | 32        | S + A             |
+//! | `R_X86_64_16`             | 12    | 16        | S + A             |
+//! | `R_X86_64_PC16`           | 13    | 16        | S + A - P         |
+//! | `R_X86_64_8`              | 14    | 8         | S + A             |
+//! | `R_X86_64_PC8`            | 15    | 8         | S + A - P         |
+//! | `R_X86_64_DTPMOD64`       | 16    | 64        |                   |
+//! | `R_X86_64_DTPOFF64`       | 17    | 64        |                   |
+//! | `R_X86_64_TPOFF64`        | 18    | 64        |                   |
+//! | `R_X86_64_TLSGD`          | 19    | 32        |                   |
+//! | `R_X86_64_TLSLD`          | 20    | 32        |                   |
+//! | `R_X86_64_DTPOFF32`       | 21    | 32        |                   |
+//! | `R_X86_64_GOTTPOFF`       | 22    | 32        |                   |
+//! | `R_X86_64_TPOFF32`        | 23    | 32        |                   |
+//! | `R_X86_64_PC64`           | 24    | 64        | S + A - P         |
+//! | `R_X86_64_GOTOFF64`       | 25    | 64        | S + A - GOT       |
+//! | `R_X86_64_GOTPC32`        | 26    | 32        | GOT + A - P       |
+//! | `R_X86_64_SIZE32`         | 32    | 32        | Z + A             |
+//! | `R_X86_64_SIZE64`         | 33    | 64        | Z + A             |
+//! | `R_X86_64_GOTPC32_TLSDESC`  34    | 32        |                   |
+//! | `R_X86_64_TLSDESC_CALL`   | 35    | NONE      |                   |
+//! | `R_X86_64_TLSDESC`        | 36    | 64 × 2    |                   |
+//! | `R_X86_64_IRELATIVE`      | 37    | 64        | indirect (B + A)  |
+//!
+//! TLS information is at http://people.redhat.com/aoliva/writeups/TLS/RFC-TLSDESC-x86.txt
+//!
+//! `R_X86_64_IRELATIVE` is similar to `R_X86_64_RELATIVE` except that
+//! the value used in this relocation is the program address returned by the function,
+//! which takes no arguments, at the address of the result of the corresponding
+//! `R_X86_64_RELATIVE` relocation.
+//!
+//! Read more https://docs.oracle.com/cd/E23824_01/html/819-0690/chapter6-54839.html
 
-<span class="macro">include!</span>(<span class="string">&quot;constants_relocation.rs&quot;</span>);
+</span><span class="macro">include!</span>(<span class="string">&quot;constants_relocation.rs&quot;</span>);
 
-<span class="macro">macro_rules!</span> <span class="ident">elf_reloc</span> {
-    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">size</span>:<span class="ident">ident</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">isize</span>:<span class="ident">ty</span>) =&gt; {
-        <span class="kw">use</span> <span class="ident">core::fmt</span>;
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;alloc&quot;</span>)]</span>
-        <span class="kw">use</span> <span class="ident">scroll</span>::{<span class="ident">Pread</span>, <span class="ident">Pwrite</span>, <span class="ident">SizeWith</span>};
-        <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-        <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>, <span class="ident">Default</span>)]</span>
-        <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;alloc&quot;</span>, <span class="ident">derive</span>(<span class="ident">Pread</span>, <span class="ident">Pwrite</span>, <span class="ident">SizeWith</span>))]</span>
-        <span class="doccomment">/// Relocation with an explicit addend</span>
-        <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Rela</span> {
-            <span class="doccomment">/// Address</span>
-            <span class="kw">pub</span> <span class="ident">r_offset</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">size</span>,
-            <span class="doccomment">/// Relocation type and symbol index</span>
-            <span class="kw">pub</span> <span class="ident">r_info</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">size</span>,
-            <span class="doccomment">/// Addend</span>
-            <span class="kw">pub</span> <span class="ident">r_addend</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">isize</span>,
+<span class="macro">macro_rules! </span>elf_reloc {
+    (<span class="macro-nonterminal">$size</span>:ident, <span class="macro-nonterminal">$isize</span>:ty) =&gt; {
+        <span class="kw">use </span>core::fmt;
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;alloc&quot;</span>)]
+        </span><span class="kw">use </span>scroll::{Pread, Pwrite, SizeWith};
+        <span class="attribute">#[repr(C)]
+        #[derive(Clone, Copy, PartialEq, Default)]
+        #[cfg_attr(feature = <span class="string">&quot;alloc&quot;</span>, derive(Pread, Pwrite, SizeWith))]
+        </span><span class="doccomment">/// Relocation with an explicit addend
+        </span><span class="kw">pub struct </span>Rela {
+            <span class="doccomment">/// Address
+            </span><span class="kw">pub </span>r_offset: <span class="macro-nonterminal">$size</span>,
+            <span class="doccomment">/// Relocation type and symbol index
+            </span><span class="kw">pub </span>r_info: <span class="macro-nonterminal">$size</span>,
+            <span class="doccomment">/// Addend
+            </span><span class="kw">pub </span>r_addend: <span class="macro-nonterminal">$isize</span>,
         }
-        <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-        <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">PartialEq</span>, <span class="ident">Default</span>)]</span>
-        <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;alloc&quot;</span>, <span class="ident">derive</span>(<span class="ident">Pread</span>, <span class="ident">Pwrite</span>, <span class="ident">SizeWith</span>))]</span>
-        <span class="doccomment">/// Relocation without an addend</span>
-        <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Rel</span> {
-            <span class="doccomment">/// address</span>
-            <span class="kw">pub</span> <span class="ident">r_offset</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">size</span>,
-            <span class="doccomment">/// relocation type and symbol address</span>
-            <span class="kw">pub</span> <span class="ident">r_info</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">size</span>,
+        <span class="attribute">#[repr(C)]
+        #[derive(Clone, PartialEq, Default)]
+        #[cfg_attr(feature = <span class="string">&quot;alloc&quot;</span>, derive(Pread, Pwrite, SizeWith))]
+        </span><span class="doccomment">/// Relocation without an addend
+        </span><span class="kw">pub struct </span>Rel {
+            <span class="doccomment">/// address
+            </span><span class="kw">pub </span>r_offset: <span class="macro-nonterminal">$size</span>,
+            <span class="doccomment">/// relocation type and symbol address
+            </span><span class="kw">pub </span>r_info: <span class="macro-nonterminal">$size</span>,
         }
-        <span class="kw">use</span> <span class="ident">plain</span>;
-        <span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">plain::Plain</span> <span class="kw">for</span> <span class="ident">Rela</span> {}
-        <span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">plain::Plain</span> <span class="kw">for</span> <span class="ident">Rel</span> {}
+        <span class="kw">use </span>plain;
+        <span class="kw">unsafe impl </span>plain::Plain <span class="kw">for </span>Rela {}
+        <span class="kw">unsafe impl </span>plain::Plain <span class="kw">for </span>Rel {}
 
-        <span class="kw">impl</span> <span class="ident">fmt::Debug</span> <span class="kw">for</span> <span class="ident">Rela</span> {
-            <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">fmt::Formatter</span>) -&gt; <span class="ident">fmt::Result</span> {
-                <span class="kw">let</span> <span class="ident">sym</span> <span class="op">=</span> <span class="ident">r_sym</span>(<span class="self">self</span>.<span class="ident">r_info</span>);
-                <span class="kw">let</span> <span class="ident">typ</span> <span class="op">=</span> <span class="ident">r_type</span>(<span class="self">self</span>.<span class="ident">r_info</span>);
-                <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;Rela&quot;</span>)
-                    .<span class="ident">field</span>(<span class="string">&quot;r_offset&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{:x}&quot;</span>, <span class="self">self</span>.<span class="ident">r_offset</span>))
-                    .<span class="ident">field</span>(<span class="string">&quot;r_info&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{:x}&quot;</span>, <span class="self">self</span>.<span class="ident">r_info</span>))
-                    .<span class="ident">field</span>(<span class="string">&quot;r_addend&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{:x}&quot;</span>, <span class="self">self</span>.<span class="ident">r_addend</span>))
-                    .<span class="ident">field</span>(<span class="string">&quot;r_typ&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">typ</span>)
-                    .<span class="ident">field</span>(<span class="string">&quot;r_sym&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">sym</span>)
-                    .<span class="ident">finish</span>()
+        <span class="kw">impl </span>fmt::Debug <span class="kw">for </span>Rela {
+            <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>fmt::Formatter) -&gt; fmt::Result {
+                <span class="kw">let </span>sym = r_sym(<span class="self">self</span>.r_info);
+                <span class="kw">let </span>typ = r_type(<span class="self">self</span>.r_info);
+                f.debug_struct(<span class="string">&quot;Rela&quot;</span>)
+                    .field(<span class="string">&quot;r_offset&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{:x}&quot;</span>, <span class="self">self</span>.r_offset))
+                    .field(<span class="string">&quot;r_info&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{:x}&quot;</span>, <span class="self">self</span>.r_info))
+                    .field(<span class="string">&quot;r_addend&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{:x}&quot;</span>, <span class="self">self</span>.r_addend))
+                    .field(<span class="string">&quot;r_typ&quot;</span>, <span class="kw-2">&amp;</span>typ)
+                    .field(<span class="string">&quot;r_sym&quot;</span>, <span class="kw-2">&amp;</span>sym)
+                    .finish()
             }
         }
-        <span class="kw">impl</span> <span class="ident">fmt::Debug</span> <span class="kw">for</span> <span class="ident">Rel</span> {
-            <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">fmt::Formatter</span>) -&gt; <span class="ident">fmt::Result</span> {
-                <span class="kw">let</span> <span class="ident">sym</span> <span class="op">=</span> <span class="ident">r_sym</span>(<span class="self">self</span>.<span class="ident">r_info</span>);
-                <span class="kw">let</span> <span class="ident">typ</span> <span class="op">=</span> <span class="ident">r_type</span>(<span class="self">self</span>.<span class="ident">r_info</span>);
-                <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;Rel&quot;</span>)
-                    .<span class="ident">field</span>(<span class="string">&quot;r_offset&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{:x}&quot;</span>, <span class="self">self</span>.<span class="ident">r_offset</span>))
-                    .<span class="ident">field</span>(<span class="string">&quot;r_info&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{:x}&quot;</span>, <span class="self">self</span>.<span class="ident">r_info</span>))
-                    .<span class="ident">field</span>(<span class="string">&quot;r_typ&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">typ</span>)
-                    .<span class="ident">field</span>(<span class="string">&quot;r_sym&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">sym</span>)
-                    .<span class="ident">finish</span>()
+        <span class="kw">impl </span>fmt::Debug <span class="kw">for </span>Rel {
+            <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>fmt::Formatter) -&gt; fmt::Result {
+                <span class="kw">let </span>sym = r_sym(<span class="self">self</span>.r_info);
+                <span class="kw">let </span>typ = r_type(<span class="self">self</span>.r_info);
+                f.debug_struct(<span class="string">&quot;Rel&quot;</span>)
+                    .field(<span class="string">&quot;r_offset&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{:x}&quot;</span>, <span class="self">self</span>.r_offset))
+                    .field(<span class="string">&quot;r_info&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{:x}&quot;</span>, <span class="self">self</span>.r_info))
+                    .field(<span class="string">&quot;r_typ&quot;</span>, <span class="kw-2">&amp;</span>typ)
+                    .field(<span class="string">&quot;r_sym&quot;</span>, <span class="kw-2">&amp;</span>sym)
+                    .finish()
             }
         }
     };
 }
 
-<span class="macro">macro_rules!</span> <span class="ident">elf_rela_std_impl</span> {
-    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">size</span>:<span class="ident">ident</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">isize</span>:<span class="ident">ty</span>) =&gt; {
-        <span class="macro">if_alloc!</span> {
-            <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::elf::reloc::Reloc</span>;
+<span class="macro">macro_rules! </span>elf_rela_std_impl {
+    (<span class="macro-nonterminal">$size</span>:ident, <span class="macro-nonterminal">$isize</span>:ty) =&gt; {
+        <span class="macro">if_alloc! </span>{
+            <span class="kw">use </span><span class="kw">crate</span>::elf::reloc::Reloc;
 
-            <span class="kw">use</span> <span class="ident">core::slice</span>;
+            <span class="kw">use </span>core::slice;
 
-            <span class="macro">if_std!</span> {
-                <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::error::Result</span>;
+            <span class="macro">if_std! </span>{
+                <span class="kw">use </span><span class="kw">crate</span>::error::Result;
 
-                <span class="kw">use</span> <span class="ident">std::fs::File</span>;
-                <span class="kw">use</span> <span class="ident">std::io</span>::{<span class="ident">Read</span>, <span class="ident">Seek</span>};
-                <span class="kw">use</span> <span class="ident">std::io::SeekFrom::Start</span>;
+                <span class="kw">use </span>std::fs::File;
+                <span class="kw">use </span>std::io::{Read, Seek};
+                <span class="kw">use </span>std::io::SeekFrom::Start;
             }
 
-            <span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">Rela</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Reloc</span> {
-                <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">rela</span>: <span class="ident">Rela</span>) -&gt; <span class="self">Self</span> {
-                    <span class="ident">Reloc</span> {
-                        <span class="ident">r_offset</span>: <span class="ident">u64::from</span>(<span class="ident">rela</span>.<span class="ident">r_offset</span>),
-                        <span class="ident">r_addend</span>: <span class="prelude-val">Some</span>(<span class="ident">i64::from</span>(<span class="ident">rela</span>.<span class="ident">r_addend</span>)),
-                        <span class="ident">r_sym</span>: <span class="ident">r_sym</span>(<span class="ident">rela</span>.<span class="ident">r_info</span>) <span class="kw">as</span> <span class="ident">usize</span>,
-                        <span class="ident">r_type</span>: <span class="ident">r_type</span>(<span class="ident">rela</span>.<span class="ident">r_info</span>),
+            <span class="kw">impl </span>From&lt;Rela&gt; <span class="kw">for </span>Reloc {
+                <span class="kw">fn </span>from(rela: Rela) -&gt; <span class="self">Self </span>{
+                    Reloc {
+                        r_offset: u64::from(rela.r_offset),
+                        r_addend: <span class="prelude-val">Some</span>(i64::from(rela.r_addend)),
+                        r_sym: r_sym(rela.r_info) <span class="kw">as </span>usize,
+                        r_type: r_type(rela.r_info),
                     }
                 }
             }
 
-            <span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">Rel</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Reloc</span> {
-                <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">rel</span>: <span class="ident">Rel</span>) -&gt; <span class="self">Self</span> {
-                    <span class="ident">Reloc</span> {
-                        <span class="ident">r_offset</span>: <span class="ident">u64::from</span>(<span class="ident">rel</span>.<span class="ident">r_offset</span>),
-                        <span class="ident">r_addend</span>: <span class="prelude-val">None</span>,
-                        <span class="ident">r_sym</span>: <span class="ident">r_sym</span>(<span class="ident">rel</span>.<span class="ident">r_info</span>) <span class="kw">as</span> <span class="ident">usize</span>,
-                        <span class="ident">r_type</span>: <span class="ident">r_type</span>(<span class="ident">rel</span>.<span class="ident">r_info</span>),
+            <span class="kw">impl </span>From&lt;Rel&gt; <span class="kw">for </span>Reloc {
+                <span class="kw">fn </span>from(rel: Rel) -&gt; <span class="self">Self </span>{
+                    Reloc {
+                        r_offset: u64::from(rel.r_offset),
+                        r_addend: <span class="prelude-val">None</span>,
+                        r_sym: r_sym(rel.r_info) <span class="kw">as </span>usize,
+                        r_type: r_type(rel.r_info),
                     }
                 }
             }
 
-            <span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">Reloc</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Rela</span> {
-                <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">rela</span>: <span class="ident">Reloc</span>) -&gt; <span class="self">Self</span> {
-                    <span class="kw">let</span> <span class="ident">r_info</span> <span class="op">=</span> <span class="ident">r_info</span>(<span class="ident">rela</span>.<span class="ident">r_sym</span> <span class="kw">as</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">size</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">size::from</span>(<span class="ident">rela</span>.<span class="ident">r_type</span>));
-                    <span class="ident">Rela</span> {
-                        <span class="ident">r_offset</span>: <span class="ident">rela</span>.<span class="ident">r_offset</span> <span class="kw">as</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">size</span>,
-                        <span class="ident">r_info</span>: <span class="ident">r_info</span>,
-                        <span class="ident">r_addend</span>: <span class="ident">rela</span>.<span class="ident">r_addend</span>.<span class="ident">unwrap_or</span>(<span class="number">0</span>) <span class="kw">as</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">isize</span>,
+            <span class="kw">impl </span>From&lt;Reloc&gt; <span class="kw">for </span>Rela {
+                <span class="kw">fn </span>from(rela: Reloc) -&gt; <span class="self">Self </span>{
+                    <span class="kw">let </span>r_info = r_info(rela.r_sym <span class="kw">as </span><span class="macro-nonterminal">$size</span>, <span class="macro-nonterminal">$size::from</span>(rela.r_type));
+                    Rela {
+                        r_offset: rela.r_offset <span class="kw">as </span><span class="macro-nonterminal">$size</span>,
+                        r_info: r_info,
+                        r_addend: rela.r_addend.unwrap_or(<span class="number">0</span>) <span class="kw">as </span><span class="macro-nonterminal">$isize</span>,
                     }
                 }
             }
 
-            <span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">Reloc</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Rel</span> {
-                <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">rel</span>: <span class="ident">Reloc</span>) -&gt; <span class="self">Self</span> {
-                    <span class="kw">let</span> <span class="ident">r_info</span> <span class="op">=</span> <span class="ident">r_info</span>(<span class="ident">rel</span>.<span class="ident">r_sym</span> <span class="kw">as</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">size</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">size::from</span>(<span class="ident">rel</span>.<span class="ident">r_type</span>));
-                    <span class="ident">Rel</span> {
-                        <span class="ident">r_offset</span>: <span class="ident">rel</span>.<span class="ident">r_offset</span> <span class="kw">as</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">size</span>,
-                        <span class="ident">r_info</span>: <span class="ident">r_info</span>,
+            <span class="kw">impl </span>From&lt;Reloc&gt; <span class="kw">for </span>Rel {
+                <span class="kw">fn </span>from(rel: Reloc) -&gt; <span class="self">Self </span>{
+                    <span class="kw">let </span>r_info = r_info(rel.r_sym <span class="kw">as </span><span class="macro-nonterminal">$size</span>, <span class="macro-nonterminal">$size::from</span>(rel.r_type));
+                    Rel {
+                        r_offset: rel.r_offset <span class="kw">as </span><span class="macro-nonterminal">$size</span>,
+                        r_info: r_info,
                     }
                 }
             }
 
-            <span class="doccomment">/// Gets the rela entries given a rela pointer and the _size_ of the rela section in the binary,</span>
-            <span class="doccomment">/// in bytes.</span>
-            <span class="doccomment">/// Assumes the pointer is valid and can safely return a slice of memory pointing to the relas because:</span>
-            <span class="doccomment">/// 1. `ptr` points to memory received from the kernel (i.e., it loaded the executable), _or_</span>
-            <span class="doccomment">/// 2. The binary has already been mmapped (i.e., it&#39;s a `SharedObject`), and hence it&#39;s safe to return a slice of that memory.</span>
-            <span class="doccomment">/// 3. Or if you obtained the pointer in some other lawful manner</span>
-            <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_raw_rela</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>(<span class="ident">ptr</span>: <span class="kw-2">*const</span> <span class="ident">Rela</span>, <span class="ident">size</span>: <span class="ident">usize</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">Rela</span>] {
-                <span class="ident">slice::from_raw_parts</span>(<span class="ident">ptr</span>, <span class="ident">size</span> <span class="op">/</span> <span class="ident">SIZEOF_RELA</span>)
+            <span class="doccomment">/// Gets the rela entries given a rela pointer and the _size_ of the rela section in the binary,
+            /// in bytes.
+            /// Assumes the pointer is valid and can safely return a slice of memory pointing to the relas because:
+            /// 1. `ptr` points to memory received from the kernel (i.e., it loaded the executable), _or_
+            /// 2. The binary has already been mmapped (i.e., it&#39;s a `SharedObject`), and hence it&#39;s safe to return a slice of that memory.
+            /// 3. Or if you obtained the pointer in some other lawful manner
+            </span><span class="kw">pub unsafe fn </span>from_raw_rela&lt;<span class="lifetime">&#39;a</span>&gt;(ptr: <span class="kw-2">*const </span>Rela, size: usize) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[Rela] {
+                slice::from_raw_parts(ptr, size / SIZEOF_RELA)
             }
 
-            <span class="doccomment">/// Gets the rel entries given a rel pointer and the _size_ of the rel section in the binary,</span>
-            <span class="doccomment">/// in bytes.</span>
-            <span class="doccomment">/// Assumes the pointer is valid and can safely return a slice of memory pointing to the rels because:</span>
-            <span class="doccomment">/// 1. `ptr` points to memory received from the kernel (i.e., it loaded the executable), _or_</span>
-            <span class="doccomment">/// 2. The binary has already been mmapped (i.e., it&#39;s a `SharedObject`), and hence it&#39;s safe to return a slice of that memory.</span>
-            <span class="doccomment">/// 3. Or if you obtained the pointer in some other lawful manner</span>
-            <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_raw_rel</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>(<span class="ident">ptr</span>: <span class="kw-2">*const</span> <span class="ident">Rel</span>, <span class="ident">size</span>: <span class="ident">usize</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">Rel</span>] {
-                <span class="ident">slice::from_raw_parts</span>(<span class="ident">ptr</span>, <span class="ident">size</span> <span class="op">/</span> <span class="ident">SIZEOF_REL</span>)
+            <span class="doccomment">/// Gets the rel entries given a rel pointer and the _size_ of the rel section in the binary,
+            /// in bytes.
+            /// Assumes the pointer is valid and can safely return a slice of memory pointing to the rels because:
+            /// 1. `ptr` points to memory received from the kernel (i.e., it loaded the executable), _or_
+            /// 2. The binary has already been mmapped (i.e., it&#39;s a `SharedObject`), and hence it&#39;s safe to return a slice of that memory.
+            /// 3. Or if you obtained the pointer in some other lawful manner
+            </span><span class="kw">pub unsafe fn </span>from_raw_rel&lt;<span class="lifetime">&#39;a</span>&gt;(ptr: <span class="kw-2">*const </span>Rel, size: usize) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[Rel] {
+                slice::from_raw_parts(ptr, size / SIZEOF_REL)
             }
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;std&quot;</span>)]</span>
-            <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_fd</span>(<span class="ident">fd</span>: <span class="kw-2">&amp;mut</span> <span class="ident">File</span>, <span class="ident">offset</span>: <span class="ident">usize</span>, <span class="ident">size</span>: <span class="ident">usize</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Rela</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-                <span class="kw">let</span> <span class="ident">count</span> <span class="op">=</span> <span class="ident">size</span> <span class="op">/</span> <span class="ident">SIZEOF_RELA</span>;
-                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">relocs</span> <span class="op">=</span> <span class="macro">vec!</span>[<span class="ident">Rela::default</span>(); <span class="ident">count</span>];
-                <span class="ident">fd</span>.<span class="ident">seek</span>(<span class="ident">Start</span>(<span class="ident">offset</span> <span class="kw">as</span> <span class="ident">u64</span>))<span class="question-mark">?</span>;
-                <span class="kw">unsafe</span> {
-                    <span class="ident">fd</span>.<span class="ident">read_exact</span>(<span class="ident">plain::as_mut_bytes</span>(<span class="kw-2">&amp;mut</span> <span class="kw-2">*</span><span class="ident">relocs</span>))<span class="question-mark">?</span>;
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;std&quot;</span>)]
+            </span><span class="kw">pub fn </span>from_fd(fd: <span class="kw-2">&amp;mut </span>File, offset: usize, size: usize) -&gt; <span class="prelude-ty">Result</span>&lt;Vec&lt;Rela&gt;&gt; {
+                <span class="kw">let </span>count = size / SIZEOF_RELA;
+                <span class="kw">let </span><span class="kw-2">mut </span>relocs = <span class="macro">vec!</span>[Rela::default(); count];
+                fd.seek(Start(offset <span class="kw">as </span>u64))<span class="question-mark">?</span>;
+                <span class="kw">unsafe </span>{
+                    fd.read_exact(plain::as_mut_bytes(<span class="kw-2">&amp;mut *</span>relocs))<span class="question-mark">?</span>;
                 }
-                <span class="prelude-val">Ok</span>(<span class="ident">relocs</span>)
+                <span class="prelude-val">Ok</span>(relocs)
             }
-        } <span class="comment">// end if_alloc</span>
-    };
+        } <span class="comment">// end if_alloc
+    </span>};
 }
 
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">reloc32</span> {
+<span class="kw">pub mod </span>reloc32 {
 
-    <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::elf::reloc</span>::<span class="kw-2">*</span>;
+    <span class="kw">pub use </span><span class="kw">crate</span>::elf::reloc::<span class="kw-2">*</span>;
 
-    <span class="macro">elf_reloc!</span>(<span class="ident">u32</span>, <span class="ident">i32</span>);
+    <span class="macro">elf_reloc!</span>(u32, i32);
 
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIZEOF_RELA</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">4</span> <span class="op">+</span> <span class="number">4</span> <span class="op">+</span> <span class="number">4</span>;
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIZEOF_REL</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">4</span> <span class="op">+</span> <span class="number">4</span>;
+    <span class="kw">pub const </span>SIZEOF_RELA: usize = <span class="number">4 </span>+ <span class="number">4 </span>+ <span class="number">4</span>;
+    <span class="kw">pub const </span>SIZEOF_REL: usize = <span class="number">4 </span>+ <span class="number">4</span>;
 
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">r_sym</span>(<span class="ident">info</span>: <span class="ident">u32</span>) -&gt; <span class="ident">u32</span> {
-        <span class="ident">info</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">8</span>
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>r_sym(info: u32) -&gt; u32 {
+        info &gt;&gt; <span class="number">8
+    </span>}
+
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>r_type(info: u32) -&gt; u32 {
+        info &amp; <span class="number">0xff
+    </span>}
+
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>r_info(sym: u32, typ: u32) -&gt; u32 {
+        (sym &lt;&lt; <span class="number">8</span>) + (typ &amp; <span class="number">0xff</span>)
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">r_type</span>(<span class="ident">info</span>: <span class="ident">u32</span>) -&gt; <span class="ident">u32</span> {
-        <span class="ident">info</span> <span class="op">&amp;</span> <span class="number">0xff</span>
-    }
-
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">r_info</span>(<span class="ident">sym</span>: <span class="ident">u32</span>, <span class="ident">typ</span>: <span class="ident">u32</span>) -&gt; <span class="ident">u32</span> {
-        (<span class="ident">sym</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">8</span>) <span class="op">+</span> (<span class="ident">typ</span> <span class="op">&amp;</span> <span class="number">0xff</span>)
-    }
-
-    <span class="macro">elf_rela_std_impl!</span>(<span class="ident">u32</span>, <span class="ident">i32</span>);
+    <span class="macro">elf_rela_std_impl!</span>(u32, i32);
 }
 
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">reloc64</span> {
-    <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::elf::reloc</span>::<span class="kw-2">*</span>;
+<span class="kw">pub mod </span>reloc64 {
+    <span class="kw">pub use </span><span class="kw">crate</span>::elf::reloc::<span class="kw-2">*</span>;
 
-    <span class="macro">elf_reloc!</span>(<span class="ident">u64</span>, <span class="ident">i64</span>);
+    <span class="macro">elf_reloc!</span>(u64, i64);
 
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIZEOF_RELA</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">8</span> <span class="op">+</span> <span class="number">8</span> <span class="op">+</span> <span class="number">8</span>;
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIZEOF_REL</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">8</span> <span class="op">+</span> <span class="number">8</span>;
+    <span class="kw">pub const </span>SIZEOF_RELA: usize = <span class="number">8 </span>+ <span class="number">8 </span>+ <span class="number">8</span>;
+    <span class="kw">pub const </span>SIZEOF_REL: usize = <span class="number">8 </span>+ <span class="number">8</span>;
 
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">r_sym</span>(<span class="ident">info</span>: <span class="ident">u64</span>) -&gt; <span class="ident">u32</span> {
-        (<span class="ident">info</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">32</span>) <span class="kw">as</span> <span class="ident">u32</span>
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>r_sym(info: u64) -&gt; u32 {
+        (info &gt;&gt; <span class="number">32</span>) <span class="kw">as </span>u32
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">r_type</span>(<span class="ident">info</span>: <span class="ident">u64</span>) -&gt; <span class="ident">u32</span> {
-        (<span class="ident">info</span> <span class="op">&amp;</span> <span class="number">0xffff_ffff</span>) <span class="kw">as</span> <span class="ident">u32</span>
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>r_type(info: u64) -&gt; u32 {
+        (info &amp; <span class="number">0xffff_ffff</span>) <span class="kw">as </span>u32
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">r_info</span>(<span class="ident">sym</span>: <span class="ident">u64</span>, <span class="ident">typ</span>: <span class="ident">u64</span>) -&gt; <span class="ident">u64</span> {
-        (<span class="ident">sym</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">32</span>) <span class="op">+</span> <span class="ident">typ</span>
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>r_info(sym: u64, typ: u64) -&gt; u64 {
+        (sym &lt;&lt; <span class="number">32</span>) + typ
     }
 
-    <span class="macro">elf_rela_std_impl!</span>(<span class="ident">u64</span>, <span class="ident">i64</span>);
+    <span class="macro">elf_rela_std_impl!</span>(u64, i64);
 }
 
-<span class="comment">//////////////////////////////</span>
-<span class="comment">// Generic Reloc</span>
-<span class="comment">/////////////////////////////</span>
-<span class="macro">if_alloc!</span> {
-    <span class="kw">use</span> <span class="ident">scroll</span>::{<span class="ident">ctx</span>, <span class="ident">Pread</span>};
-    <span class="kw">use</span> <span class="ident">scroll::ctx::SizeWith</span>;
-    <span class="kw">use</span> <span class="ident">core::fmt</span>;
-    <span class="kw">use</span> <span class="ident">core::result</span>;
-    <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::container</span>::{<span class="ident">Ctx</span>, <span class="ident">Container</span>};
-    <span class="kw">use</span> <span class="ident">alloc::vec::Vec</span>;
+<span class="comment">//////////////////////////////
+// Generic Reloc
+/////////////////////////////
+</span><span class="macro">if_alloc! </span>{
+    <span class="kw">use </span>scroll::{ctx, Pread};
+    <span class="kw">use </span>scroll::ctx::SizeWith;
+    <span class="kw">use </span>core::fmt;
+    <span class="kw">use </span>core::result;
+    <span class="kw">use </span><span class="kw">crate</span>::container::{Ctx, Container};
+    <span class="kw">use </span>alloc::vec::Vec;
 
-    <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>, <span class="ident">Default</span>)]</span>
-    <span class="doccomment">/// A unified ELF relocation structure</span>
-    <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Reloc</span> {
-        <span class="doccomment">/// Address</span>
-        <span class="kw">pub</span> <span class="ident">r_offset</span>: <span class="ident">u64</span>,
-        <span class="doccomment">/// Addend</span>
-        <span class="kw">pub</span> <span class="ident">r_addend</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">i64</span><span class="op">&gt;</span>,
-        <span class="doccomment">/// The index into the corresponding symbol table - either dynamic or regular</span>
-        <span class="kw">pub</span> <span class="ident">r_sym</span>: <span class="ident">usize</span>,
-        <span class="doccomment">/// The relocation type</span>
-        <span class="kw">pub</span> <span class="ident">r_type</span>: <span class="ident">u32</span>,
+    <span class="attribute">#[derive(Clone, Copy, PartialEq, Default)]
+    </span><span class="doccomment">/// A unified ELF relocation structure
+    </span><span class="kw">pub struct </span>Reloc {
+        <span class="doccomment">/// Address
+        </span><span class="kw">pub </span>r_offset: u64,
+        <span class="doccomment">/// Addend
+        </span><span class="kw">pub </span>r_addend: <span class="prelude-ty">Option</span>&lt;i64&gt;,
+        <span class="doccomment">/// The index into the corresponding symbol table - either dynamic or regular
+        </span><span class="kw">pub </span>r_sym: usize,
+        <span class="doccomment">/// The relocation type
+        </span><span class="kw">pub </span>r_type: u32,
     }
 
-    <span class="kw">impl</span> <span class="ident">Reloc</span> {
-        <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">size</span>(<span class="ident">is_rela</span>: <span class="ident">bool</span>, <span class="ident">ctx</span>: <span class="ident">Ctx</span>) -&gt; <span class="ident">usize</span> {
-            <span class="kw">use</span> <span class="ident">scroll::ctx::SizeWith</span>;
-            <span class="ident">Reloc::size_with</span>(<span class="kw-2">&amp;</span>(<span class="ident">is_rela</span>, <span class="ident">ctx</span>))
+    <span class="kw">impl </span>Reloc {
+        <span class="kw">pub fn </span>size(is_rela: bool, ctx: Ctx) -&gt; usize {
+            <span class="kw">use </span>scroll::ctx::SizeWith;
+            Reloc::size_with(<span class="kw-2">&amp;</span>(is_rela, ctx))
         }
     }
 
-    <span class="kw">type</span> <span class="ident">RelocCtx</span> <span class="op">=</span> (<span class="ident">bool</span>, <span class="ident">Ctx</span>);
+    <span class="kw">type </span>RelocCtx = (bool, Ctx);
 
-    <span class="kw">impl</span> <span class="ident">ctx::SizeWith</span><span class="op">&lt;</span><span class="ident">RelocCtx</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Reloc</span> {
-        <span class="kw">fn</span> <span class="ident">size_with</span>( <span class="kw-2">&amp;</span>(<span class="ident">is_rela</span>, <span class="ident">Ctx</span> { <span class="ident">container</span>, .. }): <span class="kw-2">&amp;</span><span class="ident">RelocCtx</span>) -&gt; <span class="ident">usize</span> {
-            <span class="kw">match</span> <span class="ident">container</span> {
-                <span class="ident">Container::Little</span> =&gt; {
-                    <span class="kw">if</span> <span class="ident">is_rela</span> { <span class="ident">reloc32::SIZEOF_RELA</span> } <span class="kw">else</span> { <span class="ident">reloc32::SIZEOF_REL</span> }
+    <span class="kw">impl </span>ctx::SizeWith&lt;RelocCtx&gt; <span class="kw">for </span>Reloc {
+        <span class="kw">fn </span>size_with( <span class="kw-2">&amp;</span>(is_rela, Ctx { container, .. }): <span class="kw-2">&amp;</span>RelocCtx) -&gt; usize {
+            <span class="kw">match </span>container {
+                Container::Little =&gt; {
+                    <span class="kw">if </span>is_rela { reloc32::SIZEOF_RELA } <span class="kw">else </span>{ reloc32::SIZEOF_REL }
                 },
-                <span class="ident">Container::Big</span> =&gt; {
-                    <span class="kw">if</span> <span class="ident">is_rela</span> { <span class="ident">reloc64::SIZEOF_RELA</span> } <span class="kw">else</span> { <span class="ident">reloc64::SIZEOF_REL</span> }
+                Container::Big =&gt; {
+                    <span class="kw">if </span>is_rela { reloc64::SIZEOF_RELA } <span class="kw">else </span>{ reloc64::SIZEOF_REL }
                 }
             }
         }
     }
 
-    <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">ctx::TryFromCtx</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">RelocCtx</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Reloc</span> {
-        <span class="kw">type</span> <span class="ident">Error</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::error::Error</span>;
-        <span class="kw">fn</span> <span class="ident">try_from_ctx</span>(<span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>], (<span class="ident">is_rela</span>, <span class="ident">Ctx</span> { <span class="ident">container</span>, <span class="ident">le</span> }): <span class="ident">RelocCtx</span>) -&gt; <span class="ident">result::Result</span><span class="op">&lt;</span>(<span class="self">Self</span>, <span class="ident">usize</span>), <span class="ident"><span class="self">Self</span>::Error</span><span class="op">&gt;</span> {
-            <span class="kw">use</span> <span class="ident">scroll::Pread</span>;
-            <span class="kw">let</span> <span class="ident">reloc</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">container</span> {
-                <span class="ident">Container::Little</span> =&gt; {
-                    <span class="kw">if</span> <span class="ident">is_rela</span> {
-                        (<span class="ident">bytes</span>.<span class="ident">pread_with</span>::<span class="op">&lt;</span><span class="ident">reloc32::Rela</span><span class="op">&gt;</span>(<span class="number">0</span>, <span class="ident">le</span>)<span class="question-mark">?</span>.<span class="ident">into</span>(), <span class="ident">reloc32::SIZEOF_RELA</span>)
-                    } <span class="kw">else</span> {
-                        (<span class="ident">bytes</span>.<span class="ident">pread_with</span>::<span class="op">&lt;</span><span class="ident">reloc32::Rel</span><span class="op">&gt;</span>(<span class="number">0</span>, <span class="ident">le</span>)<span class="question-mark">?</span>.<span class="ident">into</span>(), <span class="ident">reloc32::SIZEOF_REL</span>)
+    <span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; ctx::TryFromCtx&lt;<span class="lifetime">&#39;a</span>, RelocCtx&gt; <span class="kw">for </span>Reloc {
+        <span class="kw">type </span>Error = <span class="kw">crate</span>::error::Error;
+        <span class="kw">fn </span>try_from_ctx(bytes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8], (is_rela, Ctx { container, le }): RelocCtx) -&gt; result::Result&lt;(<span class="self">Self</span>, usize), <span class="self">Self</span>::Error&gt; {
+            <span class="kw">use </span>scroll::Pread;
+            <span class="kw">let </span>reloc = <span class="kw">match </span>container {
+                Container::Little =&gt; {
+                    <span class="kw">if </span>is_rela {
+                        (bytes.pread_with::&lt;reloc32::Rela&gt;(<span class="number">0</span>, le)<span class="question-mark">?</span>.into(), reloc32::SIZEOF_RELA)
+                    } <span class="kw">else </span>{
+                        (bytes.pread_with::&lt;reloc32::Rel&gt;(<span class="number">0</span>, le)<span class="question-mark">?</span>.into(), reloc32::SIZEOF_REL)
                     }
                 },
-                <span class="ident">Container::Big</span> =&gt; {
-                    <span class="kw">if</span> <span class="ident">is_rela</span> {
-                        (<span class="ident">bytes</span>.<span class="ident">pread_with</span>::<span class="op">&lt;</span><span class="ident">reloc64::Rela</span><span class="op">&gt;</span>(<span class="number">0</span>, <span class="ident">le</span>)<span class="question-mark">?</span>.<span class="ident">into</span>(), <span class="ident">reloc64::SIZEOF_RELA</span>)
-                    } <span class="kw">else</span> {
-                        (<span class="ident">bytes</span>.<span class="ident">pread_with</span>::<span class="op">&lt;</span><span class="ident">reloc64::Rel</span><span class="op">&gt;</span>(<span class="number">0</span>, <span class="ident">le</span>)<span class="question-mark">?</span>.<span class="ident">into</span>(), <span class="ident">reloc64::SIZEOF_REL</span>)
+                Container::Big =&gt; {
+                    <span class="kw">if </span>is_rela {
+                        (bytes.pread_with::&lt;reloc64::Rela&gt;(<span class="number">0</span>, le)<span class="question-mark">?</span>.into(), reloc64::SIZEOF_RELA)
+                    } <span class="kw">else </span>{
+                        (bytes.pread_with::&lt;reloc64::Rel&gt;(<span class="number">0</span>, le)<span class="question-mark">?</span>.into(), reloc64::SIZEOF_REL)
                     }
                 }
             };
-            <span class="prelude-val">Ok</span>(<span class="ident">reloc</span>)
+            <span class="prelude-val">Ok</span>(reloc)
         }
     }
 
-    <span class="kw">impl</span> <span class="ident">ctx::TryIntoCtx</span><span class="op">&lt;</span><span class="ident">RelocCtx</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Reloc</span> {
-        <span class="kw">type</span> <span class="ident">Error</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::error::Error</span>;
-        <span class="doccomment">/// Writes the relocation into `bytes`</span>
-        <span class="kw">fn</span> <span class="ident">try_into_ctx</span>(<span class="self">self</span>, <span class="ident">bytes</span>: <span class="kw-2">&amp;mut</span> [<span class="ident">u8</span>], (<span class="ident">is_rela</span>, <span class="ident">Ctx</span> {<span class="ident">container</span>, <span class="ident">le</span>}): <span class="ident">RelocCtx</span>) -&gt; <span class="ident">result::Result</span><span class="op">&lt;</span><span class="ident">usize</span>, <span class="ident"><span class="self">Self</span>::Error</span><span class="op">&gt;</span> {
-            <span class="kw">use</span> <span class="ident">scroll::Pwrite</span>;
-            <span class="kw">match</span> <span class="ident">container</span> {
-                <span class="ident">Container::Little</span> =&gt; {
-                    <span class="kw">if</span> <span class="ident">is_rela</span> {
-                        <span class="kw">let</span> <span class="ident">rela</span>: <span class="ident">reloc32::Rela</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">into</span>();
-                        <span class="prelude-val">Ok</span>(<span class="ident">bytes</span>.<span class="ident">pwrite_with</span>(<span class="ident">rela</span>, <span class="number">0</span>, <span class="ident">le</span>)<span class="question-mark">?</span>)
-                    } <span class="kw">else</span> {
-                        <span class="kw">let</span> <span class="ident">rel</span>: <span class="ident">reloc32::Rel</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">into</span>();
-                        <span class="prelude-val">Ok</span>(<span class="ident">bytes</span>.<span class="ident">pwrite_with</span>(<span class="ident">rel</span>, <span class="number">0</span>, <span class="ident">le</span>)<span class="question-mark">?</span>)
+    <span class="kw">impl </span>ctx::TryIntoCtx&lt;RelocCtx&gt; <span class="kw">for </span>Reloc {
+        <span class="kw">type </span>Error = <span class="kw">crate</span>::error::Error;
+        <span class="doccomment">/// Writes the relocation into `bytes`
+        </span><span class="kw">fn </span>try_into_ctx(<span class="self">self</span>, bytes: <span class="kw-2">&amp;mut </span>[u8], (is_rela, Ctx {container, le}): RelocCtx) -&gt; result::Result&lt;usize, <span class="self">Self</span>::Error&gt; {
+            <span class="kw">use </span>scroll::Pwrite;
+            <span class="kw">match </span>container {
+                Container::Little =&gt; {
+                    <span class="kw">if </span>is_rela {
+                        <span class="kw">let </span>rela: reloc32::Rela = <span class="self">self</span>.into();
+                        <span class="prelude-val">Ok</span>(bytes.pwrite_with(rela, <span class="number">0</span>, le)<span class="question-mark">?</span>)
+                    } <span class="kw">else </span>{
+                        <span class="kw">let </span>rel: reloc32::Rel = <span class="self">self</span>.into();
+                        <span class="prelude-val">Ok</span>(bytes.pwrite_with(rel, <span class="number">0</span>, le)<span class="question-mark">?</span>)
                     }
                 },
-                <span class="ident">Container::Big</span> =&gt; {
-                    <span class="kw">if</span> <span class="ident">is_rela</span> {
-                        <span class="kw">let</span> <span class="ident">rela</span>: <span class="ident">reloc64::Rela</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">into</span>();
-                        <span class="prelude-val">Ok</span>(<span class="ident">bytes</span>.<span class="ident">pwrite_with</span>(<span class="ident">rela</span>, <span class="number">0</span>, <span class="ident">le</span>)<span class="question-mark">?</span>)
-                    } <span class="kw">else</span> {
-                        <span class="kw">let</span> <span class="ident">rel</span>: <span class="ident">reloc64::Rel</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">into</span>();
-                        <span class="prelude-val">Ok</span>(<span class="ident">bytes</span>.<span class="ident">pwrite_with</span>(<span class="ident">rel</span>, <span class="number">0</span>, <span class="ident">le</span>)<span class="question-mark">?</span>)
+                Container::Big =&gt; {
+                    <span class="kw">if </span>is_rela {
+                        <span class="kw">let </span>rela: reloc64::Rela = <span class="self">self</span>.into();
+                        <span class="prelude-val">Ok</span>(bytes.pwrite_with(rela, <span class="number">0</span>, le)<span class="question-mark">?</span>)
+                    } <span class="kw">else </span>{
+                        <span class="kw">let </span>rel: reloc64::Rel = <span class="self">self</span>.into();
+                        <span class="prelude-val">Ok</span>(bytes.pwrite_with(rel, <span class="number">0</span>, le)<span class="question-mark">?</span>)
                     }
                 },
             }
         }
     }
 
-    <span class="kw">impl</span> <span class="ident">ctx::IntoCtx</span><span class="op">&lt;</span>(<span class="ident">bool</span>, <span class="ident">Ctx</span>)<span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Reloc</span> {
-        <span class="doccomment">/// Writes the relocation into `bytes`</span>
-        <span class="kw">fn</span> <span class="ident">into_ctx</span>(<span class="self">self</span>, <span class="ident">bytes</span>: <span class="kw-2">&amp;mut</span> [<span class="ident">u8</span>], <span class="ident">ctx</span>: <span class="ident">RelocCtx</span>) {
-            <span class="kw">use</span> <span class="ident">scroll::Pwrite</span>;
-            <span class="ident">bytes</span>.<span class="ident">pwrite_with</span>(<span class="self">self</span>, <span class="number">0</span>, <span class="ident">ctx</span>).<span class="ident">unwrap</span>();
+    <span class="kw">impl </span>ctx::IntoCtx&lt;(bool, Ctx)&gt; <span class="kw">for </span>Reloc {
+        <span class="doccomment">/// Writes the relocation into `bytes`
+        </span><span class="kw">fn </span>into_ctx(<span class="self">self</span>, bytes: <span class="kw-2">&amp;mut </span>[u8], ctx: RelocCtx) {
+            <span class="kw">use </span>scroll::Pwrite;
+            bytes.pwrite_with(<span class="self">self</span>, <span class="number">0</span>, ctx).unwrap();
         }
     }
 
-    <span class="kw">impl</span> <span class="ident">fmt::Debug</span> <span class="kw">for</span> <span class="ident">Reloc</span> {
-        <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">fmt::Formatter</span>) -&gt; <span class="ident">fmt::Result</span> {
-            <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;Reloc&quot;</span>)
-                .<span class="ident">field</span>(<span class="string">&quot;r_offset&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{:x}&quot;</span>, <span class="self">self</span>.<span class="ident">r_offset</span>))
-                .<span class="ident">field</span>(<span class="string">&quot;r_addend&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{:x}&quot;</span>, <span class="self">self</span>.<span class="ident">r_addend</span>.<span class="ident">unwrap_or</span>(<span class="number">0</span>)))
-                .<span class="ident">field</span>(<span class="string">&quot;r_sym&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">r_sym</span>)
-                .<span class="ident">field</span>(<span class="string">&quot;r_type&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">r_type</span>)
-                .<span class="ident">finish</span>()
+    <span class="kw">impl </span>fmt::Debug <span class="kw">for </span>Reloc {
+        <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>fmt::Formatter) -&gt; fmt::Result {
+            f.debug_struct(<span class="string">&quot;Reloc&quot;</span>)
+                .field(<span class="string">&quot;r_offset&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{:x}&quot;</span>, <span class="self">self</span>.r_offset))
+                .field(<span class="string">&quot;r_addend&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{:x}&quot;</span>, <span class="self">self</span>.r_addend.unwrap_or(<span class="number">0</span>)))
+                .field(<span class="string">&quot;r_sym&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.r_sym)
+                .field(<span class="string">&quot;r_type&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.r_type)
+                .finish()
         }
     }
 
-    <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Default</span>)]</span>
-    <span class="doccomment">/// An ELF section containing relocations, allowing lazy iteration over symbols.</span>
-    <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">RelocSection</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-        <span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
-        <span class="ident">count</span>: <span class="ident">usize</span>,
-        <span class="ident">ctx</span>: <span class="ident">RelocCtx</span>,
-        <span class="ident">start</span>: <span class="ident">usize</span>,
-        <span class="ident">end</span>: <span class="ident">usize</span>,
+    <span class="attribute">#[derive(Default)]
+    </span><span class="doccomment">/// An ELF section containing relocations, allowing lazy iteration over symbols.
+    </span><span class="kw">pub struct </span>RelocSection&lt;<span class="lifetime">&#39;a</span>&gt; {
+        bytes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8],
+        count: usize,
+        ctx: RelocCtx,
+        start: usize,
+        end: usize,
     }
 
-    <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">fmt::Debug</span> <span class="kw">for</span> <span class="ident">RelocSection</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-        <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">fmt</span>: <span class="kw-2">&amp;mut</span> <span class="ident">fmt::Formatter</span>) -&gt; <span class="ident">fmt::Result</span> {
-            <span class="kw">let</span> <span class="ident">len</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">bytes</span>.<span class="ident">len</span>();
-            <span class="ident">fmt</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;RelocSection&quot;</span>)
-                .<span class="ident">field</span>(<span class="string">&quot;bytes&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">len</span>)
-                .<span class="ident">field</span>(<span class="string">&quot;range&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;{:#x}..{:#x}&quot;</span>, <span class="self">self</span>.<span class="ident">start</span>, <span class="self">self</span>.<span class="ident">end</span>))
-                .<span class="ident">field</span>(<span class="string">&quot;count&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">count</span>)
-                .<span class="ident">field</span>(<span class="string">&quot;Relocations&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">to_vec</span>())
-                .<span class="ident">finish</span>()
+    <span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; fmt::Debug <span class="kw">for </span>RelocSection&lt;<span class="lifetime">&#39;a</span>&gt; {
+        <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, fmt: <span class="kw-2">&amp;mut </span>fmt::Formatter) -&gt; fmt::Result {
+            <span class="kw">let </span>len = <span class="self">self</span>.bytes.len();
+            fmt.debug_struct(<span class="string">&quot;RelocSection&quot;</span>)
+                .field(<span class="string">&quot;bytes&quot;</span>, <span class="kw-2">&amp;</span>len)
+                .field(<span class="string">&quot;range&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;{:#x}..{:#x}&quot;</span>, <span class="self">self</span>.start, <span class="self">self</span>.end))
+                .field(<span class="string">&quot;count&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.count)
+                .field(<span class="string">&quot;Relocations&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.to_vec())
+                .finish()
         }
     }
 
-    <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">RelocSection</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;endian_fd&quot;</span>)]</span>
-        <span class="doccomment">/// Parse a REL or RELA section of size `filesz` from `offset`.</span>
-        <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>], <span class="ident">offset</span>: <span class="ident">usize</span>, <span class="ident">filesz</span>: <span class="ident">usize</span>, <span class="ident">is_rela</span>: <span class="ident">bool</span>, <span class="ident">ctx</span>: <span class="ident">Ctx</span>) -&gt; <span class="ident"><span class="kw">crate</span>::error::Result</span><span class="op">&lt;</span><span class="ident">RelocSection</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-            <span class="comment">// TODO: better error message when too large (see symtab implementation)</span>
-            <span class="kw">let</span> <span class="ident">bytes</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">pread_with</span>(<span class="ident">offset</span>, <span class="ident">filesz</span>)<span class="question-mark">?</span>;
+    <span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; RelocSection&lt;<span class="lifetime">&#39;a</span>&gt; {
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;endian_fd&quot;</span>)]
+        </span><span class="doccomment">/// Parse a REL or RELA section of size `filesz` from `offset`.
+        </span><span class="kw">pub fn </span>parse(bytes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8], offset: usize, filesz: usize, is_rela: bool, ctx: Ctx) -&gt; <span class="kw">crate</span>::error::Result&lt;RelocSection&lt;<span class="lifetime">&#39;a</span>&gt;&gt; {
+            <span class="comment">// TODO: better error message when too large (see symtab implementation)
+            </span><span class="kw">let </span>bytes = bytes.pread_with(offset, filesz)<span class="question-mark">?</span>;
 
-            <span class="prelude-val">Ok</span>(<span class="ident">RelocSection</span> {
-                <span class="ident">bytes</span>: <span class="ident">bytes</span>,
-                <span class="ident">count</span>: <span class="ident">filesz</span> <span class="op">/</span> <span class="ident">Reloc::size</span>(<span class="ident">is_rela</span>, <span class="ident">ctx</span>),
-                <span class="ident">ctx</span>: (<span class="ident">is_rela</span>, <span class="ident">ctx</span>),
-                <span class="ident">start</span>: <span class="ident">offset</span>,
-                <span class="ident">end</span>: <span class="ident">offset</span> <span class="op">+</span> <span class="ident">filesz</span>,
+            <span class="prelude-val">Ok</span>(RelocSection {
+                bytes: bytes,
+                count: filesz / Reloc::size(is_rela, ctx),
+                ctx: (is_rela, ctx),
+                start: offset,
+                end: offset + filesz,
             })
         }
 
-        <span class="doccomment">/// Try to parse a single relocation from the binary, at `index`.</span>
-        <span class="attribute">#[<span class="ident">inline</span>]</span>
-        <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">index</span>: <span class="ident">usize</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Reloc</span><span class="op">&gt;</span> {
-            <span class="kw">if</span> <span class="ident">index</span> <span class="op">&gt;</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">count</span> {
-                <span class="prelude-val">None</span>
-            } <span class="kw">else</span> {
-                <span class="prelude-val">Some</span>(<span class="self">self</span>.<span class="ident">bytes</span>.<span class="ident">pread_with</span>(<span class="ident">index</span> <span class="op">*</span> <span class="ident">Reloc::size_with</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">ctx</span>), <span class="self">self</span>.<span class="ident">ctx</span>).<span class="ident">unwrap</span>())
+        <span class="doccomment">/// Try to parse a single relocation from the binary, at `index`.
+        </span><span class="attribute">#[inline]
+        </span><span class="kw">pub fn </span>get(<span class="kw-2">&amp;</span><span class="self">self</span>, index: usize) -&gt; <span class="prelude-ty">Option</span>&lt;Reloc&gt; {
+            <span class="kw">if </span>index &gt;= <span class="self">self</span>.count {
+                <span class="prelude-val">None
+            </span>} <span class="kw">else </span>{
+                <span class="prelude-val">Some</span>(<span class="self">self</span>.bytes.pread_with(index * Reloc::size_with(<span class="kw-2">&amp;</span><span class="self">self</span>.ctx), <span class="self">self</span>.ctx).unwrap())
             }
         }
 
-        <span class="doccomment">/// The number of relocations in the section.</span>
-        <span class="attribute">#[<span class="ident">inline</span>]</span>
-        <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">len</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">usize</span> {
-            <span class="self">self</span>.<span class="ident">count</span>
+        <span class="doccomment">/// The number of relocations in the section.
+        </span><span class="attribute">#[inline]
+        </span><span class="kw">pub fn </span>len(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; usize {
+            <span class="self">self</span>.count
         }
 
-        <span class="doccomment">/// Returns true if section has no relocations.</span>
-        <span class="attribute">#[<span class="ident">inline</span>]</span>
-        <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_empty</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-            <span class="self">self</span>.<span class="ident">count</span> <span class="op">==</span> <span class="number">0</span>
+        <span class="doccomment">/// Returns true if section has no relocations.
+        </span><span class="attribute">#[inline]
+        </span><span class="kw">pub fn </span>is_empty(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+            <span class="self">self</span>.count == <span class="number">0
+        </span>}
+
+        <span class="doccomment">/// Iterate over all relocations.
+        </span><span class="kw">pub fn </span>iter(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; RelocIterator&lt;<span class="lifetime">&#39;a</span>&gt; {
+            <span class="self">self</span>.into_iter()
         }
 
-        <span class="doccomment">/// Iterate over all relocations.</span>
-        <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">iter</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">RelocIterator</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-            <span class="self">self</span>.<span class="ident">into_iter</span>()
-        }
-
-        <span class="doccomment">/// Parse all relocations into a vector.</span>
-        <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">to_vec</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Reloc</span><span class="op">&gt;</span> {
-            <span class="self">self</span>.<span class="ident">iter</span>().<span class="ident">collect</span>()
-        }
-    }
-
-    <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="lifetime">&#39;b</span><span class="op">&gt;</span> <span class="ident">IntoIterator</span> <span class="kw">for</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;b</span> <span class="ident">RelocSection</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-        <span class="kw">type</span> <span class="ident">Item</span> <span class="op">=</span> <span class="op">&lt;</span><span class="ident">RelocIterator</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="kw">as</span> <span class="ident">Iterator</span><span class="op">&gt;</span><span class="ident">::Item</span>;
-        <span class="kw">type</span> <span class="ident">IntoIter</span> <span class="op">=</span> <span class="ident">RelocIterator</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>;
-
-        <span class="attribute">#[<span class="ident">inline</span>]</span>
-        <span class="kw">fn</span> <span class="ident">into_iter</span>(<span class="self">self</span>) -&gt; <span class="ident"><span class="self">Self</span>::IntoIter</span> {
-            <span class="ident">RelocIterator</span> {
-                <span class="ident">bytes</span>: <span class="self">self</span>.<span class="ident">bytes</span>,
-                <span class="ident">offset</span>: <span class="number">0</span>,
-                <span class="ident">index</span>: <span class="number">0</span>,
-                <span class="ident">count</span>: <span class="self">self</span>.<span class="ident">count</span>,
-                <span class="ident">ctx</span>: <span class="self">self</span>.<span class="ident">ctx</span>,
-            }
+        <span class="doccomment">/// Parse all relocations into a vector.
+        </span><span class="kw">pub fn </span>to_vec(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Vec&lt;Reloc&gt; {
+            <span class="self">self</span>.iter().collect()
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">RelocIterator</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-        <span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
-        <span class="ident">offset</span>: <span class="ident">usize</span>,
-        <span class="ident">index</span>: <span class="ident">usize</span>,
-        <span class="ident">count</span>: <span class="ident">usize</span>,
-        <span class="ident">ctx</span>: <span class="ident">RelocCtx</span>,
-    }
+    <span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>, <span class="lifetime">&#39;b</span>&gt; IntoIterator <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;b </span>RelocSection&lt;<span class="lifetime">&#39;a</span>&gt; {
+        <span class="kw">type </span>Item = &lt;RelocIterator&lt;<span class="lifetime">&#39;a</span>&gt; <span class="kw">as </span>Iterator&gt;::Item;
+        <span class="kw">type </span>IntoIter = RelocIterator&lt;<span class="lifetime">&#39;a</span>&gt;;
 
-    <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">fmt::Debug</span> <span class="kw">for</span> <span class="ident">RelocIterator</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-        <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">fmt</span>: <span class="kw-2">&amp;mut</span> <span class="ident">fmt::Formatter</span>) -&gt; <span class="ident">fmt::Result</span> {
-            <span class="ident">fmt</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;RelocIterator&quot;</span>)
-                .<span class="ident">field</span>(<span class="string">&quot;bytes&quot;</span>, <span class="kw-2">&amp;</span><span class="string">&quot;&lt;... redacted ...&gt;&quot;</span>)
-                .<span class="ident">field</span>(<span class="string">&quot;offset&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">offset</span>)
-                .<span class="ident">field</span>(<span class="string">&quot;index&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">index</span>)
-                .<span class="ident">field</span>(<span class="string">&quot;count&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">count</span>)
-                .<span class="ident">field</span>(<span class="string">&quot;ctx&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">ctx</span>)
-                .<span class="ident">finish</span>()
-        }
-    }
-
-    <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Iterator</span> <span class="kw">for</span> <span class="ident">RelocIterator</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-        <span class="kw">type</span> <span class="ident">Item</span> <span class="op">=</span> <span class="ident">Reloc</span>;
-
-        <span class="attribute">#[<span class="ident">inline</span>]</span>
-        <span class="kw">fn</span> <span class="ident">next</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident"><span class="self">Self</span>::Item</span><span class="op">&gt;</span> {
-            <span class="kw">if</span> <span class="self">self</span>.<span class="ident">index</span> <span class="op">&gt;</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">count</span> {
-                <span class="prelude-val">None</span>
-            } <span class="kw">else</span> {
-                <span class="self">self</span>.<span class="ident">index</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
-                <span class="prelude-val">Some</span>(<span class="self">self</span>.<span class="ident">bytes</span>.<span class="ident">gread_with</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="ident">offset</span>, <span class="self">self</span>.<span class="ident">ctx</span>).<span class="ident">unwrap</span>())
+        <span class="attribute">#[inline]
+        </span><span class="kw">fn </span>into_iter(<span class="self">self</span>) -&gt; <span class="self">Self</span>::IntoIter {
+            RelocIterator {
+                bytes: <span class="self">self</span>.bytes,
+                offset: <span class="number">0</span>,
+                index: <span class="number">0</span>,
+                count: <span class="self">self</span>.count,
+                ctx: <span class="self">self</span>.ctx,
             }
         }
     }
 
-    <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">ExactSizeIterator</span> <span class="kw">for</span> <span class="ident">RelocIterator</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-        <span class="attribute">#[<span class="ident">inline</span>]</span>
-        <span class="kw">fn</span> <span class="ident">len</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">usize</span> {
-            <span class="self">self</span>.<span class="ident">count</span> <span class="op">-</span> <span class="self">self</span>.<span class="ident">index</span>
+    <span class="kw">pub struct </span>RelocIterator&lt;<span class="lifetime">&#39;a</span>&gt; {
+        bytes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8],
+        offset: usize,
+        index: usize,
+        count: usize,
+        ctx: RelocCtx,
+    }
+
+    <span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; fmt::Debug <span class="kw">for </span>RelocIterator&lt;<span class="lifetime">&#39;a</span>&gt; {
+        <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, fmt: <span class="kw-2">&amp;mut </span>fmt::Formatter) -&gt; fmt::Result {
+            fmt.debug_struct(<span class="string">&quot;RelocIterator&quot;</span>)
+                .field(<span class="string">&quot;bytes&quot;</span>, <span class="kw-2">&amp;</span><span class="string">&quot;&lt;... redacted ...&gt;&quot;</span>)
+                .field(<span class="string">&quot;offset&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.offset)
+                .field(<span class="string">&quot;index&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.index)
+                .field(<span class="string">&quot;count&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.count)
+                .field(<span class="string">&quot;ctx&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.ctx)
+                .finish()
         }
     }
-} <span class="comment">// end if_alloc</span>
-</code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="goblin" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+
+    <span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Iterator <span class="kw">for </span>RelocIterator&lt;<span class="lifetime">&#39;a</span>&gt; {
+        <span class="kw">type </span>Item = Reloc;
+
+        <span class="attribute">#[inline]
+        </span><span class="kw">fn </span>next(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>::Item&gt; {
+            <span class="kw">if </span><span class="self">self</span>.index &gt;= <span class="self">self</span>.count {
+                <span class="prelude-val">None
+            </span>} <span class="kw">else </span>{
+                <span class="self">self</span>.index += <span class="number">1</span>;
+                <span class="prelude-val">Some</span>(<span class="self">self</span>.bytes.gread_with(<span class="kw-2">&amp;mut </span><span class="self">self</span>.offset, <span class="self">self</span>.ctx).unwrap())
+            }
+        }
+    }
+
+    <span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; ExactSizeIterator <span class="kw">for </span>RelocIterator&lt;<span class="lifetime">&#39;a</span>&gt; {
+        <span class="attribute">#[inline]
+        </span><span class="kw">fn </span>len(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; usize {
+            <span class="self">self</span>.count - <span class="self">self</span>.index
+        }
+    }
+} <span class="comment">// end if_alloc
+</span></code></pre></div>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="goblin" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (77e57db38 2022-10-30)" ></div></body></html>

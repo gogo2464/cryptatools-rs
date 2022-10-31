@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/zip-0.6.3/src/cp437.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>cp437.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../zip/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../zip/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../zip/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/zip-0.6.3/src/cp437.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>cp437.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../zip/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -202,209 +202,209 @@
 <span id="202">202</span>
 <span id="203">203</span>
 <span id="204">204</span>
-</pre><pre class="rust"><code><span class="doccomment">//! Convert a string in IBM codepage 437 to UTF-8</span>
+</pre><pre class="rust"><code><span class="doccomment">//! Convert a string in IBM codepage 437 to UTF-8
 
-<span class="doccomment">/// Trait to convert IBM codepage 437 to the target type</span>
-<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">FromCp437</span> {
-    <span class="doccomment">/// Target type</span>
-    <span class="kw">type</span> <span class="ident">Target</span>;
+/// Trait to convert IBM codepage 437 to the target type
+</span><span class="kw">pub trait </span>FromCp437 {
+    <span class="doccomment">/// Target type
+    </span><span class="kw">type </span>Target;
 
-    <span class="doccomment">/// Function that does the conversion from cp437.</span>
-    <span class="doccomment">/// Generally allocations will be avoided if all data falls into the ASCII range.</span>
-    <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::wrong_self_convention</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">from_cp437</span>(<span class="self">self</span>) -&gt; <span class="ident"><span class="self">Self</span>::Target</span>;
+    <span class="doccomment">/// Function that does the conversion from cp437.
+    /// Generally allocations will be avoided if all data falls into the ASCII range.
+    </span><span class="attribute">#[allow(clippy::wrong_self_convention)]
+    </span><span class="kw">fn </span>from_cp437(<span class="self">self</span>) -&gt; <span class="self">Self</span>::Target;
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">FromCp437</span> <span class="kw">for</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>] {
-    <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">::std::borrow::Cow</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">str</span><span class="op">&gt;</span>;
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; FromCp437 <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8] {
+    <span class="kw">type </span>Target = ::std::borrow::Cow&lt;<span class="lifetime">&#39;a</span>, str&gt;;
 
-    <span class="kw">fn</span> <span class="ident">from_cp437</span>(<span class="self">self</span>) -&gt; <span class="ident"><span class="self">Self</span>::Target</span> {
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">iter</span>().<span class="ident">all</span>(<span class="op">|</span><span class="ident">c</span><span class="op">|</span> <span class="kw-2">*</span><span class="ident">c</span> <span class="op">&lt;</span> <span class="number">0x80</span>) {
-            <span class="ident">::std::str::from_utf8</span>(<span class="self">self</span>).<span class="ident">unwrap</span>().<span class="ident">into</span>()
-        } <span class="kw">else</span> {
-            <span class="self">self</span>.<span class="ident">iter</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">c</span><span class="op">|</span> <span class="ident">to_char</span>(<span class="kw-2">*</span><span class="ident">c</span>)).<span class="ident">collect</span>::<span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>().<span class="ident">into</span>()
+    <span class="kw">fn </span>from_cp437(<span class="self">self</span>) -&gt; <span class="self">Self</span>::Target {
+        <span class="kw">if </span><span class="self">self</span>.iter().all(|c| <span class="kw-2">*</span>c &lt; <span class="number">0x80</span>) {
+            ::std::str::from_utf8(<span class="self">self</span>).unwrap().into()
+        } <span class="kw">else </span>{
+            <span class="self">self</span>.iter().map(|c| to_char(<span class="kw-2">*</span>c)).collect::&lt;String&gt;().into()
         }
     }
 }
 
-<span class="kw">impl</span> <span class="ident">FromCp437</span> <span class="kw">for</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span> {
-    <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">String</span>;
+<span class="kw">impl </span>FromCp437 <span class="kw">for </span>Vec&lt;u8&gt; {
+    <span class="kw">type </span>Target = String;
 
-    <span class="kw">fn</span> <span class="ident">from_cp437</span>(<span class="self">self</span>) -&gt; <span class="ident"><span class="self">Self</span>::Target</span> {
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">iter</span>().<span class="ident">all</span>(<span class="op">|</span><span class="ident">c</span><span class="op">|</span> <span class="kw-2">*</span><span class="ident">c</span> <span class="op">&lt;</span> <span class="number">0x80</span>) {
-            <span class="ident">String::from_utf8</span>(<span class="self">self</span>).<span class="ident">unwrap</span>()
-        } <span class="kw">else</span> {
-            <span class="self">self</span>.<span class="ident">into_iter</span>().<span class="ident">map</span>(<span class="ident">to_char</span>).<span class="ident">collect</span>()
+    <span class="kw">fn </span>from_cp437(<span class="self">self</span>) -&gt; <span class="self">Self</span>::Target {
+        <span class="kw">if </span><span class="self">self</span>.iter().all(|c| <span class="kw-2">*</span>c &lt; <span class="number">0x80</span>) {
+            String::from_utf8(<span class="self">self</span>).unwrap()
+        } <span class="kw">else </span>{
+            <span class="self">self</span>.into_iter().map(to_char).collect()
         }
     }
 }
 
-<span class="kw">fn</span> <span class="ident">to_char</span>(<span class="ident">input</span>: <span class="ident">u8</span>) -&gt; <span class="ident">char</span> {
-    <span class="kw">let</span> <span class="ident">output</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">input</span> {
-        <span class="number">0x00</span>..<span class="op">=</span><span class="number">0x7f</span> =&gt; <span class="ident">input</span> <span class="kw">as</span> <span class="ident">u32</span>,
-        <span class="number">0x80</span> =&gt; <span class="number">0x00c7</span>,
-        <span class="number">0x81</span> =&gt; <span class="number">0x00fc</span>,
-        <span class="number">0x82</span> =&gt; <span class="number">0x00e9</span>,
-        <span class="number">0x83</span> =&gt; <span class="number">0x00e2</span>,
-        <span class="number">0x84</span> =&gt; <span class="number">0x00e4</span>,
-        <span class="number">0x85</span> =&gt; <span class="number">0x00e0</span>,
-        <span class="number">0x86</span> =&gt; <span class="number">0x00e5</span>,
-        <span class="number">0x87</span> =&gt; <span class="number">0x00e7</span>,
-        <span class="number">0x88</span> =&gt; <span class="number">0x00ea</span>,
-        <span class="number">0x89</span> =&gt; <span class="number">0x00eb</span>,
-        <span class="number">0x8a</span> =&gt; <span class="number">0x00e8</span>,
-        <span class="number">0x8b</span> =&gt; <span class="number">0x00ef</span>,
-        <span class="number">0x8c</span> =&gt; <span class="number">0x00ee</span>,
-        <span class="number">0x8d</span> =&gt; <span class="number">0x00ec</span>,
-        <span class="number">0x8e</span> =&gt; <span class="number">0x00c4</span>,
-        <span class="number">0x8f</span> =&gt; <span class="number">0x00c5</span>,
-        <span class="number">0x90</span> =&gt; <span class="number">0x00c9</span>,
-        <span class="number">0x91</span> =&gt; <span class="number">0x00e6</span>,
-        <span class="number">0x92</span> =&gt; <span class="number">0x00c6</span>,
-        <span class="number">0x93</span> =&gt; <span class="number">0x00f4</span>,
-        <span class="number">0x94</span> =&gt; <span class="number">0x00f6</span>,
-        <span class="number">0x95</span> =&gt; <span class="number">0x00f2</span>,
-        <span class="number">0x96</span> =&gt; <span class="number">0x00fb</span>,
-        <span class="number">0x97</span> =&gt; <span class="number">0x00f9</span>,
-        <span class="number">0x98</span> =&gt; <span class="number">0x00ff</span>,
-        <span class="number">0x99</span> =&gt; <span class="number">0x00d6</span>,
-        <span class="number">0x9a</span> =&gt; <span class="number">0x00dc</span>,
-        <span class="number">0x9b</span> =&gt; <span class="number">0x00a2</span>,
-        <span class="number">0x9c</span> =&gt; <span class="number">0x00a3</span>,
-        <span class="number">0x9d</span> =&gt; <span class="number">0x00a5</span>,
-        <span class="number">0x9e</span> =&gt; <span class="number">0x20a7</span>,
-        <span class="number">0x9f</span> =&gt; <span class="number">0x0192</span>,
-        <span class="number">0xa0</span> =&gt; <span class="number">0x00e1</span>,
-        <span class="number">0xa1</span> =&gt; <span class="number">0x00ed</span>,
-        <span class="number">0xa2</span> =&gt; <span class="number">0x00f3</span>,
-        <span class="number">0xa3</span> =&gt; <span class="number">0x00fa</span>,
-        <span class="number">0xa4</span> =&gt; <span class="number">0x00f1</span>,
-        <span class="number">0xa5</span> =&gt; <span class="number">0x00d1</span>,
-        <span class="number">0xa6</span> =&gt; <span class="number">0x00aa</span>,
-        <span class="number">0xa7</span> =&gt; <span class="number">0x00ba</span>,
-        <span class="number">0xa8</span> =&gt; <span class="number">0x00bf</span>,
-        <span class="number">0xa9</span> =&gt; <span class="number">0x2310</span>,
-        <span class="number">0xaa</span> =&gt; <span class="number">0x00ac</span>,
-        <span class="number">0xab</span> =&gt; <span class="number">0x00bd</span>,
-        <span class="number">0xac</span> =&gt; <span class="number">0x00bc</span>,
-        <span class="number">0xad</span> =&gt; <span class="number">0x00a1</span>,
-        <span class="number">0xae</span> =&gt; <span class="number">0x00ab</span>,
-        <span class="number">0xaf</span> =&gt; <span class="number">0x00bb</span>,
-        <span class="number">0xb0</span> =&gt; <span class="number">0x2591</span>,
-        <span class="number">0xb1</span> =&gt; <span class="number">0x2592</span>,
-        <span class="number">0xb2</span> =&gt; <span class="number">0x2593</span>,
-        <span class="number">0xb3</span> =&gt; <span class="number">0x2502</span>,
-        <span class="number">0xb4</span> =&gt; <span class="number">0x2524</span>,
-        <span class="number">0xb5</span> =&gt; <span class="number">0x2561</span>,
-        <span class="number">0xb6</span> =&gt; <span class="number">0x2562</span>,
-        <span class="number">0xb7</span> =&gt; <span class="number">0x2556</span>,
-        <span class="number">0xb8</span> =&gt; <span class="number">0x2555</span>,
-        <span class="number">0xb9</span> =&gt; <span class="number">0x2563</span>,
-        <span class="number">0xba</span> =&gt; <span class="number">0x2551</span>,
-        <span class="number">0xbb</span> =&gt; <span class="number">0x2557</span>,
-        <span class="number">0xbc</span> =&gt; <span class="number">0x255d</span>,
-        <span class="number">0xbd</span> =&gt; <span class="number">0x255c</span>,
-        <span class="number">0xbe</span> =&gt; <span class="number">0x255b</span>,
-        <span class="number">0xbf</span> =&gt; <span class="number">0x2510</span>,
-        <span class="number">0xc0</span> =&gt; <span class="number">0x2514</span>,
-        <span class="number">0xc1</span> =&gt; <span class="number">0x2534</span>,
-        <span class="number">0xc2</span> =&gt; <span class="number">0x252c</span>,
-        <span class="number">0xc3</span> =&gt; <span class="number">0x251c</span>,
-        <span class="number">0xc4</span> =&gt; <span class="number">0x2500</span>,
-        <span class="number">0xc5</span> =&gt; <span class="number">0x253c</span>,
-        <span class="number">0xc6</span> =&gt; <span class="number">0x255e</span>,
-        <span class="number">0xc7</span> =&gt; <span class="number">0x255f</span>,
-        <span class="number">0xc8</span> =&gt; <span class="number">0x255a</span>,
-        <span class="number">0xc9</span> =&gt; <span class="number">0x2554</span>,
-        <span class="number">0xca</span> =&gt; <span class="number">0x2569</span>,
-        <span class="number">0xcb</span> =&gt; <span class="number">0x2566</span>,
-        <span class="number">0xcc</span> =&gt; <span class="number">0x2560</span>,
-        <span class="number">0xcd</span> =&gt; <span class="number">0x2550</span>,
-        <span class="number">0xce</span> =&gt; <span class="number">0x256c</span>,
-        <span class="number">0xcf</span> =&gt; <span class="number">0x2567</span>,
-        <span class="number">0xd0</span> =&gt; <span class="number">0x2568</span>,
-        <span class="number">0xd1</span> =&gt; <span class="number">0x2564</span>,
-        <span class="number">0xd2</span> =&gt; <span class="number">0x2565</span>,
-        <span class="number">0xd3</span> =&gt; <span class="number">0x2559</span>,
-        <span class="number">0xd4</span> =&gt; <span class="number">0x2558</span>,
-        <span class="number">0xd5</span> =&gt; <span class="number">0x2552</span>,
-        <span class="number">0xd6</span> =&gt; <span class="number">0x2553</span>,
-        <span class="number">0xd7</span> =&gt; <span class="number">0x256b</span>,
-        <span class="number">0xd8</span> =&gt; <span class="number">0x256a</span>,
-        <span class="number">0xd9</span> =&gt; <span class="number">0x2518</span>,
-        <span class="number">0xda</span> =&gt; <span class="number">0x250c</span>,
-        <span class="number">0xdb</span> =&gt; <span class="number">0x2588</span>,
-        <span class="number">0xdc</span> =&gt; <span class="number">0x2584</span>,
-        <span class="number">0xdd</span> =&gt; <span class="number">0x258c</span>,
-        <span class="number">0xde</span> =&gt; <span class="number">0x2590</span>,
-        <span class="number">0xdf</span> =&gt; <span class="number">0x2580</span>,
-        <span class="number">0xe0</span> =&gt; <span class="number">0x03b1</span>,
-        <span class="number">0xe1</span> =&gt; <span class="number">0x00df</span>,
-        <span class="number">0xe2</span> =&gt; <span class="number">0x0393</span>,
-        <span class="number">0xe3</span> =&gt; <span class="number">0x03c0</span>,
-        <span class="number">0xe4</span> =&gt; <span class="number">0x03a3</span>,
-        <span class="number">0xe5</span> =&gt; <span class="number">0x03c3</span>,
-        <span class="number">0xe6</span> =&gt; <span class="number">0x00b5</span>,
-        <span class="number">0xe7</span> =&gt; <span class="number">0x03c4</span>,
-        <span class="number">0xe8</span> =&gt; <span class="number">0x03a6</span>,
-        <span class="number">0xe9</span> =&gt; <span class="number">0x0398</span>,
-        <span class="number">0xea</span> =&gt; <span class="number">0x03a9</span>,
-        <span class="number">0xeb</span> =&gt; <span class="number">0x03b4</span>,
-        <span class="number">0xec</span> =&gt; <span class="number">0x221e</span>,
-        <span class="number">0xed</span> =&gt; <span class="number">0x03c6</span>,
-        <span class="number">0xee</span> =&gt; <span class="number">0x03b5</span>,
-        <span class="number">0xef</span> =&gt; <span class="number">0x2229</span>,
-        <span class="number">0xf0</span> =&gt; <span class="number">0x2261</span>,
-        <span class="number">0xf1</span> =&gt; <span class="number">0x00b1</span>,
-        <span class="number">0xf2</span> =&gt; <span class="number">0x2265</span>,
-        <span class="number">0xf3</span> =&gt; <span class="number">0x2264</span>,
-        <span class="number">0xf4</span> =&gt; <span class="number">0x2320</span>,
-        <span class="number">0xf5</span> =&gt; <span class="number">0x2321</span>,
-        <span class="number">0xf6</span> =&gt; <span class="number">0x00f7</span>,
-        <span class="number">0xf7</span> =&gt; <span class="number">0x2248</span>,
-        <span class="number">0xf8</span> =&gt; <span class="number">0x00b0</span>,
-        <span class="number">0xf9</span> =&gt; <span class="number">0x2219</span>,
-        <span class="number">0xfa</span> =&gt; <span class="number">0x00b7</span>,
-        <span class="number">0xfb</span> =&gt; <span class="number">0x221a</span>,
-        <span class="number">0xfc</span> =&gt; <span class="number">0x207f</span>,
-        <span class="number">0xfd</span> =&gt; <span class="number">0x00b2</span>,
-        <span class="number">0xfe</span> =&gt; <span class="number">0x25a0</span>,
-        <span class="number">0xff</span> =&gt; <span class="number">0x00a0</span>,
+<span class="kw">fn </span>to_char(input: u8) -&gt; char {
+    <span class="kw">let </span>output = <span class="kw">match </span>input {
+        <span class="number">0x00</span>..=<span class="number">0x7f </span>=&gt; input <span class="kw">as </span>u32,
+        <span class="number">0x80 </span>=&gt; <span class="number">0x00c7</span>,
+        <span class="number">0x81 </span>=&gt; <span class="number">0x00fc</span>,
+        <span class="number">0x82 </span>=&gt; <span class="number">0x00e9</span>,
+        <span class="number">0x83 </span>=&gt; <span class="number">0x00e2</span>,
+        <span class="number">0x84 </span>=&gt; <span class="number">0x00e4</span>,
+        <span class="number">0x85 </span>=&gt; <span class="number">0x00e0</span>,
+        <span class="number">0x86 </span>=&gt; <span class="number">0x00e5</span>,
+        <span class="number">0x87 </span>=&gt; <span class="number">0x00e7</span>,
+        <span class="number">0x88 </span>=&gt; <span class="number">0x00ea</span>,
+        <span class="number">0x89 </span>=&gt; <span class="number">0x00eb</span>,
+        <span class="number">0x8a </span>=&gt; <span class="number">0x00e8</span>,
+        <span class="number">0x8b </span>=&gt; <span class="number">0x00ef</span>,
+        <span class="number">0x8c </span>=&gt; <span class="number">0x00ee</span>,
+        <span class="number">0x8d </span>=&gt; <span class="number">0x00ec</span>,
+        <span class="number">0x8e </span>=&gt; <span class="number">0x00c4</span>,
+        <span class="number">0x8f </span>=&gt; <span class="number">0x00c5</span>,
+        <span class="number">0x90 </span>=&gt; <span class="number">0x00c9</span>,
+        <span class="number">0x91 </span>=&gt; <span class="number">0x00e6</span>,
+        <span class="number">0x92 </span>=&gt; <span class="number">0x00c6</span>,
+        <span class="number">0x93 </span>=&gt; <span class="number">0x00f4</span>,
+        <span class="number">0x94 </span>=&gt; <span class="number">0x00f6</span>,
+        <span class="number">0x95 </span>=&gt; <span class="number">0x00f2</span>,
+        <span class="number">0x96 </span>=&gt; <span class="number">0x00fb</span>,
+        <span class="number">0x97 </span>=&gt; <span class="number">0x00f9</span>,
+        <span class="number">0x98 </span>=&gt; <span class="number">0x00ff</span>,
+        <span class="number">0x99 </span>=&gt; <span class="number">0x00d6</span>,
+        <span class="number">0x9a </span>=&gt; <span class="number">0x00dc</span>,
+        <span class="number">0x9b </span>=&gt; <span class="number">0x00a2</span>,
+        <span class="number">0x9c </span>=&gt; <span class="number">0x00a3</span>,
+        <span class="number">0x9d </span>=&gt; <span class="number">0x00a5</span>,
+        <span class="number">0x9e </span>=&gt; <span class="number">0x20a7</span>,
+        <span class="number">0x9f </span>=&gt; <span class="number">0x0192</span>,
+        <span class="number">0xa0 </span>=&gt; <span class="number">0x00e1</span>,
+        <span class="number">0xa1 </span>=&gt; <span class="number">0x00ed</span>,
+        <span class="number">0xa2 </span>=&gt; <span class="number">0x00f3</span>,
+        <span class="number">0xa3 </span>=&gt; <span class="number">0x00fa</span>,
+        <span class="number">0xa4 </span>=&gt; <span class="number">0x00f1</span>,
+        <span class="number">0xa5 </span>=&gt; <span class="number">0x00d1</span>,
+        <span class="number">0xa6 </span>=&gt; <span class="number">0x00aa</span>,
+        <span class="number">0xa7 </span>=&gt; <span class="number">0x00ba</span>,
+        <span class="number">0xa8 </span>=&gt; <span class="number">0x00bf</span>,
+        <span class="number">0xa9 </span>=&gt; <span class="number">0x2310</span>,
+        <span class="number">0xaa </span>=&gt; <span class="number">0x00ac</span>,
+        <span class="number">0xab </span>=&gt; <span class="number">0x00bd</span>,
+        <span class="number">0xac </span>=&gt; <span class="number">0x00bc</span>,
+        <span class="number">0xad </span>=&gt; <span class="number">0x00a1</span>,
+        <span class="number">0xae </span>=&gt; <span class="number">0x00ab</span>,
+        <span class="number">0xaf </span>=&gt; <span class="number">0x00bb</span>,
+        <span class="number">0xb0 </span>=&gt; <span class="number">0x2591</span>,
+        <span class="number">0xb1 </span>=&gt; <span class="number">0x2592</span>,
+        <span class="number">0xb2 </span>=&gt; <span class="number">0x2593</span>,
+        <span class="number">0xb3 </span>=&gt; <span class="number">0x2502</span>,
+        <span class="number">0xb4 </span>=&gt; <span class="number">0x2524</span>,
+        <span class="number">0xb5 </span>=&gt; <span class="number">0x2561</span>,
+        <span class="number">0xb6 </span>=&gt; <span class="number">0x2562</span>,
+        <span class="number">0xb7 </span>=&gt; <span class="number">0x2556</span>,
+        <span class="number">0xb8 </span>=&gt; <span class="number">0x2555</span>,
+        <span class="number">0xb9 </span>=&gt; <span class="number">0x2563</span>,
+        <span class="number">0xba </span>=&gt; <span class="number">0x2551</span>,
+        <span class="number">0xbb </span>=&gt; <span class="number">0x2557</span>,
+        <span class="number">0xbc </span>=&gt; <span class="number">0x255d</span>,
+        <span class="number">0xbd </span>=&gt; <span class="number">0x255c</span>,
+        <span class="number">0xbe </span>=&gt; <span class="number">0x255b</span>,
+        <span class="number">0xbf </span>=&gt; <span class="number">0x2510</span>,
+        <span class="number">0xc0 </span>=&gt; <span class="number">0x2514</span>,
+        <span class="number">0xc1 </span>=&gt; <span class="number">0x2534</span>,
+        <span class="number">0xc2 </span>=&gt; <span class="number">0x252c</span>,
+        <span class="number">0xc3 </span>=&gt; <span class="number">0x251c</span>,
+        <span class="number">0xc4 </span>=&gt; <span class="number">0x2500</span>,
+        <span class="number">0xc5 </span>=&gt; <span class="number">0x253c</span>,
+        <span class="number">0xc6 </span>=&gt; <span class="number">0x255e</span>,
+        <span class="number">0xc7 </span>=&gt; <span class="number">0x255f</span>,
+        <span class="number">0xc8 </span>=&gt; <span class="number">0x255a</span>,
+        <span class="number">0xc9 </span>=&gt; <span class="number">0x2554</span>,
+        <span class="number">0xca </span>=&gt; <span class="number">0x2569</span>,
+        <span class="number">0xcb </span>=&gt; <span class="number">0x2566</span>,
+        <span class="number">0xcc </span>=&gt; <span class="number">0x2560</span>,
+        <span class="number">0xcd </span>=&gt; <span class="number">0x2550</span>,
+        <span class="number">0xce </span>=&gt; <span class="number">0x256c</span>,
+        <span class="number">0xcf </span>=&gt; <span class="number">0x2567</span>,
+        <span class="number">0xd0 </span>=&gt; <span class="number">0x2568</span>,
+        <span class="number">0xd1 </span>=&gt; <span class="number">0x2564</span>,
+        <span class="number">0xd2 </span>=&gt; <span class="number">0x2565</span>,
+        <span class="number">0xd3 </span>=&gt; <span class="number">0x2559</span>,
+        <span class="number">0xd4 </span>=&gt; <span class="number">0x2558</span>,
+        <span class="number">0xd5 </span>=&gt; <span class="number">0x2552</span>,
+        <span class="number">0xd6 </span>=&gt; <span class="number">0x2553</span>,
+        <span class="number">0xd7 </span>=&gt; <span class="number">0x256b</span>,
+        <span class="number">0xd8 </span>=&gt; <span class="number">0x256a</span>,
+        <span class="number">0xd9 </span>=&gt; <span class="number">0x2518</span>,
+        <span class="number">0xda </span>=&gt; <span class="number">0x250c</span>,
+        <span class="number">0xdb </span>=&gt; <span class="number">0x2588</span>,
+        <span class="number">0xdc </span>=&gt; <span class="number">0x2584</span>,
+        <span class="number">0xdd </span>=&gt; <span class="number">0x258c</span>,
+        <span class="number">0xde </span>=&gt; <span class="number">0x2590</span>,
+        <span class="number">0xdf </span>=&gt; <span class="number">0x2580</span>,
+        <span class="number">0xe0 </span>=&gt; <span class="number">0x03b1</span>,
+        <span class="number">0xe1 </span>=&gt; <span class="number">0x00df</span>,
+        <span class="number">0xe2 </span>=&gt; <span class="number">0x0393</span>,
+        <span class="number">0xe3 </span>=&gt; <span class="number">0x03c0</span>,
+        <span class="number">0xe4 </span>=&gt; <span class="number">0x03a3</span>,
+        <span class="number">0xe5 </span>=&gt; <span class="number">0x03c3</span>,
+        <span class="number">0xe6 </span>=&gt; <span class="number">0x00b5</span>,
+        <span class="number">0xe7 </span>=&gt; <span class="number">0x03c4</span>,
+        <span class="number">0xe8 </span>=&gt; <span class="number">0x03a6</span>,
+        <span class="number">0xe9 </span>=&gt; <span class="number">0x0398</span>,
+        <span class="number">0xea </span>=&gt; <span class="number">0x03a9</span>,
+        <span class="number">0xeb </span>=&gt; <span class="number">0x03b4</span>,
+        <span class="number">0xec </span>=&gt; <span class="number">0x221e</span>,
+        <span class="number">0xed </span>=&gt; <span class="number">0x03c6</span>,
+        <span class="number">0xee </span>=&gt; <span class="number">0x03b5</span>,
+        <span class="number">0xef </span>=&gt; <span class="number">0x2229</span>,
+        <span class="number">0xf0 </span>=&gt; <span class="number">0x2261</span>,
+        <span class="number">0xf1 </span>=&gt; <span class="number">0x00b1</span>,
+        <span class="number">0xf2 </span>=&gt; <span class="number">0x2265</span>,
+        <span class="number">0xf3 </span>=&gt; <span class="number">0x2264</span>,
+        <span class="number">0xf4 </span>=&gt; <span class="number">0x2320</span>,
+        <span class="number">0xf5 </span>=&gt; <span class="number">0x2321</span>,
+        <span class="number">0xf6 </span>=&gt; <span class="number">0x00f7</span>,
+        <span class="number">0xf7 </span>=&gt; <span class="number">0x2248</span>,
+        <span class="number">0xf8 </span>=&gt; <span class="number">0x00b0</span>,
+        <span class="number">0xf9 </span>=&gt; <span class="number">0x2219</span>,
+        <span class="number">0xfa </span>=&gt; <span class="number">0x00b7</span>,
+        <span class="number">0xfb </span>=&gt; <span class="number">0x221a</span>,
+        <span class="number">0xfc </span>=&gt; <span class="number">0x207f</span>,
+        <span class="number">0xfd </span>=&gt; <span class="number">0x00b2</span>,
+        <span class="number">0xfe </span>=&gt; <span class="number">0x25a0</span>,
+        <span class="number">0xff </span>=&gt; <span class="number">0x00a0</span>,
     };
-    <span class="ident">::std::char::from_u32</span>(<span class="ident">output</span>).<span class="ident">unwrap</span>()
+    ::std::char::from_u32(output).unwrap()
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
-<span class="kw">mod</span> <span class="ident">test</span> {
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">to_char_valid</span>() {
-        <span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> <span class="number">0x00_u32</span>..<span class="number">0x100</span> {
-            <span class="ident"><span class="kw">super</span>::to_char</span>(<span class="ident">i</span> <span class="kw">as</span> <span class="ident">u8</span>);
+<span class="attribute">#[cfg(test)]
+</span><span class="kw">mod </span>test {
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>to_char_valid() {
+        <span class="kw">for </span>i <span class="kw">in </span><span class="number">0x00_u32</span>..<span class="number">0x100 </span>{
+            <span class="kw">super</span>::to_char(i <span class="kw">as </span>u8);
         }
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">ascii</span>() {
-        <span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> <span class="number">0x00</span>..<span class="number">0x80</span> {
-            <span class="macro">assert_eq!</span>(<span class="ident"><span class="kw">super</span>::to_char</span>(<span class="ident">i</span>), <span class="ident">i</span> <span class="kw">as</span> <span class="ident">char</span>);
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>ascii() {
+        <span class="kw">for </span>i <span class="kw">in </span><span class="number">0x00</span>..<span class="number">0x80 </span>{
+            <span class="macro">assert_eq!</span>(<span class="kw">super</span>::to_char(i), i <span class="kw">as </span>char);
         }
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">example_slice</span>() {
-        <span class="kw">use</span> <span class="ident"><span class="kw">super</span>::FromCp437</span>;
-        <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="string">b&quot;Cura\x87ao&quot;</span>;
-        <span class="macro">assert!</span>(<span class="ident">::std::str::from_utf8</span>(<span class="ident">data</span>).<span class="ident">is_err</span>());
-        <span class="macro">assert_eq!</span>(<span class="ident">data</span>.<span class="ident">from_cp437</span>(), <span class="string">&quot;Curaçao&quot;</span>);
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>example_slice() {
+        <span class="kw">use </span><span class="kw">super</span>::FromCp437;
+        <span class="kw">let </span>data = <span class="string">b&quot;Cura\x87ao&quot;</span>;
+        <span class="macro">assert!</span>(::std::str::from_utf8(data).is_err());
+        <span class="macro">assert_eq!</span>(data.from_cp437(), <span class="string">&quot;Curaçao&quot;</span>);
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">example_vec</span>() {
-        <span class="kw">use</span> <span class="ident"><span class="kw">super</span>::FromCp437</span>;
-        <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="macro">vec!</span>[<span class="number">0xCC</span>, <span class="number">0xCD</span>, <span class="number">0xCD</span>, <span class="number">0xB9</span>];
-        <span class="macro">assert!</span>(<span class="ident">String::from_utf8</span>(<span class="ident">data</span>.<span class="ident">clone</span>()).<span class="ident">is_err</span>());
-        <span class="macro">assert_eq!</span>(<span class="kw-2">&amp;</span><span class="ident">data</span>.<span class="ident">from_cp437</span>(), <span class="string">&quot;╠══╣&quot;</span>);
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>example_vec() {
+        <span class="kw">use </span><span class="kw">super</span>::FromCp437;
+        <span class="kw">let </span>data = <span class="macro">vec!</span>[<span class="number">0xCC</span>, <span class="number">0xCD</span>, <span class="number">0xCD</span>, <span class="number">0xB9</span>];
+        <span class="macro">assert!</span>(String::from_utf8(data.clone()).is_err());
+        <span class="macro">assert_eq!</span>(<span class="kw-2">&amp;</span>data.from_cp437(), <span class="string">&quot;╠══╣&quot;</span>);
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="zip" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="zip" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (77e57db38 2022-10-30)" ></div></body></html>

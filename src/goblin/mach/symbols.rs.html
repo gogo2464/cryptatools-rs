@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/goblin-0.5.4/src/mach/symbols.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>symbols.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../goblin/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../goblin/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../goblin/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/goblin-0.5.4/src/mach/symbols.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>symbols.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../normalize.css"><link rel="stylesheet" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../ayu.css" disabled><link rel="stylesheet" href="../../../dark.css" disabled><link rel="stylesheet" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../goblin/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -486,493 +486,493 @@
 <span id="486">486</span>
 <span id="487">487</span>
 <span id="488">488</span>
-</pre><pre class="rust"><code><span class="doccomment">//! &quot;Nlist&quot; style symbols in this binary - beware, like most symbol tables in most binary formats, they are strippable, and should not be relied upon, see the imports and exports modules for something more permanent.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! Symbols are essentially a type, offset, and the symbol name</span>
+</pre><pre class="rust"><code><span class="doccomment">//! &quot;Nlist&quot; style symbols in this binary - beware, like most symbol tables in most binary formats, they are strippable, and should not be relied upon, see the imports and exports modules for something more permanent.
+//!
+//! Symbols are essentially a type, offset, and the symbol name
 
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::container</span>::{<span class="self">self</span>, <span class="ident">Container</span>};
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::error</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::mach::load_command</span>;
-<span class="kw">use</span> <span class="ident">core::fmt</span>::{<span class="self">self</span>, <span class="ident">Debug</span>};
-<span class="kw">use</span> <span class="ident">scroll::ctx</span>;
-<span class="kw">use</span> <span class="ident">scroll::ctx::SizeWith</span>;
-<span class="kw">use</span> <span class="ident">scroll</span>::{<span class="ident">IOread</span>, <span class="ident">IOwrite</span>, <span class="ident">Pread</span>, <span class="ident">Pwrite</span>, <span class="ident">SizeWith</span>};
+</span><span class="kw">use </span><span class="kw">crate</span>::container::{<span class="self">self</span>, Container};
+<span class="kw">use </span><span class="kw">crate</span>::error;
+<span class="kw">use </span><span class="kw">crate</span>::mach::load_command;
+<span class="kw">use </span>core::fmt::{<span class="self">self</span>, Debug};
+<span class="kw">use </span>scroll::ctx;
+<span class="kw">use </span>scroll::ctx::SizeWith;
+<span class="kw">use </span>scroll::{IOread, IOwrite, Pread, Pwrite, SizeWith};
 
-<span class="comment">// The n_type field really contains four fields which are used via the following masks.</span>
-<span class="doccomment">/// if any of these bits set, a symbolic debugging entry</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">N_STAB</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">0xe0</span>;
-<span class="doccomment">/// private external symbol bit</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">N_PEXT</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">0x10</span>;
-<span class="doccomment">/// mask for the type bits</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">N_TYPE</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">0x0e</span>;
-<span class="doccomment">/// external symbol bit, set for external symbols</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">N_EXT</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">0x01</span>;
+<span class="comment">// The n_type field really contains four fields which are used via the following masks.
+</span><span class="doccomment">/// if any of these bits set, a symbolic debugging entry
+</span><span class="kw">pub const </span>N_STAB: u8 = <span class="number">0xe0</span>;
+<span class="doccomment">/// private external symbol bit
+</span><span class="kw">pub const </span>N_PEXT: u8 = <span class="number">0x10</span>;
+<span class="doccomment">/// mask for the type bits
+</span><span class="kw">pub const </span>N_TYPE: u8 = <span class="number">0x0e</span>;
+<span class="doccomment">/// external symbol bit, set for external symbols
+</span><span class="kw">pub const </span>N_EXT: u8 = <span class="number">0x01</span>;
 
-<span class="comment">// If the type is N_SECT then the n_sect field contains an ordinal of the</span>
-<span class="comment">// section the symbol is defined in.  The sections are numbered from 1 and</span>
-<span class="comment">// refer to sections in order they appear in the load commands for the file</span>
-<span class="comment">// they are in.  This means the same ordinal may very well refer to different</span>
-<span class="comment">// sections in different files.</span>
+<span class="comment">// If the type is N_SECT then the n_sect field contains an ordinal of the
+// section the symbol is defined in.  The sections are numbered from 1 and
+// refer to sections in order they appear in the load commands for the file
+// they are in.  This means the same ordinal may very well refer to different
+// sections in different files.
 
-<span class="comment">// The n_value field for all symbol table entries (including N_STAB&#39;s) gets</span>
-<span class="comment">// updated by the link editor based on the value of it&#39;s n_sect field and where</span>
-<span class="comment">// the section n_sect references gets relocated.  If the value of the n_sect</span>
-<span class="comment">// field is NO_SECT then it&#39;s n_value field is not changed by the link editor.</span>
-<span class="doccomment">/// symbol is not in any section</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NO_SECT</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">0</span>;
-<span class="doccomment">/// 1 thru 255 inclusive</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">MAX_SECT</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">255</span>;
+// The n_value field for all symbol table entries (including N_STAB&#39;s) gets
+// updated by the link editor based on the value of it&#39;s n_sect field and where
+// the section n_sect references gets relocated.  If the value of the n_sect
+// field is NO_SECT then it&#39;s n_value field is not changed by the link editor.
+</span><span class="doccomment">/// symbol is not in any section
+</span><span class="kw">pub const </span>NO_SECT: u8 = <span class="number">0</span>;
+<span class="doccomment">/// 1 thru 255 inclusive
+</span><span class="kw">pub const </span>MAX_SECT: u8 = <span class="number">255</span>;
 
-<span class="doccomment">/// undefined, n_sect == NO_SECT</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">N_UNDF</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">0x0</span>;
-<span class="doccomment">/// absolute, n_sect == NO_SECT</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">N_ABS</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">0x2</span>;
-<span class="doccomment">/// defined in section number n_sect</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">N_SECT</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">0xe</span>;
-<span class="doccomment">/// prebound undefined (defined in a dylib)</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">N_PBUD</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">0xc</span>;
-<span class="doccomment">/// indirect</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">N_INDR</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">0xa</span>;
+<span class="doccomment">/// undefined, n_sect == NO_SECT
+</span><span class="kw">pub const </span>N_UNDF: u8 = <span class="number">0x0</span>;
+<span class="doccomment">/// absolute, n_sect == NO_SECT
+</span><span class="kw">pub const </span>N_ABS: u8 = <span class="number">0x2</span>;
+<span class="doccomment">/// defined in section number n_sect
+</span><span class="kw">pub const </span>N_SECT: u8 = <span class="number">0xe</span>;
+<span class="doccomment">/// prebound undefined (defined in a dylib)
+</span><span class="kw">pub const </span>N_PBUD: u8 = <span class="number">0xc</span>;
+<span class="doccomment">/// indirect
+</span><span class="kw">pub const </span>N_INDR: u8 = <span class="number">0xa</span>;
 
-<span class="comment">// n_types when N_STAB</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">N_GSYM</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">0x20</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">N_FNAME</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">0x22</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">N_FUN</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">0x24</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">N_STSYM</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">0x26</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">N_LCSYM</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">0x28</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">N_BNSYM</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">0x2e</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">N_PC</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">0x30</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">N_AST</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">0x32</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">N_OPT</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">0x3c</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">N_RSYM</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">0x40</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">N_SLINE</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">0x44</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">N_ENSYM</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">0x4e</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">N_SSYM</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">0x60</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">N_SO</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">0x64</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">N_OSO</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">0x66</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">N_LSYM</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">0x80</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">N_BINCL</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">0x82</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">N_SOL</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">0x84</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">N_PARAMS</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">0x86</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">N_VERSION</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">0x88</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">N_OLEVEL</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">0x8a</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">N_PSYM</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">0xa0</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">N_EINCL</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">0xa2</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">N_ENTRY</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">0xa4</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">N_LBRAC</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">0xc0</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">N_EXCL</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">0xc2</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">N_RBRAC</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">0xe0</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">N_BCOMM</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">0xe2</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">N_ECOMM</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">0xe4</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">N_ECOML</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">0xe8</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">N_LENG</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">0xfe</span>;
+<span class="comment">// n_types when N_STAB
+</span><span class="kw">pub const </span>N_GSYM: u8 = <span class="number">0x20</span>;
+<span class="kw">pub const </span>N_FNAME: u8 = <span class="number">0x22</span>;
+<span class="kw">pub const </span>N_FUN: u8 = <span class="number">0x24</span>;
+<span class="kw">pub const </span>N_STSYM: u8 = <span class="number">0x26</span>;
+<span class="kw">pub const </span>N_LCSYM: u8 = <span class="number">0x28</span>;
+<span class="kw">pub const </span>N_BNSYM: u8 = <span class="number">0x2e</span>;
+<span class="kw">pub const </span>N_PC: u8 = <span class="number">0x30</span>;
+<span class="kw">pub const </span>N_AST: u8 = <span class="number">0x32</span>;
+<span class="kw">pub const </span>N_OPT: u8 = <span class="number">0x3c</span>;
+<span class="kw">pub const </span>N_RSYM: u8 = <span class="number">0x40</span>;
+<span class="kw">pub const </span>N_SLINE: u8 = <span class="number">0x44</span>;
+<span class="kw">pub const </span>N_ENSYM: u8 = <span class="number">0x4e</span>;
+<span class="kw">pub const </span>N_SSYM: u8 = <span class="number">0x60</span>;
+<span class="kw">pub const </span>N_SO: u8 = <span class="number">0x64</span>;
+<span class="kw">pub const </span>N_OSO: u8 = <span class="number">0x66</span>;
+<span class="kw">pub const </span>N_LSYM: u8 = <span class="number">0x80</span>;
+<span class="kw">pub const </span>N_BINCL: u8 = <span class="number">0x82</span>;
+<span class="kw">pub const </span>N_SOL: u8 = <span class="number">0x84</span>;
+<span class="kw">pub const </span>N_PARAMS: u8 = <span class="number">0x86</span>;
+<span class="kw">pub const </span>N_VERSION: u8 = <span class="number">0x88</span>;
+<span class="kw">pub const </span>N_OLEVEL: u8 = <span class="number">0x8a</span>;
+<span class="kw">pub const </span>N_PSYM: u8 = <span class="number">0xa0</span>;
+<span class="kw">pub const </span>N_EINCL: u8 = <span class="number">0xa2</span>;
+<span class="kw">pub const </span>N_ENTRY: u8 = <span class="number">0xa4</span>;
+<span class="kw">pub const </span>N_LBRAC: u8 = <span class="number">0xc0</span>;
+<span class="kw">pub const </span>N_EXCL: u8 = <span class="number">0xc2</span>;
+<span class="kw">pub const </span>N_RBRAC: u8 = <span class="number">0xe0</span>;
+<span class="kw">pub const </span>N_BCOMM: u8 = <span class="number">0xe2</span>;
+<span class="kw">pub const </span>N_ECOMM: u8 = <span class="number">0xe4</span>;
+<span class="kw">pub const </span>N_ECOML: u8 = <span class="number">0xe8</span>;
+<span class="kw">pub const </span>N_LENG: u8 = <span class="number">0xfe</span>;
 
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NLIST_TYPE_MASK</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">0xe</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NLIST_TYPE_GLOBAL</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">0x1</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NLIST_TYPE_LOCAL</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">0x0</span>;
+<span class="kw">pub const </span>NLIST_TYPE_MASK: u8 = <span class="number">0xe</span>;
+<span class="kw">pub const </span>NLIST_TYPE_GLOBAL: u8 = <span class="number">0x1</span>;
+<span class="kw">pub const </span>NLIST_TYPE_LOCAL: u8 = <span class="number">0x0</span>;
 
-<span class="doccomment">/// Mask for reference flags of `n_desc` field.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">REFERENCE_TYPE</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0xf</span>;
-<span class="doccomment">/// This symbol is a reference to an external non-lazy (data) symbol.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">REFERENCE_FLAG_UNDEFINED_NON_LAZY</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0x0</span>;
-<span class="doccomment">/// This symbol is a reference to an external lazy symbol—that is, to a function call.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">REFERENCE_FLAG_UNDEFINED_LAZY</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0x1</span>;
-<span class="doccomment">/// This symbol is defined in this module.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">REFERENCE_FLAG_DEFINED</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0x2</span>;
-<span class="doccomment">/// This symbol is defined in this module and is visible only to modules within this</span>
-<span class="doccomment">/// shared library.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">REFERENCE_FLAG_PRIVATE_DEFINED</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0x3</span>;
-<span class="doccomment">/// This symbol is defined in another module in this file, is a non-lazy (data) symbol,</span>
-<span class="doccomment">/// and is visible only to modules within this shared library.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">REFERENCE_FLAG_PRIVATE_UNDEFINED_NON_LAZY</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0x4</span>;
-<span class="doccomment">/// This symbol is defined in another module in this file, is a lazy (function) symbol,</span>
-<span class="doccomment">/// and is visible only to modules within this shared library.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">REFERENCE_FLAG_PRIVATE_UNDEFINED_LAZY</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0x5</span>;
+<span class="doccomment">/// Mask for reference flags of `n_desc` field.
+</span><span class="kw">pub const </span>REFERENCE_TYPE: u16 = <span class="number">0xf</span>;
+<span class="doccomment">/// This symbol is a reference to an external non-lazy (data) symbol.
+</span><span class="kw">pub const </span>REFERENCE_FLAG_UNDEFINED_NON_LAZY: u16 = <span class="number">0x0</span>;
+<span class="doccomment">/// This symbol is a reference to an external lazy symbol—that is, to a function call.
+</span><span class="kw">pub const </span>REFERENCE_FLAG_UNDEFINED_LAZY: u16 = <span class="number">0x1</span>;
+<span class="doccomment">/// This symbol is defined in this module.
+</span><span class="kw">pub const </span>REFERENCE_FLAG_DEFINED: u16 = <span class="number">0x2</span>;
+<span class="doccomment">/// This symbol is defined in this module and is visible only to modules within this
+/// shared library.
+</span><span class="kw">pub const </span>REFERENCE_FLAG_PRIVATE_DEFINED: u16 = <span class="number">0x3</span>;
+<span class="doccomment">/// This symbol is defined in another module in this file, is a non-lazy (data) symbol,
+/// and is visible only to modules within this shared library.
+</span><span class="kw">pub const </span>REFERENCE_FLAG_PRIVATE_UNDEFINED_NON_LAZY: u16 = <span class="number">0x4</span>;
+<span class="doccomment">/// This symbol is defined in another module in this file, is a lazy (function) symbol,
+/// and is visible only to modules within this shared library.
+</span><span class="kw">pub const </span>REFERENCE_FLAG_PRIVATE_UNDEFINED_LAZY: u16 = <span class="number">0x5</span>;
 
-<span class="comment">// Additional flags of n_desc field.</span>
+<span class="comment">// Additional flags of n_desc field.
 
-<span class="doccomment">/// Must be set for any defined symbol that is referenced by dynamic-loader APIs</span>
-<span class="doccomment">/// (such as dlsym and NSLookupSymbolInImage) and not ordinary undefined symbol</span>
-<span class="doccomment">/// references. The `strip` tool uses this bit to avoid removing symbols that must</span>
-<span class="doccomment">/// exist: If the symbol has this bit set, `strip` does not strip it.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">REFERENCED_DYNAMICALLY</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0x10</span>;
-<span class="doccomment">/// Sometimes used by the dynamic linker at runtime in a fully linked image. Do not</span>
-<span class="doccomment">/// set this bit in a fully linked image.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">N_DESC_DISCARDED</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0x20</span>;
-<span class="doccomment">/// When set in a relocatable object file (file type MH_OBJECT) on a defined symbol,</span>
-<span class="doccomment">/// indicates to the static linker to never dead-strip the symbol.</span>
-<span class="comment">// (Note that the same bit (0x20) is used for two nonoverlapping purposes.)</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">N_NO_DEAD_STRIP</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0x20</span>;
-<span class="doccomment">/// Indicates that this undefined symbol is a weak reference. If the dynamic linker</span>
-<span class="doccomment">/// cannot find a definition for this symbol, it sets the address of this symbol to 0.</span>
-<span class="doccomment">/// The static linker sets this symbol given the appropriate weak-linking flags.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">N_WEAK_REF</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0x40</span>;
-<span class="doccomment">/// Indicates that this symbol is a weak definition. If the static linker or the</span>
-<span class="doccomment">/// dynamic linker finds another (non-weak) definition for this symbol, the weak</span>
-<span class="doccomment">/// definition is ignored. Only symbols in a coalesced section can be marked as a</span>
-<span class="doccomment">/// weak definition.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">N_WEAK_DEF</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0x80</span>;
+</span><span class="doccomment">/// Must be set for any defined symbol that is referenced by dynamic-loader APIs
+/// (such as dlsym and NSLookupSymbolInImage) and not ordinary undefined symbol
+/// references. The `strip` tool uses this bit to avoid removing symbols that must
+/// exist: If the symbol has this bit set, `strip` does not strip it.
+</span><span class="kw">pub const </span>REFERENCED_DYNAMICALLY: u16 = <span class="number">0x10</span>;
+<span class="doccomment">/// Sometimes used by the dynamic linker at runtime in a fully linked image. Do not
+/// set this bit in a fully linked image.
+</span><span class="kw">pub const </span>N_DESC_DISCARDED: u16 = <span class="number">0x20</span>;
+<span class="doccomment">/// When set in a relocatable object file (file type MH_OBJECT) on a defined symbol,
+/// indicates to the static linker to never dead-strip the symbol.
+</span><span class="comment">// (Note that the same bit (0x20) is used for two nonoverlapping purposes.)
+</span><span class="kw">pub const </span>N_NO_DEAD_STRIP: u16 = <span class="number">0x20</span>;
+<span class="doccomment">/// Indicates that this undefined symbol is a weak reference. If the dynamic linker
+/// cannot find a definition for this symbol, it sets the address of this symbol to 0.
+/// The static linker sets this symbol given the appropriate weak-linking flags.
+</span><span class="kw">pub const </span>N_WEAK_REF: u16 = <span class="number">0x40</span>;
+<span class="doccomment">/// Indicates that this symbol is a weak definition. If the static linker or the
+/// dynamic linker finds another (non-weak) definition for this symbol, the weak
+/// definition is ignored. Only symbols in a coalesced section can be marked as a
+/// weak definition.
+</span><span class="kw">pub const </span>N_WEAK_DEF: u16 = <span class="number">0x80</span>;
 
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">n_type_to_str</span>(<span class="ident">n_type</span>: <span class="ident">u8</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> {
-    <span class="kw">match</span> <span class="ident">n_type</span> {
-        <span class="ident">N_UNDF</span> =&gt; <span class="string">&quot;N_UNDF&quot;</span>,
-        <span class="ident">N_ABS</span> =&gt; <span class="string">&quot;N_ABS&quot;</span>,
-        <span class="ident">N_SECT</span> =&gt; <span class="string">&quot;N_SECT&quot;</span>,
-        <span class="ident">N_PBUD</span> =&gt; <span class="string">&quot;N_PBUD&quot;</span>,
-        <span class="ident">N_INDR</span> =&gt; <span class="string">&quot;N_INDR&quot;</span>,
-        <span class="kw">_</span> =&gt; <span class="string">&quot;UNKNOWN_N_TYPE&quot;</span>,
+<span class="kw">pub fn </span>n_type_to_str(n_type: u8) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str {
+    <span class="kw">match </span>n_type {
+        N_UNDF =&gt; <span class="string">&quot;N_UNDF&quot;</span>,
+        N_ABS =&gt; <span class="string">&quot;N_ABS&quot;</span>,
+        N_SECT =&gt; <span class="string">&quot;N_SECT&quot;</span>,
+        N_PBUD =&gt; <span class="string">&quot;N_PBUD&quot;</span>,
+        N_INDR =&gt; <span class="string">&quot;N_INDR&quot;</span>,
+        <span class="kw">_ </span>=&gt; <span class="string">&quot;UNKNOWN_N_TYPE&quot;</span>,
     }
 }
 
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Pread</span>, <span class="ident">Pwrite</span>, <span class="ident">SizeWith</span>, <span class="ident">IOread</span>, <span class="ident">IOwrite</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Nlist32</span> {
-    <span class="doccomment">/// index into the string table</span>
-    <span class="kw">pub</span> <span class="ident">n_strx</span>: <span class="ident">u32</span>,
-    <span class="doccomment">/// type flag, see below</span>
-    <span class="kw">pub</span> <span class="ident">n_type</span>: <span class="ident">u8</span>,
-    <span class="doccomment">/// section number or NO_SECT</span>
-    <span class="kw">pub</span> <span class="ident">n_sect</span>: <span class="ident">u8</span>,
-    <span class="doccomment">/// see &lt;mach-o/stab.h&gt;</span>
-    <span class="kw">pub</span> <span class="ident">n_desc</span>: <span class="ident">u16</span>,
-    <span class="doccomment">/// value of this symbol (or stab offset)</span>
-    <span class="kw">pub</span> <span class="ident">n_value</span>: <span class="ident">u32</span>,
+<span class="attribute">#[repr(C)]
+#[derive(Clone, Copy, Pread, Pwrite, SizeWith, IOread, IOwrite)]
+</span><span class="kw">pub struct </span>Nlist32 {
+    <span class="doccomment">/// index into the string table
+    </span><span class="kw">pub </span>n_strx: u32,
+    <span class="doccomment">/// type flag, see below
+    </span><span class="kw">pub </span>n_type: u8,
+    <span class="doccomment">/// section number or NO_SECT
+    </span><span class="kw">pub </span>n_sect: u8,
+    <span class="doccomment">/// see &lt;mach-o/stab.h&gt;
+    </span><span class="kw">pub </span>n_desc: u16,
+    <span class="doccomment">/// value of this symbol (or stab offset)
+    </span><span class="kw">pub </span>n_value: u32,
 }
 
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIZEOF_NLIST_32</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">12</span>;
+<span class="kw">pub const </span>SIZEOF_NLIST_32: usize = <span class="number">12</span>;
 
-<span class="kw">impl</span> <span class="ident">Debug</span> <span class="kw">for</span> <span class="ident">Nlist32</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">fmt</span>: <span class="kw-2">&amp;mut</span> <span class="ident">fmt::Formatter</span>) -&gt; <span class="ident">fmt::Result</span> {
-        <span class="ident">fmt</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;Nlist32&quot;</span>)
-            .<span class="ident">field</span>(<span class="string">&quot;n_strx&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{:04}&quot;</span>, <span class="self">self</span>.<span class="ident">n_strx</span>))
-            .<span class="ident">field</span>(<span class="string">&quot;n_type&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{:#02x}&quot;</span>, <span class="self">self</span>.<span class="ident">n_type</span>))
-            .<span class="ident">field</span>(<span class="string">&quot;n_sect&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{:#x}&quot;</span>, <span class="self">self</span>.<span class="ident">n_sect</span>))
-            .<span class="ident">field</span>(<span class="string">&quot;n_desc&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{:#03x}&quot;</span>, <span class="self">self</span>.<span class="ident">n_desc</span>))
-            .<span class="ident">field</span>(<span class="string">&quot;n_value&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{:#x}&quot;</span>, <span class="self">self</span>.<span class="ident">n_value</span>))
-            .<span class="ident">finish</span>()
-    }
-}
-
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Pread</span>, <span class="ident">Pwrite</span>, <span class="ident">SizeWith</span>, <span class="ident">IOread</span>, <span class="ident">IOwrite</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Nlist64</span> {
-    <span class="doccomment">/// index into the string table</span>
-    <span class="kw">pub</span> <span class="ident">n_strx</span>: <span class="ident">u32</span>,
-    <span class="doccomment">/// type flag, see below</span>
-    <span class="kw">pub</span> <span class="ident">n_type</span>: <span class="ident">u8</span>,
-    <span class="doccomment">/// section number or NO_SECT</span>
-    <span class="kw">pub</span> <span class="ident">n_sect</span>: <span class="ident">u8</span>,
-    <span class="doccomment">/// see &lt;mach-o/stab.h&gt;</span>
-    <span class="kw">pub</span> <span class="ident">n_desc</span>: <span class="ident">u16</span>,
-    <span class="doccomment">/// value of this symbol (or stab offset)</span>
-    <span class="kw">pub</span> <span class="ident">n_value</span>: <span class="ident">u64</span>,
-}
-
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIZEOF_NLIST_64</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">16</span>;
-
-<span class="kw">impl</span> <span class="ident">Debug</span> <span class="kw">for</span> <span class="ident">Nlist64</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">fmt</span>: <span class="kw-2">&amp;mut</span> <span class="ident">fmt::Formatter</span>) -&gt; <span class="ident">fmt::Result</span> {
-        <span class="ident">fmt</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;Nlist64&quot;</span>)
-            .<span class="ident">field</span>(<span class="string">&quot;n_strx&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{:04}&quot;</span>, <span class="self">self</span>.<span class="ident">n_strx</span>))
-            .<span class="ident">field</span>(<span class="string">&quot;n_type&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{:#02x}&quot;</span>, <span class="self">self</span>.<span class="ident">n_type</span>))
-            .<span class="ident">field</span>(<span class="string">&quot;n_sect&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{:#x}&quot;</span>, <span class="self">self</span>.<span class="ident">n_sect</span>))
-            .<span class="ident">field</span>(<span class="string">&quot;n_desc&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{:#03x}&quot;</span>, <span class="self">self</span>.<span class="ident">n_desc</span>))
-            .<span class="ident">field</span>(<span class="string">&quot;n_value&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{:#x}&quot;</span>, <span class="self">self</span>.<span class="ident">n_value</span>))
-            .<span class="ident">finish</span>()
+<span class="kw">impl </span>Debug <span class="kw">for </span>Nlist32 {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, fmt: <span class="kw-2">&amp;mut </span>fmt::Formatter) -&gt; fmt::Result {
+        fmt.debug_struct(<span class="string">&quot;Nlist32&quot;</span>)
+            .field(<span class="string">&quot;n_strx&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{:04}&quot;</span>, <span class="self">self</span>.n_strx))
+            .field(<span class="string">&quot;n_type&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{:#02x}&quot;</span>, <span class="self">self</span>.n_type))
+            .field(<span class="string">&quot;n_sect&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{:#x}&quot;</span>, <span class="self">self</span>.n_sect))
+            .field(<span class="string">&quot;n_desc&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{:#03x}&quot;</span>, <span class="self">self</span>.n_desc))
+            .field(<span class="string">&quot;n_value&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{:#x}&quot;</span>, <span class="self">self</span>.n_value))
+            .finish()
     }
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Nlist</span> {
-    <span class="doccomment">/// index into the string table</span>
-    <span class="kw">pub</span> <span class="ident">n_strx</span>: <span class="ident">usize</span>,
-    <span class="doccomment">/// type flag, see below</span>
-    <span class="kw">pub</span> <span class="ident">n_type</span>: <span class="ident">u8</span>,
-    <span class="doccomment">/// section number or NO_SECT</span>
-    <span class="kw">pub</span> <span class="ident">n_sect</span>: <span class="ident">usize</span>,
-    <span class="doccomment">/// see &lt;mach-o/stab.h&gt;</span>
-    <span class="kw">pub</span> <span class="ident">n_desc</span>: <span class="ident">u16</span>,
-    <span class="doccomment">/// value of this symbol (or stab offset)</span>
-    <span class="kw">pub</span> <span class="ident">n_value</span>: <span class="ident">u64</span>,
+<span class="attribute">#[repr(C)]
+#[derive(Clone, Copy, Pread, Pwrite, SizeWith, IOread, IOwrite)]
+</span><span class="kw">pub struct </span>Nlist64 {
+    <span class="doccomment">/// index into the string table
+    </span><span class="kw">pub </span>n_strx: u32,
+    <span class="doccomment">/// type flag, see below
+    </span><span class="kw">pub </span>n_type: u8,
+    <span class="doccomment">/// section number or NO_SECT
+    </span><span class="kw">pub </span>n_sect: u8,
+    <span class="doccomment">/// see &lt;mach-o/stab.h&gt;
+    </span><span class="kw">pub </span>n_desc: u16,
+    <span class="doccomment">/// value of this symbol (or stab offset)
+    </span><span class="kw">pub </span>n_value: u64,
 }
 
-<span class="kw">impl</span> <span class="ident">Nlist</span> {
-    <span class="doccomment">/// Gets this symbol&#39;s type in bits 0xe</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_type</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">u8</span> {
-        <span class="self">self</span>.<span class="ident">n_type</span> <span class="op">&amp;</span> <span class="ident">N_TYPE</span>
-    }
-    <span class="doccomment">/// Gets the str representation of the type of this symbol</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">type_str</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> {
-        <span class="ident">n_type_to_str</span>(<span class="self">self</span>.<span class="ident">get_type</span>())
-    }
-    <span class="doccomment">/// Whether this symbol is global or not</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_global</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">n_type</span> <span class="op">&amp;</span> <span class="ident">N_EXT</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span>
-    }
-    <span class="doccomment">/// Whether this symbol is weak or not</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_weak</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">n_desc</span> <span class="op">&amp;</span> (<span class="ident">N_WEAK_REF</span> <span class="op">|</span> <span class="ident">N_WEAK_DEF</span>) <span class="op">!</span><span class="op">=</span> <span class="number">0</span>
-    }
-    <span class="doccomment">/// Whether this symbol is undefined or not</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_undefined</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">n_sect</span> <span class="op">==</span> <span class="number">0</span> <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">n_type</span> <span class="op">&amp;</span> <span class="ident">N_TYPE</span> <span class="op">==</span> <span class="ident">N_UNDF</span>
-    }
-    <span class="doccomment">/// Whether this symbol is a symbolic debugging entry</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_stab</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">n_type</span> <span class="op">&amp;</span> <span class="ident">N_STAB</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span>
+<span class="kw">pub const </span>SIZEOF_NLIST_64: usize = <span class="number">16</span>;
+
+<span class="kw">impl </span>Debug <span class="kw">for </span>Nlist64 {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, fmt: <span class="kw-2">&amp;mut </span>fmt::Formatter) -&gt; fmt::Result {
+        fmt.debug_struct(<span class="string">&quot;Nlist64&quot;</span>)
+            .field(<span class="string">&quot;n_strx&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{:04}&quot;</span>, <span class="self">self</span>.n_strx))
+            .field(<span class="string">&quot;n_type&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{:#02x}&quot;</span>, <span class="self">self</span>.n_type))
+            .field(<span class="string">&quot;n_sect&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{:#x}&quot;</span>, <span class="self">self</span>.n_sect))
+            .field(<span class="string">&quot;n_desc&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{:#03x}&quot;</span>, <span class="self">self</span>.n_desc))
+            .field(<span class="string">&quot;n_value&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{:#x}&quot;</span>, <span class="self">self</span>.n_value))
+            .finish()
     }
 }
 
-<span class="kw">impl</span> <span class="ident">ctx::SizeWith</span><span class="op">&lt;</span><span class="ident">container::Ctx</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Nlist</span> {
-    <span class="kw">fn</span> <span class="ident">size_with</span>(<span class="ident">ctx</span>: <span class="kw-2">&amp;</span><span class="ident">container::Ctx</span>) -&gt; <span class="ident">usize</span> {
-        <span class="kw">match</span> <span class="ident">ctx</span>.<span class="ident">container</span> {
-            <span class="ident">Container::Little</span> =&gt; <span class="ident">SIZEOF_NLIST_32</span>,
-            <span class="ident">Container::Big</span> =&gt; <span class="ident">SIZEOF_NLIST_64</span>,
+<span class="attribute">#[derive(Debug, Clone)]
+</span><span class="kw">pub struct </span>Nlist {
+    <span class="doccomment">/// index into the string table
+    </span><span class="kw">pub </span>n_strx: usize,
+    <span class="doccomment">/// type flag, see below
+    </span><span class="kw">pub </span>n_type: u8,
+    <span class="doccomment">/// section number or NO_SECT
+    </span><span class="kw">pub </span>n_sect: usize,
+    <span class="doccomment">/// see &lt;mach-o/stab.h&gt;
+    </span><span class="kw">pub </span>n_desc: u16,
+    <span class="doccomment">/// value of this symbol (or stab offset)
+    </span><span class="kw">pub </span>n_value: u64,
+}
+
+<span class="kw">impl </span>Nlist {
+    <span class="doccomment">/// Gets this symbol&#39;s type in bits 0xe
+    </span><span class="kw">pub fn </span>get_type(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; u8 {
+        <span class="self">self</span>.n_type &amp; N_TYPE
+    }
+    <span class="doccomment">/// Gets the str representation of the type of this symbol
+    </span><span class="kw">pub fn </span>type_str(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str {
+        n_type_to_str(<span class="self">self</span>.get_type())
+    }
+    <span class="doccomment">/// Whether this symbol is global or not
+    </span><span class="kw">pub fn </span>is_global(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.n_type &amp; N_EXT != <span class="number">0
+    </span>}
+    <span class="doccomment">/// Whether this symbol is weak or not
+    </span><span class="kw">pub fn </span>is_weak(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.n_desc &amp; (N_WEAK_REF | N_WEAK_DEF) != <span class="number">0
+    </span>}
+    <span class="doccomment">/// Whether this symbol is undefined or not
+    </span><span class="kw">pub fn </span>is_undefined(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.n_sect == <span class="number">0 </span>&amp;&amp; <span class="self">self</span>.n_type &amp; N_TYPE == N_UNDF
+    }
+    <span class="doccomment">/// Whether this symbol is a symbolic debugging entry
+    </span><span class="kw">pub fn </span>is_stab(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.n_type &amp; N_STAB != <span class="number">0
+    </span>}
+}
+
+<span class="kw">impl </span>ctx::SizeWith&lt;container::Ctx&gt; <span class="kw">for </span>Nlist {
+    <span class="kw">fn </span>size_with(ctx: <span class="kw-2">&amp;</span>container::Ctx) -&gt; usize {
+        <span class="kw">match </span>ctx.container {
+            Container::Little =&gt; SIZEOF_NLIST_32,
+            Container::Big =&gt; SIZEOF_NLIST_64,
         }
     }
 }
 
-<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">Nlist32</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Nlist</span> {
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">nlist</span>: <span class="ident">Nlist32</span>) -&gt; <span class="self">Self</span> {
-        <span class="ident">Nlist</span> {
-            <span class="ident">n_strx</span>: <span class="ident">nlist</span>.<span class="ident">n_strx</span> <span class="kw">as</span> <span class="ident">usize</span>,
-            <span class="ident">n_type</span>: <span class="ident">nlist</span>.<span class="ident">n_type</span>,
-            <span class="ident">n_sect</span>: <span class="ident">nlist</span>.<span class="ident">n_sect</span> <span class="kw">as</span> <span class="ident">usize</span>,
-            <span class="ident">n_desc</span>: <span class="ident">nlist</span>.<span class="ident">n_desc</span>,
-            <span class="ident">n_value</span>: <span class="ident">u64::from</span>(<span class="ident">nlist</span>.<span class="ident">n_value</span>),
+<span class="kw">impl </span>From&lt;Nlist32&gt; <span class="kw">for </span>Nlist {
+    <span class="kw">fn </span>from(nlist: Nlist32) -&gt; <span class="self">Self </span>{
+        Nlist {
+            n_strx: nlist.n_strx <span class="kw">as </span>usize,
+            n_type: nlist.n_type,
+            n_sect: nlist.n_sect <span class="kw">as </span>usize,
+            n_desc: nlist.n_desc,
+            n_value: u64::from(nlist.n_value),
         }
     }
 }
 
-<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">Nlist64</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Nlist</span> {
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">nlist</span>: <span class="ident">Nlist64</span>) -&gt; <span class="self">Self</span> {
-        <span class="ident">Nlist</span> {
-            <span class="ident">n_strx</span>: <span class="ident">nlist</span>.<span class="ident">n_strx</span> <span class="kw">as</span> <span class="ident">usize</span>,
-            <span class="ident">n_type</span>: <span class="ident">nlist</span>.<span class="ident">n_type</span>,
-            <span class="ident">n_sect</span>: <span class="ident">nlist</span>.<span class="ident">n_sect</span> <span class="kw">as</span> <span class="ident">usize</span>,
-            <span class="ident">n_desc</span>: <span class="ident">nlist</span>.<span class="ident">n_desc</span>,
-            <span class="ident">n_value</span>: <span class="ident">nlist</span>.<span class="ident">n_value</span>,
+<span class="kw">impl </span>From&lt;Nlist64&gt; <span class="kw">for </span>Nlist {
+    <span class="kw">fn </span>from(nlist: Nlist64) -&gt; <span class="self">Self </span>{
+        Nlist {
+            n_strx: nlist.n_strx <span class="kw">as </span>usize,
+            n_type: nlist.n_type,
+            n_sect: nlist.n_sect <span class="kw">as </span>usize,
+            n_desc: nlist.n_desc,
+            n_value: nlist.n_value,
         }
     }
 }
 
-<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">Nlist</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Nlist32</span> {
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">nlist</span>: <span class="ident">Nlist</span>) -&gt; <span class="self">Self</span> {
-        <span class="ident">Nlist32</span> {
-            <span class="ident">n_strx</span>: <span class="ident">nlist</span>.<span class="ident">n_strx</span> <span class="kw">as</span> <span class="ident">u32</span>,
-            <span class="ident">n_type</span>: <span class="ident">nlist</span>.<span class="ident">n_type</span>,
-            <span class="ident">n_sect</span>: <span class="ident">nlist</span>.<span class="ident">n_sect</span> <span class="kw">as</span> <span class="ident">u8</span>,
-            <span class="ident">n_desc</span>: <span class="ident">nlist</span>.<span class="ident">n_desc</span>,
-            <span class="ident">n_value</span>: <span class="ident">nlist</span>.<span class="ident">n_value</span> <span class="kw">as</span> <span class="ident">u32</span>,
+<span class="kw">impl </span>From&lt;Nlist&gt; <span class="kw">for </span>Nlist32 {
+    <span class="kw">fn </span>from(nlist: Nlist) -&gt; <span class="self">Self </span>{
+        Nlist32 {
+            n_strx: nlist.n_strx <span class="kw">as </span>u32,
+            n_type: nlist.n_type,
+            n_sect: nlist.n_sect <span class="kw">as </span>u8,
+            n_desc: nlist.n_desc,
+            n_value: nlist.n_value <span class="kw">as </span>u32,
         }
     }
 }
 
-<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">Nlist</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Nlist64</span> {
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">nlist</span>: <span class="ident">Nlist</span>) -&gt; <span class="self">Self</span> {
-        <span class="ident">Nlist64</span> {
-            <span class="ident">n_strx</span>: <span class="ident">nlist</span>.<span class="ident">n_strx</span> <span class="kw">as</span> <span class="ident">u32</span>,
-            <span class="ident">n_type</span>: <span class="ident">nlist</span>.<span class="ident">n_type</span>,
-            <span class="ident">n_sect</span>: <span class="ident">nlist</span>.<span class="ident">n_sect</span> <span class="kw">as</span> <span class="ident">u8</span>,
-            <span class="ident">n_desc</span>: <span class="ident">nlist</span>.<span class="ident">n_desc</span>,
-            <span class="ident">n_value</span>: <span class="ident">nlist</span>.<span class="ident">n_value</span>,
+<span class="kw">impl </span>From&lt;Nlist&gt; <span class="kw">for </span>Nlist64 {
+    <span class="kw">fn </span>from(nlist: Nlist) -&gt; <span class="self">Self </span>{
+        Nlist64 {
+            n_strx: nlist.n_strx <span class="kw">as </span>u32,
+            n_type: nlist.n_type,
+            n_sect: nlist.n_sect <span class="kw">as </span>u8,
+            n_desc: nlist.n_desc,
+            n_value: nlist.n_value,
         }
     }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">ctx::TryFromCtx</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">container::Ctx</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Nlist</span> {
-    <span class="kw">type</span> <span class="ident">Error</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::error::Error</span>;
-    <span class="kw">fn</span> <span class="ident">try_from_ctx</span>(
-        <span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
-        <span class="ident">container::Ctx</span> { <span class="ident">container</span>, <span class="ident">le</span> }: <span class="ident">container::Ctx</span>,
-    ) -&gt; <span class="ident"><span class="kw">crate</span>::error::Result</span><span class="op">&lt;</span>(<span class="self">Self</span>, <span class="ident">usize</span>)<span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">nlist</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">container</span> {
-            <span class="ident">Container::Little</span> =&gt; (<span class="ident">bytes</span>.<span class="ident">pread_with</span>::<span class="op">&lt;</span><span class="ident">Nlist32</span><span class="op">&gt;</span>(<span class="number">0</span>, <span class="ident">le</span>)<span class="question-mark">?</span>.<span class="ident">into</span>(), <span class="ident">SIZEOF_NLIST_32</span>),
-            <span class="ident">Container::Big</span> =&gt; (<span class="ident">bytes</span>.<span class="ident">pread_with</span>::<span class="op">&lt;</span><span class="ident">Nlist64</span><span class="op">&gt;</span>(<span class="number">0</span>, <span class="ident">le</span>)<span class="question-mark">?</span>.<span class="ident">into</span>(), <span class="ident">SIZEOF_NLIST_64</span>),
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; ctx::TryFromCtx&lt;<span class="lifetime">&#39;a</span>, container::Ctx&gt; <span class="kw">for </span>Nlist {
+    <span class="kw">type </span>Error = <span class="kw">crate</span>::error::Error;
+    <span class="kw">fn </span>try_from_ctx(
+        bytes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8],
+        container::Ctx { container, le }: container::Ctx,
+    ) -&gt; <span class="kw">crate</span>::error::Result&lt;(<span class="self">Self</span>, usize)&gt; {
+        <span class="kw">let </span>nlist = <span class="kw">match </span>container {
+            Container::Little =&gt; (bytes.pread_with::&lt;Nlist32&gt;(<span class="number">0</span>, le)<span class="question-mark">?</span>.into(), SIZEOF_NLIST_32),
+            Container::Big =&gt; (bytes.pread_with::&lt;Nlist64&gt;(<span class="number">0</span>, le)<span class="question-mark">?</span>.into(), SIZEOF_NLIST_64),
         };
-        <span class="prelude-val">Ok</span>(<span class="ident">nlist</span>)
+        <span class="prelude-val">Ok</span>(nlist)
     }
 }
 
-<span class="kw">impl</span> <span class="ident">ctx::TryIntoCtx</span><span class="op">&lt;</span><span class="ident">container::Ctx</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Nlist</span> {
-    <span class="kw">type</span> <span class="ident">Error</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::error::Error</span>;
-    <span class="kw">fn</span> <span class="ident">try_into_ctx</span>(
+<span class="kw">impl </span>ctx::TryIntoCtx&lt;container::Ctx&gt; <span class="kw">for </span>Nlist {
+    <span class="kw">type </span>Error = <span class="kw">crate</span>::error::Error;
+    <span class="kw">fn </span>try_into_ctx(
         <span class="self">self</span>,
-        <span class="ident">bytes</span>: <span class="kw-2">&amp;mut</span> [<span class="ident">u8</span>],
-        <span class="ident">container::Ctx</span> { <span class="ident">container</span>, <span class="ident">le</span> }: <span class="ident">container::Ctx</span>,
-    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">usize</span>, <span class="ident"><span class="self">Self</span>::Error</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">size</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">container</span> {
-            <span class="ident">Container::Little</span> =&gt; (<span class="ident">bytes</span>.<span class="ident">pwrite_with</span>::<span class="op">&lt;</span><span class="ident">Nlist32</span><span class="op">&gt;</span>(<span class="self">self</span>.<span class="ident">into</span>(), <span class="number">0</span>, <span class="ident">le</span>)<span class="question-mark">?</span>),
-            <span class="ident">Container::Big</span> =&gt; (<span class="ident">bytes</span>.<span class="ident">pwrite_with</span>::<span class="op">&lt;</span><span class="ident">Nlist64</span><span class="op">&gt;</span>(<span class="self">self</span>.<span class="ident">into</span>(), <span class="number">0</span>, <span class="ident">le</span>)<span class="question-mark">?</span>),
+        bytes: <span class="kw-2">&amp;mut </span>[u8],
+        container::Ctx { container, le }: container::Ctx,
+    ) -&gt; <span class="prelude-ty">Result</span>&lt;usize, <span class="self">Self</span>::Error&gt; {
+        <span class="kw">let </span>size = <span class="kw">match </span>container {
+            Container::Little =&gt; (bytes.pwrite_with::&lt;Nlist32&gt;(<span class="self">self</span>.into(), <span class="number">0</span>, le)<span class="question-mark">?</span>),
+            Container::Big =&gt; (bytes.pwrite_with::&lt;Nlist64&gt;(<span class="self">self</span>.into(), <span class="number">0</span>, le)<span class="question-mark">?</span>),
         };
-        <span class="prelude-val">Ok</span>(<span class="ident">size</span>)
+        <span class="prelude-val">Ok</span>(size)
     }
 }
 
-<span class="kw">impl</span> <span class="ident">ctx::IntoCtx</span><span class="op">&lt;</span><span class="ident">container::Ctx</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Nlist</span> {
-    <span class="kw">fn</span> <span class="ident">into_ctx</span>(<span class="self">self</span>, <span class="ident">bytes</span>: <span class="kw-2">&amp;mut</span> [<span class="ident">u8</span>], <span class="ident">ctx</span>: <span class="ident">container::Ctx</span>) {
-        <span class="ident">bytes</span>.<span class="ident">pwrite_with</span>(<span class="self">self</span>, <span class="number">0</span>, <span class="ident">ctx</span>).<span class="ident">unwrap</span>();
+<span class="kw">impl </span>ctx::IntoCtx&lt;container::Ctx&gt; <span class="kw">for </span>Nlist {
+    <span class="kw">fn </span>into_ctx(<span class="self">self</span>, bytes: <span class="kw-2">&amp;mut </span>[u8], ctx: container::Ctx) {
+        bytes.pwrite_with(<span class="self">self</span>, <span class="number">0</span>, ctx).unwrap();
     }
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Default</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">SymbolsCtx</span> {
-    <span class="kw">pub</span> <span class="ident">nsyms</span>: <span class="ident">usize</span>,
-    <span class="kw">pub</span> <span class="ident">strtab</span>: <span class="ident">usize</span>,
-    <span class="kw">pub</span> <span class="ident">ctx</span>: <span class="ident">container::Ctx</span>,
+<span class="attribute">#[derive(Debug, Clone, Copy, Default)]
+</span><span class="kw">pub struct </span>SymbolsCtx {
+    <span class="kw">pub </span>nsyms: usize,
+    <span class="kw">pub </span>strtab: usize,
+    <span class="kw">pub </span>ctx: container::Ctx,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">T</span>: <span class="question-mark">?</span><span class="ident">Sized</span><span class="op">&gt;</span> <span class="ident">ctx::TryFromCtx</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">SymbolsCtx</span>, <span class="ident">T</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Symbols</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>
-<span class="kw">where</span>
-    <span class="ident">T</span>: <span class="ident">AsRef</span><span class="op">&lt;</span>[<span class="ident">u8</span>]<span class="op">&gt;</span>,
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>, T: <span class="question-mark">?</span>Sized&gt; ctx::TryFromCtx&lt;<span class="lifetime">&#39;a</span>, SymbolsCtx, T&gt; <span class="kw">for </span>Symbols&lt;<span class="lifetime">&#39;a</span>&gt;
+<span class="kw">where
+    </span>T: AsRef&lt;[u8]&gt;,
 {
-    <span class="kw">type</span> <span class="ident">Error</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::error::Error</span>;
-    <span class="kw">fn</span> <span class="ident">try_from_ctx</span>(
-        <span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">T</span>,
-        <span class="ident">SymbolsCtx</span> { <span class="ident">nsyms</span>, <span class="ident">strtab</span>, <span class="ident">ctx</span> }: <span class="ident">SymbolsCtx</span>,
-    ) -&gt; <span class="ident"><span class="kw">crate</span>::error::Result</span><span class="op">&lt;</span>(<span class="self">Self</span>, <span class="ident">usize</span>)<span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">as_ref</span>();
+    <span class="kw">type </span>Error = <span class="kw">crate</span>::error::Error;
+    <span class="kw">fn </span>try_from_ctx(
+        bytes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>T,
+        SymbolsCtx { nsyms, strtab, ctx }: SymbolsCtx,
+    ) -&gt; <span class="kw">crate</span>::error::Result&lt;(<span class="self">Self</span>, usize)&gt; {
+        <span class="kw">let </span>data = bytes.as_ref();
         <span class="prelude-val">Ok</span>((
-            <span class="ident">Symbols</span> {
-                <span class="ident">data</span>,
-                <span class="ident">start</span>: <span class="number">0</span>,
-                <span class="ident">nsyms</span>,
-                <span class="ident">strtab</span>,
-                <span class="ident">ctx</span>,
+            Symbols {
+                data,
+                start: <span class="number">0</span>,
+                nsyms,
+                strtab,
+                ctx,
             },
-            <span class="ident">data</span>.<span class="ident">len</span>(),
+            data.len(),
         ))
     }
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Default</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">SymbolIterator</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="ident">data</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
-    <span class="ident">nsyms</span>: <span class="ident">usize</span>,
-    <span class="ident">offset</span>: <span class="ident">usize</span>,
-    <span class="ident">count</span>: <span class="ident">usize</span>,
-    <span class="ident">ctx</span>: <span class="ident">container::Ctx</span>,
-    <span class="ident">strtab</span>: <span class="ident">usize</span>,
+<span class="attribute">#[derive(Default)]
+</span><span class="kw">pub struct </span>SymbolIterator&lt;<span class="lifetime">&#39;a</span>&gt; {
+    data: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8],
+    nsyms: usize,
+    offset: usize,
+    count: usize,
+    ctx: container::Ctx,
+    strtab: usize,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Iterator</span> <span class="kw">for</span> <span class="ident">SymbolIterator</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">type</span> <span class="ident">Item</span> <span class="op">=</span> <span class="ident">error::Result</span><span class="op">&lt;</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>, <span class="ident">Nlist</span>)<span class="op">&gt;</span>;
-    <span class="kw">fn</span> <span class="ident">next</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident"><span class="self">Self</span>::Item</span><span class="op">&gt;</span> {
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">count</span> <span class="op">&gt;</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">nsyms</span> {
-            <span class="prelude-val">None</span>
-        } <span class="kw">else</span> {
-            <span class="self">self</span>.<span class="ident">count</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
-            <span class="kw">match</span> <span class="self">self</span>.<span class="ident">data</span>.<span class="ident">gread_with</span>::<span class="op">&lt;</span><span class="ident">Nlist</span><span class="op">&gt;</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="ident">offset</span>, <span class="self">self</span>.<span class="ident">ctx</span>) {
-                <span class="prelude-val">Ok</span>(<span class="ident">symbol</span>) =&gt; <span class="kw">match</span> <span class="self">self</span>.<span class="ident">data</span>.<span class="ident">pread</span>(<span class="self">self</span>.<span class="ident">strtab</span> <span class="op">+</span> <span class="ident">symbol</span>.<span class="ident">n_strx</span>) {
-                    <span class="prelude-val">Ok</span>(<span class="ident">name</span>) =&gt; <span class="prelude-val">Some</span>(<span class="prelude-val">Ok</span>((<span class="ident">name</span>, <span class="ident">symbol</span>))),
-                    <span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; <span class="prelude-val">Some</span>(<span class="prelude-val">Err</span>(<span class="ident">e</span>.<span class="ident">into</span>())),
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Iterator <span class="kw">for </span>SymbolIterator&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">type </span>Item = error::Result&lt;(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str, Nlist)&gt;;
+    <span class="kw">fn </span>next(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>::Item&gt; {
+        <span class="kw">if </span><span class="self">self</span>.count &gt;= <span class="self">self</span>.nsyms {
+            <span class="prelude-val">None
+        </span>} <span class="kw">else </span>{
+            <span class="self">self</span>.count += <span class="number">1</span>;
+            <span class="kw">match </span><span class="self">self</span>.data.gread_with::&lt;Nlist&gt;(<span class="kw-2">&amp;mut </span><span class="self">self</span>.offset, <span class="self">self</span>.ctx) {
+                <span class="prelude-val">Ok</span>(symbol) =&gt; <span class="kw">match </span><span class="self">self</span>.data.pread(<span class="self">self</span>.strtab + symbol.n_strx) {
+                    <span class="prelude-val">Ok</span>(name) =&gt; <span class="prelude-val">Some</span>(<span class="prelude-val">Ok</span>((name, symbol))),
+                    <span class="prelude-val">Err</span>(e) =&gt; <span class="prelude-val">Some</span>(<span class="prelude-val">Err</span>(e.into())),
                 },
-                <span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; <span class="prelude-val">Some</span>(<span class="prelude-val">Err</span>(<span class="ident">e</span>)),
+                <span class="prelude-val">Err</span>(e) =&gt; <span class="prelude-val">Some</span>(<span class="prelude-val">Err</span>(e)),
             }
         }
     }
 }
 
-<span class="doccomment">/// A zero-copy &quot;nlist&quot; style symbol table (&quot;stab&quot;), including the string table</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Symbols</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="ident">data</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
-    <span class="ident">start</span>: <span class="ident">usize</span>,
-    <span class="ident">nsyms</span>: <span class="ident">usize</span>,
-    <span class="comment">// TODO: we can use an actual strtab here and tie it to symbols lifetime</span>
-    <span class="ident">strtab</span>: <span class="ident">usize</span>,
-    <span class="ident">ctx</span>: <span class="ident">container::Ctx</span>,
+<span class="doccomment">/// A zero-copy &quot;nlist&quot; style symbol table (&quot;stab&quot;), including the string table
+</span><span class="kw">pub struct </span>Symbols&lt;<span class="lifetime">&#39;a</span>&gt; {
+    data: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8],
+    start: usize,
+    nsyms: usize,
+    <span class="comment">// TODO: we can use an actual strtab here and tie it to symbols lifetime
+    </span>strtab: usize,
+    ctx: container::Ctx,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="lifetime">&#39;b</span><span class="op">&gt;</span> <span class="ident">IntoIterator</span> <span class="kw">for</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;b</span> <span class="ident">Symbols</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">type</span> <span class="ident">Item</span> <span class="op">=</span> <span class="op">&lt;</span><span class="ident">SymbolIterator</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="kw">as</span> <span class="ident">Iterator</span><span class="op">&gt;</span><span class="ident">::Item</span>;
-    <span class="kw">type</span> <span class="ident">IntoIter</span> <span class="op">=</span> <span class="ident">SymbolIterator</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>;
-    <span class="kw">fn</span> <span class="ident">into_iter</span>(<span class="self">self</span>) -&gt; <span class="ident"><span class="self">Self</span>::IntoIter</span> {
-        <span class="self">self</span>.<span class="ident">iter</span>()
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>, <span class="lifetime">&#39;b</span>&gt; IntoIterator <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;b </span>Symbols&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">type </span>Item = &lt;SymbolIterator&lt;<span class="lifetime">&#39;a</span>&gt; <span class="kw">as </span>Iterator&gt;::Item;
+    <span class="kw">type </span>IntoIter = SymbolIterator&lt;<span class="lifetime">&#39;a</span>&gt;;
+    <span class="kw">fn </span>into_iter(<span class="self">self</span>) -&gt; <span class="self">Self</span>::IntoIter {
+        <span class="self">self</span>.iter()
     }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Symbols</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// Creates a new symbol table with `count` elements, from the `start` offset, using the string table at `strtab`, with a _default_ ctx.</span>
-    <span class="comment">////</span>
-    <span class="doccomment">/// **Beware**, this will provide incorrect results if you construct this on a 32-bit mach binary, using a 64-bit machine; use `parse` instead if you want 32/64 bit support</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(
-        <span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
-        <span class="ident">start</span>: <span class="ident">usize</span>,
-        <span class="ident">count</span>: <span class="ident">usize</span>,
-        <span class="ident">strtab</span>: <span class="ident">usize</span>,
-    ) -&gt; <span class="ident">error::Result</span><span class="op">&lt;</span><span class="ident">Symbols</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">nsyms</span> <span class="op">=</span> <span class="ident">count</span>;
-        <span class="prelude-val">Ok</span>(<span class="ident">Symbols</span> {
-            <span class="ident">data</span>: <span class="ident">bytes</span>,
-            <span class="ident">start</span>,
-            <span class="ident">nsyms</span>,
-            <span class="ident">strtab</span>,
-            <span class="ident">ctx</span>: <span class="ident">container::Ctx::default</span>(),
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Symbols&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="doccomment">/// Creates a new symbol table with `count` elements, from the `start` offset, using the string table at `strtab`, with a _default_ ctx.
+    </span><span class="comment">////
+    </span><span class="doccomment">/// **Beware**, this will provide incorrect results if you construct this on a 32-bit mach binary, using a 64-bit machine; use `parse` instead if you want 32/64 bit support
+    </span><span class="kw">pub fn </span>new(
+        bytes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8],
+        start: usize,
+        count: usize,
+        strtab: usize,
+    ) -&gt; error::Result&lt;Symbols&lt;<span class="lifetime">&#39;a</span>&gt;&gt; {
+        <span class="kw">let </span>nsyms = count;
+        <span class="prelude-val">Ok</span>(Symbols {
+            data: bytes,
+            start,
+            nsyms,
+            strtab,
+            ctx: container::Ctx::default(),
         })
     }
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">parse</span>(
-        <span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
-        <span class="ident">symtab</span>: <span class="kw-2">&amp;</span><span class="ident">load_command::SymtabCommand</span>,
-        <span class="ident">ctx</span>: <span class="ident">container::Ctx</span>,
-    ) -&gt; <span class="ident">error::Result</span><span class="op">&lt;</span><span class="ident">Symbols</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-        <span class="comment">// we need to normalize the strtab offset before we receive the truncated bytes in pread_with</span>
-        <span class="kw">let</span> <span class="ident">strtab</span> <span class="op">=</span> <span class="ident">symtab</span>
-            .<span class="ident">stroff</span>
-            .<span class="ident">checked_sub</span>(<span class="ident">symtab</span>.<span class="ident">symoff</span>)
-            .<span class="ident">ok_or_else</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">error::Error::Malformed</span>(<span class="string">&quot;invalid symbol table offset&quot;</span>.<span class="ident">into</span>()))<span class="question-mark">?</span>;
-        <span class="ident">bytes</span>.<span class="ident">pread_with</span>(
-            <span class="ident">symtab</span>.<span class="ident">symoff</span> <span class="kw">as</span> <span class="ident">usize</span>,
-            <span class="ident">SymbolsCtx</span> {
-                <span class="ident">nsyms</span>: <span class="ident">symtab</span>.<span class="ident">nsyms</span> <span class="kw">as</span> <span class="ident">usize</span>,
-                <span class="ident">strtab</span>: <span class="ident">strtab</span> <span class="kw">as</span> <span class="ident">usize</span>,
-                <span class="ident">ctx</span>,
+    <span class="kw">pub fn </span>parse(
+        bytes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8],
+        symtab: <span class="kw-2">&amp;</span>load_command::SymtabCommand,
+        ctx: container::Ctx,
+    ) -&gt; error::Result&lt;Symbols&lt;<span class="lifetime">&#39;a</span>&gt;&gt; {
+        <span class="comment">// we need to normalize the strtab offset before we receive the truncated bytes in pread_with
+        </span><span class="kw">let </span>strtab = symtab
+            .stroff
+            .checked_sub(symtab.symoff)
+            .ok_or_else(|| error::Error::Malformed(<span class="string">&quot;invalid symbol table offset&quot;</span>.into()))<span class="question-mark">?</span>;
+        bytes.pread_with(
+            symtab.symoff <span class="kw">as </span>usize,
+            SymbolsCtx {
+                nsyms: symtab.nsyms <span class="kw">as </span>usize,
+                strtab: strtab <span class="kw">as </span>usize,
+                ctx,
             },
         )
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">iter</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">SymbolIterator</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-        <span class="ident">SymbolIterator</span> {
-            <span class="ident">offset</span>: <span class="self">self</span>.<span class="ident">start</span> <span class="kw">as</span> <span class="ident">usize</span>,
-            <span class="ident">nsyms</span>: <span class="self">self</span>.<span class="ident">nsyms</span> <span class="kw">as</span> <span class="ident">usize</span>,
-            <span class="ident">count</span>: <span class="number">0</span>,
-            <span class="ident">data</span>: <span class="self">self</span>.<span class="ident">data</span>,
-            <span class="ident">ctx</span>: <span class="self">self</span>.<span class="ident">ctx</span>,
-            <span class="ident">strtab</span>: <span class="self">self</span>.<span class="ident">strtab</span>,
+    <span class="kw">pub fn </span>iter(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; SymbolIterator&lt;<span class="lifetime">&#39;a</span>&gt; {
+        SymbolIterator {
+            offset: <span class="self">self</span>.start <span class="kw">as </span>usize,
+            nsyms: <span class="self">self</span>.nsyms <span class="kw">as </span>usize,
+            count: <span class="number">0</span>,
+            data: <span class="self">self</span>.data,
+            ctx: <span class="self">self</span>.ctx,
+            strtab: <span class="self">self</span>.strtab,
         }
     }
 
-    <span class="doccomment">/// Parses a single Nlist symbol from the binary, with its accompanying name</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">index</span>: <span class="ident">usize</span>) -&gt; <span class="ident"><span class="kw">crate</span>::error::Result</span><span class="op">&lt;</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>, <span class="ident">Nlist</span>)<span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">sym</span>: <span class="ident">Nlist</span> <span class="op">=</span> <span class="self">self</span>
-            .<span class="ident">data</span>
-            .<span class="ident">pread_with</span>(<span class="self">self</span>.<span class="ident">start</span> <span class="op">+</span> (<span class="ident">index</span> <span class="op">*</span> <span class="ident">Nlist::size_with</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">ctx</span>)), <span class="self">self</span>.<span class="ident">ctx</span>)<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">name</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">data</span>.<span class="ident">pread</span>(<span class="self">self</span>.<span class="ident">strtab</span> <span class="op">+</span> <span class="ident">sym</span>.<span class="ident">n_strx</span>)<span class="question-mark">?</span>;
-        <span class="prelude-val">Ok</span>((<span class="ident">name</span>, <span class="ident">sym</span>))
+    <span class="doccomment">/// Parses a single Nlist symbol from the binary, with its accompanying name
+    </span><span class="kw">pub fn </span>get(<span class="kw-2">&amp;</span><span class="self">self</span>, index: usize) -&gt; <span class="kw">crate</span>::error::Result&lt;(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str, Nlist)&gt; {
+        <span class="kw">let </span>sym: Nlist = <span class="self">self
+            </span>.data
+            .pread_with(<span class="self">self</span>.start + (index * Nlist::size_with(<span class="kw-2">&amp;</span><span class="self">self</span>.ctx)), <span class="self">self</span>.ctx)<span class="question-mark">?</span>;
+        <span class="kw">let </span>name = <span class="self">self</span>.data.pread(<span class="self">self</span>.strtab + sym.n_strx)<span class="question-mark">?</span>;
+        <span class="prelude-val">Ok</span>((name, sym))
     }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Debug</span> <span class="kw">for</span> <span class="ident">Symbols</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">fmt</span>: <span class="kw-2">&amp;mut</span> <span class="ident">fmt::Formatter</span>) -&gt; <span class="ident">fmt::Result</span> {
-        <span class="ident">fmt</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;Symbols&quot;</span>)
-            .<span class="ident">field</span>(<span class="string">&quot;data&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">data</span>.<span class="ident">len</span>())
-            .<span class="ident">field</span>(<span class="string">&quot;start&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{:#?}&quot;</span>, <span class="self">self</span>.<span class="ident">start</span>))
-            .<span class="ident">field</span>(<span class="string">&quot;nsyms&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">nsyms</span>)
-            .<span class="ident">field</span>(<span class="string">&quot;strtab&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{:#x}&quot;</span>, <span class="self">self</span>.<span class="ident">strtab</span>))
-            .<span class="ident">finish</span>()<span class="question-mark">?</span>;
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Debug <span class="kw">for </span>Symbols&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, fmt: <span class="kw-2">&amp;mut </span>fmt::Formatter) -&gt; fmt::Result {
+        fmt.debug_struct(<span class="string">&quot;Symbols&quot;</span>)
+            .field(<span class="string">&quot;data&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.data.len())
+            .field(<span class="string">&quot;start&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{:#?}&quot;</span>, <span class="self">self</span>.start))
+            .field(<span class="string">&quot;nsyms&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.nsyms)
+            .field(<span class="string">&quot;strtab&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{:#x}&quot;</span>, <span class="self">self</span>.strtab))
+            .finish()<span class="question-mark">?</span>;
 
-        <span class="macro">writeln!</span>(<span class="ident">fmt</span>, <span class="string">&quot;Symbol List {{&quot;</span>)<span class="question-mark">?</span>;
-        <span class="kw">for</span> (<span class="ident">i</span>, <span class="ident">res</span>) <span class="kw">in</span> <span class="self">self</span>.<span class="ident">iter</span>().<span class="ident">enumerate</span>() {
-            <span class="kw">match</span> <span class="ident">res</span> {
-                <span class="prelude-val">Ok</span>((<span class="ident">name</span>, <span class="ident">nlist</span>)) =&gt; <span class="macro">writeln!</span>(
-                    <span class="ident">fmt</span>,
+        <span class="macro">writeln!</span>(fmt, <span class="string">&quot;Symbol List {{&quot;</span>)<span class="question-mark">?</span>;
+        <span class="kw">for </span>(i, res) <span class="kw">in </span><span class="self">self</span>.iter().enumerate() {
+            <span class="kw">match </span>res {
+                <span class="prelude-val">Ok</span>((name, nlist)) =&gt; <span class="macro">writeln!</span>(
+                    fmt,
                     <span class="string">&quot;{: &gt;10x} {} sect: {:#x} type: {:#02x} desc: {:#03x}&quot;</span>,
-                    <span class="ident">nlist</span>.<span class="ident">n_value</span>, <span class="ident">name</span>, <span class="ident">nlist</span>.<span class="ident">n_sect</span>, <span class="ident">nlist</span>.<span class="ident">n_type</span>, <span class="ident">nlist</span>.<span class="ident">n_desc</span>
+                    nlist.n_value, name, nlist.n_sect, nlist.n_type, nlist.n_desc
                 )<span class="question-mark">?</span>,
-                <span class="prelude-val">Err</span>(<span class="ident">error</span>) =&gt; <span class="macro">writeln!</span>(<span class="ident">fmt</span>, <span class="string">&quot;  Bad symbol, index: {}, sym: {:?}&quot;</span>, <span class="ident">i</span>, <span class="ident">error</span>)<span class="question-mark">?</span>,
+                <span class="prelude-val">Err</span>(error) =&gt; <span class="macro">writeln!</span>(fmt, <span class="string">&quot;  Bad symbol, index: {}, sym: {:?}&quot;</span>, i, error)<span class="question-mark">?</span>,
             }
         }
-        <span class="macro">writeln!</span>(<span class="ident">fmt</span>, <span class="string">&quot;}}&quot;</span>)
+        <span class="macro">writeln!</span>(fmt, <span class="string">&quot;}}&quot;</span>)
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="goblin" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="goblin" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (77e57db38 2022-10-30)" ></div></body></html>

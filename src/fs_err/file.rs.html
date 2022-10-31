@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/fs-err-2.8.1/src/file.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>file.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../fs_err/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../fs_err/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../fs_err/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/fs-err-2.9.0/src/file.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>file.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../fs_err/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -364,371 +364,371 @@
 <span id="364">364</span>
 <span id="365">365</span>
 <span id="366">366</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">std::fs</span>;
-<span class="kw">use</span> <span class="ident">std::io</span>::{<span class="self">self</span>, <span class="ident">Read</span>, <span class="ident">Seek</span>, <span class="ident">Write</span>};
-<span class="kw">use</span> <span class="ident">std::path</span>::{<span class="ident">Path</span>, <span class="ident">PathBuf</span>};
+</pre><pre class="rust"><code><span class="kw">use </span>std::fs;
+<span class="kw">use </span>std::io::{<span class="self">self</span>, Read, Seek, Write};
+<span class="kw">use </span>std::path::{Path, PathBuf};
 
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::errors</span>::{<span class="ident">Error</span>, <span class="ident">ErrorKind</span>};
+<span class="kw">use </span><span class="kw">crate</span>::errors::{Error, ErrorKind};
 
-<span class="doccomment">/// Wrapper around [`std::fs::File`][std::fs::File] which adds more helpful</span>
-<span class="doccomment">/// information to all errors.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// [std::fs::File]: https://doc.rust-lang.org/stable/std/fs/struct.File.html</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">File</span> {
-    <span class="ident">file</span>: <span class="ident">fs::File</span>,
-    <span class="ident">path</span>: <span class="ident">PathBuf</span>,
+<span class="doccomment">/// Wrapper around [`std::fs::File`][std::fs::File] which adds more helpful
+/// information to all errors.
+///
+/// [std::fs::File]: https://doc.rust-lang.org/stable/std/fs/struct.File.html
+</span><span class="attribute">#[derive(Debug)]
+</span><span class="kw">pub struct </span>File {
+    file: fs::File,
+    path: PathBuf,
 }
 
-<span class="comment">// Opens a std File and returns it or an error generator which only needs the path to produce the error.</span>
-<span class="comment">// Exists for the `crate::read*` functions so they don&#39;t unconditionally build a PathBuf.</span>
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">open</span>(<span class="ident">path</span>: <span class="kw-2">&amp;</span><span class="ident">Path</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">std::fs::File</span>, <span class="kw">impl</span> <span class="ident">FnOnce</span>(<span class="ident">PathBuf</span>) -&gt; <span class="ident">io::Error</span><span class="op">&gt;</span> {
-    <span class="ident">fs::File::open</span>(<span class="kw-2">&amp;</span><span class="ident">path</span>).<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">err</span><span class="op">|</span> <span class="op">|</span><span class="ident">path</span><span class="op">|</span> <span class="ident">Error::build</span>(<span class="ident">err</span>, <span class="ident">ErrorKind::OpenFile</span>, <span class="ident">path</span>))
+<span class="comment">// Opens a std File and returns it or an error generator which only needs the path to produce the error.
+// Exists for the `crate::read*` functions so they don&#39;t unconditionally build a PathBuf.
+</span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>open(path: <span class="kw-2">&amp;</span>Path) -&gt; <span class="prelude-ty">Result</span>&lt;std::fs::File, <span class="kw">impl </span>FnOnce(PathBuf) -&gt; io::Error&gt; {
+    fs::File::open(<span class="kw-2">&amp;</span>path).map_err(|err| |path| Error::build(err, ErrorKind::OpenFile, path))
 }
 
-<span class="comment">// like `open()` but for `crate::write`</span>
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">create</span>(<span class="ident">path</span>: <span class="kw-2">&amp;</span><span class="ident">Path</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">std::fs::File</span>, <span class="kw">impl</span> <span class="ident">FnOnce</span>(<span class="ident">PathBuf</span>) -&gt; <span class="ident">io::Error</span><span class="op">&gt;</span> {
-    <span class="ident">fs::File::create</span>(<span class="kw-2">&amp;</span><span class="ident">path</span>).<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">err</span><span class="op">|</span> <span class="op">|</span><span class="ident">path</span><span class="op">|</span> <span class="ident">Error::build</span>(<span class="ident">err</span>, <span class="ident">ErrorKind::CreateFile</span>, <span class="ident">path</span>))
+<span class="comment">// like `open()` but for `crate::write`
+</span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>create(path: <span class="kw-2">&amp;</span>Path) -&gt; <span class="prelude-ty">Result</span>&lt;std::fs::File, <span class="kw">impl </span>FnOnce(PathBuf) -&gt; io::Error&gt; {
+    fs::File::create(<span class="kw-2">&amp;</span>path).map_err(|err| |path| Error::build(err, ErrorKind::CreateFile, path))
 }
 
-<span class="doccomment">/// Wrappers for methods from [`std::fs::File`][std::fs::File].</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// [std::fs::File]: https://doc.rust-lang.org/stable/std/fs/struct.File.html</span>
-<span class="kw">impl</span> <span class="ident">File</span> {
-    <span class="doccomment">/// Wrapper for [`File::open`](https://doc.rust-lang.org/stable/std/fs/struct.File.html#method.open).</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">open</span><span class="op">&lt;</span><span class="ident">P</span><span class="op">&gt;</span>(<span class="ident">path</span>: <span class="ident">P</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span>, <span class="ident">io::Error</span><span class="op">&gt;</span>
-    <span class="kw">where</span>
-        <span class="ident">P</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">PathBuf</span><span class="op">&gt;</span>,
+<span class="doccomment">/// Wrappers for methods from [`std::fs::File`][std::fs::File].
+///
+/// [std::fs::File]: https://doc.rust-lang.org/stable/std/fs/struct.File.html
+</span><span class="kw">impl </span>File {
+    <span class="doccomment">/// Wrapper for [`File::open`](https://doc.rust-lang.org/stable/std/fs/struct.File.html#method.open).
+    </span><span class="kw">pub fn </span>open&lt;P&gt;(path: P) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, io::Error&gt;
+    <span class="kw">where
+        </span>P: Into&lt;PathBuf&gt;,
     {
-        <span class="kw">let</span> <span class="ident">path</span> <span class="op">=</span> <span class="ident">path</span>.<span class="ident">into</span>();
-        <span class="kw">match</span> <span class="ident">open</span>(<span class="kw-2">&amp;</span><span class="ident">path</span>) {
-            <span class="prelude-val">Ok</span>(<span class="ident">file</span>) =&gt; <span class="prelude-val">Ok</span>(<span class="ident">File::from_parts</span>(<span class="ident">file</span>, <span class="ident">path</span>)),
-            <span class="prelude-val">Err</span>(<span class="ident">err_gen</span>) =&gt; <span class="prelude-val">Err</span>(<span class="ident">err_gen</span>(<span class="ident">path</span>)),
+        <span class="kw">let </span>path = path.into();
+        <span class="kw">match </span>open(<span class="kw-2">&amp;</span>path) {
+            <span class="prelude-val">Ok</span>(file) =&gt; <span class="prelude-val">Ok</span>(File::from_parts(file, path)),
+            <span class="prelude-val">Err</span>(err_gen) =&gt; <span class="prelude-val">Err</span>(err_gen(path)),
         }
     }
 
-    <span class="doccomment">/// Wrapper for [`File::create`](https://doc.rust-lang.org/stable/std/fs/struct.File.html#method.create).</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">create</span><span class="op">&lt;</span><span class="ident">P</span><span class="op">&gt;</span>(<span class="ident">path</span>: <span class="ident">P</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span>, <span class="ident">io::Error</span><span class="op">&gt;</span>
-    <span class="kw">where</span>
-        <span class="ident">P</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">PathBuf</span><span class="op">&gt;</span>,
+    <span class="doccomment">/// Wrapper for [`File::create`](https://doc.rust-lang.org/stable/std/fs/struct.File.html#method.create).
+    </span><span class="kw">pub fn </span>create&lt;P&gt;(path: P) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, io::Error&gt;
+    <span class="kw">where
+        </span>P: Into&lt;PathBuf&gt;,
     {
-        <span class="kw">let</span> <span class="ident">path</span> <span class="op">=</span> <span class="ident">path</span>.<span class="ident">into</span>();
-        <span class="kw">match</span> <span class="ident">create</span>(<span class="kw-2">&amp;</span><span class="ident">path</span>) {
-            <span class="prelude-val">Ok</span>(<span class="ident">file</span>) =&gt; <span class="prelude-val">Ok</span>(<span class="ident">File::from_parts</span>(<span class="ident">file</span>, <span class="ident">path</span>)),
-            <span class="prelude-val">Err</span>(<span class="ident">err_gen</span>) =&gt; <span class="prelude-val">Err</span>(<span class="ident">err_gen</span>(<span class="ident">path</span>)),
+        <span class="kw">let </span>path = path.into();
+        <span class="kw">match </span>create(<span class="kw-2">&amp;</span>path) {
+            <span class="prelude-val">Ok</span>(file) =&gt; <span class="prelude-val">Ok</span>(File::from_parts(file, path)),
+            <span class="prelude-val">Err</span>(err_gen) =&gt; <span class="prelude-val">Err</span>(err_gen(path)),
         }
     }
 
-    <span class="doccomment">/// Wrapper for [`OpenOptions::open`](https://doc.rust-lang.org/stable/std/fs/struct.OpenOptions.html#method.open).</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// This takes [`&amp;std::fs::OpenOptions`](https://doc.rust-lang.org/stable/std/fs/struct.OpenOptions.html),</span>
-    <span class="doccomment">/// not [`crate::OpenOptions`].</span>
-    <span class="attribute">#[<span class="ident">deprecated</span> <span class="op">=</span> <span class="string">&quot;use fs_err::OpenOptions::open instead&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_options</span><span class="op">&lt;</span><span class="ident">P</span><span class="op">&gt;</span>(<span class="ident">path</span>: <span class="ident">P</span>, <span class="ident">options</span>: <span class="kw-2">&amp;</span><span class="ident">fs::OpenOptions</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span>, <span class="ident">io::Error</span><span class="op">&gt;</span>
-    <span class="kw">where</span>
-        <span class="ident">P</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">PathBuf</span><span class="op">&gt;</span>,
+    <span class="doccomment">/// Wrapper for [`OpenOptions::open`](https://doc.rust-lang.org/stable/std/fs/struct.OpenOptions.html#method.open).
+    ///
+    /// This takes [`&amp;std::fs::OpenOptions`](https://doc.rust-lang.org/stable/std/fs/struct.OpenOptions.html),
+    /// not [`crate::OpenOptions`].
+    </span><span class="attribute">#[deprecated = <span class="string">&quot;use fs_err::OpenOptions::open instead&quot;</span>]
+    </span><span class="kw">pub fn </span>from_options&lt;P&gt;(path: P, options: <span class="kw-2">&amp;</span>fs::OpenOptions) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, io::Error&gt;
+    <span class="kw">where
+        </span>P: Into&lt;PathBuf&gt;,
     {
-        <span class="kw">let</span> <span class="ident">path</span> <span class="op">=</span> <span class="ident">path</span>.<span class="ident">into</span>();
-        <span class="kw">match</span> <span class="ident">options</span>.<span class="ident">open</span>(<span class="kw-2">&amp;</span><span class="ident">path</span>) {
-            <span class="prelude-val">Ok</span>(<span class="ident">file</span>) =&gt; <span class="prelude-val">Ok</span>(<span class="ident">File::from_parts</span>(<span class="ident">file</span>, <span class="ident">path</span>)),
-            <span class="prelude-val">Err</span>(<span class="ident">source</span>) =&gt; <span class="prelude-val">Err</span>(<span class="ident">Error::build</span>(<span class="ident">source</span>, <span class="ident">ErrorKind::OpenFile</span>, <span class="ident">path</span>)),
+        <span class="kw">let </span>path = path.into();
+        <span class="kw">match </span>options.open(<span class="kw-2">&amp;</span>path) {
+            <span class="prelude-val">Ok</span>(file) =&gt; <span class="prelude-val">Ok</span>(File::from_parts(file, path)),
+            <span class="prelude-val">Err</span>(source) =&gt; <span class="prelude-val">Err</span>(Error::build(source, ErrorKind::OpenFile, path)),
         }
     }
 
-    <span class="doccomment">/// Wrapper for [`File::sync_all`](https://doc.rust-lang.org/stable/std/fs/struct.File.html#method.sync_all).</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">sync_all</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">io::Error</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">file</span>
-            .<span class="ident">sync_all</span>()
-            .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">source</span><span class="op">|</span> <span class="self">self</span>.<span class="ident">error</span>(<span class="ident">source</span>, <span class="ident">ErrorKind::SyncFile</span>))
+    <span class="doccomment">/// Wrapper for [`File::sync_all`](https://doc.rust-lang.org/stable/std/fs/struct.File.html#method.sync_all).
+    </span><span class="kw">pub fn </span>sync_all(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;(), io::Error&gt; {
+        <span class="self">self</span>.file
+            .sync_all()
+            .map_err(|source| <span class="self">self</span>.error(source, ErrorKind::SyncFile))
     }
 
-    <span class="doccomment">/// Wrapper for [`File::sync_data`](https://doc.rust-lang.org/stable/std/fs/struct.File.html#method.sync_data).</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">sync_data</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">io::Error</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">file</span>
-            .<span class="ident">sync_data</span>()
-            .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">source</span><span class="op">|</span> <span class="self">self</span>.<span class="ident">error</span>(<span class="ident">source</span>, <span class="ident">ErrorKind::SyncFile</span>))
+    <span class="doccomment">/// Wrapper for [`File::sync_data`](https://doc.rust-lang.org/stable/std/fs/struct.File.html#method.sync_data).
+    </span><span class="kw">pub fn </span>sync_data(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;(), io::Error&gt; {
+        <span class="self">self</span>.file
+            .sync_data()
+            .map_err(|source| <span class="self">self</span>.error(source, ErrorKind::SyncFile))
     }
 
-    <span class="doccomment">/// Wrapper for [`File::set_len`](https://doc.rust-lang.org/stable/std/fs/struct.File.html#method.set_len).</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_len</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">size</span>: <span class="ident">u64</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">io::Error</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">file</span>
-            .<span class="ident">set_len</span>(<span class="ident">size</span>)
-            .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">source</span><span class="op">|</span> <span class="self">self</span>.<span class="ident">error</span>(<span class="ident">source</span>, <span class="ident">ErrorKind::SetLen</span>))
+    <span class="doccomment">/// Wrapper for [`File::set_len`](https://doc.rust-lang.org/stable/std/fs/struct.File.html#method.set_len).
+    </span><span class="kw">pub fn </span>set_len(<span class="kw-2">&amp;</span><span class="self">self</span>, size: u64) -&gt; <span class="prelude-ty">Result</span>&lt;(), io::Error&gt; {
+        <span class="self">self</span>.file
+            .set_len(size)
+            .map_err(|source| <span class="self">self</span>.error(source, ErrorKind::SetLen))
     }
 
-    <span class="doccomment">/// Wrapper for [`File::metadata`](https://doc.rust-lang.org/stable/std/fs/struct.File.html#method.metadata).</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">metadata</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">fs::Metadata</span>, <span class="ident">io::Error</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">file</span>
-            .<span class="ident">metadata</span>()
-            .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">source</span><span class="op">|</span> <span class="self">self</span>.<span class="ident">error</span>(<span class="ident">source</span>, <span class="ident">ErrorKind::Metadata</span>))
+    <span class="doccomment">/// Wrapper for [`File::metadata`](https://doc.rust-lang.org/stable/std/fs/struct.File.html#method.metadata).
+    </span><span class="kw">pub fn </span>metadata(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;fs::Metadata, io::Error&gt; {
+        <span class="self">self</span>.file
+            .metadata()
+            .map_err(|source| <span class="self">self</span>.error(source, ErrorKind::Metadata))
     }
 
-    <span class="doccomment">/// Wrapper for [`File::try_clone`](https://doc.rust-lang.org/stable/std/fs/struct.File.html#method.try_clone).</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">try_clone</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span>, <span class="ident">io::Error</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">file</span>
-            .<span class="ident">try_clone</span>()
-            .<span class="ident">map</span>(<span class="op">|</span><span class="ident">file</span><span class="op">|</span> <span class="ident">File</span> {
-                <span class="ident">file</span>,
-                <span class="ident">path</span>: <span class="self">self</span>.<span class="ident">path</span>.<span class="ident">clone</span>(),
+    <span class="doccomment">/// Wrapper for [`File::try_clone`](https://doc.rust-lang.org/stable/std/fs/struct.File.html#method.try_clone).
+    </span><span class="kw">pub fn </span>try_clone(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, io::Error&gt; {
+        <span class="self">self</span>.file
+            .try_clone()
+            .map(|file| File {
+                file,
+                path: <span class="self">self</span>.path.clone(),
             })
-            .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">source</span><span class="op">|</span> <span class="self">self</span>.<span class="ident">error</span>(<span class="ident">source</span>, <span class="ident">ErrorKind::Clone</span>))
+            .map_err(|source| <span class="self">self</span>.error(source, ErrorKind::Clone))
     }
 
-    <span class="doccomment">/// Wrapper for [`File::set_permissions`](https://doc.rust-lang.org/stable/std/fs/struct.File.html#method.set_permissions).</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_permissions</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">perm</span>: <span class="ident">fs::Permissions</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">io::Error</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">file</span>
-            .<span class="ident">set_permissions</span>(<span class="ident">perm</span>)
-            .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">source</span><span class="op">|</span> <span class="self">self</span>.<span class="ident">error</span>(<span class="ident">source</span>, <span class="ident">ErrorKind::SetPermissions</span>))
+    <span class="doccomment">/// Wrapper for [`File::set_permissions`](https://doc.rust-lang.org/stable/std/fs/struct.File.html#method.set_permissions).
+    </span><span class="kw">pub fn </span>set_permissions(<span class="kw-2">&amp;</span><span class="self">self</span>, perm: fs::Permissions) -&gt; <span class="prelude-ty">Result</span>&lt;(), io::Error&gt; {
+        <span class="self">self</span>.file
+            .set_permissions(perm)
+            .map_err(|source| <span class="self">self</span>.error(source, ErrorKind::SetPermissions))
     }
 }
 
-<span class="doccomment">/// Methods added by fs-err that are not available on</span>
-<span class="doccomment">/// [`std::fs::File`][std::fs::File].</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// [std::fs::File]: https://doc.rust-lang.org/stable/std/fs/struct.File.html</span>
-<span class="kw">impl</span> <span class="ident">File</span> {
-    <span class="doccomment">/// Creates a [`File`](struct.File.html) from a raw file and its path.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_parts</span><span class="op">&lt;</span><span class="ident">P</span><span class="op">&gt;</span>(<span class="ident">file</span>: <span class="ident">fs::File</span>, <span class="ident">path</span>: <span class="ident">P</span>) -&gt; <span class="self">Self</span>
-    <span class="kw">where</span>
-        <span class="ident">P</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">PathBuf</span><span class="op">&gt;</span>,
+<span class="doccomment">/// Methods added by fs-err that are not available on
+/// [`std::fs::File`][std::fs::File].
+///
+/// [std::fs::File]: https://doc.rust-lang.org/stable/std/fs/struct.File.html
+</span><span class="kw">impl </span>File {
+    <span class="doccomment">/// Creates a [`File`](struct.File.html) from a raw file and its path.
+    </span><span class="kw">pub fn </span>from_parts&lt;P&gt;(file: fs::File, path: P) -&gt; <span class="self">Self
+    </span><span class="kw">where
+        </span>P: Into&lt;PathBuf&gt;,
     {
-        <span class="ident">File</span> {
-            <span class="ident">file</span>,
-            <span class="ident">path</span>: <span class="ident">path</span>.<span class="ident">into</span>(),
+        File {
+            file,
+            path: path.into(),
         }
     }
 
-    <span class="doccomment">/// Extract the raw file and its path from this [`File`](struct.File.html)</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">into_parts</span>(<span class="self">self</span>) -&gt; (<span class="ident">fs::File</span>, <span class="ident">PathBuf</span>) {
-        (<span class="self">self</span>.<span class="ident">file</span>, <span class="self">self</span>.<span class="ident">path</span>)
+    <span class="doccomment">/// Extract the raw file and its path from this [`File`](struct.File.html)
+    </span><span class="kw">pub fn </span>into_parts(<span class="self">self</span>) -&gt; (fs::File, PathBuf) {
+        (<span class="self">self</span>.file, <span class="self">self</span>.path)
     }
 
-    <span class="doccomment">/// Returns a reference to the underlying [`std::fs::File`][std::fs::File].</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// [std::fs::File]: https://doc.rust-lang.org/stable/std/fs/struct.File.html</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">file</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident">fs::File</span> {
-        <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">file</span>
+    <span class="doccomment">/// Returns a reference to the underlying [`std::fs::File`][std::fs::File].
+    ///
+    /// [std::fs::File]: https://doc.rust-lang.org/stable/std/fs/struct.File.html
+    </span><span class="kw">pub fn </span>file(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>fs::File {
+        <span class="kw-2">&amp;</span><span class="self">self</span>.file
     }
 
-    <span class="doccomment">/// Returns a mutable reference to the underlying [`std::fs::File`][std::fs::File].</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// [std::fs::File]: https://doc.rust-lang.org/stable/std/fs/struct.File.html</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">file_mut</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="kw-2">&amp;mut</span> <span class="ident">fs::File</span> {
-        <span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="ident">file</span>
+    <span class="doccomment">/// Returns a mutable reference to the underlying [`std::fs::File`][std::fs::File].
+    ///
+    /// [std::fs::File]: https://doc.rust-lang.org/stable/std/fs/struct.File.html
+    </span><span class="kw">pub fn </span>file_mut(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;mut </span>fs::File {
+        <span class="kw-2">&amp;mut </span><span class="self">self</span>.file
     }
 
-    <span class="doccomment">/// Returns a reference to the path that this file was created with.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">path</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident">Path</span> {
-        <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">path</span>
+    <span class="doccomment">/// Returns a reference to the path that this file was created with.
+    </span><span class="kw">pub fn </span>path(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>Path {
+        <span class="kw-2">&amp;</span><span class="self">self</span>.path
     }
 
-    <span class="doccomment">/// Wrap the error in information specific to this `File` object.</span>
-    <span class="kw">fn</span> <span class="ident">error</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">source</span>: <span class="ident">io::Error</span>, <span class="ident">kind</span>: <span class="ident">ErrorKind</span>) -&gt; <span class="ident">io::Error</span> {
-        <span class="ident">Error::build</span>(<span class="ident">source</span>, <span class="ident">kind</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">path</span>)
-    }
-}
-
-<span class="kw">impl</span> <span class="ident">Read</span> <span class="kw">for</span> <span class="ident">File</span> {
-    <span class="kw">fn</span> <span class="ident">read</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">buf</span>: <span class="kw-2">&amp;mut</span> [<span class="ident">u8</span>]) -&gt; <span class="ident">std::io::Result</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">file</span>
-            .<span class="ident">read</span>(<span class="ident">buf</span>)
-            .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">source</span><span class="op">|</span> <span class="self">self</span>.<span class="ident">error</span>(<span class="ident">source</span>, <span class="ident">ErrorKind::Read</span>))
-    }
-
-    <span class="kw">fn</span> <span class="ident">read_vectored</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">bufs</span>: <span class="kw-2">&amp;mut</span> [<span class="ident">std::io::IoSliceMut</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>]) -&gt; <span class="ident">std::io::Result</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">file</span>
-            .<span class="ident">read_vectored</span>(<span class="ident">bufs</span>)
-            .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">source</span><span class="op">|</span> <span class="self">self</span>.<span class="ident">error</span>(<span class="ident">source</span>, <span class="ident">ErrorKind::Read</span>))
+    <span class="doccomment">/// Wrap the error in information specific to this `File` object.
+    </span><span class="kw">fn </span>error(<span class="kw-2">&amp;</span><span class="self">self</span>, source: io::Error, kind: ErrorKind) -&gt; io::Error {
+        Error::build(source, kind, <span class="kw-2">&amp;</span><span class="self">self</span>.path)
     }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Read</span> <span class="kw">for</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">File</span> {
-    <span class="kw">fn</span> <span class="ident">read</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">buf</span>: <span class="kw-2">&amp;mut</span> [<span class="ident">u8</span>]) -&gt; <span class="ident">std::io::Result</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span> {
-        (<span class="kw-2">&amp;</span>(<span class="kw-2">*</span><span class="kw-2">*</span><span class="self">self</span>).<span class="ident">file</span>)
-            .<span class="ident">read</span>(<span class="ident">buf</span>)
-            .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">source</span><span class="op">|</span> <span class="self">self</span>.<span class="ident">error</span>(<span class="ident">source</span>, <span class="ident">ErrorKind::Read</span>))
+<span class="kw">impl </span>Read <span class="kw">for </span>File {
+    <span class="kw">fn </span>read(<span class="kw-2">&amp;mut </span><span class="self">self</span>, buf: <span class="kw-2">&amp;mut </span>[u8]) -&gt; std::io::Result&lt;usize&gt; {
+        <span class="self">self</span>.file
+            .read(buf)
+            .map_err(|source| <span class="self">self</span>.error(source, ErrorKind::Read))
     }
 
-    <span class="kw">fn</span> <span class="ident">read_vectored</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">bufs</span>: <span class="kw-2">&amp;mut</span> [<span class="ident">std::io::IoSliceMut</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>]) -&gt; <span class="ident">std::io::Result</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span> {
-        (<span class="kw-2">&amp;</span>(<span class="kw-2">*</span><span class="kw-2">*</span><span class="self">self</span>).<span class="ident">file</span>)
-            .<span class="ident">read_vectored</span>(<span class="ident">bufs</span>)
-            .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">source</span><span class="op">|</span> <span class="self">self</span>.<span class="ident">error</span>(<span class="ident">source</span>, <span class="ident">ErrorKind::Read</span>))
-    }
-}
-
-<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">File</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">fs::File</span> {
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">file</span>: <span class="ident">File</span>) -&gt; <span class="self">Self</span> {
-        <span class="ident">file</span>.<span class="ident">into_parts</span>().<span class="number">0</span>
+    <span class="kw">fn </span>read_vectored(<span class="kw-2">&amp;mut </span><span class="self">self</span>, bufs: <span class="kw-2">&amp;mut </span>[std::io::IoSliceMut&lt;<span class="lifetime">&#39;_</span>&gt;]) -&gt; std::io::Result&lt;usize&gt; {
+        <span class="self">self</span>.file
+            .read_vectored(bufs)
+            .map_err(|source| <span class="self">self</span>.error(source, ErrorKind::Read))
     }
 }
 
-<span class="kw">impl</span> <span class="ident">Seek</span> <span class="kw">for</span> <span class="ident">File</span> {
-    <span class="kw">fn</span> <span class="ident">seek</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">pos</span>: <span class="ident">std::io::SeekFrom</span>) -&gt; <span class="ident">std::io::Result</span><span class="op">&lt;</span><span class="ident">u64</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">file</span>
-            .<span class="ident">seek</span>(<span class="ident">pos</span>)
-            .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">source</span><span class="op">|</span> <span class="self">self</span>.<span class="ident">error</span>(<span class="ident">source</span>, <span class="ident">ErrorKind::Seek</span>))
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Read <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>File {
+    <span class="kw">fn </span>read(<span class="kw-2">&amp;mut </span><span class="self">self</span>, buf: <span class="kw-2">&amp;mut </span>[u8]) -&gt; std::io::Result&lt;usize&gt; {
+        (<span class="kw-2">&amp;</span>(<span class="kw-2">**</span><span class="self">self</span>).file)
+            .read(buf)
+            .map_err(|source| <span class="self">self</span>.error(source, ErrorKind::Read))
+    }
+
+    <span class="kw">fn </span>read_vectored(<span class="kw-2">&amp;mut </span><span class="self">self</span>, bufs: <span class="kw-2">&amp;mut </span>[std::io::IoSliceMut&lt;<span class="lifetime">&#39;_</span>&gt;]) -&gt; std::io::Result&lt;usize&gt; {
+        (<span class="kw-2">&amp;</span>(<span class="kw-2">**</span><span class="self">self</span>).file)
+            .read_vectored(bufs)
+            .map_err(|source| <span class="self">self</span>.error(source, ErrorKind::Read))
     }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Seek</span> <span class="kw">for</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">File</span> {
-    <span class="kw">fn</span> <span class="ident">seek</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">pos</span>: <span class="ident">std::io::SeekFrom</span>) -&gt; <span class="ident">std::io::Result</span><span class="op">&lt;</span><span class="ident">u64</span><span class="op">&gt;</span> {
-        (<span class="kw-2">&amp;</span>(<span class="kw-2">*</span><span class="kw-2">*</span><span class="self">self</span>).<span class="ident">file</span>)
-            .<span class="ident">seek</span>(<span class="ident">pos</span>)
-            .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">source</span><span class="op">|</span> <span class="self">self</span>.<span class="ident">error</span>(<span class="ident">source</span>, <span class="ident">ErrorKind::Seek</span>))
+<span class="kw">impl </span>From&lt;File&gt; <span class="kw">for </span>fs::File {
+    <span class="kw">fn </span>from(file: File) -&gt; <span class="self">Self </span>{
+        file.into_parts().<span class="number">0
+    </span>}
+}
+
+<span class="kw">impl </span>Seek <span class="kw">for </span>File {
+    <span class="kw">fn </span>seek(<span class="kw-2">&amp;mut </span><span class="self">self</span>, pos: std::io::SeekFrom) -&gt; std::io::Result&lt;u64&gt; {
+        <span class="self">self</span>.file
+            .seek(pos)
+            .map_err(|source| <span class="self">self</span>.error(source, ErrorKind::Seek))
     }
 }
 
-<span class="kw">impl</span> <span class="ident">Write</span> <span class="kw">for</span> <span class="ident">File</span> {
-    <span class="kw">fn</span> <span class="ident">write</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">buf</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>]) -&gt; <span class="ident">std::io::Result</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">file</span>
-            .<span class="ident">write</span>(<span class="ident">buf</span>)
-            .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">source</span><span class="op">|</span> <span class="self">self</span>.<span class="ident">error</span>(<span class="ident">source</span>, <span class="ident">ErrorKind::Write</span>))
-    }
-
-    <span class="kw">fn</span> <span class="ident">write_vectored</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">bufs</span>: <span class="kw-2">&amp;</span>[<span class="ident">std::io::IoSlice</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>]) -&gt; <span class="ident">std::io::Result</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">file</span>
-            .<span class="ident">write_vectored</span>(<span class="ident">bufs</span>)
-            .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">source</span><span class="op">|</span> <span class="self">self</span>.<span class="ident">error</span>(<span class="ident">source</span>, <span class="ident">ErrorKind::Write</span>))
-    }
-
-    <span class="kw">fn</span> <span class="ident">flush</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="ident">std::io::Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">file</span>
-            .<span class="ident">flush</span>()
-            .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">source</span><span class="op">|</span> <span class="self">self</span>.<span class="ident">error</span>(<span class="ident">source</span>, <span class="ident">ErrorKind::Flush</span>))
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Seek <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>File {
+    <span class="kw">fn </span>seek(<span class="kw-2">&amp;mut </span><span class="self">self</span>, pos: std::io::SeekFrom) -&gt; std::io::Result&lt;u64&gt; {
+        (<span class="kw-2">&amp;</span>(<span class="kw-2">**</span><span class="self">self</span>).file)
+            .seek(pos)
+            .map_err(|source| <span class="self">self</span>.error(source, ErrorKind::Seek))
     }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Write</span> <span class="kw">for</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">File</span> {
-    <span class="kw">fn</span> <span class="ident">write</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">buf</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>]) -&gt; <span class="ident">std::io::Result</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span> {
-        (<span class="kw-2">&amp;</span>(<span class="kw-2">*</span><span class="kw-2">*</span><span class="self">self</span>).<span class="ident">file</span>)
-            .<span class="ident">write</span>(<span class="ident">buf</span>)
-            .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">source</span><span class="op">|</span> <span class="self">self</span>.<span class="ident">error</span>(<span class="ident">source</span>, <span class="ident">ErrorKind::Write</span>))
+<span class="kw">impl </span>Write <span class="kw">for </span>File {
+    <span class="kw">fn </span>write(<span class="kw-2">&amp;mut </span><span class="self">self</span>, buf: <span class="kw-2">&amp;</span>[u8]) -&gt; std::io::Result&lt;usize&gt; {
+        <span class="self">self</span>.file
+            .write(buf)
+            .map_err(|source| <span class="self">self</span>.error(source, ErrorKind::Write))
     }
 
-    <span class="kw">fn</span> <span class="ident">write_vectored</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">bufs</span>: <span class="kw-2">&amp;</span>[<span class="ident">std::io::IoSlice</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>]) -&gt; <span class="ident">std::io::Result</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span> {
-        (<span class="kw-2">&amp;</span>(<span class="kw-2">*</span><span class="kw-2">*</span><span class="self">self</span>).<span class="ident">file</span>)
-            .<span class="ident">write_vectored</span>(<span class="ident">bufs</span>)
-            .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">source</span><span class="op">|</span> <span class="self">self</span>.<span class="ident">error</span>(<span class="ident">source</span>, <span class="ident">ErrorKind::Write</span>))
+    <span class="kw">fn </span>write_vectored(<span class="kw-2">&amp;mut </span><span class="self">self</span>, bufs: <span class="kw-2">&amp;</span>[std::io::IoSlice&lt;<span class="lifetime">&#39;_</span>&gt;]) -&gt; std::io::Result&lt;usize&gt; {
+        <span class="self">self</span>.file
+            .write_vectored(bufs)
+            .map_err(|source| <span class="self">self</span>.error(source, ErrorKind::Write))
     }
 
-    <span class="kw">fn</span> <span class="ident">flush</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="ident">std::io::Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
-        (<span class="kw-2">&amp;</span>(<span class="kw-2">*</span><span class="kw-2">*</span><span class="self">self</span>).<span class="ident">file</span>)
-            .<span class="ident">flush</span>()
-            .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">source</span><span class="op">|</span> <span class="self">self</span>.<span class="ident">error</span>(<span class="ident">source</span>, <span class="ident">ErrorKind::Flush</span>))
+    <span class="kw">fn </span>flush(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; std::io::Result&lt;()&gt; {
+        <span class="self">self</span>.file
+            .flush()
+            .map_err(|source| <span class="self">self</span>.error(source, ErrorKind::Flush))
     }
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">unix</span>)]</span>
-<span class="kw">mod</span> <span class="ident">unix</span> {
-    <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::os::unix::fs::FileExt</span>;
-    <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ErrorKind</span>;
-    <span class="kw">use</span> <span class="ident">std::io</span>;
-    <span class="kw">use</span> <span class="ident">std::os::unix::fs::FileExt</span> <span class="kw">as</span> <span class="kw">_</span>;
-    <span class="kw">use</span> <span class="ident">std::os::unix::io</span>::{<span class="ident">AsRawFd</span>, <span class="ident">IntoRawFd</span>, <span class="ident">RawFd</span>};
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Write <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>File {
+    <span class="kw">fn </span>write(<span class="kw-2">&amp;mut </span><span class="self">self</span>, buf: <span class="kw-2">&amp;</span>[u8]) -&gt; std::io::Result&lt;usize&gt; {
+        (<span class="kw-2">&amp;</span>(<span class="kw-2">**</span><span class="self">self</span>).file)
+            .write(buf)
+            .map_err(|source| <span class="self">self</span>.error(source, ErrorKind::Write))
+    }
 
-    <span class="kw">impl</span> <span class="ident">AsRawFd</span> <span class="kw">for</span> <span class="ident"><span class="kw">crate</span>::File</span> {
-        <span class="kw">fn</span> <span class="ident">as_raw_fd</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">RawFd</span> {
-            <span class="self">self</span>.<span class="ident">file</span>().<span class="ident">as_raw_fd</span>()
+    <span class="kw">fn </span>write_vectored(<span class="kw-2">&amp;mut </span><span class="self">self</span>, bufs: <span class="kw-2">&amp;</span>[std::io::IoSlice&lt;<span class="lifetime">&#39;_</span>&gt;]) -&gt; std::io::Result&lt;usize&gt; {
+        (<span class="kw-2">&amp;</span>(<span class="kw-2">**</span><span class="self">self</span>).file)
+            .write_vectored(bufs)
+            .map_err(|source| <span class="self">self</span>.error(source, ErrorKind::Write))
+    }
+
+    <span class="kw">fn </span>flush(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; std::io::Result&lt;()&gt; {
+        (<span class="kw-2">&amp;</span>(<span class="kw-2">**</span><span class="self">self</span>).file)
+            .flush()
+            .map_err(|source| <span class="self">self</span>.error(source, ErrorKind::Flush))
+    }
+}
+
+<span class="attribute">#[cfg(unix)]
+</span><span class="kw">mod </span>unix {
+    <span class="kw">use </span><span class="kw">crate</span>::os::unix::fs::FileExt;
+    <span class="kw">use </span><span class="kw">crate</span>::ErrorKind;
+    <span class="kw">use </span>std::io;
+    <span class="kw">use </span>std::os::unix::fs::FileExt <span class="kw">as _</span>;
+    <span class="kw">use </span>std::os::unix::io::{AsRawFd, IntoRawFd, RawFd};
+
+    <span class="kw">impl </span>AsRawFd <span class="kw">for </span><span class="kw">crate</span>::File {
+        <span class="kw">fn </span>as_raw_fd(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; RawFd {
+            <span class="self">self</span>.file().as_raw_fd()
         }
     }
 
-    <span class="kw">impl</span> <span class="ident">IntoRawFd</span> <span class="kw">for</span> <span class="ident"><span class="kw">crate</span>::File</span> {
-        <span class="kw">fn</span> <span class="ident">into_raw_fd</span>(<span class="self">self</span>) -&gt; <span class="ident">RawFd</span> {
-            <span class="self">self</span>.<span class="ident">file</span>.<span class="ident">into_raw_fd</span>()
+    <span class="kw">impl </span>IntoRawFd <span class="kw">for </span><span class="kw">crate</span>::File {
+        <span class="kw">fn </span>into_raw_fd(<span class="self">self</span>) -&gt; RawFd {
+            <span class="self">self</span>.file.into_raw_fd()
         }
     }
 
-    <span class="kw">impl</span> <span class="ident">FileExt</span> <span class="kw">for</span> <span class="ident"><span class="kw">crate</span>::File</span> {
-        <span class="kw">fn</span> <span class="ident">read_at</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">buf</span>: <span class="kw-2">&amp;mut</span> [<span class="ident">u8</span>], <span class="ident">offset</span>: <span class="ident">u64</span>) -&gt; <span class="ident">io::Result</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span> {
-            <span class="self">self</span>.<span class="ident">file</span>()
-                .<span class="ident">read_at</span>(<span class="ident">buf</span>, <span class="ident">offset</span>)
-                .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">err</span><span class="op">|</span> <span class="self">self</span>.<span class="ident">error</span>(<span class="ident">err</span>, <span class="ident">ErrorKind::ReadAt</span>))
+    <span class="kw">impl </span>FileExt <span class="kw">for </span><span class="kw">crate</span>::File {
+        <span class="kw">fn </span>read_at(<span class="kw-2">&amp;</span><span class="self">self</span>, buf: <span class="kw-2">&amp;mut </span>[u8], offset: u64) -&gt; io::Result&lt;usize&gt; {
+            <span class="self">self</span>.file()
+                .read_at(buf, offset)
+                .map_err(|err| <span class="self">self</span>.error(err, ErrorKind::ReadAt))
         }
-        <span class="kw">fn</span> <span class="ident">write_at</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">buf</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>], <span class="ident">offset</span>: <span class="ident">u64</span>) -&gt; <span class="ident">io::Result</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span> {
-            <span class="self">self</span>.<span class="ident">file</span>()
-                .<span class="ident">write_at</span>(<span class="ident">buf</span>, <span class="ident">offset</span>)
-                .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">err</span><span class="op">|</span> <span class="self">self</span>.<span class="ident">error</span>(<span class="ident">err</span>, <span class="ident">ErrorKind::WriteAt</span>))
+        <span class="kw">fn </span>write_at(<span class="kw-2">&amp;</span><span class="self">self</span>, buf: <span class="kw-2">&amp;</span>[u8], offset: u64) -&gt; io::Result&lt;usize&gt; {
+            <span class="self">self</span>.file()
+                .write_at(buf, offset)
+                .map_err(|err| <span class="self">self</span>.error(err, ErrorKind::WriteAt))
         }
     }
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;io_safety&quot;</span>)]</span>
-    <span class="kw">mod</span> <span class="ident">io_safety</span> {
-        <span class="kw">use</span> <span class="ident">std::os::unix::io</span>::{<span class="ident">AsFd</span>, <span class="ident">BorrowedFd</span>, <span class="ident">OwnedFd</span>};
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;io_safety&quot;</span>)]
+    </span><span class="kw">mod </span>io_safety {
+        <span class="kw">use </span>std::os::unix::io::{AsFd, BorrowedFd, OwnedFd};
 
-        <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;io_safety&quot;</span>)))]</span>
-        <span class="kw">impl</span> <span class="ident">AsFd</span> <span class="kw">for</span> <span class="ident"><span class="kw">crate</span>::File</span> {
-            <span class="kw">fn</span> <span class="ident">as_fd</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">BorrowedFd</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span> {
-                <span class="self">self</span>.<span class="ident">file</span>().<span class="ident">as_fd</span>()
+        <span class="attribute">#[cfg_attr(docsrs, doc(cfg(feature = <span class="string">&quot;io_safety&quot;</span>)))]
+        </span><span class="kw">impl </span>AsFd <span class="kw">for </span><span class="kw">crate</span>::File {
+            <span class="kw">fn </span>as_fd(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; BorrowedFd&lt;<span class="lifetime">&#39;_</span>&gt; {
+                <span class="self">self</span>.file().as_fd()
             }
         }
 
-        <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;io_safety&quot;</span>)))]</span>
-        <span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident"><span class="kw">crate</span>::File</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">OwnedFd</span> {
-            <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">file</span>: <span class="ident"><span class="kw">crate</span>::File</span>) -&gt; <span class="self">Self</span> {
-                <span class="ident">file</span>.<span class="ident">into_parts</span>().<span class="number">0</span>.<span class="ident">into</span>()
+        <span class="attribute">#[cfg_attr(docsrs, doc(cfg(feature = <span class="string">&quot;io_safety&quot;</span>)))]
+        </span><span class="kw">impl </span>From&lt;<span class="kw">crate</span>::File&gt; <span class="kw">for </span>OwnedFd {
+            <span class="kw">fn </span>from(file: <span class="kw">crate</span>::File) -&gt; <span class="self">Self </span>{
+                file.into_parts().<span class="number">0</span>.into()
             }
         }
     }
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">windows</span>)]</span>
-<span class="kw">mod</span> <span class="ident">windows</span> {
-    <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::os::windows::fs::FileExt</span>;
-    <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ErrorKind</span>;
-    <span class="kw">use</span> <span class="ident">std::io</span>;
-    <span class="kw">use</span> <span class="ident">std::os::windows</span>::{
-        <span class="ident">fs::FileExt</span> <span class="kw">as</span> <span class="kw">_</span>,
-        <span class="ident">io</span>::{<span class="ident">AsRawHandle</span>, <span class="ident">IntoRawHandle</span>, <span class="ident">RawHandle</span>},
+<span class="attribute">#[cfg(windows)]
+</span><span class="kw">mod </span>windows {
+    <span class="kw">use </span><span class="kw">crate</span>::os::windows::fs::FileExt;
+    <span class="kw">use </span><span class="kw">crate</span>::ErrorKind;
+    <span class="kw">use </span>std::io;
+    <span class="kw">use </span>std::os::windows::{
+        fs::FileExt <span class="kw">as _</span>,
+        io::{AsRawHandle, IntoRawHandle, RawHandle},
     };
 
-    <span class="kw">impl</span> <span class="ident">FileExt</span> <span class="kw">for</span> <span class="ident"><span class="kw">crate</span>::File</span> {
-        <span class="kw">fn</span> <span class="ident">seek_read</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">buf</span>: <span class="kw-2">&amp;mut</span> [<span class="ident">u8</span>], <span class="ident">offset</span>: <span class="ident">u64</span>) -&gt; <span class="ident">io::Result</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span> {
-            <span class="self">self</span>.<span class="ident">file</span>()
-                .<span class="ident">seek_read</span>(<span class="ident">buf</span>, <span class="ident">offset</span>)
-                .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">err</span><span class="op">|</span> <span class="self">self</span>.<span class="ident">error</span>(<span class="ident">err</span>, <span class="ident">ErrorKind::SeekRead</span>))
+    <span class="kw">impl </span>FileExt <span class="kw">for </span><span class="kw">crate</span>::File {
+        <span class="kw">fn </span>seek_read(<span class="kw-2">&amp;</span><span class="self">self</span>, buf: <span class="kw-2">&amp;mut </span>[u8], offset: u64) -&gt; io::Result&lt;usize&gt; {
+            <span class="self">self</span>.file()
+                .seek_read(buf, offset)
+                .map_err(|err| <span class="self">self</span>.error(err, ErrorKind::SeekRead))
         }
 
-        <span class="kw">fn</span> <span class="ident">seek_write</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">buf</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>], <span class="ident">offset</span>: <span class="ident">u64</span>) -&gt; <span class="ident">io::Result</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span> {
-            <span class="self">self</span>.<span class="ident">file</span>()
-                .<span class="ident">seek_write</span>(<span class="ident">buf</span>, <span class="ident">offset</span>)
-                .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">err</span><span class="op">|</span> <span class="self">self</span>.<span class="ident">error</span>(<span class="ident">err</span>, <span class="ident">ErrorKind::SeekWrite</span>))
-        }
-    }
-
-    <span class="kw">impl</span> <span class="ident">AsRawHandle</span> <span class="kw">for</span> <span class="ident"><span class="kw">crate</span>::File</span> {
-        <span class="kw">fn</span> <span class="ident">as_raw_handle</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">RawHandle</span> {
-            <span class="self">self</span>.<span class="ident">file</span>().<span class="ident">as_raw_handle</span>()
+        <span class="kw">fn </span>seek_write(<span class="kw-2">&amp;</span><span class="self">self</span>, buf: <span class="kw-2">&amp;</span>[u8], offset: u64) -&gt; io::Result&lt;usize&gt; {
+            <span class="self">self</span>.file()
+                .seek_write(buf, offset)
+                .map_err(|err| <span class="self">self</span>.error(err, ErrorKind::SeekWrite))
         }
     }
 
-    <span class="comment">// can&#39;t be implemented, because the trait doesn&#39;t give us a Path</span>
-    <span class="comment">// impl std::os::windows::io::FromRawHandle for crate::File {</span>
-    <span class="comment">// }</span>
-
-    <span class="kw">impl</span> <span class="ident">IntoRawHandle</span> <span class="kw">for</span> <span class="ident"><span class="kw">crate</span>::File</span> {
-        <span class="kw">fn</span> <span class="ident">into_raw_handle</span>(<span class="self">self</span>) -&gt; <span class="ident">RawHandle</span> {
-            <span class="self">self</span>.<span class="ident">file</span>.<span class="ident">into_raw_handle</span>()
+    <span class="kw">impl </span>AsRawHandle <span class="kw">for </span><span class="kw">crate</span>::File {
+        <span class="kw">fn </span>as_raw_handle(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; RawHandle {
+            <span class="self">self</span>.file().as_raw_handle()
         }
     }
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;io_safety&quot;</span>)]</span>
-    <span class="kw">mod</span> <span class="ident">io_safety</span> {
-        <span class="kw">use</span> <span class="ident">std::os::windows::io</span>::{<span class="ident">AsHandle</span>, <span class="ident">BorrowedHandle</span>, <span class="ident">OwnedHandle</span>};
+    <span class="comment">// can&#39;t be implemented, because the trait doesn&#39;t give us a Path
+    // impl std::os::windows::io::FromRawHandle for crate::File {
+    // }
 
-        <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;io_safety&quot;</span>)))]</span>
-        <span class="kw">impl</span> <span class="ident">AsHandle</span> <span class="kw">for</span> <span class="ident"><span class="kw">crate</span>::File</span> {
-            <span class="kw">fn</span> <span class="ident">as_handle</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">BorrowedHandle</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span> {
-                <span class="self">self</span>.<span class="ident">file</span>().<span class="ident">as_handle</span>()
+    </span><span class="kw">impl </span>IntoRawHandle <span class="kw">for </span><span class="kw">crate</span>::File {
+        <span class="kw">fn </span>into_raw_handle(<span class="self">self</span>) -&gt; RawHandle {
+            <span class="self">self</span>.file.into_raw_handle()
+        }
+    }
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;io_safety&quot;</span>)]
+    </span><span class="kw">mod </span>io_safety {
+        <span class="kw">use </span>std::os::windows::io::{AsHandle, BorrowedHandle, OwnedHandle};
+
+        <span class="attribute">#[cfg_attr(docsrs, doc(cfg(feature = <span class="string">&quot;io_safety&quot;</span>)))]
+        </span><span class="kw">impl </span>AsHandle <span class="kw">for </span><span class="kw">crate</span>::File {
+            <span class="kw">fn </span>as_handle(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; BorrowedHandle&lt;<span class="lifetime">&#39;_</span>&gt; {
+                <span class="self">self</span>.file().as_handle()
             }
         }
 
-        <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">docsrs</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;io_safety&quot;</span>)))]</span>
-        <span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident"><span class="kw">crate</span>::File</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">OwnedHandle</span> {
-            <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">file</span>: <span class="ident"><span class="kw">crate</span>::File</span>) -&gt; <span class="self">Self</span> {
-                <span class="ident">file</span>.<span class="ident">into_parts</span>().<span class="number">0</span>.<span class="ident">into</span>()
+        <span class="attribute">#[cfg_attr(docsrs, doc(cfg(feature = <span class="string">&quot;io_safety&quot;</span>)))]
+        </span><span class="kw">impl </span>From&lt;<span class="kw">crate</span>::File&gt; <span class="kw">for </span>OwnedHandle {
+            <span class="kw">fn </span>from(file: <span class="kw">crate</span>::File) -&gt; <span class="self">Self </span>{
+                file.into_parts().<span class="number">0</span>.into()
             }
         }
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="fs_err" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="fs_err" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (77e57db38 2022-10-30)" ></div></body></html>

@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/goblin-0.5.4/src/pe/utils.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>utils.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../goblin/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../goblin/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../goblin/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/goblin-0.5.4/src/pe/utils.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>utils.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../normalize.css"><link rel="stylesheet" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../ayu.css" disabled><link rel="stylesheet" href="../../../dark.css" disabled><link rel="stylesheet" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../goblin/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -175,182 +175,182 @@
 <span id="175">175</span>
 <span id="176">176</span>
 <span id="177">177</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::error</span>;
-<span class="kw">use</span> <span class="ident">alloc::string::ToString</span>;
-<span class="kw">use</span> <span class="ident">scroll::Pread</span>;
+</pre><pre class="rust"><code><span class="kw">use </span><span class="kw">crate</span>::error;
+<span class="kw">use </span>alloc::string::ToString;
+<span class="kw">use </span>scroll::Pread;
 
-<span class="kw">use</span> <span class="ident"><span class="kw">super</span>::options</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">super</span>::section_table</span>;
+<span class="kw">use </span><span class="kw">super</span>::options;
+<span class="kw">use </span><span class="kw">super</span>::section_table;
 
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pe::data_directories::DataDirectory</span>;
-<span class="kw">use</span> <span class="ident">core::cmp</span>;
+<span class="kw">use </span><span class="kw">crate</span>::pe::data_directories::DataDirectory;
+<span class="kw">use </span>core::cmp;
 
-<span class="kw">use</span> <span class="ident">log::debug</span>;
+<span class="kw">use </span>log::debug;
 
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_in_range</span>(<span class="ident">rva</span>: <span class="ident">usize</span>, <span class="ident">r1</span>: <span class="ident">usize</span>, <span class="ident">r2</span>: <span class="ident">usize</span>) -&gt; <span class="ident">bool</span> {
-    <span class="ident">r1</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">rva</span> <span class="op">&amp;&amp;</span> <span class="ident">rva</span> <span class="op">&lt;</span> <span class="ident">r2</span>
+<span class="kw">pub fn </span>is_in_range(rva: usize, r1: usize, r2: usize) -&gt; bool {
+    r1 &lt;= rva &amp;&amp; rva &lt; r2
 }
 
-<span class="comment">// reference: Peter Ferrie. Reliable algorithm to extract overlay of a PE. https://bit.ly/2vBX2bR</span>
-<span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">fn</span> <span class="ident">aligned_pointer_to_raw_data</span>(<span class="ident">pointer_to_raw_data</span>: <span class="ident">usize</span>) -&gt; <span class="ident">usize</span> {
-    <span class="kw">const</span> <span class="ident">PHYSICAL_ALIGN</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">0x1ff</span>;
-    <span class="ident">pointer_to_raw_data</span> <span class="op">&amp;</span> <span class="op">!</span><span class="ident">PHYSICAL_ALIGN</span>
+<span class="comment">// reference: Peter Ferrie. Reliable algorithm to extract overlay of a PE. https://bit.ly/2vBX2bR
+</span><span class="attribute">#[inline]
+</span><span class="kw">fn </span>aligned_pointer_to_raw_data(pointer_to_raw_data: usize) -&gt; usize {
+    <span class="kw">const </span>PHYSICAL_ALIGN: usize = <span class="number">0x1ff</span>;
+    pointer_to_raw_data &amp; !PHYSICAL_ALIGN
 }
 
-<span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">fn</span> <span class="ident">section_read_size</span>(<span class="ident">section</span>: <span class="kw-2">&amp;</span><span class="ident">section_table::SectionTable</span>, <span class="ident">file_alignment</span>: <span class="ident">u32</span>) -&gt; <span class="ident">usize</span> {
-    <span class="kw">fn</span> <span class="ident">round_size</span>(<span class="ident">size</span>: <span class="ident">usize</span>) -&gt; <span class="ident">usize</span> {
-        <span class="kw">const</span> <span class="ident">PAGE_MASK</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">0xfff</span>;
-        (<span class="ident">size</span> <span class="op">+</span> <span class="ident">PAGE_MASK</span>) <span class="op">&amp;</span> <span class="op">!</span><span class="ident">PAGE_MASK</span>
+<span class="attribute">#[inline]
+</span><span class="kw">fn </span>section_read_size(section: <span class="kw-2">&amp;</span>section_table::SectionTable, file_alignment: u32) -&gt; usize {
+    <span class="kw">fn </span>round_size(size: usize) -&gt; usize {
+        <span class="kw">const </span>PAGE_MASK: usize = <span class="number">0xfff</span>;
+        (size + PAGE_MASK) &amp; !PAGE_MASK
     }
 
-    <span class="comment">// Paraphrased from https://reverseengineering.stackexchange.com/a/4326 (by Peter Ferrie).</span>
-    <span class="comment">//</span>
-    <span class="comment">// Handles the corner cases such as mis-aligned pointers (round down) and sizes (round up)</span>
-    <span class="comment">// Further rounding corner cases:</span>
-    <span class="comment">// - the physical pointer should be rounded down to a multiple of 512, regardless of the value in the header</span>
-    <span class="comment">// - the read size is rounded up by using a combination of the file alignment and 4kb</span>
-    <span class="comment">// - the virtual size is always rounded up to a multiple of 4kb, regardless of the value in the header.</span>
-    <span class="comment">//</span>
-    <span class="comment">// Reference C implementation:</span>
-    <span class="comment">//</span>
-    <span class="comment">// long pointerToRaw = section.get(POINTER_TO_RAW_DATA);</span>
-    <span class="comment">// long alignedpointerToRaw = pointerToRaw &amp; ~0x1ff;</span>
-    <span class="comment">// long sizeOfRaw = section.get(SIZE_OF_RAW_DATA);</span>
-    <span class="comment">// long readsize = ((pointerToRaw + sizeOfRaw) + filealign - 1) &amp; ~(filealign - 1)) - alignedpointerToRaw;</span>
-    <span class="comment">// readsize = min(readsize, (sizeOfRaw + 0xfff) &amp; ~0xfff);</span>
-    <span class="comment">// long virtsize = section.get(VIRTUAL_SIZE);</span>
-    <span class="comment">//</span>
-    <span class="comment">// if (virtsize)</span>
-    <span class="comment">// {</span>
-    <span class="comment">//     readsize = min(readsize, (virtsize + 0xfff) &amp; ~0xfff);</span>
-    <span class="comment">// }</span>
+    <span class="comment">// Paraphrased from https://reverseengineering.stackexchange.com/a/4326 (by Peter Ferrie).
+    //
+    // Handles the corner cases such as mis-aligned pointers (round down) and sizes (round up)
+    // Further rounding corner cases:
+    // - the physical pointer should be rounded down to a multiple of 512, regardless of the value in the header
+    // - the read size is rounded up by using a combination of the file alignment and 4kb
+    // - the virtual size is always rounded up to a multiple of 4kb, regardless of the value in the header.
+    //
+    // Reference C implementation:
+    //
+    // long pointerToRaw = section.get(POINTER_TO_RAW_DATA);
+    // long alignedpointerToRaw = pointerToRaw &amp; ~0x1ff;
+    // long sizeOfRaw = section.get(SIZE_OF_RAW_DATA);
+    // long readsize = ((pointerToRaw + sizeOfRaw) + filealign - 1) &amp; ~(filealign - 1)) - alignedpointerToRaw;
+    // readsize = min(readsize, (sizeOfRaw + 0xfff) &amp; ~0xfff);
+    // long virtsize = section.get(VIRTUAL_SIZE);
+    //
+    // if (virtsize)
+    // {
+    //     readsize = min(readsize, (virtsize + 0xfff) &amp; ~0xfff);
+    // }
 
-    <span class="kw">let</span> <span class="ident">file_alignment</span> <span class="op">=</span> <span class="ident">file_alignment</span> <span class="kw">as</span> <span class="ident">usize</span>;
-    <span class="kw">let</span> <span class="ident">size_of_raw_data</span> <span class="op">=</span> <span class="ident">section</span>.<span class="ident">size_of_raw_data</span> <span class="kw">as</span> <span class="ident">usize</span>;
-    <span class="kw">let</span> <span class="ident">virtual_size</span> <span class="op">=</span> <span class="ident">section</span>.<span class="ident">virtual_size</span> <span class="kw">as</span> <span class="ident">usize</span>;
-    <span class="kw">let</span> <span class="ident">read_size</span> <span class="op">=</span> {
-        <span class="kw">let</span> <span class="ident">read_size</span> <span class="op">=</span>
-            ((<span class="ident">section</span>.<span class="ident">pointer_to_raw_data</span> <span class="kw">as</span> <span class="ident">usize</span> <span class="op">+</span> <span class="ident">size_of_raw_data</span> <span class="op">+</span> <span class="ident">file_alignment</span> <span class="op">-</span> <span class="number">1</span>)
-                <span class="op">&amp;</span> <span class="op">!</span>(<span class="ident">file_alignment</span> <span class="op">-</span> <span class="number">1</span>))
-                <span class="op">-</span> <span class="ident">aligned_pointer_to_raw_data</span>(<span class="ident">section</span>.<span class="ident">pointer_to_raw_data</span> <span class="kw">as</span> <span class="ident">usize</span>);
-        <span class="ident">cmp::min</span>(<span class="ident">read_size</span>, <span class="ident">round_size</span>(<span class="ident">size_of_raw_data</span>))
+    </span><span class="kw">let </span>file_alignment = file_alignment <span class="kw">as </span>usize;
+    <span class="kw">let </span>size_of_raw_data = section.size_of_raw_data <span class="kw">as </span>usize;
+    <span class="kw">let </span>virtual_size = section.virtual_size <span class="kw">as </span>usize;
+    <span class="kw">let </span>read_size = {
+        <span class="kw">let </span>read_size =
+            ((section.pointer_to_raw_data <span class="kw">as </span>usize + size_of_raw_data + file_alignment - <span class="number">1</span>)
+                &amp; !(file_alignment - <span class="number">1</span>))
+                - aligned_pointer_to_raw_data(section.pointer_to_raw_data <span class="kw">as </span>usize);
+        cmp::min(read_size, round_size(size_of_raw_data))
     };
 
-    <span class="kw">if</span> <span class="ident">virtual_size</span> <span class="op">==</span> <span class="number">0</span> {
-        <span class="ident">read_size</span>
-    } <span class="kw">else</span> {
-        <span class="ident">cmp::min</span>(<span class="ident">read_size</span>, <span class="ident">round_size</span>(<span class="ident">virtual_size</span>))
+    <span class="kw">if </span>virtual_size == <span class="number">0 </span>{
+        read_size
+    } <span class="kw">else </span>{
+        cmp::min(read_size, round_size(virtual_size))
     }
 }
 
-<span class="kw">fn</span> <span class="ident">rva2offset</span>(<span class="ident">rva</span>: <span class="ident">usize</span>, <span class="ident">section</span>: <span class="kw-2">&amp;</span><span class="ident">section_table::SectionTable</span>) -&gt; <span class="ident">usize</span> {
-    (<span class="ident">rva</span> <span class="op">-</span> <span class="ident">section</span>.<span class="ident">virtual_address</span> <span class="kw">as</span> <span class="ident">usize</span>)
-        <span class="op">+</span> <span class="ident">aligned_pointer_to_raw_data</span>(<span class="ident">section</span>.<span class="ident">pointer_to_raw_data</span> <span class="kw">as</span> <span class="ident">usize</span>)
+<span class="kw">fn </span>rva2offset(rva: usize, section: <span class="kw-2">&amp;</span>section_table::SectionTable) -&gt; usize {
+    (rva - section.virtual_address <span class="kw">as </span>usize)
+        + aligned_pointer_to_raw_data(section.pointer_to_raw_data <span class="kw">as </span>usize)
 }
 
-<span class="kw">fn</span> <span class="ident">is_in_section</span>(<span class="ident">rva</span>: <span class="ident">usize</span>, <span class="ident">section</span>: <span class="kw-2">&amp;</span><span class="ident">section_table::SectionTable</span>, <span class="ident">file_alignment</span>: <span class="ident">u32</span>) -&gt; <span class="ident">bool</span> {
-    <span class="kw">let</span> <span class="ident">section_rva</span> <span class="op">=</span> <span class="ident">section</span>.<span class="ident">virtual_address</span> <span class="kw">as</span> <span class="ident">usize</span>;
-    <span class="ident">is_in_range</span>(
-        <span class="ident">rva</span>,
-        <span class="ident">section_rva</span>,
-        <span class="ident">section_rva</span> <span class="op">+</span> <span class="ident">section_read_size</span>(<span class="ident">section</span>, <span class="ident">file_alignment</span>),
+<span class="kw">fn </span>is_in_section(rva: usize, section: <span class="kw-2">&amp;</span>section_table::SectionTable, file_alignment: u32) -&gt; bool {
+    <span class="kw">let </span>section_rva = section.virtual_address <span class="kw">as </span>usize;
+    is_in_range(
+        rva,
+        section_rva,
+        section_rva + section_read_size(section, file_alignment),
     )
 }
 
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">find_offset</span>(
-    <span class="ident">rva</span>: <span class="ident">usize</span>,
-    <span class="ident">sections</span>: <span class="kw-2">&amp;</span>[<span class="ident">section_table::SectionTable</span>],
-    <span class="ident">file_alignment</span>: <span class="ident">u32</span>,
-    <span class="ident">opts</span>: <span class="kw-2">&amp;</span><span class="ident">options::ParseOptions</span>,
-) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span> {
-    <span class="kw">if</span> <span class="ident">opts</span>.<span class="ident">resolve_rva</span> {
-        <span class="kw">for</span> (<span class="ident">i</span>, <span class="ident">section</span>) <span class="kw">in</span> <span class="ident">sections</span>.<span class="ident">iter</span>().<span class="ident">enumerate</span>() {
+<span class="kw">pub fn </span>find_offset(
+    rva: usize,
+    sections: <span class="kw-2">&amp;</span>[section_table::SectionTable],
+    file_alignment: u32,
+    opts: <span class="kw-2">&amp;</span>options::ParseOptions,
+) -&gt; <span class="prelude-ty">Option</span>&lt;usize&gt; {
+    <span class="kw">if </span>opts.resolve_rva {
+        <span class="kw">for </span>(i, section) <span class="kw">in </span>sections.iter().enumerate() {
             <span class="macro">debug!</span>(
                 <span class="string">&quot;Checking {} for {:#x} ∈ {:#x}..{:#x}&quot;</span>,
-                <span class="ident">section</span>.<span class="ident">name</span>().<span class="ident">unwrap_or</span>(<span class="string">&quot;&quot;</span>),
-                <span class="ident">rva</span>,
-                <span class="ident">section</span>.<span class="ident">virtual_address</span>,
-                <span class="ident">section</span>.<span class="ident">virtual_address</span> <span class="op">+</span> <span class="ident">section</span>.<span class="ident">virtual_size</span>
+                section.name().unwrap_or(<span class="string">&quot;&quot;</span>),
+                rva,
+                section.virtual_address,
+                section.virtual_address + section.virtual_size
             );
-            <span class="kw">if</span> <span class="ident">is_in_section</span>(<span class="ident">rva</span>, <span class="kw-2">&amp;</span><span class="ident">section</span>, <span class="ident">file_alignment</span>) {
-                <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> <span class="ident">rva2offset</span>(<span class="ident">rva</span>, <span class="kw-2">&amp;</span><span class="ident">section</span>);
+            <span class="kw">if </span>is_in_section(rva, <span class="kw-2">&amp;</span>section, file_alignment) {
+                <span class="kw">let </span>offset = rva2offset(rva, <span class="kw-2">&amp;</span>section);
                 <span class="macro">debug!</span>(
                     <span class="string">&quot;Found in section {}({}), remapped into offset {:#x}&quot;</span>,
-                    <span class="ident">section</span>.<span class="ident">name</span>().<span class="ident">unwrap_or</span>(<span class="string">&quot;&quot;</span>),
-                    <span class="ident">i</span>,
-                    <span class="ident">offset</span>
+                    section.name().unwrap_or(<span class="string">&quot;&quot;</span>),
+                    i,
+                    offset
                 );
-                <span class="kw">return</span> <span class="prelude-val">Some</span>(<span class="ident">offset</span>);
+                <span class="kw">return </span><span class="prelude-val">Some</span>(offset);
             }
         }
-        <span class="prelude-val">None</span>
-    } <span class="kw">else</span> {
-        <span class="prelude-val">Some</span>(<span class="ident">rva</span>)
+        <span class="prelude-val">None
+    </span>} <span class="kw">else </span>{
+        <span class="prelude-val">Some</span>(rva)
     }
 }
 
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">find_offset_or</span>(
-    <span class="ident">rva</span>: <span class="ident">usize</span>,
-    <span class="ident">sections</span>: <span class="kw-2">&amp;</span>[<span class="ident">section_table::SectionTable</span>],
-    <span class="ident">file_alignment</span>: <span class="ident">u32</span>,
-    <span class="ident">opts</span>: <span class="kw-2">&amp;</span><span class="ident">options::ParseOptions</span>,
-    <span class="ident">msg</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
-) -&gt; <span class="ident">error::Result</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span> {
-    <span class="ident">find_offset</span>(<span class="ident">rva</span>, <span class="ident">sections</span>, <span class="ident">file_alignment</span>, <span class="ident">opts</span>)
-        .<span class="ident">ok_or_else</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">error::Error::Malformed</span>(<span class="ident">msg</span>.<span class="ident">to_string</span>()))
+<span class="kw">pub fn </span>find_offset_or(
+    rva: usize,
+    sections: <span class="kw-2">&amp;</span>[section_table::SectionTable],
+    file_alignment: u32,
+    opts: <span class="kw-2">&amp;</span>options::ParseOptions,
+    msg: <span class="kw-2">&amp;</span>str,
+) -&gt; error::Result&lt;usize&gt; {
+    find_offset(rva, sections, file_alignment, opts)
+        .ok_or_else(|| error::Error::Malformed(msg.to_string()))
 }
 
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">try_name</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>(
-    <span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
-    <span class="ident">rva</span>: <span class="ident">usize</span>,
-    <span class="ident">sections</span>: <span class="kw-2">&amp;</span>[<span class="ident">section_table::SectionTable</span>],
-    <span class="ident">file_alignment</span>: <span class="ident">u32</span>,
-    <span class="ident">opts</span>: <span class="kw-2">&amp;</span><span class="ident">options::ParseOptions</span>,
-) -&gt; <span class="ident">error::Result</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span><span class="op">&gt;</span> {
-    <span class="kw">match</span> <span class="ident">find_offset</span>(<span class="ident">rva</span>, <span class="ident">sections</span>, <span class="ident">file_alignment</span>, <span class="ident">opts</span>) {
-        <span class="prelude-val">Some</span>(<span class="ident">offset</span>) =&gt; <span class="prelude-val">Ok</span>(<span class="ident">bytes</span>.<span class="ident">pread</span>::<span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>(<span class="ident">offset</span>)<span class="question-mark">?</span>),
-        <span class="prelude-val">None</span> =&gt; <span class="prelude-val">Err</span>(<span class="ident">error::Error::Malformed</span>(<span class="macro">format!</span>(
+<span class="kw">pub fn </span>try_name&lt;<span class="lifetime">&#39;a</span>&gt;(
+    bytes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8],
+    rva: usize,
+    sections: <span class="kw-2">&amp;</span>[section_table::SectionTable],
+    file_alignment: u32,
+    opts: <span class="kw-2">&amp;</span>options::ParseOptions,
+) -&gt; error::Result&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str&gt; {
+    <span class="kw">match </span>find_offset(rva, sections, file_alignment, opts) {
+        <span class="prelude-val">Some</span>(offset) =&gt; <span class="prelude-val">Ok</span>(bytes.pread::&lt;<span class="kw-2">&amp;</span>str&gt;(offset)<span class="question-mark">?</span>),
+        <span class="prelude-val">None </span>=&gt; <span class="prelude-val">Err</span>(error::Error::Malformed(<span class="macro">format!</span>(
             <span class="string">&quot;Cannot find name from rva {:#x} in sections: {:?}&quot;</span>,
-            <span class="ident">rva</span>, <span class="ident">sections</span>
+            rva, sections
         ))),
     }
 }
 
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_data</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">T</span><span class="op">&gt;</span>(
-    <span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
-    <span class="ident">sections</span>: <span class="kw-2">&amp;</span>[<span class="ident">section_table::SectionTable</span>],
-    <span class="ident">directory</span>: <span class="ident">DataDirectory</span>,
-    <span class="ident">file_alignment</span>: <span class="ident">u32</span>,
-) -&gt; <span class="ident">error::Result</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>
-<span class="kw">where</span>
-    <span class="ident">T</span>: <span class="ident">scroll::ctx::TryFromCtx</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">scroll::Endian</span>, <span class="ident">Error</span> <span class="op">=</span> <span class="ident">scroll::Error</span><span class="op">&gt;</span>,
+<span class="kw">pub fn </span>get_data&lt;<span class="lifetime">&#39;a</span>, T&gt;(
+    bytes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8],
+    sections: <span class="kw-2">&amp;</span>[section_table::SectionTable],
+    directory: DataDirectory,
+    file_alignment: u32,
+) -&gt; error::Result&lt;T&gt;
+<span class="kw">where
+    </span>T: scroll::ctx::TryFromCtx&lt;<span class="lifetime">&#39;a</span>, scroll::Endian, Error = scroll::Error&gt;,
 {
-    <span class="ident">get_data_with_opts</span>(
-        <span class="ident">bytes</span>,
-        <span class="ident">sections</span>,
-        <span class="ident">directory</span>,
-        <span class="ident">file_alignment</span>,
-        <span class="kw-2">&amp;</span><span class="ident">options::ParseOptions::default</span>(),
+    get_data_with_opts(
+        bytes,
+        sections,
+        directory,
+        file_alignment,
+        <span class="kw-2">&amp;</span>options::ParseOptions::default(),
     )
 }
 
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_data_with_opts</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">T</span><span class="op">&gt;</span>(
-    <span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
-    <span class="ident">sections</span>: <span class="kw-2">&amp;</span>[<span class="ident">section_table::SectionTable</span>],
-    <span class="ident">directory</span>: <span class="ident">DataDirectory</span>,
-    <span class="ident">file_alignment</span>: <span class="ident">u32</span>,
-    <span class="ident">opts</span>: <span class="kw-2">&amp;</span><span class="ident">options::ParseOptions</span>,
-) -&gt; <span class="ident">error::Result</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>
-<span class="kw">where</span>
-    <span class="ident">T</span>: <span class="ident">scroll::ctx::TryFromCtx</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">scroll::Endian</span>, <span class="ident">Error</span> <span class="op">=</span> <span class="ident">scroll::Error</span><span class="op">&gt;</span>,
+<span class="kw">pub fn </span>get_data_with_opts&lt;<span class="lifetime">&#39;a</span>, T&gt;(
+    bytes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8],
+    sections: <span class="kw-2">&amp;</span>[section_table::SectionTable],
+    directory: DataDirectory,
+    file_alignment: u32,
+    opts: <span class="kw-2">&amp;</span>options::ParseOptions,
+) -&gt; error::Result&lt;T&gt;
+<span class="kw">where
+    </span>T: scroll::ctx::TryFromCtx&lt;<span class="lifetime">&#39;a</span>, scroll::Endian, Error = scroll::Error&gt;,
 {
-    <span class="kw">let</span> <span class="ident">rva</span> <span class="op">=</span> <span class="ident">directory</span>.<span class="ident">virtual_address</span> <span class="kw">as</span> <span class="ident">usize</span>;
-    <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> <span class="ident">find_offset</span>(<span class="ident">rva</span>, <span class="ident">sections</span>, <span class="ident">file_alignment</span>, <span class="ident">opts</span>)
-        .<span class="ident">ok_or_else</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">error::Error::Malformed</span>(<span class="ident">directory</span>.<span class="ident">virtual_address</span>.<span class="ident">to_string</span>()))<span class="question-mark">?</span>;
-    <span class="kw">let</span> <span class="ident">result</span>: <span class="ident">T</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">pread_with</span>(<span class="ident">offset</span>, <span class="ident">scroll::LE</span>)<span class="question-mark">?</span>;
-    <span class="prelude-val">Ok</span>(<span class="ident">result</span>)
+    <span class="kw">let </span>rva = directory.virtual_address <span class="kw">as </span>usize;
+    <span class="kw">let </span>offset = find_offset(rva, sections, file_alignment, opts)
+        .ok_or_else(|| error::Error::Malformed(directory.virtual_address.to_string()))<span class="question-mark">?</span>;
+    <span class="kw">let </span>result: T = bytes.pread_with(offset, scroll::LE)<span class="question-mark">?</span>;
+    <span class="prelude-val">Ok</span>(result)
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="goblin" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="goblin" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (77e57db38 2022-10-30)" ></div></body></html>

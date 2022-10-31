@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/goblin-0.5.4/src/pe/header.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>header.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../goblin/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../goblin/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../goblin/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/goblin-0.5.4/src/pe/header.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>header.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../normalize.css"><link rel="stylesheet" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../ayu.css" disabled><link rel="stylesheet" href="../../../dark.css" disabled><link rel="stylesheet" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../goblin/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -277,228 +277,228 @@
 <span id="277">277</span>
 <span id="278">278</span>
 <span id="279">279</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::error</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pe</span>::{<span class="ident">optional_header</span>, <span class="ident">section_table</span>, <span class="ident">symbol</span>};
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::strtab</span>;
-<span class="kw">use</span> <span class="ident">alloc::vec::Vec</span>;
-<span class="kw">use</span> <span class="ident">log::debug</span>;
-<span class="kw">use</span> <span class="ident">scroll</span>::{<span class="ident">IOread</span>, <span class="ident">IOwrite</span>, <span class="ident">Pread</span>, <span class="ident">Pwrite</span>, <span class="ident">SizeWith</span>};
+</pre><pre class="rust"><code><span class="kw">use </span><span class="kw">crate</span>::error;
+<span class="kw">use </span><span class="kw">crate</span>::pe::{optional_header, section_table, symbol};
+<span class="kw">use </span><span class="kw">crate</span>::strtab;
+<span class="kw">use </span>alloc::vec::Vec;
+<span class="kw">use </span>log::debug;
+<span class="kw">use </span>scroll::{IOread, IOwrite, Pread, Pwrite, SizeWith};
 
-<span class="doccomment">/// DOS header present in all PE binaries</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Default</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">DosHeader</span> {
-    <span class="doccomment">/// Magic number: 5a4d</span>
-    <span class="kw">pub</span> <span class="ident">signature</span>: <span class="ident">u16</span>,
-    <span class="doccomment">/// Pointer to PE header, always at offset 0x3c</span>
-    <span class="kw">pub</span> <span class="ident">pe_pointer</span>: <span class="ident">u32</span>,
+<span class="doccomment">/// DOS header present in all PE binaries
+</span><span class="attribute">#[repr(C)]
+#[derive(Debug, PartialEq, Copy, Clone, Default)]
+</span><span class="kw">pub struct </span>DosHeader {
+    <span class="doccomment">/// Magic number: 5a4d
+    </span><span class="kw">pub </span>signature: u16,
+    <span class="doccomment">/// Pointer to PE header, always at offset 0x3c
+    </span><span class="kw">pub </span>pe_pointer: u32,
 }
 
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DOS_MAGIC</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0x5a4d</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PE_POINTER_OFFSET</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">0x3c</span>;
+<span class="kw">pub const </span>DOS_MAGIC: u16 = <span class="number">0x5a4d</span>;
+<span class="kw">pub const </span>PE_POINTER_OFFSET: u32 = <span class="number">0x3c</span>;
 
-<span class="kw">impl</span> <span class="ident">DosHeader</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">bytes</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>]) -&gt; <span class="ident">error::Result</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">signature</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">pread_with</span>(<span class="number">0</span>, <span class="ident">scroll::LE</span>).<span class="ident">map_err</span>(<span class="op">|</span><span class="kw">_</span><span class="op">|</span> {
-            <span class="ident">error::Error::Malformed</span>(<span class="macro">format!</span>(<span class="string">&quot;cannot parse DOS signature (offset {:#x})&quot;</span>, <span class="number">0</span>))
+<span class="kw">impl </span>DosHeader {
+    <span class="kw">pub fn </span>parse(bytes: <span class="kw-2">&amp;</span>[u8]) -&gt; error::Result&lt;<span class="self">Self</span>&gt; {
+        <span class="kw">let </span>signature = bytes.pread_with(<span class="number">0</span>, scroll::LE).map_err(|<span class="kw">_</span>| {
+            error::Error::Malformed(<span class="macro">format!</span>(<span class="string">&quot;cannot parse DOS signature (offset {:#x})&quot;</span>, <span class="number">0</span>))
         })<span class="question-mark">?</span>;
-        <span class="kw">if</span> <span class="ident">signature</span> <span class="op">!</span><span class="op">=</span> <span class="ident">DOS_MAGIC</span> {
-            <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">error::Error::Malformed</span>(<span class="macro">format!</span>(
+        <span class="kw">if </span>signature != DOS_MAGIC {
+            <span class="kw">return </span><span class="prelude-val">Err</span>(error::Error::Malformed(<span class="macro">format!</span>(
                 <span class="string">&quot;DOS header is malformed (signature {:#x})&quot;</span>,
-                <span class="ident">signature</span>
+                signature
             )));
         }
-        <span class="kw">let</span> <span class="ident">pe_pointer</span> <span class="op">=</span> <span class="ident">bytes</span>
-            .<span class="ident">pread_with</span>(<span class="ident">PE_POINTER_OFFSET</span> <span class="kw">as</span> <span class="ident">usize</span>, <span class="ident">scroll::LE</span>)
-            .<span class="ident">map_err</span>(<span class="op">|</span><span class="kw">_</span><span class="op">|</span> {
-                <span class="ident">error::Error::Malformed</span>(<span class="macro">format!</span>(
+        <span class="kw">let </span>pe_pointer = bytes
+            .pread_with(PE_POINTER_OFFSET <span class="kw">as </span>usize, scroll::LE)
+            .map_err(|<span class="kw">_</span>| {
+                error::Error::Malformed(<span class="macro">format!</span>(
                     <span class="string">&quot;cannot parse PE header pointer (offset {:#x})&quot;</span>,
-                    <span class="ident">PE_POINTER_OFFSET</span>
+                    PE_POINTER_OFFSET
                 ))
             })<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">pe_signature</span>: <span class="ident">u32</span> <span class="op">=</span>
-            <span class="ident">bytes</span>
-                .<span class="ident">pread_with</span>(<span class="ident">pe_pointer</span> <span class="kw">as</span> <span class="ident">usize</span>, <span class="ident">scroll::LE</span>)
-                .<span class="ident">map_err</span>(<span class="op">|</span><span class="kw">_</span><span class="op">|</span> {
-                    <span class="ident">error::Error::Malformed</span>(<span class="macro">format!</span>(
+        <span class="kw">let </span>pe_signature: u32 =
+            bytes
+                .pread_with(pe_pointer <span class="kw">as </span>usize, scroll::LE)
+                .map_err(|<span class="kw">_</span>| {
+                    error::Error::Malformed(<span class="macro">format!</span>(
                         <span class="string">&quot;cannot parse PE header signature (offset {:#x})&quot;</span>,
-                        <span class="ident">pe_pointer</span>
+                        pe_pointer
                     ))
                 })<span class="question-mark">?</span>;
-        <span class="kw">if</span> <span class="ident">pe_signature</span> <span class="op">!</span><span class="op">=</span> <span class="ident">PE_MAGIC</span> {
-            <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">error::Error::Malformed</span>(<span class="macro">format!</span>(
+        <span class="kw">if </span>pe_signature != PE_MAGIC {
+            <span class="kw">return </span><span class="prelude-val">Err</span>(error::Error::Malformed(<span class="macro">format!</span>(
                 <span class="string">&quot;PE header is malformed (signature {:#x})&quot;</span>,
-                <span class="ident">pe_signature</span>
+                pe_signature
             )));
         }
-        <span class="prelude-val">Ok</span>(<span class="ident">DosHeader</span> {
-            <span class="ident">signature</span>,
-            <span class="ident">pe_pointer</span>,
+        <span class="prelude-val">Ok</span>(DosHeader {
+            signature,
+            pe_pointer,
         })
     }
 }
 
-<span class="doccomment">/// COFF Header</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Default</span>, <span class="ident">Pread</span>, <span class="ident">Pwrite</span>, <span class="ident">IOread</span>, <span class="ident">IOwrite</span>, <span class="ident">SizeWith</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CoffHeader</span> {
-    <span class="doccomment">/// The machine type</span>
-    <span class="kw">pub</span> <span class="ident">machine</span>: <span class="ident">u16</span>,
-    <span class="kw">pub</span> <span class="ident">number_of_sections</span>: <span class="ident">u16</span>,
-    <span class="kw">pub</span> <span class="ident">time_date_stamp</span>: <span class="ident">u32</span>,
-    <span class="kw">pub</span> <span class="ident">pointer_to_symbol_table</span>: <span class="ident">u32</span>,
-    <span class="kw">pub</span> <span class="ident">number_of_symbol_table</span>: <span class="ident">u32</span>,
-    <span class="kw">pub</span> <span class="ident">size_of_optional_header</span>: <span class="ident">u16</span>,
-    <span class="kw">pub</span> <span class="ident">characteristics</span>: <span class="ident">u16</span>,
+<span class="doccomment">/// COFF Header
+</span><span class="attribute">#[repr(C)]
+#[derive(Debug, PartialEq, Copy, Clone, Default, Pread, Pwrite, IOread, IOwrite, SizeWith)]
+</span><span class="kw">pub struct </span>CoffHeader {
+    <span class="doccomment">/// The machine type
+    </span><span class="kw">pub </span>machine: u16,
+    <span class="kw">pub </span>number_of_sections: u16,
+    <span class="kw">pub </span>time_date_stamp: u32,
+    <span class="kw">pub </span>pointer_to_symbol_table: u32,
+    <span class="kw">pub </span>number_of_symbol_table: u32,
+    <span class="kw">pub </span>size_of_optional_header: u16,
+    <span class="kw">pub </span>characteristics: u16,
 }
 
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIZEOF_COFF_HEADER</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">20</span>;
-<span class="doccomment">/// PE\0\0, little endian</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PE_MAGIC</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">0x0000_4550</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIZEOF_PE_MAGIC</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">4</span>;
-<span class="doccomment">/// The contents of this field are assumed to be applicable to any machine type</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">COFF_MACHINE_UNKNOWN</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0x0</span>;
-<span class="doccomment">/// Matsushita AM33</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">COFF_MACHINE_AM33</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0x1d3</span>;
-<span class="doccomment">/// x64</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">COFF_MACHINE_X86_64</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0x8664</span>;
-<span class="doccomment">/// ARM little endian</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">COFF_MACHINE_ARM</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0x1c0</span>;
-<span class="doccomment">/// ARM64 little endian</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">COFF_MACHINE_ARM64</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0xaa64</span>;
-<span class="doccomment">/// ARM Thumb-2 little endian</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">COFF_MACHINE_ARMNT</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0x1c4</span>;
-<span class="doccomment">/// EFI byte code</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">COFF_MACHINE_EBC</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0xebc</span>;
-<span class="doccomment">/// Intel 386 or later processors and compatible processors</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">COFF_MACHINE_X86</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0x14c</span>;
-<span class="doccomment">/// Intel Itanium processor family</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">COFF_MACHINE_IA64</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0x200</span>;
-<span class="doccomment">/// Mitsubishi M32R little endian</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">COFF_MACHINE_M32R</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0x9041</span>;
-<span class="doccomment">/// MIPS16</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">COFF_MACHINE_MIPS16</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0x266</span>;
-<span class="doccomment">/// MIPS with FPU</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">COFF_MACHINE_MIPSFPU</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0x366</span>;
-<span class="doccomment">/// MIPS16 with FPU</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">COFF_MACHINE_MIPSFPU16</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0x466</span>;
-<span class="doccomment">/// Power PC little endian</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">COFF_MACHINE_POWERPC</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0x1f0</span>;
-<span class="doccomment">/// Power PC with floating point support</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">COFF_MACHINE_POWERPCFP</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0x1f1</span>;
-<span class="doccomment">/// MIPS little endian</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">COFF_MACHINE_R4000</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0x166</span>;
-<span class="doccomment">/// RISC-V 32-bit address space</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">COFF_MACHINE_RISCV32</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0x5032</span>;
-<span class="doccomment">/// RISC-V 64-bit address space</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">COFF_MACHINE_RISCV64</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0x5064</span>;
-<span class="doccomment">/// RISC-V 128-bit address space</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">COFF_MACHINE_RISCV128</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0x5128</span>;
-<span class="doccomment">/// Hitachi SH3</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">COFF_MACHINE_SH3</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0x1a2</span>;
-<span class="doccomment">/// Hitachi SH3 DSP</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">COFF_MACHINE_SH3DSP</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0x1a3</span>;
-<span class="doccomment">/// Hitachi SH4</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">COFF_MACHINE_SH4</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0x1a6</span>;
-<span class="doccomment">/// Hitachi SH5</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">COFF_MACHINE_SH5</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0x1a8</span>;
-<span class="doccomment">/// Thumb</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">COFF_MACHINE_THUMB</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0x1c2</span>;
-<span class="doccomment">/// MIPS little-endian WCE v2</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">COFF_MACHINE_WCEMIPSV2</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0x169</span>;
+<span class="kw">pub const </span>SIZEOF_COFF_HEADER: usize = <span class="number">20</span>;
+<span class="doccomment">/// PE\0\0, little endian
+</span><span class="kw">pub const </span>PE_MAGIC: u32 = <span class="number">0x0000_4550</span>;
+<span class="kw">pub const </span>SIZEOF_PE_MAGIC: usize = <span class="number">4</span>;
+<span class="doccomment">/// The contents of this field are assumed to be applicable to any machine type
+</span><span class="kw">pub const </span>COFF_MACHINE_UNKNOWN: u16 = <span class="number">0x0</span>;
+<span class="doccomment">/// Matsushita AM33
+</span><span class="kw">pub const </span>COFF_MACHINE_AM33: u16 = <span class="number">0x1d3</span>;
+<span class="doccomment">/// x64
+</span><span class="kw">pub const </span>COFF_MACHINE_X86_64: u16 = <span class="number">0x8664</span>;
+<span class="doccomment">/// ARM little endian
+</span><span class="kw">pub const </span>COFF_MACHINE_ARM: u16 = <span class="number">0x1c0</span>;
+<span class="doccomment">/// ARM64 little endian
+</span><span class="kw">pub const </span>COFF_MACHINE_ARM64: u16 = <span class="number">0xaa64</span>;
+<span class="doccomment">/// ARM Thumb-2 little endian
+</span><span class="kw">pub const </span>COFF_MACHINE_ARMNT: u16 = <span class="number">0x1c4</span>;
+<span class="doccomment">/// EFI byte code
+</span><span class="kw">pub const </span>COFF_MACHINE_EBC: u16 = <span class="number">0xebc</span>;
+<span class="doccomment">/// Intel 386 or later processors and compatible processors
+</span><span class="kw">pub const </span>COFF_MACHINE_X86: u16 = <span class="number">0x14c</span>;
+<span class="doccomment">/// Intel Itanium processor family
+</span><span class="kw">pub const </span>COFF_MACHINE_IA64: u16 = <span class="number">0x200</span>;
+<span class="doccomment">/// Mitsubishi M32R little endian
+</span><span class="kw">pub const </span>COFF_MACHINE_M32R: u16 = <span class="number">0x9041</span>;
+<span class="doccomment">/// MIPS16
+</span><span class="kw">pub const </span>COFF_MACHINE_MIPS16: u16 = <span class="number">0x266</span>;
+<span class="doccomment">/// MIPS with FPU
+</span><span class="kw">pub const </span>COFF_MACHINE_MIPSFPU: u16 = <span class="number">0x366</span>;
+<span class="doccomment">/// MIPS16 with FPU
+</span><span class="kw">pub const </span>COFF_MACHINE_MIPSFPU16: u16 = <span class="number">0x466</span>;
+<span class="doccomment">/// Power PC little endian
+</span><span class="kw">pub const </span>COFF_MACHINE_POWERPC: u16 = <span class="number">0x1f0</span>;
+<span class="doccomment">/// Power PC with floating point support
+</span><span class="kw">pub const </span>COFF_MACHINE_POWERPCFP: u16 = <span class="number">0x1f1</span>;
+<span class="doccomment">/// MIPS little endian
+</span><span class="kw">pub const </span>COFF_MACHINE_R4000: u16 = <span class="number">0x166</span>;
+<span class="doccomment">/// RISC-V 32-bit address space
+</span><span class="kw">pub const </span>COFF_MACHINE_RISCV32: u16 = <span class="number">0x5032</span>;
+<span class="doccomment">/// RISC-V 64-bit address space
+</span><span class="kw">pub const </span>COFF_MACHINE_RISCV64: u16 = <span class="number">0x5064</span>;
+<span class="doccomment">/// RISC-V 128-bit address space
+</span><span class="kw">pub const </span>COFF_MACHINE_RISCV128: u16 = <span class="number">0x5128</span>;
+<span class="doccomment">/// Hitachi SH3
+</span><span class="kw">pub const </span>COFF_MACHINE_SH3: u16 = <span class="number">0x1a2</span>;
+<span class="doccomment">/// Hitachi SH3 DSP
+</span><span class="kw">pub const </span>COFF_MACHINE_SH3DSP: u16 = <span class="number">0x1a3</span>;
+<span class="doccomment">/// Hitachi SH4
+</span><span class="kw">pub const </span>COFF_MACHINE_SH4: u16 = <span class="number">0x1a6</span>;
+<span class="doccomment">/// Hitachi SH5
+</span><span class="kw">pub const </span>COFF_MACHINE_SH5: u16 = <span class="number">0x1a8</span>;
+<span class="doccomment">/// Thumb
+</span><span class="kw">pub const </span>COFF_MACHINE_THUMB: u16 = <span class="number">0x1c2</span>;
+<span class="doccomment">/// MIPS little-endian WCE v2
+</span><span class="kw">pub const </span>COFF_MACHINE_WCEMIPSV2: u16 = <span class="number">0x169</span>;
 
-<span class="kw">impl</span> <span class="ident">CoffHeader</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">bytes</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>], <span class="ident">offset</span>: <span class="kw-2">&amp;mut</span> <span class="ident">usize</span>) -&gt; <span class="ident">error::Result</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="prelude-val">Ok</span>(<span class="ident">bytes</span>.<span class="ident">gread_with</span>(<span class="ident">offset</span>, <span class="ident">scroll::LE</span>)<span class="question-mark">?</span>)
+<span class="kw">impl </span>CoffHeader {
+    <span class="kw">pub fn </span>parse(bytes: <span class="kw-2">&amp;</span>[u8], offset: <span class="kw-2">&amp;mut </span>usize) -&gt; error::Result&lt;<span class="self">Self</span>&gt; {
+        <span class="prelude-val">Ok</span>(bytes.gread_with(offset, scroll::LE)<span class="question-mark">?</span>)
     }
 
-    <span class="doccomment">/// Parse the COFF section headers.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// For COFF, these immediately follow the COFF header. For PE, these immediately follow the</span>
-    <span class="doccomment">/// optional header.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">sections</span>(
+    <span class="doccomment">/// Parse the COFF section headers.
+    ///
+    /// For COFF, these immediately follow the COFF header. For PE, these immediately follow the
+    /// optional header.
+    </span><span class="kw">pub fn </span>sections(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">bytes</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>],
-        <span class="ident">offset</span>: <span class="kw-2">&amp;mut</span> <span class="ident">usize</span>,
-    ) -&gt; <span class="ident">error::Result</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">section_table::SectionTable</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">nsections</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">number_of_sections</span> <span class="kw">as</span> <span class="ident">usize</span>;
+        bytes: <span class="kw-2">&amp;</span>[u8],
+        offset: <span class="kw-2">&amp;mut </span>usize,
+    ) -&gt; error::Result&lt;Vec&lt;section_table::SectionTable&gt;&gt; {
+        <span class="kw">let </span>nsections = <span class="self">self</span>.number_of_sections <span class="kw">as </span>usize;
 
-        <span class="comment">// a section table is at least 40 bytes</span>
-        <span class="kw">if</span> <span class="ident">nsections</span> <span class="op">&gt;</span> <span class="ident">bytes</span>.<span class="ident">len</span>() <span class="op">/</span> <span class="number">40</span> {
-            <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">error::Error::BufferTooShort</span>(<span class="ident">nsections</span>, <span class="string">&quot;sections&quot;</span>));
+        <span class="comment">// a section table is at least 40 bytes
+        </span><span class="kw">if </span>nsections &gt; bytes.len() / <span class="number">40 </span>{
+            <span class="kw">return </span><span class="prelude-val">Err</span>(error::Error::BufferTooShort(nsections, <span class="string">&quot;sections&quot;</span>));
         }
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">sections</span> <span class="op">=</span> <span class="ident">Vec::with_capacity</span>(<span class="ident">nsections</span>);
-        <span class="comment">// Note that if we are handling a BigCoff, the size of the symbol will be different!</span>
-        <span class="kw">let</span> <span class="ident">string_table_offset</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">pointer_to_symbol_table</span> <span class="kw">as</span> <span class="ident">usize</span>
-            <span class="op">+</span> <span class="ident">symbol::SymbolTable::size</span>(<span class="self">self</span>.<span class="ident">number_of_symbol_table</span> <span class="kw">as</span> <span class="ident">usize</span>);
-        <span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">nsections</span> {
-            <span class="kw">let</span> <span class="ident">section</span> <span class="op">=</span>
-                <span class="ident">section_table::SectionTable::parse</span>(<span class="ident">bytes</span>, <span class="ident">offset</span>, <span class="ident">string_table_offset</span> <span class="kw">as</span> <span class="ident">usize</span>)<span class="question-mark">?</span>;
-            <span class="macro">debug!</span>(<span class="string">&quot;({}) {:#?}&quot;</span>, <span class="ident">i</span>, <span class="ident">section</span>);
-            <span class="ident">sections</span>.<span class="ident">push</span>(<span class="ident">section</span>);
+        <span class="kw">let </span><span class="kw-2">mut </span>sections = Vec::with_capacity(nsections);
+        <span class="comment">// Note that if we are handling a BigCoff, the size of the symbol will be different!
+        </span><span class="kw">let </span>string_table_offset = <span class="self">self</span>.pointer_to_symbol_table <span class="kw">as </span>usize
+            + symbol::SymbolTable::size(<span class="self">self</span>.number_of_symbol_table <span class="kw">as </span>usize);
+        <span class="kw">for </span>i <span class="kw">in </span><span class="number">0</span>..nsections {
+            <span class="kw">let </span>section =
+                section_table::SectionTable::parse(bytes, offset, string_table_offset <span class="kw">as </span>usize)<span class="question-mark">?</span>;
+            <span class="macro">debug!</span>(<span class="string">&quot;({}) {:#?}&quot;</span>, i, section);
+            sections.push(section);
         }
-        <span class="prelude-val">Ok</span>(<span class="ident">sections</span>)
+        <span class="prelude-val">Ok</span>(sections)
     }
 
-    <span class="doccomment">/// Return the COFF symbol table.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">symbols</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>]) -&gt; <span class="ident">error::Result</span><span class="op">&lt;</span><span class="ident">symbol::SymbolTable</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">pointer_to_symbol_table</span> <span class="kw">as</span> <span class="ident">usize</span>;
-        <span class="kw">let</span> <span class="ident">number</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">number_of_symbol_table</span> <span class="kw">as</span> <span class="ident">usize</span>;
-        <span class="ident">symbol::SymbolTable::parse</span>(<span class="ident">bytes</span>, <span class="ident">offset</span>, <span class="ident">number</span>)
+    <span class="doccomment">/// Return the COFF symbol table.
+    </span><span class="kw">pub fn </span>symbols&lt;<span class="lifetime">&#39;a</span>&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, bytes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8]) -&gt; error::Result&lt;symbol::SymbolTable&lt;<span class="lifetime">&#39;a</span>&gt;&gt; {
+        <span class="kw">let </span>offset = <span class="self">self</span>.pointer_to_symbol_table <span class="kw">as </span>usize;
+        <span class="kw">let </span>number = <span class="self">self</span>.number_of_symbol_table <span class="kw">as </span>usize;
+        symbol::SymbolTable::parse(bytes, offset, number)
     }
 
-    <span class="doccomment">/// Return the COFF string table.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">strings</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>]) -&gt; <span class="ident">error::Result</span><span class="op">&lt;</span><span class="ident">strtab::Strtab</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">offset</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">pointer_to_symbol_table</span> <span class="kw">as</span> <span class="ident">usize</span>
-            <span class="op">+</span> <span class="ident">symbol::SymbolTable::size</span>(<span class="self">self</span>.<span class="ident">number_of_symbol_table</span> <span class="kw">as</span> <span class="ident">usize</span>);
+    <span class="doccomment">/// Return the COFF string table.
+    </span><span class="kw">pub fn </span>strings&lt;<span class="lifetime">&#39;a</span>&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, bytes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8]) -&gt; error::Result&lt;strtab::Strtab&lt;<span class="lifetime">&#39;a</span>&gt;&gt; {
+        <span class="kw">let </span><span class="kw-2">mut </span>offset = <span class="self">self</span>.pointer_to_symbol_table <span class="kw">as </span>usize
+            + symbol::SymbolTable::size(<span class="self">self</span>.number_of_symbol_table <span class="kw">as </span>usize);
 
-        <span class="kw">let</span> <span class="ident">length_field_size</span> <span class="op">=</span> <span class="ident">core::mem::size_of</span>::<span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>();
-        <span class="kw">let</span> <span class="ident">length</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">pread_with</span>::<span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>(<span class="ident">offset</span>, <span class="ident">scroll::LE</span>)<span class="question-mark">?</span> <span class="kw">as</span> <span class="ident">usize</span> <span class="op">-</span> <span class="ident">length_field_size</span>;
+        <span class="kw">let </span>length_field_size = core::mem::size_of::&lt;u32&gt;();
+        <span class="kw">let </span>length = bytes.pread_with::&lt;u32&gt;(offset, scroll::LE)<span class="question-mark">? </span><span class="kw">as </span>usize - length_field_size;
 
-        <span class="comment">// The offset needs to be advanced in order to read the strings.</span>
-        <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">length_field_size</span>;
+        <span class="comment">// The offset needs to be advanced in order to read the strings.
+        </span>offset += length_field_size;
 
-        <span class="prelude-val">Ok</span>(<span class="ident">strtab::Strtab::parse</span>(<span class="ident">bytes</span>, <span class="ident">offset</span>, <span class="ident">length</span>, <span class="number">0</span>)<span class="question-mark">?</span>)
+        <span class="prelude-val">Ok</span>(strtab::Strtab::parse(bytes, offset, length, <span class="number">0</span>)<span class="question-mark">?</span>)
     }
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Default</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Header</span> {
-    <span class="kw">pub</span> <span class="ident">dos_header</span>: <span class="ident">DosHeader</span>,
-    <span class="doccomment">/// PE Magic: PE\0\0, little endian</span>
-    <span class="kw">pub</span> <span class="ident">signature</span>: <span class="ident">u32</span>,
-    <span class="kw">pub</span> <span class="ident">coff_header</span>: <span class="ident">CoffHeader</span>,
-    <span class="kw">pub</span> <span class="ident">optional_header</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">optional_header::OptionalHeader</span><span class="op">&gt;</span>,
+<span class="attribute">#[derive(Debug, PartialEq, Copy, Clone, Default)]
+</span><span class="kw">pub struct </span>Header {
+    <span class="kw">pub </span>dos_header: DosHeader,
+    <span class="doccomment">/// PE Magic: PE\0\0, little endian
+    </span><span class="kw">pub </span>signature: u32,
+    <span class="kw">pub </span>coff_header: CoffHeader,
+    <span class="kw">pub </span>optional_header: <span class="prelude-ty">Option</span>&lt;optional_header::OptionalHeader&gt;,
 }
 
-<span class="kw">impl</span> <span class="ident">Header</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">bytes</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>]) -&gt; <span class="ident">error::Result</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">dos_header</span> <span class="op">=</span> <span class="ident">DosHeader::parse</span>(<span class="kw-2">&amp;</span><span class="ident">bytes</span>)<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">offset</span> <span class="op">=</span> <span class="ident">dos_header</span>.<span class="ident">pe_pointer</span> <span class="kw">as</span> <span class="ident">usize</span>;
-        <span class="kw">let</span> <span class="ident">signature</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">gread_with</span>(<span class="kw-2">&amp;mut</span> <span class="ident">offset</span>, <span class="ident">scroll::LE</span>).<span class="ident">map_err</span>(<span class="op">|</span><span class="kw">_</span><span class="op">|</span> {
-            <span class="ident">error::Error::Malformed</span>(<span class="macro">format!</span>(<span class="string">&quot;cannot parse PE signature (offset {:#x})&quot;</span>, <span class="ident">offset</span>))
+<span class="kw">impl </span>Header {
+    <span class="kw">pub fn </span>parse(bytes: <span class="kw-2">&amp;</span>[u8]) -&gt; error::Result&lt;<span class="self">Self</span>&gt; {
+        <span class="kw">let </span>dos_header = DosHeader::parse(<span class="kw-2">&amp;</span>bytes)<span class="question-mark">?</span>;
+        <span class="kw">let </span><span class="kw-2">mut </span>offset = dos_header.pe_pointer <span class="kw">as </span>usize;
+        <span class="kw">let </span>signature = bytes.gread_with(<span class="kw-2">&amp;mut </span>offset, scroll::LE).map_err(|<span class="kw">_</span>| {
+            error::Error::Malformed(<span class="macro">format!</span>(<span class="string">&quot;cannot parse PE signature (offset {:#x})&quot;</span>, offset))
         })<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">coff_header</span> <span class="op">=</span> <span class="ident">CoffHeader::parse</span>(<span class="kw-2">&amp;</span><span class="ident">bytes</span>, <span class="kw-2">&amp;mut</span> <span class="ident">offset</span>)<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">optional_header</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">coff_header</span>.<span class="ident">size_of_optional_header</span> <span class="op">&gt;</span> <span class="number">0</span> {
-            <span class="prelude-val">Some</span>(<span class="ident">bytes</span>.<span class="ident">pread</span>::<span class="op">&lt;</span><span class="ident">optional_header::OptionalHeader</span><span class="op">&gt;</span>(<span class="ident">offset</span>)<span class="question-mark">?</span>)
-        } <span class="kw">else</span> {
-            <span class="prelude-val">None</span>
-        };
-        <span class="prelude-val">Ok</span>(<span class="ident">Header</span> {
-            <span class="ident">dos_header</span>,
-            <span class="ident">signature</span>,
-            <span class="ident">coff_header</span>,
-            <span class="ident">optional_header</span>,
+        <span class="kw">let </span>coff_header = CoffHeader::parse(<span class="kw-2">&amp;</span>bytes, <span class="kw-2">&amp;mut </span>offset)<span class="question-mark">?</span>;
+        <span class="kw">let </span>optional_header = <span class="kw">if </span>coff_header.size_of_optional_header &gt; <span class="number">0 </span>{
+            <span class="prelude-val">Some</span>(bytes.pread::&lt;optional_header::OptionalHeader&gt;(offset)<span class="question-mark">?</span>)
+        } <span class="kw">else </span>{
+            <span class="prelude-val">None
+        </span>};
+        <span class="prelude-val">Ok</span>(Header {
+            dos_header,
+            signature,
+            coff_header,
+            optional_header,
         })
     }
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
-<span class="kw">mod</span> <span class="ident">tests</span> {
-    <span class="kw">use</span> <span class="kw">super</span>::{<span class="ident">Header</span>, <span class="ident">COFF_MACHINE_X86</span>, <span class="ident">DOS_MAGIC</span>, <span class="ident">PE_MAGIC</span>};
+<span class="attribute">#[cfg(test)]
+</span><span class="kw">mod </span>tests {
+    <span class="kw">use super</span>::{Header, COFF_MACHINE_X86, DOS_MAGIC, PE_MAGIC};
 
-    <span class="kw">const</span> <span class="ident">CRSS_HEADER</span>: [<span class="ident">u8</span>; <span class="number">688</span>] <span class="op">=</span> [
+    <span class="kw">const </span>CRSS_HEADER: [u8; <span class="number">688</span>] = [
         <span class="number">0x4d</span>, <span class="number">0x5a</span>, <span class="number">0x90</span>, <span class="number">0x00</span>, <span class="number">0x03</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x04</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0xff</span>, <span class="number">0xff</span>, <span class="number">0x00</span>,
         <span class="number">0x00</span>, <span class="number">0xb8</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x40</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>,
         <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>,
@@ -547,14 +547,14 @@
         <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>,
     ];
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">crss_header</span>() {
-        <span class="kw">let</span> <span class="ident">header</span> <span class="op">=</span> <span class="ident">Header::parse</span>(<span class="op">&amp;&amp;</span><span class="ident">CRSS_HEADER</span>[..]).<span class="ident">unwrap</span>();
-        <span class="macro">assert!</span>(<span class="ident">header</span>.<span class="ident">dos_header</span>.<span class="ident">signature</span> <span class="op">==</span> <span class="ident">DOS_MAGIC</span>);
-        <span class="macro">assert!</span>(<span class="ident">header</span>.<span class="ident">signature</span> <span class="op">==</span> <span class="ident">PE_MAGIC</span>);
-        <span class="macro">assert!</span>(<span class="ident">header</span>.<span class="ident">coff_header</span>.<span class="ident">machine</span> <span class="op">==</span> <span class="ident">COFF_MACHINE_X86</span>);
-        <span class="macro">println!</span>(<span class="string">&quot;header: {:?}&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">header</span>);
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>crss_header() {
+        <span class="kw">let </span>header = Header::parse(&amp;&amp;CRSS_HEADER[..]).unwrap();
+        <span class="macro">assert!</span>(header.dos_header.signature == DOS_MAGIC);
+        <span class="macro">assert!</span>(header.signature == PE_MAGIC);
+        <span class="macro">assert!</span>(header.coff_header.machine == COFF_MACHINE_X86);
+        <span class="macro">println!</span>(<span class="string">&quot;header: {:?}&quot;</span>, <span class="kw-2">&amp;</span>header);
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="goblin" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="goblin" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (77e57db38 2022-10-30)" ></div></body></html>

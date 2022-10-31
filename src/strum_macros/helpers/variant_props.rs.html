@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/strum_macros-0.24.3/src/helpers/variant_props.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>variant_props.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../strum_macros/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../strum_macros/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../strum_macros/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/strum_macros-0.24.3/src/helpers/variant_props.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>variant_props.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../normalize.css"><link rel="stylesheet" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../ayu.css" disabled><link rel="stylesheet" href="../../../dark.css" disabled><link rel="stylesheet" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../strum_macros/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -131,138 +131,138 @@
 <span id="131">131</span>
 <span id="132">132</span>
 <span id="133">133</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">std::default::Default</span>;
-<span class="kw">use</span> <span class="ident">syn</span>::{<span class="ident">Ident</span>, <span class="ident">LitStr</span>, <span class="ident">Variant</span>};
+</pre><pre class="rust"><code><span class="kw">use </span>std::default::Default;
+<span class="kw">use </span>syn::{Ident, LitStr, Variant};
 
-<span class="kw">use</span> <span class="ident"><span class="kw">super</span>::case_style</span>::{<span class="ident">CaseStyle</span>, <span class="ident">CaseStyleHelpers</span>};
-<span class="kw">use</span> <span class="ident"><span class="kw">super</span>::metadata</span>::{<span class="ident">kw</span>, <span class="ident">VariantExt</span>, <span class="ident">VariantMeta</span>};
-<span class="kw">use</span> <span class="ident"><span class="kw">super</span>::occurrence_error</span>;
+<span class="kw">use </span><span class="kw">super</span>::case_style::{CaseStyle, CaseStyleHelpers};
+<span class="kw">use </span><span class="kw">super</span>::metadata::{kw, VariantExt, VariantMeta};
+<span class="kw">use </span><span class="kw">super</span>::occurrence_error;
 
-<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">HasStrumVariantProperties</span> {
-    <span class="kw">fn</span> <span class="ident">get_variant_properties</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">syn::Result</span><span class="op">&lt;</span><span class="ident">StrumVariantProperties</span><span class="op">&gt;</span>;
+<span class="kw">pub trait </span>HasStrumVariantProperties {
+    <span class="kw">fn </span>get_variant_properties(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; syn::Result&lt;StrumVariantProperties&gt;;
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Eq</span>, <span class="ident">PartialEq</span>, <span class="ident">Debug</span>, <span class="ident">Default</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">StrumVariantProperties</span> {
-    <span class="kw">pub</span> <span class="ident">disabled</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">kw::disabled</span><span class="op">&gt;</span>,
-    <span class="kw">pub</span> <span class="ident">default</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">kw::default</span><span class="op">&gt;</span>,
-    <span class="kw">pub</span> <span class="ident">ascii_case_insensitive</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span>,
-    <span class="kw">pub</span> <span class="ident">message</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">LitStr</span><span class="op">&gt;</span>,
-    <span class="kw">pub</span> <span class="ident">detailed_message</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">LitStr</span><span class="op">&gt;</span>,
-    <span class="kw">pub</span> <span class="ident">documentation</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">LitStr</span><span class="op">&gt;</span>,
-    <span class="kw">pub</span> <span class="ident">string_props</span>: <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">LitStr</span>, <span class="ident">LitStr</span>)<span class="op">&gt;</span>,
-    <span class="ident">serialize</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">LitStr</span><span class="op">&gt;</span>,
-    <span class="ident">to_string</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">LitStr</span><span class="op">&gt;</span>,
-    <span class="ident">ident</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Ident</span><span class="op">&gt;</span>,
+<span class="attribute">#[derive(Clone, Eq, PartialEq, Debug, Default)]
+</span><span class="kw">pub struct </span>StrumVariantProperties {
+    <span class="kw">pub </span>disabled: <span class="prelude-ty">Option</span>&lt;kw::disabled&gt;,
+    <span class="kw">pub </span>default: <span class="prelude-ty">Option</span>&lt;kw::default&gt;,
+    <span class="kw">pub </span>ascii_case_insensitive: <span class="prelude-ty">Option</span>&lt;bool&gt;,
+    <span class="kw">pub </span>message: <span class="prelude-ty">Option</span>&lt;LitStr&gt;,
+    <span class="kw">pub </span>detailed_message: <span class="prelude-ty">Option</span>&lt;LitStr&gt;,
+    <span class="kw">pub </span>documentation: Vec&lt;LitStr&gt;,
+    <span class="kw">pub </span>string_props: Vec&lt;(LitStr, LitStr)&gt;,
+    serialize: Vec&lt;LitStr&gt;,
+    to_string: <span class="prelude-ty">Option</span>&lt;LitStr&gt;,
+    ident: <span class="prelude-ty">Option</span>&lt;Ident&gt;,
 }
 
-<span class="kw">impl</span> <span class="ident">StrumVariantProperties</span> {
-    <span class="kw">fn</span> <span class="ident">ident_as_str</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">case_style</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">CaseStyle</span><span class="op">&gt;</span>) -&gt; <span class="ident">LitStr</span> {
-        <span class="kw">let</span> <span class="ident">ident</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">ident</span>.<span class="ident">as_ref</span>().<span class="ident">expect</span>(<span class="string">&quot;identifier&quot;</span>);
-        <span class="ident">LitStr::new</span>(<span class="kw-2">&amp;</span><span class="ident">ident</span>.<span class="ident">convert_case</span>(<span class="ident">case_style</span>), <span class="ident">ident</span>.<span class="ident">span</span>())
+<span class="kw">impl </span>StrumVariantProperties {
+    <span class="kw">fn </span>ident_as_str(<span class="kw-2">&amp;</span><span class="self">self</span>, case_style: <span class="prelude-ty">Option</span>&lt;CaseStyle&gt;) -&gt; LitStr {
+        <span class="kw">let </span>ident = <span class="self">self</span>.ident.as_ref().expect(<span class="string">&quot;identifier&quot;</span>);
+        LitStr::new(<span class="kw-2">&amp;</span>ident.convert_case(case_style), ident.span())
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_preferred_name</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">case_style</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">CaseStyle</span><span class="op">&gt;</span>) -&gt; <span class="ident">LitStr</span> {
-        <span class="self">self</span>.<span class="ident">to_string</span>.<span class="ident">as_ref</span>().<span class="ident">cloned</span>().<span class="ident">unwrap_or_else</span>(<span class="op">|</span><span class="op">|</span> {
-            <span class="self">self</span>.<span class="ident">serialize</span>
-                .<span class="ident">iter</span>()
-                .<span class="ident">max_by_key</span>(<span class="op">|</span><span class="ident">s</span><span class="op">|</span> <span class="ident">s</span>.<span class="ident">value</span>().<span class="ident">len</span>())
-                .<span class="ident">cloned</span>()
-                .<span class="ident">unwrap_or_else</span>(<span class="op">|</span><span class="op">|</span> <span class="self">self</span>.<span class="ident">ident_as_str</span>(<span class="ident">case_style</span>))
+    <span class="kw">pub fn </span>get_preferred_name(<span class="kw-2">&amp;</span><span class="self">self</span>, case_style: <span class="prelude-ty">Option</span>&lt;CaseStyle&gt;) -&gt; LitStr {
+        <span class="self">self</span>.to_string.as_ref().cloned().unwrap_or_else(|| {
+            <span class="self">self</span>.serialize
+                .iter()
+                .max_by_key(|s| s.value().len())
+                .cloned()
+                .unwrap_or_else(|| <span class="self">self</span>.ident_as_str(case_style))
         })
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_serializations</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">case_style</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">CaseStyle</span><span class="op">&gt;</span>) -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">LitStr</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">attrs</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">serialize</span>.<span class="ident">clone</span>();
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">to_string</span>) <span class="op">=</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">to_string</span> {
-            <span class="ident">attrs</span>.<span class="ident">push</span>(<span class="ident">to_string</span>.<span class="ident">clone</span>());
+    <span class="kw">pub fn </span>get_serializations(<span class="kw-2">&amp;</span><span class="self">self</span>, case_style: <span class="prelude-ty">Option</span>&lt;CaseStyle&gt;) -&gt; Vec&lt;LitStr&gt; {
+        <span class="kw">let </span><span class="kw-2">mut </span>attrs = <span class="self">self</span>.serialize.clone();
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(to_string) = <span class="kw-2">&amp;</span><span class="self">self</span>.to_string {
+            attrs.push(to_string.clone());
         }
 
-        <span class="kw">if</span> <span class="ident">attrs</span>.<span class="ident">is_empty</span>() {
-            <span class="ident">attrs</span>.<span class="ident">push</span>(<span class="self">self</span>.<span class="ident">ident_as_str</span>(<span class="ident">case_style</span>));
+        <span class="kw">if </span>attrs.is_empty() {
+            attrs.push(<span class="self">self</span>.ident_as_str(case_style));
         }
 
-        <span class="ident">attrs</span>
+        attrs
     }
 }
 
-<span class="kw">impl</span> <span class="ident">HasStrumVariantProperties</span> <span class="kw">for</span> <span class="ident">Variant</span> {
-    <span class="kw">fn</span> <span class="ident">get_variant_properties</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">syn::Result</span><span class="op">&lt;</span><span class="ident">StrumVariantProperties</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">output</span> <span class="op">=</span> <span class="ident">StrumVariantProperties</span> {
-            <span class="ident">ident</span>: <span class="prelude-val">Some</span>(<span class="self">self</span>.<span class="ident">ident</span>.<span class="ident">clone</span>()),
-            ..<span class="ident">Default::default</span>()
+<span class="kw">impl </span>HasStrumVariantProperties <span class="kw">for </span>Variant {
+    <span class="kw">fn </span>get_variant_properties(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; syn::Result&lt;StrumVariantProperties&gt; {
+        <span class="kw">let </span><span class="kw-2">mut </span>output = StrumVariantProperties {
+            ident: <span class="prelude-val">Some</span>(<span class="self">self</span>.ident.clone()),
+            ..Default::default()
         };
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">message_kw</span> <span class="op">=</span> <span class="prelude-val">None</span>;
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">detailed_message_kw</span> <span class="op">=</span> <span class="prelude-val">None</span>;
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">to_string_kw</span> <span class="op">=</span> <span class="prelude-val">None</span>;
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">disabled_kw</span> <span class="op">=</span> <span class="prelude-val">None</span>;
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">default_kw</span> <span class="op">=</span> <span class="prelude-val">None</span>;
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">ascii_case_insensitive_kw</span> <span class="op">=</span> <span class="prelude-val">None</span>;
-        <span class="kw">for</span> <span class="ident">meta</span> <span class="kw">in</span> <span class="self">self</span>.<span class="ident">get_metadata</span>()<span class="question-mark">?</span> {
-            <span class="kw">match</span> <span class="ident">meta</span> {
-                <span class="ident">VariantMeta::Message</span> { <span class="ident">value</span>, <span class="ident">kw</span> } =&gt; {
-                    <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">fst_kw</span>) <span class="op">=</span> <span class="ident">message_kw</span> {
-                        <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">occurrence_error</span>(<span class="ident">fst_kw</span>, <span class="ident">kw</span>, <span class="string">&quot;message&quot;</span>));
+        <span class="kw">let </span><span class="kw-2">mut </span>message_kw = <span class="prelude-val">None</span>;
+        <span class="kw">let </span><span class="kw-2">mut </span>detailed_message_kw = <span class="prelude-val">None</span>;
+        <span class="kw">let </span><span class="kw-2">mut </span>to_string_kw = <span class="prelude-val">None</span>;
+        <span class="kw">let </span><span class="kw-2">mut </span>disabled_kw = <span class="prelude-val">None</span>;
+        <span class="kw">let </span><span class="kw-2">mut </span>default_kw = <span class="prelude-val">None</span>;
+        <span class="kw">let </span><span class="kw-2">mut </span>ascii_case_insensitive_kw = <span class="prelude-val">None</span>;
+        <span class="kw">for </span>meta <span class="kw">in </span><span class="self">self</span>.get_metadata()<span class="question-mark">? </span>{
+            <span class="kw">match </span>meta {
+                VariantMeta::Message { value, kw } =&gt; {
+                    <span class="kw">if let </span><span class="prelude-val">Some</span>(fst_kw) = message_kw {
+                        <span class="kw">return </span><span class="prelude-val">Err</span>(occurrence_error(fst_kw, kw, <span class="string">&quot;message&quot;</span>));
                     }
 
-                    <span class="ident">message_kw</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">kw</span>);
-                    <span class="ident">output</span>.<span class="ident">message</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">value</span>);
+                    message_kw = <span class="prelude-val">Some</span>(kw);
+                    output.message = <span class="prelude-val">Some</span>(value);
                 }
-                <span class="ident">VariantMeta::DetailedMessage</span> { <span class="ident">value</span>, <span class="ident">kw</span> } =&gt; {
-                    <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">fst_kw</span>) <span class="op">=</span> <span class="ident">detailed_message_kw</span> {
-                        <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">occurrence_error</span>(<span class="ident">fst_kw</span>, <span class="ident">kw</span>, <span class="string">&quot;detailed_message&quot;</span>));
+                VariantMeta::DetailedMessage { value, kw } =&gt; {
+                    <span class="kw">if let </span><span class="prelude-val">Some</span>(fst_kw) = detailed_message_kw {
+                        <span class="kw">return </span><span class="prelude-val">Err</span>(occurrence_error(fst_kw, kw, <span class="string">&quot;detailed_message&quot;</span>));
                     }
 
-                    <span class="ident">detailed_message_kw</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">kw</span>);
-                    <span class="ident">output</span>.<span class="ident">detailed_message</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">value</span>);
+                    detailed_message_kw = <span class="prelude-val">Some</span>(kw);
+                    output.detailed_message = <span class="prelude-val">Some</span>(value);
                 }
-                <span class="ident">VariantMeta::Documentation</span> { <span class="ident">value</span> } =&gt; {
-                    <span class="ident">output</span>.<span class="ident">documentation</span>.<span class="ident">push</span>(<span class="ident">value</span>);
+                VariantMeta::Documentation { value } =&gt; {
+                    output.documentation.push(value);
                 }
-                <span class="ident">VariantMeta::Serialize</span> { <span class="ident">value</span>, .. } =&gt; {
-                    <span class="ident">output</span>.<span class="ident">serialize</span>.<span class="ident">push</span>(<span class="ident">value</span>);
+                VariantMeta::Serialize { value, .. } =&gt; {
+                    output.serialize.push(value);
                 }
-                <span class="ident">VariantMeta::ToString</span> { <span class="ident">value</span>, <span class="ident">kw</span> } =&gt; {
-                    <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">fst_kw</span>) <span class="op">=</span> <span class="ident">to_string_kw</span> {
-                        <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">occurrence_error</span>(<span class="ident">fst_kw</span>, <span class="ident">kw</span>, <span class="string">&quot;to_string&quot;</span>));
+                VariantMeta::ToString { value, kw } =&gt; {
+                    <span class="kw">if let </span><span class="prelude-val">Some</span>(fst_kw) = to_string_kw {
+                        <span class="kw">return </span><span class="prelude-val">Err</span>(occurrence_error(fst_kw, kw, <span class="string">&quot;to_string&quot;</span>));
                     }
 
-                    <span class="ident">to_string_kw</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">kw</span>);
-                    <span class="ident">output</span>.<span class="ident">to_string</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">value</span>);
+                    to_string_kw = <span class="prelude-val">Some</span>(kw);
+                    output.to_string = <span class="prelude-val">Some</span>(value);
                 }
-                <span class="ident">VariantMeta::Disabled</span>(<span class="ident">kw</span>) =&gt; {
-                    <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">fst_kw</span>) <span class="op">=</span> <span class="ident">disabled_kw</span> {
-                        <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">occurrence_error</span>(<span class="ident">fst_kw</span>, <span class="ident">kw</span>, <span class="string">&quot;disabled&quot;</span>));
+                VariantMeta::Disabled(kw) =&gt; {
+                    <span class="kw">if let </span><span class="prelude-val">Some</span>(fst_kw) = disabled_kw {
+                        <span class="kw">return </span><span class="prelude-val">Err</span>(occurrence_error(fst_kw, kw, <span class="string">&quot;disabled&quot;</span>));
                     }
 
-                    <span class="ident">disabled_kw</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">kw</span>);
-                    <span class="ident">output</span>.<span class="ident">disabled</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">kw</span>);
+                    disabled_kw = <span class="prelude-val">Some</span>(kw);
+                    output.disabled = <span class="prelude-val">Some</span>(kw);
                 }
-                <span class="ident">VariantMeta::Default</span>(<span class="ident">kw</span>) =&gt; {
-                    <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">fst_kw</span>) <span class="op">=</span> <span class="ident">default_kw</span> {
-                        <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">occurrence_error</span>(<span class="ident">fst_kw</span>, <span class="ident">kw</span>, <span class="string">&quot;default&quot;</span>));
+                VariantMeta::Default(kw) =&gt; {
+                    <span class="kw">if let </span><span class="prelude-val">Some</span>(fst_kw) = default_kw {
+                        <span class="kw">return </span><span class="prelude-val">Err</span>(occurrence_error(fst_kw, kw, <span class="string">&quot;default&quot;</span>));
                     }
 
-                    <span class="ident">default_kw</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">kw</span>);
-                    <span class="ident">output</span>.<span class="ident">default</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">kw</span>);
+                    default_kw = <span class="prelude-val">Some</span>(kw);
+                    output.default = <span class="prelude-val">Some</span>(kw);
                 }
-                <span class="ident">VariantMeta::AsciiCaseInsensitive</span> { <span class="ident">kw</span>, <span class="ident">value</span> } =&gt; {
-                    <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">fst_kw</span>) <span class="op">=</span> <span class="ident">ascii_case_insensitive_kw</span> {
-                        <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">occurrence_error</span>(<span class="ident">fst_kw</span>, <span class="ident">kw</span>, <span class="string">&quot;ascii_case_insensitive&quot;</span>));
+                VariantMeta::AsciiCaseInsensitive { kw, value } =&gt; {
+                    <span class="kw">if let </span><span class="prelude-val">Some</span>(fst_kw) = ascii_case_insensitive_kw {
+                        <span class="kw">return </span><span class="prelude-val">Err</span>(occurrence_error(fst_kw, kw, <span class="string">&quot;ascii_case_insensitive&quot;</span>));
                     }
 
-                    <span class="ident">ascii_case_insensitive_kw</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">kw</span>);
-                    <span class="ident">output</span>.<span class="ident">ascii_case_insensitive</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">value</span>);
+                    ascii_case_insensitive_kw = <span class="prelude-val">Some</span>(kw);
+                    output.ascii_case_insensitive = <span class="prelude-val">Some</span>(value);
                 }
-                <span class="ident">VariantMeta::Props</span> { <span class="ident">props</span>, .. } =&gt; {
-                    <span class="ident">output</span>.<span class="ident">string_props</span>.<span class="ident">extend</span>(<span class="ident">props</span>);
+                VariantMeta::Props { props, .. } =&gt; {
+                    output.string_props.extend(props);
                 }
             }
         }
 
-        <span class="prelude-val">Ok</span>(<span class="ident">output</span>)
+        <span class="prelude-val">Ok</span>(output)
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="strum_macros" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="strum_macros" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (77e57db38 2022-10-30)" ></div></body></html>

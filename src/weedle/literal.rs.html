@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/weedle2-4.0.0/src/literal.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>literal.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../weedle/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../weedle/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../weedle/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/weedle2-4.0.0/src/literal.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>literal.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../weedle/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -267,274 +267,274 @@
 <span id="267">267</span>
 <span id="268">268</span>
 <span id="269">269</span>
-</pre><pre class="rust"><code><span class="macro">ast_types!</span> {
-    <span class="doccomment">/// Represents an integer value</span>
-    <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>)]</span>
-    <span class="kw">enum</span> <span class="ident">IntegerLit</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-        <span class="doccomment">/// Parses `-?[1-9][0-9]*`</span>
-        <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>)]</span>
-        <span class="ident">Dec</span>(<span class="kw">struct</span> <span class="ident">DecLit</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>(
-            <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::whitespace::ws</span>(<span class="ident">nom::combinator::recognize</span>(<span class="ident">nom::sequence::tuple</span>((
-                <span class="ident">nom::combinator::opt</span>(<span class="ident">nom::character::complete::char</span>(<span class="string">&#39;-&#39;</span>)),
-                <span class="ident">nom::character::complete::one_of</span>(<span class="string">&quot;123456789&quot;</span>),
-                <span class="ident">nom::bytes::complete::take_while</span>(<span class="ident">nom::AsChar::is_dec_digit</span>)
+</pre><pre class="rust"><code><span class="macro">ast_types! </span>{
+    <span class="doccomment">/// Represents an integer value
+    </span><span class="attribute">#[derive(Copy)]
+    </span><span class="kw">enum </span>IntegerLit&lt;<span class="lifetime">&#39;a</span>&gt; {
+        <span class="doccomment">/// Parses `-?[1-9][0-9]*`
+        </span><span class="attribute">#[derive(Copy)]
+        </span>Dec(<span class="kw">struct </span>DecLit&lt;<span class="lifetime">&#39;a</span>&gt;(
+            <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str = <span class="kw">crate</span>::whitespace::ws(nom::combinator::recognize(nom::sequence::tuple((
+                nom::combinator::opt(nom::character::complete::char(<span class="string">&#39;-&#39;</span>)),
+                nom::character::complete::one_of(<span class="string">&quot;123456789&quot;</span>),
+                nom::bytes::complete::take_while(nom::AsChar::is_dec_digit)
             )))),
         )),
-        <span class="doccomment">/// Parses `-?0[Xx][0-9A-Fa-f]+)`</span>
-        <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>)]</span>
-        <span class="ident">Hex</span>(<span class="kw">struct</span> <span class="ident">HexLit</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>(
-            <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::whitespace::ws</span>(<span class="ident">nom::combinator::recognize</span>(<span class="ident">nom::sequence::tuple</span>((
-                <span class="ident">nom::combinator::opt</span>(<span class="ident">nom::character::complete::char</span>(<span class="string">&#39;-&#39;</span>)),
-                <span class="ident">nom::character::complete::char</span>(<span class="string">&#39;0&#39;</span>),
-                <span class="ident">nom::character::complete::one_of</span>(<span class="string">&quot;xX&quot;</span>),
-                <span class="ident">nom::bytes::complete::take_while</span>(<span class="ident">nom::AsChar::is_hex_digit</span>)
+        <span class="doccomment">/// Parses `-?0[Xx][0-9A-Fa-f]+)`
+        </span><span class="attribute">#[derive(Copy)]
+        </span>Hex(<span class="kw">struct </span>HexLit&lt;<span class="lifetime">&#39;a</span>&gt;(
+            <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str = <span class="kw">crate</span>::whitespace::ws(nom::combinator::recognize(nom::sequence::tuple((
+                nom::combinator::opt(nom::character::complete::char(<span class="string">&#39;-&#39;</span>)),
+                nom::character::complete::char(<span class="string">&#39;0&#39;</span>),
+                nom::character::complete::one_of(<span class="string">&quot;xX&quot;</span>),
+                nom::bytes::complete::take_while(nom::AsChar::is_hex_digit)
             )))),
         )),
-        <span class="doccomment">/// Parses `-?0[0-7]*`</span>
-        <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>)]</span>
-        <span class="ident">Oct</span>(<span class="kw">struct</span> <span class="ident">OctLit</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>(
-            <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::whitespace::ws</span>(<span class="ident">nom::combinator::recognize</span>(<span class="ident">nom::sequence::tuple</span>((
-                <span class="ident">nom::combinator::opt</span>(<span class="ident">nom::character::complete::char</span>(<span class="string">&#39;-&#39;</span>)),
-                <span class="ident">nom::character::complete::char</span>(<span class="string">&#39;0&#39;</span>),
-                <span class="ident">nom::bytes::complete::take_while</span>(<span class="ident">nom::AsChar::is_oct_digit</span>)
+        <span class="doccomment">/// Parses `-?0[0-7]*`
+        </span><span class="attribute">#[derive(Copy)]
+        </span>Oct(<span class="kw">struct </span>OctLit&lt;<span class="lifetime">&#39;a</span>&gt;(
+            <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str = <span class="kw">crate</span>::whitespace::ws(nom::combinator::recognize(nom::sequence::tuple((
+                nom::combinator::opt(nom::character::complete::char(<span class="string">&#39;-&#39;</span>)),
+                nom::character::complete::char(<span class="string">&#39;0&#39;</span>),
+                nom::bytes::complete::take_while(nom::AsChar::is_oct_digit)
             )))),
         )),
     }
 
-    <span class="doccomment">/// Represents a string value</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Follow `/&quot;[^&quot;]*&quot;/`</span>
-    <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>)]</span>
-    <span class="kw">struct</span> <span class="ident">StringLit</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>(
-        <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::whitespace::ws</span>(<span class="ident">nom::sequence::delimited</span>(
-            <span class="ident">nom::character::complete::char</span>(<span class="string">&#39;&quot;&#39;</span>),
-            <span class="ident">nom::bytes::complete::take_while</span>(<span class="op">|</span><span class="ident">c</span><span class="op">|</span> <span class="ident">c</span> <span class="op">!</span><span class="op">=</span> <span class="string">&#39;&quot;&#39;</span>),
-            <span class="ident">nom::character::complete::char</span>(<span class="string">&#39;&quot;&#39;</span>),
+    <span class="doccomment">/// Represents a string value
+    ///
+    /// Follow `/&quot;[^&quot;]*&quot;/`
+    </span><span class="attribute">#[derive(Copy)]
+    </span><span class="kw">struct </span>StringLit&lt;<span class="lifetime">&#39;a</span>&gt;(
+        <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str = <span class="kw">crate</span>::whitespace::ws(nom::sequence::delimited(
+            nom::character::complete::char(<span class="string">&#39;&quot;&#39;</span>),
+            nom::bytes::complete::take_while(|c| c != <span class="string">&#39;&quot;&#39;</span>),
+            nom::character::complete::char(<span class="string">&#39;&quot;&#39;</span>),
         )),
     )
 
-    <span class="doccomment">/// Represents a default literal value. Ex: `34|34.23|&quot;value&quot;|[ ]|true|false|null`</span>
-    <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>)]</span>
-    <span class="kw">enum</span> <span class="ident">DefaultValue</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-        <span class="ident">Boolean</span>(<span class="ident">BooleanLit</span>),
-        <span class="doccomment">/// Represents `[ ]`</span>
-        <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Default</span>)]</span>
-        <span class="ident">EmptyArray</span>(<span class="kw">struct</span> <span class="ident">EmptyArrayLit</span> {
-            <span class="ident">open_bracket</span>: <span class="macro">term!</span>(<span class="ident">OpenBracket</span>),
-            <span class="ident">close_bracket</span>: <span class="macro">term!</span>(<span class="ident">CloseBracket</span>),
+    <span class="doccomment">/// Represents a default literal value. Ex: `34|34.23|&quot;value&quot;|[ ]|true|false|null`
+    </span><span class="attribute">#[derive(Copy)]
+    </span><span class="kw">enum </span>DefaultValue&lt;<span class="lifetime">&#39;a</span>&gt; {
+        Boolean(BooleanLit),
+        <span class="doccomment">/// Represents `[ ]`
+        </span><span class="attribute">#[derive(Copy, Default)]
+        </span>EmptyArray(<span class="kw">struct </span>EmptyArrayLit {
+            open_bracket: <span class="macro">term!</span>(OpenBracket),
+            close_bracket: <span class="macro">term!</span>(CloseBracket),
         }),
-        <span class="doccomment">/// Represents `{ }`</span>
-        <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Default</span>)]</span>
-        <span class="ident">EmptyDictionary</span>(<span class="kw">struct</span> <span class="ident">EmptyDictionaryLit</span> {
-            <span class="ident">open_brace</span>: <span class="macro">term!</span>(<span class="ident">OpenBrace</span>),
-            <span class="ident">close_brace</span>: <span class="macro">term!</span>(<span class="ident">CloseBrace</span>),
+        <span class="doccomment">/// Represents `{ }`
+        </span><span class="attribute">#[derive(Copy, Default)]
+        </span>EmptyDictionary(<span class="kw">struct </span>EmptyDictionaryLit {
+            open_brace: <span class="macro">term!</span>(OpenBrace),
+            close_brace: <span class="macro">term!</span>(CloseBrace),
         }),
-        <span class="ident">Float</span>(<span class="ident">FloatLit</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>),
-        <span class="ident">Integer</span>(<span class="ident">IntegerLit</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>),
-        <span class="ident">Null</span>(<span class="macro">term!</span>(<span class="ident">null</span>)),
-        <span class="ident">String</span>(<span class="ident">StringLit</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>),
+        Float(FloatLit&lt;<span class="lifetime">&#39;a</span>&gt;),
+        Integer(IntegerLit&lt;<span class="lifetime">&#39;a</span>&gt;),
+        Null(<span class="macro">term!</span>(null)),
+        String(StringLit&lt;<span class="lifetime">&#39;a</span>&gt;),
     }
 
-    <span class="doccomment">/// Represents `true`, `false`, `34.23`, `null`, `56`, ...</span>
-    <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>)]</span>
-    <span class="kw">enum</span> <span class="ident">ConstValue</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-        <span class="ident">Boolean</span>(<span class="ident">BooleanLit</span>),
-        <span class="ident">Float</span>(<span class="ident">FloatLit</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>),
-        <span class="ident">Integer</span>(<span class="ident">IntegerLit</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>),
-        <span class="ident">Null</span>(<span class="macro">term!</span>(<span class="ident">null</span>)),
+    <span class="doccomment">/// Represents `true`, `false`, `34.23`, `null`, `56`, ...
+    </span><span class="attribute">#[derive(Copy)]
+    </span><span class="kw">enum </span>ConstValue&lt;<span class="lifetime">&#39;a</span>&gt; {
+        Boolean(BooleanLit),
+        Float(FloatLit&lt;<span class="lifetime">&#39;a</span>&gt;),
+        Integer(IntegerLit&lt;<span class="lifetime">&#39;a</span>&gt;),
+        Null(<span class="macro">term!</span>(null)),
     }
 
-    <span class="doccomment">/// Represents either `true` or `false`</span>
-    <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>)]</span>
-    <span class="kw">struct</span> <span class="ident">BooleanLit</span>(
-        <span class="ident">bool</span> <span class="op">=</span> <span class="ident">nom::branch::alt</span>((
-            <span class="ident">nom::combinator::value</span>(<span class="bool-val">true</span>, <span class="macro">weedle!</span>(<span class="macro">term!</span>(<span class="bool-val">true</span>))),
-            <span class="ident">nom::combinator::value</span>(<span class="bool-val">false</span>, <span class="macro">weedle!</span>(<span class="macro">term!</span>(<span class="bool-val">false</span>))),
+    <span class="doccomment">/// Represents either `true` or `false`
+    </span><span class="attribute">#[derive(Copy)]
+    </span><span class="kw">struct </span>BooleanLit(
+        bool = nom::branch::alt((
+            nom::combinator::value(<span class="bool-val">true</span>, <span class="macro">weedle!</span>(<span class="macro">term!</span>(<span class="bool-val">true</span>))),
+            nom::combinator::value(<span class="bool-val">false</span>, <span class="macro">weedle!</span>(<span class="macro">term!</span>(<span class="bool-val">false</span>))),
         )),
     )
 
-    <span class="doccomment">/// Represents a floating point value, `NaN`, `Infinity`, &#39;+Infinity`</span>
-    <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>)]</span>
-    <span class="kw">enum</span> <span class="ident">FloatLit</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-        <span class="doccomment">/// Parses `/-?(([0-9]+\.[0-9]*|[0-9]*\.[0-9]+)([Ee][+-]?[0-9]+)?|[0-9]+[Ee][+-]?[0-9]+)/`</span>
-        <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>)]</span>
-        <span class="ident">Value</span>(<span class="kw">struct</span> <span class="ident">FloatValueLit</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>(
-            <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::whitespace::ws</span>(<span class="ident">nom::combinator::recognize</span>(<span class="ident">nom::sequence::tuple</span>((
-                <span class="ident">nom::combinator::opt</span>(<span class="ident">nom::character::complete::char</span>(<span class="string">&#39;-&#39;</span>)),
-                <span class="ident">nom::branch::alt</span>((
-                    <span class="ident">nom::combinator::value</span>((), <span class="ident">nom::sequence::tuple</span>((
-                        <span class="comment">// (?:[0-9]+\.[0-9]*|[0-9]*\.[0-9]+)</span>
-                        <span class="ident">nom::branch::alt</span>((
-                            <span class="ident">nom::sequence::tuple</span>((
-                                <span class="ident">nom::bytes::complete::take_while1</span>(<span class="ident">nom::AsChar::is_dec_digit</span>),
-                                <span class="ident">nom::character::complete::char</span>(<span class="string">&#39;.&#39;</span>),
-                                <span class="ident">nom::bytes::complete::take_while</span>(<span class="ident">nom::AsChar::is_dec_digit</span>),
+    <span class="doccomment">/// Represents a floating point value, `NaN`, `Infinity`, &#39;+Infinity`
+    </span><span class="attribute">#[derive(Copy)]
+    </span><span class="kw">enum </span>FloatLit&lt;<span class="lifetime">&#39;a</span>&gt; {
+        <span class="doccomment">/// Parses `/-?(([0-9]+\.[0-9]*|[0-9]*\.[0-9]+)([Ee][+-]?[0-9]+)?|[0-9]+[Ee][+-]?[0-9]+)/`
+        </span><span class="attribute">#[derive(Copy)]
+        </span>Value(<span class="kw">struct </span>FloatValueLit&lt;<span class="lifetime">&#39;a</span>&gt;(
+            <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str = <span class="kw">crate</span>::whitespace::ws(nom::combinator::recognize(nom::sequence::tuple((
+                nom::combinator::opt(nom::character::complete::char(<span class="string">&#39;-&#39;</span>)),
+                nom::branch::alt((
+                    nom::combinator::value((), nom::sequence::tuple((
+                        <span class="comment">// (?:[0-9]+\.[0-9]*|[0-9]*\.[0-9]+)
+                        </span>nom::branch::alt((
+                            nom::sequence::tuple((
+                                nom::bytes::complete::take_while1(nom::AsChar::is_dec_digit),
+                                nom::character::complete::char(<span class="string">&#39;.&#39;</span>),
+                                nom::bytes::complete::take_while(nom::AsChar::is_dec_digit),
                             )),
-                            <span class="ident">nom::sequence::tuple</span>((
-                                <span class="ident">nom::bytes::complete::take_while</span>(<span class="ident">nom::AsChar::is_dec_digit</span>),
-                                <span class="ident">nom::character::complete::char</span>(<span class="string">&#39;.&#39;</span>),
-                                <span class="ident">nom::bytes::complete::take_while1</span>(<span class="ident">nom::AsChar::is_dec_digit</span>),
+                            nom::sequence::tuple((
+                                nom::bytes::complete::take_while(nom::AsChar::is_dec_digit),
+                                nom::character::complete::char(<span class="string">&#39;.&#39;</span>),
+                                nom::bytes::complete::take_while1(nom::AsChar::is_dec_digit),
                             )),
                         )),
-                        <span class="comment">// (?:[Ee][+-]?[0-9]+)?</span>
-                        <span class="ident">nom::combinator::opt</span>(<span class="ident">nom::sequence::tuple</span>((
-                            <span class="ident">nom::character::complete::one_of</span>(<span class="string">&quot;eE&quot;</span>),
-                            <span class="ident">nom::combinator::opt</span>(<span class="ident">nom::character::complete::one_of</span>(<span class="string">&quot;+-&quot;</span>)),
-                            <span class="ident">nom::bytes::complete::take_while1</span>(<span class="ident">nom::AsChar::is_dec_digit</span>),
+                        <span class="comment">// (?:[Ee][+-]?[0-9]+)?
+                        </span>nom::combinator::opt(nom::sequence::tuple((
+                            nom::character::complete::one_of(<span class="string">&quot;eE&quot;</span>),
+                            nom::combinator::opt(nom::character::complete::one_of(<span class="string">&quot;+-&quot;</span>)),
+                            nom::bytes::complete::take_while1(nom::AsChar::is_dec_digit),
                         ))),
                     ))),
-                    <span class="comment">// [0-9]+[Ee][+-]?[0-9]+</span>
-                    <span class="ident">nom::combinator::value</span>((), <span class="ident">nom::sequence::tuple</span>((
-                        <span class="ident">nom::bytes::complete::take_while1</span>(<span class="ident">nom::AsChar::is_dec_digit</span>),
-                        <span class="ident">nom::character::complete::one_of</span>(<span class="string">&quot;eE&quot;</span>),
-                        <span class="ident">nom::combinator::opt</span>(<span class="ident">nom::character::complete::one_of</span>(<span class="string">&quot;+-&quot;</span>)),
-                        <span class="ident">nom::bytes::complete::take_while1</span>(<span class="ident">nom::AsChar::is_dec_digit</span>),
+                    <span class="comment">// [0-9]+[Ee][+-]?[0-9]+
+                    </span>nom::combinator::value((), nom::sequence::tuple((
+                        nom::bytes::complete::take_while1(nom::AsChar::is_dec_digit),
+                        nom::character::complete::one_of(<span class="string">&quot;eE&quot;</span>),
+                        nom::combinator::opt(nom::character::complete::one_of(<span class="string">&quot;+-&quot;</span>)),
+                        nom::bytes::complete::take_while1(nom::AsChar::is_dec_digit),
                     ))),
                 )),
             )))),
         )),
-        <span class="ident">NegInfinity</span>(<span class="macro">term!</span>(<span class="op">-</span><span class="ident">Infinity</span>)),
-        <span class="ident">Infinity</span>(<span class="macro">term!</span>(<span class="ident">Infinity</span>)),
-        <span class="ident">NaN</span>(<span class="macro">term!</span>(<span class="ident">NaN</span>)),
+        NegInfinity(<span class="macro">term!</span>(-Infinity)),
+        Infinity(<span class="macro">term!</span>(Infinity)),
+        NaN(<span class="macro">term!</span>(NaN)),
     }
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
-<span class="kw">mod</span> <span class="ident">test</span> {
-    <span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
-    <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::term</span>::<span class="kw-2">*</span>;
-    <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::Parse</span>;
+<span class="attribute">#[cfg(test)]
+</span><span class="kw">mod </span>test {
+    <span class="kw">use super</span>::<span class="kw-2">*</span>;
+    <span class="kw">use </span><span class="kw">crate</span>::term::<span class="kw-2">*</span>;
+    <span class="kw">use </span><span class="kw">crate</span>::Parse;
 
-    <span class="macro">test!</span>(<span class="ident">should_parse_integer</span> { <span class="string">&quot;45&quot;</span> =&gt;
+    <span class="macro">test!</span>(should_parse_integer { <span class="string">&quot;45&quot; </span>=&gt;
         <span class="string">&quot;&quot;</span>;
-        <span class="ident">IntegerLit</span> =&gt; <span class="ident">IntegerLit::Dec</span>(<span class="ident">DecLit</span>(<span class="string">&quot;45&quot;</span>))
+        IntegerLit =&gt; IntegerLit::Dec(DecLit(<span class="string">&quot;45&quot;</span>))
     });
 
-    <span class="macro">test!</span>(<span class="ident">should_parse_integer_surrounding_with_spaces</span> { <span class="string">&quot;  123123  &quot;</span> =&gt;
+    <span class="macro">test!</span>(should_parse_integer_surrounding_with_spaces { <span class="string">&quot;  123123  &quot; </span>=&gt;
         <span class="string">&quot;&quot;</span>;
-        <span class="ident">IntegerLit</span> =&gt; <span class="ident">IntegerLit::Dec</span>(<span class="ident">DecLit</span>(<span class="string">&quot;123123&quot;</span>))
+        IntegerLit =&gt; IntegerLit::Dec(DecLit(<span class="string">&quot;123123&quot;</span>))
     });
 
-    <span class="macro">test!</span>(<span class="ident">should_parse_integer_preceding_others</span> { <span class="string">&quot;3453 string&quot;</span> =&gt;
+    <span class="macro">test!</span>(should_parse_integer_preceding_others { <span class="string">&quot;3453 string&quot; </span>=&gt;
         <span class="string">&quot;string&quot;</span>;
-        <span class="ident">IntegerLit</span> =&gt; <span class="ident">IntegerLit::Dec</span>(<span class="ident">DecLit</span>(<span class="string">&quot;3453&quot;</span>))
+        IntegerLit =&gt; IntegerLit::Dec(DecLit(<span class="string">&quot;3453&quot;</span>))
     });
 
-    <span class="macro">test!</span>(<span class="ident">should_parse_neg_integer</span> { <span class="string">&quot;-435&quot;</span> =&gt;
+    <span class="macro">test!</span>(should_parse_neg_integer { <span class="string">&quot;-435&quot; </span>=&gt;
         <span class="string">&quot;&quot;</span>;
-        <span class="ident">IntegerLit</span> =&gt; <span class="ident">IntegerLit::Dec</span>(<span class="ident">DecLit</span>(<span class="string">&quot;-435&quot;</span>))
+        IntegerLit =&gt; IntegerLit::Dec(DecLit(<span class="string">&quot;-435&quot;</span>))
     });
 
-    <span class="macro">test!</span>(<span class="ident">should_parse_hex_number</span> { <span class="string">&quot;0X08&quot;</span> =&gt;
+    <span class="macro">test!</span>(should_parse_hex_number { <span class="string">&quot;0X08&quot; </span>=&gt;
         <span class="string">&quot;&quot;</span>;
-        <span class="ident">IntegerLit</span> =&gt; <span class="ident">IntegerLit::Hex</span>(<span class="ident">HexLit</span>(<span class="string">&quot;0X08&quot;</span>))
+        IntegerLit =&gt; IntegerLit::Hex(HexLit(<span class="string">&quot;0X08&quot;</span>))
     });
 
-    <span class="macro">test!</span>(<span class="ident">should_parse_hex_large_number</span> { <span class="string">&quot;0xA&quot;</span> =&gt;
+    <span class="macro">test!</span>(should_parse_hex_large_number { <span class="string">&quot;0xA&quot; </span>=&gt;
         <span class="string">&quot;&quot;</span>;
-        <span class="ident">IntegerLit</span> =&gt; <span class="ident">IntegerLit::Hex</span>(<span class="ident">HexLit</span>(<span class="string">&quot;0xA&quot;</span>))
+        IntegerLit =&gt; IntegerLit::Hex(HexLit(<span class="string">&quot;0xA&quot;</span>))
     });
 
-    <span class="macro">test!</span>(<span class="ident">should_parse_zero</span> { <span class="string">&quot;0&quot;</span> =&gt;
+    <span class="macro">test!</span>(should_parse_zero { <span class="string">&quot;0&quot; </span>=&gt;
         <span class="string">&quot;&quot;</span>;
-        <span class="ident">IntegerLit</span> =&gt; <span class="ident">IntegerLit::Oct</span>(<span class="ident">OctLit</span>(<span class="string">&quot;0&quot;</span>))
+        IntegerLit =&gt; IntegerLit::Oct(OctLit(<span class="string">&quot;0&quot;</span>))
     });
 
-    <span class="macro">test!</span>(<span class="ident">should_parse_oct_number</span> { <span class="string">&quot;-07561&quot;</span> =&gt;
+    <span class="macro">test!</span>(should_parse_oct_number { <span class="string">&quot;-07561&quot; </span>=&gt;
         <span class="string">&quot;&quot;</span>;
-        <span class="ident">IntegerLit</span> =&gt; <span class="ident">IntegerLit::Oct</span>(<span class="ident">OctLit</span>(<span class="string">&quot;-07561&quot;</span>))
+        IntegerLit =&gt; IntegerLit::Oct(OctLit(<span class="string">&quot;-07561&quot;</span>))
     });
 
-    <span class="macro">test!</span>(<span class="ident">should_parse_float</span> { <span class="string">&quot;45.434&quot;</span> =&gt;
+    <span class="macro">test!</span>(should_parse_float { <span class="string">&quot;45.434&quot; </span>=&gt;
         <span class="string">&quot;&quot;</span>;
-        <span class="ident">FloatLit</span> =&gt; <span class="ident">FloatLit::Value</span>(<span class="ident">FloatValueLit</span>(<span class="string">&quot;45.434&quot;</span>))
+        FloatLit =&gt; FloatLit::Value(FloatValueLit(<span class="string">&quot;45.434&quot;</span>))
     });
 
-    <span class="macro">test!</span>(<span class="ident">should_parse_float_surrounding_with_spaces</span> { <span class="string">&quot;  2345.2345  &quot;</span> =&gt;
+    <span class="macro">test!</span>(should_parse_float_surrounding_with_spaces { <span class="string">&quot;  2345.2345  &quot; </span>=&gt;
         <span class="string">&quot;&quot;</span>;
-        <span class="ident">FloatLit</span> =&gt; <span class="ident">FloatLit::Value</span>(<span class="ident">FloatValueLit</span>(<span class="string">&quot;2345.2345&quot;</span>))
+        FloatLit =&gt; FloatLit::Value(FloatValueLit(<span class="string">&quot;2345.2345&quot;</span>))
     });
 
-    <span class="macro">test!</span>(<span class="ident">should_parse_float_preceding_others</span> { <span class="string">&quot;3453.32334 string&quot;</span> =&gt;
+    <span class="macro">test!</span>(should_parse_float_preceding_others { <span class="string">&quot;3453.32334 string&quot; </span>=&gt;
         <span class="string">&quot;string&quot;</span>;
-        <span class="ident">FloatLit</span> =&gt; <span class="ident">FloatLit::Value</span>(<span class="ident">FloatValueLit</span>(<span class="string">&quot;3453.32334&quot;</span>))
+        FloatLit =&gt; FloatLit::Value(FloatValueLit(<span class="string">&quot;3453.32334&quot;</span>))
     });
 
-    <span class="macro">test!</span>(<span class="ident">should_parse_neg_float</span> { <span class="string">&quot;-435.3435&quot;</span> =&gt;
+    <span class="macro">test!</span>(should_parse_neg_float { <span class="string">&quot;-435.3435&quot; </span>=&gt;
         <span class="string">&quot;&quot;</span>;
-        <span class="ident">FloatLit</span> =&gt; <span class="ident">FloatLit::Value</span>(<span class="ident">FloatValueLit</span>(<span class="string">&quot;-435.3435&quot;</span>))
+        FloatLit =&gt; FloatLit::Value(FloatValueLit(<span class="string">&quot;-435.3435&quot;</span>))
     });
 
-    <span class="macro">test!</span>(<span class="ident">should_parse_float_exp</span> { <span class="string">&quot;3e23&quot;</span> =&gt;
+    <span class="macro">test!</span>(should_parse_float_exp { <span class="string">&quot;3e23&quot; </span>=&gt;
         <span class="string">&quot;&quot;</span>;
-        <span class="ident">FloatLit</span> =&gt; <span class="ident">FloatLit::Value</span>(<span class="ident">FloatValueLit</span>(<span class="string">&quot;3e23&quot;</span>))
+        FloatLit =&gt; FloatLit::Value(FloatValueLit(<span class="string">&quot;3e23&quot;</span>))
     });
 
-    <span class="macro">test!</span>(<span class="ident">should_parse_float_exp_with_decimal</span> { <span class="string">&quot;5.3434e23&quot;</span> =&gt;
+    <span class="macro">test!</span>(should_parse_float_exp_with_decimal { <span class="string">&quot;5.3434e23&quot; </span>=&gt;
         <span class="string">&quot;&quot;</span>;
-        <span class="ident">FloatLit</span> =&gt; <span class="ident">FloatLit::Value</span>(<span class="ident">FloatValueLit</span>(<span class="string">&quot;5.3434e23&quot;</span>))
+        FloatLit =&gt; FloatLit::Value(FloatValueLit(<span class="string">&quot;5.3434e23&quot;</span>))
     });
 
-    <span class="macro">test!</span>(<span class="ident">should_parse_neg_infinity</span> { <span class="string">&quot;-Infinity&quot;</span> =&gt;
+    <span class="macro">test!</span>(should_parse_neg_infinity { <span class="string">&quot;-Infinity&quot; </span>=&gt;
         <span class="string">&quot;&quot;</span>;
-        <span class="ident">FloatLit</span> =&gt; <span class="ident">FloatLit::NegInfinity</span>(<span class="macro">term!</span>(<span class="op">-</span><span class="ident">Infinity</span>))
+        FloatLit =&gt; FloatLit::NegInfinity(<span class="macro">term!</span>(-Infinity))
     });
 
-    <span class="macro">test!</span>(<span class="ident">should_parse_infinity</span> { <span class="string">&quot;Infinity&quot;</span> =&gt;
+    <span class="macro">test!</span>(should_parse_infinity { <span class="string">&quot;Infinity&quot; </span>=&gt;
         <span class="string">&quot;&quot;</span>;
-        <span class="ident">FloatLit</span> =&gt; <span class="ident">FloatLit::Infinity</span>(<span class="macro">term!</span>(<span class="ident">Infinity</span>))
+        FloatLit =&gt; FloatLit::Infinity(<span class="macro">term!</span>(Infinity))
     });
 
-    <span class="macro">test!</span>(<span class="ident">should_parse_string</span> { <span class="string">r#&quot;&quot;this is a string&quot;&quot;#</span> =&gt;
+    <span class="macro">test!</span>(should_parse_string { <span class="string">r#&quot;&quot;this is a string&quot;&quot;# </span>=&gt;
         <span class="string">&quot;&quot;</span>;
-        <span class="ident">StringLit</span> =&gt; <span class="ident">StringLit</span>(<span class="string">&quot;this is a string&quot;</span>)
+        StringLit =&gt; StringLit(<span class="string">&quot;this is a string&quot;</span>)
     });
 
-    <span class="macro">test!</span>(<span class="ident">should_parse_string_surround_with_spaces</span> { <span class="string">r#&quot;  &quot;this is a string&quot;  &quot;#</span> =&gt;
+    <span class="macro">test!</span>(should_parse_string_surround_with_spaces { <span class="string">r#&quot;  &quot;this is a string&quot;  &quot;# </span>=&gt;
         <span class="string">&quot;&quot;</span>;
-        <span class="ident">StringLit</span> =&gt; <span class="ident">StringLit</span>(<span class="string">&quot;this is a string&quot;</span>)
+        StringLit =&gt; StringLit(<span class="string">&quot;this is a string&quot;</span>)
     });
 
-    <span class="macro">test!</span>(<span class="ident">should_parse_string_followed_by_string</span> { <span class="string">r#&quot; &quot;this is first&quot;  &quot;this is second&quot; &quot;#</span> =&gt;
+    <span class="macro">test!</span>(should_parse_string_followed_by_string { <span class="string">r#&quot; &quot;this is first&quot;  &quot;this is second&quot; &quot;# </span>=&gt;
         <span class="string">r#&quot;&quot;this is second&quot; &quot;#</span>;
-        <span class="ident">StringLit</span> =&gt; <span class="ident">StringLit</span>(<span class="string">&quot;this is first&quot;</span>)
+        StringLit =&gt; StringLit(<span class="string">&quot;this is first&quot;</span>)
     });
 
-    <span class="macro">test!</span>(<span class="ident">should_parse_string_with_spaces</span> { <span class="string">r#&quot;  &quot;  this is a string  &quot;  &quot;#</span> =&gt;
+    <span class="macro">test!</span>(should_parse_string_with_spaces { <span class="string">r#&quot;  &quot;  this is a string  &quot;  &quot;# </span>=&gt;
         <span class="string">&quot;&quot;</span>;
-        <span class="ident">StringLit</span> =&gt; <span class="ident">StringLit</span>(<span class="string">&quot;  this is a string  &quot;</span>)
+        StringLit =&gt; StringLit(<span class="string">&quot;  this is a string  &quot;</span>)
     });
 
-    <span class="macro">test!</span>(<span class="ident">should_parse_string_with_comment</span> { <span class="string">r#&quot;  &quot;// this is still a string&quot;
-     &quot;#</span> =&gt;
+    <span class="macro">test!</span>(should_parse_string_with_comment { <span class="string">r#&quot;  &quot;// this is still a string&quot;
+     &quot;# </span>=&gt;
         <span class="string">&quot;&quot;</span>;
-        <span class="ident">StringLit</span> =&gt; <span class="ident">StringLit</span>(<span class="string">&quot;// this is still a string&quot;</span>)
+        StringLit =&gt; StringLit(<span class="string">&quot;// this is still a string&quot;</span>)
     });
 
-    <span class="macro">test!</span>(<span class="ident">should_parse_string_with_multiline_comment</span> { <span class="string">r#&quot;  &quot;/*&quot;  &quot;*/&quot;  &quot;#</span> =&gt;
+    <span class="macro">test!</span>(should_parse_string_with_multiline_comment { <span class="string">r#&quot;  &quot;/*&quot;  &quot;*/&quot;  &quot;# </span>=&gt;
         <span class="string">r#&quot;&quot;*/&quot;  &quot;#</span>;
-        <span class="ident">StringLit</span> =&gt; <span class="ident">StringLit</span>(<span class="string">&quot;/*&quot;</span>)
+        StringLit =&gt; StringLit(<span class="string">&quot;/*&quot;</span>)
     });
 
-    <span class="macro">test!</span>(<span class="ident">should_parse_null</span> { <span class="string">&quot;null&quot;</span> =&gt;
+    <span class="macro">test!</span>(should_parse_null { <span class="string">&quot;null&quot; </span>=&gt;
         <span class="string">&quot;&quot;</span>;
-        <span class="ident">Null</span> =&gt; <span class="ident">Null</span>
+        Null =&gt; Null
     });
 
-    <span class="macro">test!</span>(<span class="ident">should_parse_empty_array</span> { <span class="string">&quot;[]&quot;</span> =&gt;
+    <span class="macro">test!</span>(should_parse_empty_array { <span class="string">&quot;[]&quot; </span>=&gt;
         <span class="string">&quot;&quot;</span>;
-        <span class="ident">EmptyArrayLit</span> =&gt; <span class="ident">Default::default</span>()
+        EmptyArrayLit =&gt; Default::default()
     });
 
-    <span class="macro">test!</span>(<span class="ident">should_parse_bool_true</span> { <span class="string">&quot;true&quot;</span> =&gt;
+    <span class="macro">test!</span>(should_parse_bool_true { <span class="string">&quot;true&quot; </span>=&gt;
         <span class="string">&quot;&quot;</span>;
-        <span class="ident">BooleanLit</span> =&gt; <span class="ident">BooleanLit</span>(<span class="bool-val">true</span>)
+        BooleanLit =&gt; BooleanLit(<span class="bool-val">true</span>)
     });
 
-    <span class="macro">test!</span>(<span class="ident">should_parse_bool_false</span> { <span class="string">&quot;false&quot;</span> =&gt;
+    <span class="macro">test!</span>(should_parse_bool_false { <span class="string">&quot;false&quot; </span>=&gt;
         <span class="string">&quot;&quot;</span>;
-        <span class="ident">BooleanLit</span> =&gt; <span class="ident">BooleanLit</span>(<span class="bool-val">false</span>)
+        BooleanLit =&gt; BooleanLit(<span class="bool-val">false</span>)
     });
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="weedle" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="weedle" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (77e57db38 2022-10-30)" ></div></body></html>

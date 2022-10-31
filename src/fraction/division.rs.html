@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/fraction-0.10.0/src/division.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>division.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../fraction/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../fraction/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../fraction/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/fraction-0.10.0/src/division.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>division.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../fraction/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -1338,795 +1338,795 @@
 <span id="1338">1338</span>
 <span id="1339">1339</span>
 <span id="1340">1340</span>
-</pre><pre class="rust"><code><span class="doccomment">//! Lossless integer division</span>
-<span class="doccomment">//!  - The algorithm uses stack only, no introduced heap allocations for calculation (although underlying integer type implementation may perform those)</span>
-<span class="doccomment">//!  - Linear complexity, O(n)</span>
-<span class="doccomment">//!  - Abstract from a particular integer implementation, may be used on primitive types (as i32 or u32) as well as complex ones (num::BigInt, num::BigUint)</span>
-<span class="doccomment">//! Thus can be efficiently used on any integer type implementing a bunch of required traits (which all primitive ints and num::bigint implement out of the box).</span>
-<span class="doccomment">//! Although in that case the underlying math will be using heap.</span>
+</pre><pre class="rust"><code><span class="doccomment">//! Lossless integer division
+//!  - The algorithm uses stack only, no introduced heap allocations for calculation (although underlying integer type implementation may perform those)
+//!  - Linear complexity, O(n)
+//!  - Abstract from a particular integer implementation, may be used on primitive types (as i32 or u32) as well as complex ones (num::BigInt, num::BigUint)
+//! Thus can be efficiently used on any integer type implementing a bunch of required traits (which all primitive ints and num::bigint implement out of the box).
+//! Although in that case the underlying math will be using heap.
 
-<span class="kw">use</span> <span class="ident">error::DivisionError</span>;
-<span class="kw">use</span> <span class="ident">generic::GenericInteger</span>;
+</span><span class="kw">use </span>error::DivisionError;
+<span class="kw">use </span>generic::GenericInteger;
 
-<span class="kw">use</span> <span class="ident">std::cmp</span>::{<span class="ident">Eq</span>, <span class="ident">Ordering</span>, <span class="ident">PartialEq</span>};
-<span class="kw">use</span> <span class="ident">std::fmt::Write</span>;
+<span class="kw">use </span>std::cmp::{Eq, Ordering, PartialEq};
+<span class="kw">use </span>std::fmt::Write;
 
-<span class="doccomment">/// Division state encapsulates remainder and divisor</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">DivisionState</span><span class="op">&lt;</span><span class="ident">I</span><span class="op">&gt;</span> {
-    <span class="kw">pub</span> <span class="ident">remainder</span>: <span class="ident">I</span>,
-    <span class="kw">pub</span> <span class="ident">divisor</span>: <span class="ident">I</span>,
+<span class="doccomment">/// Division state encapsulates remainder and divisor
+</span><span class="attribute">#[derive(Clone, Debug)]
+</span><span class="kw">pub struct </span>DivisionState&lt;I&gt; {
+    <span class="kw">pub </span>remainder: I,
+    <span class="kw">pub </span>divisor: I,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">I</span><span class="op">&gt;</span> <span class="ident">DivisionState</span><span class="op">&lt;</span><span class="ident">I</span><span class="op">&gt;</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">remainder</span>: <span class="ident">I</span>, <span class="ident">divisor</span>: <span class="ident">I</span>) -&gt; <span class="self">Self</span> {
-        <span class="ident">DivisionState</span> { <span class="ident">remainder</span>, <span class="ident">divisor</span> }
+<span class="kw">impl</span>&lt;I&gt; DivisionState&lt;I&gt; {
+    <span class="kw">pub fn </span>new(remainder: I, divisor: I) -&gt; <span class="self">Self </span>{
+        DivisionState { remainder, divisor }
     }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">I</span><span class="op">&gt;</span> <span class="ident">PartialEq</span> <span class="kw">for</span> <span class="ident">DivisionState</span><span class="op">&lt;</span><span class="ident">I</span><span class="op">&gt;</span>
-<span class="kw">where</span>
-    <span class="ident">I</span>: <span class="ident">PartialEq</span>,
+<span class="kw">impl</span>&lt;I&gt; PartialEq <span class="kw">for </span>DivisionState&lt;I&gt;
+<span class="kw">where
+    </span>I: PartialEq,
 {
-    <span class="kw">fn</span> <span class="ident">eq</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">other</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">remainder</span>.<span class="ident">eq</span>(<span class="kw-2">&amp;</span><span class="ident">other</span>.<span class="ident">remainder</span>) <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">divisor</span>.<span class="ident">eq</span>(<span class="kw-2">&amp;</span><span class="ident">other</span>.<span class="ident">divisor</span>)
+    <span class="kw">fn </span>eq(<span class="kw-2">&amp;</span><span class="self">self</span>, other: <span class="kw-2">&amp;</span><span class="self">Self</span>) -&gt; bool {
+        <span class="self">self</span>.remainder.eq(<span class="kw-2">&amp;</span>other.remainder) &amp;&amp; <span class="self">self</span>.divisor.eq(<span class="kw-2">&amp;</span>other.divisor)
     }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">I</span><span class="op">&gt;</span> <span class="ident">Eq</span> <span class="kw">for</span> <span class="ident">DivisionState</span><span class="op">&lt;</span><span class="ident">I</span><span class="op">&gt;</span> <span class="kw">where</span> <span class="ident">I</span>: <span class="ident">Eq</span> {}
+<span class="kw">impl</span>&lt;I&gt; Eq <span class="kw">for </span>DivisionState&lt;I&gt; <span class="kw">where </span>I: Eq {}
 
-<span class="doccomment">/// Divide two numbers and produce every single digit of the whole part of the resulting number</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// WARNING: Negative numbers as arguments are not supported.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Returns remainder of the division</span>
-<span class="doccomment">/// If the consumer returns `Ok(true)` keeps on calculation</span>
-<span class="doccomment">/// If the consumer returns `Ok(false)` stops calculation and returns the remainder</span>
-<span class="doccomment">/// If the consumer returns `Err(_)` the calculation will be stopped and the error will be passed as the result value</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// # Examples</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">/// use fraction::division::divide_integral;</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// let mut result: [u8; 2] = [0; 2];</span>
-<span class="doccomment">/// let mut ptr: usize = 0;</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// let state = divide_integral(30, 2, |d| {</span>
-<span class="doccomment">///     result[ptr] = d;</span>
-<span class="doccomment">///     ptr += 1;</span>
-<span class="doccomment">///     Ok(true)</span>
-<span class="doccomment">/// }).unwrap();</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// assert_eq!([1, 5], result);</span>
-<span class="doccomment">/// assert_eq!(state.remainder, 0);</span>
-<span class="doccomment">/// assert_eq!(state.divisor, 2);</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">/// use fraction::division::divide_integral;</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// let mut result: u8 = 0;</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// let state = divide_integral(30, 2, |d| {</span>
-<span class="doccomment">///     result = d;</span>
-<span class="doccomment">///     Ok(false)</span>
-<span class="doccomment">/// }).unwrap();</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// assert_eq!(result, 1);</span>
-<span class="doccomment">/// assert_eq!(state.remainder, 10);</span>
-<span class="doccomment">/// assert_eq!(state.divisor, 2);</span>
-<span class="doccomment">/// ```</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">divide_integral</span><span class="op">&lt;</span><span class="ident">I</span>, <span class="ident">Consumer</span><span class="op">&gt;</span>(
-    <span class="kw-2">mut</span> <span class="ident">dividend</span>: <span class="ident">I</span>,
-    <span class="ident">divisor</span>: <span class="ident">I</span>,
-    <span class="kw-2">mut</span> <span class="ident">consumer</span>: <span class="ident">Consumer</span>,
-) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">DivisionState</span><span class="op">&lt;</span><span class="ident">I</span><span class="op">&gt;</span>, <span class="ident">DivisionError</span><span class="op">&gt;</span>
-<span class="kw">where</span>
-    <span class="ident">Consumer</span>: <span class="ident">FnMut</span>(<span class="ident">u8</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">bool</span>, <span class="ident">DivisionError</span><span class="op">&gt;</span>,
-    <span class="ident">I</span>: <span class="ident">Clone</span> <span class="op">+</span> <span class="ident">GenericInteger</span>,
+<span class="doccomment">/// Divide two numbers and produce every single digit of the whole part of the resulting number
+///
+/// WARNING: Negative numbers as arguments are not supported.
+///
+/// Returns remainder of the division
+/// If the consumer returns `Ok(true)` keeps on calculation
+/// If the consumer returns `Ok(false)` stops calculation and returns the remainder
+/// If the consumer returns `Err(_)` the calculation will be stopped and the error will be passed as the result value
+///
+/// # Examples
+///
+/// ```
+/// use fraction::division::divide_integral;
+///
+/// let mut result: [u8; 2] = [0; 2];
+/// let mut ptr: usize = 0;
+///
+/// let state = divide_integral(30, 2, |d| {
+///     result[ptr] = d;
+///     ptr += 1;
+///     Ok(true)
+/// }).unwrap();
+///
+/// assert_eq!([1, 5], result);
+/// assert_eq!(state.remainder, 0);
+/// assert_eq!(state.divisor, 2);
+/// ```
+///
+/// ```
+/// use fraction::division::divide_integral;
+///
+/// let mut result: u8 = 0;
+///
+/// let state = divide_integral(30, 2, |d| {
+///     result = d;
+///     Ok(false)
+/// }).unwrap();
+///
+/// assert_eq!(result, 1);
+/// assert_eq!(state.remainder, 10);
+/// assert_eq!(state.divisor, 2);
+/// ```
+</span><span class="kw">pub fn </span>divide_integral&lt;I, Consumer&gt;(
+    <span class="kw-2">mut </span>dividend: I,
+    divisor: I,
+    <span class="kw-2">mut </span>consumer: Consumer,
+) -&gt; <span class="prelude-ty">Result</span>&lt;DivisionState&lt;I&gt;, DivisionError&gt;
+<span class="kw">where
+    </span>Consumer: FnMut(u8) -&gt; <span class="prelude-ty">Result</span>&lt;bool, DivisionError&gt;,
+    I: Clone + GenericInteger,
 {
-    <span class="kw">if</span> <span class="ident">divisor</span>.<span class="ident">is_zero</span>() {
-        <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">DivisionError::DivisionByZero</span>);
+    <span class="kw">if </span>divisor.is_zero() {
+        <span class="kw">return </span><span class="prelude-val">Err</span>(DivisionError::DivisionByZero);
     }
 
-    <span class="comment">/* === Figuring out the number size === */</span>
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">ptr</span>: <span class="ident">I</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">dividend</span>.<span class="ident">cmp</span>(<span class="kw-2">&amp;</span><span class="ident">divisor</span>) {
-        <span class="ident">Ordering::Equal</span> =&gt; {
-            <span class="ident">consumer</span>(<span class="number">1u8</span>)<span class="question-mark">?</span>;
-            <span class="kw">return</span> <span class="prelude-val">Ok</span>(<span class="ident">DivisionState::new</span>(<span class="ident">I::zero</span>(), <span class="ident">divisor</span>));
+    <span class="comment">/* === Figuring out the number size === */
+    </span><span class="kw">let </span><span class="kw-2">mut </span>ptr: I = <span class="kw">match </span>dividend.cmp(<span class="kw-2">&amp;</span>divisor) {
+        Ordering::Equal =&gt; {
+            consumer(<span class="number">1u8</span>)<span class="question-mark">?</span>;
+            <span class="kw">return </span><span class="prelude-val">Ok</span>(DivisionState::new(I::zero(), divisor));
         }
-        <span class="ident">Ordering::Less</span> =&gt; {
-            <span class="ident">consumer</span>(<span class="number">0u8</span>)<span class="question-mark">?</span>;
-            <span class="kw">return</span> <span class="prelude-val">Ok</span>(<span class="ident">DivisionState::new</span>(<span class="ident">dividend</span>, <span class="ident">divisor</span>));
+        Ordering::Less =&gt; {
+            consumer(<span class="number">0u8</span>)<span class="question-mark">?</span>;
+            <span class="kw">return </span><span class="prelude-val">Ok</span>(DivisionState::new(dividend, divisor));
         }
-        <span class="ident">Ordering::Greater</span> =&gt; {
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">ptr</span>: <span class="ident">I</span> <span class="op">=</span> <span class="ident">I::_1</span>();
+        Ordering::Greater =&gt; {
+            <span class="kw">let </span><span class="kw-2">mut </span>ptr: I = I::_1();
 
-            <span class="kw">loop</span> {
-                <span class="kw">if</span> <span class="ident">ptr</span> <span class="op">&gt;</span> <span class="ident">dividend</span> {
-                    <span class="kw">if</span> <span class="ident">I::_1r</span>().<span class="ident">map_or_else</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">ptr</span> <span class="op">&gt;</span> <span class="ident">I::_1</span>(), <span class="op">|</span><span class="ident">_1</span><span class="op">|</span> <span class="ident">ptr</span> <span class="op">&gt;</span> <span class="kw-2">*</span><span class="ident">_1</span>) {
-                        <span class="ident">I::_10r</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">_10</span><span class="op">|</span> <span class="ident">ptr</span> <span class="op">/</span><span class="op">=</span> <span class="ident">_10</span>).<span class="ident">or_else</span>(<span class="op">|</span><span class="op">|</span> {
-                            <span class="ident">ptr</span> <span class="op">/</span><span class="op">=</span> <span class="ident">I::_10</span>();
-                            <span class="prelude-val">None</span>
-                        });
+            <span class="kw">loop </span>{
+                <span class="kw">if </span>ptr &gt; dividend {
+                    <span class="kw">if </span>I::_1r().map_or_else(|| ptr &gt; I::_1(), |_1| ptr &gt; <span class="kw-2">*</span>_1) {
+                        I::_10r().map(|_10| ptr /= _10).or_else(|| {
+                            ptr /= I::_10();
+                            <span class="prelude-val">None
+                        </span>});
                     }
                     <span class="kw">break</span>;
                 }
 
-                <span class="ident">ptr</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">I::_10r</span>()
-                    .<span class="ident">map_or_else</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">ptr</span>.<span class="ident">checked_mul</span>(<span class="kw-2">&amp;</span><span class="ident">I::_10</span>()), <span class="op">|</span><span class="ident">_10</span><span class="op">|</span> <span class="ident">ptr</span>.<span class="ident">checked_mul</span>(<span class="ident">_10</span>))
+                ptr = <span class="kw">match </span>I::_10r()
+                    .map_or_else(|| ptr.checked_mul(<span class="kw-2">&amp;</span>I::_10()), |_10| ptr.checked_mul(_10))
                 {
-                    <span class="prelude-val">Some</span>(<span class="ident">n</span>) =&gt; <span class="ident">n</span>,
-                    <span class="prelude-val">None</span> =&gt; <span class="kw">break</span>,
+                    <span class="prelude-val">Some</span>(n) =&gt; n,
+                    <span class="prelude-val">None </span>=&gt; <span class="kw">break</span>,
                 };
             }
 
-            <span class="ident">ptr</span>
+            ptr
         }
     };
 
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">passed_leading_zeroes</span>: <span class="ident">bool</span> <span class="op">=</span> <span class="bool-val">false</span>;
-    <span class="kw">loop</span> {
-        <span class="kw">let</span> <span class="ident">digit</span> <span class="op">=</span> <span class="ident">dividend</span>.<span class="ident">div_floor</span>(<span class="kw-2">&amp;</span><span class="ident">ptr</span>).<span class="ident">div_floor</span>(<span class="kw-2">&amp;</span><span class="ident">divisor</span>);
+    <span class="kw">let </span><span class="kw-2">mut </span>passed_leading_zeroes: bool = <span class="bool-val">false</span>;
+    <span class="kw">loop </span>{
+        <span class="kw">let </span>digit = dividend.div_floor(<span class="kw-2">&amp;</span>ptr).div_floor(<span class="kw-2">&amp;</span>divisor);
 
-        <span class="kw">if</span> <span class="ident">I::_0r</span>().<span class="ident">map_or_else</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">digit</span> <span class="op">&gt;</span> <span class="ident">I::_0</span>(), <span class="op">|</span><span class="ident">_0</span><span class="op">|</span> <span class="ident">digit</span> <span class="op">&gt;</span> <span class="kw-2">*</span><span class="ident">_0</span>) {
-            <span class="ident">passed_leading_zeroes</span> <span class="op">=</span> <span class="bool-val">true</span>;
-            <span class="ident">dividend</span> <span class="op">-</span><span class="op">=</span> <span class="ident">digit</span>.<span class="ident">clone</span>() <span class="op">*</span> <span class="kw-2">&amp;</span><span class="ident">divisor</span> <span class="op">*</span> <span class="kw-2">&amp;</span><span class="ident">ptr</span>;
+        <span class="kw">if </span>I::_0r().map_or_else(|| digit &gt; I::_0(), |_0| digit &gt; <span class="kw-2">*</span>_0) {
+            passed_leading_zeroes = <span class="bool-val">true</span>;
+            dividend -= digit.clone() * <span class="kw-2">&amp;</span>divisor * <span class="kw-2">&amp;</span>ptr;
         }
 
-        <span class="kw">if</span> <span class="ident">passed_leading_zeroes</span> {
-            <span class="kw">let</span> <span class="ident">d</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">digit</span>.<span class="ident">to_u8</span>();
-            <span class="kw">match</span> <span class="ident">d</span> {
-                <span class="prelude-val">Some</span>(<span class="ident">n</span>) =&gt; {
-                    <span class="kw">if</span> <span class="op">!</span><span class="ident">consumer</span>(<span class="ident">n</span>)<span class="question-mark">?</span> {
-                        <span class="kw">return</span> <span class="prelude-val">Ok</span>(<span class="ident">DivisionState::new</span>(<span class="ident">dividend</span>, <span class="ident">divisor</span>));
+        <span class="kw">if </span>passed_leading_zeroes {
+            <span class="kw">let </span>d: <span class="prelude-ty">Option</span>&lt;u8&gt; = digit.to_u8();
+            <span class="kw">match </span>d {
+                <span class="prelude-val">Some</span>(n) =&gt; {
+                    <span class="kw">if </span>!consumer(n)<span class="question-mark">? </span>{
+                        <span class="kw">return </span><span class="prelude-val">Ok</span>(DivisionState::new(dividend, divisor));
                     }
                 }
-                <span class="prelude-val">None</span> =&gt; <span class="macro">unreachable!</span>(),
+                <span class="prelude-val">None </span>=&gt; <span class="macro">unreachable!</span>(),
             };
         }
 
-        <span class="kw">if</span> <span class="ident">I::_1r</span>().<span class="ident">map_or_else</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">ptr</span> <span class="op">==</span> <span class="ident">I::_1</span>(), <span class="op">|</span><span class="ident">_1</span><span class="op">|</span> <span class="ident">ptr</span> <span class="op">==</span> <span class="kw-2">*</span><span class="ident">_1</span>) {
+        <span class="kw">if </span>I::_1r().map_or_else(|| ptr == I::_1(), |_1| ptr == <span class="kw-2">*</span>_1) {
             <span class="kw">break</span>;
         }
 
-        <span class="ident">I::_10r</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">_10</span><span class="op">|</span> <span class="ident">ptr</span> <span class="op">/</span><span class="op">=</span> <span class="ident">_10</span>).<span class="ident">or_else</span>(<span class="op">|</span><span class="op">|</span> {
-            <span class="ident">ptr</span> <span class="op">/</span><span class="op">=</span> <span class="ident">I::_10</span>();
-            <span class="prelude-val">None</span>
-        });
+        I::_10r().map(|_10| ptr /= _10).or_else(|| {
+            ptr /= I::_10();
+            <span class="prelude-val">None
+        </span>});
     }
 
-    <span class="prelude-val">Ok</span>(<span class="ident">DivisionState::new</span>(<span class="ident">dividend</span>, <span class="ident">divisor</span>))
+    <span class="prelude-val">Ok</span>(DivisionState::new(dividend, divisor))
 }
 
-<span class="doccomment">/// Produces the fractional part of the decimal from a rest part left after division</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// WARNING: Negative numbers as arguments are not supported.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Returns remainder of the division</span>
-<span class="doccomment">/// If the consumer returns `Ok(Ok(state))` keeps on calculation</span>
-<span class="doccomment">/// If the consumer returns `Ok(Err(state))` stops calculation and returns the remainder</span>
-<span class="doccomment">/// If the consumer returns `Err(_)` the calculation will be stopped and the error will be passed as the result value</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// # Examples</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">/// use fraction::division::divide_rem;</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// let mut result: [u8; 2] = [0; 2];</span>
-<span class="doccomment">/// let mut ptr: usize = 0;</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// let state = divide_rem(3, 4, |state, digit| {</span>
-<span class="doccomment">///     result[ptr] = digit;</span>
-<span class="doccomment">///     ptr += 1;</span>
-<span class="doccomment">///     Ok(Ok(state))</span>
-<span class="doccomment">/// }).unwrap();</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// assert_eq!(state.remainder, 0);</span>
-<span class="doccomment">/// assert_eq!(state.divisor, 4);</span>
-<span class="doccomment">/// assert_eq!(result, [7, 5]);  // 3/4 == 0.75</span>
-<span class="doccomment">/// ```</span>
-<span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">divide_rem</span><span class="op">&lt;</span><span class="ident">I</span>, <span class="ident">Consumer</span><span class="op">&gt;</span>(
-    <span class="ident">dividend</span>: <span class="ident">I</span>,
-    <span class="ident">divisor</span>: <span class="ident">I</span>,
-    <span class="ident">consumer</span>: <span class="ident">Consumer</span>,
-) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">DivisionState</span><span class="op">&lt;</span><span class="ident">I</span><span class="op">&gt;</span>, <span class="ident">DivisionError</span><span class="op">&gt;</span>
-<span class="kw">where</span>
-    <span class="ident">Consumer</span>: <span class="ident">FnMut</span>(
-        <span class="ident">DivisionState</span><span class="op">&lt;</span><span class="ident">I</span><span class="op">&gt;</span>,
-        <span class="ident">u8</span>,
-    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">DivisionState</span><span class="op">&lt;</span><span class="ident">I</span><span class="op">&gt;</span>, <span class="ident">DivisionState</span><span class="op">&lt;</span><span class="ident">I</span><span class="op">&gt;</span><span class="op">&gt;</span>, <span class="ident">DivisionError</span><span class="op">&gt;</span>,
-    <span class="ident">I</span>: <span class="ident">Clone</span> <span class="op">+</span> <span class="ident">GenericInteger</span>,
+<span class="doccomment">/// Produces the fractional part of the decimal from a rest part left after division
+///
+/// WARNING: Negative numbers as arguments are not supported.
+///
+/// Returns remainder of the division
+/// If the consumer returns `Ok(Ok(state))` keeps on calculation
+/// If the consumer returns `Ok(Err(state))` stops calculation and returns the remainder
+/// If the consumer returns `Err(_)` the calculation will be stopped and the error will be passed as the result value
+///
+/// # Examples
+///
+/// ```
+/// use fraction::division::divide_rem;
+///
+/// let mut result: [u8; 2] = [0; 2];
+/// let mut ptr: usize = 0;
+///
+/// let state = divide_rem(3, 4, |state, digit| {
+///     result[ptr] = digit;
+///     ptr += 1;
+///     Ok(Ok(state))
+/// }).unwrap();
+///
+/// assert_eq!(state.remainder, 0);
+/// assert_eq!(state.divisor, 4);
+/// assert_eq!(result, [7, 5]);  // 3/4 == 0.75
+/// ```
+</span><span class="attribute">#[inline]
+</span><span class="kw">pub fn </span>divide_rem&lt;I, Consumer&gt;(
+    dividend: I,
+    divisor: I,
+    consumer: Consumer,
+) -&gt; <span class="prelude-ty">Result</span>&lt;DivisionState&lt;I&gt;, DivisionError&gt;
+<span class="kw">where
+    </span>Consumer: FnMut(
+        DivisionState&lt;I&gt;,
+        u8,
+    ) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="prelude-ty">Result</span>&lt;DivisionState&lt;I&gt;, DivisionState&lt;I&gt;&gt;, DivisionError&gt;,
+    I: Clone + GenericInteger,
 {
-    <span class="ident">divide_rem_resume</span>(<span class="ident">DivisionState::new</span>(<span class="ident">dividend</span>, <span class="ident">divisor</span>), <span class="ident">consumer</span>)
+    divide_rem_resume(DivisionState::new(dividend, divisor), consumer)
 }
 
-<span class="doccomment">/// [divide_rem] co-routine implementation  </span>
-<span class="doccomment">/// Performs the division, changes the state and returns it</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// # Examples</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">/// use fraction::division::{DivisionState, divide_rem_resume};</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// let mut state = Some(DivisionState::new(1, 3));</span>
-<span class="doccomment">/// let mut precision = 5;</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// let mut result: Vec&lt;u8&gt; = Vec::new();</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// loop {</span>
-<span class="doccomment">///     if precision == 0 { break }</span>
-<span class="doccomment">///</span>
-<span class="doccomment">///     state = Some(</span>
-<span class="doccomment">///         divide_rem_resume(state.take().unwrap(), |s, digit| {</span>
-<span class="doccomment">///             precision -= 1;</span>
-<span class="doccomment">///             result.push(digit);</span>
-<span class="doccomment">///</span>
-<span class="doccomment">///             Ok(Err(s))</span>
-<span class="doccomment">///         }).unwrap()</span>
-<span class="doccomment">///     );</span>
-<span class="doccomment">///</span>
-<span class="doccomment">///     // perform some other operations</span>
-<span class="doccomment">/// }</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// assert_eq!(result, vec![3, 3, 3, 3, 3]);</span>
-<span class="doccomment">/// ```</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">divide_rem_resume</span><span class="op">&lt;</span><span class="ident">I</span>, <span class="ident">Consumer</span><span class="op">&gt;</span>(
-    <span class="kw-2">mut</span> <span class="ident">state</span>: <span class="ident">DivisionState</span><span class="op">&lt;</span><span class="ident">I</span><span class="op">&gt;</span>,
-    <span class="kw-2">mut</span> <span class="ident">consumer</span>: <span class="ident">Consumer</span>,
-) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">DivisionState</span><span class="op">&lt;</span><span class="ident">I</span><span class="op">&gt;</span>, <span class="ident">DivisionError</span><span class="op">&gt;</span>
-<span class="kw">where</span>
-    <span class="ident">Consumer</span>: <span class="ident">FnMut</span>(
-        <span class="ident">DivisionState</span><span class="op">&lt;</span><span class="ident">I</span><span class="op">&gt;</span>,
-        <span class="ident">u8</span>,
-    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">DivisionState</span><span class="op">&lt;</span><span class="ident">I</span><span class="op">&gt;</span>, <span class="ident">DivisionState</span><span class="op">&lt;</span><span class="ident">I</span><span class="op">&gt;</span><span class="op">&gt;</span>, <span class="ident">DivisionError</span><span class="op">&gt;</span>,
-    <span class="ident">I</span>: <span class="ident">Clone</span> <span class="op">+</span> <span class="ident">GenericInteger</span>,
+<span class="doccomment">/// [divide_rem] co-routine implementation  
+/// Performs the division, changes the state and returns it
+///
+/// # Examples
+///
+/// ```
+/// use fraction::division::{DivisionState, divide_rem_resume};
+///
+/// let mut state = Some(DivisionState::new(1, 3));
+/// let mut precision = 5;
+///
+/// let mut result: Vec&lt;u8&gt; = Vec::new();
+///
+/// loop {
+///     if precision == 0 { break }
+///
+///     state = Some(
+///         divide_rem_resume(state.take().unwrap(), |s, digit| {
+///             precision -= 1;
+///             result.push(digit);
+///
+///             Ok(Err(s))
+///         }).unwrap()
+///     );
+///
+///     // perform some other operations
+/// }
+///
+/// assert_eq!(result, vec![3, 3, 3, 3, 3]);
+/// ```
+</span><span class="kw">pub fn </span>divide_rem_resume&lt;I, Consumer&gt;(
+    <span class="kw-2">mut </span>state: DivisionState&lt;I&gt;,
+    <span class="kw-2">mut </span>consumer: Consumer,
+) -&gt; <span class="prelude-ty">Result</span>&lt;DivisionState&lt;I&gt;, DivisionError&gt;
+<span class="kw">where
+    </span>Consumer: FnMut(
+        DivisionState&lt;I&gt;,
+        u8,
+    ) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="prelude-ty">Result</span>&lt;DivisionState&lt;I&gt;, DivisionState&lt;I&gt;&gt;, DivisionError&gt;,
+    I: Clone + GenericInteger,
 {
-    <span class="kw">loop</span> {
-        <span class="kw">if</span> <span class="ident">state</span>.<span class="ident">remainder</span>.<span class="ident">is_zero</span>() {
+    <span class="kw">loop </span>{
+        <span class="kw">if </span>state.remainder.is_zero() {
             <span class="kw">break</span>;
         }
 
-        <span class="kw">let</span> <span class="ident">digit</span> <span class="op">=</span> <span class="ident">I::_10r</span>()
-            .<span class="ident">map</span>(<span class="op">|</span><span class="ident">_10</span><span class="op">|</span> {
-                <span class="kw">let</span> (<span class="ident">rem</span>, <span class="ident">digit</span>) <span class="op">=</span> <span class="ident">state</span>.<span class="ident">remainder</span>.<span class="ident">checked_mul</span>(<span class="ident">_10</span>).<span class="ident">map_or_else</span>(
-                    <span class="op">|</span><span class="op">|</span> {
-                        <span class="kw">let</span> (<span class="ident">reduced_divisor</span>, <span class="ident">reduced_divisor_rem</span>) <span class="op">=</span> <span class="ident">state</span>.<span class="ident">divisor</span>.<span class="ident">div_rem</span>(<span class="ident">_10</span>);
+        <span class="kw">let </span>digit = I::_10r()
+            .map(|_10| {
+                <span class="kw">let </span>(rem, digit) = state.remainder.checked_mul(_10).map_or_else(
+                    || {
+                        <span class="kw">let </span>(reduced_divisor, reduced_divisor_rem) = state.divisor.div_rem(_10);
 
-                        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">digit</span> <span class="op">=</span> <span class="ident">state</span>.<span class="ident">remainder</span>.<span class="ident">div_floor</span>(<span class="kw-2">&amp;</span><span class="ident">reduced_divisor</span>);
-                        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">remainder</span> <span class="op">=</span> <span class="ident">state</span>.<span class="ident">remainder</span>.<span class="ident">clone</span>();
+                        <span class="kw">let </span><span class="kw-2">mut </span>digit = state.remainder.div_floor(<span class="kw-2">&amp;</span>reduced_divisor);
+                        <span class="kw">let </span><span class="kw-2">mut </span>remainder = state.remainder.clone();
 
-                        <span class="ident">remainder</span> <span class="op">-</span><span class="op">=</span> <span class="ident">digit</span>.<span class="ident">clone</span>() <span class="op">*</span> <span class="kw-2">&amp;</span><span class="ident">reduced_divisor</span>;
+                        remainder -= digit.clone() * <span class="kw-2">&amp;</span>reduced_divisor;
 
-                        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">red_div_rem_diff</span> <span class="op">=</span>
-                            (<span class="ident">reduced_divisor_rem</span>.<span class="ident">clone</span>() <span class="op">*</span> <span class="kw-2">&amp;</span><span class="ident">digit</span>).<span class="ident">div_rem</span>(<span class="ident">_10</span>);
+                        <span class="kw">let </span><span class="kw-2">mut </span>red_div_rem_diff =
+                            (reduced_divisor_rem.clone() * <span class="kw-2">&amp;</span>digit).div_rem(_10);
 
-                        <span class="kw">loop</span> {
-                            <span class="kw">if</span> <span class="ident">red_div_rem_diff</span>.<span class="number">0</span> <span class="op">&gt;</span> <span class="ident">remainder</span> {
-                                <span class="ident">digit</span> <span class="op">-</span><span class="op">=</span> <span class="ident">I::one</span>();
-                                <span class="ident">remainder</span> <span class="op">+</span><span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">reduced_divisor</span>;
-                                <span class="ident">red_div_rem_diff</span> <span class="op">=</span>
-                                    (<span class="ident">reduced_divisor_rem</span>.<span class="ident">clone</span>() <span class="op">*</span> <span class="kw-2">&amp;</span><span class="ident">digit</span>).<span class="ident">div_rem</span>(<span class="ident">_10</span>);
-                            } <span class="kw">else</span> {
+                        <span class="kw">loop </span>{
+                            <span class="kw">if </span>red_div_rem_diff.<span class="number">0 </span>&gt; remainder {
+                                digit -= I::one();
+                                remainder += <span class="kw-2">&amp;</span>reduced_divisor;
+                                red_div_rem_diff =
+                                    (reduced_divisor_rem.clone() * <span class="kw-2">&amp;</span>digit).div_rem(_10);
+                            } <span class="kw">else </span>{
                                 <span class="kw">break</span>;
                             }
                         }
 
-                        <span class="ident">remainder</span> <span class="op">-</span><span class="op">=</span> <span class="ident">red_div_rem_diff</span>.<span class="number">0</span>;
-                        <span class="ident">remainder</span> <span class="kw-2">*</span><span class="op">=</span> <span class="ident">_10</span>;
+                        remainder -= red_div_rem_diff.<span class="number">0</span>;
+                        remainder <span class="kw-2">*</span>= _10;
 
-                        <span class="kw">if</span> <span class="ident">red_div_rem_diff</span>.<span class="number">1</span> <span class="op">&gt;</span> <span class="ident">remainder</span> {
-                            <span class="ident">digit</span> <span class="op">-</span><span class="op">=</span> <span class="ident">I::one</span>();
-                            <span class="ident">remainder</span> <span class="op">+</span><span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">state</span>.<span class="ident">divisor</span>;
+                        <span class="kw">if </span>red_div_rem_diff.<span class="number">1 </span>&gt; remainder {
+                            digit -= I::one();
+                            remainder += <span class="kw-2">&amp;</span>state.divisor;
                         }
 
-                        <span class="ident">remainder</span> <span class="op">-</span><span class="op">=</span> <span class="ident">red_div_rem_diff</span>.<span class="number">1</span>;
+                        remainder -= red_div_rem_diff.<span class="number">1</span>;
 
-                        (<span class="ident">remainder</span>, <span class="ident">digit</span>.<span class="ident">to_u8</span>())
+                        (remainder, digit.to_u8())
                     },
-                    <span class="op">|</span><span class="kw-2">mut</span> <span class="ident">remainder</span><span class="op">|</span> {
-                        <span class="kw">let</span> <span class="ident">digit</span> <span class="op">=</span> <span class="ident">remainder</span>.<span class="ident">div_floor</span>(<span class="kw-2">&amp;</span><span class="ident">state</span>.<span class="ident">divisor</span>);
-                        <span class="ident">remainder</span> <span class="op">-</span><span class="op">=</span> <span class="ident">digit</span>.<span class="ident">clone</span>() <span class="op">*</span> <span class="kw-2">&amp;</span><span class="ident">state</span>.<span class="ident">divisor</span>;
+                    |<span class="kw-2">mut </span>remainder| {
+                        <span class="kw">let </span>digit = remainder.div_floor(<span class="kw-2">&amp;</span>state.divisor);
+                        remainder -= digit.clone() * <span class="kw-2">&amp;</span>state.divisor;
 
-                        (<span class="ident">remainder</span>, <span class="ident">digit</span>.<span class="ident">to_u8</span>())
+                        (remainder, digit.to_u8())
                     },
                 );
 
-                <span class="ident">state</span>.<span class="ident">remainder</span> <span class="op">=</span> <span class="ident">rem</span>;
-                <span class="ident">digit</span>
+                state.remainder = rem;
+                digit
             })
-            .<span class="ident">or_else</span>(<span class="op">|</span><span class="op">|</span> {
-                <span class="kw">let</span> <span class="ident">ten</span> <span class="op">=</span> <span class="ident">I::_10</span>();
+            .or_else(|| {
+                <span class="kw">let </span>ten = I::_10();
 
-                <span class="kw">let</span> (<span class="ident">rem</span>, <span class="ident">digit</span>) <span class="op">=</span> <span class="ident">state</span>.<span class="ident">remainder</span>.<span class="ident">checked_mul</span>(<span class="kw-2">&amp;</span><span class="ident">ten</span>).<span class="ident">map_or_else</span>(
-                    <span class="op">|</span><span class="op">|</span> {
-                        <span class="kw">let</span> (<span class="ident">reduced_divisor</span>, <span class="ident">reduced_divisor_rem</span>) <span class="op">=</span> <span class="ident">state</span>.<span class="ident">divisor</span>.<span class="ident">div_rem</span>(<span class="kw-2">&amp;</span><span class="ident">ten</span>);
+                <span class="kw">let </span>(rem, digit) = state.remainder.checked_mul(<span class="kw-2">&amp;</span>ten).map_or_else(
+                    || {
+                        <span class="kw">let </span>(reduced_divisor, reduced_divisor_rem) = state.divisor.div_rem(<span class="kw-2">&amp;</span>ten);
 
-                        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">digit</span> <span class="op">=</span> <span class="ident">state</span>.<span class="ident">remainder</span>.<span class="ident">div_floor</span>(<span class="kw-2">&amp;</span><span class="ident">reduced_divisor</span>);
-                        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">remainder</span> <span class="op">=</span> <span class="ident">state</span>.<span class="ident">remainder</span>.<span class="ident">clone</span>();
+                        <span class="kw">let </span><span class="kw-2">mut </span>digit = state.remainder.div_floor(<span class="kw-2">&amp;</span>reduced_divisor);
+                        <span class="kw">let </span><span class="kw-2">mut </span>remainder = state.remainder.clone();
 
-                        <span class="ident">remainder</span> <span class="op">-</span><span class="op">=</span> <span class="ident">digit</span>.<span class="ident">clone</span>() <span class="op">*</span> <span class="kw-2">&amp;</span><span class="ident">reduced_divisor</span>;
+                        remainder -= digit.clone() * <span class="kw-2">&amp;</span>reduced_divisor;
 
-                        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">red_div_rem_diff</span> <span class="op">=</span>
-                            (<span class="ident">reduced_divisor_rem</span>.<span class="ident">clone</span>() <span class="op">*</span> <span class="kw-2">&amp;</span><span class="ident">digit</span>).<span class="ident">div_rem</span>(<span class="kw-2">&amp;</span><span class="ident">ten</span>);
+                        <span class="kw">let </span><span class="kw-2">mut </span>red_div_rem_diff =
+                            (reduced_divisor_rem.clone() * <span class="kw-2">&amp;</span>digit).div_rem(<span class="kw-2">&amp;</span>ten);
 
-                        <span class="kw">loop</span> {
-                            <span class="kw">if</span> <span class="ident">red_div_rem_diff</span>.<span class="number">0</span> <span class="op">&gt;</span> <span class="ident">remainder</span> {
-                                <span class="ident">digit</span> <span class="op">-</span><span class="op">=</span> <span class="ident">I::one</span>();
-                                <span class="ident">remainder</span> <span class="op">+</span><span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">reduced_divisor</span>;
-                                <span class="ident">red_div_rem_diff</span> <span class="op">=</span>
-                                    (<span class="ident">reduced_divisor_rem</span>.<span class="ident">clone</span>() <span class="op">*</span> <span class="kw-2">&amp;</span><span class="ident">digit</span>).<span class="ident">div_rem</span>(<span class="kw-2">&amp;</span><span class="ident">ten</span>);
-                            } <span class="kw">else</span> {
+                        <span class="kw">loop </span>{
+                            <span class="kw">if </span>red_div_rem_diff.<span class="number">0 </span>&gt; remainder {
+                                digit -= I::one();
+                                remainder += <span class="kw-2">&amp;</span>reduced_divisor;
+                                red_div_rem_diff =
+                                    (reduced_divisor_rem.clone() * <span class="kw-2">&amp;</span>digit).div_rem(<span class="kw-2">&amp;</span>ten);
+                            } <span class="kw">else </span>{
                                 <span class="kw">break</span>;
                             }
                         }
 
-                        <span class="ident">remainder</span> <span class="op">-</span><span class="op">=</span> <span class="ident">red_div_rem_diff</span>.<span class="number">0</span>;
-                        <span class="ident">remainder</span> <span class="kw-2">*</span><span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">ten</span>;
+                        remainder -= red_div_rem_diff.<span class="number">0</span>;
+                        remainder <span class="kw-2">*</span>= <span class="kw-2">&amp;</span>ten;
 
-                        <span class="kw">if</span> <span class="ident">red_div_rem_diff</span>.<span class="number">1</span> <span class="op">&gt;</span> <span class="ident">remainder</span> {
-                            <span class="ident">digit</span> <span class="op">-</span><span class="op">=</span> <span class="ident">I::one</span>();
-                            <span class="ident">remainder</span> <span class="op">+</span><span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">state</span>.<span class="ident">divisor</span>;
+                        <span class="kw">if </span>red_div_rem_diff.<span class="number">1 </span>&gt; remainder {
+                            digit -= I::one();
+                            remainder += <span class="kw-2">&amp;</span>state.divisor;
                         }
 
-                        <span class="ident">remainder</span> <span class="op">-</span><span class="op">=</span> <span class="ident">red_div_rem_diff</span>.<span class="number">1</span>;
+                        remainder -= red_div_rem_diff.<span class="number">1</span>;
 
-                        (<span class="ident">remainder</span>, <span class="ident">digit</span>.<span class="ident">to_u8</span>())
+                        (remainder, digit.to_u8())
                     },
-                    <span class="op">|</span><span class="kw-2">mut</span> <span class="ident">remainder</span>: <span class="ident">I</span><span class="op">|</span> {
-                        <span class="kw">let</span> <span class="ident">digit</span> <span class="op">=</span> <span class="ident">remainder</span>.<span class="ident">div_floor</span>(<span class="kw-2">&amp;</span><span class="ident">state</span>.<span class="ident">divisor</span>);
-                        <span class="ident">remainder</span> <span class="op">-</span><span class="op">=</span> <span class="ident">digit</span>.<span class="ident">clone</span>() <span class="op">*</span> <span class="kw-2">&amp;</span><span class="ident">state</span>.<span class="ident">divisor</span>;
+                    |<span class="kw-2">mut </span>remainder: I| {
+                        <span class="kw">let </span>digit = remainder.div_floor(<span class="kw-2">&amp;</span>state.divisor);
+                        remainder -= digit.clone() * <span class="kw-2">&amp;</span>state.divisor;
 
-                        (<span class="ident">remainder</span>, <span class="ident">digit</span>.<span class="ident">to_u8</span>())
+                        (remainder, digit.to_u8())
                     },
                 );
 
-                <span class="ident">state</span>.<span class="ident">remainder</span> <span class="op">=</span> <span class="ident">rem</span>;
-                <span class="prelude-val">Some</span>(<span class="ident">digit</span>)
+                state.remainder = rem;
+                <span class="prelude-val">Some</span>(digit)
             })
-            .<span class="ident">unwrap</span>();
+            .unwrap();
 
-        <span class="kw">match</span> <span class="ident">digit</span> {
-            <span class="prelude-val">Some</span>(<span class="ident">n</span>) =&gt; {
-                <span class="ident">state</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">consumer</span>(<span class="ident">state</span>, <span class="ident">n</span>)<span class="question-mark">?</span> {
-                    <span class="prelude-val">Ok</span>(<span class="ident">state</span>) =&gt; <span class="ident">state</span>,
-                    <span class="prelude-val">Err</span>(<span class="ident">s</span>) =&gt; <span class="kw">return</span> <span class="prelude-val">Ok</span>(<span class="ident">s</span>),
+        <span class="kw">match </span>digit {
+            <span class="prelude-val">Some</span>(n) =&gt; {
+                state = <span class="kw">match </span>consumer(state, n)<span class="question-mark">? </span>{
+                    <span class="prelude-val">Ok</span>(state) =&gt; state,
+                    <span class="prelude-val">Err</span>(s) =&gt; <span class="kw">return </span><span class="prelude-val">Ok</span>(s),
                 };
             }
-            <span class="prelude-val">None</span> =&gt; <span class="macro">unreachable!</span>(),
+            <span class="prelude-val">None </span>=&gt; <span class="macro">unreachable!</span>(),
         };
     }
 
-    <span class="prelude-val">Ok</span>(<span class="ident">state</span>)
+    <span class="prelude-val">Ok</span>(state)
 }
 
-<span class="doccomment">/// Calculate the max possible length of division in characters (including floating point)</span>
-<span class="doccomment">/// This may be useful for string/vector pre-allocations</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// WARNING: Negative numbers as arguments are not supported.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// # Examples</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">/// use fraction::division::division_result_max_char_length;</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// assert_eq!(division_result_max_char_length(&amp;1, 0), 1);</span>
-<span class="doccomment">/// assert_eq!(division_result_max_char_length(&amp;10, 0), 2);</span>
-<span class="doccomment">/// assert_eq!(division_result_max_char_length(&amp;10, 1), 4);</span>
-<span class="doccomment">/// assert_eq!(division_result_max_char_length(&amp;100, 2), 6);</span>
-<span class="doccomment">/// assert_eq!(division_result_max_char_length(&amp;900, 2), 6);</span>
-<span class="doccomment">/// ```</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">division_result_max_char_length</span><span class="op">&lt;</span><span class="ident">I</span><span class="op">&gt;</span>(<span class="ident">dividend</span>: <span class="kw-2">&amp;</span><span class="ident">I</span>, <span class="ident">precision</span>: <span class="ident">usize</span>) -&gt; <span class="ident">usize</span>
-<span class="kw">where</span>
-    <span class="ident">I</span>: <span class="ident">Clone</span> <span class="op">+</span> <span class="ident">GenericInteger</span>,
+<span class="doccomment">/// Calculate the max possible length of division in characters (including floating point)
+/// This may be useful for string/vector pre-allocations
+///
+/// WARNING: Negative numbers as arguments are not supported.
+///
+/// # Examples
+/// ```
+/// use fraction::division::division_result_max_char_length;
+///
+/// assert_eq!(division_result_max_char_length(&amp;1, 0), 1);
+/// assert_eq!(division_result_max_char_length(&amp;10, 0), 2);
+/// assert_eq!(division_result_max_char_length(&amp;10, 1), 4);
+/// assert_eq!(division_result_max_char_length(&amp;100, 2), 6);
+/// assert_eq!(division_result_max_char_length(&amp;900, 2), 6);
+/// ```
+</span><span class="kw">pub fn </span>division_result_max_char_length&lt;I&gt;(dividend: <span class="kw-2">&amp;</span>I, precision: usize) -&gt; usize
+<span class="kw">where
+    </span>I: Clone + GenericInteger,
 {
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">ptr</span>: <span class="ident">I</span> <span class="op">=</span> <span class="ident">I::_1</span>();
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">len</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">0</span>;
+    <span class="kw">let </span><span class="kw-2">mut </span>ptr: I = I::_1();
+    <span class="kw">let </span><span class="kw-2">mut </span>len: usize = <span class="number">0</span>;
 
-    <span class="kw">loop</span> {
-        <span class="ident">len</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
+    <span class="kw">loop </span>{
+        len += <span class="number">1</span>;
 
-        <span class="ident">ptr</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">I::_10r</span>().<span class="ident">map_or_else</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">ptr</span>.<span class="ident">checked_mul</span>(<span class="kw-2">&amp;</span><span class="ident">I::_10</span>()), <span class="op">|</span><span class="ident">_10</span><span class="op">|</span> <span class="ident">ptr</span>.<span class="ident">checked_mul</span>(<span class="ident">_10</span>))
+        ptr = <span class="kw">match </span>I::_10r().map_or_else(|| ptr.checked_mul(<span class="kw-2">&amp;</span>I::_10()), |_10| ptr.checked_mul(_10))
         {
-            <span class="prelude-val">Some</span>(<span class="ident">n</span>) =&gt; <span class="ident">n</span>,
-            <span class="prelude-val">None</span> =&gt; <span class="kw">break</span>,
+            <span class="prelude-val">Some</span>(n) =&gt; n,
+            <span class="prelude-val">None </span>=&gt; <span class="kw">break</span>,
         };
 
-        <span class="kw">if</span> <span class="ident">ptr</span> <span class="op">&gt;</span> <span class="kw-2">*</span><span class="ident">dividend</span> {
+        <span class="kw">if </span>ptr &gt; <span class="kw-2">*</span>dividend {
             <span class="kw">break</span>;
         }
     }
 
-    <span class="ident">len</span> <span class="op">+</span> <span class="ident">precision</span> <span class="op">+</span> <span class="kw">if</span> <span class="ident">precision</span> <span class="op">&gt;</span> <span class="number">0</span> { <span class="number">1</span> } <span class="kw">else</span> { <span class="number">0</span> }
+    len + precision + <span class="kw">if </span>precision &gt; <span class="number">0 </span>{ <span class="number">1 </span>} <span class="kw">else </span>{ <span class="number">0 </span>}
 }
 
-<span class="doccomment">/// Divide a fraction into a [`String`]</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// WARNING: Negative numbers as arguments are not supported.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">///  - Makes only one allocation for the resulting string</span>
-<span class="doccomment">///  - Does not round the last digit</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Calculates the resulting string length first, allocates it,</span>
-<span class="doccomment">/// then makes the division and puts the result into the preallocated</span>
-<span class="doccomment">/// string.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// # Examples</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">/// use fraction::division::divide_to_string;</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// assert_eq! (divide_to_string(2, 4, 2, false).unwrap(), &quot;0.5&quot;);</span>
-<span class="doccomment">/// assert_eq! (divide_to_string(2, 4, 2, true).unwrap(), &quot;0.50&quot;);</span>
-<span class="doccomment">/// assert_eq! (divide_to_string(5, 7, 16, false).unwrap(), &quot;0.7142857142857142&quot;);</span>
-<span class="doccomment">/// assert_eq! (divide_to_string(1, 3, 3, false).unwrap(), &quot;0.333&quot;);</span>
-<span class="doccomment">/// assert_eq! (divide_to_string(1, 3, 3, true).unwrap(), &quot;0.333&quot;);</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// [`String`]: https://doc.rust-lang.org/std/string/struct.String.html</span>
-<span class="doccomment">/// [`divide_integral`]: ./fn.divide_integral.html</span>
-<span class="doccomment">/// [`divide_rem`]: ./fn.divide_rem.html</span>
-<span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">divide_to_string</span><span class="op">&lt;</span><span class="ident">I</span><span class="op">&gt;</span>(
-    <span class="ident">dividend</span>: <span class="ident">I</span>,
-    <span class="ident">divisor</span>: <span class="ident">I</span>,
-    <span class="ident">precision</span>: <span class="ident">usize</span>,
-    <span class="ident">trail_zeroes</span>: <span class="ident">bool</span>,
-) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">String</span>, <span class="ident">DivisionError</span><span class="op">&gt;</span>
-<span class="kw">where</span>
-    <span class="ident">I</span>: <span class="ident">Clone</span> <span class="op">+</span> <span class="ident">GenericInteger</span>,
+<span class="doccomment">/// Divide a fraction into a [`String`]
+///
+/// WARNING: Negative numbers as arguments are not supported.
+///
+///  - Makes only one allocation for the resulting string
+///  - Does not round the last digit
+///
+/// Calculates the resulting string length first, allocates it,
+/// then makes the division and puts the result into the preallocated
+/// string.
+///
+/// # Examples
+///
+/// ```
+/// use fraction::division::divide_to_string;
+///
+/// assert_eq! (divide_to_string(2, 4, 2, false).unwrap(), &quot;0.5&quot;);
+/// assert_eq! (divide_to_string(2, 4, 2, true).unwrap(), &quot;0.50&quot;);
+/// assert_eq! (divide_to_string(5, 7, 16, false).unwrap(), &quot;0.7142857142857142&quot;);
+/// assert_eq! (divide_to_string(1, 3, 3, false).unwrap(), &quot;0.333&quot;);
+/// assert_eq! (divide_to_string(1, 3, 3, true).unwrap(), &quot;0.333&quot;);
+/// ```
+///
+/// [`String`]: https://doc.rust-lang.org/std/string/struct.String.html
+/// [`divide_integral`]: ./fn.divide_integral.html
+/// [`divide_rem`]: ./fn.divide_rem.html
+</span><span class="attribute">#[inline]
+</span><span class="kw">pub fn </span>divide_to_string&lt;I&gt;(
+    dividend: I,
+    divisor: I,
+    precision: usize,
+    trail_zeroes: bool,
+) -&gt; <span class="prelude-ty">Result</span>&lt;String, DivisionError&gt;
+<span class="kw">where
+    </span>I: Clone + GenericInteger,
 {
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">result</span> <span class="op">=</span> <span class="ident">String::with_capacity</span>(<span class="ident">division_result_max_char_length</span>(<span class="kw-2">&amp;</span><span class="ident">dividend</span>, <span class="ident">precision</span>));
+    <span class="kw">let </span><span class="kw-2">mut </span>result = String::with_capacity(division_result_max_char_length(<span class="kw-2">&amp;</span>dividend, precision));
 
-    <span class="ident">divide_to_writeable</span>(<span class="kw-2">&amp;mut</span> <span class="ident">result</span>, <span class="ident">dividend</span>, <span class="ident">divisor</span>, <span class="ident">precision</span>, <span class="ident">trail_zeroes</span>)<span class="question-mark">?</span>;
+    divide_to_writeable(<span class="kw-2">&amp;mut </span>result, dividend, divisor, precision, trail_zeroes)<span class="question-mark">?</span>;
 
-    <span class="prelude-val">Ok</span>(<span class="ident">result</span>)
+    <span class="prelude-val">Ok</span>(result)
 }
 
-<span class="doccomment">/// Divide a fraction into a [`Vec&lt;u8&gt;`] of ASCII(utf8) chars</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// WARNING: Negative numbers as arguments are not supported.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">///  - Makes only one allocation for the resulting vector</span>
-<span class="doccomment">///  - Does not round the last digit</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Calculates the resulting vector length first, allocates it,</span>
-<span class="doccomment">/// then makes the division and puts the result into the preallocated</span>
-<span class="doccomment">/// vector.</span>
-<span class="doccomment">/// Uses [`divide_integral`] and [`divide_rem`] functions internally.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// # Examples</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">/// use fraction::division::divide_to_ascii_vec;</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// assert_eq! (divide_to_ascii_vec(2, 4, 2, false).unwrap(), vec![48, 46, 53]);  // &quot;0.5&quot; in ascii</span>
-<span class="doccomment">/// assert_eq! (divide_to_ascii_vec(2, 4, 2, true).unwrap(), vec![48, 46, 53, 48]);  // &quot;0.50&quot; in ascii</span>
-<span class="doccomment">/// assert_eq! (divide_to_ascii_vec(5, 7, 16, false).unwrap(), vec![48, 46, 55, 49, 52, 50, 56, 53, 55, 49, 52, 50, 56, 53, 55, 49, 52, 50]);  // &quot;0.7142857142857142&quot; in ascii</span>
-<span class="doccomment">/// assert_eq! (divide_to_ascii_vec(1, 3, 3, false).unwrap(), vec![48, 46, 51, 51, 51]);  // &quot;0.333&quot; in ascii</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// [`Vec&lt;u8&gt;`]: https://doc.rust-lang.org/std/vec/struct.Vec.html</span>
-<span class="doccomment">/// [`divide_integral`]: ./fn.divide_integral.html</span>
-<span class="doccomment">/// [`divide_rem`]: ./fn.divide_rem.html</span>
-<span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">divide_to_ascii_vec</span><span class="op">&lt;</span><span class="ident">I</span><span class="op">&gt;</span>(
-    <span class="ident">dividend</span>: <span class="ident">I</span>,
-    <span class="ident">divisor</span>: <span class="ident">I</span>,
-    <span class="ident">precision</span>: <span class="ident">usize</span>,
-    <span class="ident">trail_zeroes</span>: <span class="ident">bool</span>,
-) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>, <span class="ident">DivisionError</span><span class="op">&gt;</span>
-<span class="kw">where</span>
-    <span class="ident">I</span>: <span class="ident">Clone</span> <span class="op">+</span> <span class="ident">GenericInteger</span>,
+<span class="doccomment">/// Divide a fraction into a [`Vec&lt;u8&gt;`] of ASCII(utf8) chars
+///
+/// WARNING: Negative numbers as arguments are not supported.
+///
+///  - Makes only one allocation for the resulting vector
+///  - Does not round the last digit
+///
+/// Calculates the resulting vector length first, allocates it,
+/// then makes the division and puts the result into the preallocated
+/// vector.
+/// Uses [`divide_integral`] and [`divide_rem`] functions internally.
+///
+/// # Examples
+///
+/// ```
+/// use fraction::division::divide_to_ascii_vec;
+///
+/// assert_eq! (divide_to_ascii_vec(2, 4, 2, false).unwrap(), vec![48, 46, 53]);  // &quot;0.5&quot; in ascii
+/// assert_eq! (divide_to_ascii_vec(2, 4, 2, true).unwrap(), vec![48, 46, 53, 48]);  // &quot;0.50&quot; in ascii
+/// assert_eq! (divide_to_ascii_vec(5, 7, 16, false).unwrap(), vec![48, 46, 55, 49, 52, 50, 56, 53, 55, 49, 52, 50, 56, 53, 55, 49, 52, 50]);  // &quot;0.7142857142857142&quot; in ascii
+/// assert_eq! (divide_to_ascii_vec(1, 3, 3, false).unwrap(), vec![48, 46, 51, 51, 51]);  // &quot;0.333&quot; in ascii
+/// ```
+///
+/// [`Vec&lt;u8&gt;`]: https://doc.rust-lang.org/std/vec/struct.Vec.html
+/// [`divide_integral`]: ./fn.divide_integral.html
+/// [`divide_rem`]: ./fn.divide_rem.html
+</span><span class="attribute">#[inline]
+</span><span class="kw">pub fn </span>divide_to_ascii_vec&lt;I&gt;(
+    dividend: I,
+    divisor: I,
+    precision: usize,
+    trail_zeroes: bool,
+) -&gt; <span class="prelude-ty">Result</span>&lt;Vec&lt;u8&gt;, DivisionError&gt;
+<span class="kw">where
+    </span>I: Clone + GenericInteger,
 {
-    <span class="kw">const</span> <span class="ident">ZERO</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">48u8</span>;
-    <span class="kw">const</span> <span class="ident">DOT</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">46u8</span>;
+    <span class="kw">const </span>ZERO: u8 = <span class="number">48u8</span>;
+    <span class="kw">const </span>DOT: u8 = <span class="number">46u8</span>;
 
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">result</span> <span class="op">=</span> <span class="ident">Vec::with_capacity</span>(<span class="ident">division_result_max_char_length</span>(<span class="kw-2">&amp;</span><span class="ident">dividend</span>, <span class="ident">precision</span>));
+    <span class="kw">let </span><span class="kw-2">mut </span>result = Vec::with_capacity(division_result_max_char_length(<span class="kw-2">&amp;</span>dividend, precision));
 
-    <span class="ident">divide_to_callback</span>(<span class="ident">dividend</span>, <span class="ident">divisor</span>, <span class="ident">precision</span>, <span class="ident">trail_zeroes</span>, <span class="op">|</span><span class="ident">digit</span><span class="op">|</span> {
-        <span class="kw">if</span> <span class="ident">digit</span> <span class="op">==</span> <span class="number">10u8</span> {
-            <span class="ident">result</span>.<span class="ident">push</span>(<span class="ident">DOT</span>);
-        } <span class="kw">else</span> {
-            <span class="ident">result</span>.<span class="ident">push</span>(<span class="ident">ZERO</span> <span class="op">+</span> <span class="ident">digit</span>);
+    divide_to_callback(dividend, divisor, precision, trail_zeroes, |digit| {
+        <span class="kw">if </span>digit == <span class="number">10u8 </span>{
+            result.push(DOT);
+        } <span class="kw">else </span>{
+            result.push(ZERO + digit);
         }
         <span class="prelude-val">Ok</span>(<span class="bool-val">true</span>)
     })<span class="question-mark">?</span>;
 
-    <span class="prelude-val">Ok</span>(<span class="ident">result</span>)
+    <span class="prelude-val">Ok</span>(result)
 }
 
-<span class="doccomment">/// Divide a fraction into a writeable target implementing [`std::fmt::Write`]  </span>
-<span class="doccomment">/// Returns the remainder of the division</span>
-<span class="doccomment">///</span>
-<span class="doccomment">///  - No allocations</span>
-<span class="doccomment">///  - Does not round the last digit</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Makes the division and puts the result into the formatter.</span>
-<span class="doccomment">/// Uses [`divide_integral`] and [`divide_rem`] functions internally.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// WARNING: Negative numbers as arguments are not supported.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// # Examples</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">/// use fraction::division::{ divide_to_writeable, division_result_max_char_length };</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// let num = 7;</span>
-<span class="doccomment">/// let denom = 4;</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// let mut string = String::with_capacity(division_result_max_char_length(&amp;num, 2));</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// divide_to_writeable(&amp;mut string, num, denom, 2, false).ok();</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// assert_eq!(string, &quot;1.75&quot;);</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">/// use fraction::division::divide_to_writeable;</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// use std::fmt;</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// struct Foo(i32, i32);</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// impl fmt::Display for Foo {</span>
-<span class="doccomment">///     fn fmt(&amp;self, formatter: &amp;mut fmt::Formatter) -&gt; fmt::Result {</span>
-<span class="doccomment">///         let precision = formatter.precision().unwrap_or(2);</span>
-<span class="doccomment">///         match divide_to_writeable(formatter, self.0, self.1, precision, false) {</span>
-<span class="doccomment">///             Err(_) =&gt; Err(fmt::Error),</span>
-<span class="doccomment">///             _ =&gt; Ok(())</span>
-<span class="doccomment">///         }</span>
-<span class="doccomment">///     }</span>
-<span class="doccomment">/// }</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// assert_eq! (format!(&quot;{}&quot;, Foo(1, 2)), &quot;0.5&quot;);</span>
-<span class="doccomment">/// assert_eq! (format!(&quot;{:.3}&quot;, Foo(1, 3)), &quot;0.333&quot;);</span>
-<span class="doccomment">/// assert_eq! (format!(&quot;{:.16}&quot;, Foo(5, 7)), &quot;0.7142857142857142&quot;);</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// [`std::fmt::Write`]: https://doc.rust-lang.org/std/fmt/trait.Write.html</span>
-<span class="doccomment">/// [`divide_integral`]: ./fn.divide_integral.html</span>
-<span class="doccomment">/// [`divide_rem`]: ./fn.divide_rem.html</span>
-<span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">divide_to_writeable</span><span class="op">&lt;</span><span class="ident">I</span><span class="op">&gt;</span>(
-    <span class="ident">writeable</span>: <span class="kw-2">&amp;mut</span> <span class="ident">dyn</span> <span class="ident">Write</span>,
-    <span class="ident">dividend</span>: <span class="ident">I</span>,
-    <span class="ident">divisor</span>: <span class="ident">I</span>,
-    <span class="ident">precision</span>: <span class="ident">usize</span>,
-    <span class="ident">trail_zeroes</span>: <span class="ident">bool</span>,
-) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">I</span>, <span class="ident">DivisionError</span><span class="op">&gt;</span>
-<span class="kw">where</span>
-    <span class="ident">I</span>: <span class="ident">Clone</span> <span class="op">+</span> <span class="ident">GenericInteger</span>,
+<span class="doccomment">/// Divide a fraction into a writeable target implementing [`std::fmt::Write`]  
+/// Returns the remainder of the division
+///
+///  - No allocations
+///  - Does not round the last digit
+///
+/// Makes the division and puts the result into the formatter.
+/// Uses [`divide_integral`] and [`divide_rem`] functions internally.
+///
+/// WARNING: Negative numbers as arguments are not supported.
+///
+/// # Examples
+///
+/// ```
+/// use fraction::division::{ divide_to_writeable, division_result_max_char_length };
+///
+/// let num = 7;
+/// let denom = 4;
+///
+/// let mut string = String::with_capacity(division_result_max_char_length(&amp;num, 2));
+///
+/// divide_to_writeable(&amp;mut string, num, denom, 2, false).ok();
+///
+/// assert_eq!(string, &quot;1.75&quot;);
+/// ```
+///
+/// ```
+/// use fraction::division::divide_to_writeable;
+///
+/// use std::fmt;
+///
+/// struct Foo(i32, i32);
+///
+/// impl fmt::Display for Foo {
+///     fn fmt(&amp;self, formatter: &amp;mut fmt::Formatter) -&gt; fmt::Result {
+///         let precision = formatter.precision().unwrap_or(2);
+///         match divide_to_writeable(formatter, self.0, self.1, precision, false) {
+///             Err(_) =&gt; Err(fmt::Error),
+///             _ =&gt; Ok(())
+///         }
+///     }
+/// }
+///
+/// assert_eq! (format!(&quot;{}&quot;, Foo(1, 2)), &quot;0.5&quot;);
+/// assert_eq! (format!(&quot;{:.3}&quot;, Foo(1, 3)), &quot;0.333&quot;);
+/// assert_eq! (format!(&quot;{:.16}&quot;, Foo(5, 7)), &quot;0.7142857142857142&quot;);
+/// ```
+///
+/// [`std::fmt::Write`]: https://doc.rust-lang.org/std/fmt/trait.Write.html
+/// [`divide_integral`]: ./fn.divide_integral.html
+/// [`divide_rem`]: ./fn.divide_rem.html
+</span><span class="attribute">#[inline]
+</span><span class="kw">pub fn </span>divide_to_writeable&lt;I&gt;(
+    writeable: <span class="kw-2">&amp;mut </span><span class="kw">dyn </span>Write,
+    dividend: I,
+    divisor: I,
+    precision: usize,
+    trail_zeroes: bool,
+) -&gt; <span class="prelude-ty">Result</span>&lt;I, DivisionError&gt;
+<span class="kw">where
+    </span>I: Clone + GenericInteger,
 {
-    <span class="ident">divide_to_callback</span>(<span class="ident">dividend</span>, <span class="ident">divisor</span>, <span class="ident">precision</span>, <span class="ident">trail_zeroes</span>, <span class="op">|</span><span class="ident">digit</span><span class="op">|</span> {
-        <span class="ident">write_digit</span>(<span class="ident">writeable</span>, <span class="ident">digit</span>)
+    divide_to_callback(dividend, divisor, precision, trail_zeroes, |digit| {
+        write_digit(writeable, digit)
     })
 }
 
-<span class="doccomment">/// Calculate the division result and pass every character into the callback  </span>
-<span class="doccomment">/// Returns the remainder of the division</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// - Makes no allocations</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Uses [`divide_integral`] and [`divide_rem`] functions internally.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// WARNING: Negative numbers as arguments are not supported.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// # Callback</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Callback receives every digit of the result as a u8 value.</span>
-<span class="doccomment">/// The floating point character (dot) is passed to the callback as `10u8`.</span>
-<span class="doccomment">/// If the callback returns `Ok(true)`, the function keeps on calculation</span>
-<span class="doccomment">/// If the callback returns `Ok(false)`, the function stops calculation and returns the remainder</span>
-<span class="doccomment">/// If the callback returns `Err(_)` the calculation will be stopped and the error will propagate as the result value</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// # Examples</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">/// use fraction::division::divide_to_callback;</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// let mut result = Vec::new();</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// // calculate 7/4, which is 1.75</span>
-<span class="doccomment">/// divide_to_callback(7, 4, 2, false, |d| { result.push(d as i32); Ok(true) }).ok();</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// assert_eq!(&amp;result, &amp;[1, 10, 7, 5]);</span>
-<span class="doccomment">/// ```</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">divide_to_callback</span><span class="op">&lt;</span><span class="ident">I</span>, <span class="ident">C</span><span class="op">&gt;</span>(
-    <span class="ident">dividend</span>: <span class="ident">I</span>,
-    <span class="ident">divisor</span>: <span class="ident">I</span>,
-    <span class="kw-2">mut</span> <span class="ident">precision</span>: <span class="ident">usize</span>,
-    <span class="ident">trail_zeroes</span>: <span class="ident">bool</span>,
-    <span class="kw-2">mut</span> <span class="ident">callback</span>: <span class="ident">C</span>,
-) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">I</span>, <span class="ident">DivisionError</span><span class="op">&gt;</span>
-<span class="kw">where</span>
-    <span class="ident">C</span>: <span class="ident">FnMut</span>(<span class="ident">u8</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">bool</span>, <span class="ident">DivisionError</span><span class="op">&gt;</span>,
-    <span class="ident">I</span>: <span class="ident">Clone</span> <span class="op">+</span> <span class="ident">GenericInteger</span>,
+<span class="doccomment">/// Calculate the division result and pass every character into the callback  
+/// Returns the remainder of the division
+///
+/// - Makes no allocations
+///
+/// Uses [`divide_integral`] and [`divide_rem`] functions internally.
+///
+/// WARNING: Negative numbers as arguments are not supported.
+///
+/// # Callback
+///
+/// Callback receives every digit of the result as a u8 value.
+/// The floating point character (dot) is passed to the callback as `10u8`.
+/// If the callback returns `Ok(true)`, the function keeps on calculation
+/// If the callback returns `Ok(false)`, the function stops calculation and returns the remainder
+/// If the callback returns `Err(_)` the calculation will be stopped and the error will propagate as the result value
+///
+/// # Examples
+///
+/// ```
+/// use fraction::division::divide_to_callback;
+///
+/// let mut result = Vec::new();
+///
+/// // calculate 7/4, which is 1.75
+/// divide_to_callback(7, 4, 2, false, |d| { result.push(d as i32); Ok(true) }).ok();
+///
+/// assert_eq!(&amp;result, &amp;[1, 10, 7, 5]);
+/// ```
+</span><span class="kw">pub fn </span>divide_to_callback&lt;I, C&gt;(
+    dividend: I,
+    divisor: I,
+    <span class="kw-2">mut </span>precision: usize,
+    trail_zeroes: bool,
+    <span class="kw-2">mut </span>callback: C,
+) -&gt; <span class="prelude-ty">Result</span>&lt;I, DivisionError&gt;
+<span class="kw">where
+    </span>C: FnMut(u8) -&gt; <span class="prelude-ty">Result</span>&lt;bool, DivisionError&gt;,
+    I: Clone + GenericInteger,
 {
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">keep_going</span> <span class="op">=</span> <span class="bool-val">true</span>;
+    <span class="kw">let </span><span class="kw-2">mut </span>keep_going = <span class="bool-val">true</span>;
 
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">div_state</span> <span class="op">=</span> <span class="ident">divide_integral</span>(<span class="ident">dividend</span>, <span class="ident">divisor</span>, <span class="op">|</span><span class="ident">digit</span>: <span class="ident">u8</span><span class="op">|</span> <span class="kw">match</span> <span class="ident">callback</span>(<span class="ident">digit</span>) {
-        <span class="ident">result</span> @ <span class="prelude-val">Ok</span>(<span class="bool-val">false</span>) =&gt; {
-            <span class="ident">keep_going</span> <span class="op">=</span> <span class="bool-val">false</span>;
-            <span class="ident">result</span>
+    <span class="kw">let </span><span class="kw-2">mut </span>div_state = divide_integral(dividend, divisor, |digit: u8| <span class="kw">match </span>callback(digit) {
+        result @ <span class="prelude-val">Ok</span>(<span class="bool-val">false</span>) =&gt; {
+            keep_going = <span class="bool-val">false</span>;
+            result
         }
-        <span class="ident">result</span> =&gt; <span class="ident">result</span>,
+        result =&gt; result,
     })<span class="question-mark">?</span>;
 
-    <span class="kw">if</span> <span class="op">!</span><span class="ident">keep_going</span> {
-        <span class="kw">return</span> <span class="prelude-val">Ok</span>(<span class="ident">div_state</span>.<span class="ident">remainder</span>);
+    <span class="kw">if </span>!keep_going {
+        <span class="kw">return </span><span class="prelude-val">Ok</span>(div_state.remainder);
     }
 
-    <span class="kw">if</span> <span class="ident">precision</span> <span class="op">&gt;</span> <span class="number">0</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">dot</span> <span class="op">=</span> <span class="bool-val">false</span>;
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">trailing_zeroes</span> <span class="op">=</span> <span class="number">0</span>;
+    <span class="kw">if </span>precision &gt; <span class="number">0 </span>{
+        <span class="kw">let </span><span class="kw-2">mut </span>dot = <span class="bool-val">false</span>;
+        <span class="kw">let </span><span class="kw-2">mut </span>trailing_zeroes = <span class="number">0</span>;
 
-        <span class="kw">if</span> <span class="op">!</span><span class="ident">div_state</span>.<span class="ident">remainder</span>.<span class="ident">is_zero</span>() {
-            <span class="ident">div_state</span> <span class="op">=</span> <span class="ident">divide_rem</span>(
-                <span class="ident">div_state</span>.<span class="ident">remainder</span>,
-                <span class="ident">div_state</span>.<span class="ident">divisor</span>,
-                <span class="op">|</span><span class="ident">state</span>, <span class="ident">digit</span>: <span class="ident">u8</span><span class="op">|</span> {
-                    <span class="ident">precision</span> <span class="op">-</span><span class="op">=</span> <span class="number">1</span>;
+        <span class="kw">if </span>!div_state.remainder.is_zero() {
+            div_state = divide_rem(
+                div_state.remainder,
+                div_state.divisor,
+                |state, digit: u8| {
+                    precision -= <span class="number">1</span>;
 
-                    <span class="kw">if</span> <span class="ident">digit</span> <span class="op">==</span> <span class="number">0</span> {
-                        <span class="ident">trailing_zeroes</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
-                    } <span class="kw">else</span> {
-                        <span class="kw">if</span> <span class="op">!</span><span class="ident">dot</span> {
-                            <span class="ident">dot</span> <span class="op">=</span> <span class="bool-val">true</span>;
+                    <span class="kw">if </span>digit == <span class="number">0 </span>{
+                        trailing_zeroes += <span class="number">1</span>;
+                    } <span class="kw">else </span>{
+                        <span class="kw">if </span>!dot {
+                            dot = <span class="bool-val">true</span>;
 
-                            <span class="kw">match</span> <span class="ident">callback</span>(<span class="number">10u8</span>) {
-                                <span class="ident">result</span> @ <span class="prelude-val">Ok</span>(<span class="bool-val">false</span>) =&gt; {
-                                    <span class="ident">keep_going</span> <span class="op">=</span> <span class="bool-val">false</span>;
-                                    <span class="ident">result</span>
+                            <span class="kw">match </span>callback(<span class="number">10u8</span>) {
+                                result @ <span class="prelude-val">Ok</span>(<span class="bool-val">false</span>) =&gt; {
+                                    keep_going = <span class="bool-val">false</span>;
+                                    result
                                 }
-                                <span class="ident">result</span> =&gt; <span class="ident">result</span>,
+                                result =&gt; result,
                             }<span class="question-mark">?</span>;
 
-                            <span class="kw">if</span> <span class="op">!</span><span class="ident">keep_going</span> {
-                                <span class="kw">return</span> <span class="prelude-val">Ok</span>(<span class="prelude-val">Err</span>(<span class="ident">state</span>));
+                            <span class="kw">if </span>!keep_going {
+                                <span class="kw">return </span><span class="prelude-val">Ok</span>(<span class="prelude-val">Err</span>(state));
                             }
                         }
 
-                        <span class="kw">while</span> <span class="ident">trailing_zeroes</span> <span class="op">&gt;</span> <span class="number">0</span> {
-                            <span class="ident">trailing_zeroes</span> <span class="op">-</span><span class="op">=</span> <span class="number">1</span>;
+                        <span class="kw">while </span>trailing_zeroes &gt; <span class="number">0 </span>{
+                            trailing_zeroes -= <span class="number">1</span>;
 
-                            <span class="kw">match</span> <span class="ident">callback</span>(<span class="number">0u8</span>) {
-                                <span class="ident">result</span> @ <span class="prelude-val">Ok</span>(<span class="bool-val">false</span>) =&gt; {
-                                    <span class="ident">keep_going</span> <span class="op">=</span> <span class="bool-val">false</span>;
-                                    <span class="ident">result</span>
+                            <span class="kw">match </span>callback(<span class="number">0u8</span>) {
+                                result @ <span class="prelude-val">Ok</span>(<span class="bool-val">false</span>) =&gt; {
+                                    keep_going = <span class="bool-val">false</span>;
+                                    result
                                 }
-                                <span class="ident">result</span> =&gt; <span class="ident">result</span>,
+                                result =&gt; result,
                             }<span class="question-mark">?</span>;
 
-                            <span class="kw">if</span> <span class="op">!</span><span class="ident">keep_going</span> {
-                                <span class="kw">return</span> <span class="prelude-val">Ok</span>(<span class="prelude-val">Err</span>(<span class="ident">state</span>));
+                            <span class="kw">if </span>!keep_going {
+                                <span class="kw">return </span><span class="prelude-val">Ok</span>(<span class="prelude-val">Err</span>(state));
                             }
                         }
 
-                        <span class="kw">match</span> <span class="ident">callback</span>(<span class="ident">digit</span>) {
-                            <span class="ident">result</span> @ <span class="prelude-val">Ok</span>(<span class="bool-val">false</span>) =&gt; {
-                                <span class="ident">keep_going</span> <span class="op">=</span> <span class="bool-val">false</span>;
-                                <span class="ident">result</span>
+                        <span class="kw">match </span>callback(digit) {
+                            result @ <span class="prelude-val">Ok</span>(<span class="bool-val">false</span>) =&gt; {
+                                keep_going = <span class="bool-val">false</span>;
+                                result
                             }
-                            <span class="ident">result</span> =&gt; <span class="ident">result</span>,
+                            result =&gt; result,
                         }<span class="question-mark">?</span>;
 
-                        <span class="kw">if</span> <span class="op">!</span><span class="ident">keep_going</span> {
-                            <span class="kw">return</span> <span class="prelude-val">Ok</span>(<span class="prelude-val">Err</span>(<span class="ident">state</span>));
+                        <span class="kw">if </span>!keep_going {
+                            <span class="kw">return </span><span class="prelude-val">Ok</span>(<span class="prelude-val">Err</span>(state));
                         }
                     }
 
-                    <span class="kw">if</span> <span class="ident">precision</span> <span class="op">&gt;</span> <span class="number">0</span> {
-                        <span class="prelude-val">Ok</span>(<span class="prelude-val">Ok</span>(<span class="ident">state</span>))
-                    } <span class="kw">else</span> {
-                        <span class="prelude-val">Ok</span>(<span class="prelude-val">Err</span>(<span class="ident">state</span>))
+                    <span class="kw">if </span>precision &gt; <span class="number">0 </span>{
+                        <span class="prelude-val">Ok</span>(<span class="prelude-val">Ok</span>(state))
+                    } <span class="kw">else </span>{
+                        <span class="prelude-val">Ok</span>(<span class="prelude-val">Err</span>(state))
                     }
                 },
             )<span class="question-mark">?</span>;
         }
 
-        <span class="kw">if</span> <span class="ident">keep_going</span> <span class="op">&amp;&amp;</span> <span class="ident">trail_zeroes</span> {
-            <span class="kw">if</span> <span class="op">!</span><span class="ident">dot</span> {
-                <span class="kw">match</span> <span class="ident">callback</span>(<span class="number">10u8</span>) {
-                    <span class="ident">result</span> @ <span class="prelude-val">Ok</span>(<span class="bool-val">false</span>) =&gt; {
-                        <span class="ident">keep_going</span> <span class="op">=</span> <span class="bool-val">false</span>;
-                        <span class="ident">result</span>
+        <span class="kw">if </span>keep_going &amp;&amp; trail_zeroes {
+            <span class="kw">if </span>!dot {
+                <span class="kw">match </span>callback(<span class="number">10u8</span>) {
+                    result @ <span class="prelude-val">Ok</span>(<span class="bool-val">false</span>) =&gt; {
+                        keep_going = <span class="bool-val">false</span>;
+                        result
                     }
-                    <span class="ident">result</span> =&gt; <span class="ident">result</span>,
+                    result =&gt; result,
                 }<span class="question-mark">?</span>;
 
-                <span class="kw">if</span> <span class="op">!</span><span class="ident">keep_going</span> {
-                    <span class="kw">return</span> <span class="prelude-val">Ok</span>(<span class="ident">div_state</span>.<span class="ident">remainder</span>);
+                <span class="kw">if </span>!keep_going {
+                    <span class="kw">return </span><span class="prelude-val">Ok</span>(div_state.remainder);
                 }
             }
 
-            <span class="kw">while</span> <span class="ident">trailing_zeroes</span> <span class="op">&gt;</span> <span class="number">0</span> {
-                <span class="ident">trailing_zeroes</span> <span class="op">-</span><span class="op">=</span> <span class="number">1</span>;
+            <span class="kw">while </span>trailing_zeroes &gt; <span class="number">0 </span>{
+                trailing_zeroes -= <span class="number">1</span>;
 
-                <span class="kw">match</span> <span class="ident">callback</span>(<span class="number">0u8</span>) {
-                    <span class="ident">result</span> @ <span class="prelude-val">Ok</span>(<span class="bool-val">false</span>) =&gt; {
-                        <span class="ident">keep_going</span> <span class="op">=</span> <span class="bool-val">false</span>;
-                        <span class="ident">result</span>
+                <span class="kw">match </span>callback(<span class="number">0u8</span>) {
+                    result @ <span class="prelude-val">Ok</span>(<span class="bool-val">false</span>) =&gt; {
+                        keep_going = <span class="bool-val">false</span>;
+                        result
                     }
-                    <span class="ident">result</span> =&gt; <span class="ident">result</span>,
+                    result =&gt; result,
                 }<span class="question-mark">?</span>;
 
-                <span class="kw">if</span> <span class="op">!</span><span class="ident">keep_going</span> {
-                    <span class="kw">return</span> <span class="prelude-val">Ok</span>(<span class="ident">div_state</span>.<span class="ident">remainder</span>);
+                <span class="kw">if </span>!keep_going {
+                    <span class="kw">return </span><span class="prelude-val">Ok</span>(div_state.remainder);
                 }
             }
 
-            <span class="kw">while</span> <span class="ident">precision</span> <span class="op">&gt;</span> <span class="number">0</span> {
-                <span class="ident">precision</span> <span class="op">-</span><span class="op">=</span> <span class="number">1</span>;
+            <span class="kw">while </span>precision &gt; <span class="number">0 </span>{
+                precision -= <span class="number">1</span>;
 
-                <span class="kw">match</span> <span class="ident">callback</span>(<span class="number">0u8</span>) {
-                    <span class="ident">result</span> @ <span class="prelude-val">Ok</span>(<span class="bool-val">false</span>) =&gt; {
-                        <span class="ident">keep_going</span> <span class="op">=</span> <span class="bool-val">false</span>;
-                        <span class="ident">result</span>
+                <span class="kw">match </span>callback(<span class="number">0u8</span>) {
+                    result @ <span class="prelude-val">Ok</span>(<span class="bool-val">false</span>) =&gt; {
+                        keep_going = <span class="bool-val">false</span>;
+                        result
                     }
-                    <span class="ident">result</span> =&gt; <span class="ident">result</span>,
+                    result =&gt; result,
                 }<span class="question-mark">?</span>;
 
-                <span class="kw">if</span> <span class="op">!</span><span class="ident">keep_going</span> {
-                    <span class="kw">return</span> <span class="prelude-val">Ok</span>(<span class="ident">div_state</span>.<span class="ident">remainder</span>);
+                <span class="kw">if </span>!keep_going {
+                    <span class="kw">return </span><span class="prelude-val">Ok</span>(div_state.remainder);
                 }
             }
         }
     }
 
-    <span class="prelude-val">Ok</span>(<span class="ident">div_state</span>.<span class="ident">remainder</span>)
+    <span class="prelude-val">Ok</span>(div_state.remainder)
 }
 
-<span class="doccomment">/// A helper function to use in conjunction with [divide_to_callback]</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// divide_to_callback passes digits to its callback, this function can</span>
-<span class="doccomment">/// be used to write digits (and dots) into the writeable buffer after</span>
-<span class="doccomment">/// your callback performs its side-effects.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// # Examples</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">/// use fraction::division::{divide_to_callback, write_digit};</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// let mut result = String::new();</span>
-<span class="doccomment">/// let mut length = 0;</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// // calculate 7/4, which is 1.75</span>
-<span class="doccomment">/// divide_to_callback(7, 4, 2, false, |d| { length += 1; write_digit(&amp;mut result, d) }).ok();</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// assert_eq!(&amp;result, &quot;1.75&quot;);</span>
-<span class="doccomment">/// assert_eq!(length, result.len());</span>
-<span class="doccomment">/// ```</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">write_digit</span>(<span class="ident">writeable</span>: <span class="kw-2">&amp;mut</span> <span class="ident">dyn</span> <span class="ident">Write</span>, <span class="ident">digit</span>: <span class="ident">u8</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">bool</span>, <span class="ident">DivisionError</span><span class="op">&gt;</span> {
-    <span class="kw">if</span> <span class="ident">digit</span> <span class="op">==</span> <span class="number">10u8</span> {
-        <span class="kw">match</span> <span class="ident">writeable</span>.<span class="ident">write_char</span>(<span class="string">&#39;.&#39;</span>) {
+<span class="doccomment">/// A helper function to use in conjunction with [divide_to_callback]
+///
+/// divide_to_callback passes digits to its callback, this function can
+/// be used to write digits (and dots) into the writeable buffer after
+/// your callback performs its side-effects.
+///
+/// # Examples
+///
+/// ```
+/// use fraction::division::{divide_to_callback, write_digit};
+///
+/// let mut result = String::new();
+/// let mut length = 0;
+///
+/// // calculate 7/4, which is 1.75
+/// divide_to_callback(7, 4, 2, false, |d| { length += 1; write_digit(&amp;mut result, d) }).ok();
+///
+/// assert_eq!(&amp;result, &quot;1.75&quot;);
+/// assert_eq!(length, result.len());
+/// ```
+</span><span class="kw">pub fn </span>write_digit(writeable: <span class="kw-2">&amp;mut </span><span class="kw">dyn </span>Write, digit: u8) -&gt; <span class="prelude-ty">Result</span>&lt;bool, DivisionError&gt; {
+    <span class="kw">if </span>digit == <span class="number">10u8 </span>{
+        <span class="kw">match </span>writeable.write_char(<span class="string">&#39;.&#39;</span>) {
             <span class="prelude-val">Ok</span>(<span class="kw">_</span>) =&gt; <span class="prelude-val">Ok</span>(<span class="bool-val">true</span>),
-            <span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; <span class="prelude-val">Err</span>(<span class="ident">DivisionError::from</span>(<span class="ident">e</span>)),
+            <span class="prelude-val">Err</span>(e) =&gt; <span class="prelude-val">Err</span>(DivisionError::from(e)),
         }
-    } <span class="kw">else</span> {
-        <span class="kw">match</span> <span class="ident">writeable</span>.<span class="ident">write_fmt</span>(<span class="macro">format_args!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">digit</span>)) {
+    } <span class="kw">else </span>{
+        <span class="kw">match </span>writeable.write_fmt(<span class="macro">format_args!</span>(<span class="string">&quot;{}&quot;</span>, digit)) {
             <span class="prelude-val">Ok</span>(<span class="kw">_</span>) =&gt; <span class="prelude-val">Ok</span>(<span class="bool-val">true</span>),
-            <span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; <span class="prelude-val">Err</span>(<span class="ident">DivisionError::from</span>(<span class="ident">e</span>)),
+            <span class="prelude-val">Err</span>(e) =&gt; <span class="prelude-val">Err</span>(DivisionError::from(e)),
         }
     }
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
-<span class="kw">mod</span> <span class="ident">tests</span> {
-    <span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
-    <span class="kw">use</span> <span class="ident">error::DivisionError</span>;
-    <span class="kw">use</span> <span class="ident">num::Zero</span>;
+<span class="attribute">#[cfg(test)]
+</span><span class="kw">mod </span>tests {
+    <span class="kw">use super</span>::<span class="kw-2">*</span>;
+    <span class="kw">use </span>error::DivisionError;
+    <span class="kw">use </span>num::Zero;
 
-    <span class="comment">// mod divide_to_string_u8;</span>
+    <span class="comment">// mod divide_to_string_u8;
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;with-bigint&quot;</span>)]</span>
-    <span class="kw">use</span> <span class="ident">num</span>::{<span class="ident">bigint::BigUint</span>, <span class="ident">Num</span>};
+    </span><span class="attribute">#[cfg(feature = <span class="string">&quot;with-bigint&quot;</span>)]
+    </span><span class="kw">use </span>num::{bigint::BigUint, Num};
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">test_division</span>() {
-        <span class="kw">const</span> <span class="ident">PRECISION</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">64</span>;
-        <span class="kw">let</span> <span class="ident">data</span>: <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">u8</span>, <span class="ident">u8</span>, <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span>, <span class="ident">bool</span>)<span class="op">&gt;</span> <span class="op">=</span> <span class="macro">vec!</span>[
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>test_division() {
+        <span class="kw">const </span>PRECISION: usize = <span class="number">64</span>;
+        <span class="kw">let </span>data: Vec&lt;(u8, u8, <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str, bool)&gt; = <span class="macro">vec!</span>[
             (
                 <span class="number">1u8</span>,
                 <span class="number">255u8</span>,
@@ -2423,260 +2423,260 @@
             (<span class="number">77u8</span>, <span class="number">220u8</span>, <span class="string">&quot;0.35&quot;</span>, <span class="bool-val">true</span>),
         ];
 
-        <span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> <span class="ident">data</span>.<span class="ident">iter</span>() {
-            <span class="macro">assert_eq!</span>(<span class="ident">divide_to_string</span>(<span class="ident">i</span>.<span class="number">0</span>, <span class="ident">i</span>.<span class="number">1</span>, <span class="ident">PRECISION</span>, <span class="bool-val">false</span>).<span class="ident">unwrap</span>(), <span class="ident">i</span>.<span class="number">2</span>);
+        <span class="kw">for </span>i <span class="kw">in </span>data.iter() {
+            <span class="macro">assert_eq!</span>(divide_to_string(i.<span class="number">0</span>, i.<span class="number">1</span>, PRECISION, <span class="bool-val">false</span>).unwrap(), i.<span class="number">2</span>);
 
             {
-                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">string</span>: <span class="ident">String</span> <span class="op">=</span> <span class="ident">String::new</span>();
-                <span class="kw">let</span> <span class="ident">remainder</span> <span class="op">=</span>
-                    <span class="ident">divide_to_writeable</span>(<span class="kw-2">&amp;mut</span> <span class="ident">string</span>, <span class="ident">i</span>.<span class="number">0</span>, <span class="ident">i</span>.<span class="number">1</span>, <span class="ident">PRECISION</span>, <span class="bool-val">false</span>).<span class="ident">unwrap</span>();
+                <span class="kw">let </span><span class="kw-2">mut </span>string: String = String::new();
+                <span class="kw">let </span>remainder =
+                    divide_to_writeable(<span class="kw-2">&amp;mut </span>string, i.<span class="number">0</span>, i.<span class="number">1</span>, PRECISION, <span class="bool-val">false</span>).unwrap();
 
-                <span class="macro">assert_eq!</span>(<span class="ident">string</span>, <span class="ident">i</span>.<span class="number">2</span>);
-                <span class="macro">assert_eq!</span>(<span class="ident">remainder</span>.<span class="ident">is_zero</span>(), <span class="ident">i</span>.<span class="number">3</span>);
+                <span class="macro">assert_eq!</span>(string, i.<span class="number">2</span>);
+                <span class="macro">assert_eq!</span>(remainder.is_zero(), i.<span class="number">3</span>);
             }
         }
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;with-bigint&quot;</span>)]</span>
-        {
-            <span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> <span class="ident">data</span> {
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;with-bigint&quot;</span>)]
+        </span>{
+            <span class="kw">for </span>i <span class="kw">in </span>data {
                 <span class="macro">assert_eq!</span>(
-                    <span class="ident">divide_to_string</span>(<span class="ident">BigUint::from</span>(<span class="ident">i</span>.<span class="number">0</span>), <span class="ident">BigUint::from</span>(<span class="ident">i</span>.<span class="number">1</span>), <span class="ident">PRECISION</span>, <span class="bool-val">false</span>)
-                        .<span class="ident">unwrap</span>(),
-                    <span class="ident">i</span>.<span class="number">2</span>
-                );
+                    divide_to_string(BigUint::from(i.<span class="number">0</span>), BigUint::from(i.<span class="number">1</span>), PRECISION, <span class="bool-val">false</span>)
+                        .unwrap(),
+                    i.<span class="number">2
+                </span>);
             }
         }
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">test_divide_to_string</span>() {
-        <span class="macro">assert_eq!</span>(<span class="ident">divide_to_string</span>(<span class="number">0</span>, <span class="number">5</span>, <span class="number">5</span>, <span class="bool-val">false</span>).<span class="ident">unwrap</span>(), <span class="string">&quot;0&quot;</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">divide_to_string</span>(<span class="number">0</span>, <span class="number">5</span>, <span class="number">5</span>, <span class="bool-val">true</span>).<span class="ident">unwrap</span>(), <span class="string">&quot;0.00000&quot;</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">divide_to_string</span>(<span class="number">30</span>, <span class="number">2</span>, <span class="number">5</span>, <span class="bool-val">false</span>).<span class="ident">unwrap</span>(), <span class="string">&quot;15&quot;</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">divide_to_string</span>(<span class="number">30</span>, <span class="number">2</span>, <span class="number">5</span>, <span class="bool-val">true</span>).<span class="ident">unwrap</span>(), <span class="string">&quot;15.00000&quot;</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">divide_to_string</span>(<span class="number">2</span>, <span class="number">4</span>, <span class="number">2</span>, <span class="bool-val">false</span>).<span class="ident">unwrap</span>(), <span class="string">&quot;0.5&quot;</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">divide_to_string</span>(<span class="number">2</span>, <span class="number">4</span>, <span class="number">2</span>, <span class="bool-val">true</span>).<span class="ident">unwrap</span>(), <span class="string">&quot;0.50&quot;</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">divide_to_string</span>(<span class="number">255u8</span>, <span class="number">3u8</span>, <span class="number">5</span>, <span class="bool-val">false</span>).<span class="ident">unwrap</span>(), <span class="string">&quot;85&quot;</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">divide_to_string</span>(<span class="number">255u8</span>, <span class="number">3u8</span>, <span class="number">5</span>, <span class="bool-val">true</span>).<span class="ident">unwrap</span>(), <span class="string">&quot;85.00000&quot;</span>);
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>test_divide_to_string() {
+        <span class="macro">assert_eq!</span>(divide_to_string(<span class="number">0</span>, <span class="number">5</span>, <span class="number">5</span>, <span class="bool-val">false</span>).unwrap(), <span class="string">&quot;0&quot;</span>);
+        <span class="macro">assert_eq!</span>(divide_to_string(<span class="number">0</span>, <span class="number">5</span>, <span class="number">5</span>, <span class="bool-val">true</span>).unwrap(), <span class="string">&quot;0.00000&quot;</span>);
+        <span class="macro">assert_eq!</span>(divide_to_string(<span class="number">30</span>, <span class="number">2</span>, <span class="number">5</span>, <span class="bool-val">false</span>).unwrap(), <span class="string">&quot;15&quot;</span>);
+        <span class="macro">assert_eq!</span>(divide_to_string(<span class="number">30</span>, <span class="number">2</span>, <span class="number">5</span>, <span class="bool-val">true</span>).unwrap(), <span class="string">&quot;15.00000&quot;</span>);
+        <span class="macro">assert_eq!</span>(divide_to_string(<span class="number">2</span>, <span class="number">4</span>, <span class="number">2</span>, <span class="bool-val">false</span>).unwrap(), <span class="string">&quot;0.5&quot;</span>);
+        <span class="macro">assert_eq!</span>(divide_to_string(<span class="number">2</span>, <span class="number">4</span>, <span class="number">2</span>, <span class="bool-val">true</span>).unwrap(), <span class="string">&quot;0.50&quot;</span>);
+        <span class="macro">assert_eq!</span>(divide_to_string(<span class="number">255u8</span>, <span class="number">3u8</span>, <span class="number">5</span>, <span class="bool-val">false</span>).unwrap(), <span class="string">&quot;85&quot;</span>);
+        <span class="macro">assert_eq!</span>(divide_to_string(<span class="number">255u8</span>, <span class="number">3u8</span>, <span class="number">5</span>, <span class="bool-val">true</span>).unwrap(), <span class="string">&quot;85.00000&quot;</span>);
 
-        <span class="macro">assert_eq!</span>(<span class="ident">divide_to_string</span>(<span class="number">155u8</span>, <span class="number">253u8</span>, <span class="number">5</span>, <span class="bool-val">false</span>).<span class="ident">unwrap</span>(), <span class="string">&quot;0.61264&quot;</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">divide_to_string</span>(<span class="number">1u8</span>, <span class="number">2u8</span>, <span class="number">1</span>, <span class="bool-val">false</span>).<span class="ident">unwrap</span>(), <span class="string">&quot;0.5&quot;</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">divide_to_string</span>(<span class="number">1u8</span>, <span class="number">2u8</span>, <span class="number">1</span>, <span class="bool-val">true</span>).<span class="ident">unwrap</span>(), <span class="string">&quot;0.5&quot;</span>);
+        <span class="macro">assert_eq!</span>(divide_to_string(<span class="number">155u8</span>, <span class="number">253u8</span>, <span class="number">5</span>, <span class="bool-val">false</span>).unwrap(), <span class="string">&quot;0.61264&quot;</span>);
+        <span class="macro">assert_eq!</span>(divide_to_string(<span class="number">1u8</span>, <span class="number">2u8</span>, <span class="number">1</span>, <span class="bool-val">false</span>).unwrap(), <span class="string">&quot;0.5&quot;</span>);
+        <span class="macro">assert_eq!</span>(divide_to_string(<span class="number">1u8</span>, <span class="number">2u8</span>, <span class="number">1</span>, <span class="bool-val">true</span>).unwrap(), <span class="string">&quot;0.5&quot;</span>);
 
         <span class="macro">assert_eq!</span>(
-            <span class="ident">divide_to_string</span>(<span class="number">1</span>, <span class="number">3</span>, <span class="number">28</span>, <span class="bool-val">false</span>).<span class="ident">unwrap</span>(),
-            <span class="string">&quot;0.3333333333333333333333333333&quot;</span>
-        );
+            divide_to_string(<span class="number">1</span>, <span class="number">3</span>, <span class="number">28</span>, <span class="bool-val">false</span>).unwrap(),
+            <span class="string">&quot;0.3333333333333333333333333333&quot;
+        </span>);
         <span class="macro">assert_eq!</span>(
-            <span class="ident">divide_to_string</span>(<span class="number">1</span>, <span class="number">3</span>, <span class="number">28</span>, <span class="bool-val">true</span>).<span class="ident">unwrap</span>(),
-            <span class="string">&quot;0.3333333333333333333333333333&quot;</span>
-        );
-        <span class="macro">assert_eq!</span>(<span class="ident">divide_to_string</span>(<span class="number">806</span>, <span class="number">31</span>, <span class="number">0</span>, <span class="bool-val">false</span>).<span class="ident">unwrap</span>(), <span class="string">&quot;26&quot;</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">divide_to_string</span>(<span class="number">806</span>, <span class="number">31</span>, <span class="number">0</span>, <span class="bool-val">true</span>).<span class="ident">unwrap</span>(), <span class="string">&quot;26&quot;</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">divide_to_string</span>(<span class="number">807</span>, <span class="number">31</span>, <span class="number">4</span>, <span class="bool-val">false</span>).<span class="ident">unwrap</span>(), <span class="string">&quot;26.0322&quot;</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">divide_to_string</span>(<span class="number">807</span>, <span class="number">31</span>, <span class="number">4</span>, <span class="bool-val">true</span>).<span class="ident">unwrap</span>(), <span class="string">&quot;26.0322&quot;</span>);
+            divide_to_string(<span class="number">1</span>, <span class="number">3</span>, <span class="number">28</span>, <span class="bool-val">true</span>).unwrap(),
+            <span class="string">&quot;0.3333333333333333333333333333&quot;
+        </span>);
+        <span class="macro">assert_eq!</span>(divide_to_string(<span class="number">806</span>, <span class="number">31</span>, <span class="number">0</span>, <span class="bool-val">false</span>).unwrap(), <span class="string">&quot;26&quot;</span>);
+        <span class="macro">assert_eq!</span>(divide_to_string(<span class="number">806</span>, <span class="number">31</span>, <span class="number">0</span>, <span class="bool-val">true</span>).unwrap(), <span class="string">&quot;26&quot;</span>);
+        <span class="macro">assert_eq!</span>(divide_to_string(<span class="number">807</span>, <span class="number">31</span>, <span class="number">4</span>, <span class="bool-val">false</span>).unwrap(), <span class="string">&quot;26.0322&quot;</span>);
+        <span class="macro">assert_eq!</span>(divide_to_string(<span class="number">807</span>, <span class="number">31</span>, <span class="number">4</span>, <span class="bool-val">true</span>).unwrap(), <span class="string">&quot;26.0322&quot;</span>);
 
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Err</span>(<span class="ident">DivisionError::DivisionByZero</span>) <span class="op">=</span> <span class="ident">divide_to_string</span>(<span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="bool-val">false</span>) {
-        } <span class="kw">else</span> {
+        <span class="kw">if let </span><span class="prelude-val">Err</span>(DivisionError::DivisionByZero) = divide_to_string(<span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="bool-val">false</span>) {
+        } <span class="kw">else </span>{
             <span class="macro">assert!</span>(<span class="bool-val">false</span>);
         };
 
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Err</span>(<span class="ident">DivisionError::DivisionByZero</span>) <span class="op">=</span> <span class="ident">divide_to_string</span>(<span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="bool-val">true</span>) {
-        } <span class="kw">else</span> {
+        <span class="kw">if let </span><span class="prelude-val">Err</span>(DivisionError::DivisionByZero) = divide_to_string(<span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="bool-val">true</span>) {
+        } <span class="kw">else </span>{
             <span class="macro">assert!</span>(<span class="bool-val">false</span>);
         };
 
-        <span class="macro">assert_eq!</span>(<span class="ident">divide_to_string</span>(<span class="number">1</span>, <span class="number">10000</span>, <span class="number">2</span>, <span class="bool-val">false</span>).<span class="ident">unwrap</span>(), <span class="string">&quot;0&quot;</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">divide_to_string</span>(<span class="number">1</span>, <span class="number">10000</span>, <span class="number">2</span>, <span class="bool-val">true</span>).<span class="ident">unwrap</span>(), <span class="string">&quot;0.00&quot;</span>);
+        <span class="macro">assert_eq!</span>(divide_to_string(<span class="number">1</span>, <span class="number">10000</span>, <span class="number">2</span>, <span class="bool-val">false</span>).unwrap(), <span class="string">&quot;0&quot;</span>);
+        <span class="macro">assert_eq!</span>(divide_to_string(<span class="number">1</span>, <span class="number">10000</span>, <span class="number">2</span>, <span class="bool-val">true</span>).unwrap(), <span class="string">&quot;0.00&quot;</span>);
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;with-bigint&quot;</span>)]</span>
-        {
-            <span class="kw">let</span> <span class="ident">num</span> <span class="op">=</span> <span class="string">&quot;820123456789012345678901234567890123456789&quot;</span>;
-            <span class="kw">let</span> <span class="ident">den</span> <span class="op">=</span> <span class="string">&quot;420420420420240240420240420240420420420&quot;</span>;
-            <span class="kw">let</span> <span class="ident">result</span> <span class="op">=</span> <span class="string">&quot;1950.7222222204153880534352079149419688493160244330759069204925259490806291881834407646199555744655166719234903156227406500953778757619920899563294795746797267246703798051247915744867884912121330007705286911209791422213223230426822190127666529437572025264829201539629594175021000386486667365851813562015885600393107707737453721144405603009059457352854387023006301508907770762997683254372534811586343569328131455924964081595076622200116354403760742833073621862325616259444084808295834752749082040590201012701034118255745516514972270054835928011374231619434684843847682844123336846713100440285930668493675706096464476187809105398269815519780303174023949885603320678109566772031394249633001137109155600514761384776616827086908396960584246277151426685095767130738996420461009015758184659365258827537226581854494195009714400547427050697946126012192691851549545189173091941689299722345297086508711845865506663262915436874050594522308464492248968916100678819937355384703664061966410613989688966690413319849627099468906113991173042101218&quot;</span>;
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;with-bigint&quot;</span>)]
+        </span>{
+            <span class="kw">let </span>num = <span class="string">&quot;820123456789012345678901234567890123456789&quot;</span>;
+            <span class="kw">let </span>den = <span class="string">&quot;420420420420240240420240420240420420420&quot;</span>;
+            <span class="kw">let </span>result = <span class="string">&quot;1950.7222222204153880534352079149419688493160244330759069204925259490806291881834407646199555744655166719234903156227406500953778757619920899563294795746797267246703798051247915744867884912121330007705286911209791422213223230426822190127666529437572025264829201539629594175021000386486667365851813562015885600393107707737453721144405603009059457352854387023006301508907770762997683254372534811586343569328131455924964081595076622200116354403760742833073621862325616259444084808295834752749082040590201012701034118255745516514972270054835928011374231619434684843847682844123336846713100440285930668493675706096464476187809105398269815519780303174023949885603320678109566772031394249633001137109155600514761384776616827086908396960584246277151426685095767130738996420461009015758184659365258827537226581854494195009714400547427050697946126012192691851549545189173091941689299722345297086508711845865506663262915436874050594522308464492248968916100678819937355384703664061966410613989688966690413319849627099468906113991173042101218&quot;</span>;
 
-            <span class="kw">let</span> <span class="ident">asrt1</span> <span class="op">=</span> <span class="ident">divide_to_string</span>(
-                <span class="ident">BigUint::from_str_radix</span>(<span class="ident">num</span>, <span class="number">10</span>).<span class="ident">ok</span>().<span class="ident">unwrap</span>(),
-                <span class="ident">BigUint::from_str_radix</span>(<span class="ident">den</span>, <span class="number">10</span>).<span class="ident">ok</span>().<span class="ident">unwrap</span>(),
+            <span class="kw">let </span>asrt1 = divide_to_string(
+                BigUint::from_str_radix(num, <span class="number">10</span>).ok().unwrap(),
+                BigUint::from_str_radix(den, <span class="number">10</span>).ok().unwrap(),
                 <span class="number">1024</span>,
                 <span class="bool-val">false</span>,
             );
 
-            <span class="macro">assert_eq!</span>(<span class="kw-2">&amp;</span><span class="ident">asrt1</span>.<span class="ident">ok</span>().<span class="ident">unwrap</span>(), <span class="ident">result</span>);
+            <span class="macro">assert_eq!</span>(<span class="kw-2">&amp;</span>asrt1.ok().unwrap(), result);
 
-            <span class="kw">let</span> <span class="ident">asrt1</span> <span class="op">=</span> <span class="ident">divide_to_string</span>(
-                <span class="ident">BigUint::from_str_radix</span>(<span class="ident">num</span>, <span class="number">10</span>).<span class="ident">ok</span>().<span class="ident">unwrap</span>(),
-                <span class="ident">BigUint::from_str_radix</span>(<span class="ident">den</span>, <span class="number">10</span>).<span class="ident">ok</span>().<span class="ident">unwrap</span>(),
+            <span class="kw">let </span>asrt1 = divide_to_string(
+                BigUint::from_str_radix(num, <span class="number">10</span>).ok().unwrap(),
+                BigUint::from_str_radix(den, <span class="number">10</span>).ok().unwrap(),
                 <span class="number">1024</span>,
                 <span class="bool-val">true</span>,
             );
 
-            <span class="macro">assert_eq!</span>(<span class="kw-2">&amp;</span><span class="ident">asrt1</span>.<span class="ident">ok</span>().<span class="ident">unwrap</span>(), <span class="ident">result</span>);
+            <span class="macro">assert_eq!</span>(<span class="kw-2">&amp;</span>asrt1.ok().unwrap(), result);
         }
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">test_divide_to_ascii_vec</span>() {
-        <span class="macro">assert_eq!</span>(<span class="ident">divide_to_ascii_vec</span>(<span class="number">0</span>, <span class="number">5</span>, <span class="number">5</span>, <span class="bool-val">false</span>).<span class="ident">unwrap</span>(), <span class="macro">vec!</span>[<span class="number">48</span>]);
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>test_divide_to_ascii_vec() {
+        <span class="macro">assert_eq!</span>(divide_to_ascii_vec(<span class="number">0</span>, <span class="number">5</span>, <span class="number">5</span>, <span class="bool-val">false</span>).unwrap(), <span class="macro">vec!</span>[<span class="number">48</span>]);
         <span class="macro">assert_eq!</span>(
-            <span class="ident">divide_to_ascii_vec</span>(<span class="number">0</span>, <span class="number">5</span>, <span class="number">5</span>, <span class="bool-val">true</span>).<span class="ident">unwrap</span>(),
+            divide_to_ascii_vec(<span class="number">0</span>, <span class="number">5</span>, <span class="number">5</span>, <span class="bool-val">true</span>).unwrap(),
             <span class="macro">vec!</span>[<span class="number">48</span>, <span class="number">46</span>, <span class="number">48</span>, <span class="number">48</span>, <span class="number">48</span>, <span class="number">48</span>, <span class="number">48</span>]
         );
-        <span class="macro">assert_eq!</span>(<span class="ident">divide_to_ascii_vec</span>(<span class="number">30</span>, <span class="number">2</span>, <span class="number">5</span>, <span class="bool-val">false</span>).<span class="ident">unwrap</span>(), <span class="macro">vec!</span>[<span class="number">49</span>, <span class="number">53</span>]);
+        <span class="macro">assert_eq!</span>(divide_to_ascii_vec(<span class="number">30</span>, <span class="number">2</span>, <span class="number">5</span>, <span class="bool-val">false</span>).unwrap(), <span class="macro">vec!</span>[<span class="number">49</span>, <span class="number">53</span>]);
         <span class="macro">assert_eq!</span>(
-            <span class="ident">divide_to_ascii_vec</span>(<span class="number">2</span>, <span class="number">4</span>, <span class="number">2</span>, <span class="bool-val">false</span>).<span class="ident">unwrap</span>(),
+            divide_to_ascii_vec(<span class="number">2</span>, <span class="number">4</span>, <span class="number">2</span>, <span class="bool-val">false</span>).unwrap(),
             <span class="macro">vec!</span>[<span class="number">48</span>, <span class="number">46</span>, <span class="number">53</span>]
         );
         <span class="macro">assert_eq!</span>(
-            <span class="ident">divide_to_ascii_vec</span>(<span class="number">2</span>, <span class="number">4</span>, <span class="number">2</span>, <span class="bool-val">true</span>).<span class="ident">unwrap</span>(),
+            divide_to_ascii_vec(<span class="number">2</span>, <span class="number">4</span>, <span class="number">2</span>, <span class="bool-val">true</span>).unwrap(),
             <span class="macro">vec!</span>[<span class="number">48</span>, <span class="number">46</span>, <span class="number">53</span>, <span class="number">48</span>]
         );
         <span class="macro">assert_eq!</span>(
-            <span class="ident">divide_to_ascii_vec</span>(<span class="number">255u8</span>, <span class="number">3u8</span>, <span class="number">5</span>, <span class="bool-val">false</span>).<span class="ident">unwrap</span>(),
+            divide_to_ascii_vec(<span class="number">255u8</span>, <span class="number">3u8</span>, <span class="number">5</span>, <span class="bool-val">false</span>).unwrap(),
             <span class="macro">vec!</span>[<span class="number">56</span>, <span class="number">53</span>]
         );
         <span class="macro">assert_eq!</span>(
-            <span class="ident">divide_to_ascii_vec</span>(<span class="number">1000001u64</span>, <span class="number">10000u64</span>, <span class="number">3</span>, <span class="bool-val">false</span>).<span class="ident">unwrap</span>(),
+            divide_to_ascii_vec(<span class="number">1000001u64</span>, <span class="number">10000u64</span>, <span class="number">3</span>, <span class="bool-val">false</span>).unwrap(),
             <span class="macro">vec!</span>[<span class="number">49</span>, <span class="number">48</span>, <span class="number">48</span>]
         );
         <span class="macro">assert_eq!</span>(
-            <span class="ident">divide_to_ascii_vec</span>(<span class="number">1000001u64</span>, <span class="number">10000u64</span>, <span class="number">3</span>, <span class="bool-val">true</span>).<span class="ident">unwrap</span>(),
+            divide_to_ascii_vec(<span class="number">1000001u64</span>, <span class="number">10000u64</span>, <span class="number">3</span>, <span class="bool-val">true</span>).unwrap(),
             <span class="macro">vec!</span>[<span class="number">49</span>, <span class="number">48</span>, <span class="number">48</span>, <span class="number">46</span>, <span class="number">48</span>, <span class="number">48</span>, <span class="number">48</span>]
         );
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">test_divide_integral</span>() {
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>test_divide_integral() {
         {
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">r1</span>: [<span class="ident">u8</span>; <span class="number">1</span>] <span class="op">=</span> [<span class="number">0</span>; <span class="number">1</span>];
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">p1</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">0</span>;
+            <span class="kw">let </span><span class="kw-2">mut </span>r1: [u8; <span class="number">1</span>] = [<span class="number">0</span>; <span class="number">1</span>];
+            <span class="kw">let </span><span class="kw-2">mut </span>p1: usize = <span class="number">0</span>;
 
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">r2</span>: [<span class="ident">u8</span>; <span class="number">2</span>] <span class="op">=</span> [<span class="number">0</span>; <span class="number">2</span>];
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">p2</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">0</span>;
+            <span class="kw">let </span><span class="kw-2">mut </span>r2: [u8; <span class="number">2</span>] = [<span class="number">0</span>; <span class="number">2</span>];
+            <span class="kw">let </span><span class="kw-2">mut </span>p2: usize = <span class="number">0</span>;
 
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">r3</span>: [<span class="ident">u8</span>; <span class="number">3</span>] <span class="op">=</span> [<span class="number">0</span>; <span class="number">3</span>];
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">p3</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">0</span>;
+            <span class="kw">let </span><span class="kw-2">mut </span>r3: [u8; <span class="number">3</span>] = [<span class="number">0</span>; <span class="number">3</span>];
+            <span class="kw">let </span><span class="kw-2">mut </span>p3: usize = <span class="number">0</span>;
 
-            <span class="kw">let</span> <span class="ident">rest1</span> <span class="op">=</span> <span class="ident">divide_integral</span>(<span class="number">2</span>, <span class="number">4</span>, <span class="op">|</span><span class="ident">d</span><span class="op">|</span> {
-                <span class="ident">r1</span>[<span class="ident">p1</span>] <span class="op">=</span> <span class="ident">d</span>;
-                <span class="ident">p1</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
+            <span class="kw">let </span>rest1 = divide_integral(<span class="number">2</span>, <span class="number">4</span>, |d| {
+                r1[p1] = d;
+                p1 += <span class="number">1</span>;
                 <span class="prelude-val">Ok</span>(<span class="bool-val">true</span>)
             });
 
-            <span class="macro">assert_eq!</span>(<span class="ident">r1</span>, [<span class="number">0</span>]);
-            <span class="macro">assert_eq!</span>(<span class="ident">p1</span>, <span class="number">1</span>);
-            <span class="macro">assert_eq!</span>(<span class="ident">rest1</span>.<span class="ident">unwrap</span>(), <span class="ident">DivisionState::new</span>(<span class="number">2</span>, <span class="number">4</span>));
+            <span class="macro">assert_eq!</span>(r1, [<span class="number">0</span>]);
+            <span class="macro">assert_eq!</span>(p1, <span class="number">1</span>);
+            <span class="macro">assert_eq!</span>(rest1.unwrap(), DivisionState::new(<span class="number">2</span>, <span class="number">4</span>));
 
-            <span class="kw">let</span> <span class="ident">rest2</span> <span class="op">=</span> <span class="ident">divide_integral</span>(<span class="number">82</span>, <span class="number">3</span>, <span class="op">|</span><span class="ident">d</span><span class="op">|</span> {
-                <span class="ident">r2</span>[<span class="ident">p2</span>] <span class="op">=</span> <span class="ident">d</span>;
-                <span class="ident">p2</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
+            <span class="kw">let </span>rest2 = divide_integral(<span class="number">82</span>, <span class="number">3</span>, |d| {
+                r2[p2] = d;
+                p2 += <span class="number">1</span>;
                 <span class="prelude-val">Ok</span>(<span class="bool-val">true</span>)
             });
 
-            <span class="macro">assert_eq!</span>(<span class="ident">r2</span>, [<span class="number">2</span>, <span class="number">7</span>]);
-            <span class="macro">assert_eq!</span>(<span class="ident">p2</span>, <span class="number">2</span>);
-            <span class="macro">assert_eq!</span>(<span class="ident">rest2</span>.<span class="ident">unwrap</span>(), <span class="ident">DivisionState::new</span>(<span class="number">1</span>, <span class="number">3</span>));
+            <span class="macro">assert_eq!</span>(r2, [<span class="number">2</span>, <span class="number">7</span>]);
+            <span class="macro">assert_eq!</span>(p2, <span class="number">2</span>);
+            <span class="macro">assert_eq!</span>(rest2.unwrap(), DivisionState::new(<span class="number">1</span>, <span class="number">3</span>));
 
-            <span class="kw">let</span> <span class="ident">rest3</span> <span class="op">=</span> <span class="ident">divide_integral</span>(<span class="number">2020</span>, <span class="number">4</span>, <span class="op">|</span><span class="ident">d</span><span class="op">|</span> {
-                <span class="ident">r3</span>[<span class="ident">p3</span>] <span class="op">=</span> <span class="ident">d</span>;
-                <span class="ident">p3</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
+            <span class="kw">let </span>rest3 = divide_integral(<span class="number">2020</span>, <span class="number">4</span>, |d| {
+                r3[p3] = d;
+                p3 += <span class="number">1</span>;
                 <span class="prelude-val">Ok</span>(<span class="bool-val">true</span>)
             });
 
-            <span class="macro">assert_eq!</span>(<span class="ident">r3</span>, [<span class="number">5</span>, <span class="number">0</span>, <span class="number">5</span>]);
-            <span class="macro">assert_eq!</span>(<span class="ident">p3</span>, <span class="number">3</span>);
-            <span class="macro">assert_eq!</span>(<span class="ident">rest3</span>.<span class="ident">unwrap</span>(), <span class="ident">DivisionState::new</span>(<span class="number">0</span>, <span class="number">4</span>));
+            <span class="macro">assert_eq!</span>(r3, [<span class="number">5</span>, <span class="number">0</span>, <span class="number">5</span>]);
+            <span class="macro">assert_eq!</span>(p3, <span class="number">3</span>);
+            <span class="macro">assert_eq!</span>(rest3.unwrap(), DivisionState::new(<span class="number">0</span>, <span class="number">4</span>));
         }
 
         {
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">result</span> <span class="op">=</span> <span class="ident">Vec::new</span>();
-            <span class="kw">let</span> <span class="ident">rem</span> <span class="op">=</span> <span class="ident">divide_integral</span>(<span class="number">255u8</span>, <span class="number">3u8</span>, <span class="op">|</span><span class="ident">d</span><span class="op">|</span> {
-                <span class="ident">result</span>.<span class="ident">push</span>(<span class="ident">d</span>);
+            <span class="kw">let </span><span class="kw-2">mut </span>result = Vec::new();
+            <span class="kw">let </span>rem = divide_integral(<span class="number">255u8</span>, <span class="number">3u8</span>, |d| {
+                result.push(d);
                 <span class="prelude-val">Ok</span>(<span class="bool-val">true</span>)
             });
 
-            <span class="macro">assert_eq!</span>(<span class="ident">rem</span>.<span class="ident">ok</span>(), <span class="prelude-val">Some</span>(<span class="ident">DivisionState::new</span>(<span class="number">0</span>, <span class="number">3</span>)));
-            <span class="macro">assert_eq!</span>(<span class="ident">result</span>, <span class="macro">vec!</span>[<span class="number">8</span>, <span class="number">5</span>]);
+            <span class="macro">assert_eq!</span>(rem.ok(), <span class="prelude-val">Some</span>(DivisionState::new(<span class="number">0</span>, <span class="number">3</span>)));
+            <span class="macro">assert_eq!</span>(result, <span class="macro">vec!</span>[<span class="number">8</span>, <span class="number">5</span>]);
         }
 
         {
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">result</span> <span class="op">=</span> <span class="ident">Vec::new</span>();
-            <span class="kw">let</span> <span class="ident">rem</span> <span class="op">=</span> <span class="ident">divide_integral</span>(<span class="number">255u8</span>, <span class="number">3u8</span>, <span class="op">|</span><span class="ident">d</span><span class="op">|</span> {
-                <span class="ident">result</span>.<span class="ident">push</span>(<span class="ident">d</span>);
+            <span class="kw">let </span><span class="kw-2">mut </span>result = Vec::new();
+            <span class="kw">let </span>rem = divide_integral(<span class="number">255u8</span>, <span class="number">3u8</span>, |d| {
+                result.push(d);
                 <span class="prelude-val">Ok</span>(<span class="bool-val">false</span>)
             });
 
-            <span class="macro">assert_eq!</span>(<span class="ident">rem</span>.<span class="ident">ok</span>(), <span class="prelude-val">Some</span>(<span class="ident">DivisionState::new</span>(<span class="number">15</span>, <span class="number">3</span>)));
-            <span class="macro">assert_eq!</span>(<span class="ident">result</span>, <span class="macro">vec!</span>[<span class="number">8</span>]);
+            <span class="macro">assert_eq!</span>(rem.ok(), <span class="prelude-val">Some</span>(DivisionState::new(<span class="number">15</span>, <span class="number">3</span>)));
+            <span class="macro">assert_eq!</span>(result, <span class="macro">vec!</span>[<span class="number">8</span>]);
         }
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">test_divide_rem</span>() {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">r1</span>: [<span class="ident">u8</span>; <span class="number">1</span>] <span class="op">=</span> [<span class="number">0</span>; <span class="number">1</span>];
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">p1</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">0</span>;
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>test_divide_rem() {
+        <span class="kw">let </span><span class="kw-2">mut </span>r1: [u8; <span class="number">1</span>] = [<span class="number">0</span>; <span class="number">1</span>];
+        <span class="kw">let </span><span class="kw-2">mut </span>p1: usize = <span class="number">0</span>;
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">r2</span>: [<span class="ident">u8</span>; <span class="number">2</span>] <span class="op">=</span> [<span class="number">0</span>; <span class="number">2</span>];
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">p2</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">0</span>;
+        <span class="kw">let </span><span class="kw-2">mut </span>r2: [u8; <span class="number">2</span>] = [<span class="number">0</span>; <span class="number">2</span>];
+        <span class="kw">let </span><span class="kw-2">mut </span>p2: usize = <span class="number">0</span>;
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">r3</span>: [<span class="ident">u8</span>; <span class="number">3</span>] <span class="op">=</span> [<span class="number">0</span>; <span class="number">3</span>];
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">p3</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">0</span>;
+        <span class="kw">let </span><span class="kw-2">mut </span>r3: [u8; <span class="number">3</span>] = [<span class="number">0</span>; <span class="number">3</span>];
+        <span class="kw">let </span><span class="kw-2">mut </span>p3: usize = <span class="number">0</span>;
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">rest1</span> <span class="op">=</span> <span class="prelude-val">None</span>;
-        <span class="ident">divide_rem</span>(<span class="number">1</span>, <span class="number">3</span>, <span class="op">|</span><span class="ident">s</span>, <span class="ident">d</span><span class="op">|</span> {
-            <span class="ident">r1</span>[<span class="ident">p1</span>] <span class="op">=</span> <span class="ident">d</span>;
-            <span class="ident">p1</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
-            <span class="ident">rest1</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">s</span>.<span class="ident">remainder</span>);
-            <span class="prelude-val">Ok</span>(<span class="prelude-val">Err</span>(<span class="ident">s</span>))
+        <span class="kw">let </span><span class="kw-2">mut </span>rest1 = <span class="prelude-val">None</span>;
+        divide_rem(<span class="number">1</span>, <span class="number">3</span>, |s, d| {
+            r1[p1] = d;
+            p1 += <span class="number">1</span>;
+            rest1 = <span class="prelude-val">Some</span>(s.remainder);
+            <span class="prelude-val">Ok</span>(<span class="prelude-val">Err</span>(s))
         })
-        .<span class="ident">ok</span>();
+        .ok();
 
-        <span class="macro">assert_eq!</span>(<span class="ident">r1</span>, [<span class="number">3</span>]);
-        <span class="macro">assert_eq!</span>(<span class="ident">p1</span>, <span class="number">1</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">rest1</span>, <span class="prelude-val">Some</span>(<span class="number">1</span>));
+        <span class="macro">assert_eq!</span>(r1, [<span class="number">3</span>]);
+        <span class="macro">assert_eq!</span>(p1, <span class="number">1</span>);
+        <span class="macro">assert_eq!</span>(rest1, <span class="prelude-val">Some</span>(<span class="number">1</span>));
 
-        <span class="ident">p1</span> <span class="op">=</span> <span class="number">0</span>;
-        <span class="kw">let</span> <span class="ident">rest1</span> <span class="op">=</span> <span class="ident">divide_rem</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="op">|</span><span class="ident">s</span>, <span class="ident">d</span><span class="op">|</span> {
-            <span class="ident">r1</span>[<span class="ident">p1</span>] <span class="op">=</span> <span class="ident">d</span>;
-            <span class="ident">p1</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
-            <span class="prelude-val">Ok</span>(<span class="prelude-val">Ok</span>(<span class="ident">s</span>))
+        p1 = <span class="number">0</span>;
+        <span class="kw">let </span>rest1 = divide_rem(<span class="number">1</span>, <span class="number">2</span>, |s, d| {
+            r1[p1] = d;
+            p1 += <span class="number">1</span>;
+            <span class="prelude-val">Ok</span>(<span class="prelude-val">Ok</span>(s))
         });
 
-        <span class="macro">assert_eq!</span>(<span class="ident">r1</span>, [<span class="number">5</span>]);
-        <span class="macro">assert_eq!</span>(<span class="ident">p1</span>, <span class="number">1</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">rest1</span>.<span class="ident">unwrap</span>(), <span class="ident">DivisionState::new</span>(<span class="number">0</span>, <span class="number">2</span>));
+        <span class="macro">assert_eq!</span>(r1, [<span class="number">5</span>]);
+        <span class="macro">assert_eq!</span>(p1, <span class="number">1</span>);
+        <span class="macro">assert_eq!</span>(rest1.unwrap(), DivisionState::new(<span class="number">0</span>, <span class="number">2</span>));
 
-        <span class="kw">let</span> <span class="ident">rest2</span> <span class="op">=</span> <span class="ident">divide_rem</span>(<span class="number">500</span>, <span class="number">2000</span>, <span class="op">|</span><span class="ident">s</span>, <span class="ident">d</span><span class="op">|</span> {
-            <span class="ident">r2</span>[<span class="ident">p2</span>] <span class="op">=</span> <span class="ident">d</span>;
-            <span class="ident">p2</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
-            <span class="prelude-val">Ok</span>(<span class="prelude-val">Ok</span>(<span class="ident">s</span>))
+        <span class="kw">let </span>rest2 = divide_rem(<span class="number">500</span>, <span class="number">2000</span>, |s, d| {
+            r2[p2] = d;
+            p2 += <span class="number">1</span>;
+            <span class="prelude-val">Ok</span>(<span class="prelude-val">Ok</span>(s))
         });
 
-        <span class="macro">assert_eq!</span>(<span class="ident">r2</span>, [<span class="number">2</span>, <span class="number">5</span>]);
-        <span class="macro">assert_eq!</span>(<span class="ident">p2</span>, <span class="number">2</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">rest2</span>.<span class="ident">unwrap</span>(), <span class="ident">DivisionState::new</span>(<span class="number">0</span>, <span class="number">2000</span>));
+        <span class="macro">assert_eq!</span>(r2, [<span class="number">2</span>, <span class="number">5</span>]);
+        <span class="macro">assert_eq!</span>(p2, <span class="number">2</span>);
+        <span class="macro">assert_eq!</span>(rest2.unwrap(), DivisionState::new(<span class="number">0</span>, <span class="number">2000</span>));
 
-        <span class="kw">let</span> <span class="ident">rest3</span> <span class="op">=</span> <span class="ident">divide_rem</span>(<span class="number">2</span>, <span class="number">1000</span>, <span class="op">|</span><span class="ident">s</span>, <span class="ident">d</span><span class="op">|</span> {
-            <span class="ident">r3</span>[<span class="ident">p3</span>] <span class="op">=</span> <span class="ident">d</span>;
-            <span class="ident">p3</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
-            <span class="prelude-val">Ok</span>(<span class="prelude-val">Ok</span>(<span class="ident">s</span>))
+        <span class="kw">let </span>rest3 = divide_rem(<span class="number">2</span>, <span class="number">1000</span>, |s, d| {
+            r3[p3] = d;
+            p3 += <span class="number">1</span>;
+            <span class="prelude-val">Ok</span>(<span class="prelude-val">Ok</span>(s))
         });
 
-        <span class="macro">assert_eq!</span>(<span class="ident">r3</span>, [<span class="number">0</span>, <span class="number">0</span>, <span class="number">2</span>]);
-        <span class="macro">assert_eq!</span>(<span class="ident">p3</span>, <span class="number">3</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">rest3</span>.<span class="ident">unwrap</span>(), <span class="ident">DivisionState::new</span>(<span class="number">0</span>, <span class="number">1000</span>));
+        <span class="macro">assert_eq!</span>(r3, [<span class="number">0</span>, <span class="number">0</span>, <span class="number">2</span>]);
+        <span class="macro">assert_eq!</span>(p3, <span class="number">3</span>);
+        <span class="macro">assert_eq!</span>(rest3.unwrap(), DivisionState::new(<span class="number">0</span>, <span class="number">1000</span>));
 
-        <span class="ident">p3</span> <span class="op">=</span> <span class="number">0</span>;
-        <span class="kw">let</span> <span class="ident">rest3</span> <span class="op">=</span> <span class="ident">divide_rem</span>(<span class="number">502</span>, <span class="number">1000</span>, <span class="op">|</span><span class="ident">s</span>, <span class="ident">d</span><span class="op">|</span> {
-            <span class="ident">r3</span>[<span class="ident">p3</span>] <span class="op">=</span> <span class="ident">d</span>;
-            <span class="ident">p3</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
-            <span class="prelude-val">Ok</span>(<span class="prelude-val">Ok</span>(<span class="ident">s</span>))
+        p3 = <span class="number">0</span>;
+        <span class="kw">let </span>rest3 = divide_rem(<span class="number">502</span>, <span class="number">1000</span>, |s, d| {
+            r3[p3] = d;
+            p3 += <span class="number">1</span>;
+            <span class="prelude-val">Ok</span>(<span class="prelude-val">Ok</span>(s))
         });
 
-        <span class="macro">assert_eq!</span>(<span class="ident">r3</span>, [<span class="number">5</span>, <span class="number">0</span>, <span class="number">2</span>]);
-        <span class="macro">assert_eq!</span>(<span class="ident">p3</span>, <span class="number">3</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">rest3</span>.<span class="ident">unwrap</span>(), <span class="ident">DivisionState::new</span>(<span class="number">0</span>, <span class="number">1000</span>));
+        <span class="macro">assert_eq!</span>(r3, [<span class="number">5</span>, <span class="number">0</span>, <span class="number">2</span>]);
+        <span class="macro">assert_eq!</span>(p3, <span class="number">3</span>);
+        <span class="macro">assert_eq!</span>(rest3.unwrap(), DivisionState::new(<span class="number">0</span>, <span class="number">1000</span>));
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="fraction" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="fraction" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (77e57db38 2022-10-30)" ></div></body></html>

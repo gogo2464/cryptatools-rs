@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/goblin-0.5.4/src/elf/gnu_hash.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>gnu_hash.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../goblin/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../goblin/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../goblin/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/goblin-0.5.4/src/elf/gnu_hash.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>gnu_hash.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../normalize.css"><link rel="stylesheet" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../ayu.css" disabled><link rel="stylesheet" href="../../../dark.css" disabled><link rel="stylesheet" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../goblin/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -218,225 +218,225 @@
 <span id="218">218</span>
 <span id="219">219</span>
 <span id="220">220</span>
-</pre><pre class="rust"><code><span class="doccomment">//! A Gnu Hash table as 4 sections:</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//!  1. Header</span>
-<span class="doccomment">//!  2. Bloom Filter</span>
-<span class="doccomment">//!  3. Hash Buckets</span>
-<span class="doccomment">//!  4. Chains</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! The header has is an array of four `u32`s:</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//!  1. nbuckets</span>
-<span class="doccomment">//!  2. symndx</span>
-<span class="doccomment">//!  3. maskwords</span>
-<span class="doccomment">//!  4. shift2</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! See more:</span>
-<span class="doccomment">//!  * http://www.linker-aliens.org/blogs/ali/entry/gnu_hash_elf_sections</span>
-<span class="doccomment">//!    or https://blogs.oracle.com/solaris/gnu-hash-elf-sections-v2</span>
-<span class="doccomment">//!  * https://flapenguin.me/2017/05/10/elf-lookup-dt-gnu-hash/</span>
+</pre><pre class="rust"><code><span class="doccomment">//! A Gnu Hash table as 4 sections:
+//!
+//!  1. Header
+//!  2. Bloom Filter
+//!  3. Hash Buckets
+//!  4. Chains
+//!
+//! The header has is an array of four `u32`s:
+//!
+//!  1. nbuckets
+//!  2. symndx
+//!  3. maskwords
+//!  4. shift2
+//!
+//! See more:
+//!  * http://www.linker-aliens.org/blogs/ali/entry/gnu_hash_elf_sections
+//!    or https://blogs.oracle.com/solaris/gnu-hash-elf-sections-v2
+//!  * https://flapenguin.me/2017/05/10/elf-lookup-dt-gnu-hash/
 
-<span class="doccomment">/// GNU hash function: accepts a symbol name and returns a value that may be</span>
-<span class="doccomment">/// used to compute a bucket index.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Consequently, if the hashing function returns the value `x` for some name,</span>
-<span class="doccomment">/// `buckets[x % nbuckets]` gives an index, `y`, into both the symbol table</span>
-<span class="doccomment">/// and the chain table.</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">hash</span>(<span class="ident">symbol</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="ident">u32</span> {
-    <span class="kw">const</span> <span class="ident">HASH_SEED</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">5381</span>;
-    <span class="ident">symbol</span>.<span class="ident">bytes</span>().<span class="ident">fold</span>(<span class="ident">HASH_SEED</span>, <span class="op">|</span><span class="ident">hash</span>, <span class="ident">b</span><span class="op">|</span> {
-        <span class="ident">hash</span>.<span class="ident">wrapping_mul</span>(<span class="number">33</span>).<span class="ident">wrapping_add</span>(<span class="ident">u32::from</span>(<span class="ident">b</span>))
+/// GNU hash function: accepts a symbol name and returns a value that may be
+/// used to compute a bucket index.
+///
+/// Consequently, if the hashing function returns the value `x` for some name,
+/// `buckets[x % nbuckets]` gives an index, `y`, into both the symbol table
+/// and the chain table.
+</span><span class="kw">pub fn </span>hash(symbol: <span class="kw-2">&amp;</span>str) -&gt; u32 {
+    <span class="kw">const </span>HASH_SEED: u32 = <span class="number">5381</span>;
+    symbol.bytes().fold(HASH_SEED, |hash, b| {
+        hash.wrapping_mul(<span class="number">33</span>).wrapping_add(u32::from(b))
     })
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
-<span class="kw">mod</span> <span class="ident">tests</span> {
-    <span class="kw">use</span> <span class="ident"><span class="kw">super</span>::hash</span>;
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">test_hash</span>() {
-        <span class="macro">assert_eq!</span>(<span class="ident">hash</span>(<span class="string">&quot;&quot;</span>), <span class="number">0x0000_1505</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">hash</span>(<span class="string">&quot;printf&quot;</span>), <span class="number">0x156b_2bb8</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">hash</span>(<span class="string">&quot;exit&quot;</span>), <span class="number">0x7c96_7e3f</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">hash</span>(<span class="string">&quot;syscall&quot;</span>), <span class="number">0xbac2_12a0</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">hash</span>(<span class="string">&quot;flapenguin.me&quot;</span>), <span class="number">0x8ae9_f18e</span>);
+<span class="attribute">#[cfg(test)]
+</span><span class="kw">mod </span>tests {
+    <span class="kw">use </span><span class="kw">super</span>::hash;
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>test_hash() {
+        <span class="macro">assert_eq!</span>(hash(<span class="string">&quot;&quot;</span>), <span class="number">0x0000_1505</span>);
+        <span class="macro">assert_eq!</span>(hash(<span class="string">&quot;printf&quot;</span>), <span class="number">0x156b_2bb8</span>);
+        <span class="macro">assert_eq!</span>(hash(<span class="string">&quot;exit&quot;</span>), <span class="number">0x7c96_7e3f</span>);
+        <span class="macro">assert_eq!</span>(hash(<span class="string">&quot;syscall&quot;</span>), <span class="number">0xbac2_12a0</span>);
+        <span class="macro">assert_eq!</span>(hash(<span class="string">&quot;flapenguin.me&quot;</span>), <span class="number">0x8ae9_f18e</span>);
     }
 }
 
-<span class="macro">macro_rules!</span> <span class="ident">elf_gnu_hash_impl</span> {
-    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">IntTy</span>:<span class="ident">ty</span>) =&gt; {
-        <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::elf::sym::Sym</span>;
-        <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::strtab::Strtab</span>;
-        <span class="kw">use</span> <span class="ident">core::fmt</span>;
-        <span class="kw">use</span> <span class="ident">core::mem</span>;
-        <span class="kw">use</span> <span class="ident">core::slice</span>;
+<span class="macro">macro_rules! </span>elf_gnu_hash_impl {
+    (<span class="macro-nonterminal">$IntTy</span>:ty) =&gt; {
+        <span class="kw">use </span><span class="kw">crate</span>::elf::sym::Sym;
+        <span class="kw">use </span><span class="kw">crate</span>::strtab::Strtab;
+        <span class="kw">use </span>core::fmt;
+        <span class="kw">use </span>core::mem;
+        <span class="kw">use </span>core::slice;
 
-        <span class="kw">const</span> <span class="ident">INT_SIZE</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="ident">mem::size_of</span>::<span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">IntTy</span><span class="op">&gt;</span>();
-        <span class="kw">const</span> <span class="ident">U32_SIZE</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="ident">mem::size_of</span>::<span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>();
-        <span class="doccomment">/// Size of a bits mask in bloom filter</span>
-        <span class="kw">const</span> <span class="ident">ELFCLASS_BITS</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="ident">INT_SIZE</span> <span class="kw">as</span> <span class="ident">u32</span> <span class="op">*</span> <span class="number">8</span>;
+        <span class="kw">const </span>INT_SIZE: usize = mem::size_of::&lt;<span class="macro-nonterminal">$IntTy</span>&gt;();
+        <span class="kw">const </span>U32_SIZE: usize = mem::size_of::&lt;u32&gt;();
+        <span class="doccomment">/// Size of a bits mask in bloom filter
+        </span><span class="kw">const </span>ELFCLASS_BITS: u32 = INT_SIZE <span class="kw">as </span>u32 * <span class="number">8</span>;
 
-        <span class="doccomment">/// A better hash table for the ELF used by GNU systems in GNU-compatible software.</span>
-        <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GnuHash</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-            <span class="doccomment">/// Index of the first symbol in the `.dynsym` table which is accessible with</span>
-            <span class="doccomment">/// the hash table</span>
-            <span class="ident">symindex</span>: <span class="ident">u32</span>,
-            <span class="doccomment">/// Shift count used in the bloom filter</span>
-            <span class="ident">shift2</span>: <span class="ident">u32</span>,
-            <span class="doccomment">/// 2 bit bloom filter on `chains`</span>
-            <span class="comment">// Either 32 or 64-bit depending on the class of object</span>
-            <span class="ident">bloom_filter</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="macro-nonterminal">$</span><span class="macro-nonterminal">IntTy</span>],
-            <span class="doccomment">/// GNU hash table bucket array; indexes start at 0. This array holds symbol</span>
-            <span class="doccomment">/// table indexes and contains the index of hashes in `chains`</span>
-            <span class="ident">buckets</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u32</span>],
-            <span class="doccomment">/// Hash values; indexes start at 0. This array holds symbol table indexes.</span>
-            <span class="ident">chains</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u32</span>], <span class="comment">// =&gt; chains[dynsyms.len() - symindex]</span>
-            <span class="ident">dynsyms</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">Sym</span>],
+        <span class="doccomment">/// A better hash table for the ELF used by GNU systems in GNU-compatible software.
+        </span><span class="kw">pub struct </span>GnuHash&lt;<span class="lifetime">&#39;a</span>&gt; {
+            <span class="doccomment">/// Index of the first symbol in the `.dynsym` table which is accessible with
+            /// the hash table
+            </span>symindex: u32,
+            <span class="doccomment">/// Shift count used in the bloom filter
+            </span>shift2: u32,
+            <span class="doccomment">/// 2 bit bloom filter on `chains`
+            </span><span class="comment">// Either 32 or 64-bit depending on the class of object
+            </span>bloom_filter: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[<span class="macro-nonterminal">$IntTy</span>],
+            <span class="doccomment">/// GNU hash table bucket array; indexes start at 0. This array holds symbol
+            /// table indexes and contains the index of hashes in `chains`
+            </span>buckets: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u32],
+            <span class="doccomment">/// Hash values; indexes start at 0. This array holds symbol table indexes.
+            </span>chains: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u32], <span class="comment">// =&gt; chains[dynsyms.len() - symindex]
+            </span>dynsyms: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[Sym],
         }
 
-        <span class="kw">impl</span> <span class="ident">fmt::Debug</span> <span class="kw">for</span> <span class="ident">GnuHash</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span> {
-            <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">fmt::Formatter</span>) -&gt; <span class="ident">fmt::Result</span> {
-                <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;GnuHash&quot;</span>)
-                    .<span class="ident">field</span>(<span class="string">&quot;nbuckets&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">buckets</span>.<span class="ident">len</span>())
-                    .<span class="ident">field</span>(<span class="string">&quot;symindex&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">symindex</span>)
-                    .<span class="ident">field</span>(<span class="string">&quot;maskwords&quot;</span>, <span class="kw-2">&amp;</span>(<span class="self">self</span>.<span class="ident">bloom_filter</span>.<span class="ident">len</span>() <span class="op">-</span> <span class="number">1</span>))
-                    .<span class="ident">field</span>(<span class="string">&quot;shift2&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">shift2</span>)
-                    .<span class="ident">field</span>(<span class="string">&quot;bloom_filter&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">bloom_filter</span>.<span class="ident">as_ptr</span>())
-                    .<span class="ident">field</span>(<span class="string">&quot;bucket&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">buckets</span>.<span class="ident">as_ptr</span>())
-                    .<span class="ident">field</span>(<span class="string">&quot;chains&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">chains</span>.<span class="ident">as_ptr</span>())
-                    .<span class="ident">finish</span>()
+        <span class="kw">impl </span>fmt::Debug <span class="kw">for </span>GnuHash&lt;<span class="lifetime">&#39;_</span>&gt; {
+            <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>fmt::Formatter) -&gt; fmt::Result {
+                f.debug_struct(<span class="string">&quot;GnuHash&quot;</span>)
+                    .field(<span class="string">&quot;nbuckets&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.buckets.len())
+                    .field(<span class="string">&quot;symindex&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.symindex)
+                    .field(<span class="string">&quot;maskwords&quot;</span>, <span class="kw-2">&amp;</span>(<span class="self">self</span>.bloom_filter.len() - <span class="number">1</span>))
+                    .field(<span class="string">&quot;shift2&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.shift2)
+                    .field(<span class="string">&quot;bloom_filter&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.bloom_filter.as_ptr())
+                    .field(<span class="string">&quot;bucket&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.buckets.as_ptr())
+                    .field(<span class="string">&quot;chains&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.chains.as_ptr())
+                    .finish()
             }
         }
 
-        <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">GnuHash</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-            <span class="doccomment">/// Initialize a GnuHash from a pointer to `.hash` (or `.gnu.hash`) section</span>
-            <span class="doccomment">/// and total number of dynamic symbols.</span>
-            <span class="doccomment">/// # Safety</span>
-            <span class="doccomment">///</span>
-            <span class="doccomment">/// This function creates a `GnuHash` directly from a raw pointer</span>
-            <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_raw_table</span>(
-                <span class="ident">hashtab</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
-                <span class="ident">dynsyms</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">Sym</span>],
-            ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span>, <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span> {
-                <span class="kw">if</span> <span class="ident">hashtab</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="ident">usize</span> <span class="op">%</span> <span class="ident">INT_SIZE</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
-                    <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="string">&quot;hashtab is not aligned with 64-bit&quot;</span>);
+        <span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; GnuHash&lt;<span class="lifetime">&#39;a</span>&gt; {
+            <span class="doccomment">/// Initialize a GnuHash from a pointer to `.hash` (or `.gnu.hash`) section
+            /// and total number of dynamic symbols.
+            /// # Safety
+            ///
+            /// This function creates a `GnuHash` directly from a raw pointer
+            </span><span class="kw">pub unsafe fn </span>from_raw_table(
+                hashtab: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8],
+                dynsyms: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[Sym],
+            ) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str&gt; {
+                <span class="kw">if </span>hashtab.as_ptr() <span class="kw">as </span>usize % INT_SIZE != <span class="number">0 </span>{
+                    <span class="kw">return </span><span class="prelude-val">Err</span>(<span class="string">&quot;hashtab is not aligned with 64-bit&quot;</span>);
                 }
 
-                <span class="kw">if</span> <span class="ident">hashtab</span>.<span class="ident">len</span>() <span class="op">&lt;</span><span class="op">=</span> <span class="number">16</span> {
-                    <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="string">&quot;failed to read in number of buckets&quot;</span>);
+                <span class="kw">if </span>hashtab.len() &lt;= <span class="number">16 </span>{
+                    <span class="kw">return </span><span class="prelude-val">Err</span>(<span class="string">&quot;failed to read in number of buckets&quot;</span>);
                 }
 
-                <span class="kw">let</span> [<span class="ident">nbuckets</span>, <span class="ident">symindex</span>, <span class="ident">maskwords</span>, <span class="ident">shift2</span>] <span class="op">=</span>
-                    (<span class="ident">hashtab</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">u32</span> <span class="kw">as</span> <span class="kw-2">*const</span> [<span class="ident">u32</span>; <span class="number">4</span>]).<span class="ident">read</span>();
+                <span class="kw">let </span>[nbuckets, symindex, maskwords, shift2] =
+                    (hashtab.as_ptr() <span class="kw">as </span><span class="kw-2">*const </span>u32 <span class="kw">as </span><span class="kw-2">*const </span>[u32; <span class="number">4</span>]).read();
 
-                <span class="kw">if</span> <span class="op">!</span><span class="ident">maskwords</span>.<span class="ident">is_power_of_two</span>() {
-                    <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="string">&quot;maskwords must be a power of two&quot;</span>);
+                <span class="kw">if </span>!maskwords.is_power_of_two() {
+                    <span class="kw">return </span><span class="prelude-val">Err</span>(<span class="string">&quot;maskwords must be a power of two&quot;</span>);
                 }
 
-                <span class="kw">let</span> <span class="ident">hashtab</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">hashtab</span>[<span class="number">16</span>..];
+                <span class="kw">let </span>hashtab = <span class="kw-2">&amp;</span>hashtab[<span class="number">16</span>..];
                 {
-                    <span class="comment">// SAFETY: Condition to check for an overflow</span>
-                    <span class="comment">//   size_of(chains) + size_of(buckets) + size_of(bloom_filter) == size_of(hashtab)</span>
+                    <span class="comment">// SAFETY: Condition to check for an overflow
+                    //   size_of(chains) + size_of(buckets) + size_of(bloom_filter) == size_of(hashtab)
 
-                    <span class="kw">if</span> <span class="ident">dynsyms</span>.<span class="ident">len</span>() <span class="op">&lt;</span><span class="op">=</span> <span class="ident">symindex</span> <span class="kw">as</span> <span class="ident">usize</span> {
-                        <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="string">&quot;symindex must be smaller than dynsyms.len()&quot;</span>);
+                    </span><span class="kw">if </span>dynsyms.len() &lt;= symindex <span class="kw">as </span>usize {
+                        <span class="kw">return </span><span class="prelude-val">Err</span>(<span class="string">&quot;symindex must be smaller than dynsyms.len()&quot;</span>);
                     }
-                    <span class="kw">let</span> <span class="ident">chains_size</span> <span class="op">=</span> (<span class="ident">dynsyms</span>.<span class="ident">len</span>() <span class="op">-</span> <span class="ident">symindex</span> <span class="kw">as</span> <span class="ident">usize</span>).<span class="ident">checked_mul</span>(<span class="ident">U32_SIZE</span>);
-                    <span class="kw">let</span> <span class="ident">buckets_size</span> <span class="op">=</span> (<span class="ident">nbuckets</span> <span class="kw">as</span> <span class="ident">usize</span>).<span class="ident">checked_mul</span>(<span class="ident">U32_SIZE</span>);
-                    <span class="kw">let</span> <span class="ident">bloom_size</span> <span class="op">=</span> (<span class="ident">maskwords</span> <span class="kw">as</span> <span class="ident">usize</span>).<span class="ident">checked_mul</span>(<span class="ident">INT_SIZE</span>);
+                    <span class="kw">let </span>chains_size = (dynsyms.len() - symindex <span class="kw">as </span>usize).checked_mul(U32_SIZE);
+                    <span class="kw">let </span>buckets_size = (nbuckets <span class="kw">as </span>usize).checked_mul(U32_SIZE);
+                    <span class="kw">let </span>bloom_size = (maskwords <span class="kw">as </span>usize).checked_mul(INT_SIZE);
 
-                    <span class="kw">let</span> <span class="ident">total_size</span> <span class="op">=</span> <span class="kw">match</span> (<span class="ident">chains_size</span>, <span class="ident">buckets_size</span>, <span class="ident">bloom_size</span>) {
-                        (<span class="prelude-val">Some</span>(<span class="ident">a</span>), <span class="prelude-val">Some</span>(<span class="ident">b</span>), <span class="prelude-val">Some</span>(<span class="ident">c</span>)) =&gt; {
-                            <span class="ident">a</span>.<span class="ident">checked_add</span>(<span class="ident">b</span>).<span class="ident">and_then</span>(<span class="op">|</span><span class="ident">t</span><span class="op">|</span> <span class="ident">t</span>.<span class="ident">checked_add</span>(<span class="ident">c</span>))
+                    <span class="kw">let </span>total_size = <span class="kw">match </span>(chains_size, buckets_size, bloom_size) {
+                        (<span class="prelude-val">Some</span>(a), <span class="prelude-val">Some</span>(b), <span class="prelude-val">Some</span>(c)) =&gt; {
+                            a.checked_add(b).and_then(|t| t.checked_add(c))
                         }
-                        <span class="kw">_</span> =&gt; <span class="prelude-val">None</span>,
+                        <span class="kw">_ </span>=&gt; <span class="prelude-val">None</span>,
                     };
-                    <span class="kw">match</span> <span class="ident">total_size</span> {
-                        <span class="prelude-val">Some</span>(<span class="ident">size</span>) <span class="kw">if</span> <span class="ident">size</span> <span class="op">==</span> <span class="ident">hashtab</span>.<span class="ident">len</span>() =&gt; {}
-                        <span class="kw">_</span> =&gt; <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="string">&quot;index out of bound or non-complete hash section&quot;</span>),
+                    <span class="kw">match </span>total_size {
+                        <span class="prelude-val">Some</span>(size) <span class="kw">if </span>size == hashtab.len() =&gt; {}
+                        <span class="kw">_ </span>=&gt; <span class="kw">return </span><span class="prelude-val">Err</span>(<span class="string">&quot;index out of bound or non-complete hash section&quot;</span>),
                     }
                 }
 
-                <span class="kw">let</span> <span class="ident">bloom_filter_ptr</span> <span class="op">=</span> <span class="ident">hashtab</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*const</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">IntTy</span>;
-                <span class="kw">let</span> <span class="ident">buckets_ptr</span> <span class="op">=</span> <span class="ident">bloom_filter_ptr</span>.<span class="ident">add</span>(<span class="ident">maskwords</span> <span class="kw">as</span> <span class="ident">usize</span>) <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">u32</span>;
-                <span class="kw">let</span> <span class="ident">chains_ptr</span> <span class="op">=</span> <span class="ident">buckets_ptr</span>.<span class="ident">add</span>(<span class="ident">nbuckets</span> <span class="kw">as</span> <span class="ident">usize</span>);
-                <span class="kw">let</span> <span class="ident">bloom_filter</span> <span class="op">=</span> <span class="ident">slice::from_raw_parts</span>(<span class="ident">bloom_filter_ptr</span>, <span class="ident">maskwords</span> <span class="kw">as</span> <span class="ident">usize</span>);
-                <span class="kw">let</span> <span class="ident">buckets</span> <span class="op">=</span> <span class="ident">slice::from_raw_parts</span>(<span class="ident">buckets_ptr</span>, <span class="ident">nbuckets</span> <span class="kw">as</span> <span class="ident">usize</span>);
-                <span class="kw">let</span> <span class="ident">chains</span> <span class="op">=</span> <span class="ident">slice::from_raw_parts</span>(<span class="ident">chains_ptr</span>, <span class="ident">dynsyms</span>.<span class="ident">len</span>() <span class="op">-</span> <span class="ident">symindex</span> <span class="kw">as</span> <span class="ident">usize</span>);
-                <span class="prelude-val">Ok</span>(<span class="self">Self</span> {
-                    <span class="ident">symindex</span>,
-                    <span class="ident">shift2</span>,
-                    <span class="ident">bloom_filter</span>,
-                    <span class="ident">buckets</span>,
-                    <span class="ident">chains</span>,
-                    <span class="ident">dynsyms</span>,
+                <span class="kw">let </span>bloom_filter_ptr = hashtab.as_ptr() <span class="kw">as </span><span class="kw-2">*const </span><span class="macro-nonterminal">$IntTy</span>;
+                <span class="kw">let </span>buckets_ptr = bloom_filter_ptr.add(maskwords <span class="kw">as </span>usize) <span class="kw">as </span><span class="kw-2">*const </span>u32;
+                <span class="kw">let </span>chains_ptr = buckets_ptr.add(nbuckets <span class="kw">as </span>usize);
+                <span class="kw">let </span>bloom_filter = slice::from_raw_parts(bloom_filter_ptr, maskwords <span class="kw">as </span>usize);
+                <span class="kw">let </span>buckets = slice::from_raw_parts(buckets_ptr, nbuckets <span class="kw">as </span>usize);
+                <span class="kw">let </span>chains = slice::from_raw_parts(chains_ptr, dynsyms.len() - symindex <span class="kw">as </span>usize);
+                <span class="prelude-val">Ok</span>(<span class="self">Self </span>{
+                    symindex,
+                    shift2,
+                    bloom_filter,
+                    buckets,
+                    chains,
+                    dynsyms,
                 })
             }
 
-            <span class="doccomment">/// Locate the hash chain, and corresponding hash value element.</span>
-            <span class="attribute">#[<span class="ident">cold</span>]</span>
-            <span class="kw">fn</span> <span class="ident">lookup</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">symbol</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">hash</span>: <span class="ident">u32</span>, <span class="ident">dynstrtab</span>: <span class="kw-2">&amp;</span><span class="ident">Strtab</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">Sym</span><span class="op">&gt;</span> {
-                <span class="kw">const</span> <span class="ident">MASK_LOWEST_BIT</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">0xffff_fffe</span>;
-                <span class="kw">let</span> <span class="ident">bucket</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">buckets</span>[<span class="ident">hash</span> <span class="kw">as</span> <span class="ident">usize</span> <span class="op">%</span> <span class="self">self</span>.<span class="ident">buckets</span>.<span class="ident">len</span>()];
+            <span class="doccomment">/// Locate the hash chain, and corresponding hash value element.
+            </span><span class="attribute">#[cold]
+            </span><span class="kw">fn </span>lookup(<span class="kw-2">&amp;</span><span class="self">self</span>, symbol: <span class="kw-2">&amp;</span>str, hash: u32, dynstrtab: <span class="kw-2">&amp;</span>Strtab) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>Sym&gt; {
+                <span class="kw">const </span>MASK_LOWEST_BIT: u32 = <span class="number">0xffff_fffe</span>;
+                <span class="kw">let </span>bucket = <span class="self">self</span>.buckets[hash <span class="kw">as </span>usize % <span class="self">self</span>.buckets.len()];
 
-                <span class="comment">// Empty hash chain, symbol not present</span>
-                <span class="kw">if</span> <span class="ident">bucket</span> <span class="op">&lt;</span> <span class="self">self</span>.<span class="ident">symindex</span> {
-                    <span class="kw">return</span> <span class="prelude-val">None</span>;
+                <span class="comment">// Empty hash chain, symbol not present
+                </span><span class="kw">if </span>bucket &lt; <span class="self">self</span>.symindex {
+                    <span class="kw">return </span><span class="prelude-val">None</span>;
                 }
-                <span class="comment">// Walk the chain until the symbol is found or the chain is exhausted.</span>
-                <span class="kw">let</span> <span class="ident">chain_idx</span> <span class="op">=</span> <span class="ident">bucket</span> <span class="op">-</span> <span class="self">self</span>.<span class="ident">symindex</span>;
-                <span class="kw">let</span> <span class="ident">hash</span> <span class="op">=</span> <span class="ident">hash</span> <span class="op">&amp;</span> <span class="ident">MASK_LOWEST_BIT</span>;
-                <span class="kw">let</span> <span class="ident">chains</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">chains</span>.<span class="ident">get</span>((<span class="ident">chain_idx</span> <span class="kw">as</span> <span class="ident">usize</span>)..)<span class="question-mark">?</span>;
-                <span class="kw">let</span> <span class="ident">dynsyms</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">dynsyms</span>.<span class="ident">get</span>((<span class="ident">bucket</span> <span class="kw">as</span> <span class="ident">usize</span>)..)<span class="question-mark">?</span>;
-                <span class="kw">for</span> (<span class="ident">hash2</span>, <span class="ident">symb</span>) <span class="kw">in</span> <span class="ident">chains</span>.<span class="ident">iter</span>().<span class="ident">zip</span>(<span class="ident">dynsyms</span>.<span class="ident">iter</span>()) {
-                    <span class="kw">if</span> (<span class="ident">hash</span> <span class="op">==</span> (<span class="ident">hash2</span> <span class="op">&amp;</span> <span class="ident">MASK_LOWEST_BIT</span>))
-                        <span class="op">&amp;&amp;</span> (<span class="ident">symbol</span> <span class="op">==</span> <span class="kw-2">&amp;</span><span class="ident">dynstrtab</span>[<span class="ident">symb</span>.<span class="ident">st_name</span> <span class="kw">as</span> <span class="ident">usize</span>])
+                <span class="comment">// Walk the chain until the symbol is found or the chain is exhausted.
+                </span><span class="kw">let </span>chain_idx = bucket - <span class="self">self</span>.symindex;
+                <span class="kw">let </span>hash = hash &amp; MASK_LOWEST_BIT;
+                <span class="kw">let </span>chains = <span class="kw-2">&amp;</span><span class="self">self</span>.chains.get((chain_idx <span class="kw">as </span>usize)..)<span class="question-mark">?</span>;
+                <span class="kw">let </span>dynsyms = <span class="kw-2">&amp;</span><span class="self">self</span>.dynsyms.get((bucket <span class="kw">as </span>usize)..)<span class="question-mark">?</span>;
+                <span class="kw">for </span>(hash2, symb) <span class="kw">in </span>chains.iter().zip(dynsyms.iter()) {
+                    <span class="kw">if </span>(hash == (hash2 &amp; MASK_LOWEST_BIT))
+                        &amp;&amp; (symbol == <span class="kw-2">&amp;</span>dynstrtab[symb.st_name <span class="kw">as </span>usize])
                     {
-                        <span class="kw">return</span> <span class="prelude-val">Some</span>(<span class="ident">symb</span>);
+                        <span class="kw">return </span><span class="prelude-val">Some</span>(symb);
                     }
-                    <span class="comment">// Chain ends with an element with the lowest bit set to 1.</span>
-                    <span class="kw">if</span> <span class="ident">hash2</span> <span class="op">&amp;</span> <span class="number">1</span> <span class="op">==</span> <span class="number">1</span> {
+                    <span class="comment">// Chain ends with an element with the lowest bit set to 1.
+                    </span><span class="kw">if </span>hash2 &amp; <span class="number">1 </span>== <span class="number">1 </span>{
                         <span class="kw">break</span>;
                     }
                 }
-                <span class="prelude-val">None</span>
+                <span class="prelude-val">None
+            </span>}
+
+            <span class="doccomment">/// Check if symbol maybe is in the hash table, or definitely not in it.
+            </span><span class="attribute">#[inline]
+            </span><span class="kw">fn </span>check_maybe_match(<span class="kw-2">&amp;</span><span class="self">self</span>, hash: u32) -&gt; bool {
+                <span class="kw">const </span>MASK: u32 = ELFCLASS_BITS - <span class="number">1</span>;
+                <span class="kw">let </span>hash2 = hash &gt;&gt; <span class="self">self</span>.shift2;
+                <span class="comment">// `x &amp; (N - 1)` is equivalent to `x % N` iff `N = 2^y`.
+                </span><span class="kw">let </span>bitmask: <span class="macro-nonterminal">$IntTy </span>= <span class="number">1 </span>&lt;&lt; (hash &amp; (MASK)) | <span class="number">1 </span>&lt;&lt; (hash2 &amp; MASK);
+                <span class="kw">let </span>bloom_idx = (hash / ELFCLASS_BITS) &amp; (<span class="self">self</span>.bloom_filter.len() <span class="kw">as </span>u32 - <span class="number">1</span>);
+                <span class="kw">let </span>bitmask_word = <span class="self">self</span>.bloom_filter[bloom_idx <span class="kw">as </span>usize];
+                (bitmask_word &amp; bitmask) == bitmask
             }
 
-            <span class="doccomment">/// Check if symbol maybe is in the hash table, or definitely not in it.</span>
-            <span class="attribute">#[<span class="ident">inline</span>]</span>
-            <span class="kw">fn</span> <span class="ident">check_maybe_match</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">hash</span>: <span class="ident">u32</span>) -&gt; <span class="ident">bool</span> {
-                <span class="kw">const</span> <span class="ident">MASK</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="ident">ELFCLASS_BITS</span> <span class="op">-</span> <span class="number">1</span>;
-                <span class="kw">let</span> <span class="ident">hash2</span> <span class="op">=</span> <span class="ident">hash</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="self">self</span>.<span class="ident">shift2</span>;
-                <span class="comment">// `x &amp; (N - 1)` is equivalent to `x % N` iff `N = 2^y`.</span>
-                <span class="kw">let</span> <span class="ident">bitmask</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">IntTy</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> (<span class="ident">hash</span> <span class="op">&amp;</span> (<span class="ident">MASK</span>)) <span class="op">|</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> (<span class="ident">hash2</span> <span class="op">&amp;</span> <span class="ident">MASK</span>);
-                <span class="kw">let</span> <span class="ident">bloom_idx</span> <span class="op">=</span> (<span class="ident">hash</span> <span class="op">/</span> <span class="ident">ELFCLASS_BITS</span>) <span class="op">&amp;</span> (<span class="self">self</span>.<span class="ident">bloom_filter</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">u32</span> <span class="op">-</span> <span class="number">1</span>);
-                <span class="kw">let</span> <span class="ident">bitmask_word</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">bloom_filter</span>[<span class="ident">bloom_idx</span> <span class="kw">as</span> <span class="ident">usize</span>];
-                (<span class="ident">bitmask_word</span> <span class="op">&amp;</span> <span class="ident">bitmask</span>) <span class="op">==</span> <span class="ident">bitmask</span>
+            <span class="doccomment">/// Given a symbol, a hash of that symbol, a dynamic string table and
+            /// a `dynstrtab` to cross-reference names, maybe returns a Sym.
+            </span><span class="kw">pub fn </span>find(<span class="kw-2">&amp;</span><span class="self">self</span>, symbol: <span class="kw-2">&amp;</span>str, dynstrtab: <span class="kw-2">&amp;</span>Strtab) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>Sym&gt; {
+                <span class="kw">let </span>hash = <span class="self">self</span>::hash(symbol);
+                <span class="self">self</span>.find_with_hash(symbol, hash, dynstrtab)
             }
 
-            <span class="doccomment">/// Given a symbol, a hash of that symbol, a dynamic string table and</span>
-            <span class="doccomment">/// a `dynstrtab` to cross-reference names, maybe returns a Sym.</span>
-            <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">find</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">symbol</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">dynstrtab</span>: <span class="kw-2">&amp;</span><span class="ident">Strtab</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">Sym</span><span class="op">&gt;</span> {
-                <span class="kw">let</span> <span class="ident">hash</span> <span class="op">=</span> <span class="ident"><span class="self">self</span>::hash</span>(<span class="ident">symbol</span>);
-                <span class="self">self</span>.<span class="ident">find_with_hash</span>(<span class="ident">symbol</span>, <span class="ident">hash</span>, <span class="ident">dynstrtab</span>)
-            }
-
-            <span class="doccomment">/// This function will not check if the passed `hash` is really</span>
-            <span class="doccomment">/// the hash of `symbol`</span>
-            <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">find_with_hash</span>(
+            <span class="doccomment">/// This function will not check if the passed `hash` is really
+            /// the hash of `symbol`
+            </span><span class="kw">pub fn </span>find_with_hash(
                 <span class="kw-2">&amp;</span><span class="self">self</span>,
-                <span class="ident">symbol</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
-                <span class="ident">hash</span>: <span class="ident">u32</span>,
-                <span class="ident">dynstrtab</span>: <span class="kw-2">&amp;</span><span class="ident">Strtab</span>,
-            ) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">Sym</span><span class="op">&gt;</span> {
-                <span class="kw">if</span> <span class="self">self</span>.<span class="ident">check_maybe_match</span>(<span class="ident">hash</span>) {
-                    <span class="self">self</span>.<span class="ident">lookup</span>(<span class="ident">symbol</span>, <span class="ident">hash</span>, <span class="ident">dynstrtab</span>)
-                } <span class="kw">else</span> {
-                    <span class="prelude-val">None</span>
-                }
+                symbol: <span class="kw-2">&amp;</span>str,
+                hash: u32,
+                dynstrtab: <span class="kw-2">&amp;</span>Strtab,
+            ) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>Sym&gt; {
+                <span class="kw">if </span><span class="self">self</span>.check_maybe_match(hash) {
+                    <span class="self">self</span>.lookup(symbol, hash, dynstrtab)
+                } <span class="kw">else </span>{
+                    <span class="prelude-val">None
+                </span>}
             }
         }
     };
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="goblin" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="goblin" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (77e57db38 2022-10-30)" ></div></body></html>

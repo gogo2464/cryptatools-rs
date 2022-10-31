@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/askama-0.11.1/src/lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../askama/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../askama/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../askama/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/askama-0.11.1/src/lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../askama/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -183,190 +183,190 @@
 <span id="183">183</span>
 <span id="184">184</span>
 <span id="185">185</span>
-</pre><pre class="rust"><code><span class="doccomment">//! Askama implements a type-safe compiler for Jinja-like templates.</span>
-<span class="doccomment">//! It lets you write templates in a Jinja-like syntax,</span>
-<span class="doccomment">//! which are linked to a `struct` defining the template context.</span>
-<span class="doccomment">//! This is done using a custom derive implementation (implemented</span>
-<span class="doccomment">//! in [`askama_derive`](https://crates.io/crates/askama_derive)).</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! For feature highlights and a quick start, please review the</span>
-<span class="doccomment">//! [README](https://github.com/djc/askama/blob/main/README.md).</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! The primary documentation for this crate now lives in</span>
-<span class="doccomment">//! [the book](https://djc.github.io/askama/).</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! # Creating Askama templates</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! An Askama template is a `struct` definition which provides the template</span>
-<span class="doccomment">//! context combined with a UTF-8 encoded text file (or inline source, see</span>
-<span class="doccomment">//! below). Askama can be used to generate any kind of text-based format.</span>
-<span class="doccomment">//! The template file&#39;s extension may be used to provide content type hints.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! A template consists of **text contents**, which are passed through as-is,</span>
-<span class="doccomment">//! **expressions**, which get replaced with content while being rendered, and</span>
-<span class="doccomment">//! **tags**, which control the template&#39;s logic.</span>
-<span class="doccomment">//! The template syntax is very similar to [Jinja](http://jinja.pocoo.org/),</span>
-<span class="doccomment">//! as well as Jinja-derivatives like [Twig](http://twig.sensiolabs.org/) or</span>
-<span class="doccomment">//! [Tera](https://github.com/Keats/tera).</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! ## The `template()` attribute</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! Askama works by generating one or more trait implementations for any</span>
-<span class="doccomment">//! `struct` type decorated with the `#[derive(Template)]` attribute. The</span>
-<span class="doccomment">//! code generation process takes some options that can be specified through</span>
-<span class="doccomment">//! the `template()` attribute. The following sub-attributes are currently</span>
-<span class="doccomment">//! recognized:</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! * `path` (as `path = &quot;foo.html&quot;`): sets the path to the template file. The</span>
-<span class="doccomment">//!   path is interpreted as relative to the configured template directories</span>
-<span class="doccomment">//!   (by default, this is a `templates` directory next to your `Cargo.toml`).</span>
-<span class="doccomment">//!   The file name extension is used to infer an escape mode (see below). In</span>
-<span class="doccomment">//!   web framework integrations, the path&#39;s extension may also be used to</span>
-<span class="doccomment">//!   infer the content type of the resulting response.</span>
-<span class="doccomment">//!   Cannot be used together with `source`.</span>
-<span class="doccomment">//! * `source` (as `source = &quot;{{ foo }}&quot;`): directly sets the template source.</span>
-<span class="doccomment">//!   This can be useful for test cases or short templates. The generated path</span>
-<span class="doccomment">//!   is undefined, which generally makes it impossible to refer to this</span>
-<span class="doccomment">//!   template from other templates. If `source` is specified, `ext` must also</span>
-<span class="doccomment">//!   be specified (see below). Cannot be used together with `path`.</span>
-<span class="doccomment">//! * `ext` (as `ext = &quot;txt&quot;`): lets you specify the content type as a file</span>
-<span class="doccomment">//!   extension. This is used to infer an escape mode (see below), and some</span>
-<span class="doccomment">//!   web framework integrations use it to determine the content type.</span>
-<span class="doccomment">//!   Cannot be used together with `path`.</span>
-<span class="doccomment">//! * `print` (as `print = &quot;code&quot;`): enable debugging by printing nothing</span>
-<span class="doccomment">//!   (`none`), the parsed syntax tree (`ast`), the generated code (`code`)</span>
-<span class="doccomment">//!   or `all` for both. The requested data will be printed to stdout at</span>
-<span class="doccomment">//!   compile time.</span>
-<span class="doccomment">//! * `escape` (as `escape = &quot;none&quot;`): override the template&#39;s extension used for</span>
-<span class="doccomment">//!   the purpose of determining the escaper for this template. See the section</span>
-<span class="doccomment">//!   on configuring custom escapers for more information.</span>
-<span class="doccomment">//! * `syntax` (as `syntax = &quot;foo&quot;`): set the syntax name for a parser defined</span>
-<span class="doccomment">//!   in the configuration file. The default syntax , &quot;default&quot;,  is the one</span>
-<span class="doccomment">//!   provided by Askama.</span>
+</pre><pre class="rust"><code><span class="doccomment">//! Askama implements a type-safe compiler for Jinja-like templates.
+//! It lets you write templates in a Jinja-like syntax,
+//! which are linked to a `struct` defining the template context.
+//! This is done using a custom derive implementation (implemented
+//! in [`askama_derive`](https://crates.io/crates/askama_derive)).
+//!
+//! For feature highlights and a quick start, please review the
+//! [README](https://github.com/djc/askama/blob/main/README.md).
+//!
+//! The primary documentation for this crate now lives in
+//! [the book](https://djc.github.io/askama/).
+//!
+//! # Creating Askama templates
+//!
+//! An Askama template is a `struct` definition which provides the template
+//! context combined with a UTF-8 encoded text file (or inline source, see
+//! below). Askama can be used to generate any kind of text-based format.
+//! The template file&#39;s extension may be used to provide content type hints.
+//!
+//! A template consists of **text contents**, which are passed through as-is,
+//! **expressions**, which get replaced with content while being rendered, and
+//! **tags**, which control the template&#39;s logic.
+//! The template syntax is very similar to [Jinja](http://jinja.pocoo.org/),
+//! as well as Jinja-derivatives like [Twig](http://twig.sensiolabs.org/) or
+//! [Tera](https://github.com/Keats/tera).
+//!
+//! ## The `template()` attribute
+//!
+//! Askama works by generating one or more trait implementations for any
+//! `struct` type decorated with the `#[derive(Template)]` attribute. The
+//! code generation process takes some options that can be specified through
+//! the `template()` attribute. The following sub-attributes are currently
+//! recognized:
+//!
+//! * `path` (as `path = &quot;foo.html&quot;`): sets the path to the template file. The
+//!   path is interpreted as relative to the configured template directories
+//!   (by default, this is a `templates` directory next to your `Cargo.toml`).
+//!   The file name extension is used to infer an escape mode (see below). In
+//!   web framework integrations, the path&#39;s extension may also be used to
+//!   infer the content type of the resulting response.
+//!   Cannot be used together with `source`.
+//! * `source` (as `source = &quot;{{ foo }}&quot;`): directly sets the template source.
+//!   This can be useful for test cases or short templates. The generated path
+//!   is undefined, which generally makes it impossible to refer to this
+//!   template from other templates. If `source` is specified, `ext` must also
+//!   be specified (see below). Cannot be used together with `path`.
+//! * `ext` (as `ext = &quot;txt&quot;`): lets you specify the content type as a file
+//!   extension. This is used to infer an escape mode (see below), and some
+//!   web framework integrations use it to determine the content type.
+//!   Cannot be used together with `path`.
+//! * `print` (as `print = &quot;code&quot;`): enable debugging by printing nothing
+//!   (`none`), the parsed syntax tree (`ast`), the generated code (`code`)
+//!   or `all` for both. The requested data will be printed to stdout at
+//!   compile time.
+//! * `escape` (as `escape = &quot;none&quot;`): override the template&#39;s extension used for
+//!   the purpose of determining the escaper for this template. See the section
+//!   on configuring custom escapers for more information.
+//! * `syntax` (as `syntax = &quot;foo&quot;`): set the syntax name for a parser defined
+//!   in the configuration file. The default syntax , &quot;default&quot;,  is the one
+//!   provided by Askama.
 
-<span class="attribute">#![<span class="ident">forbid</span>(<span class="ident">unsafe_code</span>)]</span>
-<span class="attribute">#![<span class="ident">deny</span>(<span class="ident">elided_lifetimes_in_paths</span>)]</span>
-<span class="attribute">#![<span class="ident">deny</span>(<span class="ident">unreachable_pub</span>)]</span>
+</span><span class="attribute">#![forbid(unsafe_code)]
+#![deny(elided_lifetimes_in_paths)]
+#![deny(unreachable_pub)]
 
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">askama_shared</span> <span class="kw">as</span> <span class="ident">shared</span>;
+</span><span class="kw">pub use </span>askama_shared <span class="kw">as </span>shared;
 
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">askama_escape</span>::{<span class="ident">Html</span>, <span class="ident">Text</span>};
+<span class="kw">pub use </span>askama_escape::{Html, Text};
 
-<span class="doccomment">/// Main `Template` trait; implementations are generally derived</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// If you need an object-safe template, use [`DynTemplate`].</span>
-<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">Template</span> {
-    <span class="doccomment">/// Helper method which allocates a new `String` and renders into it</span>
-    <span class="kw">fn</span> <span class="ident">render</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">buf</span> <span class="op">=</span> <span class="ident">String::with_capacity</span>(<span class="ident"><span class="self">Self</span>::SIZE_HINT</span>);
-        <span class="self">self</span>.<span class="ident">render_into</span>(<span class="kw-2">&amp;mut</span> <span class="ident">buf</span>)<span class="question-mark">?</span>;
-        <span class="prelude-val">Ok</span>(<span class="ident">buf</span>)
+<span class="doccomment">/// Main `Template` trait; implementations are generally derived
+///
+/// If you need an object-safe template, use [`DynTemplate`].
+</span><span class="kw">pub trait </span>Template {
+    <span class="doccomment">/// Helper method which allocates a new `String` and renders into it
+    </span><span class="kw">fn </span>render(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;String&gt; {
+        <span class="kw">let </span><span class="kw-2">mut </span>buf = String::with_capacity(<span class="self">Self</span>::SIZE_HINT);
+        <span class="self">self</span>.render_into(<span class="kw-2">&amp;mut </span>buf)<span class="question-mark">?</span>;
+        <span class="prelude-val">Ok</span>(buf)
     }
 
-    <span class="doccomment">/// Renders the template to the given `writer` buffer</span>
-    <span class="kw">fn</span> <span class="ident">render_into</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">writer</span>: <span class="kw-2">&amp;mut</span> (<span class="kw">impl</span> <span class="ident">std::fmt::Write</span> <span class="op">+</span> <span class="question-mark">?</span><span class="ident">Sized</span>)) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span>;
+    <span class="doccomment">/// Renders the template to the given `writer` buffer
+    </span><span class="kw">fn </span>render_into(<span class="kw-2">&amp;</span><span class="self">self</span>, writer: <span class="kw-2">&amp;mut </span>(<span class="kw">impl </span>std::fmt::Write + <span class="question-mark">?</span>Sized)) -&gt; <span class="prelude-ty">Result</span>&lt;()&gt;;
 
-    <span class="doccomment">/// The template&#39;s extension, if provided</span>
-    <span class="kw">const</span> <span class="ident">EXTENSION</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span>;
+    <span class="doccomment">/// The template&#39;s extension, if provided
+    </span><span class="kw">const </span>EXTENSION: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str&gt;;
 
-    <span class="doccomment">/// Provides a conservative estimate of the expanded length of the rendered template</span>
-    <span class="kw">const</span> <span class="ident">SIZE_HINT</span>: <span class="ident">usize</span>;
+    <span class="doccomment">/// Provides a conservative estimate of the expanded length of the rendered template
+    </span><span class="kw">const </span>SIZE_HINT: usize;
 
-    <span class="doccomment">/// The MIME type (Content-Type) of the data that gets rendered by this Template</span>
-    <span class="kw">const</span> <span class="ident">MIME_TYPE</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span>;
+    <span class="doccomment">/// The MIME type (Content-Type) of the data that gets rendered by this Template
+    </span><span class="kw">const </span>MIME_TYPE: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str;
 }
 
-<span class="doccomment">/// Object-safe wrapper trait around [`Template`] implementers</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// This trades reduced performance (mostly due to writing into `dyn Write`) for object safety.</span>
-<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">DynTemplate</span> {
-    <span class="doccomment">/// Helper method which allocates a new `String` and renders into it</span>
-    <span class="kw">fn</span> <span class="ident">dyn_render</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>;
+<span class="doccomment">/// Object-safe wrapper trait around [`Template`] implementers
+///
+/// This trades reduced performance (mostly due to writing into `dyn Write`) for object safety.
+</span><span class="kw">pub trait </span>DynTemplate {
+    <span class="doccomment">/// Helper method which allocates a new `String` and renders into it
+    </span><span class="kw">fn </span>dyn_render(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;String&gt;;
 
-    <span class="doccomment">/// Renders the template to the given `writer` buffer</span>
-    <span class="kw">fn</span> <span class="ident">dyn_render_into</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">writer</span>: <span class="kw-2">&amp;mut</span> <span class="kw">dyn</span> <span class="ident">std::fmt::Write</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span>;
+    <span class="doccomment">/// Renders the template to the given `writer` buffer
+    </span><span class="kw">fn </span>dyn_render_into(<span class="kw-2">&amp;</span><span class="self">self</span>, writer: <span class="kw-2">&amp;mut </span><span class="kw">dyn </span>std::fmt::Write) -&gt; <span class="prelude-ty">Result</span>&lt;()&gt;;
 
-    <span class="doccomment">/// Helper function to inspect the template&#39;s extension</span>
-    <span class="kw">fn</span> <span class="ident">extension</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span>;
+    <span class="doccomment">/// Helper function to inspect the template&#39;s extension
+    </span><span class="kw">fn </span>extension(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str&gt;;
 
-    <span class="doccomment">/// Provides a conservative estimate of the expanded length of the rendered template</span>
-    <span class="kw">fn</span> <span class="ident">size_hint</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">usize</span>;
+    <span class="doccomment">/// Provides a conservative estimate of the expanded length of the rendered template
+    </span><span class="kw">fn </span>size_hint(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; usize;
 
-    <span class="doccomment">/// The MIME type (Content-Type) of the data that gets rendered by this Template</span>
-    <span class="kw">fn</span> <span class="ident">mime_type</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span>;
+    <span class="doccomment">/// The MIME type (Content-Type) of the data that gets rendered by this Template
+    </span><span class="kw">fn </span>mime_type(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str;
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Template</span><span class="op">&gt;</span> <span class="ident">DynTemplate</span> <span class="kw">for</span> <span class="ident">T</span> {
-    <span class="kw">fn</span> <span class="ident">dyn_render</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span> {
-        <span class="op">&lt;</span><span class="self">Self</span> <span class="kw">as</span> <span class="ident">Template</span><span class="op">&gt;</span><span class="ident">::render</span>(<span class="self">self</span>)
+<span class="kw">impl</span>&lt;T: Template&gt; DynTemplate <span class="kw">for </span>T {
+    <span class="kw">fn </span>dyn_render(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;String&gt; {
+        &lt;<span class="self">Self </span><span class="kw">as </span>Template&gt;::render(<span class="self">self</span>)
     }
 
-    <span class="kw">fn</span> <span class="ident">dyn_render_into</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">writer</span>: <span class="kw-2">&amp;mut</span> <span class="kw">dyn</span> <span class="ident">std::fmt::Write</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
-        <span class="op">&lt;</span><span class="self">Self</span> <span class="kw">as</span> <span class="ident">Template</span><span class="op">&gt;</span><span class="ident">::render_into</span>(<span class="self">self</span>, <span class="ident">writer</span>)
+    <span class="kw">fn </span>dyn_render_into(<span class="kw-2">&amp;</span><span class="self">self</span>, writer: <span class="kw-2">&amp;mut </span><span class="kw">dyn </span>std::fmt::Write) -&gt; <span class="prelude-ty">Result</span>&lt;()&gt; {
+        &lt;<span class="self">Self </span><span class="kw">as </span>Template&gt;::render_into(<span class="self">self</span>, writer)
     }
 
-    <span class="kw">fn</span> <span class="ident">extension</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span> {
-        <span class="ident"><span class="self">Self</span>::EXTENSION</span>
+    <span class="kw">fn </span>extension(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str&gt; {
+        <span class="self">Self</span>::EXTENSION
     }
 
-    <span class="kw">fn</span> <span class="ident">size_hint</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">usize</span> {
-        <span class="ident"><span class="self">Self</span>::SIZE_HINT</span>
+    <span class="kw">fn </span>size_hint(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; usize {
+        <span class="self">Self</span>::SIZE_HINT
     }
 
-    <span class="kw">fn</span> <span class="ident">mime_type</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> {
-        <span class="ident"><span class="self">Self</span>::MIME_TYPE</span>
+    <span class="kw">fn </span>mime_type(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str {
+        <span class="self">Self</span>::MIME_TYPE
     }
 }
 
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::shared::filters</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::shared::helpers</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::shared</span>::{<span class="ident">read_config_file</span>, <span class="ident">Error</span>, <span class="ident">MarkupDisplay</span>, <span class="prelude-ty">Result</span>};
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">askama_derive</span>::<span class="kw-2">*</span>;
+<span class="kw">pub use </span><span class="kw">crate</span>::shared::filters;
+<span class="kw">pub use </span><span class="kw">crate</span>::shared::helpers;
+<span class="kw">pub use </span><span class="kw">crate</span>::shared::{read_config_file, Error, MarkupDisplay, <span class="prelude-ty">Result</span>};
+<span class="kw">pub use </span>askama_derive::<span class="kw-2">*</span>;
 
-<span class="attribute">#[<span class="ident">deprecated</span>(<span class="ident">since</span> <span class="op">=</span> <span class="string">&quot;0.11.1&quot;</span>, <span class="ident">note</span> <span class="op">=</span> <span class="string">&quot;The only function in this mod is deprecated&quot;</span>)]</span>
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">mime</span> {
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">all</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;mime_guess&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;mime&quot;</span>))]</span>
-    <span class="attribute">#[<span class="ident">deprecated</span>(<span class="ident">since</span> <span class="op">=</span> <span class="string">&quot;0.11.1&quot;</span>, <span class="ident">note</span> <span class="op">=</span> <span class="string">&quot;Use Template::MIME_TYPE instead&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::shared::extension_to_mime_type</span>;
+<span class="attribute">#[deprecated(since = <span class="string">&quot;0.11.1&quot;</span>, note = <span class="string">&quot;The only function in this mod is deprecated&quot;</span>)]
+</span><span class="kw">pub mod </span>mime {
+    <span class="attribute">#[cfg(all(feature = <span class="string">&quot;mime_guess&quot;</span>, feature = <span class="string">&quot;mime&quot;</span>))]
+    #[deprecated(since = <span class="string">&quot;0.11.1&quot;</span>, note = <span class="string">&quot;Use Template::MIME_TYPE instead&quot;</span>)]
+    </span><span class="kw">pub use </span><span class="kw">crate</span>::shared::extension_to_mime_type;
 }
 
-<span class="doccomment">/// Old build script helper to rebuild crates if contained templates have changed</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// This function is now deprecated and does nothing.</span>
-<span class="attribute">#[<span class="ident">deprecated</span>(
-    <span class="ident">since</span> <span class="op">=</span> <span class="string">&quot;0.8.1&quot;</span>,
-    <span class="ident">note</span> <span class="op">=</span> <span class="string">&quot;file-level dependency tracking is handled automatically without build script&quot;</span>
-)]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">rerun_if_templates_changed</span>() {}
+<span class="doccomment">/// Old build script helper to rebuild crates if contained templates have changed
+///
+/// This function is now deprecated and does nothing.
+</span><span class="attribute">#[deprecated(
+    since = <span class="string">&quot;0.8.1&quot;</span>,
+    note = <span class="string">&quot;file-level dependency tracking is handled automatically without build script&quot;
+</span>)]
+</span><span class="kw">pub fn </span>rerun_if_templates_changed() {}
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
-<span class="kw">mod</span> <span class="ident">tests</span> {
-    <span class="kw">use</span> <span class="kw">super</span>::{<span class="ident">DynTemplate</span>, <span class="ident">Template</span>};
+<span class="attribute">#[cfg(test)]
+</span><span class="kw">mod </span>tests {
+    <span class="kw">use super</span>::{DynTemplate, Template};
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">dyn_template</span>() {
-        <span class="kw">struct</span> <span class="ident">Test</span>;
-        <span class="kw">impl</span> <span class="ident">Template</span> <span class="kw">for</span> <span class="ident">Test</span> {
-            <span class="kw">fn</span> <span class="ident">render_into</span>(
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>dyn_template() {
+        <span class="kw">struct </span>Test;
+        <span class="kw">impl </span>Template <span class="kw">for </span>Test {
+            <span class="kw">fn </span>render_into(
                 <span class="kw-2">&amp;</span><span class="self">self</span>,
-                <span class="ident">writer</span>: <span class="kw-2">&amp;mut</span> (<span class="kw">impl</span> <span class="ident">std::fmt::Write</span> <span class="op">+</span> <span class="question-mark">?</span><span class="ident">Sized</span>),
-            ) -&gt; <span class="ident">askama_shared::Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
-                <span class="prelude-val">Ok</span>(<span class="ident">writer</span>.<span class="ident">write_str</span>(<span class="string">&quot;test&quot;</span>)<span class="question-mark">?</span>)
+                writer: <span class="kw-2">&amp;mut </span>(<span class="kw">impl </span>std::fmt::Write + <span class="question-mark">?</span>Sized),
+            ) -&gt; askama_shared::Result&lt;()&gt; {
+                <span class="prelude-val">Ok</span>(writer.write_str(<span class="string">&quot;test&quot;</span>)<span class="question-mark">?</span>)
             }
 
-            <span class="kw">const</span> <span class="ident">EXTENSION</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="string">&quot;txt&quot;</span>);
+            <span class="kw">const </span>EXTENSION: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str&gt; = <span class="prelude-val">Some</span>(<span class="string">&quot;txt&quot;</span>);
 
-            <span class="kw">const</span> <span class="ident">SIZE_HINT</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">4</span>;
+            <span class="kw">const </span>SIZE_HINT: usize = <span class="number">4</span>;
 
-            <span class="kw">const</span> <span class="ident">MIME_TYPE</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;text/plain; charset=utf-8&quot;</span>;
+            <span class="kw">const </span>MIME_TYPE: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str = <span class="string">&quot;text/plain; charset=utf-8&quot;</span>;
         }
 
-        <span class="kw">fn</span> <span class="ident">render</span>(<span class="ident">t</span>: <span class="kw-2">&amp;</span><span class="kw">dyn</span> <span class="ident">DynTemplate</span>) -&gt; <span class="ident">String</span> {
-            <span class="ident">t</span>.<span class="ident">dyn_render</span>().<span class="ident">unwrap</span>()
+        <span class="kw">fn </span>render(t: <span class="kw-2">&amp;</span><span class="kw">dyn </span>DynTemplate) -&gt; String {
+            t.dyn_render().unwrap()
         }
 
-        <span class="macro">assert_eq!</span>(<span class="ident">render</span>(<span class="kw-2">&amp;</span><span class="ident">Test</span>), <span class="string">&quot;test&quot;</span>);
+        <span class="macro">assert_eq!</span>(render(<span class="kw-2">&amp;</span>Test), <span class="string">&quot;test&quot;</span>);
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="askama" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="askama" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (77e57db38 2022-10-30)" ></div></body></html>

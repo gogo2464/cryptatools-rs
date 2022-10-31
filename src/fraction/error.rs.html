@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/fraction-0.10.0/src/error.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>error.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../fraction/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../fraction/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../fraction/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/fraction-0.10.0/src/error.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>error.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../fraction/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -81,88 +81,88 @@
 <span id="81">81</span>
 <span id="82">82</span>
 <span id="83">83</span>
-</pre><pre class="rust"><code><span class="doccomment">//! Crate error types</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! Contains error types utilised by other modules within the crate</span>
+</pre><pre class="rust"><code><span class="doccomment">//! Crate error types
+//!
+//! Contains error types utilised by other modules within the crate
 
-<span class="kw">use</span> <span class="ident">std::error::Error</span>;
-<span class="kw">use</span> <span class="ident">std::fmt</span>;
-<span class="kw">use</span> <span class="ident">std::io</span>;
+</span><span class="kw">use </span>std::error::Error;
+<span class="kw">use </span>std::fmt;
+<span class="kw">use </span>std::io;
 
-<span class="doccomment">/// Happens when we parse stuff from strings</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Eq</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">ParseError</span> {
-    <span class="doccomment">/// Not enough capacity in underlying integer to perform a math operation</span>
-    <span class="ident">OverflowError</span>,
+<span class="doccomment">/// Happens when we parse stuff from strings
+</span><span class="attribute">#[derive(Debug, Clone, Eq, PartialEq)]
+</span><span class="kw">pub enum </span>ParseError {
+    <span class="doccomment">/// Not enough capacity in underlying integer to perform a math operation
+    </span>OverflowError,
 
-    <span class="doccomment">/// Could not convert a character into a digit or a string into a number</span>
-    <span class="ident">ParseIntError</span>,
+    <span class="doccomment">/// Could not convert a character into a digit or a string into a number
+    </span>ParseIntError,
 
-    <span class="doccomment">/// The base is not supported. E.g. a type only supports base 10, but we try to</span>
-    <span class="doccomment">/// parse with the base 7.</span>
-    <span class="ident">UnsupportedBase</span>,
+    <span class="doccomment">/// The base is not supported. E.g. a type only supports base 10, but we try to
+    /// parse with the base 7.
+    </span>UnsupportedBase,
 }
 
-<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">ParseError</span> {}
-<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">ParseError</span> {}
+<span class="kw">unsafe impl </span>Send <span class="kw">for </span>ParseError {}
+<span class="kw">unsafe impl </span>Sync <span class="kw">for </span>ParseError {}
 
-<span class="kw">impl</span> <span class="ident">fmt::Display</span> <span class="kw">for</span> <span class="ident">ParseError</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">fmt::Formatter</span>) -&gt; <span class="ident">fmt::Result</span> {
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident">ParseError::OverflowError</span> =&gt; <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;Overflow&quot;</span>),
-            <span class="ident">ParseError::ParseIntError</span> =&gt; <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;Could not parse integer&quot;</span>),
-            <span class="ident">ParseError::UnsupportedBase</span> =&gt; <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;Unsupported base&quot;</span>),
+<span class="kw">impl </span>fmt::Display <span class="kw">for </span>ParseError {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>fmt::Formatter) -&gt; fmt::Result {
+        <span class="kw">match </span><span class="self">self </span>{
+            ParseError::OverflowError =&gt; <span class="macro">write!</span>(f, <span class="string">&quot;Overflow&quot;</span>),
+            ParseError::ParseIntError =&gt; <span class="macro">write!</span>(f, <span class="string">&quot;Could not parse integer&quot;</span>),
+            ParseError::UnsupportedBase =&gt; <span class="macro">write!</span>(f, <span class="string">&quot;Unsupported base&quot;</span>),
         }
     }
 }
 
-<span class="kw">impl</span> <span class="ident">Error</span> <span class="kw">for</span> <span class="ident">ParseError</span> {}
+<span class="kw">impl </span>Error <span class="kw">for </span>ParseError {}
 
-<span class="doccomment">/// Could not perform division, or fill in the resulting buffer</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">DivisionError</span> {
-    <span class="doccomment">/// Trying to divide something by Zero</span>
-    <span class="ident">DivisionByZero</span>,
+<span class="doccomment">/// Could not perform division, or fill in the resulting buffer
+</span><span class="attribute">#[derive(Debug)]
+</span><span class="kw">pub enum </span>DivisionError {
+    <span class="doccomment">/// Trying to divide something by Zero
+    </span>DivisionByZero,
 
-    <span class="doccomment">/// Incapsulates [fmt::Error]</span>
-    <span class="ident">FmtError</span>(<span class="ident">fmt::Error</span>),
+    <span class="doccomment">/// Incapsulates [fmt::Error]
+    </span>FmtError(fmt::Error),
 
-    <span class="doccomment">/// Incapsulates [io::Error]</span>
-    <span class="ident">IoError</span>(<span class="ident">io::Error</span>),
+    <span class="doccomment">/// Incapsulates [io::Error]
+    </span>IoError(io::Error),
 
-    <span class="doccomment">/// Errors external to the division algorithm still may be passed</span>
-    <span class="doccomment">/// through the co-routines wrapped up with this constructor</span>
-    <span class="ident">ExternalError</span>(<span class="ident">Box</span><span class="op">&lt;</span><span class="ident">dyn</span> <span class="ident">Error</span> <span class="op">+</span> <span class="ident">Send</span> <span class="op">+</span> <span class="ident">Sync</span><span class="op">&gt;</span>),
+    <span class="doccomment">/// Errors external to the division algorithm still may be passed
+    /// through the co-routines wrapped up with this constructor
+    </span>ExternalError(Box&lt;<span class="kw">dyn </span>Error + Send + Sync&gt;),
 }
 
-<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">DivisionError</span> {}
-<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">DivisionError</span> {}
+<span class="kw">unsafe impl </span>Sync <span class="kw">for </span>DivisionError {}
+<span class="kw">unsafe impl </span>Send <span class="kw">for </span>DivisionError {}
 
-<span class="kw">impl</span> <span class="ident">fmt::Display</span> <span class="kw">for</span> <span class="ident">DivisionError</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">fmt::Formatter</span>) -&gt; <span class="ident">fmt::Result</span> {
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident">DivisionError::DivisionByZero</span> =&gt; <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;Division by zero&quot;</span>),
+<span class="kw">impl </span>fmt::Display <span class="kw">for </span>DivisionError {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>fmt::Formatter) -&gt; fmt::Result {
+        <span class="kw">match </span><span class="self">self </span>{
+            DivisionError::DivisionByZero =&gt; <span class="macro">write!</span>(f, <span class="string">&quot;Division by zero&quot;</span>),
 
-            <span class="ident">DivisionError::FmtError</span>(<span class="ident">e</span>) =&gt; <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;Fmt error: {}&quot;</span>, <span class="ident">e</span>),
-            <span class="ident">DivisionError::IoError</span>(<span class="ident">e</span>) =&gt; <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;IO error: {}&quot;</span>, <span class="ident">e</span>),
+            DivisionError::FmtError(e) =&gt; <span class="macro">write!</span>(f, <span class="string">&quot;Fmt error: {}&quot;</span>, e),
+            DivisionError::IoError(e) =&gt; <span class="macro">write!</span>(f, <span class="string">&quot;IO error: {}&quot;</span>, e),
 
-            <span class="ident">DivisionError::ExternalError</span>(<span class="ident">e</span>) =&gt; <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;External error: {}&quot;</span>, <span class="ident">e</span>),
+            DivisionError::ExternalError(e) =&gt; <span class="macro">write!</span>(f, <span class="string">&quot;External error: {}&quot;</span>, e),
         }
     }
 }
 
-<span class="kw">impl</span> <span class="ident">Error</span> <span class="kw">for</span> <span class="ident">DivisionError</span> {}
+<span class="kw">impl </span>Error <span class="kw">for </span>DivisionError {}
 
-<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">io::Error</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">DivisionError</span> {
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">error</span>: <span class="ident">io::Error</span>) -&gt; <span class="ident">DivisionError</span> {
-        <span class="ident">DivisionError::IoError</span>(<span class="ident">error</span>)
+<span class="kw">impl </span>From&lt;io::Error&gt; <span class="kw">for </span>DivisionError {
+    <span class="kw">fn </span>from(error: io::Error) -&gt; DivisionError {
+        DivisionError::IoError(error)
     }
 }
 
-<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">fmt::Error</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">DivisionError</span> {
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">error</span>: <span class="ident">fmt::Error</span>) -&gt; <span class="ident">DivisionError</span> {
-        <span class="ident">DivisionError::FmtError</span>(<span class="ident">error</span>)
+<span class="kw">impl </span>From&lt;fmt::Error&gt; <span class="kw">for </span>DivisionError {
+    <span class="kw">fn </span>from(error: fmt::Error) -&gt; DivisionError {
+        DivisionError::FmtError(error)
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="fraction" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="fraction" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (77e57db38 2022-10-30)" ></div></body></html>

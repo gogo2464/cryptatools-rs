@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/goblin-0.5.4/src/elf/symver.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>symver.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../goblin/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../goblin/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../goblin/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/goblin-0.5.4/src/elf/symver.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>symver.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../normalize.css"><link rel="stylesheet" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../ayu.css" disabled><link rel="stylesheet" href="../../../dark.css" disabled><link rel="stylesheet" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../goblin/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -878,885 +878,885 @@
 <span id="878">878</span>
 <span id="879">879</span>
 <span id="880">880</span>
-</pre><pre class="rust"><code><span class="doccomment">//! Symbol versioning</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! Implementation of the GNU symbol versioning extension according to</span>
-<span class="doccomment">//! [LSB Core Specification - Symbol Versioning][lsb-symver].</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! # Examples</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! List the dependencies of an ELF file that have [version needed][lsb-verneed] information along</span>
-<span class="doccomment">//! with the versions needed for each dependency.</span>
-<span class="doccomment">//! ```rust</span>
-<span class="doccomment">//! use goblin::error::Error;</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! pub fn show_verneed(bytes: &amp;[u8]) -&gt; Result&lt;(), Error&gt; {</span>
-<span class="doccomment">//!     let binary = goblin::elf::Elf::parse(&amp;bytes)?;</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//!     if let Some(verneed) = binary.verneed {</span>
-<span class="doccomment">//!         for need_file in verneed.iter() {</span>
-<span class="doccomment">//!             println!(</span>
-<span class="doccomment">//!                 &quot;Depend on {:?} with version(s):&quot;,</span>
-<span class="doccomment">//!                 binary.dynstrtab.get_at(need_file.vn_file)</span>
-<span class="doccomment">//!             );</span>
-<span class="doccomment">//!             for need_ver in need_file.iter() {</span>
-<span class="doccomment">//!                 println!(&quot;{:?}&quot;, binary.dynstrtab.get_at(need_ver.vna_name));</span>
-<span class="doccomment">//!             }</span>
-<span class="doccomment">//!         }</span>
-<span class="doccomment">//!     }</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//!     Ok(())</span>
-<span class="doccomment">//! }</span>
-<span class="doccomment">//! ```</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! List the [version defined][lsb-verdef] information of an ELF file, effectively listing the version</span>
-<span class="doccomment">//! defined by this ELF file.</span>
-<span class="doccomment">//! ```rust</span>
-<span class="doccomment">//! use goblin::error::Error;</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! pub fn show_verdef(bytes: &amp;[u8]) -&gt; Result&lt;(), Error&gt; {</span>
-<span class="doccomment">//!     let binary = goblin::elf::Elf::parse(&amp;bytes)?;</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//!     if let Some(verdef) = &amp;binary.verdef {</span>
-<span class="doccomment">//!         for def in verdef.iter() {</span>
-<span class="doccomment">//!             for (n, aux) in def.iter().enumerate() {</span>
-<span class="doccomment">//!                 let name = binary.dynstrtab.get_at(aux.vda_name);</span>
-<span class="doccomment">//!                 match n {</span>
-<span class="doccomment">//!                     0 =&gt; print!(&quot;Name: {:?}&quot;, name),</span>
-<span class="doccomment">//!                     1 =&gt; print!(&quot; Parent: {:?}&quot;, name),</span>
-<span class="doccomment">//!                     _ =&gt; print!(&quot;, {:?}&quot;, name),</span>
-<span class="doccomment">//!                 }</span>
-<span class="doccomment">//!             }</span>
-<span class="doccomment">//!             print!(&quot;\n&quot;);</span>
-<span class="doccomment">//!         }</span>
-<span class="doccomment">//!     }</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//!     Ok(())</span>
-<span class="doccomment">//! }</span>
-<span class="doccomment">//! ```</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! [lsb-symver]: https://refspecs.linuxbase.org/LSB_5.0.0/LSB-Core-generic/LSB-Core-generic/symversion.html</span>
-<span class="doccomment">//! [lsb-verneed]: https://refspecs.linuxbase.org/LSB_5.0.0/LSB-Core-generic/LSB-Core-generic/symversion.html#SYMVERRQMTS</span>
-<span class="doccomment">//! [lsb-verdef]: https://refspecs.linuxbase.org/LSB_5.0.0/LSB-Core-generic/LSB-Core-generic/symversion.html#SYMVERDEFS</span>
+</pre><pre class="rust"><code><span class="doccomment">//! Symbol versioning
+//!
+//! Implementation of the GNU symbol versioning extension according to
+//! [LSB Core Specification - Symbol Versioning][lsb-symver].
+//!
+//! # Examples
+//!
+//! List the dependencies of an ELF file that have [version needed][lsb-verneed] information along
+//! with the versions needed for each dependency.
+//! ```rust
+//! use goblin::error::Error;
+//!
+//! pub fn show_verneed(bytes: &amp;[u8]) -&gt; Result&lt;(), Error&gt; {
+//!     let binary = goblin::elf::Elf::parse(&amp;bytes)?;
+//!
+//!     if let Some(verneed) = binary.verneed {
+//!         for need_file in verneed.iter() {
+//!             println!(
+//!                 &quot;Depend on {:?} with version(s):&quot;,
+//!                 binary.dynstrtab.get_at(need_file.vn_file)
+//!             );
+//!             for need_ver in need_file.iter() {
+//!                 println!(&quot;{:?}&quot;, binary.dynstrtab.get_at(need_ver.vna_name));
+//!             }
+//!         }
+//!     }
+//!
+//!     Ok(())
+//! }
+//! ```
+//!
+//! List the [version defined][lsb-verdef] information of an ELF file, effectively listing the version
+//! defined by this ELF file.
+//! ```rust
+//! use goblin::error::Error;
+//!
+//! pub fn show_verdef(bytes: &amp;[u8]) -&gt; Result&lt;(), Error&gt; {
+//!     let binary = goblin::elf::Elf::parse(&amp;bytes)?;
+//!
+//!     if let Some(verdef) = &amp;binary.verdef {
+//!         for def in verdef.iter() {
+//!             for (n, aux) in def.iter().enumerate() {
+//!                 let name = binary.dynstrtab.get_at(aux.vda_name);
+//!                 match n {
+//!                     0 =&gt; print!(&quot;Name: {:?}&quot;, name),
+//!                     1 =&gt; print!(&quot; Parent: {:?}&quot;, name),
+//!                     _ =&gt; print!(&quot;, {:?}&quot;, name),
+//!                 }
+//!             }
+//!             print!(&quot;\n&quot;);
+//!         }
+//!     }
+//!
+//!     Ok(())
+//! }
+//! ```
+//!
+//! [lsb-symver]: https://refspecs.linuxbase.org/LSB_5.0.0/LSB-Core-generic/LSB-Core-generic/symversion.html
+//! [lsb-verneed]: https://refspecs.linuxbase.org/LSB_5.0.0/LSB-Core-generic/LSB-Core-generic/symversion.html#SYMVERRQMTS
+//! [lsb-verdef]: https://refspecs.linuxbase.org/LSB_5.0.0/LSB-Core-generic/LSB-Core-generic/symversion.html#SYMVERDEFS
 
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::container</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::elf::section_header</span>::{<span class="ident">SectionHeader</span>, <span class="ident">SHT_GNU_VERDEF</span>, <span class="ident">SHT_GNU_VERNEED</span>, <span class="ident">SHT_GNU_VERSYM</span>};
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::error::Result</span>;
-<span class="kw">use</span> <span class="ident">core::iter::FusedIterator</span>;
-<span class="kw">use</span> <span class="ident">scroll::Pread</span>;
+</span><span class="kw">use </span><span class="kw">crate</span>::container;
+<span class="kw">use </span><span class="kw">crate</span>::elf::section_header::{SectionHeader, SHT_GNU_VERDEF, SHT_GNU_VERNEED, SHT_GNU_VERSYM};
+<span class="kw">use </span><span class="kw">crate</span>::error::Result;
+<span class="kw">use </span>core::iter::FusedIterator;
+<span class="kw">use </span>scroll::Pread;
 
 <span class="comment">/******************
  *  ELF Constants *
- ******************/</span>
+ ******************/
 
-<span class="comment">// Versym constants.</span>
+// Versym constants.
 
-<span class="doccomment">/// Constant describing a local symbol, see [`Versym::is_local`].</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">VER_NDX_LOCAL</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0</span>;
-<span class="doccomment">/// Constant describing a global symbol, see [`Versym::is_global`].</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">VER_NDX_GLOBAL</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">1</span>;
-<span class="doccomment">/// Bitmask to check hidden bit, see [`Versym::is_hidden`].</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">VERSYM_HIDDEN</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0x8000</span>;
-<span class="doccomment">/// Bitmask to get version information, see [`Versym::version`].</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">VERSYM_VERSION</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0x7fff</span>;
+</span><span class="doccomment">/// Constant describing a local symbol, see [`Versym::is_local`].
+</span><span class="kw">pub const </span>VER_NDX_LOCAL: u16 = <span class="number">0</span>;
+<span class="doccomment">/// Constant describing a global symbol, see [`Versym::is_global`].
+</span><span class="kw">pub const </span>VER_NDX_GLOBAL: u16 = <span class="number">1</span>;
+<span class="doccomment">/// Bitmask to check hidden bit, see [`Versym::is_hidden`].
+</span><span class="kw">pub const </span>VERSYM_HIDDEN: u16 = <span class="number">0x8000</span>;
+<span class="doccomment">/// Bitmask to get version information, see [`Versym::version`].
+</span><span class="kw">pub const </span>VERSYM_VERSION: u16 = <span class="number">0x7fff</span>;
 
-<span class="comment">// Verdef constants.</span>
+<span class="comment">// Verdef constants.
 
-<span class="doccomment">/// Bitmask to check `base` flag in [`Verdef::vd_flags`].</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">VER_FLG_BASE</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0x1</span>;
-<span class="doccomment">/// Bitmask to check `weak` flag in [`Verdef::vd_flags`].</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">VER_FLG_WEAK</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0x2</span>;
-<span class="doccomment">/// Bitmask to check `info` flag in [`Verdef::vd_flags`].</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">VER_FLG_INFO</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0x4</span>;
+</span><span class="doccomment">/// Bitmask to check `base` flag in [`Verdef::vd_flags`].
+</span><span class="kw">pub const </span>VER_FLG_BASE: u16 = <span class="number">0x1</span>;
+<span class="doccomment">/// Bitmask to check `weak` flag in [`Verdef::vd_flags`].
+</span><span class="kw">pub const </span>VER_FLG_WEAK: u16 = <span class="number">0x2</span>;
+<span class="doccomment">/// Bitmask to check `info` flag in [`Verdef::vd_flags`].
+</span><span class="kw">pub const </span>VER_FLG_INFO: u16 = <span class="number">0x4</span>;
 
 <span class="comment">/********************
  *  ELF Structures  *
- ********************/</span>
+ ********************/
 
-<span class="doccomment">/// An ELF `Symbol Version` entry.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// https://refspecs.linuxbase.org/LSB_5.0.0/LSB-Core-generic/LSB-Core-generic/symversion.html#SYMVERTBL</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Pread</span>)]</span>
-<span class="kw">struct</span> <span class="ident">ElfVersym</span> {
-    <span class="ident">vs_val</span>: <span class="ident">u16</span>,
+</span><span class="doccomment">/// An ELF `Symbol Version` entry.
+///
+/// https://refspecs.linuxbase.org/LSB_5.0.0/LSB-Core-generic/LSB-Core-generic/symversion.html#SYMVERTBL
+</span><span class="attribute">#[repr(C)]
+#[derive(Debug, Pread)]
+</span><span class="kw">struct </span>ElfVersym {
+    vs_val: u16,
 }
 
-<span class="doccomment">/// An ELF `Version Definition` entry Elfxx_Verdef.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// https://refspecs.linuxbase.org/LSB_5.0.0/LSB-Core-generic/LSB-Core-generic/symversion.html#VERDEFENTRIES</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Pread</span>)]</span>
-<span class="kw">struct</span> <span class="ident">ElfVerdef</span> {
-    <span class="ident">vd_version</span>: <span class="ident">u16</span>,
-    <span class="ident">vd_flags</span>: <span class="ident">u16</span>,
-    <span class="ident">vd_ndx</span>: <span class="ident">u16</span>,
-    <span class="ident">vd_cnt</span>: <span class="ident">u16</span>,
-    <span class="ident">vd_hash</span>: <span class="ident">u32</span>,
-    <span class="ident">vd_aux</span>: <span class="ident">u32</span>,
-    <span class="ident">vd_next</span>: <span class="ident">u32</span>,
+<span class="doccomment">/// An ELF `Version Definition` entry Elfxx_Verdef.
+///
+/// https://refspecs.linuxbase.org/LSB_5.0.0/LSB-Core-generic/LSB-Core-generic/symversion.html#VERDEFENTRIES
+</span><span class="attribute">#[repr(C)]
+#[derive(Debug, Pread)]
+</span><span class="kw">struct </span>ElfVerdef {
+    vd_version: u16,
+    vd_flags: u16,
+    vd_ndx: u16,
+    vd_cnt: u16,
+    vd_hash: u32,
+    vd_aux: u32,
+    vd_next: u32,
 }
 
-<span class="doccomment">/// An ELF `Version Definition Auxiliary` entry Elfxx_Verdaux.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// https://refspecs.linuxbase.org/LSB_5.0.0/LSB-Core-generic/LSB-Core-generic/symversion.html#VERDEFEXTS</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Pread</span>)]</span>
-<span class="kw">struct</span> <span class="ident">ElfVerdaux</span> {
-    <span class="ident">vda_name</span>: <span class="ident">u32</span>,
-    <span class="ident">vda_next</span>: <span class="ident">u32</span>,
+<span class="doccomment">/// An ELF `Version Definition Auxiliary` entry Elfxx_Verdaux.
+///
+/// https://refspecs.linuxbase.org/LSB_5.0.0/LSB-Core-generic/LSB-Core-generic/symversion.html#VERDEFEXTS
+</span><span class="attribute">#[repr(C)]
+#[derive(Debug, Pread)]
+</span><span class="kw">struct </span>ElfVerdaux {
+    vda_name: u32,
+    vda_next: u32,
 }
 
-<span class="doccomment">/// An ELF `Version Need` entry Elfxx_Verneed.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// https://refspecs.linuxbase.org/LSB_5.0.0/LSB-Core-generic/LSB-Core-generic/symversion.html#VERNEEDFIG</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Pread</span>)]</span>
-<span class="kw">struct</span> <span class="ident">ElfVerneed</span> {
-    <span class="ident">vn_version</span>: <span class="ident">u16</span>,
-    <span class="ident">vn_cnt</span>: <span class="ident">u16</span>,
-    <span class="ident">vn_file</span>: <span class="ident">u32</span>,
-    <span class="ident">vn_aux</span>: <span class="ident">u32</span>,
-    <span class="ident">vn_next</span>: <span class="ident">u32</span>,
+<span class="doccomment">/// An ELF `Version Need` entry Elfxx_Verneed.
+///
+/// https://refspecs.linuxbase.org/LSB_5.0.0/LSB-Core-generic/LSB-Core-generic/symversion.html#VERNEEDFIG
+</span><span class="attribute">#[repr(C)]
+#[derive(Debug, Pread)]
+</span><span class="kw">struct </span>ElfVerneed {
+    vn_version: u16,
+    vn_cnt: u16,
+    vn_file: u32,
+    vn_aux: u32,
+    vn_next: u32,
 }
 
-<span class="doccomment">/// An ELF `Version Need Auxiliary` entry Elfxx_Vernaux.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// https://refspecs.linuxbase.org/LSB_5.0.0/LSB-Core-generic/LSB-Core-generic/symversion.html#VERNEEDEXTFIG</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Pread</span>)]</span>
-<span class="kw">struct</span> <span class="ident">ElfVernaux</span> {
-    <span class="ident">vna_hash</span>: <span class="ident">u32</span>,
-    <span class="ident">vna_flags</span>: <span class="ident">u16</span>,
-    <span class="ident">vna_other</span>: <span class="ident">u16</span>,
-    <span class="ident">vna_name</span>: <span class="ident">u32</span>,
-    <span class="ident">vna_next</span>: <span class="ident">u32</span>,
+<span class="doccomment">/// An ELF `Version Need Auxiliary` entry Elfxx_Vernaux.
+///
+/// https://refspecs.linuxbase.org/LSB_5.0.0/LSB-Core-generic/LSB-Core-generic/symversion.html#VERNEEDEXTFIG
+</span><span class="attribute">#[repr(C)]
+#[derive(Debug, Pread)]
+</span><span class="kw">struct </span>ElfVernaux {
+    vna_hash: u32,
+    vna_flags: u16,
+    vna_other: u16,
+    vna_name: u32,
+    vna_next: u32,
 }
 
 <span class="comment">/********************
  *  Symbol Version  *
- ********************/</span>
+ ********************/
 
-<span class="doccomment">/// Helper struct to iterate over [Symbol Version][Versym] entries.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">VersymSection</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
-    <span class="ident">ctx</span>: <span class="ident">container::Ctx</span>,
+</span><span class="doccomment">/// Helper struct to iterate over [Symbol Version][Versym] entries.
+</span><span class="attribute">#[derive(Debug)]
+</span><span class="kw">pub struct </span>VersymSection&lt;<span class="lifetime">&#39;a</span>&gt; {
+    bytes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8],
+    ctx: container::Ctx,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">VersymSection</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">parse</span>(
-        <span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
-        <span class="ident">shdrs</span>: <span class="kw-2">&amp;</span>[<span class="ident">SectionHeader</span>],
-        <span class="ident">ctx</span>: <span class="ident">container::Ctx</span>,
-    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">VersymSection</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-        <span class="comment">// Get fields needed from optional `symbol version` section.</span>
-        <span class="kw">let</span> (<span class="ident">offset</span>, <span class="ident">size</span>) <span class="op">=</span>
-            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">shdr</span>) <span class="op">=</span> <span class="ident">shdrs</span>.<span class="ident">iter</span>().<span class="ident">find</span>(<span class="op">|</span><span class="ident">shdr</span><span class="op">|</span> <span class="ident">shdr</span>.<span class="ident">sh_type</span> <span class="op">==</span> <span class="ident">SHT_GNU_VERSYM</span>) {
-                (<span class="ident">shdr</span>.<span class="ident">sh_offset</span> <span class="kw">as</span> <span class="ident">usize</span>, <span class="ident">shdr</span>.<span class="ident">sh_size</span> <span class="kw">as</span> <span class="ident">usize</span>)
-            } <span class="kw">else</span> {
-                <span class="kw">return</span> <span class="prelude-val">Ok</span>(<span class="prelude-val">None</span>);
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; VersymSection&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">pub fn </span>parse(
+        bytes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8],
+        shdrs: <span class="kw-2">&amp;</span>[SectionHeader],
+        ctx: container::Ctx,
+    ) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="prelude-ty">Option</span>&lt;VersymSection&lt;<span class="lifetime">&#39;a</span>&gt;&gt;&gt; {
+        <span class="comment">// Get fields needed from optional `symbol version` section.
+        </span><span class="kw">let </span>(offset, size) =
+            <span class="kw">if let </span><span class="prelude-val">Some</span>(shdr) = shdrs.iter().find(|shdr| shdr.sh_type == SHT_GNU_VERSYM) {
+                (shdr.sh_offset <span class="kw">as </span>usize, shdr.sh_size <span class="kw">as </span>usize)
+            } <span class="kw">else </span>{
+                <span class="kw">return </span><span class="prelude-val">Ok</span>(<span class="prelude-val">None</span>);
             };
 
-        <span class="comment">// Get a slice of bytes of the `version definition` section content.</span>
-        <span class="kw">let</span> <span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>] <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">pread_with</span>(<span class="ident">offset</span>, <span class="ident">size</span>)<span class="question-mark">?</span>;
+        <span class="comment">// Get a slice of bytes of the `version definition` section content.
+        </span><span class="kw">let </span>bytes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8] = bytes.pread_with(offset, size)<span class="question-mark">?</span>;
 
-        <span class="prelude-val">Ok</span>(<span class="prelude-val">Some</span>(<span class="ident">VersymSection</span> { <span class="ident">bytes</span>, <span class="ident">ctx</span> }))
+        <span class="prelude-val">Ok</span>(<span class="prelude-val">Some</span>(VersymSection { bytes, ctx }))
     }
 
-    <span class="doccomment">/// Get an iterator over the [`Versym`] entries.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">iter</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="self">self</span>) -&gt; <span class="ident">VersymIter</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">into_iter</span>()
+    <span class="doccomment">/// Get an iterator over the [`Versym`] entries.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>iter(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="self">self</span>) -&gt; VersymIter&lt;<span class="lifetime">&#39;a</span>&gt; {
+        <span class="self">self</span>.into_iter()
     }
 
-    <span class="doccomment">/// True if there are no [`Versym`] entries.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_empty</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">bytes</span>.<span class="ident">is_empty</span>()
+    <span class="doccomment">/// True if there are no [`Versym`] entries.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>is_empty(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.bytes.is_empty()
     }
 
-    <span class="doccomment">/// Number of [`Versym`] entries.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">len</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">usize</span> {
-        <span class="kw">let</span> <span class="ident">entsize</span> <span class="op">=</span> <span class="ident">core::mem::size_of</span>::<span class="op">&lt;</span><span class="ident">ElfVersym</span><span class="op">&gt;</span>();
+    <span class="doccomment">/// Number of [`Versym`] entries.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>len(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; usize {
+        <span class="kw">let </span>entsize = core::mem::size_of::&lt;ElfVersym&gt;();
 
-        <span class="self">self</span>.<span class="ident">bytes</span>.<span class="ident">len</span>() <span class="op">/</span> <span class="ident">entsize</span>
+        <span class="self">self</span>.bytes.len() / entsize
     }
 
-    <span class="doccomment">/// Get [`Versym`] entry at index.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_at</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">idx</span>: <span class="ident">usize</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Versym</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">entsize</span> <span class="op">=</span> <span class="ident">core::mem::size_of</span>::<span class="op">&lt;</span><span class="ident">ElfVersym</span><span class="op">&gt;</span>();
-        <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> <span class="ident">idx</span>.<span class="ident">checked_mul</span>(<span class="ident">entsize</span>)<span class="question-mark">?</span>;
+    <span class="doccomment">/// Get [`Versym`] entry at index.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>get_at(<span class="kw-2">&amp;</span><span class="self">self</span>, idx: usize) -&gt; <span class="prelude-ty">Option</span>&lt;Versym&gt; {
+        <span class="kw">let </span>entsize = core::mem::size_of::&lt;ElfVersym&gt;();
+        <span class="kw">let </span>offset = idx.checked_mul(entsize)<span class="question-mark">?</span>;
 
-        <span class="self">self</span>.<span class="ident">bytes</span>
-            .<span class="ident">pread_with</span>::<span class="op">&lt;</span><span class="ident">ElfVersym</span><span class="op">&gt;</span>(<span class="ident">offset</span>, <span class="self">self</span>.<span class="ident">ctx</span>.<span class="ident">le</span>)
-            .<span class="ident">ok</span>()
-            .<span class="ident">map</span>(<span class="ident">Versym::from</span>)
+        <span class="self">self</span>.bytes
+            .pread_with::&lt;ElfVersym&gt;(offset, <span class="self">self</span>.ctx.le)
+            .ok()
+            .map(Versym::from)
     }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">IntoIterator</span> <span class="kw">for</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;_</span> <span class="ident">VersymSection</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">type</span> <span class="ident">Item</span> <span class="op">=</span> <span class="op">&lt;</span><span class="ident">VersymIter</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="kw">as</span> <span class="ident">Iterator</span><span class="op">&gt;</span><span class="ident">::Item</span>;
-    <span class="kw">type</span> <span class="ident">IntoIter</span> <span class="op">=</span> <span class="ident">VersymIter</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>;
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; IntoIterator <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;_ </span>VersymSection&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">type </span>Item = &lt;VersymIter&lt;<span class="lifetime">&#39;a</span>&gt; <span class="kw">as </span>Iterator&gt;::Item;
+    <span class="kw">type </span>IntoIter = VersymIter&lt;<span class="lifetime">&#39;a</span>&gt;;
 
-    <span class="kw">fn</span> <span class="ident">into_iter</span>(<span class="self">self</span>) -&gt; <span class="ident"><span class="self">Self</span>::IntoIter</span> {
-        <span class="ident">VersymIter</span> {
-            <span class="ident">bytes</span>: <span class="self">self</span>.<span class="ident">bytes</span>,
-            <span class="ident">offset</span>: <span class="number">0</span>,
-            <span class="ident">ctx</span>: <span class="self">self</span>.<span class="ident">ctx</span>,
+    <span class="kw">fn </span>into_iter(<span class="self">self</span>) -&gt; <span class="self">Self</span>::IntoIter {
+        VersymIter {
+            bytes: <span class="self">self</span>.bytes,
+            offset: <span class="number">0</span>,
+            ctx: <span class="self">self</span>.ctx,
         }
     }
 }
 
-<span class="doccomment">/// Iterator over the [`Versym`] entries from the [`SHT_GNU_VERSYM`] section.</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">VersymIter</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
-    <span class="ident">offset</span>: <span class="ident">usize</span>,
-    <span class="ident">ctx</span>: <span class="ident">container::Ctx</span>,
+<span class="doccomment">/// Iterator over the [`Versym`] entries from the [`SHT_GNU_VERSYM`] section.
+</span><span class="kw">pub struct </span>VersymIter&lt;<span class="lifetime">&#39;a</span>&gt; {
+    bytes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8],
+    offset: usize,
+    ctx: container::Ctx,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Iterator</span> <span class="kw">for</span> <span class="ident">VersymIter</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">type</span> <span class="ident">Item</span> <span class="op">=</span> <span class="ident">Versym</span>;
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Iterator <span class="kw">for </span>VersymIter&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">type </span>Item = Versym;
 
-    <span class="kw">fn</span> <span class="ident">next</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident"><span class="self">Self</span>::Item</span><span class="op">&gt;</span> {
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">offset</span> <span class="op">&gt;</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">bytes</span>.<span class="ident">len</span>() {
-            <span class="prelude-val">None</span>
-        } <span class="kw">else</span> {
-            <span class="self">self</span>.<span class="ident">bytes</span>
-                .<span class="ident">gread_with</span>::<span class="op">&lt;</span><span class="ident">ElfVersym</span><span class="op">&gt;</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="ident">offset</span>, <span class="self">self</span>.<span class="ident">ctx</span>.<span class="ident">le</span>)
-                .<span class="ident">ok</span>()
-                .<span class="ident">map</span>(<span class="ident">Versym::from</span>)
-                .<span class="ident">or_else</span>(<span class="op">|</span><span class="op">|</span> {
-                    <span class="comment">// self.bytes are not a multiple of ElfVersym.</span>
-                    <span class="comment">// Adjust offset to continue yielding Nones.</span>
-                    <span class="self">self</span>.<span class="ident">offset</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">bytes</span>.<span class="ident">len</span>();
-                    <span class="prelude-val">None</span>
-                })
+    <span class="kw">fn </span>next(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>::Item&gt; {
+        <span class="kw">if </span><span class="self">self</span>.offset &gt;= <span class="self">self</span>.bytes.len() {
+            <span class="prelude-val">None
+        </span>} <span class="kw">else </span>{
+            <span class="self">self</span>.bytes
+                .gread_with::&lt;ElfVersym&gt;(<span class="kw-2">&amp;mut </span><span class="self">self</span>.offset, <span class="self">self</span>.ctx.le)
+                .ok()
+                .map(Versym::from)
+                .or_else(|| {
+                    <span class="comment">// self.bytes are not a multiple of ElfVersym.
+                    // Adjust offset to continue yielding Nones.
+                    </span><span class="self">self</span>.offset = <span class="self">self</span>.bytes.len();
+                    <span class="prelude-val">None
+                </span>})
         }
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">size_hint</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; (<span class="ident">usize</span>, <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span>) {
-        <span class="kw">let</span> <span class="ident">len</span> <span class="op">=</span> (<span class="self">self</span>.<span class="ident">bytes</span>.<span class="ident">len</span>() <span class="op">-</span> <span class="self">self</span>.<span class="ident">offset</span>) <span class="op">/</span> <span class="ident">core::mem::size_of</span>::<span class="op">&lt;</span><span class="ident"><span class="self">Self</span>::Item</span><span class="op">&gt;</span>();
-        (<span class="ident">len</span>, <span class="prelude-val">Some</span>(<span class="ident">len</span>))
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>size_hint(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; (usize, <span class="prelude-ty">Option</span>&lt;usize&gt;) {
+        <span class="kw">let </span>len = (<span class="self">self</span>.bytes.len() - <span class="self">self</span>.offset) / core::mem::size_of::&lt;<span class="self">Self</span>::Item&gt;();
+        (len, <span class="prelude-val">Some</span>(len))
     }
 }
 
-<span class="kw">impl</span> <span class="ident">ExactSizeIterator</span> <span class="kw">for</span> <span class="ident">VersymIter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span> {}
+<span class="kw">impl </span>ExactSizeIterator <span class="kw">for </span>VersymIter&lt;<span class="lifetime">&#39;_</span>&gt; {}
 
-<span class="kw">impl</span> <span class="ident">FusedIterator</span> <span class="kw">for</span> <span class="ident">VersymIter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span> {}
+<span class="kw">impl </span>FusedIterator <span class="kw">for </span>VersymIter&lt;<span class="lifetime">&#39;_</span>&gt; {}
 
-<span class="doccomment">/// An ELF [Symbol Version][lsb-versym] entry.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// [lsb-versym]: https://refspecs.linuxbase.org/LSB_5.0.0/LSB-Core-generic/LSB-Core-generic/symversion.html#SYMVERTBL</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Versym</span> {
-    <span class="kw">pub</span> <span class="ident">vs_val</span>: <span class="ident">u16</span>,
+<span class="doccomment">/// An ELF [Symbol Version][lsb-versym] entry.
+///
+/// [lsb-versym]: https://refspecs.linuxbase.org/LSB_5.0.0/LSB-Core-generic/LSB-Core-generic/symversion.html#SYMVERTBL
+</span><span class="attribute">#[derive(Debug)]
+</span><span class="kw">pub struct </span>Versym {
+    <span class="kw">pub </span>vs_val: u16,
 }
 
-<span class="kw">impl</span> <span class="ident">Versym</span> {
-    <span class="doccomment">/// Returns true if the symbol is local and not available outside the object according to</span>
-    <span class="doccomment">/// [`VER_NDX_LOCAL`].</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_local</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">vs_val</span> <span class="op">==</span> <span class="ident">VER_NDX_LOCAL</span>
+<span class="kw">impl </span>Versym {
+    <span class="doccomment">/// Returns true if the symbol is local and not available outside the object according to
+    /// [`VER_NDX_LOCAL`].
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>is_local(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.vs_val == VER_NDX_LOCAL
     }
 
-    <span class="doccomment">/// Returns true if the symbol is defined in this object and globally available according</span>
-    <span class="doccomment">/// to [`VER_NDX_GLOBAL`].</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_global</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">vs_val</span> <span class="op">==</span> <span class="ident">VER_NDX_GLOBAL</span>
+    <span class="doccomment">/// Returns true if the symbol is defined in this object and globally available according
+    /// to [`VER_NDX_GLOBAL`].
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>is_global(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.vs_val == VER_NDX_GLOBAL
     }
 
-    <span class="doccomment">/// Returns true if the `hidden` bit is set according to the [`VERSYM_HIDDEN`] bitmask.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_hidden</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        (<span class="self">self</span>.<span class="ident">vs_val</span> <span class="op">&amp;</span> <span class="ident">VERSYM_HIDDEN</span>) <span class="op">==</span> <span class="ident">VERSYM_HIDDEN</span>
+    <span class="doccomment">/// Returns true if the `hidden` bit is set according to the [`VERSYM_HIDDEN`] bitmask.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>is_hidden(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        (<span class="self">self</span>.vs_val &amp; VERSYM_HIDDEN) == VERSYM_HIDDEN
     }
 
-    <span class="doccomment">/// Returns the symbol version index according to the [`VERSYM_VERSION`] bitmask.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">version</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">u16</span> {
-        <span class="self">self</span>.<span class="ident">vs_val</span> <span class="op">&amp;</span> <span class="ident">VERSYM_VERSION</span>
+    <span class="doccomment">/// Returns the symbol version index according to the [`VERSYM_VERSION`] bitmask.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>version(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; u16 {
+        <span class="self">self</span>.vs_val &amp; VERSYM_VERSION
     }
 }
 
-<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">ElfVersym</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Versym</span> {
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">ElfVersym</span> { <span class="ident">vs_val</span> }: <span class="ident">ElfVersym</span>) -&gt; <span class="self">Self</span> {
-        <span class="ident">Versym</span> { <span class="ident">vs_val</span> }
+<span class="kw">impl </span>From&lt;ElfVersym&gt; <span class="kw">for </span>Versym {
+    <span class="kw">fn </span>from(ElfVersym { vs_val }: ElfVersym) -&gt; <span class="self">Self </span>{
+        Versym { vs_val }
     }
 }
 
 <span class="comment">/************************
  *  Version Definition  *
- ************************/</span>
+ ************************/
 
-<span class="doccomment">/// Helper struct to iterate over [Version Definition][Verdef] and [Version Definition</span>
-<span class="doccomment">/// Auxiliary][Verdaux] entries.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">VerdefSection</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// String table used to resolve version strings.</span>
-    <span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
-    <span class="ident">count</span>: <span class="ident">usize</span>,
-    <span class="ident">ctx</span>: <span class="ident">container::Ctx</span>,
+</span><span class="doccomment">/// Helper struct to iterate over [Version Definition][Verdef] and [Version Definition
+/// Auxiliary][Verdaux] entries.
+</span><span class="attribute">#[derive(Debug)]
+</span><span class="kw">pub struct </span>VerdefSection&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="doccomment">/// String table used to resolve version strings.
+    </span>bytes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8],
+    count: usize,
+    ctx: container::Ctx,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">VerdefSection</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">parse</span>(
-        <span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
-        <span class="ident">shdrs</span>: <span class="kw-2">&amp;</span>[<span class="ident">SectionHeader</span>],
-        <span class="ident">ctx</span>: <span class="ident">container::Ctx</span>,
-    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">VerdefSection</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-        <span class="comment">// Get fields needed from optional `version definition` section.</span>
-        <span class="kw">let</span> (<span class="ident">offset</span>, <span class="ident">size</span>, <span class="ident">count</span>) <span class="op">=</span>
-            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">shdr</span>) <span class="op">=</span> <span class="ident">shdrs</span>.<span class="ident">iter</span>().<span class="ident">find</span>(<span class="op">|</span><span class="ident">shdr</span><span class="op">|</span> <span class="ident">shdr</span>.<span class="ident">sh_type</span> <span class="op">==</span> <span class="ident">SHT_GNU_VERDEF</span>) {
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; VerdefSection&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">pub fn </span>parse(
+        bytes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8],
+        shdrs: <span class="kw-2">&amp;</span>[SectionHeader],
+        ctx: container::Ctx,
+    ) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="prelude-ty">Option</span>&lt;VerdefSection&lt;<span class="lifetime">&#39;a</span>&gt;&gt;&gt; {
+        <span class="comment">// Get fields needed from optional `version definition` section.
+        </span><span class="kw">let </span>(offset, size, count) =
+            <span class="kw">if let </span><span class="prelude-val">Some</span>(shdr) = shdrs.iter().find(|shdr| shdr.sh_type == SHT_GNU_VERDEF) {
                 (
-                    <span class="ident">shdr</span>.<span class="ident">sh_offset</span> <span class="kw">as</span> <span class="ident">usize</span>,
-                    <span class="ident">shdr</span>.<span class="ident">sh_size</span> <span class="kw">as</span> <span class="ident">usize</span>,
-                    <span class="ident">shdr</span>.<span class="ident">sh_info</span> <span class="kw">as</span> <span class="ident">usize</span>, <span class="comment">// Encodes the number of ElfVerdef entries.</span>
-                )
-            } <span class="kw">else</span> {
-                <span class="kw">return</span> <span class="prelude-val">Ok</span>(<span class="prelude-val">None</span>);
+                    shdr.sh_offset <span class="kw">as </span>usize,
+                    shdr.sh_size <span class="kw">as </span>usize,
+                    shdr.sh_info <span class="kw">as </span>usize, <span class="comment">// Encodes the number of ElfVerdef entries.
+                </span>)
+            } <span class="kw">else </span>{
+                <span class="kw">return </span><span class="prelude-val">Ok</span>(<span class="prelude-val">None</span>);
             };
 
-        <span class="comment">// Get a slice of bytes of the `version definition` section content.</span>
-        <span class="kw">let</span> <span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>] <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">pread_with</span>(<span class="ident">offset</span>, <span class="ident">size</span>)<span class="question-mark">?</span>;
+        <span class="comment">// Get a slice of bytes of the `version definition` section content.
+        </span><span class="kw">let </span>bytes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8] = bytes.pread_with(offset, size)<span class="question-mark">?</span>;
 
-        <span class="prelude-val">Ok</span>(<span class="prelude-val">Some</span>(<span class="ident">VerdefSection</span> { <span class="ident">bytes</span>, <span class="ident">count</span>, <span class="ident">ctx</span> }))
+        <span class="prelude-val">Ok</span>(<span class="prelude-val">Some</span>(VerdefSection { bytes, count, ctx }))
     }
 
-    <span class="doccomment">/// Get an iterator over the [`Verdef`] entries.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">iter</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="self">self</span>) -&gt; <span class="ident">VerdefIter</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">into_iter</span>()
+    <span class="doccomment">/// Get an iterator over the [`Verdef`] entries.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>iter(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="self">self</span>) -&gt; VerdefIter&lt;<span class="lifetime">&#39;a</span>&gt; {
+        <span class="self">self</span>.into_iter()
     }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">IntoIterator</span> <span class="kw">for</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;_</span> <span class="ident">VerdefSection</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">type</span> <span class="ident">Item</span> <span class="op">=</span> <span class="op">&lt;</span><span class="ident">VerdefIter</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="kw">as</span> <span class="ident">Iterator</span><span class="op">&gt;</span><span class="ident">::Item</span>;
-    <span class="kw">type</span> <span class="ident">IntoIter</span> <span class="op">=</span> <span class="ident">VerdefIter</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>;
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; IntoIterator <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;_ </span>VerdefSection&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">type </span>Item = &lt;VerdefIter&lt;<span class="lifetime">&#39;a</span>&gt; <span class="kw">as </span>Iterator&gt;::Item;
+    <span class="kw">type </span>IntoIter = VerdefIter&lt;<span class="lifetime">&#39;a</span>&gt;;
 
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">into_iter</span>(<span class="self">self</span>) -&gt; <span class="ident"><span class="self">Self</span>::IntoIter</span> {
-        <span class="ident">VerdefIter</span> {
-            <span class="ident">bytes</span>: <span class="self">self</span>.<span class="ident">bytes</span>,
-            <span class="ident">count</span>: <span class="self">self</span>.<span class="ident">count</span>,
-            <span class="ident">index</span>: <span class="number">0</span>,
-            <span class="ident">offset</span>: <span class="number">0</span>,
-            <span class="ident">ctx</span>: <span class="self">self</span>.<span class="ident">ctx</span>,
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>into_iter(<span class="self">self</span>) -&gt; <span class="self">Self</span>::IntoIter {
+        VerdefIter {
+            bytes: <span class="self">self</span>.bytes,
+            count: <span class="self">self</span>.count,
+            index: <span class="number">0</span>,
+            offset: <span class="number">0</span>,
+            ctx: <span class="self">self</span>.ctx,
         }
     }
 }
 
-<span class="doccomment">/// Iterator over the [`Verdef`] entries from the [`SHT_GNU_VERDEF`] section.</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">VerdefIter</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
-    <span class="ident">count</span>: <span class="ident">usize</span>,
-    <span class="ident">index</span>: <span class="ident">usize</span>,
-    <span class="ident">offset</span>: <span class="ident">usize</span>,
-    <span class="ident">ctx</span>: <span class="ident">container::Ctx</span>,
+<span class="doccomment">/// Iterator over the [`Verdef`] entries from the [`SHT_GNU_VERDEF`] section.
+</span><span class="kw">pub struct </span>VerdefIter&lt;<span class="lifetime">&#39;a</span>&gt; {
+    bytes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8],
+    count: usize,
+    index: usize,
+    offset: usize,
+    ctx: container::Ctx,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Iterator</span> <span class="kw">for</span> <span class="ident">VerdefIter</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">type</span> <span class="ident">Item</span> <span class="op">=</span> <span class="ident">Verdef</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>;
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Iterator <span class="kw">for </span>VerdefIter&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">type </span>Item = Verdef&lt;<span class="lifetime">&#39;a</span>&gt;;
 
-    <span class="kw">fn</span> <span class="ident">next</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident"><span class="self">Self</span>::Item</span><span class="op">&gt;</span> {
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">index</span> <span class="op">&gt;</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">count</span> {
-            <span class="prelude-val">None</span>
-        } <span class="kw">else</span> {
-            <span class="self">self</span>.<span class="ident">index</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
+    <span class="kw">fn </span>next(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>::Item&gt; {
+        <span class="kw">if </span><span class="self">self</span>.index &gt;= <span class="self">self</span>.count {
+            <span class="prelude-val">None
+        </span>} <span class="kw">else </span>{
+            <span class="self">self</span>.index += <span class="number">1</span>;
 
-            <span class="kw">let</span> <span class="ident">do_next</span> <span class="op">=</span> <span class="op">|</span><span class="ident">iter</span>: <span class="kw-2">&amp;mut</span> <span class="self">Self</span><span class="op">|</span> {
-                <span class="kw">let</span> <span class="ident">ElfVerdef</span> {
-                    <span class="ident">vd_version</span>,
-                    <span class="ident">vd_flags</span>,
-                    <span class="ident">vd_ndx</span>,
-                    <span class="ident">vd_cnt</span>,
-                    <span class="ident">vd_hash</span>,
-                    <span class="ident">vd_aux</span>,
-                    <span class="ident">vd_next</span>,
-                } <span class="op">=</span> <span class="ident">iter</span>.<span class="ident">bytes</span>.<span class="ident">pread_with</span>(<span class="ident">iter</span>.<span class="ident">offset</span>, <span class="ident">iter</span>.<span class="ident">ctx</span>.<span class="ident">le</span>).<span class="ident">ok</span>()<span class="question-mark">?</span>;
+            <span class="kw">let </span>do_next = |iter: <span class="kw-2">&amp;mut </span><span class="self">Self</span>| {
+                <span class="kw">let </span>ElfVerdef {
+                    vd_version,
+                    vd_flags,
+                    vd_ndx,
+                    vd_cnt,
+                    vd_hash,
+                    vd_aux,
+                    vd_next,
+                } = iter.bytes.pread_with(iter.offset, iter.ctx.le).ok()<span class="question-mark">?</span>;
 
-                <span class="comment">// Validate offset to first ElfVerdaux entry.</span>
-                <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> <span class="ident">iter</span>.<span class="ident">offset</span>.<span class="ident">checked_add</span>(<span class="ident">vd_aux</span> <span class="kw">as</span> <span class="ident">usize</span>)<span class="question-mark">?</span>;
+                <span class="comment">// Validate offset to first ElfVerdaux entry.
+                </span><span class="kw">let </span>offset = iter.offset.checked_add(vd_aux <span class="kw">as </span>usize)<span class="question-mark">?</span>;
 
-                <span class="comment">// Validate if offset is valid index into bytes slice.</span>
-                <span class="kw">if</span> <span class="ident">offset</span> <span class="op">&gt;</span><span class="op">=</span> <span class="ident">iter</span>.<span class="ident">bytes</span>.<span class="ident">len</span>() {
-                    <span class="kw">return</span> <span class="prelude-val">None</span>;
+                <span class="comment">// Validate if offset is valid index into bytes slice.
+                </span><span class="kw">if </span>offset &gt;= iter.bytes.len() {
+                    <span class="kw">return </span><span class="prelude-val">None</span>;
                 }
 
-                <span class="comment">// Get a slice of bytes starting with the first ElfVerdaux entry.</span>
-                <span class="kw">let</span> <span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>] <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">iter</span>.<span class="ident">bytes</span>[<span class="ident">offset</span>..];
+                <span class="comment">// Get a slice of bytes starting with the first ElfVerdaux entry.
+                </span><span class="kw">let </span>bytes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8] = <span class="kw-2">&amp;</span>iter.bytes[offset..];
 
-                <span class="comment">// Bump the offset to the next ElfVerdef entry.</span>
-                <span class="ident">iter</span>.<span class="ident">offset</span> <span class="op">=</span> <span class="ident">iter</span>.<span class="ident">offset</span>.<span class="ident">checked_add</span>(<span class="ident">vd_next</span> <span class="kw">as</span> <span class="ident">usize</span>)<span class="question-mark">?</span>;
+                <span class="comment">// Bump the offset to the next ElfVerdef entry.
+                </span>iter.offset = iter.offset.checked_add(vd_next <span class="kw">as </span>usize)<span class="question-mark">?</span>;
 
-                <span class="comment">// Start yielding None on the next call if there is no next offset.</span>
-                <span class="kw">if</span> <span class="ident">vd_next</span> <span class="op">==</span> <span class="number">0</span> {
-                    <span class="ident">iter</span>.<span class="ident">index</span> <span class="op">=</span> <span class="ident">iter</span>.<span class="ident">count</span>;
+                <span class="comment">// Start yielding None on the next call if there is no next offset.
+                </span><span class="kw">if </span>vd_next == <span class="number">0 </span>{
+                    iter.index = iter.count;
                 }
 
-                <span class="prelude-val">Some</span>(<span class="ident">Verdef</span> {
-                    <span class="ident">vd_version</span>,
-                    <span class="ident">vd_flags</span>,
-                    <span class="ident">vd_ndx</span>,
-                    <span class="ident">vd_cnt</span>,
-                    <span class="ident">vd_hash</span>,
-                    <span class="ident">vd_aux</span>,
-                    <span class="ident">vd_next</span>,
-                    <span class="ident">bytes</span>,
-                    <span class="ident">ctx</span>: <span class="ident">iter</span>.<span class="ident">ctx</span>,
+                <span class="prelude-val">Some</span>(Verdef {
+                    vd_version,
+                    vd_flags,
+                    vd_ndx,
+                    vd_cnt,
+                    vd_hash,
+                    vd_aux,
+                    vd_next,
+                    bytes,
+                    ctx: iter.ctx,
                 })
             };
 
-            <span class="ident">do_next</span>(<span class="self">self</span>).<span class="ident">or_else</span>(<span class="op">|</span><span class="op">|</span> {
-                <span class="comment">// Adjust current index to count in case of an error.</span>
-                <span class="self">self</span>.<span class="ident">index</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">count</span>;
-                <span class="prelude-val">None</span>
-            })
+            do_next(<span class="self">self</span>).or_else(|| {
+                <span class="comment">// Adjust current index to count in case of an error.
+                </span><span class="self">self</span>.index = <span class="self">self</span>.count;
+                <span class="prelude-val">None
+            </span>})
         }
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">size_hint</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; (<span class="ident">usize</span>, <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span>) {
-        <span class="kw">let</span> <span class="ident">len</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">count</span> <span class="op">-</span> <span class="self">self</span>.<span class="ident">index</span>;
-        (<span class="number">0</span>, <span class="prelude-val">Some</span>(<span class="ident">len</span>))
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>size_hint(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; (usize, <span class="prelude-ty">Option</span>&lt;usize&gt;) {
+        <span class="kw">let </span>len = <span class="self">self</span>.count - <span class="self">self</span>.index;
+        (<span class="number">0</span>, <span class="prelude-val">Some</span>(len))
     }
 }
 
-<span class="kw">impl</span> <span class="ident">ExactSizeIterator</span> <span class="kw">for</span> <span class="ident">VerdefIter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span> {}
+<span class="kw">impl </span>ExactSizeIterator <span class="kw">for </span>VerdefIter&lt;<span class="lifetime">&#39;_</span>&gt; {}
 
-<span class="kw">impl</span> <span class="ident">FusedIterator</span> <span class="kw">for</span> <span class="ident">VerdefIter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span> {}
+<span class="kw">impl </span>FusedIterator <span class="kw">for </span>VerdefIter&lt;<span class="lifetime">&#39;_</span>&gt; {}
 
-<span class="doccomment">/// An ELF [Version Definition][lsb-verdef] entry .</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// [lsb-verdef]: https://refspecs.linuxbase.org/LSB_5.0.0/LSB-Core-generic/LSB-Core-generic/symversion.html#VERDEFENTRIES</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Verdef</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// Version revision. This field shall be set to 1.</span>
-    <span class="kw">pub</span> <span class="ident">vd_version</span>: <span class="ident">u16</span>,
-    <span class="doccomment">/// Version information flag bitmask.</span>
-    <span class="kw">pub</span> <span class="ident">vd_flags</span>: <span class="ident">u16</span>,
-    <span class="doccomment">/// Version index numeric value referencing the SHT_GNU_versym section.</span>
-    <span class="kw">pub</span> <span class="ident">vd_ndx</span>: <span class="ident">u16</span>,
-    <span class="doccomment">/// Number of associated verdaux array entries.</span>
-    <span class="kw">pub</span> <span class="ident">vd_cnt</span>: <span class="ident">u16</span>,
-    <span class="doccomment">/// Version name hash value (ELF hash function).</span>
-    <span class="kw">pub</span> <span class="ident">vd_hash</span>: <span class="ident">u32</span>,
-    <span class="doccomment">/// Offset in bytes to a corresponding entry in an array of Elfxx_Verdaux structures.</span>
-    <span class="kw">pub</span> <span class="ident">vd_aux</span>: <span class="ident">u32</span>,
-    <span class="doccomment">/// Offset to the next verdef entry, in bytes.</span>
-    <span class="kw">pub</span> <span class="ident">vd_next</span>: <span class="ident">u32</span>,
+<span class="doccomment">/// An ELF [Version Definition][lsb-verdef] entry .
+///
+/// [lsb-verdef]: https://refspecs.linuxbase.org/LSB_5.0.0/LSB-Core-generic/LSB-Core-generic/symversion.html#VERDEFENTRIES
+</span><span class="attribute">#[derive(Debug)]
+</span><span class="kw">pub struct </span>Verdef&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="doccomment">/// Version revision. This field shall be set to 1.
+    </span><span class="kw">pub </span>vd_version: u16,
+    <span class="doccomment">/// Version information flag bitmask.
+    </span><span class="kw">pub </span>vd_flags: u16,
+    <span class="doccomment">/// Version index numeric value referencing the SHT_GNU_versym section.
+    </span><span class="kw">pub </span>vd_ndx: u16,
+    <span class="doccomment">/// Number of associated verdaux array entries.
+    </span><span class="kw">pub </span>vd_cnt: u16,
+    <span class="doccomment">/// Version name hash value (ELF hash function).
+    </span><span class="kw">pub </span>vd_hash: u32,
+    <span class="doccomment">/// Offset in bytes to a corresponding entry in an array of Elfxx_Verdaux structures.
+    </span><span class="kw">pub </span>vd_aux: u32,
+    <span class="doccomment">/// Offset to the next verdef entry, in bytes.
+    </span><span class="kw">pub </span>vd_next: u32,
 
-    <span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
-    <span class="ident">ctx</span>: <span class="ident">container::Ctx</span>,
+    bytes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8],
+    ctx: container::Ctx,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Verdef</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// Get an iterator over the [`Verdaux`] entries of this [`Verdef`] entry.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">iter</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="self">self</span>) -&gt; <span class="ident">VerdauxIter</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">into_iter</span>()
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Verdef&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="doccomment">/// Get an iterator over the [`Verdaux`] entries of this [`Verdef`] entry.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>iter(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="self">self</span>) -&gt; VerdauxIter&lt;<span class="lifetime">&#39;a</span>&gt; {
+        <span class="self">self</span>.into_iter()
     }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">IntoIterator</span> <span class="kw">for</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;_</span> <span class="ident">Verdef</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">type</span> <span class="ident">Item</span> <span class="op">=</span> <span class="op">&lt;</span><span class="ident">VerdauxIter</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="kw">as</span> <span class="ident">Iterator</span><span class="op">&gt;</span><span class="ident">::Item</span>;
-    <span class="kw">type</span> <span class="ident">IntoIter</span> <span class="op">=</span> <span class="ident">VerdauxIter</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>;
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; IntoIterator <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;_ </span>Verdef&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">type </span>Item = &lt;VerdauxIter&lt;<span class="lifetime">&#39;a</span>&gt; <span class="kw">as </span>Iterator&gt;::Item;
+    <span class="kw">type </span>IntoIter = VerdauxIter&lt;<span class="lifetime">&#39;a</span>&gt;;
 
-    <span class="kw">fn</span> <span class="ident">into_iter</span>(<span class="self">self</span>) -&gt; <span class="ident"><span class="self">Self</span>::IntoIter</span> {
-        <span class="ident">VerdauxIter</span> {
-            <span class="ident">bytes</span>: <span class="self">self</span>.<span class="ident">bytes</span>,
-            <span class="ident">count</span>: <span class="self">self</span>.<span class="ident">vd_cnt</span>,
-            <span class="ident">index</span>: <span class="number">0</span>,
-            <span class="ident">offset</span>: <span class="number">0</span>,
-            <span class="ident">ctx</span>: <span class="self">self</span>.<span class="ident">ctx</span>,
+    <span class="kw">fn </span>into_iter(<span class="self">self</span>) -&gt; <span class="self">Self</span>::IntoIter {
+        VerdauxIter {
+            bytes: <span class="self">self</span>.bytes,
+            count: <span class="self">self</span>.vd_cnt,
+            index: <span class="number">0</span>,
+            offset: <span class="number">0</span>,
+            ctx: <span class="self">self</span>.ctx,
         }
     }
 }
 
-<span class="doccomment">/// Iterator over the [`Verdaux`] entries for an specific [`Verdef`] entry.</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">VerdauxIter</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
-    <span class="ident">count</span>: <span class="ident">u16</span>,
-    <span class="ident">index</span>: <span class="ident">u16</span>,
-    <span class="ident">offset</span>: <span class="ident">usize</span>,
-    <span class="ident">ctx</span>: <span class="ident">container::Ctx</span>,
+<span class="doccomment">/// Iterator over the [`Verdaux`] entries for an specific [`Verdef`] entry.
+</span><span class="kw">pub struct </span>VerdauxIter&lt;<span class="lifetime">&#39;a</span>&gt; {
+    bytes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8],
+    count: u16,
+    index: u16,
+    offset: usize,
+    ctx: container::Ctx,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Iterator</span> <span class="kw">for</span> <span class="ident">VerdauxIter</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">type</span> <span class="ident">Item</span> <span class="op">=</span> <span class="ident">Verdaux</span>;
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Iterator <span class="kw">for </span>VerdauxIter&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">type </span>Item = Verdaux;
 
-    <span class="kw">fn</span> <span class="ident">next</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident"><span class="self">Self</span>::Item</span><span class="op">&gt;</span> {
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">index</span> <span class="op">&gt;</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">count</span> {
-            <span class="prelude-val">None</span>
-        } <span class="kw">else</span> {
-            <span class="self">self</span>.<span class="ident">index</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
+    <span class="kw">fn </span>next(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>::Item&gt; {
+        <span class="kw">if </span><span class="self">self</span>.index &gt;= <span class="self">self</span>.count {
+            <span class="prelude-val">None
+        </span>} <span class="kw">else </span>{
+            <span class="self">self</span>.index += <span class="number">1</span>;
 
-            <span class="kw">let</span> <span class="ident">do_next</span> <span class="op">=</span> <span class="op">|</span><span class="ident">iter</span>: <span class="kw-2">&amp;mut</span> <span class="self">Self</span><span class="op">|</span> {
-                <span class="kw">let</span> <span class="ident">ElfVerdaux</span> { <span class="ident">vda_name</span>, <span class="ident">vda_next</span> } <span class="op">=</span>
-                    <span class="ident">iter</span>.<span class="ident">bytes</span>.<span class="ident">pread_with</span>(<span class="ident">iter</span>.<span class="ident">offset</span>, <span class="ident">iter</span>.<span class="ident">ctx</span>.<span class="ident">le</span>).<span class="ident">ok</span>()<span class="question-mark">?</span>;
+            <span class="kw">let </span>do_next = |iter: <span class="kw-2">&amp;mut </span><span class="self">Self</span>| {
+                <span class="kw">let </span>ElfVerdaux { vda_name, vda_next } =
+                    iter.bytes.pread_with(iter.offset, iter.ctx.le).ok()<span class="question-mark">?</span>;
 
-                <span class="comment">// Bump the offset to the next ElfVerdaux entry.</span>
-                <span class="ident">iter</span>.<span class="ident">offset</span> <span class="op">=</span> <span class="ident">iter</span>.<span class="ident">offset</span>.<span class="ident">checked_add</span>(<span class="ident">vda_next</span> <span class="kw">as</span> <span class="ident">usize</span>)<span class="question-mark">?</span>;
+                <span class="comment">// Bump the offset to the next ElfVerdaux entry.
+                </span>iter.offset = iter.offset.checked_add(vda_next <span class="kw">as </span>usize)<span class="question-mark">?</span>;
 
-                <span class="comment">// Start yielding None on the next call if there is no next offset.</span>
-                <span class="kw">if</span> <span class="ident">vda_next</span> <span class="op">==</span> <span class="number">0</span> {
-                    <span class="ident">iter</span>.<span class="ident">index</span> <span class="op">=</span> <span class="ident">iter</span>.<span class="ident">count</span>;
+                <span class="comment">// Start yielding None on the next call if there is no next offset.
+                </span><span class="kw">if </span>vda_next == <span class="number">0 </span>{
+                    iter.index = iter.count;
                 }
 
-                <span class="prelude-val">Some</span>(<span class="ident">Verdaux</span> {
-                    <span class="ident">vda_name</span>: <span class="ident">vda_name</span> <span class="kw">as</span> <span class="ident">usize</span>,
-                    <span class="ident">vda_next</span>,
+                <span class="prelude-val">Some</span>(Verdaux {
+                    vda_name: vda_name <span class="kw">as </span>usize,
+                    vda_next,
                 })
             };
 
-            <span class="ident">do_next</span>(<span class="self">self</span>).<span class="ident">or_else</span>(<span class="op">|</span><span class="op">|</span> {
-                <span class="comment">// Adjust current index to count in case of an error.</span>
-                <span class="self">self</span>.<span class="ident">index</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">count</span>;
-                <span class="prelude-val">None</span>
-            })
+            do_next(<span class="self">self</span>).or_else(|| {
+                <span class="comment">// Adjust current index to count in case of an error.
+                </span><span class="self">self</span>.index = <span class="self">self</span>.count;
+                <span class="prelude-val">None
+            </span>})
         }
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">size_hint</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; (<span class="ident">usize</span>, <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span>) {
-        <span class="kw">let</span> <span class="ident">len</span> <span class="op">=</span> <span class="ident">usize::from</span>(<span class="self">self</span>.<span class="ident">count</span> <span class="op">-</span> <span class="self">self</span>.<span class="ident">index</span>);
-        (<span class="number">0</span>, <span class="prelude-val">Some</span>(<span class="ident">len</span>))
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>size_hint(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; (usize, <span class="prelude-ty">Option</span>&lt;usize&gt;) {
+        <span class="kw">let </span>len = usize::from(<span class="self">self</span>.count - <span class="self">self</span>.index);
+        (<span class="number">0</span>, <span class="prelude-val">Some</span>(len))
     }
 }
 
-<span class="kw">impl</span> <span class="ident">ExactSizeIterator</span> <span class="kw">for</span> <span class="ident">VerdauxIter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span> {}
+<span class="kw">impl </span>ExactSizeIterator <span class="kw">for </span>VerdauxIter&lt;<span class="lifetime">&#39;_</span>&gt; {}
 
-<span class="kw">impl</span> <span class="ident">FusedIterator</span> <span class="kw">for</span> <span class="ident">VerdauxIter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span> {}
+<span class="kw">impl </span>FusedIterator <span class="kw">for </span>VerdauxIter&lt;<span class="lifetime">&#39;_</span>&gt; {}
 
-<span class="doccomment">/// An ELF [Version Definition Auxiliary][lsb-verdaux] entry.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// [lsb-verdaux]: https://refspecs.linuxbase.org/LSB_5.0.0/LSB-Core-generic/LSB-Core-generic/symversion.html#VERDEFEXTS</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Verdaux</span> {
-    <span class="doccomment">/// Offset to the version or dependency name string in the section header, in bytes.</span>
-    <span class="kw">pub</span> <span class="ident">vda_name</span>: <span class="ident">usize</span>,
-    <span class="doccomment">/// Offset to the next verdaux entry, in bytes.</span>
-    <span class="kw">pub</span> <span class="ident">vda_next</span>: <span class="ident">u32</span>,
+<span class="doccomment">/// An ELF [Version Definition Auxiliary][lsb-verdaux] entry.
+///
+/// [lsb-verdaux]: https://refspecs.linuxbase.org/LSB_5.0.0/LSB-Core-generic/LSB-Core-generic/symversion.html#VERDEFEXTS
+</span><span class="attribute">#[derive(Debug)]
+</span><span class="kw">pub struct </span>Verdaux {
+    <span class="doccomment">/// Offset to the version or dependency name string in the section header, in bytes.
+    </span><span class="kw">pub </span>vda_name: usize,
+    <span class="doccomment">/// Offset to the next verdaux entry, in bytes.
+    </span><span class="kw">pub </span>vda_next: u32,
 }
 
 <span class="comment">/**************************
  *  Version Requirements  *
- **************************/</span>
+ **************************/
 
-<span class="doccomment">/// Helper struct to iterate over [Version Needed][Verneed] and [Version Needed</span>
-<span class="doccomment">/// Auxiliary][Vernaux] entries.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">VerneedSection</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
-    <span class="ident">count</span>: <span class="ident">usize</span>,
-    <span class="ident">ctx</span>: <span class="ident">container::Ctx</span>,
+</span><span class="doccomment">/// Helper struct to iterate over [Version Needed][Verneed] and [Version Needed
+/// Auxiliary][Vernaux] entries.
+</span><span class="attribute">#[derive(Debug)]
+</span><span class="kw">pub struct </span>VerneedSection&lt;<span class="lifetime">&#39;a</span>&gt; {
+    bytes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8],
+    count: usize,
+    ctx: container::Ctx,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">VerneedSection</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// Try to parse the optional [`SHT_GNU_VERNEED`] section.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">parse</span>(
-        <span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
-        <span class="ident">shdrs</span>: <span class="kw-2">&amp;</span>[<span class="ident">SectionHeader</span>],
-        <span class="ident">ctx</span>: <span class="ident">container::Ctx</span>,
-    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">VerneedSection</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-        <span class="comment">// Get fields needed from optional `version needed` section.</span>
-        <span class="kw">let</span> (<span class="ident">offset</span>, <span class="ident">size</span>, <span class="ident">count</span>) <span class="op">=</span>
-            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">shdr</span>) <span class="op">=</span> <span class="ident">shdrs</span>.<span class="ident">iter</span>().<span class="ident">find</span>(<span class="op">|</span><span class="ident">shdr</span><span class="op">|</span> <span class="ident">shdr</span>.<span class="ident">sh_type</span> <span class="op">==</span> <span class="ident">SHT_GNU_VERNEED</span>) {
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; VerneedSection&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="doccomment">/// Try to parse the optional [`SHT_GNU_VERNEED`] section.
+    </span><span class="kw">pub fn </span>parse(
+        bytes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8],
+        shdrs: <span class="kw-2">&amp;</span>[SectionHeader],
+        ctx: container::Ctx,
+    ) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="prelude-ty">Option</span>&lt;VerneedSection&lt;<span class="lifetime">&#39;a</span>&gt;&gt;&gt; {
+        <span class="comment">// Get fields needed from optional `version needed` section.
+        </span><span class="kw">let </span>(offset, size, count) =
+            <span class="kw">if let </span><span class="prelude-val">Some</span>(shdr) = shdrs.iter().find(|shdr| shdr.sh_type == SHT_GNU_VERNEED) {
                 (
-                    <span class="ident">shdr</span>.<span class="ident">sh_offset</span> <span class="kw">as</span> <span class="ident">usize</span>,
-                    <span class="ident">shdr</span>.<span class="ident">sh_size</span> <span class="kw">as</span> <span class="ident">usize</span>,
-                    <span class="ident">shdr</span>.<span class="ident">sh_info</span> <span class="kw">as</span> <span class="ident">usize</span>, <span class="comment">// Encodes the number of ElfVerneed entries.</span>
-                )
-            } <span class="kw">else</span> {
-                <span class="kw">return</span> <span class="prelude-val">Ok</span>(<span class="prelude-val">None</span>);
+                    shdr.sh_offset <span class="kw">as </span>usize,
+                    shdr.sh_size <span class="kw">as </span>usize,
+                    shdr.sh_info <span class="kw">as </span>usize, <span class="comment">// Encodes the number of ElfVerneed entries.
+                </span>)
+            } <span class="kw">else </span>{
+                <span class="kw">return </span><span class="prelude-val">Ok</span>(<span class="prelude-val">None</span>);
             };
 
-        <span class="comment">// Get a slice of bytes of the `version needed` section content.</span>
-        <span class="kw">let</span> <span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>] <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">pread_with</span>(<span class="ident">offset</span>, <span class="ident">size</span>)<span class="question-mark">?</span>;
+        <span class="comment">// Get a slice of bytes of the `version needed` section content.
+        </span><span class="kw">let </span>bytes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8] = bytes.pread_with(offset, size)<span class="question-mark">?</span>;
 
-        <span class="prelude-val">Ok</span>(<span class="prelude-val">Some</span>(<span class="ident">VerneedSection</span> { <span class="ident">bytes</span>, <span class="ident">count</span>, <span class="ident">ctx</span> }))
+        <span class="prelude-val">Ok</span>(<span class="prelude-val">Some</span>(VerneedSection { bytes, count, ctx }))
     }
 
-    <span class="doccomment">/// Get an iterator over the [`Verneed`] entries.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">iter</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="self">self</span>) -&gt; <span class="ident">VerneedIter</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">into_iter</span>()
+    <span class="doccomment">/// Get an iterator over the [`Verneed`] entries.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>iter(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="self">self</span>) -&gt; VerneedIter&lt;<span class="lifetime">&#39;a</span>&gt; {
+        <span class="self">self</span>.into_iter()
     }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">IntoIterator</span> <span class="kw">for</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;_</span> <span class="ident">VerneedSection</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">type</span> <span class="ident">Item</span> <span class="op">=</span> <span class="op">&lt;</span><span class="ident">VerneedIter</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="kw">as</span> <span class="ident">Iterator</span><span class="op">&gt;</span><span class="ident">::Item</span>;
-    <span class="kw">type</span> <span class="ident">IntoIter</span> <span class="op">=</span> <span class="ident">VerneedIter</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>;
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; IntoIterator <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;_ </span>VerneedSection&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">type </span>Item = &lt;VerneedIter&lt;<span class="lifetime">&#39;a</span>&gt; <span class="kw">as </span>Iterator&gt;::Item;
+    <span class="kw">type </span>IntoIter = VerneedIter&lt;<span class="lifetime">&#39;a</span>&gt;;
 
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">into_iter</span>(<span class="self">self</span>) -&gt; <span class="ident"><span class="self">Self</span>::IntoIter</span> {
-        <span class="ident">VerneedIter</span> {
-            <span class="ident">bytes</span>: <span class="self">self</span>.<span class="ident">bytes</span>,
-            <span class="ident">count</span>: <span class="self">self</span>.<span class="ident">count</span>,
-            <span class="ident">index</span>: <span class="number">0</span>,
-            <span class="ident">offset</span>: <span class="number">0</span>,
-            <span class="ident">ctx</span>: <span class="self">self</span>.<span class="ident">ctx</span>,
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>into_iter(<span class="self">self</span>) -&gt; <span class="self">Self</span>::IntoIter {
+        VerneedIter {
+            bytes: <span class="self">self</span>.bytes,
+            count: <span class="self">self</span>.count,
+            index: <span class="number">0</span>,
+            offset: <span class="number">0</span>,
+            ctx: <span class="self">self</span>.ctx,
         }
     }
 }
 
-<span class="doccomment">/// Iterator over the [`Verneed`] entries from the [`SHT_GNU_VERNEED`] section.</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">VerneedIter</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
-    <span class="ident">count</span>: <span class="ident">usize</span>,
-    <span class="ident">index</span>: <span class="ident">usize</span>,
-    <span class="ident">offset</span>: <span class="ident">usize</span>,
-    <span class="ident">ctx</span>: <span class="ident">container::Ctx</span>,
+<span class="doccomment">/// Iterator over the [`Verneed`] entries from the [`SHT_GNU_VERNEED`] section.
+</span><span class="kw">pub struct </span>VerneedIter&lt;<span class="lifetime">&#39;a</span>&gt; {
+    bytes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8],
+    count: usize,
+    index: usize,
+    offset: usize,
+    ctx: container::Ctx,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Iterator</span> <span class="kw">for</span> <span class="ident">VerneedIter</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">type</span> <span class="ident">Item</span> <span class="op">=</span> <span class="ident">Verneed</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>;
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Iterator <span class="kw">for </span>VerneedIter&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">type </span>Item = Verneed&lt;<span class="lifetime">&#39;a</span>&gt;;
 
-    <span class="kw">fn</span> <span class="ident">next</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident"><span class="self">Self</span>::Item</span><span class="op">&gt;</span> {
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">index</span> <span class="op">&gt;</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">count</span> {
-            <span class="prelude-val">None</span>
-        } <span class="kw">else</span> {
-            <span class="self">self</span>.<span class="ident">index</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
+    <span class="kw">fn </span>next(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>::Item&gt; {
+        <span class="kw">if </span><span class="self">self</span>.index &gt;= <span class="self">self</span>.count {
+            <span class="prelude-val">None
+        </span>} <span class="kw">else </span>{
+            <span class="self">self</span>.index += <span class="number">1</span>;
 
-            <span class="kw">let</span> <span class="ident">do_next</span> <span class="op">=</span> <span class="op">|</span><span class="ident">iter</span>: <span class="kw-2">&amp;mut</span> <span class="self">Self</span><span class="op">|</span> {
-                <span class="kw">let</span> <span class="ident">ElfVerneed</span> {
-                    <span class="ident">vn_version</span>,
-                    <span class="ident">vn_cnt</span>,
-                    <span class="ident">vn_file</span>,
-                    <span class="ident">vn_aux</span>,
-                    <span class="ident">vn_next</span>,
-                } <span class="op">=</span> <span class="ident">iter</span>.<span class="ident">bytes</span>.<span class="ident">pread_with</span>(<span class="ident">iter</span>.<span class="ident">offset</span>, <span class="ident">iter</span>.<span class="ident">ctx</span>.<span class="ident">le</span>).<span class="ident">ok</span>()<span class="question-mark">?</span>;
+            <span class="kw">let </span>do_next = |iter: <span class="kw-2">&amp;mut </span><span class="self">Self</span>| {
+                <span class="kw">let </span>ElfVerneed {
+                    vn_version,
+                    vn_cnt,
+                    vn_file,
+                    vn_aux,
+                    vn_next,
+                } = iter.bytes.pread_with(iter.offset, iter.ctx.le).ok()<span class="question-mark">?</span>;
 
-                <span class="comment">// Validate offset to first ElfVernaux entry.</span>
-                <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> <span class="ident">iter</span>.<span class="ident">offset</span>.<span class="ident">checked_add</span>(<span class="ident">vn_aux</span> <span class="kw">as</span> <span class="ident">usize</span>)<span class="question-mark">?</span>;
+                <span class="comment">// Validate offset to first ElfVernaux entry.
+                </span><span class="kw">let </span>offset = iter.offset.checked_add(vn_aux <span class="kw">as </span>usize)<span class="question-mark">?</span>;
 
-                <span class="comment">// Validate if offset is valid index into bytes slice.</span>
-                <span class="kw">if</span> <span class="ident">offset</span> <span class="op">&gt;</span><span class="op">=</span> <span class="ident">iter</span>.<span class="ident">bytes</span>.<span class="ident">len</span>() {
-                    <span class="kw">return</span> <span class="prelude-val">None</span>;
+                <span class="comment">// Validate if offset is valid index into bytes slice.
+                </span><span class="kw">if </span>offset &gt;= iter.bytes.len() {
+                    <span class="kw">return </span><span class="prelude-val">None</span>;
                 }
 
-                <span class="comment">// Get a slice of bytes starting with the first ElfVernaux entry.</span>
-                <span class="kw">let</span> <span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>] <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">iter</span>.<span class="ident">bytes</span>[<span class="ident">offset</span>..];
+                <span class="comment">// Get a slice of bytes starting with the first ElfVernaux entry.
+                </span><span class="kw">let </span>bytes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8] = <span class="kw-2">&amp;</span>iter.bytes[offset..];
 
-                <span class="comment">// Bump the offset to the next ElfVerneed entry.</span>
-                <span class="ident">iter</span>.<span class="ident">offset</span> <span class="op">=</span> <span class="ident">iter</span>.<span class="ident">offset</span>.<span class="ident">checked_add</span>(<span class="ident">vn_next</span> <span class="kw">as</span> <span class="ident">usize</span>)<span class="question-mark">?</span>;
+                <span class="comment">// Bump the offset to the next ElfVerneed entry.
+                </span>iter.offset = iter.offset.checked_add(vn_next <span class="kw">as </span>usize)<span class="question-mark">?</span>;
 
-                <span class="comment">// Start yielding None on the next call if there is no next offset.</span>
-                <span class="kw">if</span> <span class="ident">vn_next</span> <span class="op">==</span> <span class="number">0</span> {
-                    <span class="ident">iter</span>.<span class="ident">index</span> <span class="op">=</span> <span class="ident">iter</span>.<span class="ident">count</span>;
+                <span class="comment">// Start yielding None on the next call if there is no next offset.
+                </span><span class="kw">if </span>vn_next == <span class="number">0 </span>{
+                    iter.index = iter.count;
                 }
 
-                <span class="prelude-val">Some</span>(<span class="ident">Verneed</span> {
-                    <span class="ident">vn_version</span>,
-                    <span class="ident">vn_cnt</span>,
-                    <span class="ident">vn_file</span>: <span class="ident">vn_file</span> <span class="kw">as</span> <span class="ident">usize</span>,
-                    <span class="ident">vn_aux</span>,
-                    <span class="ident">vn_next</span>,
-                    <span class="ident">bytes</span>,
-                    <span class="ident">ctx</span>: <span class="ident">iter</span>.<span class="ident">ctx</span>,
+                <span class="prelude-val">Some</span>(Verneed {
+                    vn_version,
+                    vn_cnt,
+                    vn_file: vn_file <span class="kw">as </span>usize,
+                    vn_aux,
+                    vn_next,
+                    bytes,
+                    ctx: iter.ctx,
                 })
             };
 
-            <span class="ident">do_next</span>(<span class="self">self</span>).<span class="ident">or_else</span>(<span class="op">|</span><span class="op">|</span> {
-                <span class="comment">// Adjust current index to count in case of an error.</span>
-                <span class="self">self</span>.<span class="ident">index</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">count</span>;
-                <span class="prelude-val">None</span>
-            })
+            do_next(<span class="self">self</span>).or_else(|| {
+                <span class="comment">// Adjust current index to count in case of an error.
+                </span><span class="self">self</span>.index = <span class="self">self</span>.count;
+                <span class="prelude-val">None
+            </span>})
         }
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">size_hint</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; (<span class="ident">usize</span>, <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span>) {
-        <span class="kw">let</span> <span class="ident">len</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">count</span> <span class="op">-</span> <span class="self">self</span>.<span class="ident">index</span>;
-        (<span class="number">0</span>, <span class="prelude-val">Some</span>(<span class="ident">len</span>))
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>size_hint(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; (usize, <span class="prelude-ty">Option</span>&lt;usize&gt;) {
+        <span class="kw">let </span>len = <span class="self">self</span>.count - <span class="self">self</span>.index;
+        (<span class="number">0</span>, <span class="prelude-val">Some</span>(len))
     }
 }
 
-<span class="kw">impl</span> <span class="ident">ExactSizeIterator</span> <span class="kw">for</span> <span class="ident">VerneedIter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span> {}
+<span class="kw">impl </span>ExactSizeIterator <span class="kw">for </span>VerneedIter&lt;<span class="lifetime">&#39;_</span>&gt; {}
 
-<span class="kw">impl</span> <span class="ident">FusedIterator</span> <span class="kw">for</span> <span class="ident">VerneedIter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span> {}
+<span class="kw">impl </span>FusedIterator <span class="kw">for </span>VerneedIter&lt;<span class="lifetime">&#39;_</span>&gt; {}
 
-<span class="doccomment">/// An ELF [Version Need][lsb-verneed] entry .</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// [lsb-verneed]: https://refspecs.linuxbase.org/LSB_5.0.0/LSB-Core-generic/LSB-Core-generic/symversion.html#VERNEEDFIG</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Verneed</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// Version of structure. This value is currently set to 1, and will be reset if the versioning</span>
-    <span class="doccomment">/// implementation is incompatibly altered.</span>
-    <span class="kw">pub</span> <span class="ident">vn_version</span>: <span class="ident">u16</span>,
-    <span class="doccomment">/// Number of associated verneed array entries.</span>
-    <span class="kw">pub</span> <span class="ident">vn_cnt</span>: <span class="ident">u16</span>,
-    <span class="doccomment">/// Offset to the file name string in the section header, in bytes.</span>
-    <span class="kw">pub</span> <span class="ident">vn_file</span>: <span class="ident">usize</span>,
-    <span class="doccomment">/// Offset to a corresponding entry in the vernaux array, in bytes.</span>
-    <span class="kw">pub</span> <span class="ident">vn_aux</span>: <span class="ident">u32</span>,
-    <span class="doccomment">/// Offset to the next verneed entry, in bytes.</span>
-    <span class="kw">pub</span> <span class="ident">vn_next</span>: <span class="ident">u32</span>,
+<span class="doccomment">/// An ELF [Version Need][lsb-verneed] entry .
+///
+/// [lsb-verneed]: https://refspecs.linuxbase.org/LSB_5.0.0/LSB-Core-generic/LSB-Core-generic/symversion.html#VERNEEDFIG
+</span><span class="attribute">#[derive(Debug)]
+</span><span class="kw">pub struct </span>Verneed&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="doccomment">/// Version of structure. This value is currently set to 1, and will be reset if the versioning
+    /// implementation is incompatibly altered.
+    </span><span class="kw">pub </span>vn_version: u16,
+    <span class="doccomment">/// Number of associated verneed array entries.
+    </span><span class="kw">pub </span>vn_cnt: u16,
+    <span class="doccomment">/// Offset to the file name string in the section header, in bytes.
+    </span><span class="kw">pub </span>vn_file: usize,
+    <span class="doccomment">/// Offset to a corresponding entry in the vernaux array, in bytes.
+    </span><span class="kw">pub </span>vn_aux: u32,
+    <span class="doccomment">/// Offset to the next verneed entry, in bytes.
+    </span><span class="kw">pub </span>vn_next: u32,
 
-    <span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
-    <span class="ident">ctx</span>: <span class="ident">container::Ctx</span>,
+    bytes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8],
+    ctx: container::Ctx,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Verneed</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// Get an iterator over the [`Vernaux`] entries of this [`Verneed`] entry.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">iter</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="self">self</span>) -&gt; <span class="ident">VernauxIter</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">into_iter</span>()
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Verneed&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="doccomment">/// Get an iterator over the [`Vernaux`] entries of this [`Verneed`] entry.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>iter(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="self">self</span>) -&gt; VernauxIter&lt;<span class="lifetime">&#39;a</span>&gt; {
+        <span class="self">self</span>.into_iter()
     }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">IntoIterator</span> <span class="kw">for</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;_</span> <span class="ident">Verneed</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">type</span> <span class="ident">Item</span> <span class="op">=</span> <span class="op">&lt;</span><span class="ident">VernauxIter</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="kw">as</span> <span class="ident">Iterator</span><span class="op">&gt;</span><span class="ident">::Item</span>;
-    <span class="kw">type</span> <span class="ident">IntoIter</span> <span class="op">=</span> <span class="ident">VernauxIter</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>;
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; IntoIterator <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;_ </span>Verneed&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">type </span>Item = &lt;VernauxIter&lt;<span class="lifetime">&#39;a</span>&gt; <span class="kw">as </span>Iterator&gt;::Item;
+    <span class="kw">type </span>IntoIter = VernauxIter&lt;<span class="lifetime">&#39;a</span>&gt;;
 
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">into_iter</span>(<span class="self">self</span>) -&gt; <span class="ident"><span class="self">Self</span>::IntoIter</span> {
-        <span class="ident">VernauxIter</span> {
-            <span class="ident">bytes</span>: <span class="self">self</span>.<span class="ident">bytes</span>,
-            <span class="ident">count</span>: <span class="self">self</span>.<span class="ident">vn_cnt</span>,
-            <span class="ident">index</span>: <span class="number">0</span>,
-            <span class="ident">offset</span>: <span class="number">0</span>,
-            <span class="ident">ctx</span>: <span class="self">self</span>.<span class="ident">ctx</span>,
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>into_iter(<span class="self">self</span>) -&gt; <span class="self">Self</span>::IntoIter {
+        VernauxIter {
+            bytes: <span class="self">self</span>.bytes,
+            count: <span class="self">self</span>.vn_cnt,
+            index: <span class="number">0</span>,
+            offset: <span class="number">0</span>,
+            ctx: <span class="self">self</span>.ctx,
         }
     }
 }
 
-<span class="doccomment">/// Iterator over the [`Vernaux`] entries for an specific [`Verneed`] entry.</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">VernauxIter</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
-    <span class="ident">count</span>: <span class="ident">u16</span>,
-    <span class="ident">index</span>: <span class="ident">u16</span>,
-    <span class="ident">offset</span>: <span class="ident">usize</span>,
-    <span class="ident">ctx</span>: <span class="ident">container::Ctx</span>,
+<span class="doccomment">/// Iterator over the [`Vernaux`] entries for an specific [`Verneed`] entry.
+</span><span class="kw">pub struct </span>VernauxIter&lt;<span class="lifetime">&#39;a</span>&gt; {
+    bytes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8],
+    count: u16,
+    index: u16,
+    offset: usize,
+    ctx: container::Ctx,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Iterator</span> <span class="kw">for</span> <span class="ident">VernauxIter</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">type</span> <span class="ident">Item</span> <span class="op">=</span> <span class="ident">Vernaux</span>;
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Iterator <span class="kw">for </span>VernauxIter&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">type </span>Item = Vernaux;
 
-    <span class="kw">fn</span> <span class="ident">next</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident"><span class="self">Self</span>::Item</span><span class="op">&gt;</span> {
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">index</span> <span class="op">&gt;</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">count</span> {
-            <span class="prelude-val">None</span>
-        } <span class="kw">else</span> {
-            <span class="self">self</span>.<span class="ident">index</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
+    <span class="kw">fn </span>next(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>::Item&gt; {
+        <span class="kw">if </span><span class="self">self</span>.index &gt;= <span class="self">self</span>.count {
+            <span class="prelude-val">None
+        </span>} <span class="kw">else </span>{
+            <span class="self">self</span>.index += <span class="number">1</span>;
 
-            <span class="kw">let</span> <span class="ident">do_next</span> <span class="op">=</span> <span class="op">|</span><span class="ident">iter</span>: <span class="kw-2">&amp;mut</span> <span class="self">Self</span><span class="op">|</span> {
-                <span class="kw">let</span> <span class="ident">ElfVernaux</span> {
-                    <span class="ident">vna_hash</span>,
-                    <span class="ident">vna_flags</span>,
-                    <span class="ident">vna_other</span>,
-                    <span class="ident">vna_name</span>,
-                    <span class="ident">vna_next</span>,
-                } <span class="op">=</span> <span class="ident">iter</span>.<span class="ident">bytes</span>.<span class="ident">pread_with</span>(<span class="ident">iter</span>.<span class="ident">offset</span>, <span class="ident">iter</span>.<span class="ident">ctx</span>.<span class="ident">le</span>).<span class="ident">ok</span>()<span class="question-mark">?</span>;
+            <span class="kw">let </span>do_next = |iter: <span class="kw-2">&amp;mut </span><span class="self">Self</span>| {
+                <span class="kw">let </span>ElfVernaux {
+                    vna_hash,
+                    vna_flags,
+                    vna_other,
+                    vna_name,
+                    vna_next,
+                } = iter.bytes.pread_with(iter.offset, iter.ctx.le).ok()<span class="question-mark">?</span>;
 
-                <span class="comment">// Bump the offset to the next ElfVernaux entry.</span>
-                <span class="ident">iter</span>.<span class="ident">offset</span> <span class="op">=</span> <span class="ident">iter</span>.<span class="ident">offset</span>.<span class="ident">checked_add</span>(<span class="ident">vna_next</span> <span class="kw">as</span> <span class="ident">usize</span>)<span class="question-mark">?</span>;
+                <span class="comment">// Bump the offset to the next ElfVernaux entry.
+                </span>iter.offset = iter.offset.checked_add(vna_next <span class="kw">as </span>usize)<span class="question-mark">?</span>;
 
-                <span class="comment">// Start yielding None on the next call if there is no next offset.</span>
-                <span class="kw">if</span> <span class="ident">vna_next</span> <span class="op">==</span> <span class="number">0</span> {
-                    <span class="ident">iter</span>.<span class="ident">index</span> <span class="op">=</span> <span class="ident">iter</span>.<span class="ident">count</span>;
+                <span class="comment">// Start yielding None on the next call if there is no next offset.
+                </span><span class="kw">if </span>vna_next == <span class="number">0 </span>{
+                    iter.index = iter.count;
                 }
 
-                <span class="prelude-val">Some</span>(<span class="ident">Vernaux</span> {
-                    <span class="ident">vna_hash</span>,
-                    <span class="ident">vna_flags</span>,
-                    <span class="ident">vna_other</span>,
-                    <span class="ident">vna_name</span>: <span class="ident">vna_name</span> <span class="kw">as</span> <span class="ident">usize</span>,
-                    <span class="ident">vna_next</span>,
+                <span class="prelude-val">Some</span>(Vernaux {
+                    vna_hash,
+                    vna_flags,
+                    vna_other,
+                    vna_name: vna_name <span class="kw">as </span>usize,
+                    vna_next,
                 })
             };
 
-            <span class="ident">do_next</span>(<span class="self">self</span>).<span class="ident">or_else</span>(<span class="op">|</span><span class="op">|</span> {
-                <span class="comment">// Adjust current index to count in case of an error.</span>
-                <span class="self">self</span>.<span class="ident">index</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">count</span>;
-                <span class="prelude-val">None</span>
-            })
+            do_next(<span class="self">self</span>).or_else(|| {
+                <span class="comment">// Adjust current index to count in case of an error.
+                </span><span class="self">self</span>.index = <span class="self">self</span>.count;
+                <span class="prelude-val">None
+            </span>})
         }
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">size_hint</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; (<span class="ident">usize</span>, <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span>) {
-        <span class="kw">let</span> <span class="ident">len</span> <span class="op">=</span> <span class="ident">usize::from</span>(<span class="self">self</span>.<span class="ident">count</span> <span class="op">-</span> <span class="self">self</span>.<span class="ident">index</span>);
-        (<span class="number">0</span>, <span class="prelude-val">Some</span>(<span class="ident">len</span>))
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>size_hint(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; (usize, <span class="prelude-ty">Option</span>&lt;usize&gt;) {
+        <span class="kw">let </span>len = usize::from(<span class="self">self</span>.count - <span class="self">self</span>.index);
+        (<span class="number">0</span>, <span class="prelude-val">Some</span>(len))
     }
 }
 
-<span class="kw">impl</span> <span class="ident">ExactSizeIterator</span> <span class="kw">for</span> <span class="ident">VernauxIter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span> {}
+<span class="kw">impl </span>ExactSizeIterator <span class="kw">for </span>VernauxIter&lt;<span class="lifetime">&#39;_</span>&gt; {}
 
-<span class="kw">impl</span> <span class="ident">FusedIterator</span> <span class="kw">for</span> <span class="ident">VernauxIter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span> {}
+<span class="kw">impl </span>FusedIterator <span class="kw">for </span>VernauxIter&lt;<span class="lifetime">&#39;_</span>&gt; {}
 
-<span class="doccomment">/// An ELF [Version Need Auxiliary][lsb-vernaux] entry.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// [lsb-vernaux]: https://refspecs.linuxbase.org/LSB_5.0.0/LSB-Core-generic/LSB-Core-generic/symversion.html#VERNEEDEXTFIG</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Vernaux</span> {
-    <span class="doccomment">/// Dependency name hash value (ELF hash function).</span>
-    <span class="kw">pub</span> <span class="ident">vna_hash</span>: <span class="ident">u32</span>,
-    <span class="doccomment">/// Dependency information flag bitmask.</span>
-    <span class="kw">pub</span> <span class="ident">vna_flags</span>: <span class="ident">u16</span>,
-    <span class="doccomment">/// Object file version identifier used in the .gnu.version symbol version array. Bit number 15</span>
-    <span class="doccomment">/// controls whether or not the object is hidden; if this bit is set, the object cannot be used</span>
-    <span class="doccomment">/// and the static linker will ignore the symbol&#39;s presence in the object.</span>
-    <span class="kw">pub</span> <span class="ident">vna_other</span>: <span class="ident">u16</span>,
-    <span class="doccomment">/// Offset to the dependency name string in the section header, in bytes.</span>
-    <span class="kw">pub</span> <span class="ident">vna_name</span>: <span class="ident">usize</span>,
-    <span class="doccomment">/// Offset to the next vernaux entry, in bytes.</span>
-    <span class="kw">pub</span> <span class="ident">vna_next</span>: <span class="ident">u32</span>,
+<span class="doccomment">/// An ELF [Version Need Auxiliary][lsb-vernaux] entry.
+///
+/// [lsb-vernaux]: https://refspecs.linuxbase.org/LSB_5.0.0/LSB-Core-generic/LSB-Core-generic/symversion.html#VERNEEDEXTFIG
+</span><span class="attribute">#[derive(Debug)]
+</span><span class="kw">pub struct </span>Vernaux {
+    <span class="doccomment">/// Dependency name hash value (ELF hash function).
+    </span><span class="kw">pub </span>vna_hash: u32,
+    <span class="doccomment">/// Dependency information flag bitmask.
+    </span><span class="kw">pub </span>vna_flags: u16,
+    <span class="doccomment">/// Object file version identifier used in the .gnu.version symbol version array. Bit number 15
+    /// controls whether or not the object is hidden; if this bit is set, the object cannot be used
+    /// and the static linker will ignore the symbol&#39;s presence in the object.
+    </span><span class="kw">pub </span>vna_other: u16,
+    <span class="doccomment">/// Offset to the dependency name string in the section header, in bytes.
+    </span><span class="kw">pub </span>vna_name: usize,
+    <span class="doccomment">/// Offset to the next vernaux entry, in bytes.
+    </span><span class="kw">pub </span>vna_next: u32,
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
-<span class="kw">mod</span> <span class="ident">test</span> {
-    <span class="kw">use</span> <span class="kw">super</span>::{<span class="ident">ElfVerdaux</span>, <span class="ident">ElfVerdef</span>, <span class="ident">ElfVernaux</span>, <span class="ident">ElfVerneed</span>, <span class="ident">ElfVersym</span>};
-    <span class="kw">use</span> <span class="kw">super</span>::{<span class="ident">Versym</span>, <span class="ident">VERSYM_HIDDEN</span>, <span class="ident">VER_NDX_GLOBAL</span>, <span class="ident">VER_NDX_LOCAL</span>};
-    <span class="kw">use</span> <span class="ident">core::mem::size_of</span>;
+<span class="attribute">#[cfg(test)]
+</span><span class="kw">mod </span>test {
+    <span class="kw">use super</span>::{ElfVerdaux, ElfVerdef, ElfVernaux, ElfVerneed, ElfVersym};
+    <span class="kw">use super</span>::{Versym, VERSYM_HIDDEN, VER_NDX_GLOBAL, VER_NDX_LOCAL};
+    <span class="kw">use </span>core::mem::size_of;
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">check_size</span>() {
-        <span class="macro">assert_eq!</span>(<span class="number">2</span>, <span class="ident">size_of</span>::<span class="op">&lt;</span><span class="ident">ElfVersym</span><span class="op">&gt;</span>());
-        <span class="macro">assert_eq!</span>(<span class="number">20</span>, <span class="ident">size_of</span>::<span class="op">&lt;</span><span class="ident">ElfVerdef</span><span class="op">&gt;</span>());
-        <span class="macro">assert_eq!</span>(<span class="number">8</span>, <span class="ident">size_of</span>::<span class="op">&lt;</span><span class="ident">ElfVerdaux</span><span class="op">&gt;</span>());
-        <span class="macro">assert_eq!</span>(<span class="number">16</span>, <span class="ident">size_of</span>::<span class="op">&lt;</span><span class="ident">ElfVerneed</span><span class="op">&gt;</span>());
-        <span class="macro">assert_eq!</span>(<span class="number">16</span>, <span class="ident">size_of</span>::<span class="op">&lt;</span><span class="ident">ElfVernaux</span><span class="op">&gt;</span>());
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>check_size() {
+        <span class="macro">assert_eq!</span>(<span class="number">2</span>, size_of::&lt;ElfVersym&gt;());
+        <span class="macro">assert_eq!</span>(<span class="number">20</span>, size_of::&lt;ElfVerdef&gt;());
+        <span class="macro">assert_eq!</span>(<span class="number">8</span>, size_of::&lt;ElfVerdaux&gt;());
+        <span class="macro">assert_eq!</span>(<span class="number">16</span>, size_of::&lt;ElfVerneed&gt;());
+        <span class="macro">assert_eq!</span>(<span class="number">16</span>, size_of::&lt;ElfVernaux&gt;());
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">check_versym</span>() {
-        <span class="kw">let</span> <span class="ident">local</span> <span class="op">=</span> <span class="ident">Versym</span> {
-            <span class="ident">vs_val</span>: <span class="ident">VER_NDX_LOCAL</span>,
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>check_versym() {
+        <span class="kw">let </span>local = Versym {
+            vs_val: VER_NDX_LOCAL,
         };
-        <span class="macro">assert_eq!</span>(<span class="bool-val">true</span>, <span class="ident">local</span>.<span class="ident">is_local</span>());
-        <span class="macro">assert_eq!</span>(<span class="bool-val">false</span>, <span class="ident">local</span>.<span class="ident">is_global</span>());
-        <span class="macro">assert_eq!</span>(<span class="bool-val">false</span>, <span class="ident">local</span>.<span class="ident">is_hidden</span>());
-        <span class="macro">assert_eq!</span>(<span class="ident">VER_NDX_LOCAL</span>, <span class="ident">local</span>.<span class="ident">version</span>());
+        <span class="macro">assert_eq!</span>(<span class="bool-val">true</span>, local.is_local());
+        <span class="macro">assert_eq!</span>(<span class="bool-val">false</span>, local.is_global());
+        <span class="macro">assert_eq!</span>(<span class="bool-val">false</span>, local.is_hidden());
+        <span class="macro">assert_eq!</span>(VER_NDX_LOCAL, local.version());
 
-        <span class="kw">let</span> <span class="ident">global</span> <span class="op">=</span> <span class="ident">Versym</span> {
-            <span class="ident">vs_val</span>: <span class="ident">VER_NDX_GLOBAL</span>,
+        <span class="kw">let </span>global = Versym {
+            vs_val: VER_NDX_GLOBAL,
         };
-        <span class="macro">assert_eq!</span>(<span class="bool-val">false</span>, <span class="ident">global</span>.<span class="ident">is_local</span>());
-        <span class="macro">assert_eq!</span>(<span class="bool-val">true</span>, <span class="ident">global</span>.<span class="ident">is_global</span>());
-        <span class="macro">assert_eq!</span>(<span class="bool-val">false</span>, <span class="ident">global</span>.<span class="ident">is_hidden</span>());
-        <span class="macro">assert_eq!</span>(<span class="ident">VER_NDX_GLOBAL</span>, <span class="ident">global</span>.<span class="ident">version</span>());
+        <span class="macro">assert_eq!</span>(<span class="bool-val">false</span>, global.is_local());
+        <span class="macro">assert_eq!</span>(<span class="bool-val">true</span>, global.is_global());
+        <span class="macro">assert_eq!</span>(<span class="bool-val">false</span>, global.is_hidden());
+        <span class="macro">assert_eq!</span>(VER_NDX_GLOBAL, global.version());
 
-        <span class="kw">let</span> <span class="ident">hidden</span> <span class="op">=</span> <span class="ident">Versym</span> {
-            <span class="ident">vs_val</span>: <span class="ident">VERSYM_HIDDEN</span>,
+        <span class="kw">let </span>hidden = Versym {
+            vs_val: VERSYM_HIDDEN,
         };
-        <span class="macro">assert_eq!</span>(<span class="bool-val">false</span>, <span class="ident">hidden</span>.<span class="ident">is_local</span>());
-        <span class="macro">assert_eq!</span>(<span class="bool-val">false</span>, <span class="ident">hidden</span>.<span class="ident">is_global</span>());
-        <span class="macro">assert_eq!</span>(<span class="bool-val">true</span>, <span class="ident">hidden</span>.<span class="ident">is_hidden</span>());
-        <span class="macro">assert_eq!</span>(<span class="number">0</span>, <span class="ident">hidden</span>.<span class="ident">version</span>());
+        <span class="macro">assert_eq!</span>(<span class="bool-val">false</span>, hidden.is_local());
+        <span class="macro">assert_eq!</span>(<span class="bool-val">false</span>, hidden.is_global());
+        <span class="macro">assert_eq!</span>(<span class="bool-val">true</span>, hidden.is_hidden());
+        <span class="macro">assert_eq!</span>(<span class="number">0</span>, hidden.version());
 
-        <span class="kw">let</span> <span class="ident">hidden</span> <span class="op">=</span> <span class="ident">Versym</span> {
-            <span class="ident">vs_val</span>: <span class="ident">VERSYM_HIDDEN</span> <span class="op">|</span> <span class="number">0x123</span>,
+        <span class="kw">let </span>hidden = Versym {
+            vs_val: VERSYM_HIDDEN | <span class="number">0x123</span>,
         };
-        <span class="macro">assert_eq!</span>(<span class="bool-val">false</span>, <span class="ident">hidden</span>.<span class="ident">is_local</span>());
-        <span class="macro">assert_eq!</span>(<span class="bool-val">false</span>, <span class="ident">hidden</span>.<span class="ident">is_global</span>());
-        <span class="macro">assert_eq!</span>(<span class="bool-val">true</span>, <span class="ident">hidden</span>.<span class="ident">is_hidden</span>());
-        <span class="macro">assert_eq!</span>(<span class="number">0x123</span>, <span class="ident">hidden</span>.<span class="ident">version</span>());
+        <span class="macro">assert_eq!</span>(<span class="bool-val">false</span>, hidden.is_local());
+        <span class="macro">assert_eq!</span>(<span class="bool-val">false</span>, hidden.is_global());
+        <span class="macro">assert_eq!</span>(<span class="bool-val">true</span>, hidden.is_hidden());
+        <span class="macro">assert_eq!</span>(<span class="number">0x123</span>, hidden.version());
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="goblin" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="goblin" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (77e57db38 2022-10-30)" ></div></body></html>

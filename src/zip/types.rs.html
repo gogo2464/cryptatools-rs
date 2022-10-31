@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/zip-0.6.3/src/types.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>types.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../zip/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../zip/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../zip/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/zip-0.6.3/src/types.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>types.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../zip/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -571,578 +571,578 @@
 <span id="571">571</span>
 <span id="572">572</span>
 <span id="573">573</span>
-</pre><pre class="rust"><code><span class="doccomment">//! Types that specify what is contained in a ZIP.</span>
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">doc</span>)]</span>
-<span class="kw">use</span> {<span class="ident"><span class="kw">crate</span>::read::ZipFile</span>, <span class="ident"><span class="kw">crate</span>::write::FileOptions</span>};
+</pre><pre class="rust"><code><span class="doccomment">//! Types that specify what is contained in a ZIP.
+</span><span class="attribute">#[cfg(doc)]
+</span><span class="kw">use </span>{<span class="kw">crate</span>::read::ZipFile, <span class="kw">crate</span>::write::FileOptions};
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">any</span>(
-    <span class="ident">all</span>(<span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;arm&quot;</span>, <span class="ident">target_pointer_width</span> <span class="op">=</span> <span class="string">&quot;32&quot;</span>),
-    <span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;mips&quot;</span>,
-    <span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;powerpc&quot;</span>
-)))]</span>
-<span class="kw">use</span> <span class="ident">std::sync::atomic</span>;
+<span class="attribute">#[cfg(not(any(
+    all(target_arch = <span class="string">&quot;arm&quot;</span>, target_pointer_width = <span class="string">&quot;32&quot;</span>),
+    target_arch = <span class="string">&quot;mips&quot;</span>,
+    target_arch = <span class="string">&quot;powerpc&quot;
+</span>)))]
+</span><span class="kw">use </span>std::sync::atomic;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(
-    <span class="ident">all</span>(<span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;arm&quot;</span>, <span class="ident">target_pointer_width</span> <span class="op">=</span> <span class="string">&quot;32&quot;</span>),
-    <span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;mips&quot;</span>,
-    <span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;powerpc&quot;</span>
-))]</span>
-<span class="kw">mod</span> <span class="ident">atomic</span> {
-    <span class="kw">use</span> <span class="ident">crossbeam_utils::sync::ShardedLock</span>;
-    <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">std::sync::atomic::Ordering</span>;
+<span class="attribute">#[cfg(any(
+    all(target_arch = <span class="string">&quot;arm&quot;</span>, target_pointer_width = <span class="string">&quot;32&quot;</span>),
+    target_arch = <span class="string">&quot;mips&quot;</span>,
+    target_arch = <span class="string">&quot;powerpc&quot;
+</span>))]
+</span><span class="kw">mod </span>atomic {
+    <span class="kw">use </span>crossbeam_utils::sync::ShardedLock;
+    <span class="kw">pub use </span>std::sync::atomic::Ordering;
 
-    <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Default</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">AtomicU64</span> {
-        <span class="ident">value</span>: <span class="ident">ShardedLock</span><span class="op">&lt;</span><span class="ident">u64</span><span class="op">&gt;</span>,
+    <span class="attribute">#[derive(Debug, Default)]
+    </span><span class="kw">pub struct </span>AtomicU64 {
+        value: ShardedLock&lt;u64&gt;,
     }
 
-    <span class="kw">impl</span> <span class="ident">AtomicU64</span> {
-        <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">v</span>: <span class="ident">u64</span>) -&gt; <span class="self">Self</span> {
-            <span class="self">Self</span> {
-                <span class="ident">value</span>: <span class="ident">ShardedLock::new</span>(<span class="ident">v</span>),
+    <span class="kw">impl </span>AtomicU64 {
+        <span class="kw">pub fn </span>new(v: u64) -&gt; <span class="self">Self </span>{
+            <span class="self">Self </span>{
+                value: ShardedLock::new(v),
             }
         }
-        <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_mut</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="kw-2">&amp;mut</span> <span class="ident">u64</span> {
-            <span class="self">self</span>.<span class="ident">value</span>.<span class="ident">get_mut</span>().<span class="ident">unwrap</span>()
+        <span class="kw">pub fn </span>get_mut(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;mut </span>u64 {
+            <span class="self">self</span>.value.get_mut().unwrap()
         }
-        <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">load</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="ident">Ordering</span>) -&gt; <span class="ident">u64</span> {
-            <span class="kw-2">*</span><span class="self">self</span>.<span class="ident">value</span>.<span class="ident">read</span>().<span class="ident">unwrap</span>()
+        <span class="kw">pub fn </span>load(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: Ordering) -&gt; u64 {
+            <span class="kw-2">*</span><span class="self">self</span>.value.read().unwrap()
         }
-        <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">store</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">value</span>: <span class="ident">u64</span>, <span class="kw">_</span>: <span class="ident">Ordering</span>) {
-            <span class="kw-2">*</span><span class="self">self</span>.<span class="ident">value</span>.<span class="ident">write</span>().<span class="ident">unwrap</span>() <span class="op">=</span> <span class="ident">value</span>;
-        }
-    }
-}
-
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;time&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">time</span>::{<span class="ident">error::ComponentRange</span>, <span class="ident">Date</span>, <span class="ident">Month</span>, <span class="ident">OffsetDateTime</span>, <span class="ident">PrimitiveDateTime</span>, <span class="ident">Time</span>};
-
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">System</span> {
-    <span class="ident">Dos</span> <span class="op">=</span> <span class="number">0</span>,
-    <span class="ident">Unix</span> <span class="op">=</span> <span class="number">3</span>,
-    <span class="ident">Unknown</span>,
-}
-
-<span class="kw">impl</span> <span class="ident">System</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_u8</span>(<span class="ident">system</span>: <span class="ident">u8</span>) -&gt; <span class="ident">System</span> {
-        <span class="kw">use</span> <span class="ident"><span class="self">self</span>::System</span>::<span class="kw-2">*</span>;
-
-        <span class="kw">match</span> <span class="ident">system</span> {
-            <span class="number">0</span> =&gt; <span class="ident">Dos</span>,
-            <span class="number">3</span> =&gt; <span class="ident">Unix</span>,
-            <span class="kw">_</span> =&gt; <span class="ident">Unknown</span>,
+        <span class="kw">pub fn </span>store(<span class="kw-2">&amp;</span><span class="self">self</span>, value: u64, <span class="kw">_</span>: Ordering) {
+            <span class="kw-2">*</span><span class="self">self</span>.value.write().unwrap() = value;
         }
     }
 }
 
-<span class="doccomment">/// Representation of a moment in time.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Zip files use an old format from DOS to store timestamps,</span>
-<span class="doccomment">/// with its own set of peculiarities.</span>
-<span class="doccomment">/// For example, it has a resolution of 2 seconds!</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// A [`DateTime`] can be stored directly in a zipfile with [`FileOptions::last_modified_time`],</span>
-<span class="doccomment">/// or read from one with [`ZipFile::last_modified`]</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// # Warning</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Because there is no timezone associated with the [`DateTime`], they should ideally only</span>
-<span class="doccomment">/// be used for user-facing descriptions. This also means [`DateTime::to_time`] returns an</span>
-<span class="doccomment">/// [`OffsetDateTime`] (which is the equivalent of chrono&#39;s `NaiveDateTime`).</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Modern zip files store more precise timestamps, which are ignored by [`crate::read::ZipArchive`],</span>
-<span class="doccomment">/// so keep in mind that these timestamps are unreliable. [We&#39;re working on this](https://github.com/zip-rs/zip/issues/156#issuecomment-652981904).</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">DateTime</span> {
-    <span class="ident">year</span>: <span class="ident">u16</span>,
-    <span class="ident">month</span>: <span class="ident">u8</span>,
-    <span class="ident">day</span>: <span class="ident">u8</span>,
-    <span class="ident">hour</span>: <span class="ident">u8</span>,
-    <span class="ident">minute</span>: <span class="ident">u8</span>,
-    <span class="ident">second</span>: <span class="ident">u8</span>,
+<span class="attribute">#[cfg(feature = <span class="string">&quot;time&quot;</span>)]
+</span><span class="kw">use </span>time::{error::ComponentRange, Date, Month, OffsetDateTime, PrimitiveDateTime, Time};
+
+<span class="attribute">#[derive(Clone, Copy, Debug, PartialEq)]
+</span><span class="kw">pub enum </span>System {
+    Dos = <span class="number">0</span>,
+    Unix = <span class="number">3</span>,
+    Unknown,
 }
 
-<span class="kw">impl</span> <span class="ident">::std::default::Default</span> <span class="kw">for</span> <span class="ident">DateTime</span> {
-    <span class="doccomment">/// Constructs an &#39;default&#39; datetime of 1980-01-01 00:00:00</span>
-    <span class="kw">fn</span> <span class="ident">default</span>() -&gt; <span class="ident">DateTime</span> {
-        <span class="ident">DateTime</span> {
-            <span class="ident">year</span>: <span class="number">1980</span>,
-            <span class="ident">month</span>: <span class="number">1</span>,
-            <span class="ident">day</span>: <span class="number">1</span>,
-            <span class="ident">hour</span>: <span class="number">0</span>,
-            <span class="ident">minute</span>: <span class="number">0</span>,
-            <span class="ident">second</span>: <span class="number">0</span>,
+<span class="kw">impl </span>System {
+    <span class="kw">pub fn </span>from_u8(system: u8) -&gt; System {
+        <span class="kw">use </span><span class="self">self</span>::System::<span class="kw-2">*</span>;
+
+        <span class="kw">match </span>system {
+            <span class="number">0 </span>=&gt; Dos,
+            <span class="number">3 </span>=&gt; Unix,
+            <span class="kw">_ </span>=&gt; Unknown,
         }
     }
 }
 
-<span class="kw">impl</span> <span class="ident">DateTime</span> {
-    <span class="doccomment">/// Converts an msdos (u16, u16) pair to a DateTime object</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_msdos</span>(<span class="ident">datepart</span>: <span class="ident">u16</span>, <span class="ident">timepart</span>: <span class="ident">u16</span>) -&gt; <span class="ident">DateTime</span> {
-        <span class="kw">let</span> <span class="ident">seconds</span> <span class="op">=</span> (<span class="ident">timepart</span> <span class="op">&amp;</span> <span class="number">0b0000000000011111</span>) <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">1</span>;
-        <span class="kw">let</span> <span class="ident">minutes</span> <span class="op">=</span> (<span class="ident">timepart</span> <span class="op">&amp;</span> <span class="number">0b0000011111100000</span>) <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">5</span>;
-        <span class="kw">let</span> <span class="ident">hours</span> <span class="op">=</span> (<span class="ident">timepart</span> <span class="op">&amp;</span> <span class="number">0b1111100000000000</span>) <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">11</span>;
-        <span class="kw">let</span> <span class="ident">days</span> <span class="op">=</span> <span class="ident">datepart</span> <span class="op">&amp;</span> <span class="number">0b0000000000011111</span>;
-        <span class="kw">let</span> <span class="ident">months</span> <span class="op">=</span> (<span class="ident">datepart</span> <span class="op">&amp;</span> <span class="number">0b0000000111100000</span>) <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">5</span>;
-        <span class="kw">let</span> <span class="ident">years</span> <span class="op">=</span> (<span class="ident">datepart</span> <span class="op">&amp;</span> <span class="number">0b1111111000000000</span>) <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">9</span>;
+<span class="doccomment">/// Representation of a moment in time.
+///
+/// Zip files use an old format from DOS to store timestamps,
+/// with its own set of peculiarities.
+/// For example, it has a resolution of 2 seconds!
+///
+/// A [`DateTime`] can be stored directly in a zipfile with [`FileOptions::last_modified_time`],
+/// or read from one with [`ZipFile::last_modified`]
+///
+/// # Warning
+///
+/// Because there is no timezone associated with the [`DateTime`], they should ideally only
+/// be used for user-facing descriptions. This also means [`DateTime::to_time`] returns an
+/// [`OffsetDateTime`] (which is the equivalent of chrono&#39;s `NaiveDateTime`).
+///
+/// Modern zip files store more precise timestamps, which are ignored by [`crate::read::ZipArchive`],
+/// so keep in mind that these timestamps are unreliable. [We&#39;re working on this](https://github.com/zip-rs/zip/issues/156#issuecomment-652981904).
+</span><span class="attribute">#[derive(Debug, Clone, Copy)]
+</span><span class="kw">pub struct </span>DateTime {
+    year: u16,
+    month: u8,
+    day: u8,
+    hour: u8,
+    minute: u8,
+    second: u8,
+}
 
-        <span class="ident">DateTime</span> {
-            <span class="ident">year</span>: (<span class="ident">years</span> <span class="op">+</span> <span class="number">1980</span>) <span class="kw">as</span> <span class="ident">u16</span>,
-            <span class="ident">month</span>: <span class="ident">months</span> <span class="kw">as</span> <span class="ident">u8</span>,
-            <span class="ident">day</span>: <span class="ident">days</span> <span class="kw">as</span> <span class="ident">u8</span>,
-            <span class="ident">hour</span>: <span class="ident">hours</span> <span class="kw">as</span> <span class="ident">u8</span>,
-            <span class="ident">minute</span>: <span class="ident">minutes</span> <span class="kw">as</span> <span class="ident">u8</span>,
-            <span class="ident">second</span>: <span class="ident">seconds</span> <span class="kw">as</span> <span class="ident">u8</span>,
+<span class="kw">impl </span>::std::default::Default <span class="kw">for </span>DateTime {
+    <span class="doccomment">/// Constructs an &#39;default&#39; datetime of 1980-01-01 00:00:00
+    </span><span class="kw">fn </span>default() -&gt; DateTime {
+        DateTime {
+            year: <span class="number">1980</span>,
+            month: <span class="number">1</span>,
+            day: <span class="number">1</span>,
+            hour: <span class="number">0</span>,
+            minute: <span class="number">0</span>,
+            second: <span class="number">0</span>,
+        }
+    }
+}
+
+<span class="kw">impl </span>DateTime {
+    <span class="doccomment">/// Converts an msdos (u16, u16) pair to a DateTime object
+    </span><span class="kw">pub fn </span>from_msdos(datepart: u16, timepart: u16) -&gt; DateTime {
+        <span class="kw">let </span>seconds = (timepart &amp; <span class="number">0b0000000000011111</span>) &lt;&lt; <span class="number">1</span>;
+        <span class="kw">let </span>minutes = (timepart &amp; <span class="number">0b0000011111100000</span>) &gt;&gt; <span class="number">5</span>;
+        <span class="kw">let </span>hours = (timepart &amp; <span class="number">0b1111100000000000</span>) &gt;&gt; <span class="number">11</span>;
+        <span class="kw">let </span>days = datepart &amp; <span class="number">0b0000000000011111</span>;
+        <span class="kw">let </span>months = (datepart &amp; <span class="number">0b0000000111100000</span>) &gt;&gt; <span class="number">5</span>;
+        <span class="kw">let </span>years = (datepart &amp; <span class="number">0b1111111000000000</span>) &gt;&gt; <span class="number">9</span>;
+
+        DateTime {
+            year: (years + <span class="number">1980</span>) <span class="kw">as </span>u16,
+            month: months <span class="kw">as </span>u8,
+            day: days <span class="kw">as </span>u8,
+            hour: hours <span class="kw">as </span>u8,
+            minute: minutes <span class="kw">as </span>u8,
+            second: seconds <span class="kw">as </span>u8,
         }
     }
 
-    <span class="doccomment">/// Constructs a DateTime from a specific date and time</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// The bounds are:</span>
-    <span class="doccomment">/// * year: [1980, 2107]</span>
-    <span class="doccomment">/// * month: [1, 12]</span>
-    <span class="doccomment">/// * day: [1, 31]</span>
-    <span class="doccomment">/// * hour: [0, 23]</span>
-    <span class="doccomment">/// * minute: [0, 59]</span>
-    <span class="doccomment">/// * second: [0, 60]</span>
-    <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::result_unit_err</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_date_and_time</span>(
-        <span class="ident">year</span>: <span class="ident">u16</span>,
-        <span class="ident">month</span>: <span class="ident">u8</span>,
-        <span class="ident">day</span>: <span class="ident">u8</span>,
-        <span class="ident">hour</span>: <span class="ident">u8</span>,
-        <span class="ident">minute</span>: <span class="ident">u8</span>,
-        <span class="ident">second</span>: <span class="ident">u8</span>,
-    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">DateTime</span>, ()<span class="op">&gt;</span> {
-        <span class="kw">if</span> (<span class="number">1980</span>..<span class="op">=</span><span class="number">2107</span>).<span class="ident">contains</span>(<span class="kw-2">&amp;</span><span class="ident">year</span>)
-            <span class="op">&amp;&amp;</span> <span class="ident">month</span> <span class="op">&gt;</span><span class="op">=</span> <span class="number">1</span>
-            <span class="op">&amp;&amp;</span> <span class="ident">month</span> <span class="op">&lt;</span><span class="op">=</span> <span class="number">12</span>
-            <span class="op">&amp;&amp;</span> <span class="ident">day</span> <span class="op">&gt;</span><span class="op">=</span> <span class="number">1</span>
-            <span class="op">&amp;&amp;</span> <span class="ident">day</span> <span class="op">&lt;</span><span class="op">=</span> <span class="number">31</span>
-            <span class="op">&amp;&amp;</span> <span class="ident">hour</span> <span class="op">&lt;</span><span class="op">=</span> <span class="number">23</span>
-            <span class="op">&amp;&amp;</span> <span class="ident">minute</span> <span class="op">&lt;</span><span class="op">=</span> <span class="number">59</span>
-            <span class="op">&amp;&amp;</span> <span class="ident">second</span> <span class="op">&lt;</span><span class="op">=</span> <span class="number">60</span>
-        {
-            <span class="prelude-val">Ok</span>(<span class="ident">DateTime</span> {
-                <span class="ident">year</span>,
-                <span class="ident">month</span>,
-                <span class="ident">day</span>,
-                <span class="ident">hour</span>,
-                <span class="ident">minute</span>,
-                <span class="ident">second</span>,
+    <span class="doccomment">/// Constructs a DateTime from a specific date and time
+    ///
+    /// The bounds are:
+    /// * year: [1980, 2107]
+    /// * month: [1, 12]
+    /// * day: [1, 31]
+    /// * hour: [0, 23]
+    /// * minute: [0, 59]
+    /// * second: [0, 60]
+    </span><span class="attribute">#[allow(clippy::result_unit_err)]
+    </span><span class="kw">pub fn </span>from_date_and_time(
+        year: u16,
+        month: u8,
+        day: u8,
+        hour: u8,
+        minute: u8,
+        second: u8,
+    ) -&gt; <span class="prelude-ty">Result</span>&lt;DateTime, ()&gt; {
+        <span class="kw">if </span>(<span class="number">1980</span>..=<span class="number">2107</span>).contains(<span class="kw-2">&amp;</span>year)
+            &amp;&amp; month &gt;= <span class="number">1
+            </span>&amp;&amp; month &lt;= <span class="number">12
+            </span>&amp;&amp; day &gt;= <span class="number">1
+            </span>&amp;&amp; day &lt;= <span class="number">31
+            </span>&amp;&amp; hour &lt;= <span class="number">23
+            </span>&amp;&amp; minute &lt;= <span class="number">59
+            </span>&amp;&amp; second &lt;= <span class="number">60
+        </span>{
+            <span class="prelude-val">Ok</span>(DateTime {
+                year,
+                month,
+                day,
+                hour,
+                minute,
+                second,
             })
-        } <span class="kw">else</span> {
+        } <span class="kw">else </span>{
             <span class="prelude-val">Err</span>(())
         }
     }
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;time&quot;</span>)]</span>
-    <span class="doccomment">/// Converts a OffsetDateTime object to a DateTime</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Returns `Err` when this object is out of bounds</span>
-    <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::result_unit_err</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_time</span>(<span class="ident">dt</span>: <span class="ident">OffsetDateTime</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">DateTime</span>, ()<span class="op">&gt;</span> {
-        <span class="kw">if</span> <span class="ident">dt</span>.<span class="ident">year</span>() <span class="op">&gt;</span><span class="op">=</span> <span class="number">1980</span> <span class="op">&amp;&amp;</span> <span class="ident">dt</span>.<span class="ident">year</span>() <span class="op">&lt;</span><span class="op">=</span> <span class="number">2107</span> {
-            <span class="prelude-val">Ok</span>(<span class="ident">DateTime</span> {
-                <span class="ident">year</span>: (<span class="ident">dt</span>.<span class="ident">year</span>()) <span class="kw">as</span> <span class="ident">u16</span>,
-                <span class="ident">month</span>: (<span class="ident">dt</span>.<span class="ident">month</span>()) <span class="kw">as</span> <span class="ident">u8</span>,
-                <span class="ident">day</span>: <span class="ident">dt</span>.<span class="ident">day</span>() <span class="kw">as</span> <span class="ident">u8</span>,
-                <span class="ident">hour</span>: <span class="ident">dt</span>.<span class="ident">hour</span>() <span class="kw">as</span> <span class="ident">u8</span>,
-                <span class="ident">minute</span>: <span class="ident">dt</span>.<span class="ident">minute</span>() <span class="kw">as</span> <span class="ident">u8</span>,
-                <span class="ident">second</span>: <span class="ident">dt</span>.<span class="ident">second</span>() <span class="kw">as</span> <span class="ident">u8</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;time&quot;</span>)]
+    </span><span class="doccomment">/// Converts a OffsetDateTime object to a DateTime
+    ///
+    /// Returns `Err` when this object is out of bounds
+    </span><span class="attribute">#[allow(clippy::result_unit_err)]
+    </span><span class="kw">pub fn </span>from_time(dt: OffsetDateTime) -&gt; <span class="prelude-ty">Result</span>&lt;DateTime, ()&gt; {
+        <span class="kw">if </span>dt.year() &gt;= <span class="number">1980 </span>&amp;&amp; dt.year() &lt;= <span class="number">2107 </span>{
+            <span class="prelude-val">Ok</span>(DateTime {
+                year: (dt.year()) <span class="kw">as </span>u16,
+                month: (dt.month()) <span class="kw">as </span>u8,
+                day: dt.day() <span class="kw">as </span>u8,
+                hour: dt.hour() <span class="kw">as </span>u8,
+                minute: dt.minute() <span class="kw">as </span>u8,
+                second: dt.second() <span class="kw">as </span>u8,
             })
-        } <span class="kw">else</span> {
+        } <span class="kw">else </span>{
             <span class="prelude-val">Err</span>(())
         }
     }
 
-    <span class="doccomment">/// Gets the time portion of this datetime in the msdos representation</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">timepart</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">u16</span> {
-        ((<span class="self">self</span>.<span class="ident">second</span> <span class="kw">as</span> <span class="ident">u16</span>) <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">1</span>) <span class="op">|</span> ((<span class="self">self</span>.<span class="ident">minute</span> <span class="kw">as</span> <span class="ident">u16</span>) <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">5</span>) <span class="op">|</span> ((<span class="self">self</span>.<span class="ident">hour</span> <span class="kw">as</span> <span class="ident">u16</span>) <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">11</span>)
+    <span class="doccomment">/// Gets the time portion of this datetime in the msdos representation
+    </span><span class="kw">pub fn </span>timepart(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; u16 {
+        ((<span class="self">self</span>.second <span class="kw">as </span>u16) &gt;&gt; <span class="number">1</span>) | ((<span class="self">self</span>.minute <span class="kw">as </span>u16) &lt;&lt; <span class="number">5</span>) | ((<span class="self">self</span>.hour <span class="kw">as </span>u16) &lt;&lt; <span class="number">11</span>)
     }
 
-    <span class="doccomment">/// Gets the date portion of this datetime in the msdos representation</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">datepart</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">u16</span> {
-        (<span class="self">self</span>.<span class="ident">day</span> <span class="kw">as</span> <span class="ident">u16</span>) <span class="op">|</span> ((<span class="self">self</span>.<span class="ident">month</span> <span class="kw">as</span> <span class="ident">u16</span>) <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">5</span>) <span class="op">|</span> ((<span class="self">self</span>.<span class="ident">year</span> <span class="op">-</span> <span class="number">1980</span>) <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">9</span>)
+    <span class="doccomment">/// Gets the date portion of this datetime in the msdos representation
+    </span><span class="kw">pub fn </span>datepart(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; u16 {
+        (<span class="self">self</span>.day <span class="kw">as </span>u16) | ((<span class="self">self</span>.month <span class="kw">as </span>u16) &lt;&lt; <span class="number">5</span>) | ((<span class="self">self</span>.year - <span class="number">1980</span>) &lt;&lt; <span class="number">9</span>)
     }
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;time&quot;</span>)]</span>
-    <span class="doccomment">/// Converts the DateTime to a OffsetDateTime structure</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">to_time</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">OffsetDateTime</span>, <span class="ident">ComponentRange</span><span class="op">&gt;</span> {
-        <span class="kw">use</span> <span class="ident">std::convert::TryFrom</span>;
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;time&quot;</span>)]
+    </span><span class="doccomment">/// Converts the DateTime to a OffsetDateTime structure
+    </span><span class="kw">pub fn </span>to_time(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;OffsetDateTime, ComponentRange&gt; {
+        <span class="kw">use </span>std::convert::TryFrom;
 
-        <span class="kw">let</span> <span class="ident">date</span> <span class="op">=</span>
-            <span class="ident">Date::from_calendar_date</span>(<span class="self">self</span>.<span class="ident">year</span> <span class="kw">as</span> <span class="ident">i32</span>, <span class="ident">Month::try_from</span>(<span class="self">self</span>.<span class="ident">month</span>)<span class="question-mark">?</span>, <span class="self">self</span>.<span class="ident">day</span>)<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">time</span> <span class="op">=</span> <span class="ident">Time::from_hms</span>(<span class="self">self</span>.<span class="ident">hour</span>, <span class="self">self</span>.<span class="ident">minute</span>, <span class="self">self</span>.<span class="ident">second</span>)<span class="question-mark">?</span>;
-        <span class="prelude-val">Ok</span>(<span class="ident">PrimitiveDateTime::new</span>(<span class="ident">date</span>, <span class="ident">time</span>).<span class="ident">assume_utc</span>())
+        <span class="kw">let </span>date =
+            Date::from_calendar_date(<span class="self">self</span>.year <span class="kw">as </span>i32, Month::try_from(<span class="self">self</span>.month)<span class="question-mark">?</span>, <span class="self">self</span>.day)<span class="question-mark">?</span>;
+        <span class="kw">let </span>time = Time::from_hms(<span class="self">self</span>.hour, <span class="self">self</span>.minute, <span class="self">self</span>.second)<span class="question-mark">?</span>;
+        <span class="prelude-val">Ok</span>(PrimitiveDateTime::new(date, time).assume_utc())
     }
 
-    <span class="doccomment">/// Get the year. There is no epoch, i.e. 2018 will be returned as 2018.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">year</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">u16</span> {
-        <span class="self">self</span>.<span class="ident">year</span>
+    <span class="doccomment">/// Get the year. There is no epoch, i.e. 2018 will be returned as 2018.
+    </span><span class="kw">pub fn </span>year(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; u16 {
+        <span class="self">self</span>.year
     }
 
-    <span class="doccomment">/// Get the month, where 1 = january and 12 = december</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// # Warning</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// When read from a zip file, this may not be a reasonable value</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">month</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">u8</span> {
-        <span class="self">self</span>.<span class="ident">month</span>
+    <span class="doccomment">/// Get the month, where 1 = january and 12 = december
+    ///
+    /// # Warning
+    ///
+    /// When read from a zip file, this may not be a reasonable value
+    </span><span class="kw">pub fn </span>month(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; u8 {
+        <span class="self">self</span>.month
     }
 
-    <span class="doccomment">/// Get the day</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// # Warning</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// When read from a zip file, this may not be a reasonable value</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">day</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">u8</span> {
-        <span class="self">self</span>.<span class="ident">day</span>
+    <span class="doccomment">/// Get the day
+    ///
+    /// # Warning
+    ///
+    /// When read from a zip file, this may not be a reasonable value
+    </span><span class="kw">pub fn </span>day(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; u8 {
+        <span class="self">self</span>.day
     }
 
-    <span class="doccomment">/// Get the hour</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// # Warning</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// When read from a zip file, this may not be a reasonable value</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">hour</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">u8</span> {
-        <span class="self">self</span>.<span class="ident">hour</span>
+    <span class="doccomment">/// Get the hour
+    ///
+    /// # Warning
+    ///
+    /// When read from a zip file, this may not be a reasonable value
+    </span><span class="kw">pub fn </span>hour(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; u8 {
+        <span class="self">self</span>.hour
     }
 
-    <span class="doccomment">/// Get the minute</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// # Warning</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// When read from a zip file, this may not be a reasonable value</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">minute</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">u8</span> {
-        <span class="self">self</span>.<span class="ident">minute</span>
+    <span class="doccomment">/// Get the minute
+    ///
+    /// # Warning
+    ///
+    /// When read from a zip file, this may not be a reasonable value
+    </span><span class="kw">pub fn </span>minute(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; u8 {
+        <span class="self">self</span>.minute
     }
 
-    <span class="doccomment">/// Get the second</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// # Warning</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// When read from a zip file, this may not be a reasonable value</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">second</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">u8</span> {
-        <span class="self">self</span>.<span class="ident">second</span>
-    }
-}
-
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DEFAULT_VERSION</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">46</span>;
-
-<span class="doccomment">/// A type like `AtomicU64` except it implements `Clone` and has predefined</span>
-<span class="doccomment">/// ordering.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// It uses `Relaxed` ordering because it is not used for synchronisation.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">AtomicU64</span>(<span class="ident">atomic::AtomicU64</span>);
-
-<span class="kw">impl</span> <span class="ident">AtomicU64</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">v</span>: <span class="ident">u64</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span>(<span class="ident">atomic::AtomicU64::new</span>(<span class="ident">v</span>))
-    }
-
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">load</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">u64</span> {
-        <span class="self">self</span>.<span class="number">0</span>.<span class="ident">load</span>(<span class="ident">atomic::Ordering::Relaxed</span>)
-    }
-
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">store</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">val</span>: <span class="ident">u64</span>) {
-        <span class="self">self</span>.<span class="number">0</span>.<span class="ident">store</span>(<span class="ident">val</span>, <span class="ident">atomic::Ordering::Relaxed</span>)
-    }
-
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_mut</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="kw-2">&amp;mut</span> <span class="ident">u64</span> {
-        <span class="self">self</span>.<span class="number">0</span>.<span class="ident">get_mut</span>()
+    <span class="doccomment">/// Get the second
+    ///
+    /// # Warning
+    ///
+    /// When read from a zip file, this may not be a reasonable value
+    </span><span class="kw">pub fn </span>second(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; u8 {
+        <span class="self">self</span>.second
     }
 }
 
-<span class="kw">impl</span> <span class="ident">Clone</span> <span class="kw">for</span> <span class="ident">AtomicU64</span> {
-    <span class="kw">fn</span> <span class="ident">clone</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span>(<span class="ident">atomic::AtomicU64::new</span>(<span class="self">self</span>.<span class="ident">load</span>()))
+<span class="kw">pub const </span>DEFAULT_VERSION: u8 = <span class="number">46</span>;
+
+<span class="doccomment">/// A type like `AtomicU64` except it implements `Clone` and has predefined
+/// ordering.
+///
+/// It uses `Relaxed` ordering because it is not used for synchronisation.
+</span><span class="attribute">#[derive(Debug)]
+</span><span class="kw">pub struct </span>AtomicU64(atomic::AtomicU64);
+
+<span class="kw">impl </span>AtomicU64 {
+    <span class="kw">pub fn </span>new(v: u64) -&gt; <span class="self">Self </span>{
+        <span class="self">Self</span>(atomic::AtomicU64::new(v))
+    }
+
+    <span class="kw">pub fn </span>load(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; u64 {
+        <span class="self">self</span>.<span class="number">0</span>.load(atomic::Ordering::Relaxed)
+    }
+
+    <span class="kw">pub fn </span>store(<span class="kw-2">&amp;</span><span class="self">self</span>, val: u64) {
+        <span class="self">self</span>.<span class="number">0</span>.store(val, atomic::Ordering::Relaxed)
+    }
+
+    <span class="kw">pub fn </span>get_mut(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;mut </span>u64 {
+        <span class="self">self</span>.<span class="number">0</span>.get_mut()
     }
 }
 
-<span class="doccomment">/// Structure representing a ZIP file.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ZipFileData</span> {
-    <span class="doccomment">/// Compatibility of the file attribute information</span>
-    <span class="kw">pub</span> <span class="ident">system</span>: <span class="ident">System</span>,
-    <span class="doccomment">/// Specification version</span>
-    <span class="kw">pub</span> <span class="ident">version_made_by</span>: <span class="ident">u8</span>,
-    <span class="doccomment">/// True if the file is encrypted.</span>
-    <span class="kw">pub</span> <span class="ident">encrypted</span>: <span class="ident">bool</span>,
-    <span class="doccomment">/// True if the file uses a data-descriptor section</span>
-    <span class="kw">pub</span> <span class="ident">using_data_descriptor</span>: <span class="ident">bool</span>,
-    <span class="doccomment">/// Compression method used to store the file</span>
-    <span class="kw">pub</span> <span class="ident">compression_method</span>: <span class="ident"><span class="kw">crate</span>::compression::CompressionMethod</span>,
-    <span class="doccomment">/// Compression level to store the file</span>
-    <span class="kw">pub</span> <span class="ident">compression_level</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span>,
-    <span class="doccomment">/// Last modified time. This will only have a 2 second precision.</span>
-    <span class="kw">pub</span> <span class="ident">last_modified_time</span>: <span class="ident">DateTime</span>,
-    <span class="doccomment">/// CRC32 checksum</span>
-    <span class="kw">pub</span> <span class="ident">crc32</span>: <span class="ident">u32</span>,
-    <span class="doccomment">/// Size of the file in the ZIP</span>
-    <span class="kw">pub</span> <span class="ident">compressed_size</span>: <span class="ident">u64</span>,
-    <span class="doccomment">/// Size of the file when extracted</span>
-    <span class="kw">pub</span> <span class="ident">uncompressed_size</span>: <span class="ident">u64</span>,
-    <span class="doccomment">/// Name of the file</span>
-    <span class="kw">pub</span> <span class="ident">file_name</span>: <span class="ident">String</span>,
-    <span class="doccomment">/// Raw file name. To be used when file_name was incorrectly decoded.</span>
-    <span class="kw">pub</span> <span class="ident">file_name_raw</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>,
-    <span class="doccomment">/// Extra field usually used for storage expansion</span>
-    <span class="kw">pub</span> <span class="ident">extra_field</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>,
-    <span class="doccomment">/// File comment</span>
-    <span class="kw">pub</span> <span class="ident">file_comment</span>: <span class="ident">String</span>,
-    <span class="doccomment">/// Specifies where the local header of the file starts</span>
-    <span class="kw">pub</span> <span class="ident">header_start</span>: <span class="ident">u64</span>,
-    <span class="doccomment">/// Specifies where the central header of the file starts</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Note that when this is not known, it is set to 0</span>
-    <span class="kw">pub</span> <span class="ident">central_header_start</span>: <span class="ident">u64</span>,
-    <span class="doccomment">/// Specifies where the compressed data of the file starts</span>
-    <span class="kw">pub</span> <span class="ident">data_start</span>: <span class="ident">AtomicU64</span>,
-    <span class="doccomment">/// External file attributes</span>
-    <span class="kw">pub</span> <span class="ident">external_attributes</span>: <span class="ident">u32</span>,
-    <span class="doccomment">/// Reserve local ZIP64 extra field</span>
-    <span class="kw">pub</span> <span class="ident">large_file</span>: <span class="ident">bool</span>,
-    <span class="doccomment">/// AES mode if applicable</span>
-    <span class="kw">pub</span> <span class="ident">aes_mode</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">AesMode</span>, <span class="ident">AesVendorVersion</span>)<span class="op">&gt;</span>,
+<span class="kw">impl </span>Clone <span class="kw">for </span>AtomicU64 {
+    <span class="kw">fn </span>clone(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self </span>{
+        <span class="self">Self</span>(atomic::AtomicU64::new(<span class="self">self</span>.load()))
+    }
 }
 
-<span class="kw">impl</span> <span class="ident">ZipFileData</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">file_name_sanitized</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">::std::path::PathBuf</span> {
-        <span class="kw">let</span> <span class="ident">no_null_filename</span> <span class="op">=</span> <span class="kw">match</span> <span class="self">self</span>.<span class="ident">file_name</span>.<span class="ident">find</span>(<span class="string">&#39;\0&#39;</span>) {
-            <span class="prelude-val">Some</span>(<span class="ident">index</span>) =&gt; <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">file_name</span>[<span class="number">0</span>..<span class="ident">index</span>],
-            <span class="prelude-val">None</span> =&gt; <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">file_name</span>,
+<span class="doccomment">/// Structure representing a ZIP file.
+</span><span class="attribute">#[derive(Debug, Clone)]
+</span><span class="kw">pub struct </span>ZipFileData {
+    <span class="doccomment">/// Compatibility of the file attribute information
+    </span><span class="kw">pub </span>system: System,
+    <span class="doccomment">/// Specification version
+    </span><span class="kw">pub </span>version_made_by: u8,
+    <span class="doccomment">/// True if the file is encrypted.
+    </span><span class="kw">pub </span>encrypted: bool,
+    <span class="doccomment">/// True if the file uses a data-descriptor section
+    </span><span class="kw">pub </span>using_data_descriptor: bool,
+    <span class="doccomment">/// Compression method used to store the file
+    </span><span class="kw">pub </span>compression_method: <span class="kw">crate</span>::compression::CompressionMethod,
+    <span class="doccomment">/// Compression level to store the file
+    </span><span class="kw">pub </span>compression_level: <span class="prelude-ty">Option</span>&lt;i32&gt;,
+    <span class="doccomment">/// Last modified time. This will only have a 2 second precision.
+    </span><span class="kw">pub </span>last_modified_time: DateTime,
+    <span class="doccomment">/// CRC32 checksum
+    </span><span class="kw">pub </span>crc32: u32,
+    <span class="doccomment">/// Size of the file in the ZIP
+    </span><span class="kw">pub </span>compressed_size: u64,
+    <span class="doccomment">/// Size of the file when extracted
+    </span><span class="kw">pub </span>uncompressed_size: u64,
+    <span class="doccomment">/// Name of the file
+    </span><span class="kw">pub </span>file_name: String,
+    <span class="doccomment">/// Raw file name. To be used when file_name was incorrectly decoded.
+    </span><span class="kw">pub </span>file_name_raw: Vec&lt;u8&gt;,
+    <span class="doccomment">/// Extra field usually used for storage expansion
+    </span><span class="kw">pub </span>extra_field: Vec&lt;u8&gt;,
+    <span class="doccomment">/// File comment
+    </span><span class="kw">pub </span>file_comment: String,
+    <span class="doccomment">/// Specifies where the local header of the file starts
+    </span><span class="kw">pub </span>header_start: u64,
+    <span class="doccomment">/// Specifies where the central header of the file starts
+    ///
+    /// Note that when this is not known, it is set to 0
+    </span><span class="kw">pub </span>central_header_start: u64,
+    <span class="doccomment">/// Specifies where the compressed data of the file starts
+    </span><span class="kw">pub </span>data_start: AtomicU64,
+    <span class="doccomment">/// External file attributes
+    </span><span class="kw">pub </span>external_attributes: u32,
+    <span class="doccomment">/// Reserve local ZIP64 extra field
+    </span><span class="kw">pub </span>large_file: bool,
+    <span class="doccomment">/// AES mode if applicable
+    </span><span class="kw">pub </span>aes_mode: <span class="prelude-ty">Option</span>&lt;(AesMode, AesVendorVersion)&gt;,
+}
+
+<span class="kw">impl </span>ZipFileData {
+    <span class="kw">pub fn </span>file_name_sanitized(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; ::std::path::PathBuf {
+        <span class="kw">let </span>no_null_filename = <span class="kw">match </span><span class="self">self</span>.file_name.find(<span class="string">&#39;\0&#39;</span>) {
+            <span class="prelude-val">Some</span>(index) =&gt; <span class="kw-2">&amp;</span><span class="self">self</span>.file_name[<span class="number">0</span>..index],
+            <span class="prelude-val">None </span>=&gt; <span class="kw-2">&amp;</span><span class="self">self</span>.file_name,
         }
-        .<span class="ident">to_string</span>();
+        .to_string();
 
-        <span class="comment">// zip files can contain both / and \ as separators regardless of the OS</span>
-        <span class="comment">// and as we want to return a sanitized PathBuf that only supports the</span>
-        <span class="comment">// OS separator let&#39;s convert incompatible separators to compatible ones</span>
-        <span class="kw">let</span> <span class="ident">separator</span> <span class="op">=</span> <span class="ident">::std::path::MAIN_SEPARATOR</span>;
-        <span class="kw">let</span> <span class="ident">opposite_separator</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">separator</span> {
-            <span class="string">&#39;/&#39;</span> =&gt; <span class="string">&#39;\\&#39;</span>,
-            <span class="kw">_</span> =&gt; <span class="string">&#39;/&#39;</span>,
+        <span class="comment">// zip files can contain both / and \ as separators regardless of the OS
+        // and as we want to return a sanitized PathBuf that only supports the
+        // OS separator let&#39;s convert incompatible separators to compatible ones
+        </span><span class="kw">let </span>separator = ::std::path::MAIN_SEPARATOR;
+        <span class="kw">let </span>opposite_separator = <span class="kw">match </span>separator {
+            <span class="string">&#39;/&#39; </span>=&gt; <span class="string">&#39;\\&#39;</span>,
+            <span class="kw">_ </span>=&gt; <span class="string">&#39;/&#39;</span>,
         };
-        <span class="kw">let</span> <span class="ident">filename</span> <span class="op">=</span>
-            <span class="ident">no_null_filename</span>.<span class="ident">replace</span>(<span class="kw-2">&amp;</span><span class="ident">opposite_separator</span>.<span class="ident">to_string</span>(), <span class="kw-2">&amp;</span><span class="ident">separator</span>.<span class="ident">to_string</span>());
+        <span class="kw">let </span>filename =
+            no_null_filename.replace(<span class="kw-2">&amp;</span>opposite_separator.to_string(), <span class="kw-2">&amp;</span>separator.to_string());
 
-        <span class="ident">::std::path::Path::new</span>(<span class="kw-2">&amp;</span><span class="ident">filename</span>)
-            .<span class="ident">components</span>()
-            .<span class="ident">filter</span>(<span class="op">|</span><span class="ident">component</span><span class="op">|</span> <span class="macro">matches!</span>(<span class="kw-2">*</span><span class="ident">component</span>, <span class="ident">::std::path::Component::Normal</span>(..)))
-            .<span class="ident">fold</span>(<span class="ident">::std::path::PathBuf::new</span>(), <span class="op">|</span><span class="kw-2">mut</span> <span class="ident">path</span>, <span class="kw-2">ref</span> <span class="ident">cur</span><span class="op">|</span> {
-                <span class="ident">path</span>.<span class="ident">push</span>(<span class="ident">cur</span>.<span class="ident">as_os_str</span>());
-                <span class="ident">path</span>
+        ::std::path::Path::new(<span class="kw-2">&amp;</span>filename)
+            .components()
+            .filter(|component| <span class="macro">matches!</span>(<span class="kw-2">*</span>component, ::std::path::Component::Normal(..)))
+            .fold(::std::path::PathBuf::new(), |<span class="kw-2">mut </span>path, <span class="kw-2">ref </span>cur| {
+                path.push(cur.as_os_str());
+                path
             })
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">zip64_extension</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">uncompressed_size</span> <span class="op">&gt;</span> <span class="number">0xFFFFFFFF</span>
-            <span class="op">|</span><span class="op">|</span> <span class="self">self</span>.<span class="ident">compressed_size</span> <span class="op">&gt;</span> <span class="number">0xFFFFFFFF</span>
-            <span class="op">|</span><span class="op">|</span> <span class="self">self</span>.<span class="ident">header_start</span> <span class="op">&gt;</span> <span class="number">0xFFFFFFFF</span>
-    }
+    <span class="kw">pub fn </span>zip64_extension(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.uncompressed_size &gt; <span class="number">0xFFFFFFFF
+            </span>|| <span class="self">self</span>.compressed_size &gt; <span class="number">0xFFFFFFFF
+            </span>|| <span class="self">self</span>.header_start &gt; <span class="number">0xFFFFFFFF
+    </span>}
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">version_needed</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">u16</span> {
-        <span class="comment">// higher versions matched first</span>
-        <span class="kw">match</span> (<span class="self">self</span>.<span class="ident">zip64_extension</span>(), <span class="self">self</span>.<span class="ident">compression_method</span>) {
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;bzip2&quot;</span>)]</span>
-            (<span class="kw">_</span>, <span class="ident"><span class="kw">crate</span>::compression::CompressionMethod::Bzip2</span>) =&gt; <span class="number">46</span>,
+    <span class="kw">pub fn </span>version_needed(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; u16 {
+        <span class="comment">// higher versions matched first
+        </span><span class="kw">match </span>(<span class="self">self</span>.zip64_extension(), <span class="self">self</span>.compression_method) {
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;bzip2&quot;</span>)]
+            </span>(<span class="kw">_</span>, <span class="kw">crate</span>::compression::CompressionMethod::Bzip2) =&gt; <span class="number">46</span>,
             (<span class="bool-val">true</span>, <span class="kw">_</span>) =&gt; <span class="number">45</span>,
-            <span class="kw">_</span> =&gt; <span class="number">20</span>,
+            <span class="kw">_ </span>=&gt; <span class="number">20</span>,
         }
     }
 }
 
-<span class="doccomment">/// The encryption specification used to encrypt a file with AES.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// According to the [specification](https://www.winzip.com/win/en/aes_info.html#winzip11) AE-2</span>
-<span class="doccomment">/// does not make use of the CRC check.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">AesVendorVersion</span> {
-    <span class="ident">Ae1</span>,
-    <span class="ident">Ae2</span>,
+<span class="doccomment">/// The encryption specification used to encrypt a file with AES.
+///
+/// According to the [specification](https://www.winzip.com/win/en/aes_info.html#winzip11) AE-2
+/// does not make use of the CRC check.
+</span><span class="attribute">#[derive(Copy, Clone, Debug)]
+</span><span class="kw">pub enum </span>AesVendorVersion {
+    Ae1,
+    Ae2,
 }
 
-<span class="doccomment">/// AES variant used.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">AesMode</span> {
-    <span class="ident">Aes128</span>,
-    <span class="ident">Aes192</span>,
-    <span class="ident">Aes256</span>,
+<span class="doccomment">/// AES variant used.
+</span><span class="attribute">#[derive(Copy, Clone, Debug)]
+</span><span class="kw">pub enum </span>AesMode {
+    Aes128,
+    Aes192,
+    Aes256,
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;aes-crypto&quot;</span>)]</span>
-<span class="kw">impl</span> <span class="ident">AesMode</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">salt_length</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">usize</span> {
-        <span class="self">self</span>.<span class="ident">key_length</span>() <span class="op">/</span> <span class="number">2</span>
-    }
+<span class="attribute">#[cfg(feature = <span class="string">&quot;aes-crypto&quot;</span>)]
+</span><span class="kw">impl </span>AesMode {
+    <span class="kw">pub fn </span>salt_length(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; usize {
+        <span class="self">self</span>.key_length() / <span class="number">2
+    </span>}
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">key_length</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">usize</span> {
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident"><span class="self">Self</span>::Aes128</span> =&gt; <span class="number">16</span>,
-            <span class="ident"><span class="self">Self</span>::Aes192</span> =&gt; <span class="number">24</span>,
-            <span class="ident"><span class="self">Self</span>::Aes256</span> =&gt; <span class="number">32</span>,
+    <span class="kw">pub fn </span>key_length(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; usize {
+        <span class="kw">match </span><span class="self">self </span>{
+            <span class="self">Self</span>::Aes128 =&gt; <span class="number">16</span>,
+            <span class="self">Self</span>::Aes192 =&gt; <span class="number">24</span>,
+            <span class="self">Self</span>::Aes256 =&gt; <span class="number">32</span>,
         }
     }
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
-<span class="kw">mod</span> <span class="ident">test</span> {
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">system</span>() {
-        <span class="kw">use</span> <span class="ident"><span class="kw">super</span>::System</span>;
-        <span class="macro">assert_eq!</span>(<span class="ident">System::Dos</span> <span class="kw">as</span> <span class="ident">u16</span>, <span class="number">0u16</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">System::Unix</span> <span class="kw">as</span> <span class="ident">u16</span>, <span class="number">3u16</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">System::from_u8</span>(<span class="number">0</span>), <span class="ident">System::Dos</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">System::from_u8</span>(<span class="number">3</span>), <span class="ident">System::Unix</span>);
+<span class="attribute">#[cfg(test)]
+</span><span class="kw">mod </span>test {
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>system() {
+        <span class="kw">use </span><span class="kw">super</span>::System;
+        <span class="macro">assert_eq!</span>(System::Dos <span class="kw">as </span>u16, <span class="number">0u16</span>);
+        <span class="macro">assert_eq!</span>(System::Unix <span class="kw">as </span>u16, <span class="number">3u16</span>);
+        <span class="macro">assert_eq!</span>(System::from_u8(<span class="number">0</span>), System::Dos);
+        <span class="macro">assert_eq!</span>(System::from_u8(<span class="number">3</span>), System::Unix);
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">sanitize</span>() {
-        <span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
-        <span class="kw">let</span> <span class="ident">file_name</span> <span class="op">=</span> <span class="string">&quot;/path/../../../../etc/./passwd\0/etc/shadow&quot;</span>.<span class="ident">to_string</span>();
-        <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">ZipFileData</span> {
-            <span class="ident">system</span>: <span class="ident">System::Dos</span>,
-            <span class="ident">version_made_by</span>: <span class="number">0</span>,
-            <span class="ident">encrypted</span>: <span class="bool-val">false</span>,
-            <span class="ident">using_data_descriptor</span>: <span class="bool-val">false</span>,
-            <span class="ident">compression_method</span>: <span class="ident"><span class="kw">crate</span>::compression::CompressionMethod::Stored</span>,
-            <span class="ident">compression_level</span>: <span class="prelude-val">None</span>,
-            <span class="ident">last_modified_time</span>: <span class="ident">DateTime::default</span>(),
-            <span class="ident">crc32</span>: <span class="number">0</span>,
-            <span class="ident">compressed_size</span>: <span class="number">0</span>,
-            <span class="ident">uncompressed_size</span>: <span class="number">0</span>,
-            <span class="ident">file_name</span>: <span class="ident">file_name</span>.<span class="ident">clone</span>(),
-            <span class="ident">file_name_raw</span>: <span class="ident">file_name</span>.<span class="ident">into_bytes</span>(),
-            <span class="ident">extra_field</span>: <span class="ident">Vec::new</span>(),
-            <span class="ident">file_comment</span>: <span class="ident">String::new</span>(),
-            <span class="ident">header_start</span>: <span class="number">0</span>,
-            <span class="ident">data_start</span>: <span class="ident">AtomicU64::new</span>(<span class="number">0</span>),
-            <span class="ident">central_header_start</span>: <span class="number">0</span>,
-            <span class="ident">external_attributes</span>: <span class="number">0</span>,
-            <span class="ident">large_file</span>: <span class="bool-val">false</span>,
-            <span class="ident">aes_mode</span>: <span class="prelude-val">None</span>,
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>sanitize() {
+        <span class="kw">use super</span>::<span class="kw-2">*</span>;
+        <span class="kw">let </span>file_name = <span class="string">&quot;/path/../../../../etc/./passwd\0/etc/shadow&quot;</span>.to_string();
+        <span class="kw">let </span>data = ZipFileData {
+            system: System::Dos,
+            version_made_by: <span class="number">0</span>,
+            encrypted: <span class="bool-val">false</span>,
+            using_data_descriptor: <span class="bool-val">false</span>,
+            compression_method: <span class="kw">crate</span>::compression::CompressionMethod::Stored,
+            compression_level: <span class="prelude-val">None</span>,
+            last_modified_time: DateTime::default(),
+            crc32: <span class="number">0</span>,
+            compressed_size: <span class="number">0</span>,
+            uncompressed_size: <span class="number">0</span>,
+            file_name: file_name.clone(),
+            file_name_raw: file_name.into_bytes(),
+            extra_field: Vec::new(),
+            file_comment: String::new(),
+            header_start: <span class="number">0</span>,
+            data_start: AtomicU64::new(<span class="number">0</span>),
+            central_header_start: <span class="number">0</span>,
+            external_attributes: <span class="number">0</span>,
+            large_file: <span class="bool-val">false</span>,
+            aes_mode: <span class="prelude-val">None</span>,
         };
         <span class="macro">assert_eq!</span>(
-            <span class="ident">data</span>.<span class="ident">file_name_sanitized</span>(),
-            <span class="ident">::std::path::PathBuf::from</span>(<span class="string">&quot;path/etc/passwd&quot;</span>)
+            data.file_name_sanitized(),
+            ::std::path::PathBuf::from(<span class="string">&quot;path/etc/passwd&quot;</span>)
         );
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::unusual_byte_groupings</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">datetime_default</span>() {
-        <span class="kw">use</span> <span class="ident"><span class="kw">super</span>::DateTime</span>;
-        <span class="kw">let</span> <span class="ident">dt</span> <span class="op">=</span> <span class="ident">DateTime::default</span>();
-        <span class="macro">assert_eq!</span>(<span class="ident">dt</span>.<span class="ident">timepart</span>(), <span class="number">0</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">dt</span>.<span class="ident">datepart</span>(), <span class="number">0b0000000_0001_00001</span>);
+    <span class="attribute">#[test]
+    #[allow(clippy::unusual_byte_groupings)]
+    </span><span class="kw">fn </span>datetime_default() {
+        <span class="kw">use </span><span class="kw">super</span>::DateTime;
+        <span class="kw">let </span>dt = DateTime::default();
+        <span class="macro">assert_eq!</span>(dt.timepart(), <span class="number">0</span>);
+        <span class="macro">assert_eq!</span>(dt.datepart(), <span class="number">0b0000000_0001_00001</span>);
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::unusual_byte_groupings</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">datetime_max</span>() {
-        <span class="kw">use</span> <span class="ident"><span class="kw">super</span>::DateTime</span>;
-        <span class="kw">let</span> <span class="ident">dt</span> <span class="op">=</span> <span class="ident">DateTime::from_date_and_time</span>(<span class="number">2107</span>, <span class="number">12</span>, <span class="number">31</span>, <span class="number">23</span>, <span class="number">59</span>, <span class="number">60</span>).<span class="ident">unwrap</span>();
-        <span class="macro">assert_eq!</span>(<span class="ident">dt</span>.<span class="ident">timepart</span>(), <span class="number">0b10111_111011_11110</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">dt</span>.<span class="ident">datepart</span>(), <span class="number">0b1111111_1100_11111</span>);
+    <span class="attribute">#[test]
+    #[allow(clippy::unusual_byte_groupings)]
+    </span><span class="kw">fn </span>datetime_max() {
+        <span class="kw">use </span><span class="kw">super</span>::DateTime;
+        <span class="kw">let </span>dt = DateTime::from_date_and_time(<span class="number">2107</span>, <span class="number">12</span>, <span class="number">31</span>, <span class="number">23</span>, <span class="number">59</span>, <span class="number">60</span>).unwrap();
+        <span class="macro">assert_eq!</span>(dt.timepart(), <span class="number">0b10111_111011_11110</span>);
+        <span class="macro">assert_eq!</span>(dt.datepart(), <span class="number">0b1111111_1100_11111</span>);
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">datetime_bounds</span>() {
-        <span class="kw">use</span> <span class="ident"><span class="kw">super</span>::DateTime</span>;
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>datetime_bounds() {
+        <span class="kw">use </span><span class="kw">super</span>::DateTime;
 
-        <span class="macro">assert!</span>(<span class="ident">DateTime::from_date_and_time</span>(<span class="number">2000</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">23</span>, <span class="number">59</span>, <span class="number">60</span>).<span class="ident">is_ok</span>());
-        <span class="macro">assert!</span>(<span class="ident">DateTime::from_date_and_time</span>(<span class="number">2000</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">24</span>, <span class="number">0</span>, <span class="number">0</span>).<span class="ident">is_err</span>());
-        <span class="macro">assert!</span>(<span class="ident">DateTime::from_date_and_time</span>(<span class="number">2000</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">60</span>, <span class="number">0</span>).<span class="ident">is_err</span>());
-        <span class="macro">assert!</span>(<span class="ident">DateTime::from_date_and_time</span>(<span class="number">2000</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">61</span>).<span class="ident">is_err</span>());
+        <span class="macro">assert!</span>(DateTime::from_date_and_time(<span class="number">2000</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">23</span>, <span class="number">59</span>, <span class="number">60</span>).is_ok());
+        <span class="macro">assert!</span>(DateTime::from_date_and_time(<span class="number">2000</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">24</span>, <span class="number">0</span>, <span class="number">0</span>).is_err());
+        <span class="macro">assert!</span>(DateTime::from_date_and_time(<span class="number">2000</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">60</span>, <span class="number">0</span>).is_err());
+        <span class="macro">assert!</span>(DateTime::from_date_and_time(<span class="number">2000</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">61</span>).is_err());
 
-        <span class="macro">assert!</span>(<span class="ident">DateTime::from_date_and_time</span>(<span class="number">2107</span>, <span class="number">12</span>, <span class="number">31</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>).<span class="ident">is_ok</span>());
-        <span class="macro">assert!</span>(<span class="ident">DateTime::from_date_and_time</span>(<span class="number">1980</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>).<span class="ident">is_ok</span>());
-        <span class="macro">assert!</span>(<span class="ident">DateTime::from_date_and_time</span>(<span class="number">1979</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>).<span class="ident">is_err</span>());
-        <span class="macro">assert!</span>(<span class="ident">DateTime::from_date_and_time</span>(<span class="number">1980</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>).<span class="ident">is_err</span>());
-        <span class="macro">assert!</span>(<span class="ident">DateTime::from_date_and_time</span>(<span class="number">1980</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>).<span class="ident">is_err</span>());
-        <span class="macro">assert!</span>(<span class="ident">DateTime::from_date_and_time</span>(<span class="number">2108</span>, <span class="number">12</span>, <span class="number">31</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>).<span class="ident">is_err</span>());
-        <span class="macro">assert!</span>(<span class="ident">DateTime::from_date_and_time</span>(<span class="number">2107</span>, <span class="number">13</span>, <span class="number">31</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>).<span class="ident">is_err</span>());
-        <span class="macro">assert!</span>(<span class="ident">DateTime::from_date_and_time</span>(<span class="number">2107</span>, <span class="number">12</span>, <span class="number">32</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>).<span class="ident">is_err</span>());
+        <span class="macro">assert!</span>(DateTime::from_date_and_time(<span class="number">2107</span>, <span class="number">12</span>, <span class="number">31</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>).is_ok());
+        <span class="macro">assert!</span>(DateTime::from_date_and_time(<span class="number">1980</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>).is_ok());
+        <span class="macro">assert!</span>(DateTime::from_date_and_time(<span class="number">1979</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>).is_err());
+        <span class="macro">assert!</span>(DateTime::from_date_and_time(<span class="number">1980</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>).is_err());
+        <span class="macro">assert!</span>(DateTime::from_date_and_time(<span class="number">1980</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>).is_err());
+        <span class="macro">assert!</span>(DateTime::from_date_and_time(<span class="number">2108</span>, <span class="number">12</span>, <span class="number">31</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>).is_err());
+        <span class="macro">assert!</span>(DateTime::from_date_and_time(<span class="number">2107</span>, <span class="number">13</span>, <span class="number">31</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>).is_err());
+        <span class="macro">assert!</span>(DateTime::from_date_and_time(<span class="number">2107</span>, <span class="number">12</span>, <span class="number">32</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>).is_err());
     }
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;time&quot;</span>)]</span>
-    <span class="kw">use</span> <span class="ident">time</span>::{<span class="ident">format_description::well_known::Rfc3339</span>, <span class="ident">OffsetDateTime</span>};
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;time&quot;</span>)]
+    </span><span class="kw">use </span>time::{format_description::well_known::Rfc3339, OffsetDateTime};
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;time&quot;</span>)]</span>
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">datetime_from_time_bounds</span>() {
-        <span class="kw">use</span> <span class="ident"><span class="kw">super</span>::DateTime</span>;
-        <span class="kw">use</span> <span class="ident">time::macros::datetime</span>;
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;time&quot;</span>)]
+    #[test]
+    </span><span class="kw">fn </span>datetime_from_time_bounds() {
+        <span class="kw">use </span><span class="kw">super</span>::DateTime;
+        <span class="kw">use </span>time::macros::datetime;
 
-        <span class="comment">// 1979-12-31 23:59:59</span>
-        <span class="macro">assert!</span>(<span class="ident">DateTime::from_time</span>(<span class="macro">datetime!</span>(<span class="number">1979</span><span class="op">-</span><span class="number">12</span><span class="op">-</span><span class="number">31</span> <span class="number">23</span>:<span class="number">59</span>:<span class="number">59</span> <span class="ident">UTC</span>)).<span class="ident">is_err</span>());
+        <span class="comment">// 1979-12-31 23:59:59
+        </span><span class="macro">assert!</span>(DateTime::from_time(<span class="macro">datetime!</span>(<span class="number">1979</span>-<span class="number">12</span>-<span class="number">31 23</span>:<span class="number">59</span>:<span class="number">59 </span>UTC)).is_err());
 
-        <span class="comment">// 1980-01-01 00:00:00</span>
-        <span class="macro">assert!</span>(<span class="ident">DateTime::from_time</span>(<span class="macro">datetime!</span>(<span class="number">1980</span><span class="op">-</span><span class="number">01</span><span class="op">-</span><span class="number">01</span> <span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span> <span class="ident">UTC</span>)).<span class="ident">is_ok</span>());
+        <span class="comment">// 1980-01-01 00:00:00
+        </span><span class="macro">assert!</span>(DateTime::from_time(<span class="macro">datetime!</span>(<span class="number">1980</span>-<span class="number">01</span>-<span class="number">01 00</span>:<span class="number">00</span>:<span class="number">00 </span>UTC)).is_ok());
 
-        <span class="comment">// 2107-12-31 23:59:59</span>
-        <span class="macro">assert!</span>(<span class="ident">DateTime::from_time</span>(<span class="macro">datetime!</span>(<span class="number">2107</span><span class="op">-</span><span class="number">12</span><span class="op">-</span><span class="number">31</span> <span class="number">23</span>:<span class="number">59</span>:<span class="number">59</span> <span class="ident">UTC</span>)).<span class="ident">is_ok</span>());
+        <span class="comment">// 2107-12-31 23:59:59
+        </span><span class="macro">assert!</span>(DateTime::from_time(<span class="macro">datetime!</span>(<span class="number">2107</span>-<span class="number">12</span>-<span class="number">31 23</span>:<span class="number">59</span>:<span class="number">59 </span>UTC)).is_ok());
 
-        <span class="comment">// 2108-01-01 00:00:00</span>
-        <span class="macro">assert!</span>(<span class="ident">DateTime::from_time</span>(<span class="macro">datetime!</span>(<span class="number">2108</span><span class="op">-</span><span class="number">01</span><span class="op">-</span><span class="number">01</span> <span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span> <span class="ident">UTC</span>)).<span class="ident">is_err</span>());
+        <span class="comment">// 2108-01-01 00:00:00
+        </span><span class="macro">assert!</span>(DateTime::from_time(<span class="macro">datetime!</span>(<span class="number">2108</span>-<span class="number">01</span>-<span class="number">01 00</span>:<span class="number">00</span>:<span class="number">00 </span>UTC)).is_err());
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">time_conversion</span>() {
-        <span class="kw">use</span> <span class="ident"><span class="kw">super</span>::DateTime</span>;
-        <span class="kw">let</span> <span class="ident">dt</span> <span class="op">=</span> <span class="ident">DateTime::from_msdos</span>(<span class="number">0x4D71</span>, <span class="number">0x54CF</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">dt</span>.<span class="ident">year</span>(), <span class="number">2018</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">dt</span>.<span class="ident">month</span>(), <span class="number">11</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">dt</span>.<span class="ident">day</span>(), <span class="number">17</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">dt</span>.<span class="ident">hour</span>(), <span class="number">10</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">dt</span>.<span class="ident">minute</span>(), <span class="number">38</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">dt</span>.<span class="ident">second</span>(), <span class="number">30</span>);
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>time_conversion() {
+        <span class="kw">use </span><span class="kw">super</span>::DateTime;
+        <span class="kw">let </span>dt = DateTime::from_msdos(<span class="number">0x4D71</span>, <span class="number">0x54CF</span>);
+        <span class="macro">assert_eq!</span>(dt.year(), <span class="number">2018</span>);
+        <span class="macro">assert_eq!</span>(dt.month(), <span class="number">11</span>);
+        <span class="macro">assert_eq!</span>(dt.day(), <span class="number">17</span>);
+        <span class="macro">assert_eq!</span>(dt.hour(), <span class="number">10</span>);
+        <span class="macro">assert_eq!</span>(dt.minute(), <span class="number">38</span>);
+        <span class="macro">assert_eq!</span>(dt.second(), <span class="number">30</span>);
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;time&quot;</span>)]</span>
-        <span class="macro">assert_eq!</span>(
-            <span class="ident">dt</span>.<span class="ident">to_time</span>().<span class="ident">unwrap</span>().<span class="ident">format</span>(<span class="kw-2">&amp;</span><span class="ident">Rfc3339</span>).<span class="ident">unwrap</span>(),
-            <span class="string">&quot;2018-11-17T10:38:30Z&quot;</span>
-        );
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;time&quot;</span>)]
+        </span><span class="macro">assert_eq!</span>(
+            dt.to_time().unwrap().format(<span class="kw-2">&amp;</span>Rfc3339).unwrap(),
+            <span class="string">&quot;2018-11-17T10:38:30Z&quot;
+        </span>);
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">time_out_of_bounds</span>() {
-        <span class="kw">use</span> <span class="ident"><span class="kw">super</span>::DateTime</span>;
-        <span class="kw">let</span> <span class="ident">dt</span> <span class="op">=</span> <span class="ident">DateTime::from_msdos</span>(<span class="number">0xFFFF</span>, <span class="number">0xFFFF</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">dt</span>.<span class="ident">year</span>(), <span class="number">2107</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">dt</span>.<span class="ident">month</span>(), <span class="number">15</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">dt</span>.<span class="ident">day</span>(), <span class="number">31</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">dt</span>.<span class="ident">hour</span>(), <span class="number">31</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">dt</span>.<span class="ident">minute</span>(), <span class="number">63</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">dt</span>.<span class="ident">second</span>(), <span class="number">62</span>);
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>time_out_of_bounds() {
+        <span class="kw">use </span><span class="kw">super</span>::DateTime;
+        <span class="kw">let </span>dt = DateTime::from_msdos(<span class="number">0xFFFF</span>, <span class="number">0xFFFF</span>);
+        <span class="macro">assert_eq!</span>(dt.year(), <span class="number">2107</span>);
+        <span class="macro">assert_eq!</span>(dt.month(), <span class="number">15</span>);
+        <span class="macro">assert_eq!</span>(dt.day(), <span class="number">31</span>);
+        <span class="macro">assert_eq!</span>(dt.hour(), <span class="number">31</span>);
+        <span class="macro">assert_eq!</span>(dt.minute(), <span class="number">63</span>);
+        <span class="macro">assert_eq!</span>(dt.second(), <span class="number">62</span>);
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;time&quot;</span>)]</span>
-        <span class="macro">assert!</span>(<span class="ident">dt</span>.<span class="ident">to_time</span>().<span class="ident">is_err</span>());
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;time&quot;</span>)]
+        </span><span class="macro">assert!</span>(dt.to_time().is_err());
 
-        <span class="kw">let</span> <span class="ident">dt</span> <span class="op">=</span> <span class="ident">DateTime::from_msdos</span>(<span class="number">0x0000</span>, <span class="number">0x0000</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">dt</span>.<span class="ident">year</span>(), <span class="number">1980</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">dt</span>.<span class="ident">month</span>(), <span class="number">0</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">dt</span>.<span class="ident">day</span>(), <span class="number">0</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">dt</span>.<span class="ident">hour</span>(), <span class="number">0</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">dt</span>.<span class="ident">minute</span>(), <span class="number">0</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">dt</span>.<span class="ident">second</span>(), <span class="number">0</span>);
+        <span class="kw">let </span>dt = DateTime::from_msdos(<span class="number">0x0000</span>, <span class="number">0x0000</span>);
+        <span class="macro">assert_eq!</span>(dt.year(), <span class="number">1980</span>);
+        <span class="macro">assert_eq!</span>(dt.month(), <span class="number">0</span>);
+        <span class="macro">assert_eq!</span>(dt.day(), <span class="number">0</span>);
+        <span class="macro">assert_eq!</span>(dt.hour(), <span class="number">0</span>);
+        <span class="macro">assert_eq!</span>(dt.minute(), <span class="number">0</span>);
+        <span class="macro">assert_eq!</span>(dt.second(), <span class="number">0</span>);
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;time&quot;</span>)]</span>
-        <span class="macro">assert!</span>(<span class="ident">dt</span>.<span class="ident">to_time</span>().<span class="ident">is_err</span>());
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;time&quot;</span>)]
+        </span><span class="macro">assert!</span>(dt.to_time().is_err());
     }
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;time&quot;</span>)]</span>
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">time_at_january</span>() {
-        <span class="kw">use</span> <span class="ident"><span class="kw">super</span>::DateTime</span>;
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;time&quot;</span>)]
+    #[test]
+    </span><span class="kw">fn </span>time_at_january() {
+        <span class="kw">use </span><span class="kw">super</span>::DateTime;
 
-        <span class="comment">// 2020-01-01 00:00:00</span>
-        <span class="kw">let</span> <span class="ident">clock</span> <span class="op">=</span> <span class="ident">OffsetDateTime::from_unix_timestamp</span>(<span class="number">1_577_836_800</span>).<span class="ident">unwrap</span>();
+        <span class="comment">// 2020-01-01 00:00:00
+        </span><span class="kw">let </span>clock = OffsetDateTime::from_unix_timestamp(<span class="number">1_577_836_800</span>).unwrap();
 
-        <span class="macro">assert!</span>(<span class="ident">DateTime::from_time</span>(<span class="ident">clock</span>).<span class="ident">is_ok</span>());
+        <span class="macro">assert!</span>(DateTime::from_time(clock).is_ok());
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="zip" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="zip" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (77e57db38 2022-10-30)" ></div></body></html>

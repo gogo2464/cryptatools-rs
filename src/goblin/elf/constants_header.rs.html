@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/goblin-0.5.4/src/elf/constants_header.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>constants_header.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../goblin/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../goblin/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../goblin/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/goblin-0.5.4/src/elf/constants_header.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>constants_header.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../normalize.css"><link rel="stylesheet" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../ayu.css" disabled><link rel="stylesheet" href="../../../dark.css" disabled><link rel="stylesheet" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../goblin/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -561,568 +561,568 @@
 <span id="561">561</span>
 <span id="562">562</span>
 <span id="563">563</span>
-</pre><pre class="rust"><code><span class="comment">// sweet emacs regexp</span>
-<span class="comment">// pub const \([[:word:]|_]*\)[[:space:]]*\([[:digit:]]+\)[[:space:]]*/\*\(.*\) \*/</span>
-<span class="comment">// \\\\3 C-q C-j pub const \1: u32 = \2;</span>
+</pre><pre class="rust"><code><span class="comment">// sweet emacs regexp
+// pub const \([[:word:]|_]*\)[[:space:]]*\([[:digit:]]+\)[[:space:]]*/\*\(.*\) \*/
+// \\\\3 C-q C-j pub const \1: u32 = \2;
 
-<span class="doccomment">/// TODO: use Enum with explicit discriminant and get debug printer for free?</span>
+</span><span class="doccomment">/// TODO: use Enum with explicit discriminant and get debug printer for free?
 
-<span class="doccomment">/// No machine</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_NONE</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0</span>;
-<span class="doccomment">/// AT&amp;T WE 32100</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_M32</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">1</span>;
-<span class="doccomment">/// SUN SPARC</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_SPARC</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">2</span>;
-<span class="doccomment">/// Intel 80386</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_386</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">3</span>;
-<span class="doccomment">/// Motorola m68k family</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_68K</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">4</span>;
-<span class="doccomment">/// Motorola m88k family</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_88K</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">5</span>;
-<span class="doccomment">/// Intel MCU</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_IAMCU</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">6</span>;
-<span class="doccomment">/// Intel 80860</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_860</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">7</span>;
-<span class="doccomment">/// MIPS R3000 big-endian</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_MIPS</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">8</span>;
-<span class="doccomment">/// IBM System/370</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_S370</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">9</span>;
-<span class="doccomment">/// MIPS R3000 little-endian</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_MIPS_RS3_LE</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">10</span>;
-<span class="comment">// reserved 11-14</span>
-<span class="doccomment">/// HPPA</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_PARISC</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">15</span>;
-<span class="comment">// reserved 16</span>
-<span class="doccomment">/// Fujitsu VPP500</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_VPP500</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">17</span>;
-<span class="doccomment">/// Sun&#39;s &quot;v8plus&quot;</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_SPARC32PLUS</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">18</span>;
-<span class="doccomment">/// Intel 80960</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_960</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">19</span>;
-<span class="doccomment">/// PowerPC</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_PPC</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">20</span>;
-<span class="doccomment">/// PowerPC 64-bit</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_PPC64</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">21</span>;
-<span class="doccomment">/// IBM S390</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_S390</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">22</span>;
-<span class="doccomment">/// IBM SPU/SPC</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_SPU</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">23</span>;
-<span class="comment">// reserved 24-35</span>
-<span class="doccomment">/// NEC V800 series</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_V800</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">36</span>;
-<span class="doccomment">/// Fujitsu FR20</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_FR20</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">37</span>;
-<span class="doccomment">/// TRW RH-32</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_RH32</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">38</span>;
-<span class="doccomment">/// Motorola RCE</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_RCE</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">39</span>;
-<span class="doccomment">/// ARM</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_ARM</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">40</span>;
-<span class="doccomment">/// Digital Alpha</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_FAKE_ALPHA</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">41</span>;
-<span class="doccomment">/// Hitachi SH</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_SH</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">42</span>;
-<span class="doccomment">/// SPARC v9 64-bit</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_SPARCV9</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">43</span>;
-<span class="doccomment">/// Siemens Tricore</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_TRICORE</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">44</span>;
-<span class="doccomment">/// Argonaut RISC Core</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_ARC</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">45</span>;
-<span class="doccomment">/// Hitachi H8/300</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_H8_300</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">46</span>;
-<span class="doccomment">/// Hitachi H8/300H</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_H8_300H</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">47</span>;
-<span class="doccomment">/// Hitachi H8S</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_H8S</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">48</span>;
-<span class="doccomment">/// Hitachi H8/500</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_H8_500</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">49</span>;
-<span class="doccomment">/// Intel Merced</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_IA_64</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">50</span>;
-<span class="doccomment">/// Stanford MIPS-X</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_MIPS_X</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">51</span>;
-<span class="doccomment">/// Motorola Coldfire</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_COLDFIRE</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">52</span>;
-<span class="doccomment">/// Motorola M68HC12</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_68HC12</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">53</span>;
-<span class="doccomment">/// Fujitsu MMA Multimedia Accelerator</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_MMA</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">54</span>;
-<span class="doccomment">/// Siemens PCP</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_PCP</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">55</span>;
-<span class="doccomment">/// Sony nCPU embeeded RISC</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_NCPU</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">56</span>;
-<span class="doccomment">/// Denso NDR1 microprocessor</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_NDR1</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">57</span>;
-<span class="doccomment">/// Motorola Start*Core processor</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_STARCORE</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">58</span>;
-<span class="doccomment">/// Toyota ME16 processor</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_ME16</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">59</span>;
-<span class="doccomment">/// STMicroelectronic ST100 processor</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_ST100</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">60</span>;
-<span class="doccomment">/// Advanced Logic Corp. Tinyj emb.fam</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_TINYJ</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">61</span>;
-<span class="doccomment">/// AMD x86-64 architecture</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_X86_64</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">62</span>;
-<span class="doccomment">/// Sony DSP Processor</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_PDSP</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">63</span>;
-<span class="doccomment">/// Digital PDP-10</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_PDP10</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">64</span>;
-<span class="doccomment">/// Digital PDP-11</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_PDP11</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">65</span>;
-<span class="doccomment">/// Siemens FX66 microcontroller</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_FX66</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">66</span>;
-<span class="doccomment">/// STMicroelectronics ST9+ 8/16 mc</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_ST9PLUS</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">67</span>;
-<span class="doccomment">/// STmicroelectronics ST7 8 bit mc</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_ST7</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">68</span>;
-<span class="doccomment">/// Motorola MC68HC16 microcontroller</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_68HC16</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">69</span>;
-<span class="doccomment">/// Motorola MC68HC11 microcontroller</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_68HC11</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">70</span>;
-<span class="doccomment">/// Motorola MC68HC08 microcontroller</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_68HC08</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">71</span>;
-<span class="doccomment">/// Motorola MC68HC05 microcontroller</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_68HC05</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">72</span>;
-<span class="doccomment">/// Silicon Graphics SVx</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_SVX</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">73</span>;
-<span class="doccomment">/// STMicroelectronics ST19 8 bit mc</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_ST19</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">74</span>;
-<span class="doccomment">/// Digital VAX</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_VAX</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">75</span>;
-<span class="doccomment">/// Axis Communications 32-bit emb.proc</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_CRIS</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">76</span>;
-<span class="doccomment">/// Infineon Technologies 32-bit emb.proc</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_JAVELIN</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">77</span>;
-<span class="doccomment">/// Element 14 64-bit DSP Processor</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_FIREPATH</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">78</span>;
-<span class="doccomment">/// LSI Logic 16-bit DSP Processor</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_ZSP</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">79</span>;
-<span class="doccomment">/// Donald Knuth&#39;s educational 64-bit proc</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_MMIX</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">80</span>;
-<span class="doccomment">/// Harvard University machine-independent object files</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_HUANY</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">81</span>;
-<span class="doccomment">/// SiTera Prism</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_PRISM</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">82</span>;
-<span class="doccomment">/// Atmel AVR 8-bit microcontroller</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_AVR</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">83</span>;
-<span class="doccomment">/// Fujitsu FR30</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_FR30</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">84</span>;
-<span class="doccomment">/// Mitsubishi D10V</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_D10V</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">85</span>;
-<span class="doccomment">/// Mitsubishi D30V</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_D30V</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">86</span>;
-<span class="doccomment">/// NEC v850</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_V850</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">87</span>;
-<span class="doccomment">/// Mitsubishi M32R</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_M32R</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">88</span>;
-<span class="doccomment">/// Matsushita MN10300</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_MN10300</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">89</span>;
-<span class="doccomment">/// Matsushita MN10200</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_MN10200</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">90</span>;
-<span class="doccomment">/// picoJava</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_PJ</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">91</span>;
-<span class="doccomment">/// OpenRISC 32-bit embedded processor</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_OPENRISC</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">92</span>;
-<span class="doccomment">/// ARC International ARCompact</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_ARC_COMPACT</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">93</span>;
-<span class="doccomment">/// Tensilica Xtensa Architecture</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_XTENSA</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">94</span>;
-<span class="doccomment">/// Alphamosaic VideoCore</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_VIDEOCORE</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">95</span>;
-<span class="doccomment">/// Thompson Multimedia General Purpose Proc</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_TMM_GPP</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">96</span>;
-<span class="doccomment">/// National Semi. 32000</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_NS32K</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">97</span>;
-<span class="doccomment">/// Tenor Network TPC</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_TPC</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">98</span>;
-<span class="doccomment">/// Trebia SNP 1000</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_SNP1K</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">99</span>;
-<span class="doccomment">/// STMicroelectronics ST200</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_ST200</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">100</span>;
-<span class="doccomment">/// Ubicom IP2xxx</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_IP2K</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">101</span>;
-<span class="doccomment">/// MAX processor</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_MAX</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">102</span>;
-<span class="doccomment">/// National Semi. CompactRISC</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_CR</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">103</span>;
-<span class="doccomment">/// Fujitsu F2MC16</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_F2MC16</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">104</span>;
-<span class="doccomment">/// Texas Instruments msp430</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_MSP430</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">105</span>;
-<span class="doccomment">/// Analog Devices Blackfin DSP</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_BLACKFIN</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">106</span>;
-<span class="doccomment">/// Seiko Epson S1C33 family</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_SE_C33</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">107</span>;
-<span class="doccomment">/// Sharp embedded microprocessor</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_SEP</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">108</span>;
-<span class="doccomment">/// Arca RISC</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_ARCA</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">109</span>;
-<span class="doccomment">/// PKU-Unity &amp; MPRC Peking Uni. mc series</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_UNICORE</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">110</span>;
-<span class="doccomment">/// eXcess configurable cpu</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_EXCESS</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">111</span>;
-<span class="doccomment">/// Icera Semi. Deep Execution Processor</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_DXP</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">112</span>;
-<span class="doccomment">/// Altera Nios II</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_ALTERA_NIOS2</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">113</span>;
-<span class="doccomment">/// National Semi. CompactRISC CRX</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_CRX</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">114</span>;
-<span class="doccomment">/// Motorola XGATE</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_XGATE</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">115</span>;
-<span class="doccomment">/// Infineon C16x/XC16x</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_C166</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">116</span>;
-<span class="doccomment">/// Renesas M16C</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_M16C</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">117</span>;
-<span class="doccomment">/// Microchip Technology dsPIC30F</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_DSPIC30F</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">118</span>;
-<span class="doccomment">/// Freescale Communication Engine RISC</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_CE</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">119</span>;
-<span class="doccomment">/// Renesas M32C</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_M32C</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">120</span>;
-<span class="comment">// reserved 121-130</span>
-<span class="doccomment">/// Altium TSK3000</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_TSK3000</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">131</span>;
-<span class="doccomment">/// Freescale RS08</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_RS08</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">132</span>;
-<span class="doccomment">/// Analog Devices SHARC family</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_SHARC</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">133</span>;
-<span class="doccomment">/// Cyan Technology eCOG2</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_ECOG2</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">134</span>;
-<span class="doccomment">/// Sunplus S+core7 RISC</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_SCORE7</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">135</span>;
-<span class="doccomment">/// New Japan Radio (NJR) 24-bit DSP</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_DSP24</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">136</span>;
-<span class="doccomment">/// Broadcom VideoCore III</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_VIDEOCORE3</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">137</span>;
-<span class="doccomment">/// RISC for Lattice FPGA</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_LATTICEMICO32</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">138</span>;
-<span class="doccomment">/// Seiko Epson C17</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_SE_C17</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">139</span>;
-<span class="doccomment">/// Texas Instruments TMS320C6000 DSP</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_TI_C6000</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">140</span>;
-<span class="doccomment">/// Texas Instruments TMS320C2000 DSP</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_TI_C2000</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">141</span>;
-<span class="doccomment">/// Texas Instruments TMS320C55x DSP</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_TI_C5500</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">142</span>;
-<span class="doccomment">/// Texas Instruments App. Specific RISC</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_TI_ARP32</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">143</span>;
-<span class="doccomment">/// Texas Instruments Prog. Realtime Unit</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_TI_PRU</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">144</span>;
-<span class="comment">// reserved 145-159</span>
-<span class="doccomment">/// STMicroelectronics 64bit VLIW DSP</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_MMDSP_PLUS</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">160</span>;
-<span class="doccomment">/// Cypress M8C</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_CYPRESS_M8C</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">161</span>;
-<span class="doccomment">/// Renesas R32C</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_R32C</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">162</span>;
-<span class="doccomment">/// NXP Semi. TriMedia</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_TRIMEDIA</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">163</span>;
-<span class="doccomment">/// QUALCOMM DSP6</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_QDSP6</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">164</span>;
-<span class="doccomment">/// Intel 8051 and variants</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_8051</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">165</span>;
-<span class="doccomment">/// STMicroelectronics STxP7x</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_STXP7X</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">166</span>;
-<span class="doccomment">/// Andes Tech. compact code emb. RISC</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_NDS32</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">167</span>;
-<span class="doccomment">/// Cyan Technology eCOG1X</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_ECOG1X</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">168</span>;
-<span class="doccomment">/// Dallas Semi. MAXQ30 mc</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_MAXQ30</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">169</span>;
-<span class="doccomment">/// New Japan Radio (NJR) 16-bit DSP</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_XIMO16</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">170</span>;
-<span class="doccomment">/// M2000 Reconfigurable RISC</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_MANIK</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">171</span>;
-<span class="doccomment">/// Cray NV2 vector architecture</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_CRAYNV2</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">172</span>;
-<span class="doccomment">/// Renesas RX</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_RX</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">173</span>;
-<span class="doccomment">/// Imagination Tech. META</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_METAG</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">174</span>;
-<span class="doccomment">/// MCST Elbrus</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_MCST_ELBRUS</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">175</span>;
-<span class="doccomment">/// Cyan Technology eCOG16</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_ECOG16</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">176</span>;
-<span class="doccomment">/// National Semi. CompactRISC CR16</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_CR16</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">177</span>;
-<span class="doccomment">/// Freescale Extended Time Processing Unit</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_ETPU</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">178</span>;
-<span class="doccomment">/// Infineon Tech. SLE9X</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_SLE9X</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">179</span>;
-<span class="doccomment">/// Intel L10M</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_L10M</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">180</span>;
-<span class="doccomment">/// Intel K10M</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_K10M</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">181</span>;
-<span class="comment">// reserved 182</span>
-<span class="doccomment">/// ARM AARCH64</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_AARCH64</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">183</span>;
-<span class="comment">// reserved 184</span>
-<span class="doccomment">/// Amtel 32-bit microprocessor</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_AVR32</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">185</span>;
-<span class="doccomment">/// STMicroelectronics STM8</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_STM8</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">186</span>;
-<span class="doccomment">/// Tileta TILE64</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_TILE64</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">187</span>;
-<span class="doccomment">/// Tilera TILEPro</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_TILEPRO</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">188</span>;
-<span class="doccomment">/// Xilinx MicroBlaze</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_MICROBLAZE</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">189</span>;
-<span class="doccomment">/// NVIDIA CUDA</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_CUDA</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">190</span>;
-<span class="doccomment">/// Tilera TILE-Gx</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_TILEGX</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">191</span>;
-<span class="doccomment">/// CloudShield</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_CLOUDSHIELD</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">192</span>;
-<span class="doccomment">/// KIPO-KAIST Core-A 1st gen.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_COREA_1ST</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">193</span>;
-<span class="doccomment">/// KIPO-KAIST Core-A 2nd gen.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_COREA_2ND</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">194</span>;
-<span class="doccomment">/// Synopsys ARCompact V2</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_ARC_COMPACT2</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">195</span>;
-<span class="doccomment">/// Open8 RISC</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_OPEN8</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">196</span>;
-<span class="doccomment">/// Renesas RL78</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_RL78</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">197</span>;
-<span class="doccomment">/// Broadcom VideoCore V</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_VIDEOCORE5</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">198</span>;
-<span class="doccomment">/// Renesas 78KOR</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_78KOR</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">199</span>;
-<span class="doccomment">/// Freescale 56800EX DSC</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_56800EX</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">200</span>;
-<span class="doccomment">/// Beyond BA1</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_BA1</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">201</span>;
-<span class="doccomment">/// Beyond BA2</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_BA2</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">202</span>;
-<span class="doccomment">/// XMOS xCORE</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_XCORE</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">203</span>;
-<span class="doccomment">/// Microchip 8-bit PIC(r)</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_MCHP_PIC</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">204</span>;
-<span class="doccomment">/// Intel Graphics Technology</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_INTELGT</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">205</span>;
-<span class="comment">// reserved 206-209</span>
-<span class="doccomment">/// KM211 KM32</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_KM32</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">210</span>;
-<span class="doccomment">/// KM211 KMX32</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_KMX32</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">211</span>;
-<span class="doccomment">/// KM211 KMX16</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_EMX16</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">212</span>;
-<span class="doccomment">/// KM211 KMX8</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_EMX8</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">213</span>;
-<span class="doccomment">/// KM211 KVARC</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_KVARC</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">214</span>;
-<span class="doccomment">/// Paneve CDP</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_CDP</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">215</span>;
-<span class="doccomment">/// Cognitive Smart Memory Processor</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_COGE</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">216</span>;
-<span class="doccomment">/// Bluechip CoolEngine</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_COOL</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">217</span>;
-<span class="doccomment">/// Nanoradio Optimized RISC</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_NORC</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">218</span>;
-<span class="doccomment">/// CSR Kalimba</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_CSR_KALIMBA</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">219</span>;
-<span class="doccomment">/// Zilog Z80</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_Z80</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">220</span>;
-<span class="doccomment">/// Controls and Data Services VISIUMcore</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_VISIUM</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">221</span>;
-<span class="doccomment">/// FTDI Chip FT32</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_FT32</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">222</span>;
-<span class="doccomment">/// Moxie processor</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_MOXIE</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">223</span>;
-<span class="doccomment">/// AMD GPU</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_AMDGPU</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">224</span>;
-<span class="comment">// reserved 225-242</span>
-<span class="doccomment">/// RISC-V</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_RISCV</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">243</span>;
+/// No machine
+</span><span class="kw">pub const </span>EM_NONE: u16 = <span class="number">0</span>;
+<span class="doccomment">/// AT&amp;T WE 32100
+</span><span class="kw">pub const </span>EM_M32: u16 = <span class="number">1</span>;
+<span class="doccomment">/// SUN SPARC
+</span><span class="kw">pub const </span>EM_SPARC: u16 = <span class="number">2</span>;
+<span class="doccomment">/// Intel 80386
+</span><span class="kw">pub const </span>EM_386: u16 = <span class="number">3</span>;
+<span class="doccomment">/// Motorola m68k family
+</span><span class="kw">pub const </span>EM_68K: u16 = <span class="number">4</span>;
+<span class="doccomment">/// Motorola m88k family
+</span><span class="kw">pub const </span>EM_88K: u16 = <span class="number">5</span>;
+<span class="doccomment">/// Intel MCU
+</span><span class="kw">pub const </span>EM_IAMCU: u16 = <span class="number">6</span>;
+<span class="doccomment">/// Intel 80860
+</span><span class="kw">pub const </span>EM_860: u16 = <span class="number">7</span>;
+<span class="doccomment">/// MIPS R3000 big-endian
+</span><span class="kw">pub const </span>EM_MIPS: u16 = <span class="number">8</span>;
+<span class="doccomment">/// IBM System/370
+</span><span class="kw">pub const </span>EM_S370: u16 = <span class="number">9</span>;
+<span class="doccomment">/// MIPS R3000 little-endian
+</span><span class="kw">pub const </span>EM_MIPS_RS3_LE: u16 = <span class="number">10</span>;
+<span class="comment">// reserved 11-14
+</span><span class="doccomment">/// HPPA
+</span><span class="kw">pub const </span>EM_PARISC: u16 = <span class="number">15</span>;
+<span class="comment">// reserved 16
+</span><span class="doccomment">/// Fujitsu VPP500
+</span><span class="kw">pub const </span>EM_VPP500: u16 = <span class="number">17</span>;
+<span class="doccomment">/// Sun&#39;s &quot;v8plus&quot;
+</span><span class="kw">pub const </span>EM_SPARC32PLUS: u16 = <span class="number">18</span>;
+<span class="doccomment">/// Intel 80960
+</span><span class="kw">pub const </span>EM_960: u16 = <span class="number">19</span>;
+<span class="doccomment">/// PowerPC
+</span><span class="kw">pub const </span>EM_PPC: u16 = <span class="number">20</span>;
+<span class="doccomment">/// PowerPC 64-bit
+</span><span class="kw">pub const </span>EM_PPC64: u16 = <span class="number">21</span>;
+<span class="doccomment">/// IBM S390
+</span><span class="kw">pub const </span>EM_S390: u16 = <span class="number">22</span>;
+<span class="doccomment">/// IBM SPU/SPC
+</span><span class="kw">pub const </span>EM_SPU: u16 = <span class="number">23</span>;
+<span class="comment">// reserved 24-35
+</span><span class="doccomment">/// NEC V800 series
+</span><span class="kw">pub const </span>EM_V800: u16 = <span class="number">36</span>;
+<span class="doccomment">/// Fujitsu FR20
+</span><span class="kw">pub const </span>EM_FR20: u16 = <span class="number">37</span>;
+<span class="doccomment">/// TRW RH-32
+</span><span class="kw">pub const </span>EM_RH32: u16 = <span class="number">38</span>;
+<span class="doccomment">/// Motorola RCE
+</span><span class="kw">pub const </span>EM_RCE: u16 = <span class="number">39</span>;
+<span class="doccomment">/// ARM
+</span><span class="kw">pub const </span>EM_ARM: u16 = <span class="number">40</span>;
+<span class="doccomment">/// Digital Alpha
+</span><span class="kw">pub const </span>EM_FAKE_ALPHA: u16 = <span class="number">41</span>;
+<span class="doccomment">/// Hitachi SH
+</span><span class="kw">pub const </span>EM_SH: u16 = <span class="number">42</span>;
+<span class="doccomment">/// SPARC v9 64-bit
+</span><span class="kw">pub const </span>EM_SPARCV9: u16 = <span class="number">43</span>;
+<span class="doccomment">/// Siemens Tricore
+</span><span class="kw">pub const </span>EM_TRICORE: u16 = <span class="number">44</span>;
+<span class="doccomment">/// Argonaut RISC Core
+</span><span class="kw">pub const </span>EM_ARC: u16 = <span class="number">45</span>;
+<span class="doccomment">/// Hitachi H8/300
+</span><span class="kw">pub const </span>EM_H8_300: u16 = <span class="number">46</span>;
+<span class="doccomment">/// Hitachi H8/300H
+</span><span class="kw">pub const </span>EM_H8_300H: u16 = <span class="number">47</span>;
+<span class="doccomment">/// Hitachi H8S
+</span><span class="kw">pub const </span>EM_H8S: u16 = <span class="number">48</span>;
+<span class="doccomment">/// Hitachi H8/500
+</span><span class="kw">pub const </span>EM_H8_500: u16 = <span class="number">49</span>;
+<span class="doccomment">/// Intel Merced
+</span><span class="kw">pub const </span>EM_IA_64: u16 = <span class="number">50</span>;
+<span class="doccomment">/// Stanford MIPS-X
+</span><span class="kw">pub const </span>EM_MIPS_X: u16 = <span class="number">51</span>;
+<span class="doccomment">/// Motorola Coldfire
+</span><span class="kw">pub const </span>EM_COLDFIRE: u16 = <span class="number">52</span>;
+<span class="doccomment">/// Motorola M68HC12
+</span><span class="kw">pub const </span>EM_68HC12: u16 = <span class="number">53</span>;
+<span class="doccomment">/// Fujitsu MMA Multimedia Accelerator
+</span><span class="kw">pub const </span>EM_MMA: u16 = <span class="number">54</span>;
+<span class="doccomment">/// Siemens PCP
+</span><span class="kw">pub const </span>EM_PCP: u16 = <span class="number">55</span>;
+<span class="doccomment">/// Sony nCPU embeeded RISC
+</span><span class="kw">pub const </span>EM_NCPU: u16 = <span class="number">56</span>;
+<span class="doccomment">/// Denso NDR1 microprocessor
+</span><span class="kw">pub const </span>EM_NDR1: u16 = <span class="number">57</span>;
+<span class="doccomment">/// Motorola Start*Core processor
+</span><span class="kw">pub const </span>EM_STARCORE: u16 = <span class="number">58</span>;
+<span class="doccomment">/// Toyota ME16 processor
+</span><span class="kw">pub const </span>EM_ME16: u16 = <span class="number">59</span>;
+<span class="doccomment">/// STMicroelectronic ST100 processor
+</span><span class="kw">pub const </span>EM_ST100: u16 = <span class="number">60</span>;
+<span class="doccomment">/// Advanced Logic Corp. Tinyj emb.fam
+</span><span class="kw">pub const </span>EM_TINYJ: u16 = <span class="number">61</span>;
+<span class="doccomment">/// AMD x86-64 architecture
+</span><span class="kw">pub const </span>EM_X86_64: u16 = <span class="number">62</span>;
+<span class="doccomment">/// Sony DSP Processor
+</span><span class="kw">pub const </span>EM_PDSP: u16 = <span class="number">63</span>;
+<span class="doccomment">/// Digital PDP-10
+</span><span class="kw">pub const </span>EM_PDP10: u16 = <span class="number">64</span>;
+<span class="doccomment">/// Digital PDP-11
+</span><span class="kw">pub const </span>EM_PDP11: u16 = <span class="number">65</span>;
+<span class="doccomment">/// Siemens FX66 microcontroller
+</span><span class="kw">pub const </span>EM_FX66: u16 = <span class="number">66</span>;
+<span class="doccomment">/// STMicroelectronics ST9+ 8/16 mc
+</span><span class="kw">pub const </span>EM_ST9PLUS: u16 = <span class="number">67</span>;
+<span class="doccomment">/// STmicroelectronics ST7 8 bit mc
+</span><span class="kw">pub const </span>EM_ST7: u16 = <span class="number">68</span>;
+<span class="doccomment">/// Motorola MC68HC16 microcontroller
+</span><span class="kw">pub const </span>EM_68HC16: u16 = <span class="number">69</span>;
+<span class="doccomment">/// Motorola MC68HC11 microcontroller
+</span><span class="kw">pub const </span>EM_68HC11: u16 = <span class="number">70</span>;
+<span class="doccomment">/// Motorola MC68HC08 microcontroller
+</span><span class="kw">pub const </span>EM_68HC08: u16 = <span class="number">71</span>;
+<span class="doccomment">/// Motorola MC68HC05 microcontroller
+</span><span class="kw">pub const </span>EM_68HC05: u16 = <span class="number">72</span>;
+<span class="doccomment">/// Silicon Graphics SVx
+</span><span class="kw">pub const </span>EM_SVX: u16 = <span class="number">73</span>;
+<span class="doccomment">/// STMicroelectronics ST19 8 bit mc
+</span><span class="kw">pub const </span>EM_ST19: u16 = <span class="number">74</span>;
+<span class="doccomment">/// Digital VAX
+</span><span class="kw">pub const </span>EM_VAX: u16 = <span class="number">75</span>;
+<span class="doccomment">/// Axis Communications 32-bit emb.proc
+</span><span class="kw">pub const </span>EM_CRIS: u16 = <span class="number">76</span>;
+<span class="doccomment">/// Infineon Technologies 32-bit emb.proc
+</span><span class="kw">pub const </span>EM_JAVELIN: u16 = <span class="number">77</span>;
+<span class="doccomment">/// Element 14 64-bit DSP Processor
+</span><span class="kw">pub const </span>EM_FIREPATH: u16 = <span class="number">78</span>;
+<span class="doccomment">/// LSI Logic 16-bit DSP Processor
+</span><span class="kw">pub const </span>EM_ZSP: u16 = <span class="number">79</span>;
+<span class="doccomment">/// Donald Knuth&#39;s educational 64-bit proc
+</span><span class="kw">pub const </span>EM_MMIX: u16 = <span class="number">80</span>;
+<span class="doccomment">/// Harvard University machine-independent object files
+</span><span class="kw">pub const </span>EM_HUANY: u16 = <span class="number">81</span>;
+<span class="doccomment">/// SiTera Prism
+</span><span class="kw">pub const </span>EM_PRISM: u16 = <span class="number">82</span>;
+<span class="doccomment">/// Atmel AVR 8-bit microcontroller
+</span><span class="kw">pub const </span>EM_AVR: u16 = <span class="number">83</span>;
+<span class="doccomment">/// Fujitsu FR30
+</span><span class="kw">pub const </span>EM_FR30: u16 = <span class="number">84</span>;
+<span class="doccomment">/// Mitsubishi D10V
+</span><span class="kw">pub const </span>EM_D10V: u16 = <span class="number">85</span>;
+<span class="doccomment">/// Mitsubishi D30V
+</span><span class="kw">pub const </span>EM_D30V: u16 = <span class="number">86</span>;
+<span class="doccomment">/// NEC v850
+</span><span class="kw">pub const </span>EM_V850: u16 = <span class="number">87</span>;
+<span class="doccomment">/// Mitsubishi M32R
+</span><span class="kw">pub const </span>EM_M32R: u16 = <span class="number">88</span>;
+<span class="doccomment">/// Matsushita MN10300
+</span><span class="kw">pub const </span>EM_MN10300: u16 = <span class="number">89</span>;
+<span class="doccomment">/// Matsushita MN10200
+</span><span class="kw">pub const </span>EM_MN10200: u16 = <span class="number">90</span>;
+<span class="doccomment">/// picoJava
+</span><span class="kw">pub const </span>EM_PJ: u16 = <span class="number">91</span>;
+<span class="doccomment">/// OpenRISC 32-bit embedded processor
+</span><span class="kw">pub const </span>EM_OPENRISC: u16 = <span class="number">92</span>;
+<span class="doccomment">/// ARC International ARCompact
+</span><span class="kw">pub const </span>EM_ARC_COMPACT: u16 = <span class="number">93</span>;
+<span class="doccomment">/// Tensilica Xtensa Architecture
+</span><span class="kw">pub const </span>EM_XTENSA: u16 = <span class="number">94</span>;
+<span class="doccomment">/// Alphamosaic VideoCore
+</span><span class="kw">pub const </span>EM_VIDEOCORE: u16 = <span class="number">95</span>;
+<span class="doccomment">/// Thompson Multimedia General Purpose Proc
+</span><span class="kw">pub const </span>EM_TMM_GPP: u16 = <span class="number">96</span>;
+<span class="doccomment">/// National Semi. 32000
+</span><span class="kw">pub const </span>EM_NS32K: u16 = <span class="number">97</span>;
+<span class="doccomment">/// Tenor Network TPC
+</span><span class="kw">pub const </span>EM_TPC: u16 = <span class="number">98</span>;
+<span class="doccomment">/// Trebia SNP 1000
+</span><span class="kw">pub const </span>EM_SNP1K: u16 = <span class="number">99</span>;
+<span class="doccomment">/// STMicroelectronics ST200
+</span><span class="kw">pub const </span>EM_ST200: u16 = <span class="number">100</span>;
+<span class="doccomment">/// Ubicom IP2xxx
+</span><span class="kw">pub const </span>EM_IP2K: u16 = <span class="number">101</span>;
+<span class="doccomment">/// MAX processor
+</span><span class="kw">pub const </span>EM_MAX: u16 = <span class="number">102</span>;
+<span class="doccomment">/// National Semi. CompactRISC
+</span><span class="kw">pub const </span>EM_CR: u16 = <span class="number">103</span>;
+<span class="doccomment">/// Fujitsu F2MC16
+</span><span class="kw">pub const </span>EM_F2MC16: u16 = <span class="number">104</span>;
+<span class="doccomment">/// Texas Instruments msp430
+</span><span class="kw">pub const </span>EM_MSP430: u16 = <span class="number">105</span>;
+<span class="doccomment">/// Analog Devices Blackfin DSP
+</span><span class="kw">pub const </span>EM_BLACKFIN: u16 = <span class="number">106</span>;
+<span class="doccomment">/// Seiko Epson S1C33 family
+</span><span class="kw">pub const </span>EM_SE_C33: u16 = <span class="number">107</span>;
+<span class="doccomment">/// Sharp embedded microprocessor
+</span><span class="kw">pub const </span>EM_SEP: u16 = <span class="number">108</span>;
+<span class="doccomment">/// Arca RISC
+</span><span class="kw">pub const </span>EM_ARCA: u16 = <span class="number">109</span>;
+<span class="doccomment">/// PKU-Unity &amp; MPRC Peking Uni. mc series
+</span><span class="kw">pub const </span>EM_UNICORE: u16 = <span class="number">110</span>;
+<span class="doccomment">/// eXcess configurable cpu
+</span><span class="kw">pub const </span>EM_EXCESS: u16 = <span class="number">111</span>;
+<span class="doccomment">/// Icera Semi. Deep Execution Processor
+</span><span class="kw">pub const </span>EM_DXP: u16 = <span class="number">112</span>;
+<span class="doccomment">/// Altera Nios II
+</span><span class="kw">pub const </span>EM_ALTERA_NIOS2: u16 = <span class="number">113</span>;
+<span class="doccomment">/// National Semi. CompactRISC CRX
+</span><span class="kw">pub const </span>EM_CRX: u16 = <span class="number">114</span>;
+<span class="doccomment">/// Motorola XGATE
+</span><span class="kw">pub const </span>EM_XGATE: u16 = <span class="number">115</span>;
+<span class="doccomment">/// Infineon C16x/XC16x
+</span><span class="kw">pub const </span>EM_C166: u16 = <span class="number">116</span>;
+<span class="doccomment">/// Renesas M16C
+</span><span class="kw">pub const </span>EM_M16C: u16 = <span class="number">117</span>;
+<span class="doccomment">/// Microchip Technology dsPIC30F
+</span><span class="kw">pub const </span>EM_DSPIC30F: u16 = <span class="number">118</span>;
+<span class="doccomment">/// Freescale Communication Engine RISC
+</span><span class="kw">pub const </span>EM_CE: u16 = <span class="number">119</span>;
+<span class="doccomment">/// Renesas M32C
+</span><span class="kw">pub const </span>EM_M32C: u16 = <span class="number">120</span>;
+<span class="comment">// reserved 121-130
+</span><span class="doccomment">/// Altium TSK3000
+</span><span class="kw">pub const </span>EM_TSK3000: u16 = <span class="number">131</span>;
+<span class="doccomment">/// Freescale RS08
+</span><span class="kw">pub const </span>EM_RS08: u16 = <span class="number">132</span>;
+<span class="doccomment">/// Analog Devices SHARC family
+</span><span class="kw">pub const </span>EM_SHARC: u16 = <span class="number">133</span>;
+<span class="doccomment">/// Cyan Technology eCOG2
+</span><span class="kw">pub const </span>EM_ECOG2: u16 = <span class="number">134</span>;
+<span class="doccomment">/// Sunplus S+core7 RISC
+</span><span class="kw">pub const </span>EM_SCORE7: u16 = <span class="number">135</span>;
+<span class="doccomment">/// New Japan Radio (NJR) 24-bit DSP
+</span><span class="kw">pub const </span>EM_DSP24: u16 = <span class="number">136</span>;
+<span class="doccomment">/// Broadcom VideoCore III
+</span><span class="kw">pub const </span>EM_VIDEOCORE3: u16 = <span class="number">137</span>;
+<span class="doccomment">/// RISC for Lattice FPGA
+</span><span class="kw">pub const </span>EM_LATTICEMICO32: u16 = <span class="number">138</span>;
+<span class="doccomment">/// Seiko Epson C17
+</span><span class="kw">pub const </span>EM_SE_C17: u16 = <span class="number">139</span>;
+<span class="doccomment">/// Texas Instruments TMS320C6000 DSP
+</span><span class="kw">pub const </span>EM_TI_C6000: u16 = <span class="number">140</span>;
+<span class="doccomment">/// Texas Instruments TMS320C2000 DSP
+</span><span class="kw">pub const </span>EM_TI_C2000: u16 = <span class="number">141</span>;
+<span class="doccomment">/// Texas Instruments TMS320C55x DSP
+</span><span class="kw">pub const </span>EM_TI_C5500: u16 = <span class="number">142</span>;
+<span class="doccomment">/// Texas Instruments App. Specific RISC
+</span><span class="kw">pub const </span>EM_TI_ARP32: u16 = <span class="number">143</span>;
+<span class="doccomment">/// Texas Instruments Prog. Realtime Unit
+</span><span class="kw">pub const </span>EM_TI_PRU: u16 = <span class="number">144</span>;
+<span class="comment">// reserved 145-159
+</span><span class="doccomment">/// STMicroelectronics 64bit VLIW DSP
+</span><span class="kw">pub const </span>EM_MMDSP_PLUS: u16 = <span class="number">160</span>;
+<span class="doccomment">/// Cypress M8C
+</span><span class="kw">pub const </span>EM_CYPRESS_M8C: u16 = <span class="number">161</span>;
+<span class="doccomment">/// Renesas R32C
+</span><span class="kw">pub const </span>EM_R32C: u16 = <span class="number">162</span>;
+<span class="doccomment">/// NXP Semi. TriMedia
+</span><span class="kw">pub const </span>EM_TRIMEDIA: u16 = <span class="number">163</span>;
+<span class="doccomment">/// QUALCOMM DSP6
+</span><span class="kw">pub const </span>EM_QDSP6: u16 = <span class="number">164</span>;
+<span class="doccomment">/// Intel 8051 and variants
+</span><span class="kw">pub const </span>EM_8051: u16 = <span class="number">165</span>;
+<span class="doccomment">/// STMicroelectronics STxP7x
+</span><span class="kw">pub const </span>EM_STXP7X: u16 = <span class="number">166</span>;
+<span class="doccomment">/// Andes Tech. compact code emb. RISC
+</span><span class="kw">pub const </span>EM_NDS32: u16 = <span class="number">167</span>;
+<span class="doccomment">/// Cyan Technology eCOG1X
+</span><span class="kw">pub const </span>EM_ECOG1X: u16 = <span class="number">168</span>;
+<span class="doccomment">/// Dallas Semi. MAXQ30 mc
+</span><span class="kw">pub const </span>EM_MAXQ30: u16 = <span class="number">169</span>;
+<span class="doccomment">/// New Japan Radio (NJR) 16-bit DSP
+</span><span class="kw">pub const </span>EM_XIMO16: u16 = <span class="number">170</span>;
+<span class="doccomment">/// M2000 Reconfigurable RISC
+</span><span class="kw">pub const </span>EM_MANIK: u16 = <span class="number">171</span>;
+<span class="doccomment">/// Cray NV2 vector architecture
+</span><span class="kw">pub const </span>EM_CRAYNV2: u16 = <span class="number">172</span>;
+<span class="doccomment">/// Renesas RX
+</span><span class="kw">pub const </span>EM_RX: u16 = <span class="number">173</span>;
+<span class="doccomment">/// Imagination Tech. META
+</span><span class="kw">pub const </span>EM_METAG: u16 = <span class="number">174</span>;
+<span class="doccomment">/// MCST Elbrus
+</span><span class="kw">pub const </span>EM_MCST_ELBRUS: u16 = <span class="number">175</span>;
+<span class="doccomment">/// Cyan Technology eCOG16
+</span><span class="kw">pub const </span>EM_ECOG16: u16 = <span class="number">176</span>;
+<span class="doccomment">/// National Semi. CompactRISC CR16
+</span><span class="kw">pub const </span>EM_CR16: u16 = <span class="number">177</span>;
+<span class="doccomment">/// Freescale Extended Time Processing Unit
+</span><span class="kw">pub const </span>EM_ETPU: u16 = <span class="number">178</span>;
+<span class="doccomment">/// Infineon Tech. SLE9X
+</span><span class="kw">pub const </span>EM_SLE9X: u16 = <span class="number">179</span>;
+<span class="doccomment">/// Intel L10M
+</span><span class="kw">pub const </span>EM_L10M: u16 = <span class="number">180</span>;
+<span class="doccomment">/// Intel K10M
+</span><span class="kw">pub const </span>EM_K10M: u16 = <span class="number">181</span>;
+<span class="comment">// reserved 182
+</span><span class="doccomment">/// ARM AARCH64
+</span><span class="kw">pub const </span>EM_AARCH64: u16 = <span class="number">183</span>;
+<span class="comment">// reserved 184
+</span><span class="doccomment">/// Amtel 32-bit microprocessor
+</span><span class="kw">pub const </span>EM_AVR32: u16 = <span class="number">185</span>;
+<span class="doccomment">/// STMicroelectronics STM8
+</span><span class="kw">pub const </span>EM_STM8: u16 = <span class="number">186</span>;
+<span class="doccomment">/// Tileta TILE64
+</span><span class="kw">pub const </span>EM_TILE64: u16 = <span class="number">187</span>;
+<span class="doccomment">/// Tilera TILEPro
+</span><span class="kw">pub const </span>EM_TILEPRO: u16 = <span class="number">188</span>;
+<span class="doccomment">/// Xilinx MicroBlaze
+</span><span class="kw">pub const </span>EM_MICROBLAZE: u16 = <span class="number">189</span>;
+<span class="doccomment">/// NVIDIA CUDA
+</span><span class="kw">pub const </span>EM_CUDA: u16 = <span class="number">190</span>;
+<span class="doccomment">/// Tilera TILE-Gx
+</span><span class="kw">pub const </span>EM_TILEGX: u16 = <span class="number">191</span>;
+<span class="doccomment">/// CloudShield
+</span><span class="kw">pub const </span>EM_CLOUDSHIELD: u16 = <span class="number">192</span>;
+<span class="doccomment">/// KIPO-KAIST Core-A 1st gen.
+</span><span class="kw">pub const </span>EM_COREA_1ST: u16 = <span class="number">193</span>;
+<span class="doccomment">/// KIPO-KAIST Core-A 2nd gen.
+</span><span class="kw">pub const </span>EM_COREA_2ND: u16 = <span class="number">194</span>;
+<span class="doccomment">/// Synopsys ARCompact V2
+</span><span class="kw">pub const </span>EM_ARC_COMPACT2: u16 = <span class="number">195</span>;
+<span class="doccomment">/// Open8 RISC
+</span><span class="kw">pub const </span>EM_OPEN8: u16 = <span class="number">196</span>;
+<span class="doccomment">/// Renesas RL78
+</span><span class="kw">pub const </span>EM_RL78: u16 = <span class="number">197</span>;
+<span class="doccomment">/// Broadcom VideoCore V
+</span><span class="kw">pub const </span>EM_VIDEOCORE5: u16 = <span class="number">198</span>;
+<span class="doccomment">/// Renesas 78KOR
+</span><span class="kw">pub const </span>EM_78KOR: u16 = <span class="number">199</span>;
+<span class="doccomment">/// Freescale 56800EX DSC
+</span><span class="kw">pub const </span>EM_56800EX: u16 = <span class="number">200</span>;
+<span class="doccomment">/// Beyond BA1
+</span><span class="kw">pub const </span>EM_BA1: u16 = <span class="number">201</span>;
+<span class="doccomment">/// Beyond BA2
+</span><span class="kw">pub const </span>EM_BA2: u16 = <span class="number">202</span>;
+<span class="doccomment">/// XMOS xCORE
+</span><span class="kw">pub const </span>EM_XCORE: u16 = <span class="number">203</span>;
+<span class="doccomment">/// Microchip 8-bit PIC(r)
+</span><span class="kw">pub const </span>EM_MCHP_PIC: u16 = <span class="number">204</span>;
+<span class="doccomment">/// Intel Graphics Technology
+</span><span class="kw">pub const </span>EM_INTELGT: u16 = <span class="number">205</span>;
+<span class="comment">// reserved 206-209
+</span><span class="doccomment">/// KM211 KM32
+</span><span class="kw">pub const </span>EM_KM32: u16 = <span class="number">210</span>;
+<span class="doccomment">/// KM211 KMX32
+</span><span class="kw">pub const </span>EM_KMX32: u16 = <span class="number">211</span>;
+<span class="doccomment">/// KM211 KMX16
+</span><span class="kw">pub const </span>EM_EMX16: u16 = <span class="number">212</span>;
+<span class="doccomment">/// KM211 KMX8
+</span><span class="kw">pub const </span>EM_EMX8: u16 = <span class="number">213</span>;
+<span class="doccomment">/// KM211 KVARC
+</span><span class="kw">pub const </span>EM_KVARC: u16 = <span class="number">214</span>;
+<span class="doccomment">/// Paneve CDP
+</span><span class="kw">pub const </span>EM_CDP: u16 = <span class="number">215</span>;
+<span class="doccomment">/// Cognitive Smart Memory Processor
+</span><span class="kw">pub const </span>EM_COGE: u16 = <span class="number">216</span>;
+<span class="doccomment">/// Bluechip CoolEngine
+</span><span class="kw">pub const </span>EM_COOL: u16 = <span class="number">217</span>;
+<span class="doccomment">/// Nanoradio Optimized RISC
+</span><span class="kw">pub const </span>EM_NORC: u16 = <span class="number">218</span>;
+<span class="doccomment">/// CSR Kalimba
+</span><span class="kw">pub const </span>EM_CSR_KALIMBA: u16 = <span class="number">219</span>;
+<span class="doccomment">/// Zilog Z80
+</span><span class="kw">pub const </span>EM_Z80: u16 = <span class="number">220</span>;
+<span class="doccomment">/// Controls and Data Services VISIUMcore
+</span><span class="kw">pub const </span>EM_VISIUM: u16 = <span class="number">221</span>;
+<span class="doccomment">/// FTDI Chip FT32
+</span><span class="kw">pub const </span>EM_FT32: u16 = <span class="number">222</span>;
+<span class="doccomment">/// Moxie processor
+</span><span class="kw">pub const </span>EM_MOXIE: u16 = <span class="number">223</span>;
+<span class="doccomment">/// AMD GPU
+</span><span class="kw">pub const </span>EM_AMDGPU: u16 = <span class="number">224</span>;
+<span class="comment">// reserved 225-242
+</span><span class="doccomment">/// RISC-V
+</span><span class="kw">pub const </span>EM_RISCV: u16 = <span class="number">243</span>;
 
-<span class="doccomment">/// Linux BPF -- in-kernel virtual machine</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_BPF</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">247</span>;
+<span class="doccomment">/// Linux BPF -- in-kernel virtual machine
+</span><span class="kw">pub const </span>EM_BPF: u16 = <span class="number">247</span>;
 
-<span class="doccomment">/// C-SKY</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_CSKY</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">252</span>;
+<span class="doccomment">/// C-SKY
+</span><span class="kw">pub const </span>EM_CSKY: u16 = <span class="number">252</span>;
 
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EM_NUM</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">248</span>;
+<span class="kw">pub const </span>EM_NUM: u16 = <span class="number">248</span>;
 
-<span class="doccomment">/// Convert machine to str representation</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">machine_to_str</span> (<span class="ident">machine</span>: <span class="ident">u16</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> {
-    <span class="kw">match</span> <span class="ident">machine</span> {
-        <span class="ident">EM_M32</span> =&gt; <span class="string">&quot;M32&quot;</span>,
-        <span class="ident">EM_SPARC</span> =&gt; <span class="string">&quot;SPARC&quot;</span>,
-        <span class="ident">EM_386</span> =&gt; <span class="string">&quot;386&quot;</span>,
-        <span class="ident">EM_68K</span> =&gt; <span class="string">&quot;68K&quot;</span>,
-        <span class="ident">EM_88K</span> =&gt; <span class="string">&quot;88K&quot;</span>,
-        <span class="ident">EM_IAMCU</span> =&gt; <span class="string">&quot;IAMCU&quot;</span>,
-        <span class="ident">EM_860</span> =&gt; <span class="string">&quot;860&quot;</span>,
-        <span class="ident">EM_MIPS</span> =&gt; <span class="string">&quot;MIPS&quot;</span>,
-        <span class="ident">EM_S370</span> =&gt; <span class="string">&quot;S370&quot;</span>,
-        <span class="ident">EM_MIPS_RS3_LE</span> =&gt; <span class="string">&quot;MIPS_RS3_LE&quot;</span>,
-        <span class="ident">EM_PARISC</span> =&gt; <span class="string">&quot;PARISC&quot;</span>,
-        <span class="ident">EM_VPP500</span> =&gt; <span class="string">&quot;VPP500&quot;</span>,
-        <span class="ident">EM_SPARC32PLUS</span> =&gt; <span class="string">&quot;SPARC32PLUS&quot;</span>,
-        <span class="ident">EM_960</span> =&gt; <span class="string">&quot;960&quot;</span>,
-        <span class="ident">EM_PPC</span> =&gt; <span class="string">&quot;PPC&quot;</span>,
-        <span class="ident">EM_PPC64</span> =&gt; <span class="string">&quot;PPC64&quot;</span>,
-        <span class="ident">EM_S390</span> =&gt; <span class="string">&quot;S390&quot;</span>,
-        <span class="ident">EM_SPU</span> =&gt; <span class="string">&quot;SPU&quot;</span>,
-        <span class="ident">EM_V800</span> =&gt; <span class="string">&quot;V800&quot;</span>,
-        <span class="ident">EM_FR20</span> =&gt; <span class="string">&quot;FR20&quot;</span>,
-        <span class="ident">EM_RH32</span> =&gt; <span class="string">&quot;RH32&quot;</span>,
-        <span class="ident">EM_RCE</span> =&gt; <span class="string">&quot;RCE&quot;</span>,
-        <span class="ident">EM_ARM</span> =&gt; <span class="string">&quot;ARM&quot;</span>,
-        <span class="ident">EM_FAKE_ALPHA</span> =&gt; <span class="string">&quot;FAKE_ALPHA&quot;</span>,
-        <span class="ident">EM_SH</span> =&gt; <span class="string">&quot;SH&quot;</span>,
-        <span class="ident">EM_SPARCV9</span> =&gt; <span class="string">&quot;SPARCV9&quot;</span>,
-        <span class="ident">EM_TRICORE</span> =&gt; <span class="string">&quot;TRICORE&quot;</span>,
-        <span class="ident">EM_ARC</span> =&gt; <span class="string">&quot;ARC&quot;</span>,
-        <span class="ident">EM_H8_300</span> =&gt; <span class="string">&quot;H8_300&quot;</span>,
-        <span class="ident">EM_H8_300H</span> =&gt; <span class="string">&quot;H8_300H&quot;</span>,
-        <span class="ident">EM_H8S</span> =&gt; <span class="string">&quot;H8S&quot;</span>,
-        <span class="ident">EM_H8_500</span> =&gt; <span class="string">&quot;H8_500&quot;</span>,
-        <span class="ident">EM_IA_64</span> =&gt; <span class="string">&quot;IA_64&quot;</span>,
-        <span class="ident">EM_MIPS_X</span> =&gt; <span class="string">&quot;MIPS_X&quot;</span>,
-        <span class="ident">EM_COLDFIRE</span> =&gt; <span class="string">&quot;COLDFIRE&quot;</span>,
-        <span class="ident">EM_68HC12</span> =&gt; <span class="string">&quot;68HC12&quot;</span>,
-        <span class="ident">EM_MMA</span> =&gt; <span class="string">&quot;MMA&quot;</span>,
-        <span class="ident">EM_PCP</span> =&gt; <span class="string">&quot;PCP&quot;</span>,
-        <span class="ident">EM_NCPU</span> =&gt; <span class="string">&quot;NCPU&quot;</span>,
-        <span class="ident">EM_NDR1</span> =&gt; <span class="string">&quot;NDR1&quot;</span>,
-        <span class="ident">EM_STARCORE</span> =&gt; <span class="string">&quot;STARCORE&quot;</span>,
-        <span class="ident">EM_ME16</span> =&gt; <span class="string">&quot;ME16&quot;</span>,
-        <span class="ident">EM_ST100</span> =&gt; <span class="string">&quot;ST100&quot;</span>,
-        <span class="ident">EM_TINYJ</span> =&gt; <span class="string">&quot;TINYJ&quot;</span>,
-        <span class="ident">EM_X86_64</span> =&gt; <span class="string">&quot;X86_64&quot;</span>,
-        <span class="ident">EM_PDSP</span> =&gt; <span class="string">&quot;PDSP&quot;</span>,
-        <span class="ident">EM_PDP10</span> =&gt; <span class="string">&quot;PDP10&quot;</span>,
-        <span class="ident">EM_PDP11</span> =&gt; <span class="string">&quot;PDP11&quot;</span>,
-        <span class="ident">EM_FX66</span> =&gt; <span class="string">&quot;FX66&quot;</span>,
-        <span class="ident">EM_ST9PLUS</span> =&gt; <span class="string">&quot;ST9PLUS&quot;</span>,
-        <span class="ident">EM_ST7</span> =&gt; <span class="string">&quot;ST7&quot;</span>,
-        <span class="ident">EM_68HC16</span> =&gt; <span class="string">&quot;68HC16&quot;</span>,
-        <span class="ident">EM_68HC11</span> =&gt; <span class="string">&quot;68HC11&quot;</span>,
-        <span class="ident">EM_68HC08</span> =&gt; <span class="string">&quot;68HC08&quot;</span>,
-        <span class="ident">EM_68HC05</span> =&gt; <span class="string">&quot;68HC05&quot;</span>,
-        <span class="ident">EM_SVX</span> =&gt; <span class="string">&quot;SVX&quot;</span>,
-        <span class="ident">EM_ST19</span> =&gt; <span class="string">&quot;ST19&quot;</span>,
-        <span class="ident">EM_VAX</span> =&gt; <span class="string">&quot;VAX&quot;</span>,
-        <span class="ident">EM_CRIS</span> =&gt; <span class="string">&quot;CRIS&quot;</span>,
-        <span class="ident">EM_JAVELIN</span> =&gt; <span class="string">&quot;JAVELIN&quot;</span>,
-        <span class="ident">EM_FIREPATH</span> =&gt; <span class="string">&quot;FIREPATH&quot;</span>,
-        <span class="ident">EM_ZSP</span> =&gt; <span class="string">&quot;ZSP&quot;</span>,
-        <span class="ident">EM_MMIX</span> =&gt; <span class="string">&quot;MMIX&quot;</span>,
-        <span class="ident">EM_HUANY</span> =&gt; <span class="string">&quot;HUANY&quot;</span>,
-        <span class="ident">EM_PRISM</span> =&gt; <span class="string">&quot;PRISM&quot;</span>,
-        <span class="ident">EM_AVR</span> =&gt; <span class="string">&quot;AVR&quot;</span>,
-        <span class="ident">EM_FR30</span> =&gt; <span class="string">&quot;FR30&quot;</span>,
-        <span class="ident">EM_D10V</span> =&gt; <span class="string">&quot;D10V&quot;</span>,
-        <span class="ident">EM_D30V</span> =&gt; <span class="string">&quot;D30V&quot;</span>,
-        <span class="ident">EM_V850</span> =&gt; <span class="string">&quot;V850&quot;</span>,
-        <span class="ident">EM_M32R</span> =&gt; <span class="string">&quot;M32R&quot;</span>,
-        <span class="ident">EM_MN10300</span> =&gt; <span class="string">&quot;MN10300&quot;</span>,
-        <span class="ident">EM_MN10200</span> =&gt; <span class="string">&quot;MN10200&quot;</span>,
-        <span class="ident">EM_PJ</span> =&gt; <span class="string">&quot;PJ&quot;</span>,
-        <span class="ident">EM_OPENRISC</span> =&gt; <span class="string">&quot;OPENRISC&quot;</span>,
-        <span class="ident">EM_ARC_COMPACT</span> =&gt; <span class="string">&quot;ARC_COMPACT&quot;</span>,
-        <span class="ident">EM_XTENSA</span> =&gt; <span class="string">&quot;XTENSA&quot;</span>,
-        <span class="ident">EM_VIDEOCORE</span> =&gt; <span class="string">&quot;VIDEOCORE&quot;</span>,
-        <span class="ident">EM_TMM_GPP</span> =&gt; <span class="string">&quot;TMM_GPP&quot;</span>,
-        <span class="ident">EM_NS32K</span> =&gt; <span class="string">&quot;NS32K&quot;</span>,
-        <span class="ident">EM_TPC</span> =&gt; <span class="string">&quot;TPC&quot;</span>,
-        <span class="ident">EM_SNP1K</span> =&gt; <span class="string">&quot;SNP1K&quot;</span>,
-        <span class="ident">EM_ST200</span> =&gt; <span class="string">&quot;ST200&quot;</span>,
-        <span class="ident">EM_IP2K</span> =&gt; <span class="string">&quot;IP2K&quot;</span>,
-        <span class="ident">EM_MAX</span> =&gt; <span class="string">&quot;MAX&quot;</span>,
-        <span class="ident">EM_CR</span> =&gt; <span class="string">&quot;CR&quot;</span>,
-        <span class="ident">EM_F2MC16</span> =&gt; <span class="string">&quot;F2MC16&quot;</span>,
-        <span class="ident">EM_MSP430</span> =&gt; <span class="string">&quot;MSP430&quot;</span>,
-        <span class="ident">EM_BLACKFIN</span> =&gt; <span class="string">&quot;BLACKFIN&quot;</span>,
-        <span class="ident">EM_SE_C33</span> =&gt; <span class="string">&quot;SE_C33&quot;</span>,
-        <span class="ident">EM_SEP</span> =&gt; <span class="string">&quot;SEP&quot;</span>,
-        <span class="ident">EM_ARCA</span> =&gt; <span class="string">&quot;ARCA&quot;</span>,
-        <span class="ident">EM_UNICORE</span> =&gt; <span class="string">&quot;UNICORE&quot;</span>,
-        <span class="ident">EM_EXCESS</span> =&gt; <span class="string">&quot;EXCESS&quot;</span>,
-        <span class="ident">EM_DXP</span> =&gt; <span class="string">&quot;DXP&quot;</span>,
-        <span class="ident">EM_ALTERA_NIOS2</span> =&gt; <span class="string">&quot;ALTERA_NIOS2&quot;</span>,
-        <span class="ident">EM_CRX</span> =&gt; <span class="string">&quot;CRX&quot;</span>,
-        <span class="ident">EM_XGATE</span> =&gt; <span class="string">&quot;XGATE&quot;</span>,
-        <span class="ident">EM_C166</span> =&gt; <span class="string">&quot;C166&quot;</span>,
-        <span class="ident">EM_M16C</span> =&gt; <span class="string">&quot;M16C&quot;</span>,
-        <span class="ident">EM_DSPIC30F</span> =&gt; <span class="string">&quot;DSPIC30F&quot;</span>,
-        <span class="ident">EM_CE</span> =&gt; <span class="string">&quot;CE&quot;</span>,
-        <span class="ident">EM_M32C</span> =&gt; <span class="string">&quot;M32C&quot;</span>,
-        <span class="ident">EM_TSK3000</span> =&gt; <span class="string">&quot;TSK3000&quot;</span>,
-        <span class="ident">EM_RS08</span> =&gt; <span class="string">&quot;RS08&quot;</span>,
-        <span class="ident">EM_SHARC</span> =&gt; <span class="string">&quot;SHARC&quot;</span>,
-        <span class="ident">EM_ECOG2</span> =&gt; <span class="string">&quot;ECOG2&quot;</span>,
-        <span class="ident">EM_SCORE7</span> =&gt; <span class="string">&quot;SCORE7&quot;</span>,
-        <span class="ident">EM_DSP24</span> =&gt; <span class="string">&quot;DSP24&quot;</span>,
-        <span class="ident">EM_VIDEOCORE3</span> =&gt; <span class="string">&quot;VIDEOCORE3&quot;</span>,
-        <span class="ident">EM_LATTICEMICO32</span> =&gt; <span class="string">&quot;LATTICEMICO32&quot;</span>,
-        <span class="ident">EM_SE_C17</span> =&gt; <span class="string">&quot;SE_C17&quot;</span>,
-        <span class="ident">EM_TI_C6000</span> =&gt; <span class="string">&quot;TI_C6000&quot;</span>,
-        <span class="ident">EM_TI_C2000</span> =&gt; <span class="string">&quot;TI_C2000&quot;</span>,
-        <span class="ident">EM_TI_C5500</span> =&gt; <span class="string">&quot;TI_C5500&quot;</span>,
-        <span class="ident">EM_TI_ARP32</span> =&gt; <span class="string">&quot;TI_ARP32&quot;</span>,
-        <span class="ident">EM_TI_PRU</span> =&gt; <span class="string">&quot;TI_PRU&quot;</span>,
-        <span class="ident">EM_MMDSP_PLUS</span> =&gt; <span class="string">&quot;MMDSP_PLUS&quot;</span>,
-        <span class="ident">EM_CYPRESS_M8C</span> =&gt; <span class="string">&quot;CYPRESS_M8C&quot;</span>,
-        <span class="ident">EM_R32C</span> =&gt; <span class="string">&quot;R32C&quot;</span>,
-        <span class="ident">EM_TRIMEDIA</span> =&gt; <span class="string">&quot;TRIMEDIA&quot;</span>,
-        <span class="ident">EM_QDSP6</span> =&gt; <span class="string">&quot;QDSP6&quot;</span>,
-        <span class="ident">EM_8051</span> =&gt; <span class="string">&quot;8051&quot;</span>,
-        <span class="ident">EM_STXP7X</span> =&gt; <span class="string">&quot;STXP7X&quot;</span>,
-        <span class="ident">EM_NDS32</span> =&gt; <span class="string">&quot;NDS32&quot;</span>,
-        <span class="ident">EM_ECOG1X</span> =&gt; <span class="string">&quot;ECOG1X&quot;</span>,
-        <span class="ident">EM_MAXQ30</span> =&gt; <span class="string">&quot;MAXQ30&quot;</span>,
-        <span class="ident">EM_XIMO16</span> =&gt; <span class="string">&quot;XIMO16&quot;</span>,
-        <span class="ident">EM_MANIK</span> =&gt; <span class="string">&quot;MANIK&quot;</span>,
-        <span class="ident">EM_CRAYNV2</span> =&gt; <span class="string">&quot;CRAYNV2&quot;</span>,
-        <span class="ident">EM_RX</span> =&gt; <span class="string">&quot;RX&quot;</span>,
-        <span class="ident">EM_METAG</span> =&gt; <span class="string">&quot;METAG&quot;</span>,
-        <span class="ident">EM_MCST_ELBRUS</span> =&gt; <span class="string">&quot;MCST_ELBRUS&quot;</span>,
-        <span class="ident">EM_ECOG16</span> =&gt; <span class="string">&quot;ECOG16&quot;</span>,
-        <span class="ident">EM_CR16</span> =&gt; <span class="string">&quot;CR16&quot;</span>,
-        <span class="ident">EM_ETPU</span> =&gt; <span class="string">&quot;ETPU&quot;</span>,
-        <span class="ident">EM_SLE9X</span> =&gt; <span class="string">&quot;SLE9X&quot;</span>,
-        <span class="ident">EM_L10M</span> =&gt; <span class="string">&quot;L10M&quot;</span>,
-        <span class="ident">EM_K10M</span> =&gt; <span class="string">&quot;K10M&quot;</span>,
-        <span class="ident">EM_AARCH64</span> =&gt; <span class="string">&quot;AARCH64&quot;</span>,
-        <span class="ident">EM_AVR32</span> =&gt; <span class="string">&quot;AVR32&quot;</span>,
-        <span class="ident">EM_STM8</span> =&gt; <span class="string">&quot;STM8&quot;</span>,
-        <span class="ident">EM_TILE64</span> =&gt; <span class="string">&quot;TILE64&quot;</span>,
-        <span class="ident">EM_TILEPRO</span> =&gt; <span class="string">&quot;TILEPRO&quot;</span>,
-        <span class="ident">EM_MICROBLAZE</span> =&gt; <span class="string">&quot;MICROBLAZE&quot;</span>,
-        <span class="ident">EM_CUDA</span> =&gt; <span class="string">&quot;CUDA&quot;</span>,
-        <span class="ident">EM_TILEGX</span> =&gt; <span class="string">&quot;TILEGX&quot;</span>,
-        <span class="ident">EM_CLOUDSHIELD</span> =&gt; <span class="string">&quot;CLOUDSHIELD&quot;</span>,
-        <span class="ident">EM_COREA_1ST</span> =&gt; <span class="string">&quot;COREA_1ST&quot;</span>,
-        <span class="ident">EM_COREA_2ND</span> =&gt; <span class="string">&quot;COREA_2ND&quot;</span>,
-        <span class="ident">EM_ARC_COMPACT2</span> =&gt; <span class="string">&quot;ARC_COMPACT2&quot;</span>,
-        <span class="ident">EM_OPEN8</span> =&gt; <span class="string">&quot;OPEN8&quot;</span>,
-        <span class="ident">EM_RL78</span> =&gt; <span class="string">&quot;RL78&quot;</span>,
-        <span class="ident">EM_VIDEOCORE5</span> =&gt; <span class="string">&quot;VIDEOCORE5&quot;</span>,
-        <span class="ident">EM_78KOR</span> =&gt; <span class="string">&quot;78KOR&quot;</span>,
-        <span class="ident">EM_56800EX</span> =&gt; <span class="string">&quot;56800EX&quot;</span>,
-        <span class="ident">EM_BA1</span> =&gt; <span class="string">&quot;BA1&quot;</span>,
-        <span class="ident">EM_BA2</span> =&gt; <span class="string">&quot;BA2&quot;</span>,
-        <span class="ident">EM_XCORE</span> =&gt; <span class="string">&quot;XCORE&quot;</span>,
-        <span class="ident">EM_MCHP_PIC</span> =&gt; <span class="string">&quot;MCHP_PIC&quot;</span>,
-        <span class="ident">EM_KM32</span> =&gt; <span class="string">&quot;KM32&quot;</span>,
-        <span class="ident">EM_KMX32</span> =&gt; <span class="string">&quot;KMX32&quot;</span>,
-        <span class="ident">EM_EMX16</span> =&gt; <span class="string">&quot;EMX16&quot;</span>,
-        <span class="ident">EM_EMX8</span> =&gt; <span class="string">&quot;EMX8&quot;</span>,
-        <span class="ident">EM_KVARC</span> =&gt; <span class="string">&quot;KVARC&quot;</span>,
-        <span class="ident">EM_CDP</span> =&gt; <span class="string">&quot;CDP&quot;</span>,
-        <span class="ident">EM_COGE</span> =&gt; <span class="string">&quot;COGE&quot;</span>,
-        <span class="ident">EM_COOL</span> =&gt; <span class="string">&quot;COOL&quot;</span>,
-        <span class="ident">EM_NORC</span> =&gt; <span class="string">&quot;NORC&quot;</span>,
-        <span class="ident">EM_CSR_KALIMBA</span> =&gt; <span class="string">&quot;CSR_KALIMBA&quot;</span>,
-        <span class="ident">EM_Z80</span> =&gt; <span class="string">&quot;Z80&quot;</span>,
-        <span class="ident">EM_VISIUM</span> =&gt; <span class="string">&quot;VISIUM&quot;</span>,
-        <span class="ident">EM_FT32</span> =&gt; <span class="string">&quot;FT32&quot;</span>,
-        <span class="ident">EM_MOXIE</span> =&gt; <span class="string">&quot;MOXIE&quot;</span>,
-        <span class="ident">EM_AMDGPU</span> =&gt; <span class="string">&quot;AMDGPU&quot;</span>,
-        <span class="ident">EM_RISCV</span> =&gt; <span class="string">&quot;RISCV&quot;</span>,
-        <span class="ident">EM_BPF</span> =&gt; <span class="string">&quot;BPF&quot;</span>,
-        <span class="ident">_val</span> =&gt; <span class="string">&quot;EM_UNKNOWN&quot;</span>,
+<span class="doccomment">/// Convert machine to str representation
+</span><span class="kw">pub fn </span>machine_to_str (machine: u16) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str {
+    <span class="kw">match </span>machine {
+        EM_M32 =&gt; <span class="string">&quot;M32&quot;</span>,
+        EM_SPARC =&gt; <span class="string">&quot;SPARC&quot;</span>,
+        EM_386 =&gt; <span class="string">&quot;386&quot;</span>,
+        EM_68K =&gt; <span class="string">&quot;68K&quot;</span>,
+        EM_88K =&gt; <span class="string">&quot;88K&quot;</span>,
+        EM_IAMCU =&gt; <span class="string">&quot;IAMCU&quot;</span>,
+        EM_860 =&gt; <span class="string">&quot;860&quot;</span>,
+        EM_MIPS =&gt; <span class="string">&quot;MIPS&quot;</span>,
+        EM_S370 =&gt; <span class="string">&quot;S370&quot;</span>,
+        EM_MIPS_RS3_LE =&gt; <span class="string">&quot;MIPS_RS3_LE&quot;</span>,
+        EM_PARISC =&gt; <span class="string">&quot;PARISC&quot;</span>,
+        EM_VPP500 =&gt; <span class="string">&quot;VPP500&quot;</span>,
+        EM_SPARC32PLUS =&gt; <span class="string">&quot;SPARC32PLUS&quot;</span>,
+        EM_960 =&gt; <span class="string">&quot;960&quot;</span>,
+        EM_PPC =&gt; <span class="string">&quot;PPC&quot;</span>,
+        EM_PPC64 =&gt; <span class="string">&quot;PPC64&quot;</span>,
+        EM_S390 =&gt; <span class="string">&quot;S390&quot;</span>,
+        EM_SPU =&gt; <span class="string">&quot;SPU&quot;</span>,
+        EM_V800 =&gt; <span class="string">&quot;V800&quot;</span>,
+        EM_FR20 =&gt; <span class="string">&quot;FR20&quot;</span>,
+        EM_RH32 =&gt; <span class="string">&quot;RH32&quot;</span>,
+        EM_RCE =&gt; <span class="string">&quot;RCE&quot;</span>,
+        EM_ARM =&gt; <span class="string">&quot;ARM&quot;</span>,
+        EM_FAKE_ALPHA =&gt; <span class="string">&quot;FAKE_ALPHA&quot;</span>,
+        EM_SH =&gt; <span class="string">&quot;SH&quot;</span>,
+        EM_SPARCV9 =&gt; <span class="string">&quot;SPARCV9&quot;</span>,
+        EM_TRICORE =&gt; <span class="string">&quot;TRICORE&quot;</span>,
+        EM_ARC =&gt; <span class="string">&quot;ARC&quot;</span>,
+        EM_H8_300 =&gt; <span class="string">&quot;H8_300&quot;</span>,
+        EM_H8_300H =&gt; <span class="string">&quot;H8_300H&quot;</span>,
+        EM_H8S =&gt; <span class="string">&quot;H8S&quot;</span>,
+        EM_H8_500 =&gt; <span class="string">&quot;H8_500&quot;</span>,
+        EM_IA_64 =&gt; <span class="string">&quot;IA_64&quot;</span>,
+        EM_MIPS_X =&gt; <span class="string">&quot;MIPS_X&quot;</span>,
+        EM_COLDFIRE =&gt; <span class="string">&quot;COLDFIRE&quot;</span>,
+        EM_68HC12 =&gt; <span class="string">&quot;68HC12&quot;</span>,
+        EM_MMA =&gt; <span class="string">&quot;MMA&quot;</span>,
+        EM_PCP =&gt; <span class="string">&quot;PCP&quot;</span>,
+        EM_NCPU =&gt; <span class="string">&quot;NCPU&quot;</span>,
+        EM_NDR1 =&gt; <span class="string">&quot;NDR1&quot;</span>,
+        EM_STARCORE =&gt; <span class="string">&quot;STARCORE&quot;</span>,
+        EM_ME16 =&gt; <span class="string">&quot;ME16&quot;</span>,
+        EM_ST100 =&gt; <span class="string">&quot;ST100&quot;</span>,
+        EM_TINYJ =&gt; <span class="string">&quot;TINYJ&quot;</span>,
+        EM_X86_64 =&gt; <span class="string">&quot;X86_64&quot;</span>,
+        EM_PDSP =&gt; <span class="string">&quot;PDSP&quot;</span>,
+        EM_PDP10 =&gt; <span class="string">&quot;PDP10&quot;</span>,
+        EM_PDP11 =&gt; <span class="string">&quot;PDP11&quot;</span>,
+        EM_FX66 =&gt; <span class="string">&quot;FX66&quot;</span>,
+        EM_ST9PLUS =&gt; <span class="string">&quot;ST9PLUS&quot;</span>,
+        EM_ST7 =&gt; <span class="string">&quot;ST7&quot;</span>,
+        EM_68HC16 =&gt; <span class="string">&quot;68HC16&quot;</span>,
+        EM_68HC11 =&gt; <span class="string">&quot;68HC11&quot;</span>,
+        EM_68HC08 =&gt; <span class="string">&quot;68HC08&quot;</span>,
+        EM_68HC05 =&gt; <span class="string">&quot;68HC05&quot;</span>,
+        EM_SVX =&gt; <span class="string">&quot;SVX&quot;</span>,
+        EM_ST19 =&gt; <span class="string">&quot;ST19&quot;</span>,
+        EM_VAX =&gt; <span class="string">&quot;VAX&quot;</span>,
+        EM_CRIS =&gt; <span class="string">&quot;CRIS&quot;</span>,
+        EM_JAVELIN =&gt; <span class="string">&quot;JAVELIN&quot;</span>,
+        EM_FIREPATH =&gt; <span class="string">&quot;FIREPATH&quot;</span>,
+        EM_ZSP =&gt; <span class="string">&quot;ZSP&quot;</span>,
+        EM_MMIX =&gt; <span class="string">&quot;MMIX&quot;</span>,
+        EM_HUANY =&gt; <span class="string">&quot;HUANY&quot;</span>,
+        EM_PRISM =&gt; <span class="string">&quot;PRISM&quot;</span>,
+        EM_AVR =&gt; <span class="string">&quot;AVR&quot;</span>,
+        EM_FR30 =&gt; <span class="string">&quot;FR30&quot;</span>,
+        EM_D10V =&gt; <span class="string">&quot;D10V&quot;</span>,
+        EM_D30V =&gt; <span class="string">&quot;D30V&quot;</span>,
+        EM_V850 =&gt; <span class="string">&quot;V850&quot;</span>,
+        EM_M32R =&gt; <span class="string">&quot;M32R&quot;</span>,
+        EM_MN10300 =&gt; <span class="string">&quot;MN10300&quot;</span>,
+        EM_MN10200 =&gt; <span class="string">&quot;MN10200&quot;</span>,
+        EM_PJ =&gt; <span class="string">&quot;PJ&quot;</span>,
+        EM_OPENRISC =&gt; <span class="string">&quot;OPENRISC&quot;</span>,
+        EM_ARC_COMPACT =&gt; <span class="string">&quot;ARC_COMPACT&quot;</span>,
+        EM_XTENSA =&gt; <span class="string">&quot;XTENSA&quot;</span>,
+        EM_VIDEOCORE =&gt; <span class="string">&quot;VIDEOCORE&quot;</span>,
+        EM_TMM_GPP =&gt; <span class="string">&quot;TMM_GPP&quot;</span>,
+        EM_NS32K =&gt; <span class="string">&quot;NS32K&quot;</span>,
+        EM_TPC =&gt; <span class="string">&quot;TPC&quot;</span>,
+        EM_SNP1K =&gt; <span class="string">&quot;SNP1K&quot;</span>,
+        EM_ST200 =&gt; <span class="string">&quot;ST200&quot;</span>,
+        EM_IP2K =&gt; <span class="string">&quot;IP2K&quot;</span>,
+        EM_MAX =&gt; <span class="string">&quot;MAX&quot;</span>,
+        EM_CR =&gt; <span class="string">&quot;CR&quot;</span>,
+        EM_F2MC16 =&gt; <span class="string">&quot;F2MC16&quot;</span>,
+        EM_MSP430 =&gt; <span class="string">&quot;MSP430&quot;</span>,
+        EM_BLACKFIN =&gt; <span class="string">&quot;BLACKFIN&quot;</span>,
+        EM_SE_C33 =&gt; <span class="string">&quot;SE_C33&quot;</span>,
+        EM_SEP =&gt; <span class="string">&quot;SEP&quot;</span>,
+        EM_ARCA =&gt; <span class="string">&quot;ARCA&quot;</span>,
+        EM_UNICORE =&gt; <span class="string">&quot;UNICORE&quot;</span>,
+        EM_EXCESS =&gt; <span class="string">&quot;EXCESS&quot;</span>,
+        EM_DXP =&gt; <span class="string">&quot;DXP&quot;</span>,
+        EM_ALTERA_NIOS2 =&gt; <span class="string">&quot;ALTERA_NIOS2&quot;</span>,
+        EM_CRX =&gt; <span class="string">&quot;CRX&quot;</span>,
+        EM_XGATE =&gt; <span class="string">&quot;XGATE&quot;</span>,
+        EM_C166 =&gt; <span class="string">&quot;C166&quot;</span>,
+        EM_M16C =&gt; <span class="string">&quot;M16C&quot;</span>,
+        EM_DSPIC30F =&gt; <span class="string">&quot;DSPIC30F&quot;</span>,
+        EM_CE =&gt; <span class="string">&quot;CE&quot;</span>,
+        EM_M32C =&gt; <span class="string">&quot;M32C&quot;</span>,
+        EM_TSK3000 =&gt; <span class="string">&quot;TSK3000&quot;</span>,
+        EM_RS08 =&gt; <span class="string">&quot;RS08&quot;</span>,
+        EM_SHARC =&gt; <span class="string">&quot;SHARC&quot;</span>,
+        EM_ECOG2 =&gt; <span class="string">&quot;ECOG2&quot;</span>,
+        EM_SCORE7 =&gt; <span class="string">&quot;SCORE7&quot;</span>,
+        EM_DSP24 =&gt; <span class="string">&quot;DSP24&quot;</span>,
+        EM_VIDEOCORE3 =&gt; <span class="string">&quot;VIDEOCORE3&quot;</span>,
+        EM_LATTICEMICO32 =&gt; <span class="string">&quot;LATTICEMICO32&quot;</span>,
+        EM_SE_C17 =&gt; <span class="string">&quot;SE_C17&quot;</span>,
+        EM_TI_C6000 =&gt; <span class="string">&quot;TI_C6000&quot;</span>,
+        EM_TI_C2000 =&gt; <span class="string">&quot;TI_C2000&quot;</span>,
+        EM_TI_C5500 =&gt; <span class="string">&quot;TI_C5500&quot;</span>,
+        EM_TI_ARP32 =&gt; <span class="string">&quot;TI_ARP32&quot;</span>,
+        EM_TI_PRU =&gt; <span class="string">&quot;TI_PRU&quot;</span>,
+        EM_MMDSP_PLUS =&gt; <span class="string">&quot;MMDSP_PLUS&quot;</span>,
+        EM_CYPRESS_M8C =&gt; <span class="string">&quot;CYPRESS_M8C&quot;</span>,
+        EM_R32C =&gt; <span class="string">&quot;R32C&quot;</span>,
+        EM_TRIMEDIA =&gt; <span class="string">&quot;TRIMEDIA&quot;</span>,
+        EM_QDSP6 =&gt; <span class="string">&quot;QDSP6&quot;</span>,
+        EM_8051 =&gt; <span class="string">&quot;8051&quot;</span>,
+        EM_STXP7X =&gt; <span class="string">&quot;STXP7X&quot;</span>,
+        EM_NDS32 =&gt; <span class="string">&quot;NDS32&quot;</span>,
+        EM_ECOG1X =&gt; <span class="string">&quot;ECOG1X&quot;</span>,
+        EM_MAXQ30 =&gt; <span class="string">&quot;MAXQ30&quot;</span>,
+        EM_XIMO16 =&gt; <span class="string">&quot;XIMO16&quot;</span>,
+        EM_MANIK =&gt; <span class="string">&quot;MANIK&quot;</span>,
+        EM_CRAYNV2 =&gt; <span class="string">&quot;CRAYNV2&quot;</span>,
+        EM_RX =&gt; <span class="string">&quot;RX&quot;</span>,
+        EM_METAG =&gt; <span class="string">&quot;METAG&quot;</span>,
+        EM_MCST_ELBRUS =&gt; <span class="string">&quot;MCST_ELBRUS&quot;</span>,
+        EM_ECOG16 =&gt; <span class="string">&quot;ECOG16&quot;</span>,
+        EM_CR16 =&gt; <span class="string">&quot;CR16&quot;</span>,
+        EM_ETPU =&gt; <span class="string">&quot;ETPU&quot;</span>,
+        EM_SLE9X =&gt; <span class="string">&quot;SLE9X&quot;</span>,
+        EM_L10M =&gt; <span class="string">&quot;L10M&quot;</span>,
+        EM_K10M =&gt; <span class="string">&quot;K10M&quot;</span>,
+        EM_AARCH64 =&gt; <span class="string">&quot;AARCH64&quot;</span>,
+        EM_AVR32 =&gt; <span class="string">&quot;AVR32&quot;</span>,
+        EM_STM8 =&gt; <span class="string">&quot;STM8&quot;</span>,
+        EM_TILE64 =&gt; <span class="string">&quot;TILE64&quot;</span>,
+        EM_TILEPRO =&gt; <span class="string">&quot;TILEPRO&quot;</span>,
+        EM_MICROBLAZE =&gt; <span class="string">&quot;MICROBLAZE&quot;</span>,
+        EM_CUDA =&gt; <span class="string">&quot;CUDA&quot;</span>,
+        EM_TILEGX =&gt; <span class="string">&quot;TILEGX&quot;</span>,
+        EM_CLOUDSHIELD =&gt; <span class="string">&quot;CLOUDSHIELD&quot;</span>,
+        EM_COREA_1ST =&gt; <span class="string">&quot;COREA_1ST&quot;</span>,
+        EM_COREA_2ND =&gt; <span class="string">&quot;COREA_2ND&quot;</span>,
+        EM_ARC_COMPACT2 =&gt; <span class="string">&quot;ARC_COMPACT2&quot;</span>,
+        EM_OPEN8 =&gt; <span class="string">&quot;OPEN8&quot;</span>,
+        EM_RL78 =&gt; <span class="string">&quot;RL78&quot;</span>,
+        EM_VIDEOCORE5 =&gt; <span class="string">&quot;VIDEOCORE5&quot;</span>,
+        EM_78KOR =&gt; <span class="string">&quot;78KOR&quot;</span>,
+        EM_56800EX =&gt; <span class="string">&quot;56800EX&quot;</span>,
+        EM_BA1 =&gt; <span class="string">&quot;BA1&quot;</span>,
+        EM_BA2 =&gt; <span class="string">&quot;BA2&quot;</span>,
+        EM_XCORE =&gt; <span class="string">&quot;XCORE&quot;</span>,
+        EM_MCHP_PIC =&gt; <span class="string">&quot;MCHP_PIC&quot;</span>,
+        EM_KM32 =&gt; <span class="string">&quot;KM32&quot;</span>,
+        EM_KMX32 =&gt; <span class="string">&quot;KMX32&quot;</span>,
+        EM_EMX16 =&gt; <span class="string">&quot;EMX16&quot;</span>,
+        EM_EMX8 =&gt; <span class="string">&quot;EMX8&quot;</span>,
+        EM_KVARC =&gt; <span class="string">&quot;KVARC&quot;</span>,
+        EM_CDP =&gt; <span class="string">&quot;CDP&quot;</span>,
+        EM_COGE =&gt; <span class="string">&quot;COGE&quot;</span>,
+        EM_COOL =&gt; <span class="string">&quot;COOL&quot;</span>,
+        EM_NORC =&gt; <span class="string">&quot;NORC&quot;</span>,
+        EM_CSR_KALIMBA =&gt; <span class="string">&quot;CSR_KALIMBA&quot;</span>,
+        EM_Z80 =&gt; <span class="string">&quot;Z80&quot;</span>,
+        EM_VISIUM =&gt; <span class="string">&quot;VISIUM&quot;</span>,
+        EM_FT32 =&gt; <span class="string">&quot;FT32&quot;</span>,
+        EM_MOXIE =&gt; <span class="string">&quot;MOXIE&quot;</span>,
+        EM_AMDGPU =&gt; <span class="string">&quot;AMDGPU&quot;</span>,
+        EM_RISCV =&gt; <span class="string">&quot;RISCV&quot;</span>,
+        EM_BPF =&gt; <span class="string">&quot;BPF&quot;</span>,
+        _val =&gt; <span class="string">&quot;EM_UNKNOWN&quot;</span>,
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="goblin" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="goblin" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (77e57db38 2022-10-30)" ></div></body></html>

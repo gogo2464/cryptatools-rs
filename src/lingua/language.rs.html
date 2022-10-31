@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/lingua-1.4.0/src/language.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>language.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../lingua/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../lingua/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../lingua/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/lingua-1.4.0/src/language.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>language.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../lingua/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -1364,1343 +1364,1343 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either expressed or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */</span>
+ */
 
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::alphabet::Alphabet</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::isocode</span>::{<span class="ident">IsoCode639_1</span>, <span class="ident">IsoCode639_3</span>};
-<span class="kw">use</span> <span class="ident">serde</span>::{<span class="ident">Deserialize</span>, <span class="ident">Serialize</span>};
-<span class="kw">use</span> <span class="ident">std::collections::HashSet</span>;
-<span class="kw">use</span> <span class="ident">std::str::FromStr</span>;
-<span class="kw">use</span> <span class="ident">strum::IntoEnumIterator</span>;
-<span class="kw">use</span> <span class="ident">strum_macros</span>::{<span class="ident">EnumIter</span>, <span class="ident">EnumString</span>};
-<span class="kw">use</span> <span class="ident">std::fmt</span>::{<span class="ident">Debug</span>, <span class="ident">Display</span>, <span class="ident">Formatter</span>, <span class="prelude-ty">Result</span>};
+</span><span class="kw">use </span><span class="kw">crate</span>::alphabet::Alphabet;
+<span class="kw">use </span><span class="kw">crate</span>::isocode::{IsoCode639_1, IsoCode639_3};
+<span class="kw">use </span>serde::{Deserialize, Serialize};
+<span class="kw">use </span>std::collections::HashSet;
+<span class="kw">use </span>std::str::FromStr;
+<span class="kw">use </span>strum::IntoEnumIterator;
+<span class="kw">use </span>strum_macros::{EnumIter, EnumString};
+<span class="kw">use </span>std::fmt::{Debug, Display, Formatter, <span class="prelude-ty">Result</span>};
 
-<span class="doccomment">/// This enum specifies the so far 75 supported languages which can be detected by *Lingua*.</span>
-<span class="attribute">#[<span class="ident">derive</span>(
-    <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">Serialize</span>, <span class="ident">Deserialize</span>, <span class="ident">EnumIter</span>, <span class="ident">Eq</span>, <span class="ident">PartialEq</span>, <span class="ident">Hash</span>, <span class="ident">Ord</span>, <span class="ident">PartialOrd</span>, <span class="ident">EnumString</span>,
-)]</span>
-<span class="attribute">#[<span class="ident">serde</span>(<span class="ident">rename_all</span>(<span class="ident">serialize</span> <span class="op">=</span> <span class="string">&quot;UPPERCASE&quot;</span>, <span class="ident">deserialize</span> <span class="op">=</span> <span class="string">&quot;UPPERCASE&quot;</span>))]</span>
-<span class="attribute">#[<span class="ident">strum</span>(<span class="ident">ascii_case_insensitive</span>)]</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Language</span> {
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;afrikaans&quot;</span>)]</span>
-    <span class="ident">Afrikaans</span>,
+<span class="doccomment">/// This enum specifies the so far 75 supported languages which can be detected by *Lingua*.
+</span><span class="attribute">#[derive(
+    Clone, Debug, Serialize, Deserialize, EnumIter, Eq, PartialEq, Hash, Ord, PartialOrd, EnumString,
+)]
+#[serde(rename_all(serialize = <span class="string">&quot;UPPERCASE&quot;</span>, deserialize = <span class="string">&quot;UPPERCASE&quot;</span>))]
+#[strum(ascii_case_insensitive)]
+</span><span class="kw">pub enum </span>Language {
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;afrikaans&quot;</span>)]
+    </span>Afrikaans,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;albanian&quot;</span>)]</span>
-    <span class="ident">Albanian</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;albanian&quot;</span>)]
+    </span>Albanian,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;arabic&quot;</span>)]</span>
-    <span class="ident">Arabic</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;arabic&quot;</span>)]
+    </span>Arabic,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;armenian&quot;</span>)]</span>
-    <span class="ident">Armenian</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;armenian&quot;</span>)]
+    </span>Armenian,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;azerbaijani&quot;</span>)]</span>
-    <span class="ident">Azerbaijani</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;azerbaijani&quot;</span>)]
+    </span>Azerbaijani,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;basque&quot;</span>)]</span>
-    <span class="ident">Basque</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;basque&quot;</span>)]
+    </span>Basque,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;belarusian&quot;</span>)]</span>
-    <span class="ident">Belarusian</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;belarusian&quot;</span>)]
+    </span>Belarusian,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;bengali&quot;</span>)]</span>
-    <span class="ident">Bengali</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;bengali&quot;</span>)]
+    </span>Bengali,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;bokmal&quot;</span>)]</span>
-    <span class="ident">Bokmal</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;bokmal&quot;</span>)]
+    </span>Bokmal,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;bosnian&quot;</span>)]</span>
-    <span class="ident">Bosnian</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;bosnian&quot;</span>)]
+    </span>Bosnian,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;bulgarian&quot;</span>)]</span>
-    <span class="ident">Bulgarian</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;bulgarian&quot;</span>)]
+    </span>Bulgarian,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;catalan&quot;</span>)]</span>
-    <span class="ident">Catalan</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;catalan&quot;</span>)]
+    </span>Catalan,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;chinese&quot;</span>)]</span>
-    <span class="ident">Chinese</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;chinese&quot;</span>)]
+    </span>Chinese,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;croatian&quot;</span>)]</span>
-    <span class="ident">Croatian</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;croatian&quot;</span>)]
+    </span>Croatian,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;czech&quot;</span>)]</span>
-    <span class="ident">Czech</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;czech&quot;</span>)]
+    </span>Czech,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;danish&quot;</span>)]</span>
-    <span class="ident">Danish</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;danish&quot;</span>)]
+    </span>Danish,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dutch&quot;</span>)]</span>
-    <span class="ident">Dutch</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;dutch&quot;</span>)]
+    </span>Dutch,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;english&quot;</span>)]</span>
-    <span class="ident">English</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;english&quot;</span>)]
+    </span>English,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;esperanto&quot;</span>)]</span>
-    <span class="ident">Esperanto</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;esperanto&quot;</span>)]
+    </span>Esperanto,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;estonian&quot;</span>)]</span>
-    <span class="ident">Estonian</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;estonian&quot;</span>)]
+    </span>Estonian,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;finnish&quot;</span>)]</span>
-    <span class="ident">Finnish</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;finnish&quot;</span>)]
+    </span>Finnish,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;french&quot;</span>)]</span>
-    <span class="ident">French</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;french&quot;</span>)]
+    </span>French,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;ganda&quot;</span>)]</span>
-    <span class="ident">Ganda</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;ganda&quot;</span>)]
+    </span>Ganda,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;georgian&quot;</span>)]</span>
-    <span class="ident">Georgian</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;georgian&quot;</span>)]
+    </span>Georgian,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;german&quot;</span>)]</span>
-    <span class="ident">German</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;german&quot;</span>)]
+    </span>German,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;greek&quot;</span>)]</span>
-    <span class="ident">Greek</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;greek&quot;</span>)]
+    </span>Greek,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;gujarati&quot;</span>)]</span>
-    <span class="ident">Gujarati</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;gujarati&quot;</span>)]
+    </span>Gujarati,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;hebrew&quot;</span>)]</span>
-    <span class="ident">Hebrew</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;hebrew&quot;</span>)]
+    </span>Hebrew,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;hindi&quot;</span>)]</span>
-    <span class="ident">Hindi</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;hindi&quot;</span>)]
+    </span>Hindi,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;hungarian&quot;</span>)]</span>
-    <span class="ident">Hungarian</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;hungarian&quot;</span>)]
+    </span>Hungarian,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;icelandic&quot;</span>)]</span>
-    <span class="ident">Icelandic</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;icelandic&quot;</span>)]
+    </span>Icelandic,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;indonesian&quot;</span>)]</span>
-    <span class="ident">Indonesian</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;indonesian&quot;</span>)]
+    </span>Indonesian,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;irish&quot;</span>)]</span>
-    <span class="ident">Irish</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;irish&quot;</span>)]
+    </span>Irish,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;italian&quot;</span>)]</span>
-    <span class="ident">Italian</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;italian&quot;</span>)]
+    </span>Italian,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;japanese&quot;</span>)]</span>
-    <span class="ident">Japanese</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;japanese&quot;</span>)]
+    </span>Japanese,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;kazakh&quot;</span>)]</span>
-    <span class="ident">Kazakh</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;kazakh&quot;</span>)]
+    </span>Kazakh,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;korean&quot;</span>)]</span>
-    <span class="ident">Korean</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;korean&quot;</span>)]
+    </span>Korean,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;latin&quot;</span>)]</span>
-    <span class="ident">Latin</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;latin&quot;</span>)]
+    </span>Latin,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;latvian&quot;</span>)]</span>
-    <span class="ident">Latvian</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;latvian&quot;</span>)]
+    </span>Latvian,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;lithuanian&quot;</span>)]</span>
-    <span class="ident">Lithuanian</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;lithuanian&quot;</span>)]
+    </span>Lithuanian,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;macedonian&quot;</span>)]</span>
-    <span class="ident">Macedonian</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;macedonian&quot;</span>)]
+    </span>Macedonian,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;malay&quot;</span>)]</span>
-    <span class="ident">Malay</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;malay&quot;</span>)]
+    </span>Malay,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;maori&quot;</span>)]</span>
-    <span class="ident">Maori</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;maori&quot;</span>)]
+    </span>Maori,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;marathi&quot;</span>)]</span>
-    <span class="ident">Marathi</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;marathi&quot;</span>)]
+    </span>Marathi,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;mongolian&quot;</span>)]</span>
-    <span class="ident">Mongolian</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;mongolian&quot;</span>)]
+    </span>Mongolian,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;nynorsk&quot;</span>)]</span>
-    <span class="ident">Nynorsk</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;nynorsk&quot;</span>)]
+    </span>Nynorsk,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;persian&quot;</span>)]</span>
-    <span class="ident">Persian</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;persian&quot;</span>)]
+    </span>Persian,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;polish&quot;</span>)]</span>
-    <span class="ident">Polish</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;polish&quot;</span>)]
+    </span>Polish,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;portuguese&quot;</span>)]</span>
-    <span class="ident">Portuguese</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;portuguese&quot;</span>)]
+    </span>Portuguese,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;punjabi&quot;</span>)]</span>
-    <span class="ident">Punjabi</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;punjabi&quot;</span>)]
+    </span>Punjabi,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;romanian&quot;</span>)]</span>
-    <span class="ident">Romanian</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;romanian&quot;</span>)]
+    </span>Romanian,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;russian&quot;</span>)]</span>
-    <span class="ident">Russian</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;russian&quot;</span>)]
+    </span>Russian,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serbian&quot;</span>)]</span>
-    <span class="ident">Serbian</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;serbian&quot;</span>)]
+    </span>Serbian,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;shona&quot;</span>)]</span>
-    <span class="ident">Shona</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;shona&quot;</span>)]
+    </span>Shona,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;slovak&quot;</span>)]</span>
-    <span class="ident">Slovak</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;slovak&quot;</span>)]
+    </span>Slovak,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;slovene&quot;</span>)]</span>
-    <span class="ident">Slovene</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;slovene&quot;</span>)]
+    </span>Slovene,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;somali&quot;</span>)]</span>
-    <span class="ident">Somali</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;somali&quot;</span>)]
+    </span>Somali,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;sotho&quot;</span>)]</span>
-    <span class="ident">Sotho</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;sotho&quot;</span>)]
+    </span>Sotho,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;spanish&quot;</span>)]</span>
-    <span class="ident">Spanish</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;spanish&quot;</span>)]
+    </span>Spanish,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;swahili&quot;</span>)]</span>
-    <span class="ident">Swahili</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;swahili&quot;</span>)]
+    </span>Swahili,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;swedish&quot;</span>)]</span>
-    <span class="ident">Swedish</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;swedish&quot;</span>)]
+    </span>Swedish,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;tagalog&quot;</span>)]</span>
-    <span class="ident">Tagalog</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;tagalog&quot;</span>)]
+    </span>Tagalog,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;tamil&quot;</span>)]</span>
-    <span class="ident">Tamil</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;tamil&quot;</span>)]
+    </span>Tamil,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;telugu&quot;</span>)]</span>
-    <span class="ident">Telugu</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;telugu&quot;</span>)]
+    </span>Telugu,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;thai&quot;</span>)]</span>
-    <span class="ident">Thai</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;thai&quot;</span>)]
+    </span>Thai,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;tsonga&quot;</span>)]</span>
-    <span class="ident">Tsonga</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;tsonga&quot;</span>)]
+    </span>Tsonga,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;tswana&quot;</span>)]</span>
-    <span class="ident">Tswana</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;tswana&quot;</span>)]
+    </span>Tswana,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;turkish&quot;</span>)]</span>
-    <span class="ident">Turkish</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;turkish&quot;</span>)]
+    </span>Turkish,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;ukrainian&quot;</span>)]</span>
-    <span class="ident">Ukrainian</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;ukrainian&quot;</span>)]
+    </span>Ukrainian,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;urdu&quot;</span>)]</span>
-    <span class="ident">Urdu</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;urdu&quot;</span>)]
+    </span>Urdu,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;vietnamese&quot;</span>)]</span>
-    <span class="ident">Vietnamese</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;vietnamese&quot;</span>)]
+    </span>Vietnamese,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;welsh&quot;</span>)]</span>
-    <span class="ident">Welsh</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;welsh&quot;</span>)]
+    </span>Welsh,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xhosa&quot;</span>)]</span>
-    <span class="ident">Xhosa</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;xhosa&quot;</span>)]
+    </span>Xhosa,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;yoruba&quot;</span>)]</span>
-    <span class="ident">Yoruba</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;yoruba&quot;</span>)]
+    </span>Yoruba,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;zulu&quot;</span>)]</span>
-    <span class="ident">Zulu</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;zulu&quot;</span>)]
+    </span>Zulu,
 }
 
-<span class="kw">impl</span> <span class="ident">Display</span> <span class="kw">for</span> <span class="ident">Language</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Result</span> {
-        <span class="kw">let</span> <span class="ident">debug_repr</span> <span class="op">=</span> <span class="macro">format!</span>(<span class="string">&quot;{:?}&quot;</span>, <span class="self">self</span>);
-        <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;{}&quot;</span>, <span class="ident">debug_repr</span>.<span class="ident">to_lowercase</span>())
+<span class="kw">impl </span>Display <span class="kw">for </span>Language {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; <span class="prelude-ty">Result </span>{
+        <span class="kw">let </span>debug_repr = <span class="macro">format!</span>(<span class="string">&quot;{:?}&quot;</span>, <span class="self">self</span>);
+        <span class="macro">write!</span>(f, <span class="string">&quot;{}&quot;</span>, debug_repr.to_lowercase())
     }
 }
 
-<span class="kw">impl</span> <span class="ident">Language</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">all</span>() -&gt; <span class="ident">HashSet</span><span class="op">&lt;</span><span class="ident">Language</span><span class="op">&gt;</span> {
-        <span class="ident">Language::iter</span>().<span class="ident">collect</span>()
+<span class="kw">impl </span>Language {
+    <span class="kw">pub fn </span>all() -&gt; HashSet&lt;Language&gt; {
+        Language::iter().collect()
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">all_spoken_ones</span>() -&gt; <span class="ident">HashSet</span><span class="op">&lt;</span><span class="ident">Language</span><span class="op">&gt;</span> {
-        <span class="ident">Language::iter</span>()
-            .<span class="ident">filter</span>(<span class="op">|</span><span class="ident">it</span><span class="op">|</span> {
-                <span class="kw">if</span> <span class="macro">cfg!</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;latin&quot;</span>) {
-                    <span class="ident">it</span> <span class="op">!</span><span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">Language::from_str</span>(<span class="string">&quot;Latin&quot;</span>).<span class="ident">unwrap</span>()
-                } <span class="kw">else</span> {
-                    <span class="bool-val">true</span>
-                }
+    <span class="kw">pub fn </span>all_spoken_ones() -&gt; HashSet&lt;Language&gt; {
+        Language::iter()
+            .filter(|it| {
+                <span class="kw">if </span><span class="macro">cfg!</span>(feature = <span class="string">&quot;latin&quot;</span>) {
+                    it != <span class="kw-2">&amp;</span>Language::from_str(<span class="string">&quot;Latin&quot;</span>).unwrap()
+                } <span class="kw">else </span>{
+                    <span class="bool-val">true
+                </span>}
             })
-            .<span class="ident">collect</span>()
+            .collect()
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">all_with_arabic_script</span>() -&gt; <span class="ident">HashSet</span><span class="op">&lt;</span><span class="ident">Language</span><span class="op">&gt;</span> {
-        <span class="ident">Language::iter</span>()
-            .<span class="ident">filter</span>(<span class="op">|</span><span class="ident">it</span><span class="op">|</span> <span class="ident">it</span>.<span class="ident">alphabets</span>().<span class="ident">contains</span>(<span class="kw-2">&amp;</span><span class="ident">Alphabet::Arabic</span>))
-            .<span class="ident">collect</span>()
+    <span class="kw">pub fn </span>all_with_arabic_script() -&gt; HashSet&lt;Language&gt; {
+        Language::iter()
+            .filter(|it| it.alphabets().contains(<span class="kw-2">&amp;</span>Alphabet::Arabic))
+            .collect()
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">all_with_cyrillic_script</span>() -&gt; <span class="ident">HashSet</span><span class="op">&lt;</span><span class="ident">Language</span><span class="op">&gt;</span> {
-        <span class="ident">Language::iter</span>()
-            .<span class="ident">filter</span>(<span class="op">|</span><span class="ident">it</span><span class="op">|</span> <span class="ident">it</span>.<span class="ident">alphabets</span>().<span class="ident">contains</span>(<span class="kw-2">&amp;</span><span class="ident">Alphabet::Cyrillic</span>))
-            .<span class="ident">collect</span>()
+    <span class="kw">pub fn </span>all_with_cyrillic_script() -&gt; HashSet&lt;Language&gt; {
+        Language::iter()
+            .filter(|it| it.alphabets().contains(<span class="kw-2">&amp;</span>Alphabet::Cyrillic))
+            .collect()
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">all_with_devanagari_script</span>() -&gt; <span class="ident">HashSet</span><span class="op">&lt;</span><span class="ident">Language</span><span class="op">&gt;</span> {
-        <span class="ident">Language::iter</span>()
-            .<span class="ident">filter</span>(<span class="op">|</span><span class="ident">it</span><span class="op">|</span> <span class="ident">it</span>.<span class="ident">alphabets</span>().<span class="ident">contains</span>(<span class="kw-2">&amp;</span><span class="ident">Alphabet::Devanagari</span>))
-            .<span class="ident">collect</span>()
+    <span class="kw">pub fn </span>all_with_devanagari_script() -&gt; HashSet&lt;Language&gt; {
+        Language::iter()
+            .filter(|it| it.alphabets().contains(<span class="kw-2">&amp;</span>Alphabet::Devanagari))
+            .collect()
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">all_with_latin_script</span>() -&gt; <span class="ident">HashSet</span><span class="op">&lt;</span><span class="ident">Language</span><span class="op">&gt;</span> {
-        <span class="ident">Language::iter</span>()
-            .<span class="ident">filter</span>(<span class="op">|</span><span class="ident">it</span><span class="op">|</span> <span class="ident">it</span>.<span class="ident">alphabets</span>().<span class="ident">contains</span>(<span class="kw-2">&amp;</span><span class="ident">Alphabet::Latin</span>))
-            .<span class="ident">collect</span>()
+    <span class="kw">pub fn </span>all_with_latin_script() -&gt; HashSet&lt;Language&gt; {
+        Language::iter()
+            .filter(|it| it.alphabets().contains(<span class="kw-2">&amp;</span>Alphabet::Latin))
+            .collect()
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_iso_code_639_1</span>(<span class="ident">iso_code</span>: <span class="kw-2">&amp;</span><span class="ident">IsoCode639_1</span>) -&gt; <span class="ident">Language</span> {
-        <span class="ident">Language::iter</span>()
-            .<span class="ident">find</span>(<span class="op">|</span><span class="ident">it</span><span class="op">|</span> <span class="kw-2">&amp;</span><span class="ident">it</span>.<span class="ident">iso_code_639_1</span>() <span class="op">==</span> <span class="ident">iso_code</span>)
-            .<span class="ident">unwrap</span>()
+    <span class="kw">pub fn </span>from_iso_code_639_1(iso_code: <span class="kw-2">&amp;</span>IsoCode639_1) -&gt; Language {
+        Language::iter()
+            .find(|it| <span class="kw-2">&amp;</span>it.iso_code_639_1() == iso_code)
+            .unwrap()
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_iso_code_639_3</span>(<span class="ident">iso_code</span>: <span class="kw-2">&amp;</span><span class="ident">IsoCode639_3</span>) -&gt; <span class="ident">Language</span> {
-        <span class="ident">Language::iter</span>()
-            .<span class="ident">find</span>(<span class="op">|</span><span class="ident">it</span><span class="op">|</span> <span class="kw-2">&amp;</span><span class="ident">it</span>.<span class="ident">iso_code_639_3</span>() <span class="op">==</span> <span class="ident">iso_code</span>)
-            .<span class="ident">unwrap</span>()
+    <span class="kw">pub fn </span>from_iso_code_639_3(iso_code: <span class="kw-2">&amp;</span>IsoCode639_3) -&gt; Language {
+        Language::iter()
+            .find(|it| <span class="kw-2">&amp;</span>it.iso_code_639_3() == iso_code)
+            .unwrap()
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">iso_code_639_1</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">IsoCode639_1</span> {
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;afrikaans&quot;</span>)]</span>
-            <span class="ident">Language::Afrikaans</span> =&gt; <span class="ident">IsoCode639_1::AF</span>,
+    <span class="kw">pub fn </span>iso_code_639_1(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; IsoCode639_1 {
+        <span class="kw">match </span><span class="self">self </span>{
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;afrikaans&quot;</span>)]
+            </span>Language::Afrikaans =&gt; IsoCode639_1::AF,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;albanian&quot;</span>)]</span>
-            <span class="ident">Language::Albanian</span> =&gt; <span class="ident">IsoCode639_1::SQ</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;albanian&quot;</span>)]
+            </span>Language::Albanian =&gt; IsoCode639_1::SQ,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;arabic&quot;</span>)]</span>
-            <span class="ident">Language::Arabic</span> =&gt; <span class="ident">IsoCode639_1::AR</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;arabic&quot;</span>)]
+            </span>Language::Arabic =&gt; IsoCode639_1::AR,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;armenian&quot;</span>)]</span>
-            <span class="ident">Language::Armenian</span> =&gt; <span class="ident">IsoCode639_1::HY</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;armenian&quot;</span>)]
+            </span>Language::Armenian =&gt; IsoCode639_1::HY,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;azerbaijani&quot;</span>)]</span>
-            <span class="ident">Language::Azerbaijani</span> =&gt; <span class="ident">IsoCode639_1::AZ</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;azerbaijani&quot;</span>)]
+            </span>Language::Azerbaijani =&gt; IsoCode639_1::AZ,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;basque&quot;</span>)]</span>
-            <span class="ident">Language::Basque</span> =&gt; <span class="ident">IsoCode639_1::EU</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;basque&quot;</span>)]
+            </span>Language::Basque =&gt; IsoCode639_1::EU,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;belarusian&quot;</span>)]</span>
-            <span class="ident">Language::Belarusian</span> =&gt; <span class="ident">IsoCode639_1::BE</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;belarusian&quot;</span>)]
+            </span>Language::Belarusian =&gt; IsoCode639_1::BE,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;bengali&quot;</span>)]</span>
-            <span class="ident">Language::Bengali</span> =&gt; <span class="ident">IsoCode639_1::BN</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;bengali&quot;</span>)]
+            </span>Language::Bengali =&gt; IsoCode639_1::BN,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;bokmal&quot;</span>)]</span>
-            <span class="ident">Language::Bokmal</span> =&gt; <span class="ident">IsoCode639_1::NB</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;bokmal&quot;</span>)]
+            </span>Language::Bokmal =&gt; IsoCode639_1::NB,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;bosnian&quot;</span>)]</span>
-            <span class="ident">Language::Bosnian</span> =&gt; <span class="ident">IsoCode639_1::BS</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;bosnian&quot;</span>)]
+            </span>Language::Bosnian =&gt; IsoCode639_1::BS,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;bulgarian&quot;</span>)]</span>
-            <span class="ident">Language::Bulgarian</span> =&gt; <span class="ident">IsoCode639_1::BG</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;bulgarian&quot;</span>)]
+            </span>Language::Bulgarian =&gt; IsoCode639_1::BG,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;catalan&quot;</span>)]</span>
-            <span class="ident">Language::Catalan</span> =&gt; <span class="ident">IsoCode639_1::CA</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;catalan&quot;</span>)]
+            </span>Language::Catalan =&gt; IsoCode639_1::CA,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;chinese&quot;</span>)]</span>
-            <span class="ident">Language::Chinese</span> =&gt; <span class="ident">IsoCode639_1::ZH</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;chinese&quot;</span>)]
+            </span>Language::Chinese =&gt; IsoCode639_1::ZH,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;croatian&quot;</span>)]</span>
-            <span class="ident">Language::Croatian</span> =&gt; <span class="ident">IsoCode639_1::HR</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;croatian&quot;</span>)]
+            </span>Language::Croatian =&gt; IsoCode639_1::HR,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;czech&quot;</span>)]</span>
-            <span class="ident">Language::Czech</span> =&gt; <span class="ident">IsoCode639_1::CS</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;czech&quot;</span>)]
+            </span>Language::Czech =&gt; IsoCode639_1::CS,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;danish&quot;</span>)]</span>
-            <span class="ident">Language::Danish</span> =&gt; <span class="ident">IsoCode639_1::DA</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;danish&quot;</span>)]
+            </span>Language::Danish =&gt; IsoCode639_1::DA,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dutch&quot;</span>)]</span>
-            <span class="ident">Language::Dutch</span> =&gt; <span class="ident">IsoCode639_1::NL</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;dutch&quot;</span>)]
+            </span>Language::Dutch =&gt; IsoCode639_1::NL,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;english&quot;</span>)]</span>
-            <span class="ident">Language::English</span> =&gt; <span class="ident">IsoCode639_1::EN</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;english&quot;</span>)]
+            </span>Language::English =&gt; IsoCode639_1::EN,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;esperanto&quot;</span>)]</span>
-            <span class="ident">Language::Esperanto</span> =&gt; <span class="ident">IsoCode639_1::EO</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;esperanto&quot;</span>)]
+            </span>Language::Esperanto =&gt; IsoCode639_1::EO,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;estonian&quot;</span>)]</span>
-            <span class="ident">Language::Estonian</span> =&gt; <span class="ident">IsoCode639_1::ET</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;estonian&quot;</span>)]
+            </span>Language::Estonian =&gt; IsoCode639_1::ET,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;finnish&quot;</span>)]</span>
-            <span class="ident">Language::Finnish</span> =&gt; <span class="ident">IsoCode639_1::FI</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;finnish&quot;</span>)]
+            </span>Language::Finnish =&gt; IsoCode639_1::FI,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;french&quot;</span>)]</span>
-            <span class="ident">Language::French</span> =&gt; <span class="ident">IsoCode639_1::FR</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;french&quot;</span>)]
+            </span>Language::French =&gt; IsoCode639_1::FR,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;ganda&quot;</span>)]</span>
-            <span class="ident">Language::Ganda</span> =&gt; <span class="ident">IsoCode639_1::LG</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;ganda&quot;</span>)]
+            </span>Language::Ganda =&gt; IsoCode639_1::LG,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;georgian&quot;</span>)]</span>
-            <span class="ident">Language::Georgian</span> =&gt; <span class="ident">IsoCode639_1::KA</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;georgian&quot;</span>)]
+            </span>Language::Georgian =&gt; IsoCode639_1::KA,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;german&quot;</span>)]</span>
-            <span class="ident">Language::German</span> =&gt; <span class="ident">IsoCode639_1::DE</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;german&quot;</span>)]
+            </span>Language::German =&gt; IsoCode639_1::DE,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;greek&quot;</span>)]</span>
-            <span class="ident">Language::Greek</span> =&gt; <span class="ident">IsoCode639_1::EL</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;greek&quot;</span>)]
+            </span>Language::Greek =&gt; IsoCode639_1::EL,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;gujarati&quot;</span>)]</span>
-            <span class="ident">Language::Gujarati</span> =&gt; <span class="ident">IsoCode639_1::GU</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;gujarati&quot;</span>)]
+            </span>Language::Gujarati =&gt; IsoCode639_1::GU,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;hebrew&quot;</span>)]</span>
-            <span class="ident">Language::Hebrew</span> =&gt; <span class="ident">IsoCode639_1::HE</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;hebrew&quot;</span>)]
+            </span>Language::Hebrew =&gt; IsoCode639_1::HE,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;hindi&quot;</span>)]</span>
-            <span class="ident">Language::Hindi</span> =&gt; <span class="ident">IsoCode639_1::HI</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;hindi&quot;</span>)]
+            </span>Language::Hindi =&gt; IsoCode639_1::HI,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;hungarian&quot;</span>)]</span>
-            <span class="ident">Language::Hungarian</span> =&gt; <span class="ident">IsoCode639_1::HU</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;hungarian&quot;</span>)]
+            </span>Language::Hungarian =&gt; IsoCode639_1::HU,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;icelandic&quot;</span>)]</span>
-            <span class="ident">Language::Icelandic</span> =&gt; <span class="ident">IsoCode639_1::IS</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;icelandic&quot;</span>)]
+            </span>Language::Icelandic =&gt; IsoCode639_1::IS,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;indonesian&quot;</span>)]</span>
-            <span class="ident">Language::Indonesian</span> =&gt; <span class="ident">IsoCode639_1::ID</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;indonesian&quot;</span>)]
+            </span>Language::Indonesian =&gt; IsoCode639_1::ID,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;irish&quot;</span>)]</span>
-            <span class="ident">Language::Irish</span> =&gt; <span class="ident">IsoCode639_1::GA</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;irish&quot;</span>)]
+            </span>Language::Irish =&gt; IsoCode639_1::GA,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;italian&quot;</span>)]</span>
-            <span class="ident">Language::Italian</span> =&gt; <span class="ident">IsoCode639_1::IT</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;italian&quot;</span>)]
+            </span>Language::Italian =&gt; IsoCode639_1::IT,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;japanese&quot;</span>)]</span>
-            <span class="ident">Language::Japanese</span> =&gt; <span class="ident">IsoCode639_1::JA</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;japanese&quot;</span>)]
+            </span>Language::Japanese =&gt; IsoCode639_1::JA,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;kazakh&quot;</span>)]</span>
-            <span class="ident">Language::Kazakh</span> =&gt; <span class="ident">IsoCode639_1::KK</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;kazakh&quot;</span>)]
+            </span>Language::Kazakh =&gt; IsoCode639_1::KK,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;korean&quot;</span>)]</span>
-            <span class="ident">Language::Korean</span> =&gt; <span class="ident">IsoCode639_1::KO</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;korean&quot;</span>)]
+            </span>Language::Korean =&gt; IsoCode639_1::KO,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;latin&quot;</span>)]</span>
-            <span class="ident">Language::Latin</span> =&gt; <span class="ident">IsoCode639_1::LA</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;latin&quot;</span>)]
+            </span>Language::Latin =&gt; IsoCode639_1::LA,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;latvian&quot;</span>)]</span>
-            <span class="ident">Language::Latvian</span> =&gt; <span class="ident">IsoCode639_1::LV</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;latvian&quot;</span>)]
+            </span>Language::Latvian =&gt; IsoCode639_1::LV,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;lithuanian&quot;</span>)]</span>
-            <span class="ident">Language::Lithuanian</span> =&gt; <span class="ident">IsoCode639_1::LT</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;lithuanian&quot;</span>)]
+            </span>Language::Lithuanian =&gt; IsoCode639_1::LT,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;macedonian&quot;</span>)]</span>
-            <span class="ident">Language::Macedonian</span> =&gt; <span class="ident">IsoCode639_1::MK</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;macedonian&quot;</span>)]
+            </span>Language::Macedonian =&gt; IsoCode639_1::MK,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;malay&quot;</span>)]</span>
-            <span class="ident">Language::Malay</span> =&gt; <span class="ident">IsoCode639_1::MS</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;malay&quot;</span>)]
+            </span>Language::Malay =&gt; IsoCode639_1::MS,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;maori&quot;</span>)]</span>
-            <span class="ident">Language::Maori</span> =&gt; <span class="ident">IsoCode639_1::MI</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;maori&quot;</span>)]
+            </span>Language::Maori =&gt; IsoCode639_1::MI,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;marathi&quot;</span>)]</span>
-            <span class="ident">Language::Marathi</span> =&gt; <span class="ident">IsoCode639_1::MR</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;marathi&quot;</span>)]
+            </span>Language::Marathi =&gt; IsoCode639_1::MR,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;mongolian&quot;</span>)]</span>
-            <span class="ident">Language::Mongolian</span> =&gt; <span class="ident">IsoCode639_1::MN</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;mongolian&quot;</span>)]
+            </span>Language::Mongolian =&gt; IsoCode639_1::MN,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;nynorsk&quot;</span>)]</span>
-            <span class="ident">Language::Nynorsk</span> =&gt; <span class="ident">IsoCode639_1::NN</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;nynorsk&quot;</span>)]
+            </span>Language::Nynorsk =&gt; IsoCode639_1::NN,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;persian&quot;</span>)]</span>
-            <span class="ident">Language::Persian</span> =&gt; <span class="ident">IsoCode639_1::FA</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;persian&quot;</span>)]
+            </span>Language::Persian =&gt; IsoCode639_1::FA,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;polish&quot;</span>)]</span>
-            <span class="ident">Language::Polish</span> =&gt; <span class="ident">IsoCode639_1::PL</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;polish&quot;</span>)]
+            </span>Language::Polish =&gt; IsoCode639_1::PL,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;portuguese&quot;</span>)]</span>
-            <span class="ident">Language::Portuguese</span> =&gt; <span class="ident">IsoCode639_1::PT</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;portuguese&quot;</span>)]
+            </span>Language::Portuguese =&gt; IsoCode639_1::PT,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;punjabi&quot;</span>)]</span>
-            <span class="ident">Language::Punjabi</span> =&gt; <span class="ident">IsoCode639_1::PA</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;punjabi&quot;</span>)]
+            </span>Language::Punjabi =&gt; IsoCode639_1::PA,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;romanian&quot;</span>)]</span>
-            <span class="ident">Language::Romanian</span> =&gt; <span class="ident">IsoCode639_1::RO</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;romanian&quot;</span>)]
+            </span>Language::Romanian =&gt; IsoCode639_1::RO,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;russian&quot;</span>)]</span>
-            <span class="ident">Language::Russian</span> =&gt; <span class="ident">IsoCode639_1::RU</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;russian&quot;</span>)]
+            </span>Language::Russian =&gt; IsoCode639_1::RU,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serbian&quot;</span>)]</span>
-            <span class="ident">Language::Serbian</span> =&gt; <span class="ident">IsoCode639_1::SR</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;serbian&quot;</span>)]
+            </span>Language::Serbian =&gt; IsoCode639_1::SR,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;shona&quot;</span>)]</span>
-            <span class="ident">Language::Shona</span> =&gt; <span class="ident">IsoCode639_1::SN</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;shona&quot;</span>)]
+            </span>Language::Shona =&gt; IsoCode639_1::SN,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;slovak&quot;</span>)]</span>
-            <span class="ident">Language::Slovak</span> =&gt; <span class="ident">IsoCode639_1::SK</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;slovak&quot;</span>)]
+            </span>Language::Slovak =&gt; IsoCode639_1::SK,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;slovene&quot;</span>)]</span>
-            <span class="ident">Language::Slovene</span> =&gt; <span class="ident">IsoCode639_1::SL</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;slovene&quot;</span>)]
+            </span>Language::Slovene =&gt; IsoCode639_1::SL,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;somali&quot;</span>)]</span>
-            <span class="ident">Language::Somali</span> =&gt; <span class="ident">IsoCode639_1::SO</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;somali&quot;</span>)]
+            </span>Language::Somali =&gt; IsoCode639_1::SO,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;sotho&quot;</span>)]</span>
-            <span class="ident">Language::Sotho</span> =&gt; <span class="ident">IsoCode639_1::ST</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;sotho&quot;</span>)]
+            </span>Language::Sotho =&gt; IsoCode639_1::ST,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;spanish&quot;</span>)]</span>
-            <span class="ident">Language::Spanish</span> =&gt; <span class="ident">IsoCode639_1::ES</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;spanish&quot;</span>)]
+            </span>Language::Spanish =&gt; IsoCode639_1::ES,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;swahili&quot;</span>)]</span>
-            <span class="ident">Language::Swahili</span> =&gt; <span class="ident">IsoCode639_1::SW</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;swahili&quot;</span>)]
+            </span>Language::Swahili =&gt; IsoCode639_1::SW,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;swedish&quot;</span>)]</span>
-            <span class="ident">Language::Swedish</span> =&gt; <span class="ident">IsoCode639_1::SV</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;swedish&quot;</span>)]
+            </span>Language::Swedish =&gt; IsoCode639_1::SV,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;tagalog&quot;</span>)]</span>
-            <span class="ident">Language::Tagalog</span> =&gt; <span class="ident">IsoCode639_1::TL</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;tagalog&quot;</span>)]
+            </span>Language::Tagalog =&gt; IsoCode639_1::TL,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;tamil&quot;</span>)]</span>
-            <span class="ident">Language::Tamil</span> =&gt; <span class="ident">IsoCode639_1::TA</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;tamil&quot;</span>)]
+            </span>Language::Tamil =&gt; IsoCode639_1::TA,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;telugu&quot;</span>)]</span>
-            <span class="ident">Language::Telugu</span> =&gt; <span class="ident">IsoCode639_1::TE</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;telugu&quot;</span>)]
+            </span>Language::Telugu =&gt; IsoCode639_1::TE,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;thai&quot;</span>)]</span>
-            <span class="ident">Language::Thai</span> =&gt; <span class="ident">IsoCode639_1::TH</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;thai&quot;</span>)]
+            </span>Language::Thai =&gt; IsoCode639_1::TH,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;tsonga&quot;</span>)]</span>
-            <span class="ident">Language::Tsonga</span> =&gt; <span class="ident">IsoCode639_1::TS</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;tsonga&quot;</span>)]
+            </span>Language::Tsonga =&gt; IsoCode639_1::TS,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;tswana&quot;</span>)]</span>
-            <span class="ident">Language::Tswana</span> =&gt; <span class="ident">IsoCode639_1::TN</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;tswana&quot;</span>)]
+            </span>Language::Tswana =&gt; IsoCode639_1::TN,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;turkish&quot;</span>)]</span>
-            <span class="ident">Language::Turkish</span> =&gt; <span class="ident">IsoCode639_1::TR</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;turkish&quot;</span>)]
+            </span>Language::Turkish =&gt; IsoCode639_1::TR,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;ukrainian&quot;</span>)]</span>
-            <span class="ident">Language::Ukrainian</span> =&gt; <span class="ident">IsoCode639_1::UK</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;ukrainian&quot;</span>)]
+            </span>Language::Ukrainian =&gt; IsoCode639_1::UK,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;urdu&quot;</span>)]</span>
-            <span class="ident">Language::Urdu</span> =&gt; <span class="ident">IsoCode639_1::UR</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;urdu&quot;</span>)]
+            </span>Language::Urdu =&gt; IsoCode639_1::UR,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;vietnamese&quot;</span>)]</span>
-            <span class="ident">Language::Vietnamese</span> =&gt; <span class="ident">IsoCode639_1::VI</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;vietnamese&quot;</span>)]
+            </span>Language::Vietnamese =&gt; IsoCode639_1::VI,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;welsh&quot;</span>)]</span>
-            <span class="ident">Language::Welsh</span> =&gt; <span class="ident">IsoCode639_1::CY</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;welsh&quot;</span>)]
+            </span>Language::Welsh =&gt; IsoCode639_1::CY,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xhosa&quot;</span>)]</span>
-            <span class="ident">Language::Xhosa</span> =&gt; <span class="ident">IsoCode639_1::XH</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;xhosa&quot;</span>)]
+            </span>Language::Xhosa =&gt; IsoCode639_1::XH,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;yoruba&quot;</span>)]</span>
-            <span class="ident">Language::Yoruba</span> =&gt; <span class="ident">IsoCode639_1::YO</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;yoruba&quot;</span>)]
+            </span>Language::Yoruba =&gt; IsoCode639_1::YO,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;zulu&quot;</span>)]</span>
-            <span class="ident">Language::Zulu</span> =&gt; <span class="ident">IsoCode639_1::ZU</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;zulu&quot;</span>)]
+            </span>Language::Zulu =&gt; IsoCode639_1::ZU,
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">iso_code_639_3</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">IsoCode639_3</span> {
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;afrikaans&quot;</span>)]</span>
-            <span class="ident">Language::Afrikaans</span> =&gt; <span class="ident">IsoCode639_3::AFR</span>,
+    <span class="kw">pub fn </span>iso_code_639_3(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; IsoCode639_3 {
+        <span class="kw">match </span><span class="self">self </span>{
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;afrikaans&quot;</span>)]
+            </span>Language::Afrikaans =&gt; IsoCode639_3::AFR,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;albanian&quot;</span>)]</span>
-            <span class="ident">Language::Albanian</span> =&gt; <span class="ident">IsoCode639_3::SQI</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;albanian&quot;</span>)]
+            </span>Language::Albanian =&gt; IsoCode639_3::SQI,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;arabic&quot;</span>)]</span>
-            <span class="ident">Language::Arabic</span> =&gt; <span class="ident">IsoCode639_3::ARA</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;arabic&quot;</span>)]
+            </span>Language::Arabic =&gt; IsoCode639_3::ARA,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;armenian&quot;</span>)]</span>
-            <span class="ident">Language::Armenian</span> =&gt; <span class="ident">IsoCode639_3::HYE</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;armenian&quot;</span>)]
+            </span>Language::Armenian =&gt; IsoCode639_3::HYE,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;azerbaijani&quot;</span>)]</span>
-            <span class="ident">Language::Azerbaijani</span> =&gt; <span class="ident">IsoCode639_3::AZE</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;azerbaijani&quot;</span>)]
+            </span>Language::Azerbaijani =&gt; IsoCode639_3::AZE,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;basque&quot;</span>)]</span>
-            <span class="ident">Language::Basque</span> =&gt; <span class="ident">IsoCode639_3::EUS</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;basque&quot;</span>)]
+            </span>Language::Basque =&gt; IsoCode639_3::EUS,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;belarusian&quot;</span>)]</span>
-            <span class="ident">Language::Belarusian</span> =&gt; <span class="ident">IsoCode639_3::BEL</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;belarusian&quot;</span>)]
+            </span>Language::Belarusian =&gt; IsoCode639_3::BEL,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;bengali&quot;</span>)]</span>
-            <span class="ident">Language::Bengali</span> =&gt; <span class="ident">IsoCode639_3::BEN</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;bengali&quot;</span>)]
+            </span>Language::Bengali =&gt; IsoCode639_3::BEN,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;bokmal&quot;</span>)]</span>
-            <span class="ident">Language::Bokmal</span> =&gt; <span class="ident">IsoCode639_3::NOB</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;bokmal&quot;</span>)]
+            </span>Language::Bokmal =&gt; IsoCode639_3::NOB,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;bosnian&quot;</span>)]</span>
-            <span class="ident">Language::Bosnian</span> =&gt; <span class="ident">IsoCode639_3::BOS</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;bosnian&quot;</span>)]
+            </span>Language::Bosnian =&gt; IsoCode639_3::BOS,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;bulgarian&quot;</span>)]</span>
-            <span class="ident">Language::Bulgarian</span> =&gt; <span class="ident">IsoCode639_3::BUL</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;bulgarian&quot;</span>)]
+            </span>Language::Bulgarian =&gt; IsoCode639_3::BUL,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;catalan&quot;</span>)]</span>
-            <span class="ident">Language::Catalan</span> =&gt; <span class="ident">IsoCode639_3::CAT</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;catalan&quot;</span>)]
+            </span>Language::Catalan =&gt; IsoCode639_3::CAT,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;chinese&quot;</span>)]</span>
-            <span class="ident">Language::Chinese</span> =&gt; <span class="ident">IsoCode639_3::ZHO</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;chinese&quot;</span>)]
+            </span>Language::Chinese =&gt; IsoCode639_3::ZHO,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;croatian&quot;</span>)]</span>
-            <span class="ident">Language::Croatian</span> =&gt; <span class="ident">IsoCode639_3::HRV</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;croatian&quot;</span>)]
+            </span>Language::Croatian =&gt; IsoCode639_3::HRV,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;czech&quot;</span>)]</span>
-            <span class="ident">Language::Czech</span> =&gt; <span class="ident">IsoCode639_3::CES</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;czech&quot;</span>)]
+            </span>Language::Czech =&gt; IsoCode639_3::CES,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;danish&quot;</span>)]</span>
-            <span class="ident">Language::Danish</span> =&gt; <span class="ident">IsoCode639_3::DAN</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;danish&quot;</span>)]
+            </span>Language::Danish =&gt; IsoCode639_3::DAN,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dutch&quot;</span>)]</span>
-            <span class="ident">Language::Dutch</span> =&gt; <span class="ident">IsoCode639_3::NLD</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;dutch&quot;</span>)]
+            </span>Language::Dutch =&gt; IsoCode639_3::NLD,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;english&quot;</span>)]</span>
-            <span class="ident">Language::English</span> =&gt; <span class="ident">IsoCode639_3::ENG</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;english&quot;</span>)]
+            </span>Language::English =&gt; IsoCode639_3::ENG,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;esperanto&quot;</span>)]</span>
-            <span class="ident">Language::Esperanto</span> =&gt; <span class="ident">IsoCode639_3::EPO</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;esperanto&quot;</span>)]
+            </span>Language::Esperanto =&gt; IsoCode639_3::EPO,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;estonian&quot;</span>)]</span>
-            <span class="ident">Language::Estonian</span> =&gt; <span class="ident">IsoCode639_3::EST</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;estonian&quot;</span>)]
+            </span>Language::Estonian =&gt; IsoCode639_3::EST,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;finnish&quot;</span>)]</span>
-            <span class="ident">Language::Finnish</span> =&gt; <span class="ident">IsoCode639_3::FIN</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;finnish&quot;</span>)]
+            </span>Language::Finnish =&gt; IsoCode639_3::FIN,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;french&quot;</span>)]</span>
-            <span class="ident">Language::French</span> =&gt; <span class="ident">IsoCode639_3::FRA</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;french&quot;</span>)]
+            </span>Language::French =&gt; IsoCode639_3::FRA,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;ganda&quot;</span>)]</span>
-            <span class="ident">Language::Ganda</span> =&gt; <span class="ident">IsoCode639_3::LUG</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;ganda&quot;</span>)]
+            </span>Language::Ganda =&gt; IsoCode639_3::LUG,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;georgian&quot;</span>)]</span>
-            <span class="ident">Language::Georgian</span> =&gt; <span class="ident">IsoCode639_3::KAT</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;georgian&quot;</span>)]
+            </span>Language::Georgian =&gt; IsoCode639_3::KAT,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;german&quot;</span>)]</span>
-            <span class="ident">Language::German</span> =&gt; <span class="ident">IsoCode639_3::DEU</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;german&quot;</span>)]
+            </span>Language::German =&gt; IsoCode639_3::DEU,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;greek&quot;</span>)]</span>
-            <span class="ident">Language::Greek</span> =&gt; <span class="ident">IsoCode639_3::ELL</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;greek&quot;</span>)]
+            </span>Language::Greek =&gt; IsoCode639_3::ELL,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;gujarati&quot;</span>)]</span>
-            <span class="ident">Language::Gujarati</span> =&gt; <span class="ident">IsoCode639_3::GUJ</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;gujarati&quot;</span>)]
+            </span>Language::Gujarati =&gt; IsoCode639_3::GUJ,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;hebrew&quot;</span>)]</span>
-            <span class="ident">Language::Hebrew</span> =&gt; <span class="ident">IsoCode639_3::HEB</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;hebrew&quot;</span>)]
+            </span>Language::Hebrew =&gt; IsoCode639_3::HEB,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;hindi&quot;</span>)]</span>
-            <span class="ident">Language::Hindi</span> =&gt; <span class="ident">IsoCode639_3::HIN</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;hindi&quot;</span>)]
+            </span>Language::Hindi =&gt; IsoCode639_3::HIN,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;hungarian&quot;</span>)]</span>
-            <span class="ident">Language::Hungarian</span> =&gt; <span class="ident">IsoCode639_3::HUN</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;hungarian&quot;</span>)]
+            </span>Language::Hungarian =&gt; IsoCode639_3::HUN,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;icelandic&quot;</span>)]</span>
-            <span class="ident">Language::Icelandic</span> =&gt; <span class="ident">IsoCode639_3::ISL</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;icelandic&quot;</span>)]
+            </span>Language::Icelandic =&gt; IsoCode639_3::ISL,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;indonesian&quot;</span>)]</span>
-            <span class="ident">Language::Indonesian</span> =&gt; <span class="ident">IsoCode639_3::IND</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;indonesian&quot;</span>)]
+            </span>Language::Indonesian =&gt; IsoCode639_3::IND,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;irish&quot;</span>)]</span>
-            <span class="ident">Language::Irish</span> =&gt; <span class="ident">IsoCode639_3::GLE</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;irish&quot;</span>)]
+            </span>Language::Irish =&gt; IsoCode639_3::GLE,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;italian&quot;</span>)]</span>
-            <span class="ident">Language::Italian</span> =&gt; <span class="ident">IsoCode639_3::ITA</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;italian&quot;</span>)]
+            </span>Language::Italian =&gt; IsoCode639_3::ITA,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;japanese&quot;</span>)]</span>
-            <span class="ident">Language::Japanese</span> =&gt; <span class="ident">IsoCode639_3::JPN</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;japanese&quot;</span>)]
+            </span>Language::Japanese =&gt; IsoCode639_3::JPN,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;kazakh&quot;</span>)]</span>
-            <span class="ident">Language::Kazakh</span> =&gt; <span class="ident">IsoCode639_3::KAZ</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;kazakh&quot;</span>)]
+            </span>Language::Kazakh =&gt; IsoCode639_3::KAZ,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;korean&quot;</span>)]</span>
-            <span class="ident">Language::Korean</span> =&gt; <span class="ident">IsoCode639_3::KOR</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;korean&quot;</span>)]
+            </span>Language::Korean =&gt; IsoCode639_3::KOR,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;latin&quot;</span>)]</span>
-            <span class="ident">Language::Latin</span> =&gt; <span class="ident">IsoCode639_3::LAT</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;latin&quot;</span>)]
+            </span>Language::Latin =&gt; IsoCode639_3::LAT,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;latvian&quot;</span>)]</span>
-            <span class="ident">Language::Latvian</span> =&gt; <span class="ident">IsoCode639_3::LAV</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;latvian&quot;</span>)]
+            </span>Language::Latvian =&gt; IsoCode639_3::LAV,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;lithuanian&quot;</span>)]</span>
-            <span class="ident">Language::Lithuanian</span> =&gt; <span class="ident">IsoCode639_3::LIT</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;lithuanian&quot;</span>)]
+            </span>Language::Lithuanian =&gt; IsoCode639_3::LIT,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;macedonian&quot;</span>)]</span>
-            <span class="ident">Language::Macedonian</span> =&gt; <span class="ident">IsoCode639_3::MKD</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;macedonian&quot;</span>)]
+            </span>Language::Macedonian =&gt; IsoCode639_3::MKD,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;malay&quot;</span>)]</span>
-            <span class="ident">Language::Malay</span> =&gt; <span class="ident">IsoCode639_3::MSA</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;malay&quot;</span>)]
+            </span>Language::Malay =&gt; IsoCode639_3::MSA,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;maori&quot;</span>)]</span>
-            <span class="ident">Language::Maori</span> =&gt; <span class="ident">IsoCode639_3::MRI</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;maori&quot;</span>)]
+            </span>Language::Maori =&gt; IsoCode639_3::MRI,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;marathi&quot;</span>)]</span>
-            <span class="ident">Language::Marathi</span> =&gt; <span class="ident">IsoCode639_3::MAR</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;marathi&quot;</span>)]
+            </span>Language::Marathi =&gt; IsoCode639_3::MAR,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;mongolian&quot;</span>)]</span>
-            <span class="ident">Language::Mongolian</span> =&gt; <span class="ident">IsoCode639_3::MON</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;mongolian&quot;</span>)]
+            </span>Language::Mongolian =&gt; IsoCode639_3::MON,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;nynorsk&quot;</span>)]</span>
-            <span class="ident">Language::Nynorsk</span> =&gt; <span class="ident">IsoCode639_3::NNO</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;nynorsk&quot;</span>)]
+            </span>Language::Nynorsk =&gt; IsoCode639_3::NNO,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;persian&quot;</span>)]</span>
-            <span class="ident">Language::Persian</span> =&gt; <span class="ident">IsoCode639_3::FAS</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;persian&quot;</span>)]
+            </span>Language::Persian =&gt; IsoCode639_3::FAS,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;polish&quot;</span>)]</span>
-            <span class="ident">Language::Polish</span> =&gt; <span class="ident">IsoCode639_3::POL</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;polish&quot;</span>)]
+            </span>Language::Polish =&gt; IsoCode639_3::POL,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;portuguese&quot;</span>)]</span>
-            <span class="ident">Language::Portuguese</span> =&gt; <span class="ident">IsoCode639_3::POR</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;portuguese&quot;</span>)]
+            </span>Language::Portuguese =&gt; IsoCode639_3::POR,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;punjabi&quot;</span>)]</span>
-            <span class="ident">Language::Punjabi</span> =&gt; <span class="ident">IsoCode639_3::PAN</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;punjabi&quot;</span>)]
+            </span>Language::Punjabi =&gt; IsoCode639_3::PAN,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;romanian&quot;</span>)]</span>
-            <span class="ident">Language::Romanian</span> =&gt; <span class="ident">IsoCode639_3::RON</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;romanian&quot;</span>)]
+            </span>Language::Romanian =&gt; IsoCode639_3::RON,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;russian&quot;</span>)]</span>
-            <span class="ident">Language::Russian</span> =&gt; <span class="ident">IsoCode639_3::RUS</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;russian&quot;</span>)]
+            </span>Language::Russian =&gt; IsoCode639_3::RUS,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serbian&quot;</span>)]</span>
-            <span class="ident">Language::Serbian</span> =&gt; <span class="ident">IsoCode639_3::SRP</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;serbian&quot;</span>)]
+            </span>Language::Serbian =&gt; IsoCode639_3::SRP,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;shona&quot;</span>)]</span>
-            <span class="ident">Language::Shona</span> =&gt; <span class="ident">IsoCode639_3::SNA</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;shona&quot;</span>)]
+            </span>Language::Shona =&gt; IsoCode639_3::SNA,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;slovak&quot;</span>)]</span>
-            <span class="ident">Language::Slovak</span> =&gt; <span class="ident">IsoCode639_3::SLK</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;slovak&quot;</span>)]
+            </span>Language::Slovak =&gt; IsoCode639_3::SLK,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;slovene&quot;</span>)]</span>
-            <span class="ident">Language::Slovene</span> =&gt; <span class="ident">IsoCode639_3::SLV</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;slovene&quot;</span>)]
+            </span>Language::Slovene =&gt; IsoCode639_3::SLV,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;somali&quot;</span>)]</span>
-            <span class="ident">Language::Somali</span> =&gt; <span class="ident">IsoCode639_3::SOM</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;somali&quot;</span>)]
+            </span>Language::Somali =&gt; IsoCode639_3::SOM,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;sotho&quot;</span>)]</span>
-            <span class="ident">Language::Sotho</span> =&gt; <span class="ident">IsoCode639_3::SOT</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;sotho&quot;</span>)]
+            </span>Language::Sotho =&gt; IsoCode639_3::SOT,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;spanish&quot;</span>)]</span>
-            <span class="ident">Language::Spanish</span> =&gt; <span class="ident">IsoCode639_3::SPA</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;spanish&quot;</span>)]
+            </span>Language::Spanish =&gt; IsoCode639_3::SPA,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;swahili&quot;</span>)]</span>
-            <span class="ident">Language::Swahili</span> =&gt; <span class="ident">IsoCode639_3::SWA</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;swahili&quot;</span>)]
+            </span>Language::Swahili =&gt; IsoCode639_3::SWA,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;swedish&quot;</span>)]</span>
-            <span class="ident">Language::Swedish</span> =&gt; <span class="ident">IsoCode639_3::SWE</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;swedish&quot;</span>)]
+            </span>Language::Swedish =&gt; IsoCode639_3::SWE,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;tagalog&quot;</span>)]</span>
-            <span class="ident">Language::Tagalog</span> =&gt; <span class="ident">IsoCode639_3::TGL</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;tagalog&quot;</span>)]
+            </span>Language::Tagalog =&gt; IsoCode639_3::TGL,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;tamil&quot;</span>)]</span>
-            <span class="ident">Language::Tamil</span> =&gt; <span class="ident">IsoCode639_3::TAM</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;tamil&quot;</span>)]
+            </span>Language::Tamil =&gt; IsoCode639_3::TAM,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;telugu&quot;</span>)]</span>
-            <span class="ident">Language::Telugu</span> =&gt; <span class="ident">IsoCode639_3::TEL</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;telugu&quot;</span>)]
+            </span>Language::Telugu =&gt; IsoCode639_3::TEL,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;thai&quot;</span>)]</span>
-            <span class="ident">Language::Thai</span> =&gt; <span class="ident">IsoCode639_3::THA</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;thai&quot;</span>)]
+            </span>Language::Thai =&gt; IsoCode639_3::THA,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;tsonga&quot;</span>)]</span>
-            <span class="ident">Language::Tsonga</span> =&gt; <span class="ident">IsoCode639_3::TSO</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;tsonga&quot;</span>)]
+            </span>Language::Tsonga =&gt; IsoCode639_3::TSO,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;tswana&quot;</span>)]</span>
-            <span class="ident">Language::Tswana</span> =&gt; <span class="ident">IsoCode639_3::TSN</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;tswana&quot;</span>)]
+            </span>Language::Tswana =&gt; IsoCode639_3::TSN,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;turkish&quot;</span>)]</span>
-            <span class="ident">Language::Turkish</span> =&gt; <span class="ident">IsoCode639_3::TUR</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;turkish&quot;</span>)]
+            </span>Language::Turkish =&gt; IsoCode639_3::TUR,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;ukrainian&quot;</span>)]</span>
-            <span class="ident">Language::Ukrainian</span> =&gt; <span class="ident">IsoCode639_3::UKR</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;ukrainian&quot;</span>)]
+            </span>Language::Ukrainian =&gt; IsoCode639_3::UKR,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;urdu&quot;</span>)]</span>
-            <span class="ident">Language::Urdu</span> =&gt; <span class="ident">IsoCode639_3::URD</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;urdu&quot;</span>)]
+            </span>Language::Urdu =&gt; IsoCode639_3::URD,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;vietnamese&quot;</span>)]</span>
-            <span class="ident">Language::Vietnamese</span> =&gt; <span class="ident">IsoCode639_3::VIE</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;vietnamese&quot;</span>)]
+            </span>Language::Vietnamese =&gt; IsoCode639_3::VIE,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;welsh&quot;</span>)]</span>
-            <span class="ident">Language::Welsh</span> =&gt; <span class="ident">IsoCode639_3::CYM</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;welsh&quot;</span>)]
+            </span>Language::Welsh =&gt; IsoCode639_3::CYM,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xhosa&quot;</span>)]</span>
-            <span class="ident">Language::Xhosa</span> =&gt; <span class="ident">IsoCode639_3::XHO</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;xhosa&quot;</span>)]
+            </span>Language::Xhosa =&gt; IsoCode639_3::XHO,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;yoruba&quot;</span>)]</span>
-            <span class="ident">Language::Yoruba</span> =&gt; <span class="ident">IsoCode639_3::YOR</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;yoruba&quot;</span>)]
+            </span>Language::Yoruba =&gt; IsoCode639_3::YOR,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;zulu&quot;</span>)]</span>
-            <span class="ident">Language::Zulu</span> =&gt; <span class="ident">IsoCode639_3::ZUL</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;zulu&quot;</span>)]
+            </span>Language::Zulu =&gt; IsoCode639_3::ZUL,
         }
     }
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">alphabets</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">HashSet</span><span class="op">&lt;</span><span class="ident">Alphabet</span><span class="op">&gt;</span> {
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;afrikaans&quot;</span>)]</span>
-            <span class="ident">Language::Afrikaans</span> =&gt; <span class="macro">hashset!</span>(<span class="ident">Alphabet::Latin</span>),
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>alphabets(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; HashSet&lt;Alphabet&gt; {
+        <span class="kw">match </span><span class="self">self </span>{
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;afrikaans&quot;</span>)]
+            </span>Language::Afrikaans =&gt; <span class="macro">hashset!</span>(Alphabet::Latin),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;albanian&quot;</span>)]</span>
-            <span class="ident">Language::Albanian</span> =&gt; <span class="macro">hashset!</span>(<span class="ident">Alphabet::Latin</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;albanian&quot;</span>)]
+            </span>Language::Albanian =&gt; <span class="macro">hashset!</span>(Alphabet::Latin),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;azerbaijani&quot;</span>)]</span>
-            <span class="ident">Language::Azerbaijani</span> =&gt; <span class="macro">hashset!</span>(<span class="ident">Alphabet::Latin</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;azerbaijani&quot;</span>)]
+            </span>Language::Azerbaijani =&gt; <span class="macro">hashset!</span>(Alphabet::Latin),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;basque&quot;</span>)]</span>
-            <span class="ident">Language::Basque</span> =&gt; <span class="macro">hashset!</span>(<span class="ident">Alphabet::Latin</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;basque&quot;</span>)]
+            </span>Language::Basque =&gt; <span class="macro">hashset!</span>(Alphabet::Latin),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;bokmal&quot;</span>)]</span>
-            <span class="ident">Language::Bokmal</span> =&gt; <span class="macro">hashset!</span>(<span class="ident">Alphabet::Latin</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;bokmal&quot;</span>)]
+            </span>Language::Bokmal =&gt; <span class="macro">hashset!</span>(Alphabet::Latin),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;bosnian&quot;</span>)]</span>
-            <span class="ident">Language::Bosnian</span> =&gt; <span class="macro">hashset!</span>(<span class="ident">Alphabet::Latin</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;bosnian&quot;</span>)]
+            </span>Language::Bosnian =&gt; <span class="macro">hashset!</span>(Alphabet::Latin),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;catalan&quot;</span>)]</span>
-            <span class="ident">Language::Catalan</span> =&gt; <span class="macro">hashset!</span>(<span class="ident">Alphabet::Latin</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;catalan&quot;</span>)]
+            </span>Language::Catalan =&gt; <span class="macro">hashset!</span>(Alphabet::Latin),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;croatian&quot;</span>)]</span>
-            <span class="ident">Language::Croatian</span> =&gt; <span class="macro">hashset!</span>(<span class="ident">Alphabet::Latin</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;croatian&quot;</span>)]
+            </span>Language::Croatian =&gt; <span class="macro">hashset!</span>(Alphabet::Latin),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;czech&quot;</span>)]</span>
-            <span class="ident">Language::Czech</span> =&gt; <span class="macro">hashset!</span>(<span class="ident">Alphabet::Latin</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;czech&quot;</span>)]
+            </span>Language::Czech =&gt; <span class="macro">hashset!</span>(Alphabet::Latin),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;danish&quot;</span>)]</span>
-            <span class="ident">Language::Danish</span> =&gt; <span class="macro">hashset!</span>(<span class="ident">Alphabet::Latin</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;danish&quot;</span>)]
+            </span>Language::Danish =&gt; <span class="macro">hashset!</span>(Alphabet::Latin),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dutch&quot;</span>)]</span>
-            <span class="ident">Language::Dutch</span> =&gt; <span class="macro">hashset!</span>(<span class="ident">Alphabet::Latin</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;dutch&quot;</span>)]
+            </span>Language::Dutch =&gt; <span class="macro">hashset!</span>(Alphabet::Latin),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;english&quot;</span>)]</span>
-            <span class="ident">Language::English</span> =&gt; <span class="macro">hashset!</span>(<span class="ident">Alphabet::Latin</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;english&quot;</span>)]
+            </span>Language::English =&gt; <span class="macro">hashset!</span>(Alphabet::Latin),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;esperanto&quot;</span>)]</span>
-            <span class="ident">Language::Esperanto</span> =&gt; <span class="macro">hashset!</span>(<span class="ident">Alphabet::Latin</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;esperanto&quot;</span>)]
+            </span>Language::Esperanto =&gt; <span class="macro">hashset!</span>(Alphabet::Latin),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;estonian&quot;</span>)]</span>
-            <span class="ident">Language::Estonian</span> =&gt; <span class="macro">hashset!</span>(<span class="ident">Alphabet::Latin</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;estonian&quot;</span>)]
+            </span>Language::Estonian =&gt; <span class="macro">hashset!</span>(Alphabet::Latin),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;finnish&quot;</span>)]</span>
-            <span class="ident">Language::Finnish</span> =&gt; <span class="macro">hashset!</span>(<span class="ident">Alphabet::Latin</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;finnish&quot;</span>)]
+            </span>Language::Finnish =&gt; <span class="macro">hashset!</span>(Alphabet::Latin),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;french&quot;</span>)]</span>
-            <span class="ident">Language::French</span> =&gt; <span class="macro">hashset!</span>(<span class="ident">Alphabet::Latin</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;french&quot;</span>)]
+            </span>Language::French =&gt; <span class="macro">hashset!</span>(Alphabet::Latin),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;ganda&quot;</span>)]</span>
-            <span class="ident">Language::Ganda</span> =&gt; <span class="macro">hashset!</span>(<span class="ident">Alphabet::Latin</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;ganda&quot;</span>)]
+            </span>Language::Ganda =&gt; <span class="macro">hashset!</span>(Alphabet::Latin),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;german&quot;</span>)]</span>
-            <span class="ident">Language::German</span> =&gt; <span class="macro">hashset!</span>(<span class="ident">Alphabet::Latin</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;german&quot;</span>)]
+            </span>Language::German =&gt; <span class="macro">hashset!</span>(Alphabet::Latin),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;hungarian&quot;</span>)]</span>
-            <span class="ident">Language::Hungarian</span> =&gt; <span class="macro">hashset!</span>(<span class="ident">Alphabet::Latin</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;hungarian&quot;</span>)]
+            </span>Language::Hungarian =&gt; <span class="macro">hashset!</span>(Alphabet::Latin),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;icelandic&quot;</span>)]</span>
-            <span class="ident">Language::Icelandic</span> =&gt; <span class="macro">hashset!</span>(<span class="ident">Alphabet::Latin</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;icelandic&quot;</span>)]
+            </span>Language::Icelandic =&gt; <span class="macro">hashset!</span>(Alphabet::Latin),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;indonesian&quot;</span>)]</span>
-            <span class="ident">Language::Indonesian</span> =&gt; <span class="macro">hashset!</span>(<span class="ident">Alphabet::Latin</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;indonesian&quot;</span>)]
+            </span>Language::Indonesian =&gt; <span class="macro">hashset!</span>(Alphabet::Latin),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;irish&quot;</span>)]</span>
-            <span class="ident">Language::Irish</span> =&gt; <span class="macro">hashset!</span>(<span class="ident">Alphabet::Latin</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;irish&quot;</span>)]
+            </span>Language::Irish =&gt; <span class="macro">hashset!</span>(Alphabet::Latin),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;italian&quot;</span>)]</span>
-            <span class="ident">Language::Italian</span> =&gt; <span class="macro">hashset!</span>(<span class="ident">Alphabet::Latin</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;italian&quot;</span>)]
+            </span>Language::Italian =&gt; <span class="macro">hashset!</span>(Alphabet::Latin),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;latin&quot;</span>)]</span>
-            <span class="ident">Language::Latin</span> =&gt; <span class="macro">hashset!</span>(<span class="ident">Alphabet::Latin</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;latin&quot;</span>)]
+            </span>Language::Latin =&gt; <span class="macro">hashset!</span>(Alphabet::Latin),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;latvian&quot;</span>)]</span>
-            <span class="ident">Language::Latvian</span> =&gt; <span class="macro">hashset!</span>(<span class="ident">Alphabet::Latin</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;latvian&quot;</span>)]
+            </span>Language::Latvian =&gt; <span class="macro">hashset!</span>(Alphabet::Latin),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;lithuanian&quot;</span>)]</span>
-            <span class="ident">Language::Lithuanian</span> =&gt; <span class="macro">hashset!</span>(<span class="ident">Alphabet::Latin</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;lithuanian&quot;</span>)]
+            </span>Language::Lithuanian =&gt; <span class="macro">hashset!</span>(Alphabet::Latin),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;malay&quot;</span>)]</span>
-            <span class="ident">Language::Malay</span> =&gt; <span class="macro">hashset!</span>(<span class="ident">Alphabet::Latin</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;malay&quot;</span>)]
+            </span>Language::Malay =&gt; <span class="macro">hashset!</span>(Alphabet::Latin),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;maori&quot;</span>)]</span>
-            <span class="ident">Language::Maori</span> =&gt; <span class="macro">hashset!</span>(<span class="ident">Alphabet::Latin</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;maori&quot;</span>)]
+            </span>Language::Maori =&gt; <span class="macro">hashset!</span>(Alphabet::Latin),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;nynorsk&quot;</span>)]</span>
-            <span class="ident">Language::Nynorsk</span> =&gt; <span class="macro">hashset!</span>(<span class="ident">Alphabet::Latin</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;nynorsk&quot;</span>)]
+            </span>Language::Nynorsk =&gt; <span class="macro">hashset!</span>(Alphabet::Latin),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;polish&quot;</span>)]</span>
-            <span class="ident">Language::Polish</span> =&gt; <span class="macro">hashset!</span>(<span class="ident">Alphabet::Latin</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;polish&quot;</span>)]
+            </span>Language::Polish =&gt; <span class="macro">hashset!</span>(Alphabet::Latin),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;portuguese&quot;</span>)]</span>
-            <span class="ident">Language::Portuguese</span> =&gt; <span class="macro">hashset!</span>(<span class="ident">Alphabet::Latin</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;portuguese&quot;</span>)]
+            </span>Language::Portuguese =&gt; <span class="macro">hashset!</span>(Alphabet::Latin),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;romanian&quot;</span>)]</span>
-            <span class="ident">Language::Romanian</span> =&gt; <span class="macro">hashset!</span>(<span class="ident">Alphabet::Latin</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;romanian&quot;</span>)]
+            </span>Language::Romanian =&gt; <span class="macro">hashset!</span>(Alphabet::Latin),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;shona&quot;</span>)]</span>
-            <span class="ident">Language::Shona</span> =&gt; <span class="macro">hashset!</span>(<span class="ident">Alphabet::Latin</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;shona&quot;</span>)]
+            </span>Language::Shona =&gt; <span class="macro">hashset!</span>(Alphabet::Latin),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;slovak&quot;</span>)]</span>
-            <span class="ident">Language::Slovak</span> =&gt; <span class="macro">hashset!</span>(<span class="ident">Alphabet::Latin</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;slovak&quot;</span>)]
+            </span>Language::Slovak =&gt; <span class="macro">hashset!</span>(Alphabet::Latin),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;slovene&quot;</span>)]</span>
-            <span class="ident">Language::Slovene</span> =&gt; <span class="macro">hashset!</span>(<span class="ident">Alphabet::Latin</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;slovene&quot;</span>)]
+            </span>Language::Slovene =&gt; <span class="macro">hashset!</span>(Alphabet::Latin),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;somali&quot;</span>)]</span>
-            <span class="ident">Language::Somali</span> =&gt; <span class="macro">hashset!</span>(<span class="ident">Alphabet::Latin</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;somali&quot;</span>)]
+            </span>Language::Somali =&gt; <span class="macro">hashset!</span>(Alphabet::Latin),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;sotho&quot;</span>)]</span>
-            <span class="ident">Language::Sotho</span> =&gt; <span class="macro">hashset!</span>(<span class="ident">Alphabet::Latin</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;sotho&quot;</span>)]
+            </span>Language::Sotho =&gt; <span class="macro">hashset!</span>(Alphabet::Latin),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;spanish&quot;</span>)]</span>
-            <span class="ident">Language::Spanish</span> =&gt; <span class="macro">hashset!</span>(<span class="ident">Alphabet::Latin</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;spanish&quot;</span>)]
+            </span>Language::Spanish =&gt; <span class="macro">hashset!</span>(Alphabet::Latin),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;swahili&quot;</span>)]</span>
-            <span class="ident">Language::Swahili</span> =&gt; <span class="macro">hashset!</span>(<span class="ident">Alphabet::Latin</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;swahili&quot;</span>)]
+            </span>Language::Swahili =&gt; <span class="macro">hashset!</span>(Alphabet::Latin),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;swedish&quot;</span>)]</span>
-            <span class="ident">Language::Swedish</span> =&gt; <span class="macro">hashset!</span>(<span class="ident">Alphabet::Latin</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;swedish&quot;</span>)]
+            </span>Language::Swedish =&gt; <span class="macro">hashset!</span>(Alphabet::Latin),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;tagalog&quot;</span>)]</span>
-            <span class="ident">Language::Tagalog</span> =&gt; <span class="macro">hashset!</span>(<span class="ident">Alphabet::Latin</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;tagalog&quot;</span>)]
+            </span>Language::Tagalog =&gt; <span class="macro">hashset!</span>(Alphabet::Latin),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;tsonga&quot;</span>)]</span>
-            <span class="ident">Language::Tsonga</span> =&gt; <span class="macro">hashset!</span>(<span class="ident">Alphabet::Latin</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;tsonga&quot;</span>)]
+            </span>Language::Tsonga =&gt; <span class="macro">hashset!</span>(Alphabet::Latin),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;tswana&quot;</span>)]</span>
-            <span class="ident">Language::Tswana</span> =&gt; <span class="macro">hashset!</span>(<span class="ident">Alphabet::Latin</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;tswana&quot;</span>)]
+            </span>Language::Tswana =&gt; <span class="macro">hashset!</span>(Alphabet::Latin),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;turkish&quot;</span>)]</span>
-            <span class="ident">Language::Turkish</span> =&gt; <span class="macro">hashset!</span>(<span class="ident">Alphabet::Latin</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;turkish&quot;</span>)]
+            </span>Language::Turkish =&gt; <span class="macro">hashset!</span>(Alphabet::Latin),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;vietnamese&quot;</span>)]</span>
-            <span class="ident">Language::Vietnamese</span> =&gt; <span class="macro">hashset!</span>(<span class="ident">Alphabet::Latin</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;vietnamese&quot;</span>)]
+            </span>Language::Vietnamese =&gt; <span class="macro">hashset!</span>(Alphabet::Latin),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;welsh&quot;</span>)]</span>
-            <span class="ident">Language::Welsh</span> =&gt; <span class="macro">hashset!</span>(<span class="ident">Alphabet::Latin</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;welsh&quot;</span>)]
+            </span>Language::Welsh =&gt; <span class="macro">hashset!</span>(Alphabet::Latin),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xhosa&quot;</span>)]</span>
-            <span class="ident">Language::Xhosa</span> =&gt; <span class="macro">hashset!</span>(<span class="ident">Alphabet::Latin</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;xhosa&quot;</span>)]
+            </span>Language::Xhosa =&gt; <span class="macro">hashset!</span>(Alphabet::Latin),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;yoruba&quot;</span>)]</span>
-            <span class="ident">Language::Yoruba</span> =&gt; <span class="macro">hashset!</span>(<span class="ident">Alphabet::Latin</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;yoruba&quot;</span>)]
+            </span>Language::Yoruba =&gt; <span class="macro">hashset!</span>(Alphabet::Latin),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;zulu&quot;</span>)]</span>
-            <span class="ident">Language::Zulu</span> =&gt; <span class="macro">hashset!</span>(<span class="ident">Alphabet::Latin</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;zulu&quot;</span>)]
+            </span>Language::Zulu =&gt; <span class="macro">hashset!</span>(Alphabet::Latin),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;belarusian&quot;</span>)]</span>
-            <span class="ident">Language::Belarusian</span> =&gt; <span class="macro">hashset!</span>(<span class="ident">Alphabet::Cyrillic</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;belarusian&quot;</span>)]
+            </span>Language::Belarusian =&gt; <span class="macro">hashset!</span>(Alphabet::Cyrillic),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;bulgarian&quot;</span>)]</span>
-            <span class="ident">Language::Bulgarian</span> =&gt; <span class="macro">hashset!</span>(<span class="ident">Alphabet::Cyrillic</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;bulgarian&quot;</span>)]
+            </span>Language::Bulgarian =&gt; <span class="macro">hashset!</span>(Alphabet::Cyrillic),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;kazakh&quot;</span>)]</span>
-            <span class="ident">Language::Kazakh</span> =&gt; <span class="macro">hashset!</span>(<span class="ident">Alphabet::Cyrillic</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;kazakh&quot;</span>)]
+            </span>Language::Kazakh =&gt; <span class="macro">hashset!</span>(Alphabet::Cyrillic),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;macedonian&quot;</span>)]</span>
-            <span class="ident">Language::Macedonian</span> =&gt; <span class="macro">hashset!</span>(<span class="ident">Alphabet::Cyrillic</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;macedonian&quot;</span>)]
+            </span>Language::Macedonian =&gt; <span class="macro">hashset!</span>(Alphabet::Cyrillic),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;mongolian&quot;</span>)]</span>
-            <span class="ident">Language::Mongolian</span> =&gt; <span class="macro">hashset!</span>(<span class="ident">Alphabet::Cyrillic</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;mongolian&quot;</span>)]
+            </span>Language::Mongolian =&gt; <span class="macro">hashset!</span>(Alphabet::Cyrillic),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;russian&quot;</span>)]</span>
-            <span class="ident">Language::Russian</span> =&gt; <span class="macro">hashset!</span>(<span class="ident">Alphabet::Cyrillic</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;russian&quot;</span>)]
+            </span>Language::Russian =&gt; <span class="macro">hashset!</span>(Alphabet::Cyrillic),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serbian&quot;</span>)]</span>
-            <span class="ident">Language::Serbian</span> =&gt; <span class="macro">hashset!</span>(<span class="ident">Alphabet::Cyrillic</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;serbian&quot;</span>)]
+            </span>Language::Serbian =&gt; <span class="macro">hashset!</span>(Alphabet::Cyrillic),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;ukrainian&quot;</span>)]</span>
-            <span class="ident">Language::Ukrainian</span> =&gt; <span class="macro">hashset!</span>(<span class="ident">Alphabet::Cyrillic</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;ukrainian&quot;</span>)]
+            </span>Language::Ukrainian =&gt; <span class="macro">hashset!</span>(Alphabet::Cyrillic),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;arabic&quot;</span>)]</span>
-            <span class="ident">Language::Arabic</span> =&gt; <span class="macro">hashset!</span>(<span class="ident">Alphabet::Arabic</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;arabic&quot;</span>)]
+            </span>Language::Arabic =&gt; <span class="macro">hashset!</span>(Alphabet::Arabic),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;persian&quot;</span>)]</span>
-            <span class="ident">Language::Persian</span> =&gt; <span class="macro">hashset!</span>(<span class="ident">Alphabet::Arabic</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;persian&quot;</span>)]
+            </span>Language::Persian =&gt; <span class="macro">hashset!</span>(Alphabet::Arabic),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;urdu&quot;</span>)]</span>
-            <span class="ident">Language::Urdu</span> =&gt; <span class="macro">hashset!</span>(<span class="ident">Alphabet::Arabic</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;urdu&quot;</span>)]
+            </span>Language::Urdu =&gt; <span class="macro">hashset!</span>(Alphabet::Arabic),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;hindi&quot;</span>)]</span>
-            <span class="ident">Language::Hindi</span> =&gt; <span class="macro">hashset!</span>(<span class="ident">Alphabet::Devanagari</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;hindi&quot;</span>)]
+            </span>Language::Hindi =&gt; <span class="macro">hashset!</span>(Alphabet::Devanagari),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;marathi&quot;</span>)]</span>
-            <span class="ident">Language::Marathi</span> =&gt; <span class="macro">hashset!</span>(<span class="ident">Alphabet::Devanagari</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;marathi&quot;</span>)]
+            </span>Language::Marathi =&gt; <span class="macro">hashset!</span>(Alphabet::Devanagari),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;armenian&quot;</span>)]</span>
-            <span class="ident">Language::Armenian</span> =&gt; <span class="macro">hashset!</span>(<span class="ident">Alphabet::Armenian</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;armenian&quot;</span>)]
+            </span>Language::Armenian =&gt; <span class="macro">hashset!</span>(Alphabet::Armenian),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;bengali&quot;</span>)]</span>
-            <span class="ident">Language::Bengali</span> =&gt; <span class="macro">hashset!</span>(<span class="ident">Alphabet::Bengali</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;bengali&quot;</span>)]
+            </span>Language::Bengali =&gt; <span class="macro">hashset!</span>(Alphabet::Bengali),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;chinese&quot;</span>)]</span>
-            <span class="ident">Language::Chinese</span> =&gt; <span class="macro">hashset!</span>(<span class="ident">Alphabet::Han</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;chinese&quot;</span>)]
+            </span>Language::Chinese =&gt; <span class="macro">hashset!</span>(Alphabet::Han),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;georgian&quot;</span>)]</span>
-            <span class="ident">Language::Georgian</span> =&gt; <span class="macro">hashset!</span>(<span class="ident">Alphabet::Georgian</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;georgian&quot;</span>)]
+            </span>Language::Georgian =&gt; <span class="macro">hashset!</span>(Alphabet::Georgian),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;greek&quot;</span>)]</span>
-            <span class="ident">Language::Greek</span> =&gt; <span class="macro">hashset!</span>(<span class="ident">Alphabet::Greek</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;greek&quot;</span>)]
+            </span>Language::Greek =&gt; <span class="macro">hashset!</span>(Alphabet::Greek),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;gujarati&quot;</span>)]</span>
-            <span class="ident">Language::Gujarati</span> =&gt; <span class="macro">hashset!</span>(<span class="ident">Alphabet::Gujarati</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;gujarati&quot;</span>)]
+            </span>Language::Gujarati =&gt; <span class="macro">hashset!</span>(Alphabet::Gujarati),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;hebrew&quot;</span>)]</span>
-            <span class="ident">Language::Hebrew</span> =&gt; <span class="macro">hashset!</span>(<span class="ident">Alphabet::Hebrew</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;hebrew&quot;</span>)]
+            </span>Language::Hebrew =&gt; <span class="macro">hashset!</span>(Alphabet::Hebrew),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;japanese&quot;</span>)]</span>
-            <span class="ident">Language::Japanese</span> =&gt; <span class="macro">hashset!</span>(<span class="ident">Alphabet::Hiragana</span>, <span class="ident">Alphabet::Katakana</span>, <span class="ident">Alphabet::Han</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;japanese&quot;</span>)]
+            </span>Language::Japanese =&gt; <span class="macro">hashset!</span>(Alphabet::Hiragana, Alphabet::Katakana, Alphabet::Han),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;korean&quot;</span>)]</span>
-            <span class="ident">Language::Korean</span> =&gt; <span class="macro">hashset!</span>(<span class="ident">Alphabet::Hangul</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;korean&quot;</span>)]
+            </span>Language::Korean =&gt; <span class="macro">hashset!</span>(Alphabet::Hangul),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;punjabi&quot;</span>)]</span>
-            <span class="ident">Language::Punjabi</span> =&gt; <span class="macro">hashset!</span>(<span class="ident">Alphabet::Gurmukhi</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;punjabi&quot;</span>)]
+            </span>Language::Punjabi =&gt; <span class="macro">hashset!</span>(Alphabet::Gurmukhi),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;tamil&quot;</span>)]</span>
-            <span class="ident">Language::Tamil</span> =&gt; <span class="macro">hashset!</span>(<span class="ident">Alphabet::Tamil</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;tamil&quot;</span>)]
+            </span>Language::Tamil =&gt; <span class="macro">hashset!</span>(Alphabet::Tamil),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;telugu&quot;</span>)]</span>
-            <span class="ident">Language::Telugu</span> =&gt; <span class="macro">hashset!</span>(<span class="ident">Alphabet::Telugu</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;telugu&quot;</span>)]
+            </span>Language::Telugu =&gt; <span class="macro">hashset!</span>(Alphabet::Telugu),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;thai&quot;</span>)]</span>
-            <span class="ident">Language::Thai</span> =&gt; <span class="macro">hashset!</span>(<span class="ident">Alphabet::Thai</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;thai&quot;</span>)]
+            </span>Language::Thai =&gt; <span class="macro">hashset!</span>(Alphabet::Thai),
         }
     }
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">unique_characters</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span> {
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;azerbaijani&quot;</span>)]</span>
-            <span class="ident">Language::Azerbaijani</span> =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;Əə&quot;</span>),
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>unique_characters(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>str&gt; {
+        <span class="kw">match </span><span class="self">self </span>{
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;azerbaijani&quot;</span>)]
+            </span>Language::Azerbaijani =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;Əə&quot;</span>),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;catalan&quot;</span>)]</span>
-            <span class="ident">Language::Catalan</span> =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;Ïï&quot;</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;catalan&quot;</span>)]
+            </span>Language::Catalan =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;Ïï&quot;</span>),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;czech&quot;</span>)]</span>
-            <span class="ident">Language::Czech</span> =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;ĚěŘřŮů&quot;</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;czech&quot;</span>)]
+            </span>Language::Czech =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;ĚěŘřŮů&quot;</span>),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;esperanto&quot;</span>)]</span>
-            <span class="ident">Language::Esperanto</span> =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;ĈĉĜĝĤĥĴĵŜŝŬŭ&quot;</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;esperanto&quot;</span>)]
+            </span>Language::Esperanto =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;ĈĉĜĝĤĥĴĵŜŝŬŭ&quot;</span>),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;german&quot;</span>)]</span>
-            <span class="ident">Language::German</span> =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;ß&quot;</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;german&quot;</span>)]
+            </span>Language::German =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;ß&quot;</span>),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;hungarian&quot;</span>)]</span>
-            <span class="ident">Language::Hungarian</span> =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;ŐőŰű&quot;</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;hungarian&quot;</span>)]
+            </span>Language::Hungarian =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;ŐőŰű&quot;</span>),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;kazakh&quot;</span>)]</span>
-            <span class="ident">Language::Kazakh</span> =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;ӘәҒғҚқҢңҰұ&quot;</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;kazakh&quot;</span>)]
+            </span>Language::Kazakh =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;ӘәҒғҚқҢңҰұ&quot;</span>),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;latvian&quot;</span>)]</span>
-            <span class="ident">Language::Latvian</span> =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;ĢģĶķĻļŅņ&quot;</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;latvian&quot;</span>)]
+            </span>Language::Latvian =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;ĢģĶķĻļŅņ&quot;</span>),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;lithuanian&quot;</span>)]</span>
-            <span class="ident">Language::Lithuanian</span> =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;ĖėĮįŲų&quot;</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;lithuanian&quot;</span>)]
+            </span>Language::Lithuanian =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;ĖėĮįŲų&quot;</span>),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;macedonian&quot;</span>)]</span>
-            <span class="ident">Language::Macedonian</span> =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;ЃѓЅѕЌќЏџ&quot;</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;macedonian&quot;</span>)]
+            </span>Language::Macedonian =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;ЃѓЅѕЌќЏџ&quot;</span>),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;marathi&quot;</span>)]</span>
-            <span class="ident">Language::Marathi</span> =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;ळ&quot;</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;marathi&quot;</span>)]
+            </span>Language::Marathi =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;ळ&quot;</span>),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;mongolian&quot;</span>)]</span>
-            <span class="ident">Language::Mongolian</span> =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;ӨөҮү&quot;</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;mongolian&quot;</span>)]
+            </span>Language::Mongolian =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;ӨөҮү&quot;</span>),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;polish&quot;</span>)]</span>
-            <span class="ident">Language::Polish</span> =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;ŁłŃńŚśŹź&quot;</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;polish&quot;</span>)]
+            </span>Language::Polish =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;ŁłŃńŚśŹź&quot;</span>),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;romanian&quot;</span>)]</span>
-            <span class="ident">Language::Romanian</span> =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;Țţ&quot;</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;romanian&quot;</span>)]
+            </span>Language::Romanian =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;Țţ&quot;</span>),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serbian&quot;</span>)]</span>
-            <span class="ident">Language::Serbian</span> =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;ЂђЋћ&quot;</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;serbian&quot;</span>)]
+            </span>Language::Serbian =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;ЂђЋћ&quot;</span>),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;slovak&quot;</span>)]</span>
-            <span class="ident">Language::Slovak</span> =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;ĹĺĽľŔŕ&quot;</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;slovak&quot;</span>)]
+            </span>Language::Slovak =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;ĹĺĽľŔŕ&quot;</span>),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;spanish&quot;</span>)]</span>
-            <span class="ident">Language::Spanish</span> =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;¿¡&quot;</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;spanish&quot;</span>)]
+            </span>Language::Spanish =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;¿¡&quot;</span>),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;ukrainian&quot;</span>)]</span>
-            <span class="ident">Language::Ukrainian</span> =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;ҐґЄєЇї&quot;</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;ukrainian&quot;</span>)]
+            </span>Language::Ukrainian =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;ҐґЄєЇї&quot;</span>),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;vietnamese&quot;</span>)]</span>
-            <span class="ident">Language::Vietnamese</span> =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;ẰằẦầẲẳẨẩẴẵẪẫẮắẤấẠạẶặẬậỀềẺẻỂểẼẽỄễẾếỆệỈỉĨĩỊịƠơỒồỜờỎỏỔổỞởỖỗỠỡỐốỚớỘộỢợƯưỪừỦủỬửŨũỮữỨứỤụỰựỲỳỶỷỸỹỴỵ&quot;</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;vietnamese&quot;</span>)]
+            </span>Language::Vietnamese =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;ẰằẦầẲẳẨẩẴẵẪẫẮắẤấẠạẶặẬậỀềẺẻỂểẼẽỄễẾếỆệỈỉĨĩỊịƠơỒồỜờỎỏỔổỞởỖỗỠỡỐốỚớỘộỢợƯưỪừỦủỬửŨũỮữỨứỤụỰựỲỳỶỷỸỹỴỵ&quot;</span>),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;yoruba&quot;</span>)]</span>
-            <span class="ident">Language::Yoruba</span> =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;Ṣṣ&quot;</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;yoruba&quot;</span>)]
+            </span>Language::Yoruba =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;Ṣṣ&quot;</span>),
 
-            <span class="kw">_</span> =&gt; <span class="prelude-val">None</span>,
+            <span class="kw">_ </span>=&gt; <span class="prelude-val">None</span>,
         }
     }
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
-<span class="kw">mod</span> <span class="ident">tests</span> {
-    <span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
-    <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::language::Language</span>::<span class="kw-2">*</span>;
-    <span class="kw">use</span> <span class="ident">std::str::FromStr</span>;
+<span class="attribute">#[cfg(test)]
+</span><span class="kw">mod </span>tests {
+    <span class="kw">use super</span>::<span class="kw-2">*</span>;
+    <span class="kw">use </span><span class="kw">crate</span>::language::Language::<span class="kw-2">*</span>;
+    <span class="kw">use </span>std::str::FromStr;
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">assert_language_string_representation_is_correct</span>() {
-        <span class="macro">assert_eq!</span>(<span class="ident">Language::English</span>.<span class="ident">to_string</span>(), <span class="string">&quot;english&quot;</span>);
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>assert_language_string_representation_is_correct() {
+        <span class="macro">assert_eq!</span>(Language::English.to_string(), <span class="string">&quot;english&quot;</span>);
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">test_language_serializer</span>() {
-        <span class="kw">let</span> <span class="ident">serialized</span> <span class="op">=</span> <span class="ident">serde_json::to_string</span>(<span class="kw-2">&amp;</span><span class="ident">Language::English</span>).<span class="ident">unwrap</span>();
-        <span class="macro">assert_eq!</span>(<span class="ident">serialized</span>, <span class="string">&quot;\&quot;ENGLISH\&quot;&quot;</span>);
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>test_language_serializer() {
+        <span class="kw">let </span>serialized = serde_json::to_string(<span class="kw-2">&amp;</span>Language::English).unwrap();
+        <span class="macro">assert_eq!</span>(serialized, <span class="string">&quot;\&quot;ENGLISH\&quot;&quot;</span>);
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">test_language_deserializer</span>() {
-        <span class="kw">let</span> <span class="ident">deserialized</span> <span class="op">=</span> <span class="ident">serde_json::from_str</span>::<span class="op">&lt;</span><span class="ident">Language</span><span class="op">&gt;</span>(<span class="string">&quot;\&quot;ENGLISH\&quot;&quot;</span>).<span class="ident">unwrap</span>();
-        <span class="macro">assert_eq!</span>(<span class="ident">deserialized</span>, <span class="ident">Language::English</span>);
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>test_language_deserializer() {
+        <span class="kw">let </span>deserialized = serde_json::from_str::&lt;Language&gt;(<span class="string">&quot;\&quot;ENGLISH\&quot;&quot;</span>).unwrap();
+        <span class="macro">assert_eq!</span>(deserialized, Language::English);
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">test_from_str</span>() {
-        <span class="kw">let</span> <span class="ident">language</span> <span class="op">=</span> <span class="ident">Language::from_str</span>(<span class="string">&quot;english&quot;</span>).<span class="ident">unwrap</span>();
-        <span class="macro">assert_eq!</span>(<span class="ident">language</span>, <span class="ident">Language::English</span>);
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>test_from_str() {
+        <span class="kw">let </span>language = Language::from_str(<span class="string">&quot;english&quot;</span>).unwrap();
+        <span class="macro">assert_eq!</span>(language, Language::English);
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">assert_all_languages_are_available</span>() {
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>assert_all_languages_are_available() {
         <span class="macro">assert_eq!</span>(
-            <span class="ident">Language::all</span>(),
+            Language::all(),
             <span class="macro">hashset!</span>(
-                <span class="ident">Afrikaans</span>,
-                <span class="ident">Albanian</span>,
-                <span class="ident">Arabic</span>,
-                <span class="ident">Armenian</span>,
-                <span class="ident">Azerbaijani</span>,
-                <span class="ident">Basque</span>,
-                <span class="ident">Belarusian</span>,
-                <span class="ident">Bengali</span>,
-                <span class="ident">Bokmal</span>,
-                <span class="ident">Bosnian</span>,
-                <span class="ident">Bulgarian</span>,
-                <span class="ident">Catalan</span>,
-                <span class="ident">Chinese</span>,
-                <span class="ident">Croatian</span>,
-                <span class="ident">Czech</span>,
-                <span class="ident">Danish</span>,
-                <span class="ident">Dutch</span>,
-                <span class="ident">English</span>,
-                <span class="ident">Esperanto</span>,
-                <span class="ident">Estonian</span>,
-                <span class="ident">Finnish</span>,
-                <span class="ident">French</span>,
-                <span class="ident">Ganda</span>,
-                <span class="ident">Georgian</span>,
-                <span class="ident">German</span>,
-                <span class="ident">Greek</span>,
-                <span class="ident">Gujarati</span>,
-                <span class="ident">Hebrew</span>,
-                <span class="ident">Hindi</span>,
-                <span class="ident">Hungarian</span>,
-                <span class="ident">Icelandic</span>,
-                <span class="ident">Indonesian</span>,
-                <span class="ident">Irish</span>,
-                <span class="ident">Italian</span>,
-                <span class="ident">Japanese</span>,
-                <span class="ident">Kazakh</span>,
-                <span class="ident">Korean</span>,
-                <span class="ident">Latin</span>,
-                <span class="ident">Latvian</span>,
-                <span class="ident">Lithuanian</span>,
-                <span class="ident">Macedonian</span>,
-                <span class="ident">Malay</span>,
-                <span class="ident">Maori</span>,
-                <span class="ident">Marathi</span>,
-                <span class="ident">Mongolian</span>,
-                <span class="ident">Nynorsk</span>,
-                <span class="ident">Persian</span>,
-                <span class="ident">Polish</span>,
-                <span class="ident">Portuguese</span>,
-                <span class="ident">Punjabi</span>,
-                <span class="ident">Romanian</span>,
-                <span class="ident">Russian</span>,
-                <span class="ident">Serbian</span>,
-                <span class="ident">Shona</span>,
-                <span class="ident">Slovak</span>,
-                <span class="ident">Slovene</span>,
-                <span class="ident">Somali</span>,
-                <span class="ident">Sotho</span>,
-                <span class="ident">Spanish</span>,
-                <span class="ident">Swahili</span>,
-                <span class="ident">Swedish</span>,
-                <span class="ident">Tagalog</span>,
-                <span class="ident">Tamil</span>,
-                <span class="ident">Telugu</span>,
-                <span class="ident">Thai</span>,
-                <span class="ident">Tsonga</span>,
-                <span class="ident">Tswana</span>,
-                <span class="ident">Turkish</span>,
-                <span class="ident">Ukrainian</span>,
-                <span class="ident">Urdu</span>,
-                <span class="ident">Vietnamese</span>,
-                <span class="ident">Welsh</span>,
-                <span class="ident">Xhosa</span>,
-                <span class="ident">Yoruba</span>,
-                <span class="ident">Zulu</span>
+                Afrikaans,
+                Albanian,
+                Arabic,
+                Armenian,
+                Azerbaijani,
+                Basque,
+                Belarusian,
+                Bengali,
+                Bokmal,
+                Bosnian,
+                Bulgarian,
+                Catalan,
+                Chinese,
+                Croatian,
+                Czech,
+                Danish,
+                Dutch,
+                English,
+                Esperanto,
+                Estonian,
+                Finnish,
+                French,
+                Ganda,
+                Georgian,
+                German,
+                Greek,
+                Gujarati,
+                Hebrew,
+                Hindi,
+                Hungarian,
+                Icelandic,
+                Indonesian,
+                Irish,
+                Italian,
+                Japanese,
+                Kazakh,
+                Korean,
+                Latin,
+                Latvian,
+                Lithuanian,
+                Macedonian,
+                Malay,
+                Maori,
+                Marathi,
+                Mongolian,
+                Nynorsk,
+                Persian,
+                Polish,
+                Portuguese,
+                Punjabi,
+                Romanian,
+                Russian,
+                Serbian,
+                Shona,
+                Slovak,
+                Slovene,
+                Somali,
+                Sotho,
+                Spanish,
+                Swahili,
+                Swedish,
+                Tagalog,
+                Tamil,
+                Telugu,
+                Thai,
+                Tsonga,
+                Tswana,
+                Turkish,
+                Ukrainian,
+                Urdu,
+                Vietnamese,
+                Welsh,
+                Xhosa,
+                Yoruba,
+                Zulu
             )
         );
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">assert_all_spoken_languages_are_available</span>() {
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>assert_all_spoken_languages_are_available() {
         <span class="macro">assert_eq!</span>(
-            <span class="ident">Language::all_spoken_ones</span>(),
+            Language::all_spoken_ones(),
             <span class="macro">hashset!</span>(
-                <span class="ident">Afrikaans</span>,
-                <span class="ident">Albanian</span>,
-                <span class="ident">Arabic</span>,
-                <span class="ident">Armenian</span>,
-                <span class="ident">Azerbaijani</span>,
-                <span class="ident">Basque</span>,
-                <span class="ident">Belarusian</span>,
-                <span class="ident">Bengali</span>,
-                <span class="ident">Bokmal</span>,
-                <span class="ident">Bosnian</span>,
-                <span class="ident">Bulgarian</span>,
-                <span class="ident">Catalan</span>,
-                <span class="ident">Chinese</span>,
-                <span class="ident">Croatian</span>,
-                <span class="ident">Czech</span>,
-                <span class="ident">Danish</span>,
-                <span class="ident">Dutch</span>,
-                <span class="ident">English</span>,
-                <span class="ident">Esperanto</span>,
-                <span class="ident">Estonian</span>,
-                <span class="ident">Finnish</span>,
-                <span class="ident">French</span>,
-                <span class="ident">Ganda</span>,
-                <span class="ident">Georgian</span>,
-                <span class="ident">German</span>,
-                <span class="ident">Greek</span>,
-                <span class="ident">Gujarati</span>,
-                <span class="ident">Hebrew</span>,
-                <span class="ident">Hindi</span>,
-                <span class="ident">Hungarian</span>,
-                <span class="ident">Icelandic</span>,
-                <span class="ident">Indonesian</span>,
-                <span class="ident">Irish</span>,
-                <span class="ident">Italian</span>,
-                <span class="ident">Japanese</span>,
-                <span class="ident">Kazakh</span>,
-                <span class="ident">Korean</span>,
-                <span class="ident">Latvian</span>,
-                <span class="ident">Lithuanian</span>,
-                <span class="ident">Macedonian</span>,
-                <span class="ident">Malay</span>,
-                <span class="ident">Maori</span>,
-                <span class="ident">Marathi</span>,
-                <span class="ident">Mongolian</span>,
-                <span class="ident">Nynorsk</span>,
-                <span class="ident">Persian</span>,
-                <span class="ident">Polish</span>,
-                <span class="ident">Portuguese</span>,
-                <span class="ident">Punjabi</span>,
-                <span class="ident">Romanian</span>,
-                <span class="ident">Russian</span>,
-                <span class="ident">Serbian</span>,
-                <span class="ident">Shona</span>,
-                <span class="ident">Slovak</span>,
-                <span class="ident">Slovene</span>,
-                <span class="ident">Somali</span>,
-                <span class="ident">Sotho</span>,
-                <span class="ident">Spanish</span>,
-                <span class="ident">Swahili</span>,
-                <span class="ident">Swedish</span>,
-                <span class="ident">Tagalog</span>,
-                <span class="ident">Tamil</span>,
-                <span class="ident">Telugu</span>,
-                <span class="ident">Thai</span>,
-                <span class="ident">Tsonga</span>,
-                <span class="ident">Tswana</span>,
-                <span class="ident">Turkish</span>,
-                <span class="ident">Ukrainian</span>,
-                <span class="ident">Urdu</span>,
-                <span class="ident">Vietnamese</span>,
-                <span class="ident">Welsh</span>,
-                <span class="ident">Xhosa</span>,
-                <span class="ident">Yoruba</span>,
-                <span class="ident">Zulu</span>
+                Afrikaans,
+                Albanian,
+                Arabic,
+                Armenian,
+                Azerbaijani,
+                Basque,
+                Belarusian,
+                Bengali,
+                Bokmal,
+                Bosnian,
+                Bulgarian,
+                Catalan,
+                Chinese,
+                Croatian,
+                Czech,
+                Danish,
+                Dutch,
+                English,
+                Esperanto,
+                Estonian,
+                Finnish,
+                French,
+                Ganda,
+                Georgian,
+                German,
+                Greek,
+                Gujarati,
+                Hebrew,
+                Hindi,
+                Hungarian,
+                Icelandic,
+                Indonesian,
+                Irish,
+                Italian,
+                Japanese,
+                Kazakh,
+                Korean,
+                Latvian,
+                Lithuanian,
+                Macedonian,
+                Malay,
+                Maori,
+                Marathi,
+                Mongolian,
+                Nynorsk,
+                Persian,
+                Polish,
+                Portuguese,
+                Punjabi,
+                Romanian,
+                Russian,
+                Serbian,
+                Shona,
+                Slovak,
+                Slovene,
+                Somali,
+                Sotho,
+                Spanish,
+                Swahili,
+                Swedish,
+                Tagalog,
+                Tamil,
+                Telugu,
+                Thai,
+                Tsonga,
+                Tswana,
+                Turkish,
+                Ukrainian,
+                Urdu,
+                Vietnamese,
+                Welsh,
+                Xhosa,
+                Yoruba,
+                Zulu
             )
         );
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">assert_certain_languages_support_arabic_script</span>() {
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>assert_certain_languages_support_arabic_script() {
         <span class="macro">assert_eq!</span>(
-            <span class="ident">Language::all_with_arabic_script</span>(),
-            <span class="macro">hashset!</span>(<span class="ident">Arabic</span>, <span class="ident">Persian</span>, <span class="ident">Urdu</span>)
+            Language::all_with_arabic_script(),
+            <span class="macro">hashset!</span>(Arabic, Persian, Urdu)
         );
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">assert_certain_languages_support_cyrillic_script</span>() {
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>assert_certain_languages_support_cyrillic_script() {
         <span class="macro">assert_eq!</span>(
-            <span class="ident">Language::all_with_cyrillic_script</span>(),
+            Language::all_with_cyrillic_script(),
             <span class="macro">hashset!</span>(
-                <span class="ident">Belarusian</span>, <span class="ident">Bulgarian</span>, <span class="ident">Kazakh</span>, <span class="ident">Macedonian</span>, <span class="ident">Mongolian</span>, <span class="ident">Russian</span>, <span class="ident">Serbian</span>, <span class="ident">Ukrainian</span>
+                Belarusian, Bulgarian, Kazakh, Macedonian, Mongolian, Russian, Serbian, Ukrainian
             )
         );
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">assert_certain_languages_support_devanagari_script</span>() {
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>assert_certain_languages_support_devanagari_script() {
         <span class="macro">assert_eq!</span>(
-            <span class="ident">Language::all_with_devanagari_script</span>(),
-            <span class="macro">hashset!</span>(<span class="ident">Hindi</span>, <span class="ident">Marathi</span>)
+            Language::all_with_devanagari_script(),
+            <span class="macro">hashset!</span>(Hindi, Marathi)
         );
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">assert_certain_languages_support_latin_script</span>() {
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>assert_certain_languages_support_latin_script() {
         <span class="macro">assert_eq!</span>(
-            <span class="ident">Language::all_with_latin_script</span>(),
+            Language::all_with_latin_script(),
             <span class="macro">hashset!</span>(
-                <span class="ident">Afrikaans</span>,
-                <span class="ident">Albanian</span>,
-                <span class="ident">Azerbaijani</span>,
-                <span class="ident">Basque</span>,
-                <span class="ident">Bokmal</span>,
-                <span class="ident">Bosnian</span>,
-                <span class="ident">Catalan</span>,
-                <span class="ident">Croatian</span>,
-                <span class="ident">Czech</span>,
-                <span class="ident">Danish</span>,
-                <span class="ident">Dutch</span>,
-                <span class="ident">English</span>,
-                <span class="ident">Esperanto</span>,
-                <span class="ident">Estonian</span>,
-                <span class="ident">Finnish</span>,
-                <span class="ident">French</span>,
-                <span class="ident">Ganda</span>,
-                <span class="ident">German</span>,
-                <span class="ident">Hungarian</span>,
-                <span class="ident">Icelandic</span>,
-                <span class="ident">Indonesian</span>,
-                <span class="ident">Irish</span>,
-                <span class="ident">Italian</span>,
-                <span class="ident">Latin</span>,
-                <span class="ident">Latvian</span>,
-                <span class="ident">Lithuanian</span>,
-                <span class="ident">Malay</span>,
-                <span class="ident">Maori</span>,
-                <span class="ident">Nynorsk</span>,
-                <span class="ident">Polish</span>,
-                <span class="ident">Portuguese</span>,
-                <span class="ident">Romanian</span>,
-                <span class="ident">Shona</span>,
-                <span class="ident">Slovak</span>,
-                <span class="ident">Slovene</span>,
-                <span class="ident">Somali</span>,
-                <span class="ident">Sotho</span>,
-                <span class="ident">Spanish</span>,
-                <span class="ident">Swahili</span>,
-                <span class="ident">Swedish</span>,
-                <span class="ident">Tagalog</span>,
-                <span class="ident">Tsonga</span>,
-                <span class="ident">Tswana</span>,
-                <span class="ident">Turkish</span>,
-                <span class="ident">Vietnamese</span>,
-                <span class="ident">Welsh</span>,
-                <span class="ident">Xhosa</span>,
-                <span class="ident">Yoruba</span>,
-                <span class="ident">Zulu</span>
+                Afrikaans,
+                Albanian,
+                Azerbaijani,
+                Basque,
+                Bokmal,
+                Bosnian,
+                Catalan,
+                Croatian,
+                Czech,
+                Danish,
+                Dutch,
+                English,
+                Esperanto,
+                Estonian,
+                Finnish,
+                French,
+                Ganda,
+                German,
+                Hungarian,
+                Icelandic,
+                Indonesian,
+                Irish,
+                Italian,
+                Latin,
+                Latvian,
+                Lithuanian,
+                Malay,
+                Maori,
+                Nynorsk,
+                Polish,
+                Portuguese,
+                Romanian,
+                Shona,
+                Slovak,
+                Slovene,
+                Somali,
+                Sotho,
+                Spanish,
+                Swahili,
+                Swedish,
+                Tagalog,
+                Tsonga,
+                Tswana,
+                Turkish,
+                Vietnamese,
+                Welsh,
+                Xhosa,
+                Yoruba,
+                Zulu
             )
         );
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="lingua" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="lingua" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (77e57db38 2022-10-30)" ></div></body></html>

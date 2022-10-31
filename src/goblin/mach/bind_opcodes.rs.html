@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/goblin-0.5.4/src/mach/bind_opcodes.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>bind_opcodes.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../goblin/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../goblin/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../goblin/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/goblin-0.5.4/src/mach/bind_opcodes.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>bind_opcodes.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../normalize.css"><link rel="stylesheet" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../ayu.css" disabled><link rel="stylesheet" href="../../../dark.css" disabled><link rel="stylesheet" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../goblin/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -58,65 +58,65 @@
 <span id="58">58</span>
 <span id="59">59</span>
 <span id="60">60</span>
-</pre><pre class="rust"><code><span class="doccomment">//! Bind opcodes are interpreted by the dynamic linker to efficiently collect every symbol imported by this binary, and from which library using two-level namespacing</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! Some uses of external symbols do not need to be bound immediately.</span>
-<span class="doccomment">//! Instead they can be lazily bound on first use.  The lazy_bind</span>
-<span class="doccomment">//! are contains a stream of BIND opcodes to bind all lazy symbols.</span>
-<span class="doccomment">//! Normal use is that dyld ignores the lazy_bind section when</span>
-<span class="doccomment">//! loading an image.  Instead the static linker arranged for a</span>
-<span class="doccomment">//! lazy pointer to initially point to a helper function which</span>
-<span class="doccomment">//! pushes the offset into the lazy_bind area for the symbol</span>
-<span class="doccomment">//! needing to be bound, then jumps to dyld which simply adds</span>
-<span class="doccomment">//! the offset to lazy_bind_off to get the information on what</span>
-<span class="doccomment">//! to bind.</span>
+</pre><pre class="rust"><code><span class="doccomment">//! Bind opcodes are interpreted by the dynamic linker to efficiently collect every symbol imported by this binary, and from which library using two-level namespacing
+//!
+//! Some uses of external symbols do not need to be bound immediately.
+//! Instead they can be lazily bound on first use.  The lazy_bind
+//! are contains a stream of BIND opcodes to bind all lazy symbols.
+//! Normal use is that dyld ignores the lazy_bind section when
+//! loading an image.  Instead the static linker arranged for a
+//! lazy pointer to initially point to a helper function which
+//! pushes the offset into the lazy_bind area for the symbol
+//! needing to be bound, then jumps to dyld which simply adds
+//! the offset to lazy_bind_off to get the information on what
+//! to bind.
 
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">Opcode</span> <span class="op">=</span> <span class="ident">u8</span>;
+</span><span class="kw">pub type </span>Opcode = u8;
 
-<span class="comment">// The following are used to encode binding information</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">BIND_TYPE_POINTER</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">1</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">BIND_TYPE_TEXT_ABSOLUTE32</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">2</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">BIND_TYPE_TEXT_PCREL32</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">3</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">BIND_SPECIAL_DYLIB_SELF</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">0</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">BIND_SPECIAL_DYLIB_MAIN_EXECUTABLE</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">0xf</span>; <span class="comment">// -1</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">BIND_SPECIAL_DYLIB_FLAT_LOOKUP</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">0xe</span>; <span class="comment">// -2</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">BIND_SYMBOL_FLAGS_WEAK_IMPORT</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">0x1</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">BIND_SYMBOL_FLAGS_NON_WEAK_DEFINITION</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">0x8</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">BIND_OPCODE_MASK</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">0xF0</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">BIND_IMMEDIATE_MASK</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">0x0F</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">BIND_OPCODE_DONE</span>: <span class="ident">Opcode</span> <span class="op">=</span> <span class="number">0x00</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">BIND_OPCODE_SET_DYLIB_ORDINAL_IMM</span>: <span class="ident">Opcode</span> <span class="op">=</span> <span class="number">0x10</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">BIND_OPCODE_SET_DYLIB_ORDINAL_ULEB</span>: <span class="ident">Opcode</span> <span class="op">=</span> <span class="number">0x20</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">BIND_OPCODE_SET_DYLIB_SPECIAL_IMM</span>: <span class="ident">Opcode</span> <span class="op">=</span> <span class="number">0x30</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">BIND_OPCODE_SET_SYMBOL_TRAILING_FLAGS_IMM</span>: <span class="ident">Opcode</span> <span class="op">=</span> <span class="number">0x40</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">BIND_OPCODE_SET_TYPE_IMM</span>: <span class="ident">Opcode</span> <span class="op">=</span> <span class="number">0x50</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">BIND_OPCODE_SET_ADDEND_SLEB</span>: <span class="ident">Opcode</span> <span class="op">=</span> <span class="number">0x60</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">BIND_OPCODE_SET_SEGMENT_AND_OFFSET_ULEB</span>: <span class="ident">Opcode</span> <span class="op">=</span> <span class="number">0x70</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">BIND_OPCODE_ADD_ADDR_ULEB</span>: <span class="ident">Opcode</span> <span class="op">=</span> <span class="number">0x80</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">BIND_OPCODE_DO_BIND</span>: <span class="ident">Opcode</span> <span class="op">=</span> <span class="number">0x90</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">BIND_OPCODE_DO_BIND_ADD_ADDR_ULEB</span>: <span class="ident">Opcode</span> <span class="op">=</span> <span class="number">0xA0</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">BIND_OPCODE_DO_BIND_ADD_ADDR_IMM_SCALED</span>: <span class="ident">Opcode</span> <span class="op">=</span> <span class="number">0xB0</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">BIND_OPCODE_DO_BIND_ULEB_TIMES_SKIPPING_ULEB</span>: <span class="ident">Opcode</span> <span class="op">=</span> <span class="number">0xC0</span>;
+<span class="comment">// The following are used to encode binding information
+</span><span class="kw">pub const </span>BIND_TYPE_POINTER: u8 = <span class="number">1</span>;
+<span class="kw">pub const </span>BIND_TYPE_TEXT_ABSOLUTE32: u8 = <span class="number">2</span>;
+<span class="kw">pub const </span>BIND_TYPE_TEXT_PCREL32: u8 = <span class="number">3</span>;
+<span class="kw">pub const </span>BIND_SPECIAL_DYLIB_SELF: u8 = <span class="number">0</span>;
+<span class="kw">pub const </span>BIND_SPECIAL_DYLIB_MAIN_EXECUTABLE: u8 = <span class="number">0xf</span>; <span class="comment">// -1
+</span><span class="kw">pub const </span>BIND_SPECIAL_DYLIB_FLAT_LOOKUP: u8 = <span class="number">0xe</span>; <span class="comment">// -2
+</span><span class="kw">pub const </span>BIND_SYMBOL_FLAGS_WEAK_IMPORT: u8 = <span class="number">0x1</span>;
+<span class="kw">pub const </span>BIND_SYMBOL_FLAGS_NON_WEAK_DEFINITION: u8 = <span class="number">0x8</span>;
+<span class="kw">pub const </span>BIND_OPCODE_MASK: u8 = <span class="number">0xF0</span>;
+<span class="kw">pub const </span>BIND_IMMEDIATE_MASK: u8 = <span class="number">0x0F</span>;
+<span class="kw">pub const </span>BIND_OPCODE_DONE: Opcode = <span class="number">0x00</span>;
+<span class="kw">pub const </span>BIND_OPCODE_SET_DYLIB_ORDINAL_IMM: Opcode = <span class="number">0x10</span>;
+<span class="kw">pub const </span>BIND_OPCODE_SET_DYLIB_ORDINAL_ULEB: Opcode = <span class="number">0x20</span>;
+<span class="kw">pub const </span>BIND_OPCODE_SET_DYLIB_SPECIAL_IMM: Opcode = <span class="number">0x30</span>;
+<span class="kw">pub const </span>BIND_OPCODE_SET_SYMBOL_TRAILING_FLAGS_IMM: Opcode = <span class="number">0x40</span>;
+<span class="kw">pub const </span>BIND_OPCODE_SET_TYPE_IMM: Opcode = <span class="number">0x50</span>;
+<span class="kw">pub const </span>BIND_OPCODE_SET_ADDEND_SLEB: Opcode = <span class="number">0x60</span>;
+<span class="kw">pub const </span>BIND_OPCODE_SET_SEGMENT_AND_OFFSET_ULEB: Opcode = <span class="number">0x70</span>;
+<span class="kw">pub const </span>BIND_OPCODE_ADD_ADDR_ULEB: Opcode = <span class="number">0x80</span>;
+<span class="kw">pub const </span>BIND_OPCODE_DO_BIND: Opcode = <span class="number">0x90</span>;
+<span class="kw">pub const </span>BIND_OPCODE_DO_BIND_ADD_ADDR_ULEB: Opcode = <span class="number">0xA0</span>;
+<span class="kw">pub const </span>BIND_OPCODE_DO_BIND_ADD_ADDR_IMM_SCALED: Opcode = <span class="number">0xB0</span>;
+<span class="kw">pub const </span>BIND_OPCODE_DO_BIND_ULEB_TIMES_SKIPPING_ULEB: Opcode = <span class="number">0xC0</span>;
 
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">opcode_to_str</span>(<span class="ident">opcode</span>: <span class="ident">Opcode</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> {
-    <span class="kw">match</span> <span class="ident">opcode</span> {
-        <span class="ident">BIND_OPCODE_DONE</span> =&gt; <span class="string">&quot;BIND_OPCODE_DONE&quot;</span>,
-        <span class="ident">BIND_OPCODE_SET_DYLIB_ORDINAL_IMM</span> =&gt; <span class="string">&quot;BIND_OPCODE_SET_DYLIB_ORDINAL_IMM&quot;</span>,
-        <span class="ident">BIND_OPCODE_SET_DYLIB_ORDINAL_ULEB</span> =&gt; <span class="string">&quot;BIND_OPCODE_SET_DYLIB_ORDINAL_ULEB&quot;</span>,
-        <span class="ident">BIND_OPCODE_SET_DYLIB_SPECIAL_IMM</span> =&gt; <span class="string">&quot;BIND_OPCODE_SET_DYLIB_SPECIAL_IMM&quot;</span>,
-        <span class="ident">BIND_OPCODE_SET_SYMBOL_TRAILING_FLAGS_IMM</span> =&gt; <span class="string">&quot;BIND_OPCODE_SET_SYMBOL_TRAILING_FLAGS_IMM&quot;</span>,
-        <span class="ident">BIND_OPCODE_SET_TYPE_IMM</span> =&gt; <span class="string">&quot;BIND_OPCODE_SET_TYPE_IMM&quot;</span>,
-        <span class="ident">BIND_OPCODE_SET_ADDEND_SLEB</span> =&gt; <span class="string">&quot;BIND_OPCODE_SET_ADDEND_SLEB&quot;</span>,
-        <span class="ident">BIND_OPCODE_SET_SEGMENT_AND_OFFSET_ULEB</span> =&gt; <span class="string">&quot;BIND_OPCODE_SET_SEGMENT_AND_OFFSET_ULEB&quot;</span>,
-        <span class="ident">BIND_OPCODE_ADD_ADDR_ULEB</span> =&gt; <span class="string">&quot;BIND_OPCODE_ADD_ADDR_ULEB&quot;</span>,
-        <span class="ident">BIND_OPCODE_DO_BIND</span> =&gt; <span class="string">&quot;BIND_OPCODE_DO_BIND&quot;</span>,
-        <span class="ident">BIND_OPCODE_DO_BIND_ADD_ADDR_ULEB</span> =&gt; <span class="string">&quot;BIND_OPCODE_DO_BIND_ADD_ADDR_ULEB&quot;</span>,
-        <span class="ident">BIND_OPCODE_DO_BIND_ADD_ADDR_IMM_SCALED</span> =&gt; <span class="string">&quot;BIND_OPCODE_DO_BIND_ADD_ADDR_IMM_SCALED&quot;</span>,
-        <span class="ident">BIND_OPCODE_DO_BIND_ULEB_TIMES_SKIPPING_ULEB</span> =&gt; {
-            <span class="string">&quot;BIND_OPCODE_DO_BIND_ULEB_TIMES_SKIPPING_ULEB&quot;</span>
-        }
-        <span class="kw">_</span> =&gt; <span class="string">&quot;UNKNOWN OPCODE&quot;</span>,
+<span class="kw">pub fn </span>opcode_to_str(opcode: Opcode) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str {
+    <span class="kw">match </span>opcode {
+        BIND_OPCODE_DONE =&gt; <span class="string">&quot;BIND_OPCODE_DONE&quot;</span>,
+        BIND_OPCODE_SET_DYLIB_ORDINAL_IMM =&gt; <span class="string">&quot;BIND_OPCODE_SET_DYLIB_ORDINAL_IMM&quot;</span>,
+        BIND_OPCODE_SET_DYLIB_ORDINAL_ULEB =&gt; <span class="string">&quot;BIND_OPCODE_SET_DYLIB_ORDINAL_ULEB&quot;</span>,
+        BIND_OPCODE_SET_DYLIB_SPECIAL_IMM =&gt; <span class="string">&quot;BIND_OPCODE_SET_DYLIB_SPECIAL_IMM&quot;</span>,
+        BIND_OPCODE_SET_SYMBOL_TRAILING_FLAGS_IMM =&gt; <span class="string">&quot;BIND_OPCODE_SET_SYMBOL_TRAILING_FLAGS_IMM&quot;</span>,
+        BIND_OPCODE_SET_TYPE_IMM =&gt; <span class="string">&quot;BIND_OPCODE_SET_TYPE_IMM&quot;</span>,
+        BIND_OPCODE_SET_ADDEND_SLEB =&gt; <span class="string">&quot;BIND_OPCODE_SET_ADDEND_SLEB&quot;</span>,
+        BIND_OPCODE_SET_SEGMENT_AND_OFFSET_ULEB =&gt; <span class="string">&quot;BIND_OPCODE_SET_SEGMENT_AND_OFFSET_ULEB&quot;</span>,
+        BIND_OPCODE_ADD_ADDR_ULEB =&gt; <span class="string">&quot;BIND_OPCODE_ADD_ADDR_ULEB&quot;</span>,
+        BIND_OPCODE_DO_BIND =&gt; <span class="string">&quot;BIND_OPCODE_DO_BIND&quot;</span>,
+        BIND_OPCODE_DO_BIND_ADD_ADDR_ULEB =&gt; <span class="string">&quot;BIND_OPCODE_DO_BIND_ADD_ADDR_ULEB&quot;</span>,
+        BIND_OPCODE_DO_BIND_ADD_ADDR_IMM_SCALED =&gt; <span class="string">&quot;BIND_OPCODE_DO_BIND_ADD_ADDR_IMM_SCALED&quot;</span>,
+        BIND_OPCODE_DO_BIND_ULEB_TIMES_SKIPPING_ULEB =&gt; {
+            <span class="string">&quot;BIND_OPCODE_DO_BIND_ULEB_TIMES_SKIPPING_ULEB&quot;
+        </span>}
+        <span class="kw">_ </span>=&gt; <span class="string">&quot;UNKNOWN OPCODE&quot;</span>,
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="goblin" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="goblin" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (77e57db38 2022-10-30)" ></div></body></html>

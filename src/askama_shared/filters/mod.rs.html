@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/askama_shared-0.12.2/src/filters/mod.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../askama_shared/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../askama_shared/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../askama_shared/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/askama_shared-0.12.2/src/filters/mod.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../normalize.css"><link rel="stylesheet" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../ayu.css" disabled><link rel="stylesheet" href="../../../dark.css" disabled><link rel="stylesheet" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../askama_shared/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -673,56 +673,56 @@
 <span id="673">673</span>
 <span id="674">674</span>
 <span id="675">675</span>
-</pre><pre class="rust"><code><span class="doccomment">//! Module for built-in filter functions</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! Contains all the built-in filter functions for use in templates.</span>
-<span class="doccomment">//! You can define your own filters, as well.</span>
-<span class="doccomment">//! For more information, read the [book](https://djc.github.io/askama/filters.html).</span>
-<span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy::trivially_copy_pass_by_ref</span>)]</span>
+</pre><pre class="rust"><code><span class="doccomment">//! Module for built-in filter functions
+//!
+//! Contains all the built-in filter functions for use in templates.
+//! You can define your own filters, as well.
+//! For more information, read the [book](https://djc.github.io/askama/filters.html).
+</span><span class="attribute">#![allow(clippy::trivially_copy_pass_by_ref)]
 
-<span class="kw">use</span> <span class="ident">std::fmt</span>;
+</span><span class="kw">use </span>std::fmt;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde_json&quot;</span>)]</span>
-<span class="kw">mod</span> <span class="ident">json</span>;
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde_json&quot;</span>)]</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::json::json</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;serde_json&quot;</span>)]
+</span><span class="kw">mod </span>json;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;serde_json&quot;</span>)]
+</span><span class="kw">pub use </span><span class="self">self</span>::json::json;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde_yaml&quot;</span>)]</span>
-<span class="kw">mod</span> <span class="ident">yaml</span>;
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde_yaml&quot;</span>)]</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::yaml::yaml</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;serde_yaml&quot;</span>)]
+</span><span class="kw">mod </span>yaml;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;serde_yaml&quot;</span>)]
+</span><span class="kw">pub use </span><span class="self">self</span>::yaml::yaml;
 
-<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">unused_imports</span>)]</span>
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::error::Error::Fmt</span>;
-<span class="kw">use</span> <span class="ident">askama_escape</span>::{<span class="ident">Escaper</span>, <span class="ident">MarkupDisplay</span>};
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;humansize&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">humansize</span>::{<span class="ident">file_size_opts</span>, <span class="ident">FileSize</span>};
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;num-traits&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">num_traits</span>::{<span class="ident">cast::NumCast</span>, <span class="ident">Signed</span>};
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;percent-encoding&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">percent_encoding</span>::{<span class="ident">utf8_percent_encode</span>, <span class="ident">AsciiSet</span>, <span class="ident">NON_ALPHANUMERIC</span>};
+<span class="attribute">#[allow(unused_imports)]
+</span><span class="kw">use </span><span class="kw">crate</span>::error::Error::Fmt;
+<span class="kw">use </span>askama_escape::{Escaper, MarkupDisplay};
+<span class="attribute">#[cfg(feature = <span class="string">&quot;humansize&quot;</span>)]
+</span><span class="kw">use </span>humansize::{file_size_opts, FileSize};
+<span class="attribute">#[cfg(feature = <span class="string">&quot;num-traits&quot;</span>)]
+</span><span class="kw">use </span>num_traits::{cast::NumCast, Signed};
+<span class="attribute">#[cfg(feature = <span class="string">&quot;percent-encoding&quot;</span>)]
+</span><span class="kw">use </span>percent_encoding::{utf8_percent_encode, AsciiSet, NON_ALPHANUMERIC};
 
-<span class="kw">use</span> <span class="ident"><span class="kw">super</span>::Result</span>;
+<span class="kw">use </span><span class="kw">super</span>::Result;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;percent-encoding&quot;</span>)]</span>
-<span class="comment">// Urlencode char encoding set. Only the characters in the unreserved set don&#39;t</span>
-<span class="comment">// have any special purpose in any part of a URI and can be safely left</span>
-<span class="comment">// unencoded as specified in https://tools.ietf.org/html/rfc3986.html#section-2.3</span>
-<span class="kw">const</span> <span class="ident">URLENCODE_STRICT_SET</span>: <span class="kw-2">&amp;</span><span class="ident">AsciiSet</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">NON_ALPHANUMERIC</span>
-    .<span class="ident">remove</span>(<span class="string">b&#39;_&#39;</span>)
-    .<span class="ident">remove</span>(<span class="string">b&#39;.&#39;</span>)
-    .<span class="ident">remove</span>(<span class="string">b&#39;-&#39;</span>)
-    .<span class="ident">remove</span>(<span class="string">b&#39;~&#39;</span>);
+<span class="attribute">#[cfg(feature = <span class="string">&quot;percent-encoding&quot;</span>)]
+</span><span class="comment">// Urlencode char encoding set. Only the characters in the unreserved set don&#39;t
+// have any special purpose in any part of a URI and can be safely left
+// unencoded as specified in https://tools.ietf.org/html/rfc3986.html#section-2.3
+</span><span class="kw">const </span>URLENCODE_STRICT_SET: <span class="kw-2">&amp;</span>AsciiSet = <span class="kw-2">&amp;</span>NON_ALPHANUMERIC
+    .remove(<span class="string">b&#39;_&#39;</span>)
+    .remove(<span class="string">b&#39;.&#39;</span>)
+    .remove(<span class="string">b&#39;-&#39;</span>)
+    .remove(<span class="string">b&#39;~&#39;</span>);
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;percent-encoding&quot;</span>)]</span>
-<span class="comment">// Same as URLENCODE_STRICT_SET, but preserves forward slashes for encoding paths</span>
-<span class="kw">const</span> <span class="ident">URLENCODE_SET</span>: <span class="kw-2">&amp;</span><span class="ident">AsciiSet</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">URLENCODE_STRICT_SET</span>.<span class="ident">remove</span>(<span class="string">b&#39;/&#39;</span>);
+<span class="attribute">#[cfg(feature = <span class="string">&quot;percent-encoding&quot;</span>)]
+</span><span class="comment">// Same as URLENCODE_STRICT_SET, but preserves forward slashes for encoding paths
+</span><span class="kw">const </span>URLENCODE_SET: <span class="kw-2">&amp;</span>AsciiSet = <span class="kw-2">&amp;</span>URLENCODE_STRICT_SET.remove(<span class="string">b&#39;/&#39;</span>);
 
-<span class="comment">// This is used by the code generator to decide whether a named filter is part of</span>
-<span class="comment">// Askama or should refer to a local `filters` module. It should contain all the</span>
-<span class="comment">// filters shipped with Askama, even the optional ones (since optional inclusion</span>
-<span class="comment">// in the const vector based on features seems impossible right now).</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">BUILT_IN_FILTERS</span>: <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span><span class="ident">str</span>] <span class="op">=</span> <span class="kw-2">&amp;</span>[
+<span class="comment">// This is used by the code generator to decide whether a named filter is part of
+// Askama or should refer to a local `filters` module. It should contain all the
+// filters shipped with Askama, even the optional ones (since optional inclusion
+// in the const vector based on features seems impossible right now).
+</span><span class="kw">pub const </span>BUILT_IN_FILTERS: <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span>str] = <span class="kw-2">&amp;</span>[
     <span class="string">&quot;abs&quot;</span>,
     <span class="string">&quot;capitalize&quot;</span>,
     <span class="string">&quot;center&quot;</span>,
@@ -748,605 +748,605 @@
     <span class="string">&quot;urlencode&quot;</span>,
     <span class="string">&quot;urlencode_strict&quot;</span>,
     <span class="string">&quot;wordcount&quot;</span>,
-    <span class="comment">// optional features, reserve the names anyway:</span>
-    <span class="string">&quot;json&quot;</span>,
+    <span class="comment">// optional features, reserve the names anyway:
+    </span><span class="string">&quot;json&quot;</span>,
     <span class="string">&quot;markdown&quot;</span>,
     <span class="string">&quot;yaml&quot;</span>,
 ];
 
-<span class="doccomment">/// Marks a string (or other `Display` type) as safe</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Use this is you want to allow markup in an expression, or if you know</span>
-<span class="doccomment">/// that the expression&#39;s contents don&#39;t need to be escaped.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Askama will automatically insert the first (`Escaper`) argument,</span>
-<span class="doccomment">/// so this filter only takes a single argument of any type that implements</span>
-<span class="doccomment">/// `Display`.</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">safe</span><span class="op">&lt;</span><span class="ident">E</span>, <span class="ident">T</span><span class="op">&gt;</span>(<span class="ident">e</span>: <span class="ident">E</span>, <span class="ident">v</span>: <span class="ident">T</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">MarkupDisplay</span><span class="op">&lt;</span><span class="ident">E</span>, <span class="ident">T</span><span class="op">&gt;</span><span class="op">&gt;</span>
-<span class="kw">where</span>
-    <span class="ident">E</span>: <span class="ident">Escaper</span>,
-    <span class="ident">T</span>: <span class="ident">fmt::Display</span>,
+<span class="doccomment">/// Marks a string (or other `Display` type) as safe
+///
+/// Use this is you want to allow markup in an expression, or if you know
+/// that the expression&#39;s contents don&#39;t need to be escaped.
+///
+/// Askama will automatically insert the first (`Escaper`) argument,
+/// so this filter only takes a single argument of any type that implements
+/// `Display`.
+</span><span class="kw">pub fn </span>safe&lt;E, T&gt;(e: E, v: T) -&gt; <span class="prelude-ty">Result</span>&lt;MarkupDisplay&lt;E, T&gt;&gt;
+<span class="kw">where
+    </span>E: Escaper,
+    T: fmt::Display,
 {
-    <span class="prelude-val">Ok</span>(<span class="ident">MarkupDisplay::new_safe</span>(<span class="ident">v</span>, <span class="ident">e</span>))
+    <span class="prelude-val">Ok</span>(MarkupDisplay::new_safe(v, e))
 }
 
-<span class="doccomment">/// Escapes `&amp;`, `&lt;` and `&gt;` in strings</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Askama will automatically insert the first (`Escaper`) argument,</span>
-<span class="doccomment">/// so this filter only takes a single argument of any type that implements</span>
-<span class="doccomment">/// `Display`.</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">escape</span><span class="op">&lt;</span><span class="ident">E</span>, <span class="ident">T</span><span class="op">&gt;</span>(<span class="ident">e</span>: <span class="ident">E</span>, <span class="ident">v</span>: <span class="ident">T</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">MarkupDisplay</span><span class="op">&lt;</span><span class="ident">E</span>, <span class="ident">T</span><span class="op">&gt;</span><span class="op">&gt;</span>
-<span class="kw">where</span>
-    <span class="ident">E</span>: <span class="ident">Escaper</span>,
-    <span class="ident">T</span>: <span class="ident">fmt::Display</span>,
+<span class="doccomment">/// Escapes `&amp;`, `&lt;` and `&gt;` in strings
+///
+/// Askama will automatically insert the first (`Escaper`) argument,
+/// so this filter only takes a single argument of any type that implements
+/// `Display`.
+</span><span class="kw">pub fn </span>escape&lt;E, T&gt;(e: E, v: T) -&gt; <span class="prelude-ty">Result</span>&lt;MarkupDisplay&lt;E, T&gt;&gt;
+<span class="kw">where
+    </span>E: Escaper,
+    T: fmt::Display,
 {
-    <span class="prelude-val">Ok</span>(<span class="ident">MarkupDisplay::new_unsafe</span>(<span class="ident">v</span>, <span class="ident">e</span>))
+    <span class="prelude-val">Ok</span>(MarkupDisplay::new_unsafe(v, e))
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;humansize&quot;</span>)]</span>
-<span class="doccomment">/// Returns adequate string representation (in KB, ..) of number of bytes</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">filesizeformat</span><span class="op">&lt;</span><span class="ident">B</span>: <span class="ident">FileSize</span><span class="op">&gt;</span>(<span class="ident">b</span>: <span class="kw-2">&amp;</span><span class="ident">B</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span> {
-    <span class="ident">b</span>.<span class="ident">file_size</span>(<span class="ident">file_size_opts::DECIMAL</span>)
-        .<span class="ident">map_err</span>(<span class="op">|</span><span class="kw">_</span><span class="op">|</span> <span class="ident">Fmt</span>(<span class="ident">fmt::Error</span>))
+<span class="attribute">#[cfg(feature = <span class="string">&quot;humansize&quot;</span>)]
+</span><span class="doccomment">/// Returns adequate string representation (in KB, ..) of number of bytes
+</span><span class="kw">pub fn </span>filesizeformat&lt;B: FileSize&gt;(b: <span class="kw-2">&amp;</span>B) -&gt; <span class="prelude-ty">Result</span>&lt;String&gt; {
+    b.file_size(file_size_opts::DECIMAL)
+        .map_err(|<span class="kw">_</span>| Fmt(fmt::Error))
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;percent-encoding&quot;</span>)]</span>
-<span class="doccomment">/// Percent-encodes the argument for safe use in URI; does not encode `/`.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// This should be safe for all parts of URI (paths segments, query keys, query</span>
-<span class="doccomment">/// values). In the rare case that the server can&#39;t deal with forward slashes in</span>
-<span class="doccomment">/// the query string, use [`urlencode_strict`], which encodes them as well.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Encodes all characters except ASCII letters, digits, and `_.-~/`. In other</span>
-<span class="doccomment">/// words, encodes all characters which are not in the unreserved set,</span>
-<span class="doccomment">/// as specified by [RFC3986](https://tools.ietf.org/html/rfc3986#section-2.3),</span>
-<span class="doccomment">/// with the exception of `/`.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ```none,ignore</span>
-<span class="doccomment">/// &lt;a href=&quot;/metro{{ &quot;/stations/Château d&#39;Eau&quot;|urlencode }}&quot;&gt;Station&lt;/a&gt;</span>
-<span class="doccomment">/// &lt;a href=&quot;/page?text={{ &quot;look, unicode/emojis ✨&quot;|urlencode }}&quot;&gt;Page&lt;/a&gt;</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// To encode `/` as well, see [`urlencode_strict`](./fn.urlencode_strict.html).</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// [`urlencode_strict`]: ./fn.urlencode_strict.html</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">urlencode</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">fmt::Display</span><span class="op">&gt;</span>(<span class="ident">s</span>: <span class="ident">T</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span> {
-    <span class="kw">let</span> <span class="ident">s</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">to_string</span>();
-    <span class="prelude-val">Ok</span>(<span class="ident">utf8_percent_encode</span>(<span class="kw-2">&amp;</span><span class="ident">s</span>, <span class="ident">URLENCODE_SET</span>).<span class="ident">to_string</span>())
+<span class="attribute">#[cfg(feature = <span class="string">&quot;percent-encoding&quot;</span>)]
+</span><span class="doccomment">/// Percent-encodes the argument for safe use in URI; does not encode `/`.
+///
+/// This should be safe for all parts of URI (paths segments, query keys, query
+/// values). In the rare case that the server can&#39;t deal with forward slashes in
+/// the query string, use [`urlencode_strict`], which encodes them as well.
+///
+/// Encodes all characters except ASCII letters, digits, and `_.-~/`. In other
+/// words, encodes all characters which are not in the unreserved set,
+/// as specified by [RFC3986](https://tools.ietf.org/html/rfc3986#section-2.3),
+/// with the exception of `/`.
+///
+/// ```none,ignore
+/// &lt;a href=&quot;/metro{{ &quot;/stations/Château d&#39;Eau&quot;|urlencode }}&quot;&gt;Station&lt;/a&gt;
+/// &lt;a href=&quot;/page?text={{ &quot;look, unicode/emojis ✨&quot;|urlencode }}&quot;&gt;Page&lt;/a&gt;
+/// ```
+///
+/// To encode `/` as well, see [`urlencode_strict`](./fn.urlencode_strict.html).
+///
+/// [`urlencode_strict`]: ./fn.urlencode_strict.html
+</span><span class="kw">pub fn </span>urlencode&lt;T: fmt::Display&gt;(s: T) -&gt; <span class="prelude-ty">Result</span>&lt;String&gt; {
+    <span class="kw">let </span>s = s.to_string();
+    <span class="prelude-val">Ok</span>(utf8_percent_encode(<span class="kw-2">&amp;</span>s, URLENCODE_SET).to_string())
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;percent-encoding&quot;</span>)]</span>
-<span class="doccomment">/// Percent-encodes the argument for safe use in URI; encodes `/`.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Use this filter for encoding query keys and values in the rare case that</span>
-<span class="doccomment">/// the server can&#39;t process them unencoded.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Encodes all characters except ASCII letters, digits, and `_.-~`. In other</span>
-<span class="doccomment">/// words, encodes all characters which are not in the unreserved set,</span>
-<span class="doccomment">/// as specified by [RFC3986](https://tools.ietf.org/html/rfc3986#section-2.3).</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ```none,ignore</span>
-<span class="doccomment">/// &lt;a href=&quot;/page?text={{ &quot;look, unicode/emojis ✨&quot;|urlencode_strict }}&quot;&gt;Page&lt;/a&gt;</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// If you want to preserve `/`, see [`urlencode`](./fn.urlencode.html).</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">urlencode_strict</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">fmt::Display</span><span class="op">&gt;</span>(<span class="ident">s</span>: <span class="ident">T</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span> {
-    <span class="kw">let</span> <span class="ident">s</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">to_string</span>();
-    <span class="prelude-val">Ok</span>(<span class="ident">utf8_percent_encode</span>(<span class="kw-2">&amp;</span><span class="ident">s</span>, <span class="ident">URLENCODE_STRICT_SET</span>).<span class="ident">to_string</span>())
+<span class="attribute">#[cfg(feature = <span class="string">&quot;percent-encoding&quot;</span>)]
+</span><span class="doccomment">/// Percent-encodes the argument for safe use in URI; encodes `/`.
+///
+/// Use this filter for encoding query keys and values in the rare case that
+/// the server can&#39;t process them unencoded.
+///
+/// Encodes all characters except ASCII letters, digits, and `_.-~`. In other
+/// words, encodes all characters which are not in the unreserved set,
+/// as specified by [RFC3986](https://tools.ietf.org/html/rfc3986#section-2.3).
+///
+/// ```none,ignore
+/// &lt;a href=&quot;/page?text={{ &quot;look, unicode/emojis ✨&quot;|urlencode_strict }}&quot;&gt;Page&lt;/a&gt;
+/// ```
+///
+/// If you want to preserve `/`, see [`urlencode`](./fn.urlencode.html).
+</span><span class="kw">pub fn </span>urlencode_strict&lt;T: fmt::Display&gt;(s: T) -&gt; <span class="prelude-ty">Result</span>&lt;String&gt; {
+    <span class="kw">let </span>s = s.to_string();
+    <span class="prelude-val">Ok</span>(utf8_percent_encode(<span class="kw-2">&amp;</span>s, URLENCODE_STRICT_SET).to_string())
 }
 
-<span class="doccomment">/// Formats arguments according to the specified format</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// The *second* argument to this filter must be a string literal (as in normal</span>
-<span class="doccomment">/// Rust). The two arguments are passed through to the `format!()`</span>
-<span class="doccomment">/// [macro](https://doc.rust-lang.org/stable/std/macro.format.html) by</span>
-<span class="doccomment">/// the Askama code generator, but the order is swapped to support filter</span>
-<span class="doccomment">/// composition.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ```ignore</span>
-<span class="doccomment">/// {{ value | fmt(&quot;{:?}&quot;) }}</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Compare with [format](./fn.format.html).</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">fmt</span>() {}
+<span class="doccomment">/// Formats arguments according to the specified format
+///
+/// The *second* argument to this filter must be a string literal (as in normal
+/// Rust). The two arguments are passed through to the `format!()`
+/// [macro](https://doc.rust-lang.org/stable/std/macro.format.html) by
+/// the Askama code generator, but the order is swapped to support filter
+/// composition.
+///
+/// ```ignore
+/// {{ value | fmt(&quot;{:?}&quot;) }}
+/// ```
+///
+/// Compare with [format](./fn.format.html).
+</span><span class="kw">pub fn </span>fmt() {}
 
-<span class="doccomment">/// Formats arguments according to the specified format</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// The first argument to this filter must be a string literal (as in normal</span>
-<span class="doccomment">/// Rust). All arguments are passed through to the `format!()`</span>
-<span class="doccomment">/// [macro](https://doc.rust-lang.org/stable/std/macro.format.html) by</span>
-<span class="doccomment">/// the Askama code generator.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ```ignore</span>
-<span class="doccomment">/// {{ &quot;{:?}{:?}&quot; | format(value, other_value) }}</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Compare with [fmt](./fn.fmt.html).</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">format</span>() {}
+<span class="doccomment">/// Formats arguments according to the specified format
+///
+/// The first argument to this filter must be a string literal (as in normal
+/// Rust). All arguments are passed through to the `format!()`
+/// [macro](https://doc.rust-lang.org/stable/std/macro.format.html) by
+/// the Askama code generator.
+///
+/// ```ignore
+/// {{ &quot;{:?}{:?}&quot; | format(value, other_value) }}
+/// ```
+///
+/// Compare with [fmt](./fn.fmt.html).
+</span><span class="kw">pub fn </span>format() {}
 
-<span class="doccomment">/// Replaces line breaks in plain text with appropriate HTML</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// A single newline becomes an HTML line break `&lt;br&gt;` and a new line</span>
-<span class="doccomment">/// followed by a blank line becomes a paragraph break `&lt;p&gt;`.</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">linebreaks</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">fmt::Display</span><span class="op">&gt;</span>(<span class="ident">s</span>: <span class="ident">T</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span> {
-    <span class="kw">let</span> <span class="ident">s</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">to_string</span>();
-    <span class="kw">let</span> <span class="ident">linebroken</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">replace</span>(<span class="string">&quot;\n\n&quot;</span>, <span class="string">&quot;&lt;/p&gt;&lt;p&gt;&quot;</span>).<span class="ident">replace</span>(<span class="string">&#39;\n&#39;</span>, <span class="string">&quot;&lt;br/&gt;&quot;</span>);
+<span class="doccomment">/// Replaces line breaks in plain text with appropriate HTML
+///
+/// A single newline becomes an HTML line break `&lt;br&gt;` and a new line
+/// followed by a blank line becomes a paragraph break `&lt;p&gt;`.
+</span><span class="kw">pub fn </span>linebreaks&lt;T: fmt::Display&gt;(s: T) -&gt; <span class="prelude-ty">Result</span>&lt;String&gt; {
+    <span class="kw">let </span>s = s.to_string();
+    <span class="kw">let </span>linebroken = s.replace(<span class="string">&quot;\n\n&quot;</span>, <span class="string">&quot;&lt;/p&gt;&lt;p&gt;&quot;</span>).replace(<span class="string">&#39;\n&#39;</span>, <span class="string">&quot;&lt;br/&gt;&quot;</span>);
 
-    <span class="prelude-val">Ok</span>(<span class="macro">format!</span>(<span class="string">&quot;&lt;p&gt;{}&lt;/p&gt;&quot;</span>, <span class="ident">linebroken</span>))
+    <span class="prelude-val">Ok</span>(<span class="macro">format!</span>(<span class="string">&quot;&lt;p&gt;{}&lt;/p&gt;&quot;</span>, linebroken))
 }
 
-<span class="doccomment">/// Converts all newlines in a piece of plain text to HTML line breaks</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">linebreaksbr</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">fmt::Display</span><span class="op">&gt;</span>(<span class="ident">s</span>: <span class="ident">T</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span> {
-    <span class="kw">let</span> <span class="ident">s</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">to_string</span>();
-    <span class="prelude-val">Ok</span>(<span class="ident">s</span>.<span class="ident">replace</span>(<span class="string">&#39;\n&#39;</span>, <span class="string">&quot;&lt;br/&gt;&quot;</span>))
+<span class="doccomment">/// Converts all newlines in a piece of plain text to HTML line breaks
+</span><span class="kw">pub fn </span>linebreaksbr&lt;T: fmt::Display&gt;(s: T) -&gt; <span class="prelude-ty">Result</span>&lt;String&gt; {
+    <span class="kw">let </span>s = s.to_string();
+    <span class="prelude-val">Ok</span>(s.replace(<span class="string">&#39;\n&#39;</span>, <span class="string">&quot;&lt;br/&gt;&quot;</span>))
 }
 
-<span class="doccomment">/// Replaces only paragraph breaks in plain text with appropriate HTML</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// A new line followed by a blank line becomes a paragraph break `&lt;p&gt;`.</span>
-<span class="doccomment">/// Paragraph tags only wrap content; empty paragraphs are removed.</span>
-<span class="doccomment">/// No `&lt;br/&gt;` tags are added.</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">paragraphbreaks</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">fmt::Display</span><span class="op">&gt;</span>(<span class="ident">s</span>: <span class="ident">T</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span> {
-    <span class="kw">let</span> <span class="ident">s</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">to_string</span>();
-    <span class="kw">let</span> <span class="ident">linebroken</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">replace</span>(<span class="string">&quot;\n\n&quot;</span>, <span class="string">&quot;&lt;/p&gt;&lt;p&gt;&quot;</span>).<span class="ident">replace</span>(<span class="string">&quot;&lt;p&gt;&lt;/p&gt;&quot;</span>, <span class="string">&quot;&quot;</span>);
+<span class="doccomment">/// Replaces only paragraph breaks in plain text with appropriate HTML
+///
+/// A new line followed by a blank line becomes a paragraph break `&lt;p&gt;`.
+/// Paragraph tags only wrap content; empty paragraphs are removed.
+/// No `&lt;br/&gt;` tags are added.
+</span><span class="kw">pub fn </span>paragraphbreaks&lt;T: fmt::Display&gt;(s: T) -&gt; <span class="prelude-ty">Result</span>&lt;String&gt; {
+    <span class="kw">let </span>s = s.to_string();
+    <span class="kw">let </span>linebroken = s.replace(<span class="string">&quot;\n\n&quot;</span>, <span class="string">&quot;&lt;/p&gt;&lt;p&gt;&quot;</span>).replace(<span class="string">&quot;&lt;p&gt;&lt;/p&gt;&quot;</span>, <span class="string">&quot;&quot;</span>);
 
-    <span class="prelude-val">Ok</span>(<span class="macro">format!</span>(<span class="string">&quot;&lt;p&gt;{}&lt;/p&gt;&quot;</span>, <span class="ident">linebroken</span>))
+    <span class="prelude-val">Ok</span>(<span class="macro">format!</span>(<span class="string">&quot;&lt;p&gt;{}&lt;/p&gt;&quot;</span>, linebroken))
 }
 
-<span class="doccomment">/// Converts to lowercase</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">lower</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">fmt::Display</span><span class="op">&gt;</span>(<span class="ident">s</span>: <span class="ident">T</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span> {
-    <span class="kw">let</span> <span class="ident">s</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">to_string</span>();
-    <span class="prelude-val">Ok</span>(<span class="ident">s</span>.<span class="ident">to_lowercase</span>())
+<span class="doccomment">/// Converts to lowercase
+</span><span class="kw">pub fn </span>lower&lt;T: fmt::Display&gt;(s: T) -&gt; <span class="prelude-ty">Result</span>&lt;String&gt; {
+    <span class="kw">let </span>s = s.to_string();
+    <span class="prelude-val">Ok</span>(s.to_lowercase())
 }
 
-<span class="doccomment">/// Alias for the `lower()` filter</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">lowercase</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">fmt::Display</span><span class="op">&gt;</span>(<span class="ident">s</span>: <span class="ident">T</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span> {
-    <span class="ident">lower</span>(<span class="ident">s</span>)
+<span class="doccomment">/// Alias for the `lower()` filter
+</span><span class="kw">pub fn </span>lowercase&lt;T: fmt::Display&gt;(s: T) -&gt; <span class="prelude-ty">Result</span>&lt;String&gt; {
+    lower(s)
 }
 
-<span class="doccomment">/// Converts to uppercase</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">upper</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">fmt::Display</span><span class="op">&gt;</span>(<span class="ident">s</span>: <span class="ident">T</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span> {
-    <span class="kw">let</span> <span class="ident">s</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">to_string</span>();
-    <span class="prelude-val">Ok</span>(<span class="ident">s</span>.<span class="ident">to_uppercase</span>())
+<span class="doccomment">/// Converts to uppercase
+</span><span class="kw">pub fn </span>upper&lt;T: fmt::Display&gt;(s: T) -&gt; <span class="prelude-ty">Result</span>&lt;String&gt; {
+    <span class="kw">let </span>s = s.to_string();
+    <span class="prelude-val">Ok</span>(s.to_uppercase())
 }
 
-<span class="doccomment">/// Alias for the `upper()` filter</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">uppercase</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">fmt::Display</span><span class="op">&gt;</span>(<span class="ident">s</span>: <span class="ident">T</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span> {
-    <span class="ident">upper</span>(<span class="ident">s</span>)
+<span class="doccomment">/// Alias for the `upper()` filter
+</span><span class="kw">pub fn </span>uppercase&lt;T: fmt::Display&gt;(s: T) -&gt; <span class="prelude-ty">Result</span>&lt;String&gt; {
+    upper(s)
 }
 
-<span class="doccomment">/// Strip leading and trailing whitespace</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">trim</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">fmt::Display</span><span class="op">&gt;</span>(<span class="ident">s</span>: <span class="ident">T</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span> {
-    <span class="kw">let</span> <span class="ident">s</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">to_string</span>();
-    <span class="prelude-val">Ok</span>(<span class="ident">s</span>.<span class="ident">trim</span>().<span class="ident">to_owned</span>())
+<span class="doccomment">/// Strip leading and trailing whitespace
+</span><span class="kw">pub fn </span>trim&lt;T: fmt::Display&gt;(s: T) -&gt; <span class="prelude-ty">Result</span>&lt;String&gt; {
+    <span class="kw">let </span>s = s.to_string();
+    <span class="prelude-val">Ok</span>(s.trim().to_owned())
 }
 
-<span class="doccomment">/// Limit string length, appends &#39;...&#39; if truncated</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">truncate</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">fmt::Display</span><span class="op">&gt;</span>(<span class="ident">s</span>: <span class="ident">T</span>, <span class="ident">len</span>: <span class="ident">usize</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span> {
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">s</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">to_string</span>();
-    <span class="kw">if</span> <span class="ident">s</span>.<span class="ident">len</span>() <span class="op">&gt;</span> <span class="ident">len</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">real_len</span> <span class="op">=</span> <span class="ident">len</span>;
-        <span class="kw">while</span> <span class="op">!</span><span class="ident">s</span>.<span class="ident">is_char_boundary</span>(<span class="ident">real_len</span>) {
-            <span class="ident">real_len</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
+<span class="doccomment">/// Limit string length, appends &#39;...&#39; if truncated
+</span><span class="kw">pub fn </span>truncate&lt;T: fmt::Display&gt;(s: T, len: usize) -&gt; <span class="prelude-ty">Result</span>&lt;String&gt; {
+    <span class="kw">let </span><span class="kw-2">mut </span>s = s.to_string();
+    <span class="kw">if </span>s.len() &gt; len {
+        <span class="kw">let </span><span class="kw-2">mut </span>real_len = len;
+        <span class="kw">while </span>!s.is_char_boundary(real_len) {
+            real_len += <span class="number">1</span>;
         }
-        <span class="ident">s</span>.<span class="ident">truncate</span>(<span class="ident">real_len</span>);
-        <span class="ident">s</span>.<span class="ident">push_str</span>(<span class="string">&quot;...&quot;</span>);
+        s.truncate(real_len);
+        s.push_str(<span class="string">&quot;...&quot;</span>);
     }
-    <span class="prelude-val">Ok</span>(<span class="ident">s</span>)
+    <span class="prelude-val">Ok</span>(s)
 }
 
-<span class="doccomment">/// Indent lines with `width` spaces</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">indent</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">fmt::Display</span><span class="op">&gt;</span>(<span class="ident">s</span>: <span class="ident">T</span>, <span class="ident">width</span>: <span class="ident">usize</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span> {
-    <span class="kw">let</span> <span class="ident">s</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">to_string</span>();
+<span class="doccomment">/// Indent lines with `width` spaces
+</span><span class="kw">pub fn </span>indent&lt;T: fmt::Display&gt;(s: T, width: usize) -&gt; <span class="prelude-ty">Result</span>&lt;String&gt; {
+    <span class="kw">let </span>s = s.to_string();
 
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">indented</span> <span class="op">=</span> <span class="ident">String::new</span>();
+    <span class="kw">let </span><span class="kw-2">mut </span>indented = String::new();
 
-    <span class="kw">for</span> (<span class="ident">i</span>, <span class="ident">c</span>) <span class="kw">in</span> <span class="ident">s</span>.<span class="ident">char_indices</span>() {
-        <span class="ident">indented</span>.<span class="ident">push</span>(<span class="ident">c</span>);
+    <span class="kw">for </span>(i, c) <span class="kw">in </span>s.char_indices() {
+        indented.push(c);
 
-        <span class="kw">if</span> <span class="ident">c</span> <span class="op">==</span> <span class="string">&#39;\n&#39;</span> <span class="op">&amp;&amp;</span> <span class="ident">i</span> <span class="op">&lt;</span> <span class="ident">s</span>.<span class="ident">len</span>() <span class="op">-</span> <span class="number">1</span> {
-            <span class="kw">for</span> <span class="kw">_</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">width</span> {
-                <span class="ident">indented</span>.<span class="ident">push</span>(<span class="string">&#39; &#39;</span>);
+        <span class="kw">if </span>c == <span class="string">&#39;\n&#39; </span>&amp;&amp; i &lt; s.len() - <span class="number">1 </span>{
+            <span class="kw">for _ in </span><span class="number">0</span>..width {
+                indented.push(<span class="string">&#39; &#39;</span>);
             }
         }
     }
 
-    <span class="prelude-val">Ok</span>(<span class="ident">indented</span>)
+    <span class="prelude-val">Ok</span>(indented)
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;num-traits&quot;</span>)]</span>
-<span class="doccomment">/// Casts number to f64</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">into_f64</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>(<span class="ident">number</span>: <span class="ident">T</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span>
-<span class="kw">where</span>
-    <span class="ident">T</span>: <span class="ident">NumCast</span>,
+<span class="attribute">#[cfg(feature = <span class="string">&quot;num-traits&quot;</span>)]
+</span><span class="doccomment">/// Casts number to f64
+</span><span class="kw">pub fn </span>into_f64&lt;T&gt;(number: T) -&gt; <span class="prelude-ty">Result</span>&lt;f64&gt;
+<span class="kw">where
+    </span>T: NumCast,
 {
-    <span class="ident">number</span>.<span class="ident">to_f64</span>().<span class="ident">ok_or</span>(<span class="ident">Fmt</span>(<span class="ident">fmt::Error</span>))
+    number.to_f64().ok_or(Fmt(fmt::Error))
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;num-traits&quot;</span>)]</span>
-<span class="doccomment">/// Casts number to isize</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">into_isize</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>(<span class="ident">number</span>: <span class="ident">T</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">isize</span><span class="op">&gt;</span>
-<span class="kw">where</span>
-    <span class="ident">T</span>: <span class="ident">NumCast</span>,
+<span class="attribute">#[cfg(feature = <span class="string">&quot;num-traits&quot;</span>)]
+</span><span class="doccomment">/// Casts number to isize
+</span><span class="kw">pub fn </span>into_isize&lt;T&gt;(number: T) -&gt; <span class="prelude-ty">Result</span>&lt;isize&gt;
+<span class="kw">where
+    </span>T: NumCast,
 {
-    <span class="ident">number</span>.<span class="ident">to_isize</span>().<span class="ident">ok_or</span>(<span class="ident">Fmt</span>(<span class="ident">fmt::Error</span>))
+    number.to_isize().ok_or(Fmt(fmt::Error))
 }
 
-<span class="doccomment">/// Joins iterable into a string separated by provided argument</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">join</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">I</span>, <span class="ident">S</span><span class="op">&gt;</span>(<span class="ident">input</span>: <span class="ident">I</span>, <span class="ident">separator</span>: <span class="ident">S</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>
-<span class="kw">where</span>
-    <span class="ident">T</span>: <span class="ident">fmt::Display</span>,
-    <span class="ident">I</span>: <span class="ident">Iterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> <span class="ident">T</span><span class="op">&gt;</span>,
-    <span class="ident">S</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">str</span><span class="op">&gt;</span>,
+<span class="doccomment">/// Joins iterable into a string separated by provided argument
+</span><span class="kw">pub fn </span>join&lt;T, I, S&gt;(input: I, separator: S) -&gt; <span class="prelude-ty">Result</span>&lt;String&gt;
+<span class="kw">where
+    </span>T: fmt::Display,
+    I: Iterator&lt;Item = T&gt;,
+    S: AsRef&lt;str&gt;,
 {
-    <span class="kw">let</span> <span class="ident">separator</span>: <span class="kw-2">&amp;</span><span class="ident">str</span> <span class="op">=</span> <span class="ident">separator</span>.<span class="ident">as_ref</span>();
+    <span class="kw">let </span>separator: <span class="kw-2">&amp;</span>str = separator.as_ref();
 
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">rv</span> <span class="op">=</span> <span class="ident">String::new</span>();
+    <span class="kw">let </span><span class="kw-2">mut </span>rv = String::new();
 
-    <span class="kw">for</span> (<span class="ident">num</span>, <span class="ident">item</span>) <span class="kw">in</span> <span class="ident">input</span>.<span class="ident">enumerate</span>() {
-        <span class="kw">if</span> <span class="ident">num</span> <span class="op">&gt;</span> <span class="number">0</span> {
-            <span class="ident">rv</span>.<span class="ident">push_str</span>(<span class="ident">separator</span>);
+    <span class="kw">for </span>(num, item) <span class="kw">in </span>input.enumerate() {
+        <span class="kw">if </span>num &gt; <span class="number">0 </span>{
+            rv.push_str(separator);
         }
 
-        <span class="ident">rv</span>.<span class="ident">push_str</span>(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">item</span>));
+        rv.push_str(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;{}&quot;</span>, item));
     }
 
-    <span class="prelude-val">Ok</span>(<span class="ident">rv</span>)
+    <span class="prelude-val">Ok</span>(rv)
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;num-traits&quot;</span>)]</span>
-<span class="doccomment">/// Absolute value</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">abs</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>(<span class="ident">number</span>: <span class="ident">T</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>
-<span class="kw">where</span>
-    <span class="ident">T</span>: <span class="ident">Signed</span>,
+<span class="attribute">#[cfg(feature = <span class="string">&quot;num-traits&quot;</span>)]
+</span><span class="doccomment">/// Absolute value
+</span><span class="kw">pub fn </span>abs&lt;T&gt;(number: T) -&gt; <span class="prelude-ty">Result</span>&lt;T&gt;
+<span class="kw">where
+    </span>T: Signed,
 {
-    <span class="prelude-val">Ok</span>(<span class="ident">number</span>.<span class="ident">abs</span>())
+    <span class="prelude-val">Ok</span>(number.abs())
 }
 
-<span class="doccomment">/// Capitalize a value. The first character will be uppercase, all others lowercase.</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">capitalize</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">fmt::Display</span><span class="op">&gt;</span>(<span class="ident">s</span>: <span class="ident">T</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span> {
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">s</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">to_string</span>();
+<span class="doccomment">/// Capitalize a value. The first character will be uppercase, all others lowercase.
+</span><span class="kw">pub fn </span>capitalize&lt;T: fmt::Display&gt;(s: T) -&gt; <span class="prelude-ty">Result</span>&lt;String&gt; {
+    <span class="kw">let </span><span class="kw-2">mut </span>s = s.to_string();
 
-    <span class="kw">match</span> <span class="ident">s</span>.<span class="ident">get_mut</span>(<span class="number">0</span>..<span class="number">1</span>).<span class="ident">map</span>(<span class="op">|</span><span class="ident">s</span><span class="op">|</span> {
-        <span class="ident">s</span>.<span class="ident">make_ascii_uppercase</span>();
-        <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">s</span>
+    <span class="kw">match </span>s.get_mut(<span class="number">0</span>..<span class="number">1</span>).map(|s| {
+        s.make_ascii_uppercase();
+        <span class="kw-2">&amp;*</span>s
     }) {
-        <span class="prelude-val">None</span> =&gt; <span class="prelude-val">Ok</span>(<span class="ident">s</span>),
-        <span class="kw">_</span> =&gt; {
-            <span class="ident">s</span>.<span class="ident">get_mut</span>(<span class="number">1</span>..).<span class="ident">map</span>(<span class="op">|</span><span class="ident">s</span><span class="op">|</span> {
-                <span class="ident">s</span>.<span class="ident">make_ascii_lowercase</span>();
-                <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">s</span>
+        <span class="prelude-val">None </span>=&gt; <span class="prelude-val">Ok</span>(s),
+        <span class="kw">_ </span>=&gt; {
+            s.get_mut(<span class="number">1</span>..).map(|s| {
+                s.make_ascii_lowercase();
+                <span class="kw-2">&amp;*</span>s
             });
-            <span class="prelude-val">Ok</span>(<span class="ident">s</span>)
+            <span class="prelude-val">Ok</span>(s)
         }
     }
 }
 
-<span class="doccomment">/// Centers the value in a field of a given width</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">center</span>(<span class="ident">src</span>: <span class="kw-2">&amp;</span><span class="kw">dyn</span> <span class="ident">fmt::Display</span>, <span class="ident">dst_len</span>: <span class="ident">usize</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span> {
-    <span class="kw">let</span> <span class="ident">src</span> <span class="op">=</span> <span class="ident">src</span>.<span class="ident">to_string</span>();
-    <span class="kw">let</span> <span class="ident">len</span> <span class="op">=</span> <span class="ident">src</span>.<span class="ident">len</span>();
+<span class="doccomment">/// Centers the value in a field of a given width
+</span><span class="kw">pub fn </span>center(src: <span class="kw-2">&amp;</span><span class="kw">dyn </span>fmt::Display, dst_len: usize) -&gt; <span class="prelude-ty">Result</span>&lt;String&gt; {
+    <span class="kw">let </span>src = src.to_string();
+    <span class="kw">let </span>len = src.len();
 
-    <span class="kw">if</span> <span class="ident">dst_len</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">len</span> {
-        <span class="prelude-val">Ok</span>(<span class="ident">src</span>)
-    } <span class="kw">else</span> {
-        <span class="kw">let</span> <span class="ident">diff</span> <span class="op">=</span> <span class="ident">dst_len</span> <span class="op">-</span> <span class="ident">len</span>;
-        <span class="kw">let</span> <span class="ident">mid</span> <span class="op">=</span> <span class="ident">diff</span> <span class="op">/</span> <span class="number">2</span>;
-        <span class="kw">let</span> <span class="ident">r</span> <span class="op">=</span> <span class="ident">diff</span> <span class="op">%</span> <span class="number">2</span>;
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">buf</span> <span class="op">=</span> <span class="ident">String::with_capacity</span>(<span class="ident">dst_len</span>);
+    <span class="kw">if </span>dst_len &lt;= len {
+        <span class="prelude-val">Ok</span>(src)
+    } <span class="kw">else </span>{
+        <span class="kw">let </span>diff = dst_len - len;
+        <span class="kw">let </span>mid = diff / <span class="number">2</span>;
+        <span class="kw">let </span>r = diff % <span class="number">2</span>;
+        <span class="kw">let </span><span class="kw-2">mut </span>buf = String::with_capacity(dst_len);
 
-        <span class="kw">for</span> <span class="kw">_</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">mid</span> {
-            <span class="ident">buf</span>.<span class="ident">push</span>(<span class="string">&#39; &#39;</span>);
+        <span class="kw">for _ in </span><span class="number">0</span>..mid {
+            buf.push(<span class="string">&#39; &#39;</span>);
         }
 
-        <span class="ident">buf</span>.<span class="ident">push_str</span>(<span class="kw-2">&amp;</span><span class="ident">src</span>);
+        buf.push_str(<span class="kw-2">&amp;</span>src);
 
-        <span class="kw">for</span> <span class="kw">_</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">mid</span> <span class="op">+</span> <span class="ident">r</span> {
-            <span class="ident">buf</span>.<span class="ident">push</span>(<span class="string">&#39; &#39;</span>);
+        <span class="kw">for _ in </span><span class="number">0</span>..mid + r {
+            buf.push(<span class="string">&#39; &#39;</span>);
         }
 
-        <span class="prelude-val">Ok</span>(<span class="ident">buf</span>)
+        <span class="prelude-val">Ok</span>(buf)
     }
 }
 
-<span class="doccomment">/// Count the words in that string</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">wordcount</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">fmt::Display</span><span class="op">&gt;</span>(<span class="ident">s</span>: <span class="ident">T</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span> {
-    <span class="kw">let</span> <span class="ident">s</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">to_string</span>();
+<span class="doccomment">/// Count the words in that string
+</span><span class="kw">pub fn </span>wordcount&lt;T: fmt::Display&gt;(s: T) -&gt; <span class="prelude-ty">Result</span>&lt;usize&gt; {
+    <span class="kw">let </span>s = s.to_string();
 
-    <span class="prelude-val">Ok</span>(<span class="ident">s</span>.<span class="ident">split_whitespace</span>().<span class="ident">count</span>())
+    <span class="prelude-val">Ok</span>(s.split_whitespace().count())
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;markdown&quot;</span>)]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">markdown</span><span class="op">&lt;</span><span class="ident">E</span>, <span class="ident">S</span><span class="op">&gt;</span>(
-    <span class="ident">e</span>: <span class="ident">E</span>,
-    <span class="ident">s</span>: <span class="ident">S</span>,
-    <span class="ident">options</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">comrak::ComrakOptions</span><span class="op">&gt;</span>,
-) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">MarkupDisplay</span><span class="op">&lt;</span><span class="ident">E</span>, <span class="ident">String</span><span class="op">&gt;</span><span class="op">&gt;</span>
-<span class="kw">where</span>
-    <span class="ident">E</span>: <span class="ident">Escaper</span>,
-    <span class="ident">S</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">str</span><span class="op">&gt;</span>,
+<span class="attribute">#[cfg(feature = <span class="string">&quot;markdown&quot;</span>)]
+</span><span class="kw">pub fn </span>markdown&lt;E, S&gt;(
+    e: E,
+    s: S,
+    options: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>comrak::ComrakOptions&gt;,
+) -&gt; <span class="prelude-ty">Result</span>&lt;MarkupDisplay&lt;E, String&gt;&gt;
+<span class="kw">where
+    </span>E: Escaper,
+    S: AsRef&lt;str&gt;,
 {
-    <span class="kw">use</span> <span class="ident">comrak</span>::{
-        <span class="ident">markdown_to_html</span>, <span class="ident">ComrakExtensionOptions</span>, <span class="ident">ComrakOptions</span>, <span class="ident">ComrakParseOptions</span>,
-        <span class="ident">ComrakRenderOptions</span>,
+    <span class="kw">use </span>comrak::{
+        markdown_to_html, ComrakExtensionOptions, ComrakOptions, ComrakParseOptions,
+        ComrakRenderOptions,
     };
 
-    <span class="kw">const</span> <span class="ident">DEFAULT_OPTIONS</span>: <span class="ident">ComrakOptions</span> <span class="op">=</span> <span class="ident">ComrakOptions</span> {
-        <span class="ident">extension</span>: <span class="ident">ComrakExtensionOptions</span> {
-            <span class="ident">strikethrough</span>: <span class="bool-val">true</span>,
-            <span class="ident">tagfilter</span>: <span class="bool-val">true</span>,
-            <span class="ident">table</span>: <span class="bool-val">true</span>,
-            <span class="ident">autolink</span>: <span class="bool-val">true</span>,
-            <span class="comment">// default:</span>
-            <span class="ident">tasklist</span>: <span class="bool-val">false</span>,
-            <span class="ident">superscript</span>: <span class="bool-val">false</span>,
-            <span class="ident">header_ids</span>: <span class="prelude-val">None</span>,
-            <span class="ident">footnotes</span>: <span class="bool-val">false</span>,
-            <span class="ident">description_lists</span>: <span class="bool-val">false</span>,
-            <span class="ident">front_matter_delimiter</span>: <span class="prelude-val">None</span>,
+    <span class="kw">const </span>DEFAULT_OPTIONS: ComrakOptions = ComrakOptions {
+        extension: ComrakExtensionOptions {
+            strikethrough: <span class="bool-val">true</span>,
+            tagfilter: <span class="bool-val">true</span>,
+            table: <span class="bool-val">true</span>,
+            autolink: <span class="bool-val">true</span>,
+            <span class="comment">// default:
+            </span>tasklist: <span class="bool-val">false</span>,
+            superscript: <span class="bool-val">false</span>,
+            header_ids: <span class="prelude-val">None</span>,
+            footnotes: <span class="bool-val">false</span>,
+            description_lists: <span class="bool-val">false</span>,
+            front_matter_delimiter: <span class="prelude-val">None</span>,
         },
-        <span class="ident">parse</span>: <span class="ident">ComrakParseOptions</span> {
-            <span class="comment">// default:</span>
-            <span class="ident">smart</span>: <span class="bool-val">false</span>,
-            <span class="ident">default_info_string</span>: <span class="prelude-val">None</span>,
+        parse: ComrakParseOptions {
+            <span class="comment">// default:
+            </span>smart: <span class="bool-val">false</span>,
+            default_info_string: <span class="prelude-val">None</span>,
         },
-        <span class="ident">render</span>: <span class="ident">ComrakRenderOptions</span> {
-            <span class="ident">unsafe_</span>: <span class="bool-val">false</span>,
-            <span class="ident">escape</span>: <span class="bool-val">true</span>,
-            <span class="comment">// default:</span>
-            <span class="ident">hardbreaks</span>: <span class="bool-val">false</span>,
-            <span class="ident">github_pre_lang</span>: <span class="bool-val">false</span>,
-            <span class="ident">width</span>: <span class="number">0</span>,
+        render: ComrakRenderOptions {
+            unsafe_: <span class="bool-val">false</span>,
+            escape: <span class="bool-val">true</span>,
+            <span class="comment">// default:
+            </span>hardbreaks: <span class="bool-val">false</span>,
+            github_pre_lang: <span class="bool-val">false</span>,
+            width: <span class="number">0</span>,
         },
     };
 
-    <span class="kw">let</span> <span class="ident">s</span> <span class="op">=</span> <span class="ident">markdown_to_html</span>(<span class="ident">s</span>.<span class="ident">as_ref</span>(), <span class="ident">options</span>.<span class="ident">unwrap_or</span>(<span class="kw-2">&amp;</span><span class="ident">DEFAULT_OPTIONS</span>));
-    <span class="prelude-val">Ok</span>(<span class="ident">MarkupDisplay::new_safe</span>(<span class="ident">s</span>, <span class="ident">e</span>))
+    <span class="kw">let </span>s = markdown_to_html(s.as_ref(), options.unwrap_or(<span class="kw-2">&amp;</span>DEFAULT_OPTIONS));
+    <span class="prelude-val">Ok</span>(MarkupDisplay::new_safe(s, e))
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
-<span class="kw">mod</span> <span class="ident">tests</span> {
-    <span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;num-traits&quot;</span>)]</span>
-    <span class="kw">use</span> <span class="ident">std::f64::INFINITY</span>;
+<span class="attribute">#[cfg(test)]
+</span><span class="kw">mod </span>tests {
+    <span class="kw">use super</span>::<span class="kw-2">*</span>;
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;num-traits&quot;</span>)]
+    </span><span class="kw">use </span>std::f64::INFINITY;
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;humansize&quot;</span>)]</span>
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">test_filesizeformat</span>() {
-        <span class="macro">assert_eq!</span>(<span class="ident">filesizeformat</span>(<span class="kw-2">&amp;</span><span class="number">0</span>).<span class="ident">unwrap</span>(), <span class="string">&quot;0 B&quot;</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">filesizeformat</span>(<span class="kw-2">&amp;</span><span class="number">999u64</span>).<span class="ident">unwrap</span>(), <span class="string">&quot;999 B&quot;</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">filesizeformat</span>(<span class="kw-2">&amp;</span><span class="number">1000i32</span>).<span class="ident">unwrap</span>(), <span class="string">&quot;1 KB&quot;</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">filesizeformat</span>(<span class="kw-2">&amp;</span><span class="number">1023</span>).<span class="ident">unwrap</span>(), <span class="string">&quot;1.02 KB&quot;</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">filesizeformat</span>(<span class="kw-2">&amp;</span><span class="number">1024usize</span>).<span class="ident">unwrap</span>(), <span class="string">&quot;1.02 KB&quot;</span>);
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;humansize&quot;</span>)]
+    #[test]
+    </span><span class="kw">fn </span>test_filesizeformat() {
+        <span class="macro">assert_eq!</span>(filesizeformat(<span class="kw-2">&amp;</span><span class="number">0</span>).unwrap(), <span class="string">&quot;0 B&quot;</span>);
+        <span class="macro">assert_eq!</span>(filesizeformat(<span class="kw-2">&amp;</span><span class="number">999u64</span>).unwrap(), <span class="string">&quot;999 B&quot;</span>);
+        <span class="macro">assert_eq!</span>(filesizeformat(<span class="kw-2">&amp;</span><span class="number">1000i32</span>).unwrap(), <span class="string">&quot;1 KB&quot;</span>);
+        <span class="macro">assert_eq!</span>(filesizeformat(<span class="kw-2">&amp;</span><span class="number">1023</span>).unwrap(), <span class="string">&quot;1.02 KB&quot;</span>);
+        <span class="macro">assert_eq!</span>(filesizeformat(<span class="kw-2">&amp;</span><span class="number">1024usize</span>).unwrap(), <span class="string">&quot;1.02 KB&quot;</span>);
     }
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;percent-encoding&quot;</span>)]</span>
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">test_urlencoding</span>() {
-        <span class="comment">// Unreserved (https://tools.ietf.org/html/rfc3986.html#section-2.3)</span>
-        <span class="comment">// alpha / digit</span>
-        <span class="macro">assert_eq!</span>(<span class="ident">urlencode</span>(<span class="kw-2">&amp;</span><span class="string">&quot;AZaz09&quot;</span>).<span class="ident">unwrap</span>(), <span class="string">&quot;AZaz09&quot;</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">urlencode_strict</span>(<span class="kw-2">&amp;</span><span class="string">&quot;AZaz09&quot;</span>).<span class="ident">unwrap</span>(), <span class="string">&quot;AZaz09&quot;</span>);
-        <span class="comment">// other</span>
-        <span class="macro">assert_eq!</span>(<span class="ident">urlencode</span>(<span class="kw-2">&amp;</span><span class="string">&quot;_.-~&quot;</span>).<span class="ident">unwrap</span>(), <span class="string">&quot;_.-~&quot;</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">urlencode_strict</span>(<span class="kw-2">&amp;</span><span class="string">&quot;_.-~&quot;</span>).<span class="ident">unwrap</span>(), <span class="string">&quot;_.-~&quot;</span>);
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;percent-encoding&quot;</span>)]
+    #[test]
+    </span><span class="kw">fn </span>test_urlencoding() {
+        <span class="comment">// Unreserved (https://tools.ietf.org/html/rfc3986.html#section-2.3)
+        // alpha / digit
+        </span><span class="macro">assert_eq!</span>(urlencode(<span class="kw-2">&amp;</span><span class="string">&quot;AZaz09&quot;</span>).unwrap(), <span class="string">&quot;AZaz09&quot;</span>);
+        <span class="macro">assert_eq!</span>(urlencode_strict(<span class="kw-2">&amp;</span><span class="string">&quot;AZaz09&quot;</span>).unwrap(), <span class="string">&quot;AZaz09&quot;</span>);
+        <span class="comment">// other
+        </span><span class="macro">assert_eq!</span>(urlencode(<span class="kw-2">&amp;</span><span class="string">&quot;_.-~&quot;</span>).unwrap(), <span class="string">&quot;_.-~&quot;</span>);
+        <span class="macro">assert_eq!</span>(urlencode_strict(<span class="kw-2">&amp;</span><span class="string">&quot;_.-~&quot;</span>).unwrap(), <span class="string">&quot;_.-~&quot;</span>);
 
-        <span class="comment">// Reserved (https://tools.ietf.org/html/rfc3986.html#section-2.2)</span>
-        <span class="comment">// gen-delims</span>
-        <span class="macro">assert_eq!</span>(<span class="ident">urlencode</span>(<span class="kw-2">&amp;</span><span class="string">&quot;:/?#[]@&quot;</span>).<span class="ident">unwrap</span>(), <span class="string">&quot;%3A/%3F%23%5B%5D%40&quot;</span>);
+        <span class="comment">// Reserved (https://tools.ietf.org/html/rfc3986.html#section-2.2)
+        // gen-delims
+        </span><span class="macro">assert_eq!</span>(urlencode(<span class="kw-2">&amp;</span><span class="string">&quot;:/?#[]@&quot;</span>).unwrap(), <span class="string">&quot;%3A/%3F%23%5B%5D%40&quot;</span>);
         <span class="macro">assert_eq!</span>(
-            <span class="ident">urlencode_strict</span>(<span class="kw-2">&amp;</span><span class="string">&quot;:/?#[]@&quot;</span>).<span class="ident">unwrap</span>(),
-            <span class="string">&quot;%3A%2F%3F%23%5B%5D%40&quot;</span>
-        );
-        <span class="comment">// sub-delims</span>
+            urlencode_strict(<span class="kw-2">&amp;</span><span class="string">&quot;:/?#[]@&quot;</span>).unwrap(),
+            <span class="string">&quot;%3A%2F%3F%23%5B%5D%40&quot;
+        </span>);
+        <span class="comment">// sub-delims
+        </span><span class="macro">assert_eq!</span>(
+            urlencode(<span class="kw-2">&amp;</span><span class="string">&quot;!$&amp;&#39;()*+,;=&quot;</span>).unwrap(),
+            <span class="string">&quot;%21%24%26%27%28%29%2A%2B%2C%3B%3D&quot;
+        </span>);
         <span class="macro">assert_eq!</span>(
-            <span class="ident">urlencode</span>(<span class="kw-2">&amp;</span><span class="string">&quot;!$&amp;&#39;()*+,;=&quot;</span>).<span class="ident">unwrap</span>(),
-            <span class="string">&quot;%21%24%26%27%28%29%2A%2B%2C%3B%3D&quot;</span>
-        );
-        <span class="macro">assert_eq!</span>(
-            <span class="ident">urlencode_strict</span>(<span class="kw-2">&amp;</span><span class="string">&quot;!$&amp;&#39;()*+,;=&quot;</span>).<span class="ident">unwrap</span>(),
-            <span class="string">&quot;%21%24%26%27%28%29%2A%2B%2C%3B%3D&quot;</span>
-        );
+            urlencode_strict(<span class="kw-2">&amp;</span><span class="string">&quot;!$&amp;&#39;()*+,;=&quot;</span>).unwrap(),
+            <span class="string">&quot;%21%24%26%27%28%29%2A%2B%2C%3B%3D&quot;
+        </span>);
 
-        <span class="comment">// Other</span>
+        <span class="comment">// Other
+        </span><span class="macro">assert_eq!</span>(
+            urlencode(<span class="kw-2">&amp;</span><span class="string">&quot;žŠďŤňĚáÉóŮ&quot;</span>).unwrap(),
+            <span class="string">&quot;%C5%BE%C5%A0%C4%8F%C5%A4%C5%88%C4%9A%C3%A1%C3%89%C3%B3%C5%AE&quot;
+        </span>);
         <span class="macro">assert_eq!</span>(
-            <span class="ident">urlencode</span>(<span class="kw-2">&amp;</span><span class="string">&quot;žŠďŤňĚáÉóŮ&quot;</span>).<span class="ident">unwrap</span>(),
-            <span class="string">&quot;%C5%BE%C5%A0%C4%8F%C5%A4%C5%88%C4%9A%C3%A1%C3%89%C3%B3%C5%AE&quot;</span>
-        );
-        <span class="macro">assert_eq!</span>(
-            <span class="ident">urlencode_strict</span>(<span class="kw-2">&amp;</span><span class="string">&quot;žŠďŤňĚáÉóŮ&quot;</span>).<span class="ident">unwrap</span>(),
-            <span class="string">&quot;%C5%BE%C5%A0%C4%8F%C5%A4%C5%88%C4%9A%C3%A1%C3%89%C3%B3%C5%AE&quot;</span>
-        );
+            urlencode_strict(<span class="kw-2">&amp;</span><span class="string">&quot;žŠďŤňĚáÉóŮ&quot;</span>).unwrap(),
+            <span class="string">&quot;%C5%BE%C5%A0%C4%8F%C5%A4%C5%88%C4%9A%C3%A1%C3%89%C3%B3%C5%AE&quot;
+        </span>);
 
-        <span class="comment">// Ferris</span>
-        <span class="macro">assert_eq!</span>(<span class="ident">urlencode</span>(<span class="kw-2">&amp;</span><span class="string">&quot;🦀&quot;</span>).<span class="ident">unwrap</span>(), <span class="string">&quot;%F0%9F%A6%80&quot;</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">urlencode_strict</span>(<span class="kw-2">&amp;</span><span class="string">&quot;🦀&quot;</span>).<span class="ident">unwrap</span>(), <span class="string">&quot;%F0%9F%A6%80&quot;</span>);
+        <span class="comment">// Ferris
+        </span><span class="macro">assert_eq!</span>(urlencode(<span class="kw-2">&amp;</span><span class="string">&quot;🦀&quot;</span>).unwrap(), <span class="string">&quot;%F0%9F%A6%80&quot;</span>);
+        <span class="macro">assert_eq!</span>(urlencode_strict(<span class="kw-2">&amp;</span><span class="string">&quot;🦀&quot;</span>).unwrap(), <span class="string">&quot;%F0%9F%A6%80&quot;</span>);
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">test_linebreaks</span>() {
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>test_linebreaks() {
         <span class="macro">assert_eq!</span>(
-            <span class="ident">linebreaks</span>(<span class="kw-2">&amp;</span><span class="string">&quot;Foo\nBar Baz&quot;</span>).<span class="ident">unwrap</span>(),
-            <span class="string">&quot;&lt;p&gt;Foo&lt;br/&gt;Bar Baz&lt;/p&gt;&quot;</span>
-        );
+            linebreaks(<span class="kw-2">&amp;</span><span class="string">&quot;Foo\nBar Baz&quot;</span>).unwrap(),
+            <span class="string">&quot;&lt;p&gt;Foo&lt;br/&gt;Bar Baz&lt;/p&gt;&quot;
+        </span>);
         <span class="macro">assert_eq!</span>(
-            <span class="ident">linebreaks</span>(<span class="kw-2">&amp;</span><span class="string">&quot;Foo\nBar\n\nBaz&quot;</span>).<span class="ident">unwrap</span>(),
-            <span class="string">&quot;&lt;p&gt;Foo&lt;br/&gt;Bar&lt;/p&gt;&lt;p&gt;Baz&lt;/p&gt;&quot;</span>
-        );
+            linebreaks(<span class="kw-2">&amp;</span><span class="string">&quot;Foo\nBar\n\nBaz&quot;</span>).unwrap(),
+            <span class="string">&quot;&lt;p&gt;Foo&lt;br/&gt;Bar&lt;/p&gt;&lt;p&gt;Baz&lt;/p&gt;&quot;
+        </span>);
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">test_linebreaksbr</span>() {
-        <span class="macro">assert_eq!</span>(<span class="ident">linebreaksbr</span>(<span class="kw-2">&amp;</span><span class="string">&quot;Foo\nBar&quot;</span>).<span class="ident">unwrap</span>(), <span class="string">&quot;Foo&lt;br/&gt;Bar&quot;</span>);
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>test_linebreaksbr() {
+        <span class="macro">assert_eq!</span>(linebreaksbr(<span class="kw-2">&amp;</span><span class="string">&quot;Foo\nBar&quot;</span>).unwrap(), <span class="string">&quot;Foo&lt;br/&gt;Bar&quot;</span>);
         <span class="macro">assert_eq!</span>(
-            <span class="ident">linebreaksbr</span>(<span class="kw-2">&amp;</span><span class="string">&quot;Foo\nBar\n\nBaz&quot;</span>).<span class="ident">unwrap</span>(),
-            <span class="string">&quot;Foo&lt;br/&gt;Bar&lt;br/&gt;&lt;br/&gt;Baz&quot;</span>
-        );
+            linebreaksbr(<span class="kw-2">&amp;</span><span class="string">&quot;Foo\nBar\n\nBaz&quot;</span>).unwrap(),
+            <span class="string">&quot;Foo&lt;br/&gt;Bar&lt;br/&gt;&lt;br/&gt;Baz&quot;
+        </span>);
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">test_paragraphbreaks</span>() {
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>test_paragraphbreaks() {
         <span class="macro">assert_eq!</span>(
-            <span class="ident">paragraphbreaks</span>(<span class="kw-2">&amp;</span><span class="string">&quot;Foo\nBar Baz&quot;</span>).<span class="ident">unwrap</span>(),
-            <span class="string">&quot;&lt;p&gt;Foo\nBar Baz&lt;/p&gt;&quot;</span>
-        );
+            paragraphbreaks(<span class="kw-2">&amp;</span><span class="string">&quot;Foo\nBar Baz&quot;</span>).unwrap(),
+            <span class="string">&quot;&lt;p&gt;Foo\nBar Baz&lt;/p&gt;&quot;
+        </span>);
         <span class="macro">assert_eq!</span>(
-            <span class="ident">paragraphbreaks</span>(<span class="kw-2">&amp;</span><span class="string">&quot;Foo\nBar\n\nBaz&quot;</span>).<span class="ident">unwrap</span>(),
-            <span class="string">&quot;&lt;p&gt;Foo\nBar&lt;/p&gt;&lt;p&gt;Baz&lt;/p&gt;&quot;</span>
-        );
+            paragraphbreaks(<span class="kw-2">&amp;</span><span class="string">&quot;Foo\nBar\n\nBaz&quot;</span>).unwrap(),
+            <span class="string">&quot;&lt;p&gt;Foo\nBar&lt;/p&gt;&lt;p&gt;Baz&lt;/p&gt;&quot;
+        </span>);
         <span class="macro">assert_eq!</span>(
-            <span class="ident">paragraphbreaks</span>(<span class="kw-2">&amp;</span><span class="string">&quot;Foo\n\n\n\n\nBar\n\nBaz&quot;</span>).<span class="ident">unwrap</span>(),
-            <span class="string">&quot;&lt;p&gt;Foo&lt;/p&gt;&lt;p&gt;\nBar&lt;/p&gt;&lt;p&gt;Baz&lt;/p&gt;&quot;</span>
-        );
+            paragraphbreaks(<span class="kw-2">&amp;</span><span class="string">&quot;Foo\n\n\n\n\nBar\n\nBaz&quot;</span>).unwrap(),
+            <span class="string">&quot;&lt;p&gt;Foo&lt;/p&gt;&lt;p&gt;\nBar&lt;/p&gt;&lt;p&gt;Baz&lt;/p&gt;&quot;
+        </span>);
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">test_lower</span>() {
-        <span class="macro">assert_eq!</span>(<span class="ident">lower</span>(<span class="kw-2">&amp;</span><span class="string">&quot;Foo&quot;</span>).<span class="ident">unwrap</span>(), <span class="string">&quot;foo&quot;</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">lower</span>(<span class="kw-2">&amp;</span><span class="string">&quot;FOO&quot;</span>).<span class="ident">unwrap</span>(), <span class="string">&quot;foo&quot;</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">lower</span>(<span class="kw-2">&amp;</span><span class="string">&quot;FooBar&quot;</span>).<span class="ident">unwrap</span>(), <span class="string">&quot;foobar&quot;</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">lower</span>(<span class="kw-2">&amp;</span><span class="string">&quot;foo&quot;</span>).<span class="ident">unwrap</span>(), <span class="string">&quot;foo&quot;</span>);
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>test_lower() {
+        <span class="macro">assert_eq!</span>(lower(<span class="kw-2">&amp;</span><span class="string">&quot;Foo&quot;</span>).unwrap(), <span class="string">&quot;foo&quot;</span>);
+        <span class="macro">assert_eq!</span>(lower(<span class="kw-2">&amp;</span><span class="string">&quot;FOO&quot;</span>).unwrap(), <span class="string">&quot;foo&quot;</span>);
+        <span class="macro">assert_eq!</span>(lower(<span class="kw-2">&amp;</span><span class="string">&quot;FooBar&quot;</span>).unwrap(), <span class="string">&quot;foobar&quot;</span>);
+        <span class="macro">assert_eq!</span>(lower(<span class="kw-2">&amp;</span><span class="string">&quot;foo&quot;</span>).unwrap(), <span class="string">&quot;foo&quot;</span>);
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">test_upper</span>() {
-        <span class="macro">assert_eq!</span>(<span class="ident">upper</span>(<span class="kw-2">&amp;</span><span class="string">&quot;Foo&quot;</span>).<span class="ident">unwrap</span>(), <span class="string">&quot;FOO&quot;</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">upper</span>(<span class="kw-2">&amp;</span><span class="string">&quot;FOO&quot;</span>).<span class="ident">unwrap</span>(), <span class="string">&quot;FOO&quot;</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">upper</span>(<span class="kw-2">&amp;</span><span class="string">&quot;FooBar&quot;</span>).<span class="ident">unwrap</span>(), <span class="string">&quot;FOOBAR&quot;</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">upper</span>(<span class="kw-2">&amp;</span><span class="string">&quot;foo&quot;</span>).<span class="ident">unwrap</span>(), <span class="string">&quot;FOO&quot;</span>);
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>test_upper() {
+        <span class="macro">assert_eq!</span>(upper(<span class="kw-2">&amp;</span><span class="string">&quot;Foo&quot;</span>).unwrap(), <span class="string">&quot;FOO&quot;</span>);
+        <span class="macro">assert_eq!</span>(upper(<span class="kw-2">&amp;</span><span class="string">&quot;FOO&quot;</span>).unwrap(), <span class="string">&quot;FOO&quot;</span>);
+        <span class="macro">assert_eq!</span>(upper(<span class="kw-2">&amp;</span><span class="string">&quot;FooBar&quot;</span>).unwrap(), <span class="string">&quot;FOOBAR&quot;</span>);
+        <span class="macro">assert_eq!</span>(upper(<span class="kw-2">&amp;</span><span class="string">&quot;foo&quot;</span>).unwrap(), <span class="string">&quot;FOO&quot;</span>);
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">test_trim</span>() {
-        <span class="macro">assert_eq!</span>(<span class="ident">trim</span>(<span class="kw-2">&amp;</span><span class="string">&quot; Hello\tworld\t&quot;</span>).<span class="ident">unwrap</span>(), <span class="string">&quot;Hello\tworld&quot;</span>);
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>test_trim() {
+        <span class="macro">assert_eq!</span>(trim(<span class="kw-2">&amp;</span><span class="string">&quot; Hello\tworld\t&quot;</span>).unwrap(), <span class="string">&quot;Hello\tworld&quot;</span>);
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">test_truncate</span>() {
-        <span class="macro">assert_eq!</span>(<span class="ident">truncate</span>(<span class="kw-2">&amp;</span><span class="string">&quot;hello&quot;</span>, <span class="number">2</span>).<span class="ident">unwrap</span>(), <span class="string">&quot;he...&quot;</span>);
-        <span class="kw">let</span> <span class="ident">a</span> <span class="op">=</span> <span class="ident">String::from</span>(<span class="string">&quot;您好&quot;</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">a</span>.<span class="ident">len</span>(), <span class="number">6</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">String::from</span>(<span class="string">&quot;您&quot;</span>).<span class="ident">len</span>(), <span class="number">3</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">truncate</span>(<span class="kw-2">&amp;</span><span class="string">&quot;您好&quot;</span>, <span class="number">1</span>).<span class="ident">unwrap</span>(), <span class="string">&quot;您...&quot;</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">truncate</span>(<span class="kw-2">&amp;</span><span class="string">&quot;您好&quot;</span>, <span class="number">2</span>).<span class="ident">unwrap</span>(), <span class="string">&quot;您...&quot;</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">truncate</span>(<span class="kw-2">&amp;</span><span class="string">&quot;您好&quot;</span>, <span class="number">3</span>).<span class="ident">unwrap</span>(), <span class="string">&quot;您...&quot;</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">truncate</span>(<span class="kw-2">&amp;</span><span class="string">&quot;您好&quot;</span>, <span class="number">4</span>).<span class="ident">unwrap</span>(), <span class="string">&quot;您好...&quot;</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">truncate</span>(<span class="kw-2">&amp;</span><span class="string">&quot;您好&quot;</span>, <span class="number">6</span>).<span class="ident">unwrap</span>(), <span class="string">&quot;您好&quot;</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">truncate</span>(<span class="kw-2">&amp;</span><span class="string">&quot;您好&quot;</span>, <span class="number">7</span>).<span class="ident">unwrap</span>(), <span class="string">&quot;您好&quot;</span>);
-        <span class="kw">let</span> <span class="ident">s</span> <span class="op">=</span> <span class="ident">String::from</span>(<span class="string">&quot;🤚a🤚&quot;</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">s</span>.<span class="ident">len</span>(), <span class="number">9</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">String::from</span>(<span class="string">&quot;🤚&quot;</span>).<span class="ident">len</span>(), <span class="number">4</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">truncate</span>(<span class="kw-2">&amp;</span><span class="string">&quot;🤚a🤚&quot;</span>, <span class="number">1</span>).<span class="ident">unwrap</span>(), <span class="string">&quot;🤚...&quot;</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">truncate</span>(<span class="kw-2">&amp;</span><span class="string">&quot;🤚a🤚&quot;</span>, <span class="number">2</span>).<span class="ident">unwrap</span>(), <span class="string">&quot;🤚...&quot;</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">truncate</span>(<span class="kw-2">&amp;</span><span class="string">&quot;🤚a🤚&quot;</span>, <span class="number">3</span>).<span class="ident">unwrap</span>(), <span class="string">&quot;🤚...&quot;</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">truncate</span>(<span class="kw-2">&amp;</span><span class="string">&quot;🤚a🤚&quot;</span>, <span class="number">4</span>).<span class="ident">unwrap</span>(), <span class="string">&quot;🤚...&quot;</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">truncate</span>(<span class="kw-2">&amp;</span><span class="string">&quot;🤚a🤚&quot;</span>, <span class="number">5</span>).<span class="ident">unwrap</span>(), <span class="string">&quot;🤚a...&quot;</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">truncate</span>(<span class="kw-2">&amp;</span><span class="string">&quot;🤚a🤚&quot;</span>, <span class="number">6</span>).<span class="ident">unwrap</span>(), <span class="string">&quot;🤚a🤚...&quot;</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">truncate</span>(<span class="kw-2">&amp;</span><span class="string">&quot;🤚a🤚&quot;</span>, <span class="number">9</span>).<span class="ident">unwrap</span>(), <span class="string">&quot;🤚a🤚&quot;</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">truncate</span>(<span class="kw-2">&amp;</span><span class="string">&quot;🤚a🤚&quot;</span>, <span class="number">10</span>).<span class="ident">unwrap</span>(), <span class="string">&quot;🤚a🤚&quot;</span>);
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>test_truncate() {
+        <span class="macro">assert_eq!</span>(truncate(<span class="kw-2">&amp;</span><span class="string">&quot;hello&quot;</span>, <span class="number">2</span>).unwrap(), <span class="string">&quot;he...&quot;</span>);
+        <span class="kw">let </span>a = String::from(<span class="string">&quot;您好&quot;</span>);
+        <span class="macro">assert_eq!</span>(a.len(), <span class="number">6</span>);
+        <span class="macro">assert_eq!</span>(String::from(<span class="string">&quot;您&quot;</span>).len(), <span class="number">3</span>);
+        <span class="macro">assert_eq!</span>(truncate(<span class="kw-2">&amp;</span><span class="string">&quot;您好&quot;</span>, <span class="number">1</span>).unwrap(), <span class="string">&quot;您...&quot;</span>);
+        <span class="macro">assert_eq!</span>(truncate(<span class="kw-2">&amp;</span><span class="string">&quot;您好&quot;</span>, <span class="number">2</span>).unwrap(), <span class="string">&quot;您...&quot;</span>);
+        <span class="macro">assert_eq!</span>(truncate(<span class="kw-2">&amp;</span><span class="string">&quot;您好&quot;</span>, <span class="number">3</span>).unwrap(), <span class="string">&quot;您...&quot;</span>);
+        <span class="macro">assert_eq!</span>(truncate(<span class="kw-2">&amp;</span><span class="string">&quot;您好&quot;</span>, <span class="number">4</span>).unwrap(), <span class="string">&quot;您好...&quot;</span>);
+        <span class="macro">assert_eq!</span>(truncate(<span class="kw-2">&amp;</span><span class="string">&quot;您好&quot;</span>, <span class="number">6</span>).unwrap(), <span class="string">&quot;您好&quot;</span>);
+        <span class="macro">assert_eq!</span>(truncate(<span class="kw-2">&amp;</span><span class="string">&quot;您好&quot;</span>, <span class="number">7</span>).unwrap(), <span class="string">&quot;您好&quot;</span>);
+        <span class="kw">let </span>s = String::from(<span class="string">&quot;🤚a🤚&quot;</span>);
+        <span class="macro">assert_eq!</span>(s.len(), <span class="number">9</span>);
+        <span class="macro">assert_eq!</span>(String::from(<span class="string">&quot;🤚&quot;</span>).len(), <span class="number">4</span>);
+        <span class="macro">assert_eq!</span>(truncate(<span class="kw-2">&amp;</span><span class="string">&quot;🤚a🤚&quot;</span>, <span class="number">1</span>).unwrap(), <span class="string">&quot;🤚...&quot;</span>);
+        <span class="macro">assert_eq!</span>(truncate(<span class="kw-2">&amp;</span><span class="string">&quot;🤚a🤚&quot;</span>, <span class="number">2</span>).unwrap(), <span class="string">&quot;🤚...&quot;</span>);
+        <span class="macro">assert_eq!</span>(truncate(<span class="kw-2">&amp;</span><span class="string">&quot;🤚a🤚&quot;</span>, <span class="number">3</span>).unwrap(), <span class="string">&quot;🤚...&quot;</span>);
+        <span class="macro">assert_eq!</span>(truncate(<span class="kw-2">&amp;</span><span class="string">&quot;🤚a🤚&quot;</span>, <span class="number">4</span>).unwrap(), <span class="string">&quot;🤚...&quot;</span>);
+        <span class="macro">assert_eq!</span>(truncate(<span class="kw-2">&amp;</span><span class="string">&quot;🤚a🤚&quot;</span>, <span class="number">5</span>).unwrap(), <span class="string">&quot;🤚a...&quot;</span>);
+        <span class="macro">assert_eq!</span>(truncate(<span class="kw-2">&amp;</span><span class="string">&quot;🤚a🤚&quot;</span>, <span class="number">6</span>).unwrap(), <span class="string">&quot;🤚a🤚...&quot;</span>);
+        <span class="macro">assert_eq!</span>(truncate(<span class="kw-2">&amp;</span><span class="string">&quot;🤚a🤚&quot;</span>, <span class="number">9</span>).unwrap(), <span class="string">&quot;🤚a🤚&quot;</span>);
+        <span class="macro">assert_eq!</span>(truncate(<span class="kw-2">&amp;</span><span class="string">&quot;🤚a🤚&quot;</span>, <span class="number">10</span>).unwrap(), <span class="string">&quot;🤚a🤚&quot;</span>);
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">test_indent</span>() {
-        <span class="macro">assert_eq!</span>(<span class="ident">indent</span>(<span class="kw-2">&amp;</span><span class="string">&quot;hello&quot;</span>, <span class="number">2</span>).<span class="ident">unwrap</span>(), <span class="string">&quot;hello&quot;</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">indent</span>(<span class="kw-2">&amp;</span><span class="string">&quot;hello\n&quot;</span>, <span class="number">2</span>).<span class="ident">unwrap</span>(), <span class="string">&quot;hello\n&quot;</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">indent</span>(<span class="kw-2">&amp;</span><span class="string">&quot;hello\nfoo&quot;</span>, <span class="number">2</span>).<span class="ident">unwrap</span>(), <span class="string">&quot;hello\n  foo&quot;</span>);
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>test_indent() {
+        <span class="macro">assert_eq!</span>(indent(<span class="kw-2">&amp;</span><span class="string">&quot;hello&quot;</span>, <span class="number">2</span>).unwrap(), <span class="string">&quot;hello&quot;</span>);
+        <span class="macro">assert_eq!</span>(indent(<span class="kw-2">&amp;</span><span class="string">&quot;hello\n&quot;</span>, <span class="number">2</span>).unwrap(), <span class="string">&quot;hello\n&quot;</span>);
+        <span class="macro">assert_eq!</span>(indent(<span class="kw-2">&amp;</span><span class="string">&quot;hello\nfoo&quot;</span>, <span class="number">2</span>).unwrap(), <span class="string">&quot;hello\n  foo&quot;</span>);
         <span class="macro">assert_eq!</span>(
-            <span class="ident">indent</span>(<span class="kw-2">&amp;</span><span class="string">&quot;hello\nfoo\n bar&quot;</span>, <span class="number">4</span>).<span class="ident">unwrap</span>(),
-            <span class="string">&quot;hello\n    foo\n     bar&quot;</span>
-        );
+            indent(<span class="kw-2">&amp;</span><span class="string">&quot;hello\nfoo\n bar&quot;</span>, <span class="number">4</span>).unwrap(),
+            <span class="string">&quot;hello\n    foo\n     bar&quot;
+        </span>);
     }
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;num-traits&quot;</span>)]</span>
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::float_cmp</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">test_into_f64</span>() {
-        <span class="macro">assert_eq!</span>(<span class="ident">into_f64</span>(<span class="number">1</span>).<span class="ident">unwrap</span>(), <span class="number">1.0_f64</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">into_f64</span>(<span class="number">1.9</span>).<span class="ident">unwrap</span>(), <span class="number">1.9_f64</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">into_f64</span>(<span class="op">-</span><span class="number">1.9</span>).<span class="ident">unwrap</span>(), <span class="op">-</span><span class="number">1.9_f64</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">into_f64</span>(<span class="ident">INFINITY</span> <span class="kw">as</span> <span class="ident">f32</span>).<span class="ident">unwrap</span>(), <span class="ident">INFINITY</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">into_f64</span>(<span class="op">-</span><span class="ident">INFINITY</span> <span class="kw">as</span> <span class="ident">f32</span>).<span class="ident">unwrap</span>(), <span class="op">-</span><span class="ident">INFINITY</span>);
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;num-traits&quot;</span>)]
+    #[test]
+    #[allow(clippy::float_cmp)]
+    </span><span class="kw">fn </span>test_into_f64() {
+        <span class="macro">assert_eq!</span>(into_f64(<span class="number">1</span>).unwrap(), <span class="number">1.0_f64</span>);
+        <span class="macro">assert_eq!</span>(into_f64(<span class="number">1.9</span>).unwrap(), <span class="number">1.9_f64</span>);
+        <span class="macro">assert_eq!</span>(into_f64(-<span class="number">1.9</span>).unwrap(), -<span class="number">1.9_f64</span>);
+        <span class="macro">assert_eq!</span>(into_f64(INFINITY <span class="kw">as </span>f32).unwrap(), INFINITY);
+        <span class="macro">assert_eq!</span>(into_f64(-INFINITY <span class="kw">as </span>f32).unwrap(), -INFINITY);
     }
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;num-traits&quot;</span>)]</span>
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">test_into_isize</span>() {
-        <span class="macro">assert_eq!</span>(<span class="ident">into_isize</span>(<span class="number">1</span>).<span class="ident">unwrap</span>(), <span class="number">1_isize</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">into_isize</span>(<span class="number">1.9</span>).<span class="ident">unwrap</span>(), <span class="number">1_isize</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">into_isize</span>(<span class="op">-</span><span class="number">1.9</span>).<span class="ident">unwrap</span>(), <span class="op">-</span><span class="number">1_isize</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">into_isize</span>(<span class="number">1.5_f64</span>).<span class="ident">unwrap</span>(), <span class="number">1_isize</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">into_isize</span>(<span class="op">-</span><span class="number">1.5_f64</span>).<span class="ident">unwrap</span>(), <span class="op">-</span><span class="number">1_isize</span>);
-        <span class="kw">match</span> <span class="ident">into_isize</span>(<span class="ident">INFINITY</span>) {
-            <span class="prelude-val">Err</span>(<span class="ident">Fmt</span>(<span class="ident">fmt::Error</span>)) =&gt; {}
-            <span class="kw">_</span> =&gt; <span class="macro">panic!</span>(<span class="string">&quot;Should return error of type Err(Fmt(fmt::Error))&quot;</span>),
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;num-traits&quot;</span>)]
+    #[test]
+    </span><span class="kw">fn </span>test_into_isize() {
+        <span class="macro">assert_eq!</span>(into_isize(<span class="number">1</span>).unwrap(), <span class="number">1_isize</span>);
+        <span class="macro">assert_eq!</span>(into_isize(<span class="number">1.9</span>).unwrap(), <span class="number">1_isize</span>);
+        <span class="macro">assert_eq!</span>(into_isize(-<span class="number">1.9</span>).unwrap(), -<span class="number">1_isize</span>);
+        <span class="macro">assert_eq!</span>(into_isize(<span class="number">1.5_f64</span>).unwrap(), <span class="number">1_isize</span>);
+        <span class="macro">assert_eq!</span>(into_isize(-<span class="number">1.5_f64</span>).unwrap(), -<span class="number">1_isize</span>);
+        <span class="kw">match </span>into_isize(INFINITY) {
+            <span class="prelude-val">Err</span>(Fmt(fmt::Error)) =&gt; {}
+            <span class="kw">_ </span>=&gt; <span class="macro">panic!</span>(<span class="string">&quot;Should return error of type Err(Fmt(fmt::Error))&quot;</span>),
         };
     }
 
-    <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::needless_borrow</span>)]</span>
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">test_join</span>() {
+    <span class="attribute">#[allow(clippy::needless_borrow)]
+    #[test]
+    </span><span class="kw">fn </span>test_join() {
         <span class="macro">assert_eq!</span>(
-            <span class="ident">join</span>((<span class="kw-2">&amp;</span>[<span class="string">&quot;hello&quot;</span>, <span class="string">&quot;world&quot;</span>]).<span class="ident">iter</span>(), <span class="string">&quot;, &quot;</span>).<span class="ident">unwrap</span>(),
-            <span class="string">&quot;hello, world&quot;</span>
-        );
-        <span class="macro">assert_eq!</span>(<span class="ident">join</span>((<span class="kw-2">&amp;</span>[<span class="string">&quot;hello&quot;</span>]).<span class="ident">iter</span>(), <span class="string">&quot;, &quot;</span>).<span class="ident">unwrap</span>(), <span class="string">&quot;hello&quot;</span>);
+            join((<span class="kw-2">&amp;</span>[<span class="string">&quot;hello&quot;</span>, <span class="string">&quot;world&quot;</span>]).iter(), <span class="string">&quot;, &quot;</span>).unwrap(),
+            <span class="string">&quot;hello, world&quot;
+        </span>);
+        <span class="macro">assert_eq!</span>(join((<span class="kw-2">&amp;</span>[<span class="string">&quot;hello&quot;</span>]).iter(), <span class="string">&quot;, &quot;</span>).unwrap(), <span class="string">&quot;hello&quot;</span>);
 
-        <span class="kw">let</span> <span class="ident">empty</span>: <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span><span class="ident">str</span>] <span class="op">=</span> <span class="kw-2">&amp;</span>[];
-        <span class="macro">assert_eq!</span>(<span class="ident">join</span>(<span class="ident">empty</span>.<span class="ident">iter</span>(), <span class="string">&quot;, &quot;</span>).<span class="ident">unwrap</span>(), <span class="string">&quot;&quot;</span>);
+        <span class="kw">let </span>empty: <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span>str] = <span class="kw-2">&amp;</span>[];
+        <span class="macro">assert_eq!</span>(join(empty.iter(), <span class="string">&quot;, &quot;</span>).unwrap(), <span class="string">&quot;&quot;</span>);
 
-        <span class="kw">let</span> <span class="ident">input</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span> <span class="op">=</span> <span class="macro">vec!</span>[<span class="string">&quot;foo&quot;</span>.<span class="ident">into</span>(), <span class="string">&quot;bar&quot;</span>.<span class="ident">into</span>(), <span class="string">&quot;bazz&quot;</span>.<span class="ident">into</span>()];
-        <span class="macro">assert_eq!</span>(<span class="ident">join</span>(<span class="ident">input</span>.<span class="ident">iter</span>(), <span class="string">&quot;:&quot;</span>).<span class="ident">unwrap</span>(), <span class="string">&quot;foo:bar:bazz&quot;</span>);
+        <span class="kw">let </span>input: Vec&lt;String&gt; = <span class="macro">vec!</span>[<span class="string">&quot;foo&quot;</span>.into(), <span class="string">&quot;bar&quot;</span>.into(), <span class="string">&quot;bazz&quot;</span>.into()];
+        <span class="macro">assert_eq!</span>(join(input.iter(), <span class="string">&quot;:&quot;</span>).unwrap(), <span class="string">&quot;foo:bar:bazz&quot;</span>);
 
-        <span class="kw">let</span> <span class="ident">input</span>: <span class="kw-2">&amp;</span>[<span class="ident">String</span>] <span class="op">=</span> <span class="kw-2">&amp;</span>[<span class="string">&quot;foo&quot;</span>.<span class="ident">into</span>(), <span class="string">&quot;bar&quot;</span>.<span class="ident">into</span>()];
-        <span class="macro">assert_eq!</span>(<span class="ident">join</span>(<span class="ident">input</span>.<span class="ident">iter</span>(), <span class="string">&quot;:&quot;</span>).<span class="ident">unwrap</span>(), <span class="string">&quot;foo:bar&quot;</span>);
+        <span class="kw">let </span>input: <span class="kw-2">&amp;</span>[String] = <span class="kw-2">&amp;</span>[<span class="string">&quot;foo&quot;</span>.into(), <span class="string">&quot;bar&quot;</span>.into()];
+        <span class="macro">assert_eq!</span>(join(input.iter(), <span class="string">&quot;:&quot;</span>).unwrap(), <span class="string">&quot;foo:bar&quot;</span>);
 
-        <span class="kw">let</span> <span class="ident">real</span>: <span class="ident">String</span> <span class="op">=</span> <span class="string">&quot;blah&quot;</span>.<span class="ident">into</span>();
-        <span class="kw">let</span> <span class="ident">input</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span> <span class="op">=</span> <span class="macro">vec!</span>[<span class="kw-2">&amp;</span><span class="ident">real</span>];
-        <span class="macro">assert_eq!</span>(<span class="ident">join</span>(<span class="ident">input</span>.<span class="ident">iter</span>(), <span class="string">&quot;;&quot;</span>).<span class="ident">unwrap</span>(), <span class="string">&quot;blah&quot;</span>);
+        <span class="kw">let </span>real: String = <span class="string">&quot;blah&quot;</span>.into();
+        <span class="kw">let </span>input: Vec&lt;<span class="kw-2">&amp;</span>str&gt; = <span class="macro">vec!</span>[<span class="kw-2">&amp;</span>real];
+        <span class="macro">assert_eq!</span>(join(input.iter(), <span class="string">&quot;;&quot;</span>).unwrap(), <span class="string">&quot;blah&quot;</span>);
 
         <span class="macro">assert_eq!</span>(
-            <span class="ident">join</span>((<span class="op">&amp;&amp;</span><span class="op">&amp;&amp;</span><span class="kw-2">&amp;</span>[<span class="string">&quot;foo&quot;</span>, <span class="string">&quot;bar&quot;</span>]).<span class="ident">iter</span>(), <span class="string">&quot;, &quot;</span>).<span class="ident">unwrap</span>(),
-            <span class="string">&quot;foo, bar&quot;</span>
-        );
+            join((&amp;&amp;&amp;&amp;<span class="kw-2">&amp;</span>[<span class="string">&quot;foo&quot;</span>, <span class="string">&quot;bar&quot;</span>]).iter(), <span class="string">&quot;, &quot;</span>).unwrap(),
+            <span class="string">&quot;foo, bar&quot;
+        </span>);
     }
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;num-traits&quot;</span>)]</span>
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::float_cmp</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">test_abs</span>() {
-        <span class="macro">assert_eq!</span>(<span class="ident">abs</span>(<span class="number">1</span>).<span class="ident">unwrap</span>(), <span class="number">1</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">abs</span>(<span class="op">-</span><span class="number">1</span>).<span class="ident">unwrap</span>(), <span class="number">1</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">abs</span>(<span class="number">1.0</span>).<span class="ident">unwrap</span>(), <span class="number">1.0</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">abs</span>(<span class="op">-</span><span class="number">1.0</span>).<span class="ident">unwrap</span>(), <span class="number">1.0</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">abs</span>(<span class="number">1.0_f64</span>).<span class="ident">unwrap</span>(), <span class="number">1.0_f64</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">abs</span>(<span class="op">-</span><span class="number">1.0_f64</span>).<span class="ident">unwrap</span>(), <span class="number">1.0_f64</span>);
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;num-traits&quot;</span>)]
+    #[test]
+    #[allow(clippy::float_cmp)]
+    </span><span class="kw">fn </span>test_abs() {
+        <span class="macro">assert_eq!</span>(abs(<span class="number">1</span>).unwrap(), <span class="number">1</span>);
+        <span class="macro">assert_eq!</span>(abs(-<span class="number">1</span>).unwrap(), <span class="number">1</span>);
+        <span class="macro">assert_eq!</span>(abs(<span class="number">1.0</span>).unwrap(), <span class="number">1.0</span>);
+        <span class="macro">assert_eq!</span>(abs(-<span class="number">1.0</span>).unwrap(), <span class="number">1.0</span>);
+        <span class="macro">assert_eq!</span>(abs(<span class="number">1.0_f64</span>).unwrap(), <span class="number">1.0_f64</span>);
+        <span class="macro">assert_eq!</span>(abs(-<span class="number">1.0_f64</span>).unwrap(), <span class="number">1.0_f64</span>);
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">test_capitalize</span>() {
-        <span class="macro">assert_eq!</span>(<span class="ident">capitalize</span>(<span class="kw-2">&amp;</span><span class="string">&quot;foo&quot;</span>).<span class="ident">unwrap</span>(), <span class="string">&quot;Foo&quot;</span>.<span class="ident">to_string</span>());
-        <span class="macro">assert_eq!</span>(<span class="ident">capitalize</span>(<span class="kw-2">&amp;</span><span class="string">&quot;f&quot;</span>).<span class="ident">unwrap</span>(), <span class="string">&quot;F&quot;</span>.<span class="ident">to_string</span>());
-        <span class="macro">assert_eq!</span>(<span class="ident">capitalize</span>(<span class="kw-2">&amp;</span><span class="string">&quot;fO&quot;</span>).<span class="ident">unwrap</span>(), <span class="string">&quot;Fo&quot;</span>.<span class="ident">to_string</span>());
-        <span class="macro">assert_eq!</span>(<span class="ident">capitalize</span>(<span class="kw-2">&amp;</span><span class="string">&quot;&quot;</span>).<span class="ident">unwrap</span>(), <span class="string">&quot;&quot;</span>.<span class="ident">to_string</span>());
-        <span class="macro">assert_eq!</span>(<span class="ident">capitalize</span>(<span class="kw-2">&amp;</span><span class="string">&quot;FoO&quot;</span>).<span class="ident">unwrap</span>(), <span class="string">&quot;Foo&quot;</span>.<span class="ident">to_string</span>());
-        <span class="macro">assert_eq!</span>(<span class="ident">capitalize</span>(<span class="kw-2">&amp;</span><span class="string">&quot;foO BAR&quot;</span>).<span class="ident">unwrap</span>(), <span class="string">&quot;Foo bar&quot;</span>.<span class="ident">to_string</span>());
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>test_capitalize() {
+        <span class="macro">assert_eq!</span>(capitalize(<span class="kw-2">&amp;</span><span class="string">&quot;foo&quot;</span>).unwrap(), <span class="string">&quot;Foo&quot;</span>.to_string());
+        <span class="macro">assert_eq!</span>(capitalize(<span class="kw-2">&amp;</span><span class="string">&quot;f&quot;</span>).unwrap(), <span class="string">&quot;F&quot;</span>.to_string());
+        <span class="macro">assert_eq!</span>(capitalize(<span class="kw-2">&amp;</span><span class="string">&quot;fO&quot;</span>).unwrap(), <span class="string">&quot;Fo&quot;</span>.to_string());
+        <span class="macro">assert_eq!</span>(capitalize(<span class="kw-2">&amp;</span><span class="string">&quot;&quot;</span>).unwrap(), <span class="string">&quot;&quot;</span>.to_string());
+        <span class="macro">assert_eq!</span>(capitalize(<span class="kw-2">&amp;</span><span class="string">&quot;FoO&quot;</span>).unwrap(), <span class="string">&quot;Foo&quot;</span>.to_string());
+        <span class="macro">assert_eq!</span>(capitalize(<span class="kw-2">&amp;</span><span class="string">&quot;foO BAR&quot;</span>).unwrap(), <span class="string">&quot;Foo bar&quot;</span>.to_string());
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">test_center</span>() {
-        <span class="macro">assert_eq!</span>(<span class="ident">center</span>(<span class="kw-2">&amp;</span><span class="string">&quot;f&quot;</span>, <span class="number">3</span>).<span class="ident">unwrap</span>(), <span class="string">&quot; f &quot;</span>.<span class="ident">to_string</span>());
-        <span class="macro">assert_eq!</span>(<span class="ident">center</span>(<span class="kw-2">&amp;</span><span class="string">&quot;f&quot;</span>, <span class="number">4</span>).<span class="ident">unwrap</span>(), <span class="string">&quot; f  &quot;</span>.<span class="ident">to_string</span>());
-        <span class="macro">assert_eq!</span>(<span class="ident">center</span>(<span class="kw-2">&amp;</span><span class="string">&quot;foo&quot;</span>, <span class="number">1</span>).<span class="ident">unwrap</span>(), <span class="string">&quot;foo&quot;</span>.<span class="ident">to_string</span>());
-        <span class="macro">assert_eq!</span>(<span class="ident">center</span>(<span class="kw-2">&amp;</span><span class="string">&quot;foo bar&quot;</span>, <span class="number">8</span>).<span class="ident">unwrap</span>(), <span class="string">&quot;foo bar &quot;</span>.<span class="ident">to_string</span>());
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>test_center() {
+        <span class="macro">assert_eq!</span>(center(<span class="kw-2">&amp;</span><span class="string">&quot;f&quot;</span>, <span class="number">3</span>).unwrap(), <span class="string">&quot; f &quot;</span>.to_string());
+        <span class="macro">assert_eq!</span>(center(<span class="kw-2">&amp;</span><span class="string">&quot;f&quot;</span>, <span class="number">4</span>).unwrap(), <span class="string">&quot; f  &quot;</span>.to_string());
+        <span class="macro">assert_eq!</span>(center(<span class="kw-2">&amp;</span><span class="string">&quot;foo&quot;</span>, <span class="number">1</span>).unwrap(), <span class="string">&quot;foo&quot;</span>.to_string());
+        <span class="macro">assert_eq!</span>(center(<span class="kw-2">&amp;</span><span class="string">&quot;foo bar&quot;</span>, <span class="number">8</span>).unwrap(), <span class="string">&quot;foo bar &quot;</span>.to_string());
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">test_wordcount</span>() {
-        <span class="macro">assert_eq!</span>(<span class="ident">wordcount</span>(<span class="kw-2">&amp;</span><span class="string">&quot;&quot;</span>).<span class="ident">unwrap</span>(), <span class="number">0</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">wordcount</span>(<span class="kw-2">&amp;</span><span class="string">&quot; \n\t&quot;</span>).<span class="ident">unwrap</span>(), <span class="number">0</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">wordcount</span>(<span class="kw-2">&amp;</span><span class="string">&quot;foo&quot;</span>).<span class="ident">unwrap</span>(), <span class="number">1</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">wordcount</span>(<span class="kw-2">&amp;</span><span class="string">&quot;foo bar&quot;</span>).<span class="ident">unwrap</span>(), <span class="number">2</span>);
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>test_wordcount() {
+        <span class="macro">assert_eq!</span>(wordcount(<span class="kw-2">&amp;</span><span class="string">&quot;&quot;</span>).unwrap(), <span class="number">0</span>);
+        <span class="macro">assert_eq!</span>(wordcount(<span class="kw-2">&amp;</span><span class="string">&quot; \n\t&quot;</span>).unwrap(), <span class="number">0</span>);
+        <span class="macro">assert_eq!</span>(wordcount(<span class="kw-2">&amp;</span><span class="string">&quot;foo&quot;</span>).unwrap(), <span class="number">1</span>);
+        <span class="macro">assert_eq!</span>(wordcount(<span class="kw-2">&amp;</span><span class="string">&quot;foo bar&quot;</span>).unwrap(), <span class="number">2</span>);
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="askama_shared" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="askama_shared" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (77e57db38 2022-10-30)" ></div></body></html>

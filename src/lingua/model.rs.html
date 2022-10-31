@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/lingua-1.4.0/src/model.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>model.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../lingua/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../lingua/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../lingua/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/lingua-1.4.0/src/model.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>model.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../lingua/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -576,555 +576,555 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either expressed or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */</span>
+ */
 
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::constant::LETTER</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::fraction::Fraction</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::language::Language</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ngram::Ngram</span>;
-<span class="kw">use</span> <span class="ident">itertools::Itertools</span>;
-<span class="kw">use</span> <span class="ident">regex::Regex</span>;
-<span class="kw">use</span> <span class="ident">serde</span>::{<span class="ident">Deserialize</span>, <span class="ident">Serialize</span>};
-<span class="kw">use</span> <span class="ident">std::collections</span>::{<span class="ident">BTreeMap</span>, <span class="ident">HashMap</span>, <span class="ident">HashSet</span>};
+</span><span class="kw">use </span><span class="kw">crate</span>::constant::LETTER;
+<span class="kw">use </span><span class="kw">crate</span>::fraction::Fraction;
+<span class="kw">use </span><span class="kw">crate</span>::language::Language;
+<span class="kw">use </span><span class="kw">crate</span>::ngram::Ngram;
+<span class="kw">use </span>itertools::Itertools;
+<span class="kw">use </span>regex::Regex;
+<span class="kw">use </span>serde::{Deserialize, Serialize};
+<span class="kw">use </span>std::collections::{BTreeMap, HashMap, HashSet};
 
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">test</span>, <span class="ident">mockall::automock</span>)]</span>
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">trait</span> <span class="ident">LanguageModel</span> {
-    <span class="kw">fn</span> <span class="ident">get_relative_frequency</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">ngram</span>: <span class="kw-2">&amp;</span><span class="ident">Ngram</span>) -&gt; <span class="ident">f64</span>;
+<span class="attribute">#[cfg_attr(test, mockall::automock)]
+</span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">trait </span>LanguageModel {
+    <span class="kw">fn </span>get_relative_frequency(<span class="kw-2">&amp;</span><span class="self">self</span>, ngram: <span class="kw-2">&amp;</span>Ngram) -&gt; f64;
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Eq</span>, <span class="ident">PartialEq</span>, <span class="ident">Serialize</span>, <span class="ident">Deserialize</span>)]</span>
-<span class="kw">struct</span> <span class="ident">JsonLanguageModel</span> {
-    <span class="ident">language</span>: <span class="ident">Language</span>,
-    <span class="ident">ngrams</span>: <span class="ident">BTreeMap</span><span class="op">&lt;</span><span class="ident">Fraction</span>, <span class="ident">String</span><span class="op">&gt;</span>,
+<span class="attribute">#[derive(Debug, Eq, PartialEq, Serialize, Deserialize)]
+</span><span class="kw">struct </span>JsonLanguageModel {
+    language: Language,
+    ngrams: BTreeMap&lt;Fraction, String&gt;,
 }
 
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct</span> <span class="ident">TrainingDataLanguageModel</span> {
-    <span class="ident">language</span>: <span class="ident">Language</span>,
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">absolute_frequencies</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">Ngram</span>, <span class="ident">u32</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-    <span class="ident">relative_frequencies</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">Ngram</span>, <span class="ident">Fraction</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-    <span class="ident">json_relative_frequencies</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">Ngram</span>, <span class="ident">f64</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct </span>TrainingDataLanguageModel {
+    language: Language,
+    <span class="kw">pub</span>(<span class="kw">crate</span>) absolute_frequencies: <span class="prelude-ty">Option</span>&lt;HashMap&lt;Ngram, u32&gt;&gt;,
+    relative_frequencies: <span class="prelude-ty">Option</span>&lt;HashMap&lt;Ngram, Fraction&gt;&gt;,
+    json_relative_frequencies: <span class="prelude-ty">Option</span>&lt;HashMap&lt;Ngram, f64&gt;&gt;,
 }
 
-<span class="kw">impl</span> <span class="ident">LanguageModel</span> <span class="kw">for</span> <span class="ident">TrainingDataLanguageModel</span> {
-    <span class="kw">fn</span> <span class="ident">get_relative_frequency</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">ngram</span>: <span class="kw-2">&amp;</span><span class="ident">Ngram</span>) -&gt; <span class="ident">f64</span> {
-        <span class="kw">match</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">json_relative_frequencies</span> {
-            <span class="prelude-val">Some</span>(<span class="ident">frequencies</span>) =&gt; <span class="kw-2">*</span><span class="ident">frequencies</span>.<span class="ident">get</span>(<span class="ident">ngram</span>).<span class="ident">unwrap_or</span>(<span class="kw-2">&amp;</span><span class="number">0.0</span>),
-            <span class="prelude-val">None</span> =&gt; <span class="number">0.0</span>,
+<span class="kw">impl </span>LanguageModel <span class="kw">for </span>TrainingDataLanguageModel {
+    <span class="kw">fn </span>get_relative_frequency(<span class="kw-2">&amp;</span><span class="self">self</span>, ngram: <span class="kw-2">&amp;</span>Ngram) -&gt; f64 {
+        <span class="kw">match </span><span class="kw-2">&amp;</span><span class="self">self</span>.json_relative_frequencies {
+            <span class="prelude-val">Some</span>(frequencies) =&gt; <span class="kw-2">*</span>frequencies.get(ngram).unwrap_or(<span class="kw-2">&amp;</span><span class="number">0.0</span>),
+            <span class="prelude-val">None </span>=&gt; <span class="number">0.0</span>,
         }
     }
 }
 
-<span class="kw">impl</span> <span class="ident">TrainingDataLanguageModel</span> {
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">from_text</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>(
-        <span class="ident">text</span>: <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>],
-        <span class="ident">language</span>: <span class="kw-2">&amp;</span><span class="ident">Language</span>,
-        <span class="ident">ngram_length</span>: <span class="ident">usize</span>,
-        <span class="ident">char_class</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
-        <span class="ident">lower_ngram_absolute_frequencies</span>: <span class="kw-2">&amp;</span><span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">Ngram</span>, <span class="ident">u32</span><span class="op">&gt;</span>,
-    ) -&gt; <span class="self">Self</span> {
-        <span class="kw">let</span> <span class="ident">absolute_frequencies</span> <span class="op">=</span>
-            <span class="ident"><span class="self">Self</span>::compute_absolute_frequencies</span>(<span class="ident">text</span>, <span class="ident">ngram_length</span>, <span class="ident">char_class</span>);
+<span class="kw">impl </span>TrainingDataLanguageModel {
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>from_text&lt;<span class="lifetime">&#39;a</span>&gt;(
+        text: <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str],
+        language: <span class="kw-2">&amp;</span>Language,
+        ngram_length: usize,
+        char_class: <span class="kw-2">&amp;</span>str,
+        lower_ngram_absolute_frequencies: <span class="kw-2">&amp;</span>HashMap&lt;Ngram, u32&gt;,
+    ) -&gt; <span class="self">Self </span>{
+        <span class="kw">let </span>absolute_frequencies =
+            <span class="self">Self</span>::compute_absolute_frequencies(text, ngram_length, char_class);
 
-        <span class="kw">let</span> <span class="ident">relative_frequencies</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::compute_relative_frequencies</span>(
-            <span class="ident">ngram_length</span>,
-            <span class="kw-2">&amp;</span><span class="ident">absolute_frequencies</span>,
-            <span class="ident">lower_ngram_absolute_frequencies</span>,
+        <span class="kw">let </span>relative_frequencies = <span class="self">Self</span>::compute_relative_frequencies(
+            ngram_length,
+            <span class="kw-2">&amp;</span>absolute_frequencies,
+            lower_ngram_absolute_frequencies,
         );
 
-        <span class="ident">TrainingDataLanguageModel</span> {
-            <span class="ident">language</span>: <span class="ident">language</span>.<span class="ident">clone</span>(),
-            <span class="ident">absolute_frequencies</span>: <span class="prelude-val">Some</span>(<span class="ident">absolute_frequencies</span>),
-            <span class="ident">relative_frequencies</span>: <span class="prelude-val">Some</span>(<span class="ident">relative_frequencies</span>),
-            <span class="ident">json_relative_frequencies</span>: <span class="prelude-val">None</span>,
+        TrainingDataLanguageModel {
+            language: language.clone(),
+            absolute_frequencies: <span class="prelude-val">Some</span>(absolute_frequencies),
+            relative_frequencies: <span class="prelude-val">Some</span>(relative_frequencies),
+            json_relative_frequencies: <span class="prelude-val">None</span>,
         }
     }
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">from_json</span>(<span class="ident">json</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw">let</span> <span class="ident">json_language_model</span> <span class="op">=</span> <span class="ident">serde_json::from_str</span>::<span class="op">&lt;</span><span class="ident">JsonLanguageModel</span><span class="op">&gt;</span>(<span class="ident">json</span>).<span class="ident">unwrap</span>();
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">json_relative_frequencies</span> <span class="op">=</span> <span class="macro">hashmap!</span>();
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>from_json(json: <span class="kw-2">&amp;</span>str) -&gt; <span class="self">Self </span>{
+        <span class="kw">let </span>json_language_model = serde_json::from_str::&lt;JsonLanguageModel&gt;(json).unwrap();
+        <span class="kw">let </span><span class="kw-2">mut </span>json_relative_frequencies = <span class="macro">hashmap!</span>();
 
-        <span class="kw">for</span> (<span class="ident">fraction</span>, <span class="ident">ngrams</span>) <span class="kw">in</span> <span class="ident">json_language_model</span>.<span class="ident">ngrams</span> {
-            <span class="kw">let</span> <span class="ident">floating_point_value</span> <span class="op">=</span> <span class="ident">fraction</span>.<span class="ident">to_f64</span>();
-            <span class="kw">for</span> <span class="ident">ngram</span> <span class="kw">in</span> <span class="ident">ngrams</span>.<span class="ident">split</span>(<span class="string">&#39; &#39;</span>) {
-                <span class="ident">json_relative_frequencies</span>.<span class="ident">insert</span>(<span class="ident">Ngram::new</span>(<span class="ident">ngram</span>), <span class="ident">floating_point_value</span>);
+        <span class="kw">for </span>(fraction, ngrams) <span class="kw">in </span>json_language_model.ngrams {
+            <span class="kw">let </span>floating_point_value = fraction.to_f64();
+            <span class="kw">for </span>ngram <span class="kw">in </span>ngrams.split(<span class="string">&#39; &#39;</span>) {
+                json_relative_frequencies.insert(Ngram::new(ngram), floating_point_value);
             }
         }
 
-        <span class="ident">TrainingDataLanguageModel</span> {
-            <span class="ident">language</span>: <span class="ident">json_language_model</span>.<span class="ident">language</span>,
-            <span class="ident">absolute_frequencies</span>: <span class="prelude-val">None</span>,
-            <span class="ident">relative_frequencies</span>: <span class="prelude-val">None</span>,
-            <span class="ident">json_relative_frequencies</span>: <span class="prelude-val">Some</span>(<span class="ident">json_relative_frequencies</span>),
+        TrainingDataLanguageModel {
+            language: json_language_model.language,
+            absolute_frequencies: <span class="prelude-val">None</span>,
+            relative_frequencies: <span class="prelude-val">None</span>,
+            json_relative_frequencies: <span class="prelude-val">Some</span>(json_relative_frequencies),
         }
     }
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">to_json</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">String</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">fractions_to_ngrams</span> <span class="op">=</span> <span class="macro">hashmap!</span>();
-        <span class="kw">for</span> (<span class="ident">ngram</span>, <span class="ident">fraction</span>) <span class="kw">in</span> <span class="self">self</span>.<span class="ident">relative_frequencies</span>.<span class="ident">as_ref</span>().<span class="ident">unwrap</span>() {
-            <span class="kw">let</span> <span class="ident">ngrams</span> <span class="op">=</span> <span class="ident">fractions_to_ngrams</span>.<span class="ident">entry</span>(<span class="ident">fraction</span>).<span class="ident">or_insert_with</span>(<span class="ident">Vec::new</span>);
-            <span class="ident">ngrams</span>.<span class="ident">push</span>(<span class="ident">ngram</span>);
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>to_json(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; String {
+        <span class="kw">let </span><span class="kw-2">mut </span>fractions_to_ngrams = <span class="macro">hashmap!</span>();
+        <span class="kw">for </span>(ngram, fraction) <span class="kw">in </span><span class="self">self</span>.relative_frequencies.as_ref().unwrap() {
+            <span class="kw">let </span>ngrams = fractions_to_ngrams.entry(fraction).or_insert_with(Vec::new);
+            ngrams.push(ngram);
         }
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">fractions_to_joined_ngrams</span> <span class="op">=</span> <span class="macro">btreemap!</span>();
-        <span class="kw">for</span> (<span class="ident">fraction</span>, <span class="ident">ngrams</span>) <span class="kw">in</span> <span class="ident">fractions_to_ngrams</span> {
-            <span class="ident">fractions_to_joined_ngrams</span>.<span class="ident">insert</span>(
-                <span class="kw-2">*</span><span class="ident">fraction</span>,
-                <span class="ident">ngrams</span>.<span class="ident">iter</span>().<span class="ident">map</span>(<span class="op">|</span><span class="kw-2">&amp;</span><span class="ident">it</span><span class="op">|</span> <span class="kw-2">&amp;</span><span class="ident">it</span>.<span class="ident">value</span>).<span class="ident">sorted</span>().<span class="ident">join</span>(<span class="string">&quot; &quot;</span>),
+        <span class="kw">let </span><span class="kw-2">mut </span>fractions_to_joined_ngrams = <span class="macro">btreemap!</span>();
+        <span class="kw">for </span>(fraction, ngrams) <span class="kw">in </span>fractions_to_ngrams {
+            fractions_to_joined_ngrams.insert(
+                <span class="kw-2">*</span>fraction,
+                ngrams.iter().map(|<span class="kw-2">&amp;</span>it| <span class="kw-2">&amp;</span>it.value).sorted().join(<span class="string">&quot; &quot;</span>),
             );
         }
 
-        <span class="kw">let</span> <span class="ident">model</span> <span class="op">=</span> <span class="ident">JsonLanguageModel</span> {
-            <span class="ident">language</span>: <span class="self">self</span>.<span class="ident">language</span>.<span class="ident">clone</span>(),
-            <span class="ident">ngrams</span>: <span class="ident">fractions_to_joined_ngrams</span>,
+        <span class="kw">let </span>model = JsonLanguageModel {
+            language: <span class="self">self</span>.language.clone(),
+            ngrams: fractions_to_joined_ngrams,
         };
 
-        <span class="ident">serde_json::to_string</span>(<span class="kw-2">&amp;</span><span class="ident">model</span>).<span class="ident">unwrap</span>()
+        serde_json::to_string(<span class="kw-2">&amp;</span>model).unwrap()
     }
 
-    <span class="kw">fn</span> <span class="ident">compute_absolute_frequencies</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>(
-        <span class="ident">text</span>: <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>],
-        <span class="ident">ngram_length</span>: <span class="ident">usize</span>,
-        <span class="ident">char_class</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
-    ) -&gt; <span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">Ngram</span>, <span class="ident">u32</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">absolute_frequencies</span> <span class="op">=</span> <span class="macro">hashmap!</span>();
-        <span class="kw">let</span> <span class="ident">regex</span> <span class="op">=</span> <span class="ident">Regex::new</span>(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;^[{}]+$&quot;</span>, <span class="ident">char_class</span>)).<span class="ident">unwrap_or_else</span>(<span class="op">|</span><span class="kw">_</span><span class="op">|</span> {
+    <span class="kw">fn </span>compute_absolute_frequencies&lt;<span class="lifetime">&#39;a</span>&gt;(
+        text: <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str],
+        ngram_length: usize,
+        char_class: <span class="kw-2">&amp;</span>str,
+    ) -&gt; HashMap&lt;Ngram, u32&gt; {
+        <span class="kw">let </span><span class="kw-2">mut </span>absolute_frequencies = <span class="macro">hashmap!</span>();
+        <span class="kw">let </span>regex = Regex::new(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;^[{}]+$&quot;</span>, char_class)).unwrap_or_else(|<span class="kw">_</span>| {
             <span class="macro">panic!</span>(
                 <span class="string">&quot;The character class &#39;{}&#39; cannot be compiled to a valid regular expression&quot;</span>,
-                <span class="ident">char_class</span>
+                char_class
             )
         });
 
-        <span class="kw">for</span> <span class="ident">line</span> <span class="kw">in</span> <span class="ident">text</span>.<span class="ident">iter</span>() {
-            <span class="kw">let</span> <span class="ident">chars</span> <span class="op">=</span> <span class="ident">line</span>.<span class="ident">to_lowercase</span>().<span class="ident">chars</span>().<span class="ident">collect_vec</span>();
+        <span class="kw">for </span>line <span class="kw">in </span>text.iter() {
+            <span class="kw">let </span>chars = line.to_lowercase().chars().collect_vec();
 
-            <span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> <span class="number">0</span>..<span class="op">=</span><span class="ident">chars</span>.<span class="ident">len</span>() <span class="op">-</span> <span class="ident">ngram_length</span> {
-                <span class="kw">let</span> <span class="ident">slice</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">chars</span>[<span class="ident">i</span>..<span class="ident">i</span> <span class="op">+</span> <span class="ident">ngram_length</span>].<span class="ident">iter</span>().<span class="ident">collect</span>::<span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>();
+            <span class="kw">for </span>i <span class="kw">in </span><span class="number">0</span>..=chars.len() - ngram_length {
+                <span class="kw">let </span>slice = <span class="kw-2">&amp;</span>chars[i..i + ngram_length].iter().collect::&lt;String&gt;();
 
-                <span class="kw">if</span> <span class="ident">regex</span>.<span class="ident">is_match</span>(<span class="ident">slice</span>) {
-                    <span class="kw">let</span> <span class="ident">counter</span> <span class="op">=</span> <span class="ident">absolute_frequencies</span>.<span class="ident">entry</span>(<span class="ident">Ngram::new</span>(<span class="ident">slice</span>)).<span class="ident">or_insert</span>(<span class="number">0</span>);
-                    <span class="kw-2">*</span><span class="ident">counter</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
+                <span class="kw">if </span>regex.is_match(slice) {
+                    <span class="kw">let </span>counter = absolute_frequencies.entry(Ngram::new(slice)).or_insert(<span class="number">0</span>);
+                    <span class="kw-2">*</span>counter += <span class="number">1</span>;
                 }
             }
         }
 
-        <span class="ident">absolute_frequencies</span>
+        absolute_frequencies
     }
 
-    <span class="kw">fn</span> <span class="ident">compute_relative_frequencies</span>(
-        <span class="ident">ngram_length</span>: <span class="ident">usize</span>,
-        <span class="ident">absolute_frequencies</span>: <span class="kw-2">&amp;</span><span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">Ngram</span>, <span class="ident">u32</span><span class="op">&gt;</span>,
-        <span class="ident">lower_ngram_absolute_frequencies</span>: <span class="kw-2">&amp;</span><span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">Ngram</span>, <span class="ident">u32</span><span class="op">&gt;</span>,
-    ) -&gt; <span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">Ngram</span>, <span class="ident">Fraction</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">ngram_probabilities</span> <span class="op">=</span> <span class="macro">hashmap!</span>();
-        <span class="kw">let</span> <span class="ident">total_ngram_frequency</span> <span class="op">=</span> <span class="ident">absolute_frequencies</span>.<span class="ident">values</span>().<span class="ident">sum</span>::<span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>();
+    <span class="kw">fn </span>compute_relative_frequencies(
+        ngram_length: usize,
+        absolute_frequencies: <span class="kw-2">&amp;</span>HashMap&lt;Ngram, u32&gt;,
+        lower_ngram_absolute_frequencies: <span class="kw-2">&amp;</span>HashMap&lt;Ngram, u32&gt;,
+    ) -&gt; HashMap&lt;Ngram, Fraction&gt; {
+        <span class="kw">let </span><span class="kw-2">mut </span>ngram_probabilities = <span class="macro">hashmap!</span>();
+        <span class="kw">let </span>total_ngram_frequency = absolute_frequencies.values().sum::&lt;u32&gt;();
 
-        <span class="kw">for</span> (<span class="ident">ngram</span>, <span class="ident">frequency</span>) <span class="kw">in</span> <span class="ident">absolute_frequencies</span> {
-            <span class="kw">let</span> <span class="ident">denominator</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">ngram_length</span> <span class="op">==</span> <span class="number">1</span> <span class="op">|</span><span class="op">|</span> <span class="ident">lower_ngram_absolute_frequencies</span>.<span class="ident">is_empty</span>() {
-                <span class="ident">total_ngram_frequency</span>
-            } <span class="kw">else</span> {
-                <span class="kw">let</span> <span class="ident">chars</span> <span class="op">=</span> <span class="ident">ngram</span>.<span class="ident">value</span>.<span class="ident">chars</span>().<span class="ident">collect_vec</span>();
-                <span class="kw">let</span> <span class="ident">slice</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">chars</span>[<span class="number">0</span>..<span class="ident">ngram_length</span> <span class="op">-</span> <span class="number">1</span>].<span class="ident">iter</span>().<span class="ident">collect</span>::<span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>();
+        <span class="kw">for </span>(ngram, frequency) <span class="kw">in </span>absolute_frequencies {
+            <span class="kw">let </span>denominator = <span class="kw">if </span>ngram_length == <span class="number">1 </span>|| lower_ngram_absolute_frequencies.is_empty() {
+                total_ngram_frequency
+            } <span class="kw">else </span>{
+                <span class="kw">let </span>chars = ngram.value.chars().collect_vec();
+                <span class="kw">let </span>slice = <span class="kw-2">&amp;</span>chars[<span class="number">0</span>..ngram_length - <span class="number">1</span>].iter().collect::&lt;String&gt;();
 
-                <span class="kw-2">*</span><span class="ident">lower_ngram_absolute_frequencies</span>
-                    .<span class="ident">get</span>(<span class="kw-2">&amp;</span><span class="ident">Ngram::new</span>(<span class="ident">slice</span>))
-                    .<span class="ident">unwrap</span>()
+                <span class="kw-2">*</span>lower_ngram_absolute_frequencies
+                    .get(<span class="kw-2">&amp;</span>Ngram::new(slice))
+                    .unwrap()
             };
-            <span class="ident">ngram_probabilities</span>.<span class="ident">insert</span>(<span class="ident">ngram</span>.<span class="ident">clone</span>(), <span class="ident">Fraction::new</span>(<span class="kw-2">*</span><span class="ident">frequency</span>, <span class="ident">denominator</span>));
+            ngram_probabilities.insert(ngram.clone(), Fraction::new(<span class="kw-2">*</span>frequency, denominator));
         }
 
-        <span class="ident">ngram_probabilities</span>
+        ngram_probabilities
     }
 }
 
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct</span> <span class="ident">TestDataLanguageModel</span> {
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">ngrams</span>: <span class="ident">HashSet</span><span class="op">&lt;</span><span class="ident">Ngram</span><span class="op">&gt;</span>,
+<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct </span>TestDataLanguageModel {
+    <span class="kw">pub</span>(<span class="kw">crate</span>) ngrams: HashSet&lt;Ngram&gt;,
 }
 
-<span class="kw">impl</span> <span class="ident">TestDataLanguageModel</span> {
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">text</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">ngram_length</span>: <span class="ident">usize</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw">if</span> <span class="op">!</span>(<span class="number">1</span>..<span class="number">6</span>).<span class="ident">contains</span>(<span class="kw-2">&amp;</span><span class="ident">ngram_length</span>) {
-            <span class="macro">panic!</span>(<span class="string">&quot;ngram length {} is not in range 1..6&quot;</span>, <span class="ident">ngram_length</span>);
+<span class="kw">impl </span>TestDataLanguageModel {
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>from(text: <span class="kw-2">&amp;</span>str, ngram_length: usize) -&gt; <span class="self">Self </span>{
+        <span class="kw">if </span>!(<span class="number">1</span>..<span class="number">6</span>).contains(<span class="kw-2">&amp;</span>ngram_length) {
+            <span class="macro">panic!</span>(<span class="string">&quot;ngram length {} is not in range 1..6&quot;</span>, ngram_length);
         }
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">ngrams</span> <span class="op">=</span> <span class="macro">hashset!</span>();
-        <span class="kw">let</span> <span class="ident">chars</span> <span class="op">=</span> <span class="ident">text</span>.<span class="ident">chars</span>().<span class="ident">collect_vec</span>();
+        <span class="kw">let </span><span class="kw-2">mut </span>ngrams = <span class="macro">hashset!</span>();
+        <span class="kw">let </span>chars = text.chars().collect_vec();
 
-        <span class="kw">if</span> <span class="ident">chars</span>.<span class="ident">len</span>() <span class="op">&gt;</span><span class="op">=</span> <span class="ident">ngram_length</span> {
-            <span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> <span class="number">0</span>..<span class="op">=</span><span class="ident">chars</span>.<span class="ident">len</span>() <span class="op">-</span> <span class="ident">ngram_length</span> {
-                <span class="kw">let</span> <span class="ident">slice</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">chars</span>[<span class="ident">i</span>..<span class="ident">i</span> <span class="op">+</span> <span class="ident">ngram_length</span>].<span class="ident">iter</span>().<span class="ident">collect</span>::<span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>();
-                <span class="kw">if</span> <span class="ident">LETTER</span>.<span class="ident">is_match</span>(<span class="ident">slice</span>) {
-                    <span class="ident">ngrams</span>.<span class="ident">insert</span>(<span class="ident">Ngram::new</span>(<span class="ident">slice</span>));
+        <span class="kw">if </span>chars.len() &gt;= ngram_length {
+            <span class="kw">for </span>i <span class="kw">in </span><span class="number">0</span>..=chars.len() - ngram_length {
+                <span class="kw">let </span>slice = <span class="kw-2">&amp;</span>chars[i..i + ngram_length].iter().collect::&lt;String&gt;();
+                <span class="kw">if </span>LETTER.is_match(slice) {
+                    ngrams.insert(Ngram::new(slice));
                 }
             }
         }
 
-        <span class="self">Self</span> { <span class="ident">ngrams</span> }
+        <span class="self">Self </span>{ ngrams }
     }
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
-<span class="kw">mod</span> <span class="ident">tests</span> {
-    <span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
-    <span class="kw">use</span> <span class="ident">itertools::Itertools</span>;
-    <span class="kw">use</span> <span class="ident">rstest</span>::<span class="kw-2">*</span>;
+<span class="attribute">#[cfg(test)]
+</span><span class="kw">mod </span>tests {
+    <span class="kw">use super</span>::<span class="kw-2">*</span>;
+    <span class="kw">use </span>itertools::Itertools;
+    <span class="kw">use </span>rstest::<span class="kw-2">*</span>;
 
-    <span class="kw">const</span> <span class="ident">TEXT</span>: <span class="kw-2">&amp;</span><span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;
+    <span class="kw">const </span>TEXT: <span class="kw-2">&amp;</span>str = <span class="string">&quot;
         These sentences are intended for testing purposes.
         ⚠ Do not use them in production
         By the way, they consist of 23 words in total.
     &quot;</span>;
 
-    <span class="kw">mod</span> <span class="ident">json_data</span> {
-        <span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
+    <span class="kw">mod </span>json_data {
+        <span class="kw">use super</span>::<span class="kw-2">*</span>;
 
-        <span class="attribute">#[<span class="ident">test</span>]</span>
-        <span class="kw">fn</span> <span class="ident">test_json_model_serializer_and_deserializer</span>() {
-            <span class="kw">let</span> <span class="ident">model</span> <span class="op">=</span> <span class="ident">JsonLanguageModel</span> {
-                <span class="ident">language</span>: <span class="ident">Language::English</span>,
-                <span class="ident">ngrams</span>: <span class="macro">btreemap!</span>(<span class="ident">Fraction::new</span>(<span class="number">3</span>, <span class="number">5</span>) =&gt; <span class="string">&quot;a b c d e&quot;</span>.<span class="ident">to_string</span>()),
+        <span class="attribute">#[test]
+        </span><span class="kw">fn </span>test_json_model_serializer_and_deserializer() {
+            <span class="kw">let </span>model = JsonLanguageModel {
+                language: Language::English,
+                ngrams: <span class="macro">btreemap!</span>(Fraction::new(<span class="number">3</span>, <span class="number">5</span>) =&gt; <span class="string">&quot;a b c d e&quot;</span>.to_string()),
             };
 
-            <span class="kw">let</span> <span class="ident">serialized</span> <span class="op">=</span> <span class="ident">serde_json::to_string</span>(<span class="kw-2">&amp;</span><span class="ident">model</span>).<span class="ident">unwrap</span>();
+            <span class="kw">let </span>serialized = serde_json::to_string(<span class="kw-2">&amp;</span>model).unwrap();
             <span class="macro">assert_eq!</span>(
-                <span class="ident">serialized</span>,
-                <span class="string">r#&quot;{&quot;language&quot;:&quot;ENGLISH&quot;,&quot;ngrams&quot;:{&quot;3/5&quot;:&quot;a b c d e&quot;}}&quot;#</span>
-            );
+                serialized,
+                <span class="string">r#&quot;{&quot;language&quot;:&quot;ENGLISH&quot;,&quot;ngrams&quot;:{&quot;3/5&quot;:&quot;a b c d e&quot;}}&quot;#
+            </span>);
 
-            <span class="kw">let</span> <span class="ident">deserialized</span> <span class="op">=</span> <span class="ident">serde_json::from_str</span>::<span class="op">&lt;</span><span class="ident">JsonLanguageModel</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="ident">serialized</span>).<span class="ident">unwrap</span>();
-            <span class="macro">assert_eq!</span>(<span class="ident">deserialized</span>, <span class="ident">model</span>);
+            <span class="kw">let </span>deserialized = serde_json::from_str::&lt;JsonLanguageModel&gt;(<span class="kw-2">&amp;</span>serialized).unwrap();
+            <span class="macro">assert_eq!</span>(deserialized, model);
         }
     }
 
-    <span class="kw">mod</span> <span class="ident">training_data</span> {
-        <span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
+    <span class="kw">mod </span>training_data {
+        <span class="kw">use super</span>::<span class="kw-2">*</span>;
 
-        <span class="kw">fn</span> <span class="ident">map_keys_to_ngrams</span>(<span class="ident">map</span>: <span class="ident">HashMap</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">u32</span><span class="op">&gt;</span>) -&gt; <span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">Ngram</span>, <span class="ident">u32</span><span class="op">&gt;</span> {
-            <span class="ident">map</span>.<span class="ident">into_iter</span>()
-                .<span class="ident">map</span>(<span class="op">|</span>(<span class="ident">key</span>, <span class="ident">value</span>)<span class="op">|</span> (<span class="ident">Ngram::new</span>(<span class="ident">key</span>), <span class="ident">value</span>))
-                .<span class="ident">collect</span>()
+        <span class="kw">fn </span>map_keys_to_ngrams(map: HashMap&lt;<span class="kw-2">&amp;</span>str, u32&gt;) -&gt; HashMap&lt;Ngram, u32&gt; {
+            map.into_iter()
+                .map(|(key, value)| (Ngram::new(key), value))
+                .collect()
         }
 
-        <span class="kw">fn</span> <span class="ident">map_keys_to_ngrams_and_values_to_fractions</span>(
-            <span class="ident">map</span>: <span class="ident">HashMap</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>,
-        ) -&gt; <span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">Ngram</span>, <span class="ident">Fraction</span><span class="op">&gt;</span> {
-            <span class="ident">map</span>.<span class="ident">into_iter</span>()
-                .<span class="ident">map</span>(<span class="op">|</span>(<span class="ident">key</span>, <span class="ident">value</span>)<span class="op">|</span> {
-                    <span class="kw">let</span> (<span class="ident">numerator</span>, <span class="ident">denominator</span>) <span class="op">=</span> <span class="ident">value</span>
-                        .<span class="ident">split</span>(<span class="string">&#39;/&#39;</span>)
-                        .<span class="ident">map</span>(<span class="op">|</span><span class="ident">it</span><span class="op">|</span> <span class="ident">it</span>.<span class="ident">parse</span>::<span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>().<span class="ident">unwrap</span>())
-                        .<span class="ident">collect_tuple</span>()
-                        .<span class="ident">unwrap</span>();
-                    (<span class="ident">Ngram::new</span>(<span class="ident">key</span>), <span class="ident">Fraction::new</span>(<span class="ident">numerator</span>, <span class="ident">denominator</span>))
+        <span class="kw">fn </span>map_keys_to_ngrams_and_values_to_fractions(
+            map: HashMap&lt;<span class="kw-2">&amp;</span>str, <span class="kw-2">&amp;</span>str&gt;,
+        ) -&gt; HashMap&lt;Ngram, Fraction&gt; {
+            map.into_iter()
+                .map(|(key, value)| {
+                    <span class="kw">let </span>(numerator, denominator) = value
+                        .split(<span class="string">&#39;/&#39;</span>)
+                        .map(|it| it.parse::&lt;u32&gt;().unwrap())
+                        .collect_tuple()
+                        .unwrap();
+                    (Ngram::new(key), Fraction::new(numerator, denominator))
                 })
-                .<span class="ident">collect</span>()
+                .collect()
         }
 
-        <span class="attribute">#[<span class="ident">fixture</span>]</span>
-        <span class="kw">fn</span> <span class="ident">expected_unigram_absolute_frequencies</span>() -&gt; <span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">Ngram</span>, <span class="ident">u32</span><span class="op">&gt;</span> {
-            <span class="ident">map_keys_to_ngrams</span>(<span class="macro">hashmap!</span>(
-                <span class="string">&quot;a&quot;</span> =&gt; <span class="number">3</span>, <span class="string">&quot;b&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;c&quot;</span> =&gt; <span class="number">3</span>, <span class="string">&quot;d&quot;</span> =&gt; <span class="number">5</span>, <span class="string">&quot;e&quot;</span> =&gt; <span class="number">14</span>,
-                <span class="string">&quot;f&quot;</span> =&gt; <span class="number">2</span>, <span class="string">&quot;g&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;h&quot;</span> =&gt; <span class="number">4</span>, <span class="string">&quot;i&quot;</span> =&gt; <span class="number">6</span>, <span class="string">&quot;l&quot;</span> =&gt; <span class="number">1</span>,
-                <span class="string">&quot;m&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;n&quot;</span> =&gt; <span class="number">10</span>, <span class="string">&quot;o&quot;</span> =&gt; <span class="number">10</span>, <span class="string">&quot;p&quot;</span> =&gt; <span class="number">3</span>, <span class="string">&quot;r&quot;</span> =&gt; <span class="number">5</span>,
-                <span class="string">&quot;s&quot;</span> =&gt; <span class="number">10</span>, <span class="string">&quot;t&quot;</span> =&gt; <span class="number">13</span>, <span class="string">&quot;u&quot;</span> =&gt; <span class="number">3</span>, <span class="string">&quot;w&quot;</span> =&gt; <span class="number">2</span>, <span class="string">&quot;y&quot;</span> =&gt; <span class="number">3</span>
-            ))
+        <span class="attribute">#[fixture]
+        </span><span class="kw">fn </span>expected_unigram_absolute_frequencies() -&gt; HashMap&lt;Ngram, u32&gt; {
+            map_keys_to_ngrams(<span class="macro">hashmap!</span>(
+                <span class="string">&quot;a&quot; </span>=&gt; <span class="number">3</span>, <span class="string">&quot;b&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;c&quot; </span>=&gt; <span class="number">3</span>, <span class="string">&quot;d&quot; </span>=&gt; <span class="number">5</span>, <span class="string">&quot;e&quot; </span>=&gt; <span class="number">14</span>,
+                <span class="string">&quot;f&quot; </span>=&gt; <span class="number">2</span>, <span class="string">&quot;g&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;h&quot; </span>=&gt; <span class="number">4</span>, <span class="string">&quot;i&quot; </span>=&gt; <span class="number">6</span>, <span class="string">&quot;l&quot; </span>=&gt; <span class="number">1</span>,
+                <span class="string">&quot;m&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;n&quot; </span>=&gt; <span class="number">10</span>, <span class="string">&quot;o&quot; </span>=&gt; <span class="number">10</span>, <span class="string">&quot;p&quot; </span>=&gt; <span class="number">3</span>, <span class="string">&quot;r&quot; </span>=&gt; <span class="number">5</span>,
+                <span class="string">&quot;s&quot; </span>=&gt; <span class="number">10</span>, <span class="string">&quot;t&quot; </span>=&gt; <span class="number">13</span>, <span class="string">&quot;u&quot; </span>=&gt; <span class="number">3</span>, <span class="string">&quot;w&quot; </span>=&gt; <span class="number">2</span>, <span class="string">&quot;y&quot; </span>=&gt; <span class="number">3
+            </span>))
         }
 
-        <span class="attribute">#[<span class="ident">fixture</span>]</span>
-        <span class="kw">fn</span> <span class="ident">expected_unigram_relative_frequencies</span>() -&gt; <span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">Ngram</span>, <span class="ident">Fraction</span><span class="op">&gt;</span> {
-            <span class="ident">map_keys_to_ngrams_and_values_to_fractions</span>(<span class="macro">hashmap!</span>(
-                <span class="string">&quot;a&quot;</span> =&gt; <span class="string">&quot;3/100&quot;</span>, <span class="string">&quot;b&quot;</span> =&gt; <span class="string">&quot;1/100&quot;</span>, <span class="string">&quot;c&quot;</span> =&gt; <span class="string">&quot;3/100&quot;</span>, <span class="string">&quot;d&quot;</span> =&gt; <span class="string">&quot;1/20&quot;</span>,
-                <span class="string">&quot;e&quot;</span> =&gt; <span class="string">&quot;7/50&quot;</span>, <span class="string">&quot;f&quot;</span> =&gt; <span class="string">&quot;1/50&quot;</span>, <span class="string">&quot;g&quot;</span> =&gt; <span class="string">&quot;1/100&quot;</span>, <span class="string">&quot;h&quot;</span> =&gt; <span class="string">&quot;1/25&quot;</span>,
-                <span class="string">&quot;i&quot;</span> =&gt; <span class="string">&quot;3/50&quot;</span>, <span class="string">&quot;l&quot;</span> =&gt; <span class="string">&quot;1/100&quot;</span>, <span class="string">&quot;m&quot;</span> =&gt; <span class="string">&quot;1/100&quot;</span>, <span class="string">&quot;n&quot;</span> =&gt; <span class="string">&quot;1/10&quot;</span>,
-                <span class="string">&quot;o&quot;</span> =&gt; <span class="string">&quot;1/10&quot;</span>, <span class="string">&quot;p&quot;</span> =&gt; <span class="string">&quot;3/100&quot;</span>, <span class="string">&quot;r&quot;</span> =&gt; <span class="string">&quot;1/20&quot;</span>, <span class="string">&quot;s&quot;</span> =&gt; <span class="string">&quot;1/10&quot;</span>,
-                <span class="string">&quot;t&quot;</span> =&gt; <span class="string">&quot;13/100&quot;</span>, <span class="string">&quot;u&quot;</span> =&gt; <span class="string">&quot;3/100&quot;</span>, <span class="string">&quot;w&quot;</span> =&gt; <span class="string">&quot;1/50&quot;</span>, <span class="string">&quot;y&quot;</span> =&gt; <span class="string">&quot;3/100&quot;</span>
-            ))
+        <span class="attribute">#[fixture]
+        </span><span class="kw">fn </span>expected_unigram_relative_frequencies() -&gt; HashMap&lt;Ngram, Fraction&gt; {
+            map_keys_to_ngrams_and_values_to_fractions(<span class="macro">hashmap!</span>(
+                <span class="string">&quot;a&quot; </span>=&gt; <span class="string">&quot;3/100&quot;</span>, <span class="string">&quot;b&quot; </span>=&gt; <span class="string">&quot;1/100&quot;</span>, <span class="string">&quot;c&quot; </span>=&gt; <span class="string">&quot;3/100&quot;</span>, <span class="string">&quot;d&quot; </span>=&gt; <span class="string">&quot;1/20&quot;</span>,
+                <span class="string">&quot;e&quot; </span>=&gt; <span class="string">&quot;7/50&quot;</span>, <span class="string">&quot;f&quot; </span>=&gt; <span class="string">&quot;1/50&quot;</span>, <span class="string">&quot;g&quot; </span>=&gt; <span class="string">&quot;1/100&quot;</span>, <span class="string">&quot;h&quot; </span>=&gt; <span class="string">&quot;1/25&quot;</span>,
+                <span class="string">&quot;i&quot; </span>=&gt; <span class="string">&quot;3/50&quot;</span>, <span class="string">&quot;l&quot; </span>=&gt; <span class="string">&quot;1/100&quot;</span>, <span class="string">&quot;m&quot; </span>=&gt; <span class="string">&quot;1/100&quot;</span>, <span class="string">&quot;n&quot; </span>=&gt; <span class="string">&quot;1/10&quot;</span>,
+                <span class="string">&quot;o&quot; </span>=&gt; <span class="string">&quot;1/10&quot;</span>, <span class="string">&quot;p&quot; </span>=&gt; <span class="string">&quot;3/100&quot;</span>, <span class="string">&quot;r&quot; </span>=&gt; <span class="string">&quot;1/20&quot;</span>, <span class="string">&quot;s&quot; </span>=&gt; <span class="string">&quot;1/10&quot;</span>,
+                <span class="string">&quot;t&quot; </span>=&gt; <span class="string">&quot;13/100&quot;</span>, <span class="string">&quot;u&quot; </span>=&gt; <span class="string">&quot;3/100&quot;</span>, <span class="string">&quot;w&quot; </span>=&gt; <span class="string">&quot;1/50&quot;</span>, <span class="string">&quot;y&quot; </span>=&gt; <span class="string">&quot;3/100&quot;
+            </span>))
         }
 
-        <span class="kw">fn</span> <span class="ident">expected_unigram_json_relative_frequencies</span>() -&gt; <span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">Ngram</span>, <span class="ident">f64</span><span class="op">&gt;</span> {
-            <span class="ident">expected_unigram_relative_frequencies</span>()
-                .<span class="ident">iter</span>()
-                .<span class="ident">map</span>(<span class="op">|</span>(<span class="ident">ngram</span>, <span class="ident">fraction</span>)<span class="op">|</span> (<span class="ident">ngram</span>.<span class="ident">clone</span>(), <span class="ident">fraction</span>.<span class="ident">to_f64</span>()))
-                .<span class="ident">collect</span>()
+        <span class="kw">fn </span>expected_unigram_json_relative_frequencies() -&gt; HashMap&lt;Ngram, f64&gt; {
+            expected_unigram_relative_frequencies()
+                .iter()
+                .map(|(ngram, fraction)| (ngram.clone(), fraction.to_f64()))
+                .collect()
         }
 
-        <span class="attribute">#[<span class="ident">fixture</span>]</span>
-        <span class="kw">fn</span> <span class="ident">expected_bigram_absolute_frequencies</span>() -&gt; <span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">Ngram</span>, <span class="ident">u32</span><span class="op">&gt;</span> {
-            <span class="ident">map_keys_to_ngrams</span>(<span class="macro">hashmap!</span>(
-                <span class="string">&quot;de&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;pr&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;pu&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;do&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;uc&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;ds&quot;</span> =&gt; <span class="number">1</span>,
-                <span class="string">&quot;du&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;ur&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;us&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;ed&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;in&quot;</span> =&gt; <span class="number">4</span>, <span class="string">&quot;io&quot;</span> =&gt; <span class="number">1</span>,
-                <span class="string">&quot;em&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;en&quot;</span> =&gt; <span class="number">3</span>, <span class="string">&quot;is&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;al&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;es&quot;</span> =&gt; <span class="number">4</span>, <span class="string">&quot;ar&quot;</span> =&gt; <span class="number">1</span>,
-                <span class="string">&quot;rd&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;re&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;ey&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;nc&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;nd&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;ay&quot;</span> =&gt; <span class="number">1</span>,
-                <span class="string">&quot;ng&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;ro&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;rp&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;no&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;ns&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;nt&quot;</span> =&gt; <span class="number">2</span>,
-                <span class="string">&quot;fo&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;wa&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;se&quot;</span> =&gt; <span class="number">4</span>, <span class="string">&quot;od&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;si&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;of&quot;</span> =&gt; <span class="number">1</span>,
-                <span class="string">&quot;by&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;wo&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;on&quot;</span> =&gt; <span class="number">2</span>, <span class="string">&quot;st&quot;</span> =&gt; <span class="number">2</span>, <span class="string">&quot;ce&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;or&quot;</span> =&gt; <span class="number">2</span>,
-                <span class="string">&quot;os&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;ot&quot;</span> =&gt; <span class="number">2</span>, <span class="string">&quot;co&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;ta&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;ct&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;te&quot;</span> =&gt; <span class="number">3</span>,
-                <span class="string">&quot;th&quot;</span> =&gt; <span class="number">4</span>, <span class="string">&quot;ti&quot;</span> =&gt; <span class="number">2</span>, <span class="string">&quot;to&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;he&quot;</span> =&gt; <span class="number">4</span>, <span class="string">&quot;po&quot;</span> =&gt; <span class="number">1</span>
-            ))
+        <span class="attribute">#[fixture]
+        </span><span class="kw">fn </span>expected_bigram_absolute_frequencies() -&gt; HashMap&lt;Ngram, u32&gt; {
+            map_keys_to_ngrams(<span class="macro">hashmap!</span>(
+                <span class="string">&quot;de&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;pr&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;pu&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;do&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;uc&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;ds&quot; </span>=&gt; <span class="number">1</span>,
+                <span class="string">&quot;du&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;ur&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;us&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;ed&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;in&quot; </span>=&gt; <span class="number">4</span>, <span class="string">&quot;io&quot; </span>=&gt; <span class="number">1</span>,
+                <span class="string">&quot;em&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;en&quot; </span>=&gt; <span class="number">3</span>, <span class="string">&quot;is&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;al&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;es&quot; </span>=&gt; <span class="number">4</span>, <span class="string">&quot;ar&quot; </span>=&gt; <span class="number">1</span>,
+                <span class="string">&quot;rd&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;re&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;ey&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;nc&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;nd&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;ay&quot; </span>=&gt; <span class="number">1</span>,
+                <span class="string">&quot;ng&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;ro&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;rp&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;no&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;ns&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;nt&quot; </span>=&gt; <span class="number">2</span>,
+                <span class="string">&quot;fo&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;wa&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;se&quot; </span>=&gt; <span class="number">4</span>, <span class="string">&quot;od&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;si&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;of&quot; </span>=&gt; <span class="number">1</span>,
+                <span class="string">&quot;by&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;wo&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;on&quot; </span>=&gt; <span class="number">2</span>, <span class="string">&quot;st&quot; </span>=&gt; <span class="number">2</span>, <span class="string">&quot;ce&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;or&quot; </span>=&gt; <span class="number">2</span>,
+                <span class="string">&quot;os&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;ot&quot; </span>=&gt; <span class="number">2</span>, <span class="string">&quot;co&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;ta&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;ct&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;te&quot; </span>=&gt; <span class="number">3</span>,
+                <span class="string">&quot;th&quot; </span>=&gt; <span class="number">4</span>, <span class="string">&quot;ti&quot; </span>=&gt; <span class="number">2</span>, <span class="string">&quot;to&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;he&quot; </span>=&gt; <span class="number">4</span>, <span class="string">&quot;po&quot; </span>=&gt; <span class="number">1
+            </span>))
         }
 
-        <span class="attribute">#[<span class="ident">fixture</span>]</span>
-        <span class="kw">fn</span> <span class="ident">expected_bigram_relative_frequencies</span>() -&gt; <span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">Ngram</span>, <span class="ident">Fraction</span><span class="op">&gt;</span> {
-            <span class="ident">map_keys_to_ngrams_and_values_to_fractions</span>(<span class="macro">hashmap!</span>(
-                <span class="string">&quot;de&quot;</span> =&gt; <span class="string">&quot;1/5&quot;</span>, <span class="string">&quot;pr&quot;</span> =&gt; <span class="string">&quot;1/3&quot;</span>, <span class="string">&quot;pu&quot;</span> =&gt; <span class="string">&quot;1/3&quot;</span>, <span class="string">&quot;do&quot;</span> =&gt; <span class="string">&quot;1/5&quot;</span>,
-                <span class="string">&quot;uc&quot;</span> =&gt; <span class="string">&quot;1/3&quot;</span>, <span class="string">&quot;ds&quot;</span> =&gt; <span class="string">&quot;1/5&quot;</span>, <span class="string">&quot;du&quot;</span> =&gt; <span class="string">&quot;1/5&quot;</span>, <span class="string">&quot;ur&quot;</span> =&gt; <span class="string">&quot;1/3&quot;</span>,
-                <span class="string">&quot;us&quot;</span> =&gt; <span class="string">&quot;1/3&quot;</span>, <span class="string">&quot;ed&quot;</span> =&gt; <span class="string">&quot;1/14&quot;</span>, <span class="string">&quot;in&quot;</span> =&gt; <span class="string">&quot;2/3&quot;</span>, <span class="string">&quot;io&quot;</span> =&gt; <span class="string">&quot;1/6&quot;</span>,
-                <span class="string">&quot;em&quot;</span> =&gt; <span class="string">&quot;1/14&quot;</span>, <span class="string">&quot;en&quot;</span> =&gt; <span class="string">&quot;3/14&quot;</span>, <span class="string">&quot;is&quot;</span> =&gt; <span class="string">&quot;1/6&quot;</span>, <span class="string">&quot;al&quot;</span> =&gt; <span class="string">&quot;1/3&quot;</span>,
-                <span class="string">&quot;es&quot;</span> =&gt; <span class="string">&quot;2/7&quot;</span>, <span class="string">&quot;ar&quot;</span> =&gt; <span class="string">&quot;1/3&quot;</span>, <span class="string">&quot;rd&quot;</span> =&gt; <span class="string">&quot;1/5&quot;</span>, <span class="string">&quot;re&quot;</span> =&gt; <span class="string">&quot;1/5&quot;</span>,
-                <span class="string">&quot;ey&quot;</span> =&gt; <span class="string">&quot;1/14&quot;</span>, <span class="string">&quot;nc&quot;</span> =&gt; <span class="string">&quot;1/10&quot;</span>, <span class="string">&quot;nd&quot;</span> =&gt; <span class="string">&quot;1/10&quot;</span>, <span class="string">&quot;ay&quot;</span> =&gt; <span class="string">&quot;1/3&quot;</span>,
-                <span class="string">&quot;ng&quot;</span> =&gt; <span class="string">&quot;1/10&quot;</span>, <span class="string">&quot;ro&quot;</span> =&gt; <span class="string">&quot;1/5&quot;</span>, <span class="string">&quot;rp&quot;</span> =&gt; <span class="string">&quot;1/5&quot;</span>, <span class="string">&quot;no&quot;</span> =&gt; <span class="string">&quot;1/10&quot;</span>,
-                <span class="string">&quot;ns&quot;</span> =&gt; <span class="string">&quot;1/10&quot;</span>, <span class="string">&quot;nt&quot;</span> =&gt; <span class="string">&quot;1/5&quot;</span>, <span class="string">&quot;fo&quot;</span> =&gt; <span class="string">&quot;1/2&quot;</span>, <span class="string">&quot;wa&quot;</span> =&gt; <span class="string">&quot;1/2&quot;</span>,
-                <span class="string">&quot;se&quot;</span> =&gt; <span class="string">&quot;2/5&quot;</span>, <span class="string">&quot;od&quot;</span> =&gt; <span class="string">&quot;1/10&quot;</span>, <span class="string">&quot;si&quot;</span> =&gt; <span class="string">&quot;1/10&quot;</span>, <span class="string">&quot;of&quot;</span> =&gt; <span class="string">&quot;1/10&quot;</span>,
-                <span class="string">&quot;by&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;wo&quot;</span> =&gt; <span class="string">&quot;1/2&quot;</span>, <span class="string">&quot;on&quot;</span> =&gt; <span class="string">&quot;1/5&quot;</span>, <span class="string">&quot;st&quot;</span> =&gt; <span class="string">&quot;1/5&quot;</span>,
-                <span class="string">&quot;ce&quot;</span> =&gt; <span class="string">&quot;1/3&quot;</span>, <span class="string">&quot;or&quot;</span> =&gt; <span class="string">&quot;1/5&quot;</span>, <span class="string">&quot;os&quot;</span> =&gt; <span class="string">&quot;1/10&quot;</span>, <span class="string">&quot;ot&quot;</span> =&gt; <span class="string">&quot;1/5&quot;</span>,
-                <span class="string">&quot;co&quot;</span> =&gt; <span class="string">&quot;1/3&quot;</span>, <span class="string">&quot;ta&quot;</span> =&gt; <span class="string">&quot;1/13&quot;</span>, <span class="string">&quot;ct&quot;</span> =&gt; <span class="string">&quot;1/3&quot;</span>, <span class="string">&quot;te&quot;</span> =&gt; <span class="string">&quot;3/13&quot;</span>,
-                <span class="string">&quot;th&quot;</span> =&gt; <span class="string">&quot;4/13&quot;</span>, <span class="string">&quot;ti&quot;</span> =&gt; <span class="string">&quot;2/13&quot;</span>, <span class="string">&quot;to&quot;</span> =&gt; <span class="string">&quot;1/13&quot;</span>, <span class="string">&quot;he&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>,
-                <span class="string">&quot;po&quot;</span> =&gt; <span class="string">&quot;1/3&quot;</span>
-            ))
+        <span class="attribute">#[fixture]
+        </span><span class="kw">fn </span>expected_bigram_relative_frequencies() -&gt; HashMap&lt;Ngram, Fraction&gt; {
+            map_keys_to_ngrams_and_values_to_fractions(<span class="macro">hashmap!</span>(
+                <span class="string">&quot;de&quot; </span>=&gt; <span class="string">&quot;1/5&quot;</span>, <span class="string">&quot;pr&quot; </span>=&gt; <span class="string">&quot;1/3&quot;</span>, <span class="string">&quot;pu&quot; </span>=&gt; <span class="string">&quot;1/3&quot;</span>, <span class="string">&quot;do&quot; </span>=&gt; <span class="string">&quot;1/5&quot;</span>,
+                <span class="string">&quot;uc&quot; </span>=&gt; <span class="string">&quot;1/3&quot;</span>, <span class="string">&quot;ds&quot; </span>=&gt; <span class="string">&quot;1/5&quot;</span>, <span class="string">&quot;du&quot; </span>=&gt; <span class="string">&quot;1/5&quot;</span>, <span class="string">&quot;ur&quot; </span>=&gt; <span class="string">&quot;1/3&quot;</span>,
+                <span class="string">&quot;us&quot; </span>=&gt; <span class="string">&quot;1/3&quot;</span>, <span class="string">&quot;ed&quot; </span>=&gt; <span class="string">&quot;1/14&quot;</span>, <span class="string">&quot;in&quot; </span>=&gt; <span class="string">&quot;2/3&quot;</span>, <span class="string">&quot;io&quot; </span>=&gt; <span class="string">&quot;1/6&quot;</span>,
+                <span class="string">&quot;em&quot; </span>=&gt; <span class="string">&quot;1/14&quot;</span>, <span class="string">&quot;en&quot; </span>=&gt; <span class="string">&quot;3/14&quot;</span>, <span class="string">&quot;is&quot; </span>=&gt; <span class="string">&quot;1/6&quot;</span>, <span class="string">&quot;al&quot; </span>=&gt; <span class="string">&quot;1/3&quot;</span>,
+                <span class="string">&quot;es&quot; </span>=&gt; <span class="string">&quot;2/7&quot;</span>, <span class="string">&quot;ar&quot; </span>=&gt; <span class="string">&quot;1/3&quot;</span>, <span class="string">&quot;rd&quot; </span>=&gt; <span class="string">&quot;1/5&quot;</span>, <span class="string">&quot;re&quot; </span>=&gt; <span class="string">&quot;1/5&quot;</span>,
+                <span class="string">&quot;ey&quot; </span>=&gt; <span class="string">&quot;1/14&quot;</span>, <span class="string">&quot;nc&quot; </span>=&gt; <span class="string">&quot;1/10&quot;</span>, <span class="string">&quot;nd&quot; </span>=&gt; <span class="string">&quot;1/10&quot;</span>, <span class="string">&quot;ay&quot; </span>=&gt; <span class="string">&quot;1/3&quot;</span>,
+                <span class="string">&quot;ng&quot; </span>=&gt; <span class="string">&quot;1/10&quot;</span>, <span class="string">&quot;ro&quot; </span>=&gt; <span class="string">&quot;1/5&quot;</span>, <span class="string">&quot;rp&quot; </span>=&gt; <span class="string">&quot;1/5&quot;</span>, <span class="string">&quot;no&quot; </span>=&gt; <span class="string">&quot;1/10&quot;</span>,
+                <span class="string">&quot;ns&quot; </span>=&gt; <span class="string">&quot;1/10&quot;</span>, <span class="string">&quot;nt&quot; </span>=&gt; <span class="string">&quot;1/5&quot;</span>, <span class="string">&quot;fo&quot; </span>=&gt; <span class="string">&quot;1/2&quot;</span>, <span class="string">&quot;wa&quot; </span>=&gt; <span class="string">&quot;1/2&quot;</span>,
+                <span class="string">&quot;se&quot; </span>=&gt; <span class="string">&quot;2/5&quot;</span>, <span class="string">&quot;od&quot; </span>=&gt; <span class="string">&quot;1/10&quot;</span>, <span class="string">&quot;si&quot; </span>=&gt; <span class="string">&quot;1/10&quot;</span>, <span class="string">&quot;of&quot; </span>=&gt; <span class="string">&quot;1/10&quot;</span>,
+                <span class="string">&quot;by&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;wo&quot; </span>=&gt; <span class="string">&quot;1/2&quot;</span>, <span class="string">&quot;on&quot; </span>=&gt; <span class="string">&quot;1/5&quot;</span>, <span class="string">&quot;st&quot; </span>=&gt; <span class="string">&quot;1/5&quot;</span>,
+                <span class="string">&quot;ce&quot; </span>=&gt; <span class="string">&quot;1/3&quot;</span>, <span class="string">&quot;or&quot; </span>=&gt; <span class="string">&quot;1/5&quot;</span>, <span class="string">&quot;os&quot; </span>=&gt; <span class="string">&quot;1/10&quot;</span>, <span class="string">&quot;ot&quot; </span>=&gt; <span class="string">&quot;1/5&quot;</span>,
+                <span class="string">&quot;co&quot; </span>=&gt; <span class="string">&quot;1/3&quot;</span>, <span class="string">&quot;ta&quot; </span>=&gt; <span class="string">&quot;1/13&quot;</span>, <span class="string">&quot;ct&quot; </span>=&gt; <span class="string">&quot;1/3&quot;</span>, <span class="string">&quot;te&quot; </span>=&gt; <span class="string">&quot;3/13&quot;</span>,
+                <span class="string">&quot;th&quot; </span>=&gt; <span class="string">&quot;4/13&quot;</span>, <span class="string">&quot;ti&quot; </span>=&gt; <span class="string">&quot;2/13&quot;</span>, <span class="string">&quot;to&quot; </span>=&gt; <span class="string">&quot;1/13&quot;</span>, <span class="string">&quot;he&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>,
+                <span class="string">&quot;po&quot; </span>=&gt; <span class="string">&quot;1/3&quot;
+            </span>))
         }
 
-        <span class="attribute">#[<span class="ident">fixture</span>]</span>
-        <span class="kw">fn</span> <span class="ident">expected_trigram_absolute_frequencies</span>() -&gt; <span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">Ngram</span>, <span class="ident">u32</span><span class="op">&gt;</span> {
-            <span class="ident">map_keys_to_ngrams</span>(<span class="macro">hashmap!</span>(
-                <span class="string">&quot;rds&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;ose&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;ded&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;con&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;use&quot;</span> =&gt; <span class="number">1</span>,
-                <span class="string">&quot;est&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;ion&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;ist&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;pur&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;hem&quot;</span> =&gt; <span class="number">1</span>,
-                <span class="string">&quot;hes&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;tin&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;cti&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;wor&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;tio&quot;</span> =&gt; <span class="number">1</span>,
-                <span class="string">&quot;ten&quot;</span> =&gt; <span class="number">2</span>, <span class="string">&quot;ota&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;hey&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;tal&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;tes&quot;</span> =&gt; <span class="number">1</span>,
-                <span class="string">&quot;uct&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;sti&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;pro&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;odu&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;nsi&quot;</span> =&gt; <span class="number">1</span>,
-                <span class="string">&quot;rod&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;for&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;ces&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;nce&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;not&quot;</span> =&gt; <span class="number">1</span>,
-                <span class="string">&quot;pos&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;are&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;tot&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;end&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;enc&quot;</span> =&gt; <span class="number">1</span>,
-                <span class="string">&quot;sis&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;sen&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;nte&quot;</span> =&gt; <span class="number">2</span>, <span class="string">&quot;ord&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;ses&quot;</span> =&gt; <span class="number">1</span>,
-                <span class="string">&quot;ing&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;ent&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;way&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;nde&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;int&quot;</span> =&gt; <span class="number">1</span>,
-                <span class="string">&quot;rpo&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;the&quot;</span> =&gt; <span class="number">4</span>, <span class="string">&quot;urp&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;duc&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;ons&quot;</span> =&gt; <span class="number">1</span>,
-                <span class="string">&quot;ese&quot;</span> =&gt; <span class="number">1</span>
-            ))
+        <span class="attribute">#[fixture]
+        </span><span class="kw">fn </span>expected_trigram_absolute_frequencies() -&gt; HashMap&lt;Ngram, u32&gt; {
+            map_keys_to_ngrams(<span class="macro">hashmap!</span>(
+                <span class="string">&quot;rds&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;ose&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;ded&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;con&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;use&quot; </span>=&gt; <span class="number">1</span>,
+                <span class="string">&quot;est&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;ion&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;ist&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;pur&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;hem&quot; </span>=&gt; <span class="number">1</span>,
+                <span class="string">&quot;hes&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;tin&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;cti&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;wor&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;tio&quot; </span>=&gt; <span class="number">1</span>,
+                <span class="string">&quot;ten&quot; </span>=&gt; <span class="number">2</span>, <span class="string">&quot;ota&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;hey&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;tal&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;tes&quot; </span>=&gt; <span class="number">1</span>,
+                <span class="string">&quot;uct&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;sti&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;pro&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;odu&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;nsi&quot; </span>=&gt; <span class="number">1</span>,
+                <span class="string">&quot;rod&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;for&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;ces&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;nce&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;not&quot; </span>=&gt; <span class="number">1</span>,
+                <span class="string">&quot;pos&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;are&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;tot&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;end&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;enc&quot; </span>=&gt; <span class="number">1</span>,
+                <span class="string">&quot;sis&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;sen&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;nte&quot; </span>=&gt; <span class="number">2</span>, <span class="string">&quot;ord&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;ses&quot; </span>=&gt; <span class="number">1</span>,
+                <span class="string">&quot;ing&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;ent&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;way&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;nde&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;int&quot; </span>=&gt; <span class="number">1</span>,
+                <span class="string">&quot;rpo&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;the&quot; </span>=&gt; <span class="number">4</span>, <span class="string">&quot;urp&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;duc&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;ons&quot; </span>=&gt; <span class="number">1</span>,
+                <span class="string">&quot;ese&quot; </span>=&gt; <span class="number">1
+            </span>))
         }
 
-        <span class="attribute">#[<span class="ident">fixture</span>]</span>
-        <span class="kw">fn</span> <span class="ident">expected_trigram_relative_frequencies</span>() -&gt; <span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">Ngram</span>, <span class="ident">Fraction</span><span class="op">&gt;</span> {
-            <span class="ident">map_keys_to_ngrams_and_values_to_fractions</span>(<span class="macro">hashmap!</span>(
-                <span class="string">&quot;rds&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;ose&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;ded&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;con&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>,
-                <span class="string">&quot;use&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;est&quot;</span> =&gt; <span class="string">&quot;1/4&quot;</span>, <span class="string">&quot;ion&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;ist&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>,
-                <span class="string">&quot;pur&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;hem&quot;</span> =&gt; <span class="string">&quot;1/4&quot;</span>, <span class="string">&quot;hes&quot;</span> =&gt; <span class="string">&quot;1/4&quot;</span>, <span class="string">&quot;tin&quot;</span> =&gt; <span class="string">&quot;1/2&quot;</span>,
-                <span class="string">&quot;cti&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;wor&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;tio&quot;</span> =&gt; <span class="string">&quot;1/2&quot;</span>, <span class="string">&quot;ten&quot;</span> =&gt; <span class="string">&quot;2/3&quot;</span>,
-                <span class="string">&quot;ota&quot;</span> =&gt; <span class="string">&quot;1/2&quot;</span>, <span class="string">&quot;hey&quot;</span> =&gt; <span class="string">&quot;1/4&quot;</span>, <span class="string">&quot;tal&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;tes&quot;</span> =&gt; <span class="string">&quot;1/3&quot;</span>,
-                <span class="string">&quot;uct&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;sti&quot;</span> =&gt; <span class="string">&quot;1/2&quot;</span>, <span class="string">&quot;pro&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;odu&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>,
-                <span class="string">&quot;nsi&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;rod&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;for&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;ces&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>,
-                <span class="string">&quot;nce&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;not&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;pos&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;are&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>,
-                <span class="string">&quot;tot&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;end&quot;</span> =&gt; <span class="string">&quot;1/3&quot;</span>, <span class="string">&quot;enc&quot;</span> =&gt; <span class="string">&quot;1/3&quot;</span>, <span class="string">&quot;sis&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>,
-                <span class="string">&quot;sen&quot;</span> =&gt; <span class="string">&quot;1/4&quot;</span>, <span class="string">&quot;nte&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;ord&quot;</span> =&gt; <span class="string">&quot;1/2&quot;</span>, <span class="string">&quot;ses&quot;</span> =&gt; <span class="string">&quot;1/4&quot;</span>,
-                <span class="string">&quot;ing&quot;</span> =&gt; <span class="string">&quot;1/4&quot;</span>, <span class="string">&quot;ent&quot;</span> =&gt; <span class="string">&quot;1/3&quot;</span>, <span class="string">&quot;way&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;nde&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>,
-                <span class="string">&quot;int&quot;</span> =&gt; <span class="string">&quot;1/4&quot;</span>, <span class="string">&quot;rpo&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;the&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;urp&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>,
-                <span class="string">&quot;duc&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;ons&quot;</span> =&gt; <span class="string">&quot;1/2&quot;</span>, <span class="string">&quot;ese&quot;</span> =&gt; <span class="string">&quot;1/4&quot;</span>
-            ))
+        <span class="attribute">#[fixture]
+        </span><span class="kw">fn </span>expected_trigram_relative_frequencies() -&gt; HashMap&lt;Ngram, Fraction&gt; {
+            map_keys_to_ngrams_and_values_to_fractions(<span class="macro">hashmap!</span>(
+                <span class="string">&quot;rds&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;ose&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;ded&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;con&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>,
+                <span class="string">&quot;use&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;est&quot; </span>=&gt; <span class="string">&quot;1/4&quot;</span>, <span class="string">&quot;ion&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;ist&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>,
+                <span class="string">&quot;pur&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;hem&quot; </span>=&gt; <span class="string">&quot;1/4&quot;</span>, <span class="string">&quot;hes&quot; </span>=&gt; <span class="string">&quot;1/4&quot;</span>, <span class="string">&quot;tin&quot; </span>=&gt; <span class="string">&quot;1/2&quot;</span>,
+                <span class="string">&quot;cti&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;wor&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;tio&quot; </span>=&gt; <span class="string">&quot;1/2&quot;</span>, <span class="string">&quot;ten&quot; </span>=&gt; <span class="string">&quot;2/3&quot;</span>,
+                <span class="string">&quot;ota&quot; </span>=&gt; <span class="string">&quot;1/2&quot;</span>, <span class="string">&quot;hey&quot; </span>=&gt; <span class="string">&quot;1/4&quot;</span>, <span class="string">&quot;tal&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;tes&quot; </span>=&gt; <span class="string">&quot;1/3&quot;</span>,
+                <span class="string">&quot;uct&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;sti&quot; </span>=&gt; <span class="string">&quot;1/2&quot;</span>, <span class="string">&quot;pro&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;odu&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>,
+                <span class="string">&quot;nsi&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;rod&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;for&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;ces&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>,
+                <span class="string">&quot;nce&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;not&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;pos&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;are&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>,
+                <span class="string">&quot;tot&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;end&quot; </span>=&gt; <span class="string">&quot;1/3&quot;</span>, <span class="string">&quot;enc&quot; </span>=&gt; <span class="string">&quot;1/3&quot;</span>, <span class="string">&quot;sis&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>,
+                <span class="string">&quot;sen&quot; </span>=&gt; <span class="string">&quot;1/4&quot;</span>, <span class="string">&quot;nte&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;ord&quot; </span>=&gt; <span class="string">&quot;1/2&quot;</span>, <span class="string">&quot;ses&quot; </span>=&gt; <span class="string">&quot;1/4&quot;</span>,
+                <span class="string">&quot;ing&quot; </span>=&gt; <span class="string">&quot;1/4&quot;</span>, <span class="string">&quot;ent&quot; </span>=&gt; <span class="string">&quot;1/3&quot;</span>, <span class="string">&quot;way&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;nde&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>,
+                <span class="string">&quot;int&quot; </span>=&gt; <span class="string">&quot;1/4&quot;</span>, <span class="string">&quot;rpo&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;the&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;urp&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>,
+                <span class="string">&quot;duc&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;ons&quot; </span>=&gt; <span class="string">&quot;1/2&quot;</span>, <span class="string">&quot;ese&quot; </span>=&gt; <span class="string">&quot;1/4&quot;
+            </span>))
         }
 
-        <span class="attribute">#[<span class="ident">fixture</span>]</span>
-        <span class="kw">fn</span> <span class="ident">expected_quadrigram_absolute_frequencies</span>() -&gt; <span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">Ngram</span>, <span class="ident">u32</span><span class="op">&gt;</span> {
-            <span class="ident">map_keys_to_ngrams</span>(<span class="macro">hashmap!</span>(
-                <span class="string">&quot;onsi&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;sist&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;ende&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;ords&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;esti&quot;</span> =&gt; <span class="number">1</span>,
-                <span class="string">&quot;oduc&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;nces&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;tenc&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;tend&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;thes&quot;</span> =&gt; <span class="number">1</span>,
-                <span class="string">&quot;rpos&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;ting&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;nsis&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;nten&quot;</span> =&gt; <span class="number">2</span>, <span class="string">&quot;tota&quot;</span> =&gt; <span class="number">1</span>,
-                <span class="string">&quot;they&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;cons&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;tion&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;prod&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;otal&quot;</span> =&gt; <span class="number">1</span>,
-                <span class="string">&quot;test&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;ence&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;pose&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;oses&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;nded&quot;</span> =&gt; <span class="number">1</span>,
-                <span class="string">&quot;inte&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;them&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;urpo&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;duct&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;sent&quot;</span> =&gt; <span class="number">1</span>,
-                <span class="string">&quot;stin&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;ucti&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;ente&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;purp&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;ctio&quot;</span> =&gt; <span class="number">1</span>,
-                <span class="string">&quot;rodu&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;word&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;hese&quot;</span> =&gt; <span class="number">1</span>
-            ))
+        <span class="attribute">#[fixture]
+        </span><span class="kw">fn </span>expected_quadrigram_absolute_frequencies() -&gt; HashMap&lt;Ngram, u32&gt; {
+            map_keys_to_ngrams(<span class="macro">hashmap!</span>(
+                <span class="string">&quot;onsi&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;sist&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;ende&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;ords&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;esti&quot; </span>=&gt; <span class="number">1</span>,
+                <span class="string">&quot;oduc&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;nces&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;tenc&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;tend&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;thes&quot; </span>=&gt; <span class="number">1</span>,
+                <span class="string">&quot;rpos&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;ting&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;nsis&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;nten&quot; </span>=&gt; <span class="number">2</span>, <span class="string">&quot;tota&quot; </span>=&gt; <span class="number">1</span>,
+                <span class="string">&quot;they&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;cons&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;tion&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;prod&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;otal&quot; </span>=&gt; <span class="number">1</span>,
+                <span class="string">&quot;test&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;ence&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;pose&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;oses&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;nded&quot; </span>=&gt; <span class="number">1</span>,
+                <span class="string">&quot;inte&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;them&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;urpo&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;duct&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;sent&quot; </span>=&gt; <span class="number">1</span>,
+                <span class="string">&quot;stin&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;ucti&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;ente&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;purp&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;ctio&quot; </span>=&gt; <span class="number">1</span>,
+                <span class="string">&quot;rodu&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;word&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;hese&quot; </span>=&gt; <span class="number">1
+            </span>))
         }
 
-        <span class="attribute">#[<span class="ident">fixture</span>]</span>
-        <span class="kw">fn</span> <span class="ident">expected_quadrigram_relative_frequencies</span>() -&gt; <span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">Ngram</span>, <span class="ident">Fraction</span><span class="op">&gt;</span> {
-            <span class="ident">map_keys_to_ngrams_and_values_to_fractions</span>(<span class="macro">hashmap!</span>(
-                <span class="string">&quot;onsi&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;sist&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;ende&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;ords&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>,
-                <span class="string">&quot;esti&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;oduc&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;nces&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;tenc&quot;</span> =&gt; <span class="string">&quot;1/2&quot;</span>,
-                <span class="string">&quot;tend&quot;</span> =&gt; <span class="string">&quot;1/2&quot;</span>, <span class="string">&quot;thes&quot;</span> =&gt; <span class="string">&quot;1/4&quot;</span>, <span class="string">&quot;rpos&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;ting&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>,
-                <span class="string">&quot;nsis&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;nten&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;tota&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;they&quot;</span> =&gt; <span class="string">&quot;1/4&quot;</span>,
-                <span class="string">&quot;cons&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;tion&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;prod&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;otal&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>,
-                <span class="string">&quot;test&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;ence&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;pose&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;oses&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>,
-                <span class="string">&quot;nded&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;inte&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;them&quot;</span> =&gt; <span class="string">&quot;1/4&quot;</span>, <span class="string">&quot;urpo&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>,
-                <span class="string">&quot;duct&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;sent&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;stin&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;ucti&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>,
-                <span class="string">&quot;ente&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;purp&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;ctio&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;rodu&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>,
-                <span class="string">&quot;word&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;hese&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>
-            ))
+        <span class="attribute">#[fixture]
+        </span><span class="kw">fn </span>expected_quadrigram_relative_frequencies() -&gt; HashMap&lt;Ngram, Fraction&gt; {
+            map_keys_to_ngrams_and_values_to_fractions(<span class="macro">hashmap!</span>(
+                <span class="string">&quot;onsi&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;sist&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;ende&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;ords&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>,
+                <span class="string">&quot;esti&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;oduc&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;nces&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;tenc&quot; </span>=&gt; <span class="string">&quot;1/2&quot;</span>,
+                <span class="string">&quot;tend&quot; </span>=&gt; <span class="string">&quot;1/2&quot;</span>, <span class="string">&quot;thes&quot; </span>=&gt; <span class="string">&quot;1/4&quot;</span>, <span class="string">&quot;rpos&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;ting&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>,
+                <span class="string">&quot;nsis&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;nten&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;tota&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;they&quot; </span>=&gt; <span class="string">&quot;1/4&quot;</span>,
+                <span class="string">&quot;cons&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;tion&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;prod&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;otal&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>,
+                <span class="string">&quot;test&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;ence&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;pose&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;oses&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>,
+                <span class="string">&quot;nded&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;inte&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;them&quot; </span>=&gt; <span class="string">&quot;1/4&quot;</span>, <span class="string">&quot;urpo&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>,
+                <span class="string">&quot;duct&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;sent&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;stin&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;ucti&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>,
+                <span class="string">&quot;ente&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;purp&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;ctio&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;rodu&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>,
+                <span class="string">&quot;word&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;hese&quot; </span>=&gt; <span class="string">&quot;1/1&quot;
+            </span>))
         }
 
-        <span class="attribute">#[<span class="ident">fixture</span>]</span>
-        <span class="kw">fn</span> <span class="ident">expected_fivegram_absolute_frequencies</span>() -&gt; <span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">Ngram</span>, <span class="ident">u32</span><span class="op">&gt;</span> {
-            <span class="ident">map_keys_to_ngrams</span>(<span class="macro">hashmap!</span>(
-                <span class="string">&quot;testi&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;sente&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;ences&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;tende&quot;</span> =&gt; <span class="number">1</span>,
-                <span class="string">&quot;ducti&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;ntenc&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;these&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;onsis&quot;</span> =&gt; <span class="number">1</span>,
-                <span class="string">&quot;ntend&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;total&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;uctio&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;enten&quot;</span> =&gt; <span class="number">1</span>,
-                <span class="string">&quot;poses&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;ction&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;produ&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;inten&quot;</span> =&gt; <span class="number">1</span>,
-                <span class="string">&quot;nsist&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;words&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;sting&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;purpo&quot;</span> =&gt; <span class="number">1</span>,
-                <span class="string">&quot;tence&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;estin&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;roduc&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;urpos&quot;</span> =&gt; <span class="number">1</span>,
-                <span class="string">&quot;rpose&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;ended&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;oduct&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;consi&quot;</span> =&gt; <span class="number">1</span>
-            ))
+        <span class="attribute">#[fixture]
+        </span><span class="kw">fn </span>expected_fivegram_absolute_frequencies() -&gt; HashMap&lt;Ngram, u32&gt; {
+            map_keys_to_ngrams(<span class="macro">hashmap!</span>(
+                <span class="string">&quot;testi&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;sente&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;ences&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;tende&quot; </span>=&gt; <span class="number">1</span>,
+                <span class="string">&quot;ducti&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;ntenc&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;these&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;onsis&quot; </span>=&gt; <span class="number">1</span>,
+                <span class="string">&quot;ntend&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;total&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;uctio&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;enten&quot; </span>=&gt; <span class="number">1</span>,
+                <span class="string">&quot;poses&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;ction&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;produ&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;inten&quot; </span>=&gt; <span class="number">1</span>,
+                <span class="string">&quot;nsist&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;words&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;sting&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;purpo&quot; </span>=&gt; <span class="number">1</span>,
+                <span class="string">&quot;tence&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;estin&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;roduc&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;urpos&quot; </span>=&gt; <span class="number">1</span>,
+                <span class="string">&quot;rpose&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;ended&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;oduct&quot; </span>=&gt; <span class="number">1</span>, <span class="string">&quot;consi&quot; </span>=&gt; <span class="number">1
+            </span>))
         }
 
-        <span class="attribute">#[<span class="ident">fixture</span>]</span>
-        <span class="kw">fn</span> <span class="ident">expected_fivegram_relative_frequencies</span>() -&gt; <span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">Ngram</span>, <span class="ident">Fraction</span><span class="op">&gt;</span> {
-            <span class="ident">map_keys_to_ngrams_and_values_to_fractions</span>(<span class="macro">hashmap!</span>(
-                <span class="string">&quot;testi&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;sente&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;ences&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;tende&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>,
-                <span class="string">&quot;ducti&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;ntenc&quot;</span> =&gt; <span class="string">&quot;1/2&quot;</span>, <span class="string">&quot;these&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;onsis&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>,
-                <span class="string">&quot;ntend&quot;</span> =&gt; <span class="string">&quot;1/2&quot;</span>, <span class="string">&quot;total&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;uctio&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;enten&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>,
-                <span class="string">&quot;poses&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;ction&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;produ&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;inten&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>,
-                <span class="string">&quot;nsist&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;words&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;sting&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;purpo&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>,
-                <span class="string">&quot;tence&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;estin&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;roduc&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;urpos&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>,
-                <span class="string">&quot;rpose&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;ended&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;oduct&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;consi&quot;</span> =&gt; <span class="string">&quot;1/1&quot;</span>
-            ))
+        <span class="attribute">#[fixture]
+        </span><span class="kw">fn </span>expected_fivegram_relative_frequencies() -&gt; HashMap&lt;Ngram, Fraction&gt; {
+            map_keys_to_ngrams_and_values_to_fractions(<span class="macro">hashmap!</span>(
+                <span class="string">&quot;testi&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;sente&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;ences&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;tende&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>,
+                <span class="string">&quot;ducti&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;ntenc&quot; </span>=&gt; <span class="string">&quot;1/2&quot;</span>, <span class="string">&quot;these&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;onsis&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>,
+                <span class="string">&quot;ntend&quot; </span>=&gt; <span class="string">&quot;1/2&quot;</span>, <span class="string">&quot;total&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;uctio&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;enten&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>,
+                <span class="string">&quot;poses&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;ction&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;produ&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;inten&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>,
+                <span class="string">&quot;nsist&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;words&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;sting&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;purpo&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>,
+                <span class="string">&quot;tence&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;estin&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;roduc&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;urpos&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>,
+                <span class="string">&quot;rpose&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;ended&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;oduct&quot; </span>=&gt; <span class="string">&quot;1/1&quot;</span>, <span class="string">&quot;consi&quot; </span>=&gt; <span class="string">&quot;1/1&quot;
+            </span>))
         }
 
-        <span class="attribute">#[<span class="ident">rstest</span>(
-            <span class="ident">ngram_length</span>,
-            <span class="ident">expected_absolute_frequencies</span>,
-            <span class="ident">expected_relative_frequencies</span>,
-            <span class="ident">lower_ngram_absolute_frequencies</span>,
-            <span class="ident">case::unigram_model</span>(
+        <span class="attribute">#[rstest(
+            ngram_length,
+            expected_absolute_frequencies,
+            expected_relative_frequencies,
+            lower_ngram_absolute_frequencies,
+            case::unigram_model(
                 <span class="number">1</span>,
-                <span class="ident">expected_unigram_absolute_frequencies</span>(),
-                <span class="ident">expected_unigram_relative_frequencies</span>(),
+                expected_unigram_absolute_frequencies(),
+                expected_unigram_relative_frequencies(),
                 <span class="macro">hashmap!</span>()
             ),
-            <span class="ident">case::bigram_model</span>(
+            case::bigram_model(
                 <span class="number">2</span>,
-                <span class="ident">expected_bigram_absolute_frequencies</span>(),
-                <span class="ident">expected_bigram_relative_frequencies</span>(),
-                <span class="ident">expected_unigram_absolute_frequencies</span>()
+                expected_bigram_absolute_frequencies(),
+                expected_bigram_relative_frequencies(),
+                expected_unigram_absolute_frequencies()
             ),
-            <span class="ident">case::trigram_model</span>(
+            case::trigram_model(
                 <span class="number">3</span>,
-                <span class="ident">expected_trigram_absolute_frequencies</span>(),
-                <span class="ident">expected_trigram_relative_frequencies</span>(),
-                <span class="ident">expected_bigram_absolute_frequencies</span>()
+                expected_trigram_absolute_frequencies(),
+                expected_trigram_relative_frequencies(),
+                expected_bigram_absolute_frequencies()
             ),
-            <span class="ident">case::quadrigram_model</span>(
+            case::quadrigram_model(
                 <span class="number">4</span>,
-                <span class="ident">expected_quadrigram_absolute_frequencies</span>(),
-                <span class="ident">expected_quadrigram_relative_frequencies</span>(),
-                <span class="ident">expected_trigram_absolute_frequencies</span>()
+                expected_quadrigram_absolute_frequencies(),
+                expected_quadrigram_relative_frequencies(),
+                expected_trigram_absolute_frequencies()
             ),
-            <span class="ident">case::fivegram_model</span>(
+            case::fivegram_model(
                 <span class="number">5</span>,
-                <span class="ident">expected_fivegram_absolute_frequencies</span>(),
-                <span class="ident">expected_fivegram_relative_frequencies</span>(),
-                <span class="ident">expected_quadrigram_absolute_frequencies</span>()
+                expected_fivegram_absolute_frequencies(),
+                expected_fivegram_relative_frequencies(),
+                expected_quadrigram_absolute_frequencies()
             ),
-        )]</span>
-        <span class="kw">fn</span> <span class="ident">test_ngram_model_creation</span>(
-            <span class="ident">ngram_length</span>: <span class="ident">usize</span>,
-            <span class="ident">expected_absolute_frequencies</span>: <span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">Ngram</span>, <span class="ident">u32</span><span class="op">&gt;</span>,
-            <span class="ident">expected_relative_frequencies</span>: <span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">Ngram</span>, <span class="ident">Fraction</span><span class="op">&gt;</span>,
-            <span class="ident">lower_ngram_absolute_frequencies</span>: <span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">Ngram</span>, <span class="ident">u32</span><span class="op">&gt;</span>,
+        )]
+        </span><span class="kw">fn </span>test_ngram_model_creation(
+            ngram_length: usize,
+            expected_absolute_frequencies: HashMap&lt;Ngram, u32&gt;,
+            expected_relative_frequencies: HashMap&lt;Ngram, Fraction&gt;,
+            lower_ngram_absolute_frequencies: HashMap&lt;Ngram, u32&gt;,
         ) {
-            <span class="kw">let</span> <span class="ident">model</span> <span class="op">=</span> <span class="ident">TrainingDataLanguageModel::from_text</span>(
-                <span class="kw-2">&amp;</span><span class="ident">TEXT</span>.<span class="ident">trim</span>().<span class="ident">to_lowercase</span>().<span class="ident">lines</span>().<span class="ident">collect</span>::<span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="kw">_</span><span class="op">&gt;</span><span class="op">&gt;</span>(),
-                <span class="kw-2">&amp;</span><span class="ident">Language::English</span>,
-                <span class="ident">ngram_length</span>,
+            <span class="kw">let </span>model = TrainingDataLanguageModel::from_text(
+                <span class="kw-2">&amp;</span>TEXT.trim().to_lowercase().lines().collect::&lt;Vec&lt;<span class="kw">_</span>&gt;&gt;(),
+                <span class="kw-2">&amp;</span>Language::English,
+                ngram_length,
                 <span class="string">&quot;\\p{L}&amp;&amp;\\p{Latin}&quot;</span>,
-                <span class="kw-2">&amp;</span><span class="ident">lower_ngram_absolute_frequencies</span>,
+                <span class="kw-2">&amp;</span>lower_ngram_absolute_frequencies,
             );
 
-            <span class="macro">assert_eq!</span>(<span class="ident">model</span>.<span class="ident">language</span>, <span class="ident">Language::English</span>);
+            <span class="macro">assert_eq!</span>(model.language, Language::English);
             <span class="macro">assert_eq!</span>(
-                <span class="ident">model</span>.<span class="ident">absolute_frequencies</span>,
-                <span class="prelude-val">Some</span>(<span class="ident">expected_absolute_frequencies</span>)
+                model.absolute_frequencies,
+                <span class="prelude-val">Some</span>(expected_absolute_frequencies)
             );
             <span class="macro">assert_eq!</span>(
-                <span class="ident">model</span>.<span class="ident">relative_frequencies</span>,
-                <span class="prelude-val">Some</span>(<span class="ident">expected_relative_frequencies</span>)
+                model.relative_frequencies,
+                <span class="prelude-val">Some</span>(expected_relative_frequencies)
             );
         }
 
-        <span class="attribute">#[<span class="ident">test</span>]</span>
-        <span class="kw">fn</span> <span class="ident">test_model_serializer_and_deserializer</span>() {
-            <span class="kw">let</span> <span class="ident">model</span> <span class="op">=</span> <span class="ident">TrainingDataLanguageModel</span> {
-                <span class="ident">language</span>: <span class="ident">Language::English</span>,
-                <span class="ident">absolute_frequencies</span>: <span class="prelude-val">None</span>,
-                <span class="ident">relative_frequencies</span>: <span class="prelude-val">Some</span>(<span class="ident">expected_unigram_relative_frequencies</span>()),
-                <span class="ident">json_relative_frequencies</span>: <span class="prelude-val">None</span>,
+        <span class="attribute">#[test]
+        </span><span class="kw">fn </span>test_model_serializer_and_deserializer() {
+            <span class="kw">let </span>model = TrainingDataLanguageModel {
+                language: Language::English,
+                absolute_frequencies: <span class="prelude-val">None</span>,
+                relative_frequencies: <span class="prelude-val">Some</span>(expected_unigram_relative_frequencies()),
+                json_relative_frequencies: <span class="prelude-val">None</span>,
             };
-            <span class="kw">let</span> <span class="ident">deserialized</span> <span class="op">=</span> <span class="ident">TrainingDataLanguageModel::from_json</span>(<span class="kw-2">&amp;</span><span class="ident">model</span>.<span class="ident">to_json</span>());
+            <span class="kw">let </span>deserialized = TrainingDataLanguageModel::from_json(<span class="kw-2">&amp;</span>model.to_json());
 
-            <span class="macro">assert_eq!</span>(<span class="ident">deserialized</span>.<span class="ident">language</span>, <span class="ident">Language::English</span>);
-            <span class="macro">assert_eq!</span>(<span class="ident">deserialized</span>.<span class="ident">absolute_frequencies</span>, <span class="prelude-val">None</span>);
-            <span class="macro">assert_eq!</span>(<span class="ident">deserialized</span>.<span class="ident">relative_frequencies</span>, <span class="prelude-val">None</span>);
+            <span class="macro">assert_eq!</span>(deserialized.language, Language::English);
+            <span class="macro">assert_eq!</span>(deserialized.absolute_frequencies, <span class="prelude-val">None</span>);
+            <span class="macro">assert_eq!</span>(deserialized.relative_frequencies, <span class="prelude-val">None</span>);
             <span class="macro">assert_eq!</span>(
-                <span class="ident">deserialized</span>.<span class="ident">json_relative_frequencies</span>,
-                <span class="prelude-val">Some</span>(<span class="ident">expected_unigram_json_relative_frequencies</span>())
+                deserialized.json_relative_frequencies,
+                <span class="prelude-val">Some</span>(expected_unigram_json_relative_frequencies())
             );
         }
     }
 
-    <span class="kw">mod</span> <span class="ident">test_data</span> {
-        <span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
+    <span class="kw">mod </span>test_data {
+        <span class="kw">use super</span>::<span class="kw-2">*</span>;
 
-        <span class="kw">fn</span> <span class="ident">map_strs_to_ngrams</span>(<span class="ident">strs</span>: <span class="ident">HashSet</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span>) -&gt; <span class="ident">HashSet</span><span class="op">&lt;</span><span class="ident">Ngram</span><span class="op">&gt;</span> {
-            <span class="ident">strs</span>.<span class="ident">iter</span>().<span class="ident">map</span>(<span class="op">|</span><span class="kw-2">&amp;</span><span class="ident">it</span><span class="op">|</span> <span class="ident">Ngram::new</span>(<span class="ident">it</span>)).<span class="ident">collect</span>()
+        <span class="kw">fn </span>map_strs_to_ngrams(strs: HashSet&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str&gt;) -&gt; HashSet&lt;Ngram&gt; {
+            strs.iter().map(|<span class="kw-2">&amp;</span>it| Ngram::new(it)).collect()
         }
 
-        <span class="attribute">#[<span class="ident">fixture</span>]</span>
-        <span class="kw">fn</span> <span class="ident">expected_unigrams</span>() -&gt; <span class="ident">HashSet</span><span class="op">&lt;</span><span class="ident">Ngram</span><span class="op">&gt;</span> {
-            <span class="ident">map_strs_to_ngrams</span>(<span class="macro">hashset!</span>(
+        <span class="attribute">#[fixture]
+        </span><span class="kw">fn </span>expected_unigrams() -&gt; HashSet&lt;Ngram&gt; {
+            map_strs_to_ngrams(<span class="macro">hashset!</span>(
                 <span class="string">&quot;a&quot;</span>, <span class="string">&quot;b&quot;</span>, <span class="string">&quot;c&quot;</span>, <span class="string">&quot;d&quot;</span>, <span class="string">&quot;e&quot;</span>, <span class="string">&quot;f&quot;</span>, <span class="string">&quot;g&quot;</span>, <span class="string">&quot;h&quot;</span>, <span class="string">&quot;i&quot;</span>, <span class="string">&quot;l&quot;</span>, <span class="string">&quot;m&quot;</span>, <span class="string">&quot;n&quot;</span>, <span class="string">&quot;o&quot;</span>, <span class="string">&quot;p&quot;</span>, <span class="string">&quot;r&quot;</span>, <span class="string">&quot;s&quot;</span>,
-                <span class="string">&quot;t&quot;</span>, <span class="string">&quot;u&quot;</span>, <span class="string">&quot;w&quot;</span>, <span class="string">&quot;y&quot;</span>
-            ))
+                <span class="string">&quot;t&quot;</span>, <span class="string">&quot;u&quot;</span>, <span class="string">&quot;w&quot;</span>, <span class="string">&quot;y&quot;
+            </span>))
         }
 
-        <span class="attribute">#[<span class="ident">fixture</span>]</span>
-        <span class="kw">fn</span> <span class="ident">expected_bigrams</span>() -&gt; <span class="ident">HashSet</span><span class="op">&lt;</span><span class="ident">Ngram</span><span class="op">&gt;</span> {
-            <span class="ident">map_strs_to_ngrams</span>(<span class="macro">hashset!</span>(
+        <span class="attribute">#[fixture]
+        </span><span class="kw">fn </span>expected_bigrams() -&gt; HashSet&lt;Ngram&gt; {
+            map_strs_to_ngrams(<span class="macro">hashset!</span>(
                 <span class="string">&quot;de&quot;</span>, <span class="string">&quot;pr&quot;</span>, <span class="string">&quot;pu&quot;</span>, <span class="string">&quot;do&quot;</span>, <span class="string">&quot;uc&quot;</span>, <span class="string">&quot;ds&quot;</span>, <span class="string">&quot;du&quot;</span>, <span class="string">&quot;ur&quot;</span>, <span class="string">&quot;us&quot;</span>, <span class="string">&quot;ed&quot;</span>, <span class="string">&quot;in&quot;</span>, <span class="string">&quot;io&quot;</span>, <span class="string">&quot;em&quot;</span>, <span class="string">&quot;en&quot;</span>,
                 <span class="string">&quot;is&quot;</span>, <span class="string">&quot;al&quot;</span>, <span class="string">&quot;es&quot;</span>, <span class="string">&quot;ar&quot;</span>, <span class="string">&quot;rd&quot;</span>, <span class="string">&quot;re&quot;</span>, <span class="string">&quot;ey&quot;</span>, <span class="string">&quot;nc&quot;</span>, <span class="string">&quot;nd&quot;</span>, <span class="string">&quot;ay&quot;</span>, <span class="string">&quot;ng&quot;</span>, <span class="string">&quot;ro&quot;</span>, <span class="string">&quot;rp&quot;</span>, <span class="string">&quot;no&quot;</span>,
                 <span class="string">&quot;ns&quot;</span>, <span class="string">&quot;nt&quot;</span>, <span class="string">&quot;fo&quot;</span>, <span class="string">&quot;wa&quot;</span>, <span class="string">&quot;se&quot;</span>, <span class="string">&quot;od&quot;</span>, <span class="string">&quot;si&quot;</span>, <span class="string">&quot;by&quot;</span>, <span class="string">&quot;of&quot;</span>, <span class="string">&quot;wo&quot;</span>, <span class="string">&quot;on&quot;</span>, <span class="string">&quot;st&quot;</span>, <span class="string">&quot;ce&quot;</span>, <span class="string">&quot;or&quot;</span>,
-                <span class="string">&quot;os&quot;</span>, <span class="string">&quot;ot&quot;</span>, <span class="string">&quot;co&quot;</span>, <span class="string">&quot;ta&quot;</span>, <span class="string">&quot;te&quot;</span>, <span class="string">&quot;ct&quot;</span>, <span class="string">&quot;th&quot;</span>, <span class="string">&quot;ti&quot;</span>, <span class="string">&quot;to&quot;</span>, <span class="string">&quot;he&quot;</span>, <span class="string">&quot;po&quot;</span>
-            ))
+                <span class="string">&quot;os&quot;</span>, <span class="string">&quot;ot&quot;</span>, <span class="string">&quot;co&quot;</span>, <span class="string">&quot;ta&quot;</span>, <span class="string">&quot;te&quot;</span>, <span class="string">&quot;ct&quot;</span>, <span class="string">&quot;th&quot;</span>, <span class="string">&quot;ti&quot;</span>, <span class="string">&quot;to&quot;</span>, <span class="string">&quot;he&quot;</span>, <span class="string">&quot;po&quot;
+            </span>))
         }
 
-        <span class="attribute">#[<span class="ident">fixture</span>]</span>
-        <span class="kw">fn</span> <span class="ident">expected_trigrams</span>() -&gt; <span class="ident">HashSet</span><span class="op">&lt;</span><span class="ident">Ngram</span><span class="op">&gt;</span> {
-            <span class="ident">map_strs_to_ngrams</span>(<span class="macro">hashset!</span>(
+        <span class="attribute">#[fixture]
+        </span><span class="kw">fn </span>expected_trigrams() -&gt; HashSet&lt;Ngram&gt; {
+            map_strs_to_ngrams(<span class="macro">hashset!</span>(
                 <span class="string">&quot;rds&quot;</span>, <span class="string">&quot;ose&quot;</span>, <span class="string">&quot;ded&quot;</span>, <span class="string">&quot;con&quot;</span>, <span class="string">&quot;use&quot;</span>, <span class="string">&quot;est&quot;</span>, <span class="string">&quot;ion&quot;</span>, <span class="string">&quot;ist&quot;</span>, <span class="string">&quot;pur&quot;</span>, <span class="string">&quot;hem&quot;</span>, <span class="string">&quot;hes&quot;</span>, <span class="string">&quot;tin&quot;</span>,
                 <span class="string">&quot;cti&quot;</span>, <span class="string">&quot;tio&quot;</span>, <span class="string">&quot;wor&quot;</span>, <span class="string">&quot;ten&quot;</span>, <span class="string">&quot;hey&quot;</span>, <span class="string">&quot;ota&quot;</span>, <span class="string">&quot;tal&quot;</span>, <span class="string">&quot;tes&quot;</span>, <span class="string">&quot;uct&quot;</span>, <span class="string">&quot;sti&quot;</span>, <span class="string">&quot;pro&quot;</span>, <span class="string">&quot;odu&quot;</span>,
                 <span class="string">&quot;nsi&quot;</span>, <span class="string">&quot;rod&quot;</span>, <span class="string">&quot;for&quot;</span>, <span class="string">&quot;ces&quot;</span>, <span class="string">&quot;nce&quot;</span>, <span class="string">&quot;not&quot;</span>, <span class="string">&quot;are&quot;</span>, <span class="string">&quot;pos&quot;</span>, <span class="string">&quot;tot&quot;</span>, <span class="string">&quot;end&quot;</span>, <span class="string">&quot;enc&quot;</span>, <span class="string">&quot;sis&quot;</span>,
                 <span class="string">&quot;sen&quot;</span>, <span class="string">&quot;nte&quot;</span>, <span class="string">&quot;ses&quot;</span>, <span class="string">&quot;ord&quot;</span>, <span class="string">&quot;ing&quot;</span>, <span class="string">&quot;ent&quot;</span>, <span class="string">&quot;int&quot;</span>, <span class="string">&quot;nde&quot;</span>, <span class="string">&quot;way&quot;</span>, <span class="string">&quot;the&quot;</span>, <span class="string">&quot;rpo&quot;</span>, <span class="string">&quot;urp&quot;</span>,
-                <span class="string">&quot;duc&quot;</span>, <span class="string">&quot;ons&quot;</span>, <span class="string">&quot;ese&quot;</span>
-            ))
+                <span class="string">&quot;duc&quot;</span>, <span class="string">&quot;ons&quot;</span>, <span class="string">&quot;ese&quot;
+            </span>))
         }
 
-        <span class="attribute">#[<span class="ident">fixture</span>]</span>
-        <span class="kw">fn</span> <span class="ident">expected_quadrigrams</span>() -&gt; <span class="ident">HashSet</span><span class="op">&lt;</span><span class="ident">Ngram</span><span class="op">&gt;</span> {
-            <span class="ident">map_strs_to_ngrams</span>(<span class="macro">hashset!</span>(
+        <span class="attribute">#[fixture]
+        </span><span class="kw">fn </span>expected_quadrigrams() -&gt; HashSet&lt;Ngram&gt; {
+            map_strs_to_ngrams(<span class="macro">hashset!</span>(
                 <span class="string">&quot;onsi&quot;</span>, <span class="string">&quot;sist&quot;</span>, <span class="string">&quot;ende&quot;</span>, <span class="string">&quot;ords&quot;</span>, <span class="string">&quot;esti&quot;</span>, <span class="string">&quot;tenc&quot;</span>, <span class="string">&quot;nces&quot;</span>, <span class="string">&quot;oduc&quot;</span>, <span class="string">&quot;tend&quot;</span>, <span class="string">&quot;thes&quot;</span>,
                 <span class="string">&quot;rpos&quot;</span>, <span class="string">&quot;ting&quot;</span>, <span class="string">&quot;nten&quot;</span>, <span class="string">&quot;nsis&quot;</span>, <span class="string">&quot;they&quot;</span>, <span class="string">&quot;tota&quot;</span>, <span class="string">&quot;cons&quot;</span>, <span class="string">&quot;tion&quot;</span>, <span class="string">&quot;prod&quot;</span>, <span class="string">&quot;ence&quot;</span>,
                 <span class="string">&quot;test&quot;</span>, <span class="string">&quot;otal&quot;</span>, <span class="string">&quot;pose&quot;</span>, <span class="string">&quot;nded&quot;</span>, <span class="string">&quot;oses&quot;</span>, <span class="string">&quot;inte&quot;</span>, <span class="string">&quot;urpo&quot;</span>, <span class="string">&quot;them&quot;</span>, <span class="string">&quot;sent&quot;</span>, <span class="string">&quot;duct&quot;</span>,
-                <span class="string">&quot;stin&quot;</span>, <span class="string">&quot;ente&quot;</span>, <span class="string">&quot;ucti&quot;</span>, <span class="string">&quot;purp&quot;</span>, <span class="string">&quot;ctio&quot;</span>, <span class="string">&quot;rodu&quot;</span>, <span class="string">&quot;word&quot;</span>, <span class="string">&quot;hese&quot;</span>
-            ))
+                <span class="string">&quot;stin&quot;</span>, <span class="string">&quot;ente&quot;</span>, <span class="string">&quot;ucti&quot;</span>, <span class="string">&quot;purp&quot;</span>, <span class="string">&quot;ctio&quot;</span>, <span class="string">&quot;rodu&quot;</span>, <span class="string">&quot;word&quot;</span>, <span class="string">&quot;hese&quot;
+            </span>))
         }
 
-        <span class="attribute">#[<span class="ident">fixture</span>]</span>
-        <span class="kw">fn</span> <span class="ident">expected_fivegrams</span>() -&gt; <span class="ident">HashSet</span><span class="op">&lt;</span><span class="ident">Ngram</span><span class="op">&gt;</span> {
-            <span class="ident">map_strs_to_ngrams</span>(<span class="macro">hashset!</span>(
+        <span class="attribute">#[fixture]
+        </span><span class="kw">fn </span>expected_fivegrams() -&gt; HashSet&lt;Ngram&gt; {
+            map_strs_to_ngrams(<span class="macro">hashset!</span>(
                 <span class="string">&quot;testi&quot;</span>, <span class="string">&quot;sente&quot;</span>, <span class="string">&quot;ences&quot;</span>, <span class="string">&quot;tende&quot;</span>, <span class="string">&quot;these&quot;</span>, <span class="string">&quot;ntenc&quot;</span>, <span class="string">&quot;ducti&quot;</span>, <span class="string">&quot;ntend&quot;</span>, <span class="string">&quot;onsis&quot;</span>,
                 <span class="string">&quot;total&quot;</span>, <span class="string">&quot;uctio&quot;</span>, <span class="string">&quot;enten&quot;</span>, <span class="string">&quot;poses&quot;</span>, <span class="string">&quot;ction&quot;</span>, <span class="string">&quot;produ&quot;</span>, <span class="string">&quot;inten&quot;</span>, <span class="string">&quot;nsist&quot;</span>, <span class="string">&quot;words&quot;</span>,
                 <span class="string">&quot;sting&quot;</span>, <span class="string">&quot;tence&quot;</span>, <span class="string">&quot;purpo&quot;</span>, <span class="string">&quot;estin&quot;</span>, <span class="string">&quot;roduc&quot;</span>, <span class="string">&quot;urpos&quot;</span>, <span class="string">&quot;ended&quot;</span>, <span class="string">&quot;rpose&quot;</span>, <span class="string">&quot;oduct&quot;</span>,
-                <span class="string">&quot;consi&quot;</span>
-            ))
+                <span class="string">&quot;consi&quot;
+            </span>))
         }
 
-        <span class="attribute">#[<span class="ident">rstest</span>(
-            <span class="ident">ngram_length</span>,
-            <span class="ident">expected_ngrams</span>,
-            <span class="ident">case::unigram_model</span>(<span class="number">1</span>, <span class="ident">expected_unigrams</span>()),
-            <span class="ident">case::bigram_model</span>(<span class="number">2</span>, <span class="ident">expected_bigrams</span>()),
-            <span class="ident">case::trigram_model</span>(<span class="number">3</span>, <span class="ident">expected_trigrams</span>()),
-            <span class="ident">case::quadrigram_model</span>(<span class="number">4</span>, <span class="ident">expected_quadrigrams</span>()),
-            <span class="ident">case::fivegram_model</span>(<span class="number">5</span>, <span class="ident">expected_fivegrams</span>())
-        )]</span>
-        <span class="kw">fn</span> <span class="ident">test_ngram_model_creation</span>(<span class="ident">ngram_length</span>: <span class="ident">usize</span>, <span class="ident">expected_ngrams</span>: <span class="ident">HashSet</span><span class="op">&lt;</span><span class="ident">Ngram</span><span class="op">&gt;</span>) {
-            <span class="kw">let</span> <span class="ident">model</span> <span class="op">=</span> <span class="ident">TestDataLanguageModel::from</span>(<span class="kw-2">&amp;</span><span class="ident">TEXT</span>.<span class="ident">to_lowercase</span>(), <span class="ident">ngram_length</span>);
-            <span class="macro">assert_eq!</span>(<span class="ident">model</span>.<span class="ident">ngrams</span>, <span class="ident">expected_ngrams</span>);
+        <span class="attribute">#[rstest(
+            ngram_length,
+            expected_ngrams,
+            case::unigram_model(<span class="number">1</span>, expected_unigrams()),
+            case::bigram_model(<span class="number">2</span>, expected_bigrams()),
+            case::trigram_model(<span class="number">3</span>, expected_trigrams()),
+            case::quadrigram_model(<span class="number">4</span>, expected_quadrigrams()),
+            case::fivegram_model(<span class="number">5</span>, expected_fivegrams())
+        )]
+        </span><span class="kw">fn </span>test_ngram_model_creation(ngram_length: usize, expected_ngrams: HashSet&lt;Ngram&gt;) {
+            <span class="kw">let </span>model = TestDataLanguageModel::from(<span class="kw-2">&amp;</span>TEXT.to_lowercase(), ngram_length);
+            <span class="macro">assert_eq!</span>(model.ngrams, expected_ngrams);
         }
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="lingua" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="lingua" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (77e57db38 2022-10-30)" ></div></body></html>

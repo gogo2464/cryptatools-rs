@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/scroll-0.11.0/src/ctx.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>ctx.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../scroll/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../scroll/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../scroll/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/scroll-0.11.0/src/ctx.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>ctx.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../scroll/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -895,902 +895,902 @@
 <span id="895">895</span>
 <span id="896">896</span>
 <span id="897">897</span>
-</pre><pre class="rust"><code><span class="doccomment">//! Generic context-aware conversion traits, for automatic _downstream_ extension of `Pread`, et. al</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! The context traits are arguably the center piece of the scroll crate. In simple terms they</span>
-<span class="doccomment">//! define how to actually read and write, respectively, a data type from a container, being able to</span>
-<span class="doccomment">//! take context into account.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! ### Reading</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! Types implementing [TryFromCtx](trait.TryFromCtx.html) and it&#39;s infallible cousin [FromCtx](trait.FromCtx.html)</span>
-<span class="doccomment">//! allow a user of [Pread::pread](../trait.Pread.html#method.pread) or respectively</span>
-<span class="doccomment">//! [Cread::cread](../trait.Cread.html#method.cread) and</span>
-<span class="doccomment">//! [IOread::ioread](../trait.IOread.html#method.ioread) to read that data type from a data source one</span>
-<span class="doccomment">//! of the `*read` traits has been implemented for.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! Implementations of `TryFromCtx` specify a source (called `This`) and an `Error` type for failed</span>
-<span class="doccomment">//! reads. The source defines the kind of container the type can be read from, and defaults to</span>
-<span class="doccomment">//! `[u8]` for any type that implements `AsRef&lt;[u8]&gt;`.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! `FromCtx` is slightly more restricted; it requires the implementer to use `[u8]` as source and</span>
-<span class="doccomment">//! never fail, and thus does not have an `Error` type.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! Types chosen here are of relevance to `Pread` implementations; of course only a container which</span>
-<span class="doccomment">//! can produce a source of the type `This` can be used to read a `TryFromCtx` requiring it and the</span>
-<span class="doccomment">//! `Error` type returned in `Err` of `Pread::pread`&#39;s Result.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! ### Writing</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! [TryIntoCtx](trait.TryIntoCtx.html) and the infallible [IntoCtx](trait.IntoCtx.html) work</span>
-<span class="doccomment">//! similarly to the above traits, allowing [Pwrite::pwrite](../trait.Pwrite.html#method.pwrite) or</span>
-<span class="doccomment">//! respectively [Cwrite::cwrite](../trait.Cwrite.html#method.cwrite) and</span>
-<span class="doccomment">//! [IOwrite::iowrite](../trait.IOwrite.html#method.iowrite) to write data into a byte sink for</span>
-<span class="doccomment">//! which one of the `*write` traits has been implemented for.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! `IntoCtx` is similarly restricted as `FromCtx` is to `TryFromCtx`. And equally the types chosen</span>
-<span class="doccomment">//! affect usable `Pwrite` implementation.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! ### Context</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! Each of the traits passes along a `Ctx` to the marshalling logic. This context type contains</span>
-<span class="doccomment">//! any additional information that may be required to successfully parse or write the data:</span>
-<span class="doccomment">//! Examples would be endianness to use, field lengths of a serialized struct, or delimiters to use</span>
-<span class="doccomment">//! when reading/writing `&amp;str`. The context type can be any type but must derive</span>
-<span class="doccomment">//! [Copy](https://doc.rust-lang.org/std/marker/trait.Copy.html). In addition if you want to use</span>
-<span class="doccomment">//! the `*read`-methods instead of the `*read_with` ones you must also implement</span>
-<span class="doccomment">//! [default::Default](https://doc.rust-lang.org/std/default/trait.Default.html).</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! # Example</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! Let&#39;s expand on the [previous example](../index.html#complex-use-cases).</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! ```rust</span>
-<span class="doccomment">//! use scroll::{self, ctx, Pread, Endian};</span>
-<span class="doccomment">//! use scroll::ctx::StrCtx;</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! #[derive(Copy, Clone, PartialEq, Eq)]</span>
-<span class="doccomment">//! enum FieldSize {</span>
-<span class="doccomment">//!     U32,</span>
-<span class="doccomment">//!     U64</span>
-<span class="doccomment">//! }</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! // Our custom context type. As said above it has to derive Copy.</span>
-<span class="doccomment">//! #[derive(Copy, Clone)]</span>
-<span class="doccomment">//! struct Context {</span>
-<span class="doccomment">//!     fieldsize: FieldSize,</span>
-<span class="doccomment">//!     endianess: Endian,</span>
-<span class="doccomment">//! }</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! // Our custom data type</span>
-<span class="doccomment">//! struct Data&lt;&#39;b&gt; {</span>
-<span class="doccomment">//!   // These u64 are encoded either as 32-bit or 64-bit wide ints. Which one it is is defined in</span>
-<span class="doccomment">//!   // the Context.</span>
-<span class="doccomment">//!   // Also, let&#39;s imagine they have a strict relationship: A &lt; B &lt; C otherwise the struct is</span>
-<span class="doccomment">//!   // invalid.</span>
-<span class="doccomment">//!   field_a: u64,</span>
-<span class="doccomment">//!   field_b: u64,</span>
-<span class="doccomment">//!   field_c: u64,</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//!   // Both of these are marshalled with a prefixed length.</span>
-<span class="doccomment">//!   name: &amp;&#39;b str,</span>
-<span class="doccomment">//!   value: &amp;&#39;b [u8],</span>
-<span class="doccomment">//! }</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! #[derive(Debug)]</span>
-<span class="doccomment">//! enum Error {</span>
-<span class="doccomment">//!     // We&#39;ll return this custom error if the field* relationship doesn&#39;t hold</span>
-<span class="doccomment">//!     BadFieldMatchup,</span>
-<span class="doccomment">//!     Scroll(scroll::Error),</span>
-<span class="doccomment">//! }</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! impl&lt;&#39;a&gt; ctx::TryFromCtx&lt;&#39;a, Context&gt; for Data&lt;&#39;a&gt; {</span>
-<span class="doccomment">//!   type Error = Error;</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//!   // Using the explicit lifetime specification again you ensure that read data doesn&#39;t outlife</span>
-<span class="doccomment">//!   // its source buffer without having to resort to copying.</span>
-<span class="doccomment">//!   fn try_from_ctx (src: &amp;&#39;a [u8], ctx: Context)</span>
-<span class="doccomment">//!     // the `usize` returned here is the amount of bytes read.</span>
-<span class="doccomment">//!     -&gt; Result&lt;(Self, usize), Self::Error&gt;</span>
-<span class="doccomment">//!   {</span>
-<span class="doccomment">//!     // The offset counter; gread and gread_with increment a given counter automatically so we</span>
-<span class="doccomment">//!     // don&#39;t have to manually care.</span>
-<span class="doccomment">//!     let offset = &amp;mut 0;</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//!     let field_a;</span>
-<span class="doccomment">//!     let field_b;</span>
-<span class="doccomment">//!     let field_c;</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//!     // Switch the amount of bytes read depending on the parsing context</span>
-<span class="doccomment">//!     if ctx.fieldsize == FieldSize::U32 {</span>
-<span class="doccomment">//!       field_a = src.gread_with::&lt;u32&gt;(offset, ctx.endianess)? as u64;</span>
-<span class="doccomment">//!       field_b = src.gread_with::&lt;u32&gt;(offset, ctx.endianess)? as u64;</span>
-<span class="doccomment">//!       field_c = src.gread_with::&lt;u32&gt;(offset, ctx.endianess)? as u64;</span>
-<span class="doccomment">//!     } else {</span>
-<span class="doccomment">//!       field_a = src.gread_with::&lt;u64&gt;(offset, ctx.endianess)?;</span>
-<span class="doccomment">//!       field_b = src.gread_with::&lt;u64&gt;(offset, ctx.endianess)?;</span>
-<span class="doccomment">//!       field_c = src.gread_with::&lt;u64&gt;(offset, ctx.endianess)?;</span>
-<span class="doccomment">//!     }</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//!     // You can use type ascribition or turbofish operators, whichever you prefer.</span>
-<span class="doccomment">//!     let namelen = src.gread_with::&lt;u16&gt;(offset, ctx.endianess)? as usize;</span>
-<span class="doccomment">//!     let name: &amp;str = src.gread_with(offset, scroll::ctx::StrCtx::Length(namelen))?;</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//!     let vallen = src.gread_with::&lt;u16&gt;(offset, ctx.endianess)? as usize;</span>
-<span class="doccomment">//!     let value = &amp;src[*offset..(*offset+vallen)];</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//!     // Let&#39;s sanity check those fields, shall we?</span>
-<span class="doccomment">//!     if ! (field_a &lt; field_b &amp;&amp; field_b &lt; field_c) {</span>
-<span class="doccomment">//!       return Err(Error::BadFieldMatchup);</span>
-<span class="doccomment">//!     }</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//!     Ok((Data { field_a, field_b, field_c, name, value }, *offset))</span>
-<span class="doccomment">//!   }</span>
-<span class="doccomment">//! }</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! // In lieu of a complex byte buffer we hearken back to the venerable &amp;[u8]; do note however</span>
-<span class="doccomment">//! // that the implementation of TryFromCtx did not specify such. In fact any type that implements</span>
-<span class="doccomment">//! // Pread can now read `Data` as it implements TryFromCtx.</span>
-<span class="doccomment">//! let bytes = b&quot;\x00\x02\x03\x04\x01\x02\x03\x04\xde\xad\xbe\xef\x00\x08UserName\x00\x02\xCA\xFE&quot;;</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! // We define an appropiate context, and get going</span>
-<span class="doccomment">//! let contextA = Context {</span>
-<span class="doccomment">//!     fieldsize: FieldSize::U32,</span>
-<span class="doccomment">//!     endianess: Endian::Big,</span>
-<span class="doccomment">//! };</span>
-<span class="doccomment">//! let data: Data = bytes.pread_with(0, contextA).unwrap();</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! assert_eq!(data.field_a, 0x00020304);</span>
-<span class="doccomment">//! assert_eq!(data.field_b, 0x01020304);</span>
-<span class="doccomment">//! assert_eq!(data.field_c, 0xdeadbeef);</span>
-<span class="doccomment">//! assert_eq!(data.name, &quot;UserName&quot;);</span>
-<span class="doccomment">//! assert_eq!(data.value, [0xCA, 0xFE]);</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! // Here we have a context with a different FieldSize, changing parsing information at runtime.</span>
-<span class="doccomment">//! let contextB = Context {</span>
-<span class="doccomment">//!     fieldsize: FieldSize::U64,</span>
-<span class="doccomment">//!     endianess: Endian::Big,</span>
-<span class="doccomment">//! };</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! // Which will of course error with a malformed input for the context</span>
-<span class="doccomment">//! let err: Result&lt;Data, Error&gt; = bytes.pread_with(0, contextB);</span>
-<span class="doccomment">//! assert!(err.is_err());</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! let bytes_long = [0x00,0x00,0x00,0x00,0x00,0x02,0x03,0x04,0x00,0x00,0x00,0x00,0x01,0x02,0x03,</span>
-<span class="doccomment">//!                   0x04,0x00,0x00,0x00,0x00,0xde,0xad,0xbe,0xef,0x00,0x08,0x55,0x73,0x65,0x72,</span>
-<span class="doccomment">//!                   0x4e,0x61,0x6d,0x65,0x00,0x02,0xCA,0xFE];</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! let data: Data = bytes_long.pread_with(0, contextB).unwrap();</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! assert_eq!(data.field_a, 0x00020304);</span>
-<span class="doccomment">//! assert_eq!(data.field_b, 0x01020304);</span>
-<span class="doccomment">//! assert_eq!(data.field_c, 0xdeadbeef);</span>
-<span class="doccomment">//! assert_eq!(data.name, &quot;UserName&quot;);</span>
-<span class="doccomment">//! assert_eq!(data.value, [0xCA, 0xFE]);</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! // Ergonomic conversion, not relevant really.</span>
-<span class="doccomment">//! use std::convert::From;</span>
-<span class="doccomment">//! impl From&lt;scroll::Error&gt; for Error {</span>
-<span class="doccomment">//!   fn from(error: scroll::Error) -&gt; Error {</span>
-<span class="doccomment">//!     Error::Scroll(error)</span>
-<span class="doccomment">//!   }</span>
-<span class="doccomment">//! }</span>
-<span class="doccomment">//! ```</span>
+</pre><pre class="rust"><code><span class="doccomment">//! Generic context-aware conversion traits, for automatic _downstream_ extension of `Pread`, et. al
+//!
+//! The context traits are arguably the center piece of the scroll crate. In simple terms they
+//! define how to actually read and write, respectively, a data type from a container, being able to
+//! take context into account.
+//!
+//! ### Reading
+//!
+//! Types implementing [TryFromCtx](trait.TryFromCtx.html) and it&#39;s infallible cousin [FromCtx](trait.FromCtx.html)
+//! allow a user of [Pread::pread](../trait.Pread.html#method.pread) or respectively
+//! [Cread::cread](../trait.Cread.html#method.cread) and
+//! [IOread::ioread](../trait.IOread.html#method.ioread) to read that data type from a data source one
+//! of the `*read` traits has been implemented for.
+//!
+//! Implementations of `TryFromCtx` specify a source (called `This`) and an `Error` type for failed
+//! reads. The source defines the kind of container the type can be read from, and defaults to
+//! `[u8]` for any type that implements `AsRef&lt;[u8]&gt;`.
+//!
+//! `FromCtx` is slightly more restricted; it requires the implementer to use `[u8]` as source and
+//! never fail, and thus does not have an `Error` type.
+//!
+//! Types chosen here are of relevance to `Pread` implementations; of course only a container which
+//! can produce a source of the type `This` can be used to read a `TryFromCtx` requiring it and the
+//! `Error` type returned in `Err` of `Pread::pread`&#39;s Result.
+//!
+//! ### Writing
+//!
+//! [TryIntoCtx](trait.TryIntoCtx.html) and the infallible [IntoCtx](trait.IntoCtx.html) work
+//! similarly to the above traits, allowing [Pwrite::pwrite](../trait.Pwrite.html#method.pwrite) or
+//! respectively [Cwrite::cwrite](../trait.Cwrite.html#method.cwrite) and
+//! [IOwrite::iowrite](../trait.IOwrite.html#method.iowrite) to write data into a byte sink for
+//! which one of the `*write` traits has been implemented for.
+//!
+//! `IntoCtx` is similarly restricted as `FromCtx` is to `TryFromCtx`. And equally the types chosen
+//! affect usable `Pwrite` implementation.
+//!
+//! ### Context
+//!
+//! Each of the traits passes along a `Ctx` to the marshalling logic. This context type contains
+//! any additional information that may be required to successfully parse or write the data:
+//! Examples would be endianness to use, field lengths of a serialized struct, or delimiters to use
+//! when reading/writing `&amp;str`. The context type can be any type but must derive
+//! [Copy](https://doc.rust-lang.org/std/marker/trait.Copy.html). In addition if you want to use
+//! the `*read`-methods instead of the `*read_with` ones you must also implement
+//! [default::Default](https://doc.rust-lang.org/std/default/trait.Default.html).
+//!
+//! # Example
+//!
+//! Let&#39;s expand on the [previous example](../index.html#complex-use-cases).
+//!
+//! ```rust
+//! use scroll::{self, ctx, Pread, Endian};
+//! use scroll::ctx::StrCtx;
+//!
+//! #[derive(Copy, Clone, PartialEq, Eq)]
+//! enum FieldSize {
+//!     U32,
+//!     U64
+//! }
+//!
+//! // Our custom context type. As said above it has to derive Copy.
+//! #[derive(Copy, Clone)]
+//! struct Context {
+//!     fieldsize: FieldSize,
+//!     endianess: Endian,
+//! }
+//!
+//! // Our custom data type
+//! struct Data&lt;&#39;b&gt; {
+//!   // These u64 are encoded either as 32-bit or 64-bit wide ints. Which one it is is defined in
+//!   // the Context.
+//!   // Also, let&#39;s imagine they have a strict relationship: A &lt; B &lt; C otherwise the struct is
+//!   // invalid.
+//!   field_a: u64,
+//!   field_b: u64,
+//!   field_c: u64,
+//!
+//!   // Both of these are marshalled with a prefixed length.
+//!   name: &amp;&#39;b str,
+//!   value: &amp;&#39;b [u8],
+//! }
+//!
+//! #[derive(Debug)]
+//! enum Error {
+//!     // We&#39;ll return this custom error if the field* relationship doesn&#39;t hold
+//!     BadFieldMatchup,
+//!     Scroll(scroll::Error),
+//! }
+//!
+//! impl&lt;&#39;a&gt; ctx::TryFromCtx&lt;&#39;a, Context&gt; for Data&lt;&#39;a&gt; {
+//!   type Error = Error;
+//!
+//!   // Using the explicit lifetime specification again you ensure that read data doesn&#39;t outlife
+//!   // its source buffer without having to resort to copying.
+//!   fn try_from_ctx (src: &amp;&#39;a [u8], ctx: Context)
+//!     // the `usize` returned here is the amount of bytes read.
+//!     -&gt; Result&lt;(Self, usize), Self::Error&gt;
+//!   {
+//!     // The offset counter; gread and gread_with increment a given counter automatically so we
+//!     // don&#39;t have to manually care.
+//!     let offset = &amp;mut 0;
+//!
+//!     let field_a;
+//!     let field_b;
+//!     let field_c;
+//!
+//!     // Switch the amount of bytes read depending on the parsing context
+//!     if ctx.fieldsize == FieldSize::U32 {
+//!       field_a = src.gread_with::&lt;u32&gt;(offset, ctx.endianess)? as u64;
+//!       field_b = src.gread_with::&lt;u32&gt;(offset, ctx.endianess)? as u64;
+//!       field_c = src.gread_with::&lt;u32&gt;(offset, ctx.endianess)? as u64;
+//!     } else {
+//!       field_a = src.gread_with::&lt;u64&gt;(offset, ctx.endianess)?;
+//!       field_b = src.gread_with::&lt;u64&gt;(offset, ctx.endianess)?;
+//!       field_c = src.gread_with::&lt;u64&gt;(offset, ctx.endianess)?;
+//!     }
+//!
+//!     // You can use type ascribition or turbofish operators, whichever you prefer.
+//!     let namelen = src.gread_with::&lt;u16&gt;(offset, ctx.endianess)? as usize;
+//!     let name: &amp;str = src.gread_with(offset, scroll::ctx::StrCtx::Length(namelen))?;
+//!
+//!     let vallen = src.gread_with::&lt;u16&gt;(offset, ctx.endianess)? as usize;
+//!     let value = &amp;src[*offset..(*offset+vallen)];
+//!
+//!     // Let&#39;s sanity check those fields, shall we?
+//!     if ! (field_a &lt; field_b &amp;&amp; field_b &lt; field_c) {
+//!       return Err(Error::BadFieldMatchup);
+//!     }
+//!
+//!     Ok((Data { field_a, field_b, field_c, name, value }, *offset))
+//!   }
+//! }
+//!
+//! // In lieu of a complex byte buffer we hearken back to the venerable &amp;[u8]; do note however
+//! // that the implementation of TryFromCtx did not specify such. In fact any type that implements
+//! // Pread can now read `Data` as it implements TryFromCtx.
+//! let bytes = b&quot;\x00\x02\x03\x04\x01\x02\x03\x04\xde\xad\xbe\xef\x00\x08UserName\x00\x02\xCA\xFE&quot;;
+//!
+//! // We define an appropiate context, and get going
+//! let contextA = Context {
+//!     fieldsize: FieldSize::U32,
+//!     endianess: Endian::Big,
+//! };
+//! let data: Data = bytes.pread_with(0, contextA).unwrap();
+//!
+//! assert_eq!(data.field_a, 0x00020304);
+//! assert_eq!(data.field_b, 0x01020304);
+//! assert_eq!(data.field_c, 0xdeadbeef);
+//! assert_eq!(data.name, &quot;UserName&quot;);
+//! assert_eq!(data.value, [0xCA, 0xFE]);
+//!
+//! // Here we have a context with a different FieldSize, changing parsing information at runtime.
+//! let contextB = Context {
+//!     fieldsize: FieldSize::U64,
+//!     endianess: Endian::Big,
+//! };
+//!
+//! // Which will of course error with a malformed input for the context
+//! let err: Result&lt;Data, Error&gt; = bytes.pread_with(0, contextB);
+//! assert!(err.is_err());
+//!
+//! let bytes_long = [0x00,0x00,0x00,0x00,0x00,0x02,0x03,0x04,0x00,0x00,0x00,0x00,0x01,0x02,0x03,
+//!                   0x04,0x00,0x00,0x00,0x00,0xde,0xad,0xbe,0xef,0x00,0x08,0x55,0x73,0x65,0x72,
+//!                   0x4e,0x61,0x6d,0x65,0x00,0x02,0xCA,0xFE];
+//!
+//! let data: Data = bytes_long.pread_with(0, contextB).unwrap();
+//!
+//! assert_eq!(data.field_a, 0x00020304);
+//! assert_eq!(data.field_b, 0x01020304);
+//! assert_eq!(data.field_c, 0xdeadbeef);
+//! assert_eq!(data.name, &quot;UserName&quot;);
+//! assert_eq!(data.value, [0xCA, 0xFE]);
+//!
+//! // Ergonomic conversion, not relevant really.
+//! use std::convert::From;
+//! impl From&lt;scroll::Error&gt; for Error {
+//!   fn from(error: scroll::Error) -&gt; Error {
+//!     Error::Scroll(error)
+//!   }
+//! }
+//! ```
 
-<span class="kw">use</span> <span class="ident">core::mem::size_of</span>;
-<span class="kw">use</span> <span class="ident">core::mem::transmute</span>;
-<span class="kw">use</span> <span class="ident">core::ptr::copy_nonoverlapping</span>;
-<span class="kw">use</span> <span class="ident">core::result</span>;
-<span class="kw">use</span> <span class="ident">core::str</span>;
+</span><span class="kw">use </span>core::mem::size_of;
+<span class="kw">use </span>core::mem::transmute;
+<span class="kw">use </span>core::ptr::copy_nonoverlapping;
+<span class="kw">use </span>core::result;
+<span class="kw">use </span>core::str;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;std&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">std::ffi</span>::{<span class="ident">CStr</span>, <span class="ident">CString</span>};
+<span class="attribute">#[cfg(feature = <span class="string">&quot;std&quot;</span>)]
+</span><span class="kw">use </span>std::ffi::{CStr, CString};
 
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::endian::Endian</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::error</span>;
+<span class="kw">use </span><span class="kw">crate</span>::endian::Endian;
+<span class="kw">use </span><span class="kw">crate</span>::error;
 
-<span class="doccomment">/// A trait for measuring how large something is; for a byte sequence, it will be its length.</span>
-<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">MeasureWith</span><span class="op">&lt;</span><span class="ident">Ctx</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// How large is `Self`, given the `ctx`?</span>
-    <span class="kw">fn</span> <span class="ident">measure_with</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">ctx</span>: <span class="kw-2">&amp;</span><span class="ident">Ctx</span>) -&gt; <span class="ident">usize</span>;
+<span class="doccomment">/// A trait for measuring how large something is; for a byte sequence, it will be its length.
+</span><span class="kw">pub trait </span>MeasureWith&lt;Ctx&gt; {
+    <span class="doccomment">/// How large is `Self`, given the `ctx`?
+    </span><span class="kw">fn </span>measure_with(<span class="kw-2">&amp;</span><span class="self">self</span>, ctx: <span class="kw-2">&amp;</span>Ctx) -&gt; usize;
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">Ctx</span><span class="op">&gt;</span> <span class="ident">MeasureWith</span><span class="op">&lt;</span><span class="ident">Ctx</span><span class="op">&gt;</span> <span class="kw">for</span> [<span class="ident">u8</span>] {
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">measure_with</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">_ctx</span>: <span class="kw-2">&amp;</span><span class="ident">Ctx</span>) -&gt; <span class="ident">usize</span> {
-        <span class="self">self</span>.<span class="ident">len</span>()
+<span class="kw">impl</span>&lt;Ctx&gt; MeasureWith&lt;Ctx&gt; <span class="kw">for </span>[u8] {
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>measure_with(<span class="kw-2">&amp;</span><span class="self">self</span>, _ctx: <span class="kw-2">&amp;</span>Ctx) -&gt; usize {
+        <span class="self">self</span>.len()
     }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">Ctx</span>, <span class="ident">T</span>: <span class="ident">AsRef</span><span class="op">&lt;</span>[<span class="ident">u8</span>]<span class="op">&gt;</span><span class="op">&gt;</span> <span class="ident">MeasureWith</span><span class="op">&lt;</span><span class="ident">Ctx</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">T</span> {
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">measure_with</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">_ctx</span>: <span class="kw-2">&amp;</span><span class="ident">Ctx</span>) -&gt; <span class="ident">usize</span> {
-        <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">len</span>()
+<span class="kw">impl</span>&lt;Ctx, T: AsRef&lt;[u8]&gt;&gt; MeasureWith&lt;Ctx&gt; <span class="kw">for </span>T {
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>measure_with(<span class="kw-2">&amp;</span><span class="self">self</span>, _ctx: <span class="kw-2">&amp;</span>Ctx) -&gt; usize {
+        <span class="self">self</span>.as_ref().len()
     }
 }
 
-<span class="doccomment">/// The parsing context for converting a byte sequence to a `&amp;str`</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// `StrCtx` specifies what byte delimiter to use, and defaults to C-style null terminators. Be careful.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">StrCtx</span> {
-    <span class="ident">Delimiter</span>(<span class="ident">u8</span>),
-    <span class="ident">DelimiterUntil</span>(<span class="ident">u8</span>, <span class="ident">usize</span>),
-    <span class="ident">Length</span>(<span class="ident">usize</span>),
+<span class="doccomment">/// The parsing context for converting a byte sequence to a `&amp;str`
+///
+/// `StrCtx` specifies what byte delimiter to use, and defaults to C-style null terminators. Be careful.
+</span><span class="attribute">#[derive(Debug, Copy, Clone)]
+</span><span class="kw">pub enum </span>StrCtx {
+    Delimiter(u8),
+    DelimiterUntil(u8, usize),
+    Length(usize),
 }
 
-<span class="doccomment">/// A C-style, null terminator based delimiter</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NULL</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">0</span>;
-<span class="doccomment">/// A space-based delimiter</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SPACE</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">0x20</span>;
-<span class="doccomment">/// A newline-based delimiter</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RET</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">0x0a</span>;
-<span class="doccomment">/// A tab-based delimiter</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">TAB</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">0x09</span>;
+<span class="doccomment">/// A C-style, null terminator based delimiter
+</span><span class="kw">pub const </span>NULL: u8 = <span class="number">0</span>;
+<span class="doccomment">/// A space-based delimiter
+</span><span class="kw">pub const </span>SPACE: u8 = <span class="number">0x20</span>;
+<span class="doccomment">/// A newline-based delimiter
+</span><span class="kw">pub const </span>RET: u8 = <span class="number">0x0a</span>;
+<span class="doccomment">/// A tab-based delimiter
+</span><span class="kw">pub const </span>TAB: u8 = <span class="number">0x09</span>;
 
-<span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">StrCtx</span> {
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">default</span>() -&gt; <span class="self">Self</span> {
-        <span class="ident">StrCtx::Delimiter</span>(<span class="ident">NULL</span>)
+<span class="kw">impl </span>Default <span class="kw">for </span>StrCtx {
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>default() -&gt; <span class="self">Self </span>{
+        StrCtx::Delimiter(NULL)
     }
 }
 
-<span class="kw">impl</span> <span class="ident">StrCtx</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">len</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">usize</span> {
-        <span class="kw">match</span> <span class="kw-2">*</span><span class="self">self</span> {
-            <span class="ident">StrCtx::Delimiter</span>(<span class="kw">_</span>) <span class="op">|</span> <span class="ident">StrCtx::DelimiterUntil</span>(<span class="kw">_</span>, <span class="kw">_</span>) =&gt; <span class="number">1</span>,
-            <span class="ident">StrCtx::Length</span>(<span class="kw">_</span>) =&gt; <span class="number">0</span>,
+<span class="kw">impl </span>StrCtx {
+    <span class="kw">pub fn </span>len(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; usize {
+        <span class="kw">match </span><span class="kw-2">*</span><span class="self">self </span>{
+            StrCtx::Delimiter(<span class="kw">_</span>) | StrCtx::DelimiterUntil(<span class="kw">_</span>, <span class="kw">_</span>) =&gt; <span class="number">1</span>,
+            StrCtx::Length(<span class="kw">_</span>) =&gt; <span class="number">0</span>,
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_empty</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="kw">if</span> <span class="kw">let</span> <span class="ident">StrCtx::Length</span>(<span class="kw">_</span>) <span class="op">=</span> <span class="kw-2">*</span><span class="self">self</span> {
-            <span class="bool-val">true</span>
-        } <span class="kw">else</span> {
-            <span class="bool-val">false</span>
-        }
+    <span class="kw">pub fn </span>is_empty(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="kw">if let </span>StrCtx::Length(<span class="kw">_</span>) = <span class="kw-2">*</span><span class="self">self </span>{
+            <span class="bool-val">true
+        </span>} <span class="kw">else </span>{
+            <span class="bool-val">false
+        </span>}
     }
 }
 
-<span class="doccomment">/// Reads `Self` from `This` using the context `Ctx`; must _not_ fail</span>
-<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">FromCtx</span><span class="op">&lt;</span><span class="ident">Ctx</span>: <span class="ident">Copy</span> <span class="op">=</span> (), <span class="ident">This</span>: <span class="question-mark">?</span><span class="ident">Sized</span> <span class="op">=</span> [<span class="ident">u8</span>]<span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">from_ctx</span>(<span class="ident">this</span>: <span class="kw-2">&amp;</span><span class="ident">This</span>, <span class="ident">ctx</span>: <span class="ident">Ctx</span>) -&gt; <span class="self">Self</span>;
+<span class="doccomment">/// Reads `Self` from `This` using the context `Ctx`; must _not_ fail
+</span><span class="kw">pub trait </span>FromCtx&lt;Ctx: Copy = (), This: <span class="question-mark">?</span>Sized = [u8]&gt; {
+    <span class="kw">fn </span>from_ctx(this: <span class="kw-2">&amp;</span>This, ctx: Ctx) -&gt; <span class="self">Self</span>;
 }
 
-<span class="doccomment">/// Tries to read `Self` from `This` using the context `Ctx`</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// # Implementing Your Own Reader</span>
-<span class="doccomment">/// If you want to implement your own reader for a type `Foo` from some kind of buffer (say</span>
-<span class="doccomment">/// `[u8]`), then you need to implement this trait</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ```rust</span>
-<span class="doccomment">/// use scroll::{self, ctx, Pread};</span>
-<span class="doccomment">/// #[derive(Debug, PartialEq, Eq)]</span>
-<span class="doccomment">/// pub struct Foo(u16);</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// impl&lt;&#39;a&gt; ctx::TryFromCtx&lt;&#39;a, scroll::Endian&gt; for Foo {</span>
-<span class="doccomment">///      type Error = scroll::Error;</span>
-<span class="doccomment">///      fn try_from_ctx(this: &amp;&#39;a [u8], le: scroll::Endian) -&gt; Result&lt;(Self, usize), Self::Error&gt; {</span>
-<span class="doccomment">///          if this.len() &lt; 2 { return Err((scroll::Error::Custom(&quot;whatever&quot;.to_string())).into()) }</span>
-<span class="doccomment">///          let n = this.pread_with(0, le)?;</span>
-<span class="doccomment">///          Ok((Foo(n), 2))</span>
-<span class="doccomment">///      }</span>
-<span class="doccomment">/// }</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// let bytes: [u8; 4] = [0xde, 0xad, 0, 0];</span>
-<span class="doccomment">/// let foo = bytes.pread_with::&lt;Foo&gt;(0, scroll::LE).unwrap();</span>
-<span class="doccomment">/// assert_eq!(Foo(0xadde), foo);</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// let foo2 = bytes.pread_with::&lt;Foo&gt;(0, scroll::BE).unwrap();</span>
-<span class="doccomment">/// assert_eq!(Foo(0xdeadu16), foo2);</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// # Advanced: Using Your Own Error in `TryFromCtx`</span>
-<span class="doccomment">/// ```rust</span>
-<span class="doccomment">///  use scroll::{self, ctx, Pread};</span>
-<span class="doccomment">///  use std::error;</span>
-<span class="doccomment">///  use std::fmt::{self, Display};</span>
-<span class="doccomment">///  // make some kind of normal error which also can transformed from a scroll error</span>
-<span class="doccomment">///  #[derive(Debug)]</span>
-<span class="doccomment">///  pub struct ExternalError {}</span>
-<span class="doccomment">///</span>
-<span class="doccomment">///  impl Display for ExternalError {</span>
-<span class="doccomment">///      fn fmt(&amp;self, fmt: &amp;mut fmt::Formatter) -&gt; fmt::Result {</span>
-<span class="doccomment">///          write!(fmt, &quot;ExternalError&quot;)</span>
-<span class="doccomment">///      }</span>
-<span class="doccomment">///  }</span>
-<span class="doccomment">///</span>
-<span class="doccomment">///  impl error::Error for ExternalError {</span>
-<span class="doccomment">///      fn description(&amp;self) -&gt; &amp;str {</span>
-<span class="doccomment">///          &quot;ExternalError&quot;</span>
-<span class="doccomment">///      }</span>
-<span class="doccomment">///      fn cause(&amp;self) -&gt; Option&lt;&amp;dyn error::Error&gt; { None}</span>
-<span class="doccomment">///  }</span>
-<span class="doccomment">///</span>
-<span class="doccomment">///  impl From&lt;scroll::Error&gt; for ExternalError {</span>
-<span class="doccomment">///      fn from(err: scroll::Error) -&gt; Self {</span>
-<span class="doccomment">///          match err {</span>
-<span class="doccomment">///              _ =&gt; ExternalError{},</span>
-<span class="doccomment">///          }</span>
-<span class="doccomment">///      }</span>
-<span class="doccomment">///  }</span>
-<span class="doccomment">///  #[derive(Debug, PartialEq, Eq)]</span>
-<span class="doccomment">///  pub struct Foo(u16);</span>
-<span class="doccomment">///</span>
-<span class="doccomment">///  impl&lt;&#39;a&gt; ctx::TryFromCtx&lt;&#39;a, scroll::Endian&gt; for Foo {</span>
-<span class="doccomment">///      type Error = ExternalError;</span>
-<span class="doccomment">///      fn try_from_ctx(this: &amp;&#39;a [u8], le: scroll::Endian) -&gt; Result&lt;(Self, usize), Self::Error&gt; {</span>
-<span class="doccomment">///          if this.len() &lt;= 2 { return Err((ExternalError {}).into()) }</span>
-<span class="doccomment">///          let offset = &amp;mut 0;</span>
-<span class="doccomment">///          let n = this.gread_with(offset, le)?;</span>
-<span class="doccomment">///          Ok((Foo(n), *offset))</span>
-<span class="doccomment">///      }</span>
-<span class="doccomment">///  }</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// let bytes: [u8; 4] = [0xde, 0xad, 0, 0];</span>
-<span class="doccomment">/// let foo: Result&lt;Foo, ExternalError&gt; = bytes.pread(0);</span>
-<span class="doccomment">/// ```</span>
-<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">TryFromCtx</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">Ctx</span>: <span class="ident">Copy</span> <span class="op">=</span> (), <span class="ident">This</span>: <span class="question-mark">?</span><span class="ident">Sized</span> <span class="op">=</span> [<span class="ident">u8</span>]<span class="op">&gt;</span>
-<span class="kw">where</span>
-    <span class="self">Self</span>: <span class="lifetime">&#39;a</span> <span class="op">+</span> <span class="ident">Sized</span>,
+<span class="doccomment">/// Tries to read `Self` from `This` using the context `Ctx`
+///
+/// # Implementing Your Own Reader
+/// If you want to implement your own reader for a type `Foo` from some kind of buffer (say
+/// `[u8]`), then you need to implement this trait
+///
+/// ```rust
+/// use scroll::{self, ctx, Pread};
+/// #[derive(Debug, PartialEq, Eq)]
+/// pub struct Foo(u16);
+///
+/// impl&lt;&#39;a&gt; ctx::TryFromCtx&lt;&#39;a, scroll::Endian&gt; for Foo {
+///      type Error = scroll::Error;
+///      fn try_from_ctx(this: &amp;&#39;a [u8], le: scroll::Endian) -&gt; Result&lt;(Self, usize), Self::Error&gt; {
+///          if this.len() &lt; 2 { return Err((scroll::Error::Custom(&quot;whatever&quot;.to_string())).into()) }
+///          let n = this.pread_with(0, le)?;
+///          Ok((Foo(n), 2))
+///      }
+/// }
+///
+/// let bytes: [u8; 4] = [0xde, 0xad, 0, 0];
+/// let foo = bytes.pread_with::&lt;Foo&gt;(0, scroll::LE).unwrap();
+/// assert_eq!(Foo(0xadde), foo);
+///
+/// let foo2 = bytes.pread_with::&lt;Foo&gt;(0, scroll::BE).unwrap();
+/// assert_eq!(Foo(0xdeadu16), foo2);
+/// ```
+///
+/// # Advanced: Using Your Own Error in `TryFromCtx`
+/// ```rust
+///  use scroll::{self, ctx, Pread};
+///  use std::error;
+///  use std::fmt::{self, Display};
+///  // make some kind of normal error which also can transformed from a scroll error
+///  #[derive(Debug)]
+///  pub struct ExternalError {}
+///
+///  impl Display for ExternalError {
+///      fn fmt(&amp;self, fmt: &amp;mut fmt::Formatter) -&gt; fmt::Result {
+///          write!(fmt, &quot;ExternalError&quot;)
+///      }
+///  }
+///
+///  impl error::Error for ExternalError {
+///      fn description(&amp;self) -&gt; &amp;str {
+///          &quot;ExternalError&quot;
+///      }
+///      fn cause(&amp;self) -&gt; Option&lt;&amp;dyn error::Error&gt; { None}
+///  }
+///
+///  impl From&lt;scroll::Error&gt; for ExternalError {
+///      fn from(err: scroll::Error) -&gt; Self {
+///          match err {
+///              _ =&gt; ExternalError{},
+///          }
+///      }
+///  }
+///  #[derive(Debug, PartialEq, Eq)]
+///  pub struct Foo(u16);
+///
+///  impl&lt;&#39;a&gt; ctx::TryFromCtx&lt;&#39;a, scroll::Endian&gt; for Foo {
+///      type Error = ExternalError;
+///      fn try_from_ctx(this: &amp;&#39;a [u8], le: scroll::Endian) -&gt; Result&lt;(Self, usize), Self::Error&gt; {
+///          if this.len() &lt;= 2 { return Err((ExternalError {}).into()) }
+///          let offset = &amp;mut 0;
+///          let n = this.gread_with(offset, le)?;
+///          Ok((Foo(n), *offset))
+///      }
+///  }
+///
+/// let bytes: [u8; 4] = [0xde, 0xad, 0, 0];
+/// let foo: Result&lt;Foo, ExternalError&gt; = bytes.pread(0);
+/// ```
+</span><span class="kw">pub trait </span>TryFromCtx&lt;<span class="lifetime">&#39;a</span>, Ctx: Copy = (), This: <span class="question-mark">?</span>Sized = [u8]&gt;
+<span class="kw">where
+    </span><span class="self">Self</span>: <span class="lifetime">&#39;a </span>+ Sized,
 {
-    <span class="kw">type</span> <span class="ident">Error</span>;
-    <span class="kw">fn</span> <span class="ident">try_from_ctx</span>(<span class="ident">from</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">This</span>, <span class="ident">ctx</span>: <span class="ident">Ctx</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(<span class="self">Self</span>, <span class="ident">usize</span>), <span class="ident"><span class="self">Self</span>::Error</span><span class="op">&gt;</span>;
+    <span class="kw">type </span>Error;
+    <span class="kw">fn </span>try_from_ctx(from: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>This, ctx: Ctx) -&gt; <span class="prelude-ty">Result</span>&lt;(<span class="self">Self</span>, usize), <span class="self">Self</span>::Error&gt;;
 }
 
-<span class="doccomment">/// Writes `Self` into `This` using the context `Ctx`</span>
-<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">IntoCtx</span><span class="op">&lt;</span><span class="ident">Ctx</span>: <span class="ident">Copy</span> <span class="op">=</span> (), <span class="ident">This</span>: <span class="question-mark">?</span><span class="ident">Sized</span> <span class="op">=</span> [<span class="ident">u8</span>]<span class="op">&gt;</span>: <span class="ident">Sized</span> {
-    <span class="kw">fn</span> <span class="ident">into_ctx</span>(<span class="self">self</span>, <span class="kw">_</span>: <span class="kw-2">&amp;mut</span> <span class="ident">This</span>, <span class="ident">ctx</span>: <span class="ident">Ctx</span>);
+<span class="doccomment">/// Writes `Self` into `This` using the context `Ctx`
+</span><span class="kw">pub trait </span>IntoCtx&lt;Ctx: Copy = (), This: <span class="question-mark">?</span>Sized = [u8]&gt;: Sized {
+    <span class="kw">fn </span>into_ctx(<span class="self">self</span>, <span class="kw">_</span>: <span class="kw-2">&amp;mut </span>This, ctx: Ctx);
 }
 
-<span class="doccomment">/// Tries to write `Self` into `This` using the context `Ctx`</span>
-<span class="doccomment">/// To implement writing into an arbitrary byte buffer, implement `TryIntoCtx`</span>
-<span class="doccomment">/// # Example</span>
-<span class="doccomment">/// ```rust</span>
-<span class="doccomment">/// use scroll::{self, ctx, LE, Endian, Pwrite};</span>
-<span class="doccomment">/// #[derive(Debug, PartialEq, Eq)]</span>
-<span class="doccomment">/// pub struct Foo(u16);</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// // this will use the default `DefaultCtx = scroll::Endian`</span>
-<span class="doccomment">/// impl ctx::TryIntoCtx&lt;Endian&gt; for Foo {</span>
-<span class="doccomment">///     // you can use your own error here too, but you will then need to specify it in fn generic parameters</span>
-<span class="doccomment">///     type Error = scroll::Error;</span>
-<span class="doccomment">///     // you can write using your own context type, see `leb128.rs`</span>
-<span class="doccomment">///     fn try_into_ctx(self, this: &amp;mut [u8], le: Endian) -&gt; Result&lt;usize, Self::Error&gt; {</span>
-<span class="doccomment">///         if this.len() &lt; 2 { return Err((scroll::Error::Custom(&quot;whatever&quot;.to_string())).into()) }</span>
-<span class="doccomment">///         this.pwrite_with(self.0, 0, le)?;</span>
-<span class="doccomment">///         Ok(2)</span>
-<span class="doccomment">///     }</span>
-<span class="doccomment">/// }</span>
-<span class="doccomment">/// // now we can write a `Foo` into some buffer (in this case, a byte buffer, because that&#39;s what we implemented it for above)</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// let mut bytes: [u8; 4] = [0, 0, 0, 0];</span>
-<span class="doccomment">/// bytes.pwrite_with(Foo(0x7f), 1, LE).unwrap();</span>
-<span class="doccomment">/// ```</span>
-<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">TryIntoCtx</span><span class="op">&lt;</span><span class="ident">Ctx</span>: <span class="ident">Copy</span> <span class="op">=</span> (), <span class="ident">This</span>: <span class="question-mark">?</span><span class="ident">Sized</span> <span class="op">=</span> [<span class="ident">u8</span>]<span class="op">&gt;</span>: <span class="ident">Sized</span> {
-    <span class="kw">type</span> <span class="ident">Error</span>;
-    <span class="kw">fn</span> <span class="ident">try_into_ctx</span>(<span class="self">self</span>, <span class="kw">_</span>: <span class="kw-2">&amp;mut</span> <span class="ident">This</span>, <span class="ident">ctx</span>: <span class="ident">Ctx</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">usize</span>, <span class="ident"><span class="self">Self</span>::Error</span><span class="op">&gt;</span>;
+<span class="doccomment">/// Tries to write `Self` into `This` using the context `Ctx`
+/// To implement writing into an arbitrary byte buffer, implement `TryIntoCtx`
+/// # Example
+/// ```rust
+/// use scroll::{self, ctx, LE, Endian, Pwrite};
+/// #[derive(Debug, PartialEq, Eq)]
+/// pub struct Foo(u16);
+///
+/// // this will use the default `DefaultCtx = scroll::Endian`
+/// impl ctx::TryIntoCtx&lt;Endian&gt; for Foo {
+///     // you can use your own error here too, but you will then need to specify it in fn generic parameters
+///     type Error = scroll::Error;
+///     // you can write using your own context type, see `leb128.rs`
+///     fn try_into_ctx(self, this: &amp;mut [u8], le: Endian) -&gt; Result&lt;usize, Self::Error&gt; {
+///         if this.len() &lt; 2 { return Err((scroll::Error::Custom(&quot;whatever&quot;.to_string())).into()) }
+///         this.pwrite_with(self.0, 0, le)?;
+///         Ok(2)
+///     }
+/// }
+/// // now we can write a `Foo` into some buffer (in this case, a byte buffer, because that&#39;s what we implemented it for above)
+///
+/// let mut bytes: [u8; 4] = [0, 0, 0, 0];
+/// bytes.pwrite_with(Foo(0x7f), 1, LE).unwrap();
+/// ```
+</span><span class="kw">pub trait </span>TryIntoCtx&lt;Ctx: Copy = (), This: <span class="question-mark">?</span>Sized = [u8]&gt;: Sized {
+    <span class="kw">type </span>Error;
+    <span class="kw">fn </span>try_into_ctx(<span class="self">self</span>, <span class="kw">_</span>: <span class="kw-2">&amp;mut </span>This, ctx: Ctx) -&gt; <span class="prelude-ty">Result</span>&lt;usize, <span class="self">Self</span>::Error&gt;;
 }
 
-<span class="doccomment">/// Gets the size of `Self` with a `Ctx`, and in `Self::Units`. Implementors can then call `Gread` related functions</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// The rationale behind this trait is to:</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// 1. Prevent `gread` from being used, and the offset being modified based on simply the sizeof the value, which can be a misnomer, e.g., for Leb128, etc.</span>
-<span class="doccomment">/// 2. Allow a context based size, which is useful for 32/64 bit variants for various containers, etc.</span>
-<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">SizeWith</span><span class="op">&lt;</span><span class="ident">Ctx</span> <span class="op">=</span> ()<span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">size_with</span>(<span class="ident">ctx</span>: <span class="kw-2">&amp;</span><span class="ident">Ctx</span>) -&gt; <span class="ident">usize</span>;
+<span class="doccomment">/// Gets the size of `Self` with a `Ctx`, and in `Self::Units`. Implementors can then call `Gread` related functions
+///
+/// The rationale behind this trait is to:
+///
+/// 1. Prevent `gread` from being used, and the offset being modified based on simply the sizeof the value, which can be a misnomer, e.g., for Leb128, etc.
+/// 2. Allow a context based size, which is useful for 32/64 bit variants for various containers, etc.
+</span><span class="kw">pub trait </span>SizeWith&lt;Ctx = ()&gt; {
+    <span class="kw">fn </span>size_with(ctx: <span class="kw-2">&amp;</span>Ctx) -&gt; usize;
 }
 
-<span class="attribute">#[<span class="ident">rustfmt::skip</span>]</span>
-<span class="macro">macro_rules!</span> <span class="ident">signed_to_unsigned</span> {
-    (<span class="ident">i8</span>) =&gt;  {<span class="ident">u8</span> };
-    (<span class="ident">u8</span>) =&gt;  {<span class="ident">u8</span> };
-    (<span class="ident">i16</span>) =&gt; {<span class="ident">u16</span>};
-    (<span class="ident">u16</span>) =&gt; {<span class="ident">u16</span>};
-    (<span class="ident">i32</span>) =&gt; {<span class="ident">u32</span>};
-    (<span class="ident">u32</span>) =&gt; {<span class="ident">u32</span>};
-    (<span class="ident">i64</span>) =&gt; {<span class="ident">u64</span>};
-    (<span class="ident">u64</span>) =&gt; {<span class="ident">u64</span>};
-    (<span class="ident">i128</span>) =&gt; {<span class="ident">u128</span>};
-    (<span class="ident">u128</span>) =&gt; {<span class="ident">u128</span>};
-    (<span class="ident">f32</span>) =&gt; {<span class="ident">u32</span>};
-    (<span class="ident">f64</span>) =&gt; {<span class="ident">u64</span>};
+<span class="attribute">#[rustfmt::skip]
+</span><span class="macro">macro_rules! </span>signed_to_unsigned {
+    (i8) =&gt;  {u8 };
+    (u8) =&gt;  {u8 };
+    (i16) =&gt; {u16};
+    (u16) =&gt; {u16};
+    (i32) =&gt; {u32};
+    (u32) =&gt; {u32};
+    (i64) =&gt; {u64};
+    (u64) =&gt; {u64};
+    (i128) =&gt; {u128};
+    (u128) =&gt; {u128};
+    (f32) =&gt; {u32};
+    (f64) =&gt; {u64};
 }
 
-<span class="macro">macro_rules!</span> <span class="ident">write_into</span> {
-    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">typ</span>:<span class="ident">ty</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">size</span>:<span class="ident">expr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">n</span>:<span class="ident">expr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">dst</span>:<span class="ident">expr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">endian</span>:<span class="ident">expr</span>) =&gt; {{
-        <span class="kw">unsafe</span> {
-            <span class="macro">assert!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">dst</span>.<span class="ident">len</span>() <span class="op">&gt;</span><span class="op">=</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">size</span>);
-            <span class="kw">let</span> <span class="ident">bytes</span> <span class="op">=</span> <span class="ident">transmute</span>::<span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">typ</span>, [<span class="ident">u8</span>; <span class="macro-nonterminal">$</span><span class="macro-nonterminal">size</span>]<span class="op">&gt;</span>(<span class="kw">if</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">endian</span>.<span class="ident">is_little</span>() {
-                <span class="macro-nonterminal">$</span><span class="macro-nonterminal">n</span>.<span class="ident">to_le</span>()
-            } <span class="kw">else</span> {
-                <span class="macro-nonterminal">$</span><span class="macro-nonterminal">n</span>.<span class="ident">to_be</span>()
+<span class="macro">macro_rules! </span>write_into {
+    (<span class="macro-nonterminal">$typ</span>:ty, <span class="macro-nonterminal">$size</span>:expr, <span class="macro-nonterminal">$n</span>:expr, <span class="macro-nonterminal">$dst</span>:expr, <span class="macro-nonterminal">$endian</span>:expr) =&gt; {{
+        <span class="kw">unsafe </span>{
+            <span class="macro">assert!</span>(<span class="macro-nonterminal">$dst</span>.len() &gt;= <span class="macro-nonterminal">$size</span>);
+            <span class="kw">let </span>bytes = transmute::&lt;<span class="macro-nonterminal">$typ</span>, [u8; <span class="macro-nonterminal">$size</span>]&gt;(<span class="kw">if </span><span class="macro-nonterminal">$endian</span>.is_little() {
+                <span class="macro-nonterminal">$n</span>.to_le()
+            } <span class="kw">else </span>{
+                <span class="macro-nonterminal">$n</span>.to_be()
             });
-            <span class="ident">copy_nonoverlapping</span>((<span class="kw-2">&amp;</span><span class="ident">bytes</span>).<span class="ident">as_ptr</span>(), <span class="macro-nonterminal">$</span><span class="macro-nonterminal">dst</span>.<span class="ident">as_mut_ptr</span>(), <span class="macro-nonterminal">$</span><span class="macro-nonterminal">size</span>);
+            copy_nonoverlapping((<span class="kw-2">&amp;</span>bytes).as_ptr(), <span class="macro-nonterminal">$dst</span>.as_mut_ptr(), <span class="macro-nonterminal">$size</span>);
         }
     }};
 }
 
-<span class="macro">macro_rules!</span> <span class="ident">into_ctx_impl</span> {
-    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">typ</span>:<span class="ident">tt</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">size</span>:<span class="ident">expr</span>) =&gt; {
-        <span class="kw">impl</span> <span class="ident">IntoCtx</span><span class="op">&lt;</span><span class="ident">Endian</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">typ</span> {
-            <span class="attribute">#[<span class="ident">inline</span>]</span>
-            <span class="kw">fn</span> <span class="ident">into_ctx</span>(<span class="self">self</span>, <span class="ident">dst</span>: <span class="kw-2">&amp;mut</span> [<span class="ident">u8</span>], <span class="ident">le</span>: <span class="ident">Endian</span>) {
-                <span class="macro">assert!</span>(<span class="ident">dst</span>.<span class="ident">len</span>() <span class="op">&gt;</span><span class="op">=</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">size</span>);
-                <span class="macro">write_into!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">typ</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">size</span>, <span class="self">self</span>, <span class="ident">dst</span>, <span class="ident">le</span>);
+<span class="macro">macro_rules! </span>into_ctx_impl {
+    (<span class="macro-nonterminal">$typ</span>:tt, <span class="macro-nonterminal">$size</span>:expr) =&gt; {
+        <span class="kw">impl </span>IntoCtx&lt;Endian&gt; <span class="kw">for </span><span class="macro-nonterminal">$typ </span>{
+            <span class="attribute">#[inline]
+            </span><span class="kw">fn </span>into_ctx(<span class="self">self</span>, dst: <span class="kw-2">&amp;mut </span>[u8], le: Endian) {
+                <span class="macro">assert!</span>(dst.len() &gt;= <span class="macro-nonterminal">$size</span>);
+                <span class="macro">write_into!</span>(<span class="macro-nonterminal">$typ</span>, <span class="macro-nonterminal">$size</span>, <span class="self">self</span>, dst, le);
             }
         }
-        <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">IntoCtx</span><span class="op">&lt;</span><span class="ident">Endian</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">typ</span> {
-            <span class="attribute">#[<span class="ident">inline</span>]</span>
-            <span class="kw">fn</span> <span class="ident">into_ctx</span>(<span class="self">self</span>, <span class="ident">dst</span>: <span class="kw-2">&amp;mut</span> [<span class="ident">u8</span>], <span class="ident">le</span>: <span class="ident">Endian</span>) {
-                (<span class="kw-2">*</span><span class="self">self</span>).<span class="ident">into_ctx</span>(<span class="ident">dst</span>, <span class="ident">le</span>)
+        <span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; IntoCtx&lt;Endian&gt; <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="macro-nonterminal">$typ </span>{
+            <span class="attribute">#[inline]
+            </span><span class="kw">fn </span>into_ctx(<span class="self">self</span>, dst: <span class="kw-2">&amp;mut </span>[u8], le: Endian) {
+                (<span class="kw-2">*</span><span class="self">self</span>).into_ctx(dst, le)
             }
         }
-        <span class="kw">impl</span> <span class="ident">TryIntoCtx</span><span class="op">&lt;</span><span class="ident">Endian</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">typ</span>
-        <span class="kw">where</span>
-            <span class="macro-nonterminal">$</span><span class="macro-nonterminal">typ</span>: <span class="ident">IntoCtx</span><span class="op">&lt;</span><span class="ident">Endian</span><span class="op">&gt;</span>,
+        <span class="kw">impl </span>TryIntoCtx&lt;Endian&gt; <span class="kw">for </span><span class="macro-nonterminal">$typ
+        </span><span class="kw">where
+            </span><span class="macro-nonterminal">$typ</span>: IntoCtx&lt;Endian&gt;,
         {
-            <span class="kw">type</span> <span class="ident">Error</span> <span class="op">=</span> <span class="ident">error::Error</span>;
-            <span class="attribute">#[<span class="ident">inline</span>]</span>
-            <span class="kw">fn</span> <span class="ident">try_into_ctx</span>(<span class="self">self</span>, <span class="ident">dst</span>: <span class="kw-2">&amp;mut</span> [<span class="ident">u8</span>], <span class="ident">le</span>: <span class="ident">Endian</span>) -&gt; <span class="ident">error::Result</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span> {
-                <span class="kw">if</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">size</span> <span class="op">&gt;</span> <span class="ident">dst</span>.<span class="ident">len</span>() {
-                    <span class="prelude-val">Err</span>(<span class="ident">error::Error::TooBig</span> {
-                        <span class="ident">size</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">size</span>,
-                        <span class="ident">len</span>: <span class="ident">dst</span>.<span class="ident">len</span>(),
+            <span class="kw">type </span>Error = error::Error;
+            <span class="attribute">#[inline]
+            </span><span class="kw">fn </span>try_into_ctx(<span class="self">self</span>, dst: <span class="kw-2">&amp;mut </span>[u8], le: Endian) -&gt; error::Result&lt;usize&gt; {
+                <span class="kw">if </span><span class="macro-nonterminal">$size </span>&gt; dst.len() {
+                    <span class="prelude-val">Err</span>(error::Error::TooBig {
+                        size: <span class="macro-nonterminal">$size</span>,
+                        len: dst.len(),
                     })
-                } <span class="kw">else</span> {
-                    <span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">typ</span> <span class="kw">as</span> <span class="ident">IntoCtx</span><span class="op">&lt;</span><span class="ident">Endian</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="ident">::into_ctx</span>(<span class="self">self</span>, <span class="ident">dst</span>, <span class="ident">le</span>);
-                    <span class="prelude-val">Ok</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">size</span>)
+                } <span class="kw">else </span>{
+                    &lt;<span class="macro-nonterminal">$typ </span><span class="kw">as </span>IntoCtx&lt;Endian&gt;&gt;::into_ctx(<span class="self">self</span>, dst, le);
+                    <span class="prelude-val">Ok</span>(<span class="macro-nonterminal">$size</span>)
                 }
             }
         }
-        <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">TryIntoCtx</span><span class="op">&lt;</span><span class="ident">Endian</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">typ</span> {
-            <span class="kw">type</span> <span class="ident">Error</span> <span class="op">=</span> <span class="ident">error::Error</span>;
-            <span class="attribute">#[<span class="ident">inline</span>]</span>
-            <span class="kw">fn</span> <span class="ident">try_into_ctx</span>(<span class="self">self</span>, <span class="ident">dst</span>: <span class="kw-2">&amp;mut</span> [<span class="ident">u8</span>], <span class="ident">le</span>: <span class="ident">Endian</span>) -&gt; <span class="ident">error::Result</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span> {
-                (<span class="kw-2">*</span><span class="self">self</span>).<span class="ident">try_into_ctx</span>(<span class="ident">dst</span>, <span class="ident">le</span>)
+        <span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; TryIntoCtx&lt;Endian&gt; <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="macro-nonterminal">$typ </span>{
+            <span class="kw">type </span>Error = error::Error;
+            <span class="attribute">#[inline]
+            </span><span class="kw">fn </span>try_into_ctx(<span class="self">self</span>, dst: <span class="kw-2">&amp;mut </span>[u8], le: Endian) -&gt; error::Result&lt;usize&gt; {
+                (<span class="kw-2">*</span><span class="self">self</span>).try_into_ctx(dst, le)
             }
         }
     };
 }
 
-<span class="macro">macro_rules!</span> <span class="ident">from_ctx_impl</span> {
-    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">typ</span>:<span class="ident">tt</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">size</span>:<span class="ident">expr</span>) =&gt; {
-        <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">FromCtx</span><span class="op">&lt;</span><span class="ident">Endian</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">typ</span> {
-            <span class="attribute">#[<span class="ident">inline</span>]</span>
-            <span class="kw">fn</span> <span class="ident">from_ctx</span>(<span class="ident">src</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>], <span class="ident">le</span>: <span class="ident">Endian</span>) -&gt; <span class="self">Self</span> {
-                <span class="macro">assert!</span>(<span class="ident">src</span>.<span class="ident">len</span>() <span class="op">&gt;</span><span class="op">=</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">size</span>);
-                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">data</span>: <span class="macro">signed_to_unsigned!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">typ</span>) <span class="op">=</span> <span class="number">0</span>;
-                <span class="kw">unsafe</span> {
-                    <span class="ident">copy_nonoverlapping</span>(
-                        <span class="ident">src</span>.<span class="ident">as_ptr</span>(),
-                        <span class="kw-2">&amp;mut</span> <span class="ident">data</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="macro">signed_to_unsigned!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">typ</span>) <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">u8</span>,
-                        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">size</span>,
+<span class="macro">macro_rules! </span>from_ctx_impl {
+    (<span class="macro-nonterminal">$typ</span>:tt, <span class="macro-nonterminal">$size</span>:expr) =&gt; {
+        <span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; FromCtx&lt;Endian&gt; <span class="kw">for </span><span class="macro-nonterminal">$typ </span>{
+            <span class="attribute">#[inline]
+            </span><span class="kw">fn </span>from_ctx(src: <span class="kw-2">&amp;</span>[u8], le: Endian) -&gt; <span class="self">Self </span>{
+                <span class="macro">assert!</span>(src.len() &gt;= <span class="macro-nonterminal">$size</span>);
+                <span class="kw">let </span><span class="kw-2">mut </span>data: <span class="macro">signed_to_unsigned!</span>(<span class="macro-nonterminal">$typ</span>) = <span class="number">0</span>;
+                <span class="kw">unsafe </span>{
+                    copy_nonoverlapping(
+                        src.as_ptr(),
+                        <span class="kw-2">&amp;mut </span>data <span class="kw">as </span><span class="kw-2">*mut </span><span class="macro">signed_to_unsigned!</span>(<span class="macro-nonterminal">$typ</span>) <span class="kw">as </span><span class="kw-2">*mut </span>u8,
+                        <span class="macro-nonterminal">$size</span>,
                     );
                 }
-                (<span class="kw">if</span> <span class="ident">le</span>.<span class="ident">is_little</span>() {
-                    <span class="ident">data</span>.<span class="ident">to_le</span>()
-                } <span class="kw">else</span> {
-                    <span class="ident">data</span>.<span class="ident">to_be</span>()
-                }) <span class="kw">as</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">typ</span>
-            }
+                (<span class="kw">if </span>le.is_little() {
+                    data.to_le()
+                } <span class="kw">else </span>{
+                    data.to_be()
+                }) <span class="kw">as </span><span class="macro-nonterminal">$typ
+            </span>}
         }
 
-        <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">TryFromCtx</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">Endian</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">typ</span>
-        <span class="kw">where</span>
-            <span class="macro-nonterminal">$</span><span class="macro-nonterminal">typ</span>: <span class="ident">FromCtx</span><span class="op">&lt;</span><span class="ident">Endian</span><span class="op">&gt;</span>,
+        <span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; TryFromCtx&lt;<span class="lifetime">&#39;a</span>, Endian&gt; <span class="kw">for </span><span class="macro-nonterminal">$typ
+        </span><span class="kw">where
+            </span><span class="macro-nonterminal">$typ</span>: FromCtx&lt;Endian&gt;,
         {
-            <span class="kw">type</span> <span class="ident">Error</span> <span class="op">=</span> <span class="ident">error::Error</span>;
-            <span class="attribute">#[<span class="ident">inline</span>]</span>
-            <span class="kw">fn</span> <span class="ident">try_from_ctx</span>(
-                <span class="ident">src</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
-                <span class="ident">le</span>: <span class="ident">Endian</span>,
-            ) -&gt; <span class="ident">result::Result</span><span class="op">&lt;</span>(<span class="self">Self</span>, <span class="ident">usize</span>), <span class="ident"><span class="self">Self</span>::Error</span><span class="op">&gt;</span> {
-                <span class="kw">if</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">size</span> <span class="op">&gt;</span> <span class="ident">src</span>.<span class="ident">len</span>() {
-                    <span class="prelude-val">Err</span>(<span class="ident">error::Error::TooBig</span> {
-                        <span class="ident">size</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">size</span>,
-                        <span class="ident">len</span>: <span class="ident">src</span>.<span class="ident">len</span>(),
+            <span class="kw">type </span>Error = error::Error;
+            <span class="attribute">#[inline]
+            </span><span class="kw">fn </span>try_from_ctx(
+                src: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8],
+                le: Endian,
+            ) -&gt; result::Result&lt;(<span class="self">Self</span>, usize), <span class="self">Self</span>::Error&gt; {
+                <span class="kw">if </span><span class="macro-nonterminal">$size </span>&gt; src.len() {
+                    <span class="prelude-val">Err</span>(error::Error::TooBig {
+                        size: <span class="macro-nonterminal">$size</span>,
+                        len: src.len(),
                     })
-                } <span class="kw">else</span> {
-                    <span class="prelude-val">Ok</span>((<span class="ident">FromCtx::from_ctx</span>(<span class="kw-2">&amp;</span><span class="ident">src</span>, <span class="ident">le</span>), <span class="macro-nonterminal">$</span><span class="macro-nonterminal">size</span>))
+                } <span class="kw">else </span>{
+                    <span class="prelude-val">Ok</span>((FromCtx::from_ctx(<span class="kw-2">&amp;</span>src, le), <span class="macro-nonterminal">$size</span>))
                 }
             }
         }
-        <span class="comment">// as ref</span>
-        <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">T</span><span class="op">&gt;</span> <span class="ident">FromCtx</span><span class="op">&lt;</span><span class="ident">Endian</span>, <span class="ident">T</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">typ</span>
-        <span class="kw">where</span>
-            <span class="ident">T</span>: <span class="ident">AsRef</span><span class="op">&lt;</span>[<span class="ident">u8</span>]<span class="op">&gt;</span>,
+        <span class="comment">// as ref
+        </span><span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>, T&gt; FromCtx&lt;Endian, T&gt; <span class="kw">for </span><span class="macro-nonterminal">$typ
+        </span><span class="kw">where
+            </span>T: AsRef&lt;[u8]&gt;,
         {
-            <span class="attribute">#[<span class="ident">inline</span>]</span>
-            <span class="kw">fn</span> <span class="ident">from_ctx</span>(<span class="ident">src</span>: <span class="kw-2">&amp;</span><span class="ident">T</span>, <span class="ident">le</span>: <span class="ident">Endian</span>) -&gt; <span class="self">Self</span> {
-                <span class="kw">let</span> <span class="ident">src</span> <span class="op">=</span> <span class="ident">src</span>.<span class="ident">as_ref</span>();
-                <span class="macro">assert!</span>(<span class="ident">src</span>.<span class="ident">len</span>() <span class="op">&gt;</span><span class="op">=</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">size</span>);
-                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">data</span>: <span class="macro">signed_to_unsigned!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">typ</span>) <span class="op">=</span> <span class="number">0</span>;
-                <span class="kw">unsafe</span> {
-                    <span class="ident">copy_nonoverlapping</span>(
-                        <span class="ident">src</span>.<span class="ident">as_ptr</span>(),
-                        <span class="kw-2">&amp;mut</span> <span class="ident">data</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="macro">signed_to_unsigned!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">typ</span>) <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">u8</span>,
-                        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">size</span>,
+            <span class="attribute">#[inline]
+            </span><span class="kw">fn </span>from_ctx(src: <span class="kw-2">&amp;</span>T, le: Endian) -&gt; <span class="self">Self </span>{
+                <span class="kw">let </span>src = src.as_ref();
+                <span class="macro">assert!</span>(src.len() &gt;= <span class="macro-nonterminal">$size</span>);
+                <span class="kw">let </span><span class="kw-2">mut </span>data: <span class="macro">signed_to_unsigned!</span>(<span class="macro-nonterminal">$typ</span>) = <span class="number">0</span>;
+                <span class="kw">unsafe </span>{
+                    copy_nonoverlapping(
+                        src.as_ptr(),
+                        <span class="kw-2">&amp;mut </span>data <span class="kw">as </span><span class="kw-2">*mut </span><span class="macro">signed_to_unsigned!</span>(<span class="macro-nonterminal">$typ</span>) <span class="kw">as </span><span class="kw-2">*mut </span>u8,
+                        <span class="macro-nonterminal">$size</span>,
                     );
                 }
-                (<span class="kw">if</span> <span class="ident">le</span>.<span class="ident">is_little</span>() {
-                    <span class="ident">data</span>.<span class="ident">to_le</span>()
-                } <span class="kw">else</span> {
-                    <span class="ident">data</span>.<span class="ident">to_be</span>()
-                }) <span class="kw">as</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">typ</span>
-            }
+                (<span class="kw">if </span>le.is_little() {
+                    data.to_le()
+                } <span class="kw">else </span>{
+                    data.to_be()
+                }) <span class="kw">as </span><span class="macro-nonterminal">$typ
+            </span>}
         }
 
-        <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">T</span><span class="op">&gt;</span> <span class="ident">TryFromCtx</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">Endian</span>, <span class="ident">T</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">typ</span>
-        <span class="kw">where</span>
-            <span class="macro-nonterminal">$</span><span class="macro-nonterminal">typ</span>: <span class="ident">FromCtx</span><span class="op">&lt;</span><span class="ident">Endian</span>, <span class="ident">T</span><span class="op">&gt;</span>,
-            <span class="ident">T</span>: <span class="ident">AsRef</span><span class="op">&lt;</span>[<span class="ident">u8</span>]<span class="op">&gt;</span>,
+        <span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>, T&gt; TryFromCtx&lt;<span class="lifetime">&#39;a</span>, Endian, T&gt; <span class="kw">for </span><span class="macro-nonterminal">$typ
+        </span><span class="kw">where
+            </span><span class="macro-nonterminal">$typ</span>: FromCtx&lt;Endian, T&gt;,
+            T: AsRef&lt;[u8]&gt;,
         {
-            <span class="kw">type</span> <span class="ident">Error</span> <span class="op">=</span> <span class="ident">error::Error</span>;
-            <span class="attribute">#[<span class="ident">inline</span>]</span>
-            <span class="kw">fn</span> <span class="ident">try_from_ctx</span>(<span class="ident">src</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">T</span>, <span class="ident">le</span>: <span class="ident">Endian</span>) -&gt; <span class="ident">result::Result</span><span class="op">&lt;</span>(<span class="self">Self</span>, <span class="ident">usize</span>), <span class="ident"><span class="self">Self</span>::Error</span><span class="op">&gt;</span> {
-                <span class="kw">let</span> <span class="ident">src</span> <span class="op">=</span> <span class="ident">src</span>.<span class="ident">as_ref</span>();
-                <span class="ident"><span class="self">Self</span>::try_from_ctx</span>(<span class="ident">src</span>, <span class="ident">le</span>)
+            <span class="kw">type </span>Error = error::Error;
+            <span class="attribute">#[inline]
+            </span><span class="kw">fn </span>try_from_ctx(src: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>T, le: Endian) -&gt; result::Result&lt;(<span class="self">Self</span>, usize), <span class="self">Self</span>::Error&gt; {
+                <span class="kw">let </span>src = src.as_ref();
+                <span class="self">Self</span>::try_from_ctx(src, le)
             }
         }
     };
 }
 
-<span class="macro">macro_rules!</span> <span class="ident">ctx_impl</span> {
-    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">typ</span>:<span class="ident">tt</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">size</span>:<span class="ident">expr</span>) =&gt; {
-        <span class="macro">from_ctx_impl!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">typ</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">size</span>);
+<span class="macro">macro_rules! </span>ctx_impl {
+    (<span class="macro-nonterminal">$typ</span>:tt, <span class="macro-nonterminal">$size</span>:expr) =&gt; {
+        <span class="macro">from_ctx_impl!</span>(<span class="macro-nonterminal">$typ</span>, <span class="macro-nonterminal">$size</span>);
     };
 }
 
-<span class="macro">ctx_impl!</span>(<span class="ident">u8</span>, <span class="number">1</span>);
-<span class="macro">ctx_impl!</span>(<span class="ident">i8</span>, <span class="number">1</span>);
-<span class="macro">ctx_impl!</span>(<span class="ident">u16</span>, <span class="number">2</span>);
-<span class="macro">ctx_impl!</span>(<span class="ident">i16</span>, <span class="number">2</span>);
-<span class="macro">ctx_impl!</span>(<span class="ident">u32</span>, <span class="number">4</span>);
-<span class="macro">ctx_impl!</span>(<span class="ident">i32</span>, <span class="number">4</span>);
-<span class="macro">ctx_impl!</span>(<span class="ident">u64</span>, <span class="number">8</span>);
-<span class="macro">ctx_impl!</span>(<span class="ident">i64</span>, <span class="number">8</span>);
-<span class="macro">ctx_impl!</span>(<span class="ident">u128</span>, <span class="number">16</span>);
-<span class="macro">ctx_impl!</span>(<span class="ident">i128</span>, <span class="number">16</span>);
+<span class="macro">ctx_impl!</span>(u8, <span class="number">1</span>);
+<span class="macro">ctx_impl!</span>(i8, <span class="number">1</span>);
+<span class="macro">ctx_impl!</span>(u16, <span class="number">2</span>);
+<span class="macro">ctx_impl!</span>(i16, <span class="number">2</span>);
+<span class="macro">ctx_impl!</span>(u32, <span class="number">4</span>);
+<span class="macro">ctx_impl!</span>(i32, <span class="number">4</span>);
+<span class="macro">ctx_impl!</span>(u64, <span class="number">8</span>);
+<span class="macro">ctx_impl!</span>(i64, <span class="number">8</span>);
+<span class="macro">ctx_impl!</span>(u128, <span class="number">16</span>);
+<span class="macro">ctx_impl!</span>(i128, <span class="number">16</span>);
 
-<span class="macro">macro_rules!</span> <span class="ident">from_ctx_float_impl</span> {
-    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">typ</span>:<span class="ident">tt</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">size</span>:<span class="ident">expr</span>) =&gt; {
-        <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">FromCtx</span><span class="op">&lt;</span><span class="ident">Endian</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">typ</span> {
-            <span class="attribute">#[<span class="ident">inline</span>]</span>
-            <span class="kw">fn</span> <span class="ident">from_ctx</span>(<span class="ident">src</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>], <span class="ident">le</span>: <span class="ident">Endian</span>) -&gt; <span class="self">Self</span> {
-                <span class="macro">assert!</span>(<span class="ident">src</span>.<span class="ident">len</span>() <span class="op">&gt;</span><span class="op">=</span> <span class="ident">::core::mem::size_of</span>::<span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>());
-                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">data</span>: <span class="macro">signed_to_unsigned!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">typ</span>) <span class="op">=</span> <span class="number">0</span>;
-                <span class="kw">unsafe</span> {
-                    <span class="ident">copy_nonoverlapping</span>(
-                        <span class="ident">src</span>.<span class="ident">as_ptr</span>(),
-                        <span class="kw-2">&amp;mut</span> <span class="ident">data</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="macro">signed_to_unsigned!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">typ</span>) <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">u8</span>,
-                        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">size</span>,
+<span class="macro">macro_rules! </span>from_ctx_float_impl {
+    (<span class="macro-nonterminal">$typ</span>:tt, <span class="macro-nonterminal">$size</span>:expr) =&gt; {
+        <span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; FromCtx&lt;Endian&gt; <span class="kw">for </span><span class="macro-nonterminal">$typ </span>{
+            <span class="attribute">#[inline]
+            </span><span class="kw">fn </span>from_ctx(src: <span class="kw-2">&amp;</span>[u8], le: Endian) -&gt; <span class="self">Self </span>{
+                <span class="macro">assert!</span>(src.len() &gt;= ::core::mem::size_of::&lt;<span class="self">Self</span>&gt;());
+                <span class="kw">let </span><span class="kw-2">mut </span>data: <span class="macro">signed_to_unsigned!</span>(<span class="macro-nonterminal">$typ</span>) = <span class="number">0</span>;
+                <span class="kw">unsafe </span>{
+                    copy_nonoverlapping(
+                        src.as_ptr(),
+                        <span class="kw-2">&amp;mut </span>data <span class="kw">as </span><span class="kw-2">*mut </span><span class="macro">signed_to_unsigned!</span>(<span class="macro-nonterminal">$typ</span>) <span class="kw">as </span><span class="kw-2">*mut </span>u8,
+                        <span class="macro-nonterminal">$size</span>,
                     );
-                    <span class="ident">transmute</span>(<span class="kw">if</span> <span class="ident">le</span>.<span class="ident">is_little</span>() {
-                        <span class="ident">data</span>.<span class="ident">to_le</span>()
-                    } <span class="kw">else</span> {
-                        <span class="ident">data</span>.<span class="ident">to_be</span>()
+                    transmute(<span class="kw">if </span>le.is_little() {
+                        data.to_le()
+                    } <span class="kw">else </span>{
+                        data.to_be()
                     })
                 }
             }
         }
-        <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">TryFromCtx</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">Endian</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">typ</span>
-        <span class="kw">where</span>
-            <span class="macro-nonterminal">$</span><span class="macro-nonterminal">typ</span>: <span class="ident">FromCtx</span><span class="op">&lt;</span><span class="ident">Endian</span><span class="op">&gt;</span>,
+        <span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; TryFromCtx&lt;<span class="lifetime">&#39;a</span>, Endian&gt; <span class="kw">for </span><span class="macro-nonterminal">$typ
+        </span><span class="kw">where
+            </span><span class="macro-nonterminal">$typ</span>: FromCtx&lt;Endian&gt;,
         {
-            <span class="kw">type</span> <span class="ident">Error</span> <span class="op">=</span> <span class="ident">error::Error</span>;
-            <span class="attribute">#[<span class="ident">inline</span>]</span>
-            <span class="kw">fn</span> <span class="ident">try_from_ctx</span>(
-                <span class="ident">src</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
-                <span class="ident">le</span>: <span class="ident">Endian</span>,
-            ) -&gt; <span class="ident">result::Result</span><span class="op">&lt;</span>(<span class="self">Self</span>, <span class="ident">usize</span>), <span class="ident"><span class="self">Self</span>::Error</span><span class="op">&gt;</span> {
-                <span class="kw">if</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">size</span> <span class="op">&gt;</span> <span class="ident">src</span>.<span class="ident">len</span>() {
-                    <span class="prelude-val">Err</span>(<span class="ident">error::Error::TooBig</span> {
-                        <span class="ident">size</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">size</span>,
-                        <span class="ident">len</span>: <span class="ident">src</span>.<span class="ident">len</span>(),
+            <span class="kw">type </span>Error = error::Error;
+            <span class="attribute">#[inline]
+            </span><span class="kw">fn </span>try_from_ctx(
+                src: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8],
+                le: Endian,
+            ) -&gt; result::Result&lt;(<span class="self">Self</span>, usize), <span class="self">Self</span>::Error&gt; {
+                <span class="kw">if </span><span class="macro-nonterminal">$size </span>&gt; src.len() {
+                    <span class="prelude-val">Err</span>(error::Error::TooBig {
+                        size: <span class="macro-nonterminal">$size</span>,
+                        len: src.len(),
                     })
-                } <span class="kw">else</span> {
-                    <span class="prelude-val">Ok</span>((<span class="ident">FromCtx::from_ctx</span>(<span class="ident">src</span>, <span class="ident">le</span>), <span class="macro-nonterminal">$</span><span class="macro-nonterminal">size</span>))
+                } <span class="kw">else </span>{
+                    <span class="prelude-val">Ok</span>((FromCtx::from_ctx(src, le), <span class="macro-nonterminal">$size</span>))
                 }
             }
         }
     };
 }
 
-<span class="macro">from_ctx_float_impl!</span>(<span class="ident">f32</span>, <span class="number">4</span>);
-<span class="macro">from_ctx_float_impl!</span>(<span class="ident">f64</span>, <span class="number">8</span>);
+<span class="macro">from_ctx_float_impl!</span>(f32, <span class="number">4</span>);
+<span class="macro">from_ctx_float_impl!</span>(f64, <span class="number">8</span>);
 
-<span class="macro">into_ctx_impl!</span>(<span class="ident">u8</span>, <span class="number">1</span>);
-<span class="macro">into_ctx_impl!</span>(<span class="ident">i8</span>, <span class="number">1</span>);
-<span class="macro">into_ctx_impl!</span>(<span class="ident">u16</span>, <span class="number">2</span>);
-<span class="macro">into_ctx_impl!</span>(<span class="ident">i16</span>, <span class="number">2</span>);
-<span class="macro">into_ctx_impl!</span>(<span class="ident">u32</span>, <span class="number">4</span>);
-<span class="macro">into_ctx_impl!</span>(<span class="ident">i32</span>, <span class="number">4</span>);
-<span class="macro">into_ctx_impl!</span>(<span class="ident">u64</span>, <span class="number">8</span>);
-<span class="macro">into_ctx_impl!</span>(<span class="ident">i64</span>, <span class="number">8</span>);
-<span class="macro">into_ctx_impl!</span>(<span class="ident">u128</span>, <span class="number">16</span>);
-<span class="macro">into_ctx_impl!</span>(<span class="ident">i128</span>, <span class="number">16</span>);
+<span class="macro">into_ctx_impl!</span>(u8, <span class="number">1</span>);
+<span class="macro">into_ctx_impl!</span>(i8, <span class="number">1</span>);
+<span class="macro">into_ctx_impl!</span>(u16, <span class="number">2</span>);
+<span class="macro">into_ctx_impl!</span>(i16, <span class="number">2</span>);
+<span class="macro">into_ctx_impl!</span>(u32, <span class="number">4</span>);
+<span class="macro">into_ctx_impl!</span>(i32, <span class="number">4</span>);
+<span class="macro">into_ctx_impl!</span>(u64, <span class="number">8</span>);
+<span class="macro">into_ctx_impl!</span>(i64, <span class="number">8</span>);
+<span class="macro">into_ctx_impl!</span>(u128, <span class="number">16</span>);
+<span class="macro">into_ctx_impl!</span>(i128, <span class="number">16</span>);
 
-<span class="macro">macro_rules!</span> <span class="ident">into_ctx_float_impl</span> {
-    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">typ</span>:<span class="ident">tt</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">size</span>:<span class="ident">expr</span>) =&gt; {
-        <span class="kw">impl</span> <span class="ident">IntoCtx</span><span class="op">&lt;</span><span class="ident">Endian</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">typ</span> {
-            <span class="attribute">#[<span class="ident">inline</span>]</span>
-            <span class="kw">fn</span> <span class="ident">into_ctx</span>(<span class="self">self</span>, <span class="ident">dst</span>: <span class="kw-2">&amp;mut</span> [<span class="ident">u8</span>], <span class="ident">le</span>: <span class="ident">Endian</span>) {
-                <span class="macro">assert!</span>(<span class="ident">dst</span>.<span class="ident">len</span>() <span class="op">&gt;</span><span class="op">=</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">size</span>);
+<span class="macro">macro_rules! </span>into_ctx_float_impl {
+    (<span class="macro-nonterminal">$typ</span>:tt, <span class="macro-nonterminal">$size</span>:expr) =&gt; {
+        <span class="kw">impl </span>IntoCtx&lt;Endian&gt; <span class="kw">for </span><span class="macro-nonterminal">$typ </span>{
+            <span class="attribute">#[inline]
+            </span><span class="kw">fn </span>into_ctx(<span class="self">self</span>, dst: <span class="kw-2">&amp;mut </span>[u8], le: Endian) {
+                <span class="macro">assert!</span>(dst.len() &gt;= <span class="macro-nonterminal">$size</span>);
                 <span class="macro">write_into!</span>(
-                    <span class="macro">signed_to_unsigned!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">typ</span>),
-                    <span class="macro-nonterminal">$</span><span class="macro-nonterminal">size</span>,
-                    <span class="ident">transmute</span>::<span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">typ</span>, <span class="macro">signed_to_unsigned!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">typ</span>)<span class="op">&gt;</span>(<span class="self">self</span>),
-                    <span class="ident">dst</span>,
-                    <span class="ident">le</span>
+                    <span class="macro">signed_to_unsigned!</span>(<span class="macro-nonterminal">$typ</span>),
+                    <span class="macro-nonterminal">$size</span>,
+                    transmute::&lt;<span class="macro-nonterminal">$typ</span>, <span class="macro">signed_to_unsigned!</span>(<span class="macro-nonterminal">$typ</span>)&gt;(<span class="self">self</span>),
+                    dst,
+                    le
                 );
             }
         }
-        <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">IntoCtx</span><span class="op">&lt;</span><span class="ident">Endian</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">typ</span> {
-            <span class="attribute">#[<span class="ident">inline</span>]</span>
-            <span class="kw">fn</span> <span class="ident">into_ctx</span>(<span class="self">self</span>, <span class="ident">dst</span>: <span class="kw-2">&amp;mut</span> [<span class="ident">u8</span>], <span class="ident">le</span>: <span class="ident">Endian</span>) {
-                (<span class="kw-2">*</span><span class="self">self</span>).<span class="ident">into_ctx</span>(<span class="ident">dst</span>, <span class="ident">le</span>)
+        <span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; IntoCtx&lt;Endian&gt; <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="macro-nonterminal">$typ </span>{
+            <span class="attribute">#[inline]
+            </span><span class="kw">fn </span>into_ctx(<span class="self">self</span>, dst: <span class="kw-2">&amp;mut </span>[u8], le: Endian) {
+                (<span class="kw-2">*</span><span class="self">self</span>).into_ctx(dst, le)
             }
         }
-        <span class="kw">impl</span> <span class="ident">TryIntoCtx</span><span class="op">&lt;</span><span class="ident">Endian</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">typ</span>
-        <span class="kw">where</span>
-            <span class="macro-nonterminal">$</span><span class="macro-nonterminal">typ</span>: <span class="ident">IntoCtx</span><span class="op">&lt;</span><span class="ident">Endian</span><span class="op">&gt;</span>,
+        <span class="kw">impl </span>TryIntoCtx&lt;Endian&gt; <span class="kw">for </span><span class="macro-nonterminal">$typ
+        </span><span class="kw">where
+            </span><span class="macro-nonterminal">$typ</span>: IntoCtx&lt;Endian&gt;,
         {
-            <span class="kw">type</span> <span class="ident">Error</span> <span class="op">=</span> <span class="ident">error::Error</span>;
-            <span class="attribute">#[<span class="ident">inline</span>]</span>
-            <span class="kw">fn</span> <span class="ident">try_into_ctx</span>(<span class="self">self</span>, <span class="ident">dst</span>: <span class="kw-2">&amp;mut</span> [<span class="ident">u8</span>], <span class="ident">le</span>: <span class="ident">Endian</span>) -&gt; <span class="ident">error::Result</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span> {
-                <span class="kw">if</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">size</span> <span class="op">&gt;</span> <span class="ident">dst</span>.<span class="ident">len</span>() {
-                    <span class="prelude-val">Err</span>(<span class="ident">error::Error::TooBig</span> {
-                        <span class="ident">size</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">size</span>,
-                        <span class="ident">len</span>: <span class="ident">dst</span>.<span class="ident">len</span>(),
+            <span class="kw">type </span>Error = error::Error;
+            <span class="attribute">#[inline]
+            </span><span class="kw">fn </span>try_into_ctx(<span class="self">self</span>, dst: <span class="kw-2">&amp;mut </span>[u8], le: Endian) -&gt; error::Result&lt;usize&gt; {
+                <span class="kw">if </span><span class="macro-nonterminal">$size </span>&gt; dst.len() {
+                    <span class="prelude-val">Err</span>(error::Error::TooBig {
+                        size: <span class="macro-nonterminal">$size</span>,
+                        len: dst.len(),
                     })
-                } <span class="kw">else</span> {
-                    <span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">typ</span> <span class="kw">as</span> <span class="ident">IntoCtx</span><span class="op">&lt;</span><span class="ident">Endian</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="ident">::into_ctx</span>(<span class="self">self</span>, <span class="ident">dst</span>, <span class="ident">le</span>);
-                    <span class="prelude-val">Ok</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">size</span>)
+                } <span class="kw">else </span>{
+                    &lt;<span class="macro-nonterminal">$typ </span><span class="kw">as </span>IntoCtx&lt;Endian&gt;&gt;::into_ctx(<span class="self">self</span>, dst, le);
+                    <span class="prelude-val">Ok</span>(<span class="macro-nonterminal">$size</span>)
                 }
             }
         }
-        <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">TryIntoCtx</span><span class="op">&lt;</span><span class="ident">Endian</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">typ</span> {
-            <span class="kw">type</span> <span class="ident">Error</span> <span class="op">=</span> <span class="ident">error::Error</span>;
-            <span class="attribute">#[<span class="ident">inline</span>]</span>
-            <span class="kw">fn</span> <span class="ident">try_into_ctx</span>(<span class="self">self</span>, <span class="ident">dst</span>: <span class="kw-2">&amp;mut</span> [<span class="ident">u8</span>], <span class="ident">le</span>: <span class="ident">Endian</span>) -&gt; <span class="ident">error::Result</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span> {
-                (<span class="kw-2">*</span><span class="self">self</span>).<span class="ident">try_into_ctx</span>(<span class="ident">dst</span>, <span class="ident">le</span>)
+        <span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; TryIntoCtx&lt;Endian&gt; <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="macro-nonterminal">$typ </span>{
+            <span class="kw">type </span>Error = error::Error;
+            <span class="attribute">#[inline]
+            </span><span class="kw">fn </span>try_into_ctx(<span class="self">self</span>, dst: <span class="kw-2">&amp;mut </span>[u8], le: Endian) -&gt; error::Result&lt;usize&gt; {
+                (<span class="kw-2">*</span><span class="self">self</span>).try_into_ctx(dst, le)
             }
         }
     };
 }
 
-<span class="macro">into_ctx_float_impl!</span>(<span class="ident">f32</span>, <span class="number">4</span>);
-<span class="macro">into_ctx_float_impl!</span>(<span class="ident">f64</span>, <span class="number">8</span>);
+<span class="macro">into_ctx_float_impl!</span>(f32, <span class="number">4</span>);
+<span class="macro">into_ctx_float_impl!</span>(f64, <span class="number">8</span>);
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">TryFromCtx</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">StrCtx</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span> {
-    <span class="kw">type</span> <span class="ident">Error</span> <span class="op">=</span> <span class="ident">error::Error</span>;
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="doccomment">/// Read a `&amp;str` from `src` using `delimiter`</span>
-    <span class="kw">fn</span> <span class="ident">try_from_ctx</span>(<span class="ident">src</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>], <span class="ident">ctx</span>: <span class="ident">StrCtx</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(<span class="self">Self</span>, <span class="ident">usize</span>), <span class="ident"><span class="self">Self</span>::Error</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">len</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">ctx</span> {
-            <span class="ident">StrCtx::Length</span>(<span class="ident">len</span>) =&gt; <span class="ident">len</span>,
-            <span class="ident">StrCtx::Delimiter</span>(<span class="ident">delimiter</span>) =&gt; <span class="ident">src</span>.<span class="ident">iter</span>().<span class="ident">take_while</span>(<span class="op">|</span><span class="ident">c</span><span class="op">|</span> <span class="kw-2">*</span><span class="kw-2">*</span><span class="ident">c</span> <span class="op">!</span><span class="op">=</span> <span class="ident">delimiter</span>).<span class="ident">count</span>(),
-            <span class="ident">StrCtx::DelimiterUntil</span>(<span class="ident">delimiter</span>, <span class="ident">len</span>) =&gt; {
-                <span class="kw">if</span> <span class="ident">len</span> <span class="op">&gt;</span> <span class="ident">src</span>.<span class="ident">len</span>() {
-                    <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">error::Error::TooBig</span> {
-                        <span class="ident">size</span>: <span class="ident">len</span>,
-                        <span class="ident">len</span>: <span class="ident">src</span>.<span class="ident">len</span>(),
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; TryFromCtx&lt;<span class="lifetime">&#39;a</span>, StrCtx&gt; <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str {
+    <span class="kw">type </span>Error = error::Error;
+    <span class="attribute">#[inline]
+    </span><span class="doccomment">/// Read a `&amp;str` from `src` using `delimiter`
+    </span><span class="kw">fn </span>try_from_ctx(src: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8], ctx: StrCtx) -&gt; <span class="prelude-ty">Result</span>&lt;(<span class="self">Self</span>, usize), <span class="self">Self</span>::Error&gt; {
+        <span class="kw">let </span>len = <span class="kw">match </span>ctx {
+            StrCtx::Length(len) =&gt; len,
+            StrCtx::Delimiter(delimiter) =&gt; src.iter().take_while(|c| <span class="kw-2">**</span>c != delimiter).count(),
+            StrCtx::DelimiterUntil(delimiter, len) =&gt; {
+                <span class="kw">if </span>len &gt; src.len() {
+                    <span class="kw">return </span><span class="prelude-val">Err</span>(error::Error::TooBig {
+                        size: len,
+                        len: src.len(),
                     });
                 };
-                <span class="ident">src</span>.<span class="ident">iter</span>()
-                    .<span class="ident">take_while</span>(<span class="op">|</span><span class="ident">c</span><span class="op">|</span> <span class="kw-2">*</span><span class="kw-2">*</span><span class="ident">c</span> <span class="op">!</span><span class="op">=</span> <span class="ident">delimiter</span>)
-                    .<span class="ident">take</span>(<span class="ident">len</span>)
-                    .<span class="ident">count</span>()
+                src.iter()
+                    .take_while(|c| <span class="kw-2">**</span>c != delimiter)
+                    .take(len)
+                    .count()
             }
         };
 
-        <span class="kw">if</span> <span class="ident">len</span> <span class="op">&gt;</span> <span class="ident">src</span>.<span class="ident">len</span>() {
-            <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">error::Error::TooBig</span> {
-                <span class="ident">size</span>: <span class="ident">len</span>,
-                <span class="ident">len</span>: <span class="ident">src</span>.<span class="ident">len</span>(),
+        <span class="kw">if </span>len &gt; src.len() {
+            <span class="kw">return </span><span class="prelude-val">Err</span>(error::Error::TooBig {
+                size: len,
+                len: src.len(),
             });
         };
 
-        <span class="kw">match</span> <span class="ident">str::from_utf8</span>(<span class="kw-2">&amp;</span><span class="ident">src</span>[..<span class="ident">len</span>]) {
-            <span class="prelude-val">Ok</span>(<span class="ident">res</span>) =&gt; <span class="prelude-val">Ok</span>((<span class="ident">res</span>, <span class="ident">len</span> <span class="op">+</span> <span class="ident">ctx</span>.<span class="ident">len</span>())),
-            <span class="prelude-val">Err</span>(<span class="kw">_</span>) =&gt; <span class="prelude-val">Err</span>(<span class="ident">error::Error::BadInput</span> {
-                <span class="ident">size</span>: <span class="ident">src</span>.<span class="ident">len</span>(),
-                <span class="ident">msg</span>: <span class="string">&quot;invalid utf8&quot;</span>,
+        <span class="kw">match </span>str::from_utf8(<span class="kw-2">&amp;</span>src[..len]) {
+            <span class="prelude-val">Ok</span>(res) =&gt; <span class="prelude-val">Ok</span>((res, len + ctx.len())),
+            <span class="prelude-val">Err</span>(<span class="kw">_</span>) =&gt; <span class="prelude-val">Err</span>(error::Error::BadInput {
+                size: src.len(),
+                msg: <span class="string">&quot;invalid utf8&quot;</span>,
             }),
         }
     }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">T</span><span class="op">&gt;</span> <span class="ident">TryFromCtx</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">StrCtx</span>, <span class="ident">T</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>
-<span class="kw">where</span>
-    <span class="ident">T</span>: <span class="ident">AsRef</span><span class="op">&lt;</span>[<span class="ident">u8</span>]<span class="op">&gt;</span>,
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>, T&gt; TryFromCtx&lt;<span class="lifetime">&#39;a</span>, StrCtx, T&gt; <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str
+<span class="kw">where
+    </span>T: AsRef&lt;[u8]&gt;,
 {
-    <span class="kw">type</span> <span class="ident">Error</span> <span class="op">=</span> <span class="ident">error::Error</span>;
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">try_from_ctx</span>(<span class="ident">src</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">T</span>, <span class="ident">ctx</span>: <span class="ident">StrCtx</span>) -&gt; <span class="ident">result::Result</span><span class="op">&lt;</span>(<span class="self">Self</span>, <span class="ident">usize</span>), <span class="ident"><span class="self">Self</span>::Error</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">src</span> <span class="op">=</span> <span class="ident">src</span>.<span class="ident">as_ref</span>();
-        <span class="ident">TryFromCtx::try_from_ctx</span>(<span class="ident">src</span>, <span class="ident">ctx</span>)
+    <span class="kw">type </span>Error = error::Error;
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>try_from_ctx(src: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>T, ctx: StrCtx) -&gt; result::Result&lt;(<span class="self">Self</span>, usize), <span class="self">Self</span>::Error&gt; {
+        <span class="kw">let </span>src = src.as_ref();
+        TryFromCtx::try_from_ctx(src, ctx)
     }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">TryIntoCtx</span> <span class="kw">for</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>] {
-    <span class="kw">type</span> <span class="ident">Error</span> <span class="op">=</span> <span class="ident">error::Error</span>;
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">try_into_ctx</span>(<span class="self">self</span>, <span class="ident">dst</span>: <span class="kw-2">&amp;mut</span> [<span class="ident">u8</span>], <span class="ident">_ctx</span>: ()) -&gt; <span class="ident">error::Result</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">src_len</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">isize</span>;
-        <span class="kw">let</span> <span class="ident">dst_len</span> <span class="op">=</span> <span class="ident">dst</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">isize</span>;
-        <span class="comment">// if src_len &lt; 0 || dst_len &lt; 0 || offset &lt; 0 {</span>
-        <span class="comment">//     return Err(error::Error::BadOffset(format!(&quot;requested operation has negative casts: src len: {} dst len: {} offset: {}&quot;, src_len, dst_len, offset)).into())</span>
-        <span class="comment">// }</span>
-        <span class="kw">if</span> <span class="ident">src_len</span> <span class="op">&gt;</span> <span class="ident">dst_len</span> {
-            <span class="prelude-val">Err</span>(<span class="ident">error::Error::TooBig</span> {
-                <span class="ident">size</span>: <span class="self">self</span>.<span class="ident">len</span>(),
-                <span class="ident">len</span>: <span class="ident">dst</span>.<span class="ident">len</span>(),
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; TryIntoCtx <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8] {
+    <span class="kw">type </span>Error = error::Error;
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>try_into_ctx(<span class="self">self</span>, dst: <span class="kw-2">&amp;mut </span>[u8], _ctx: ()) -&gt; error::Result&lt;usize&gt; {
+        <span class="kw">let </span>src_len = <span class="self">self</span>.len() <span class="kw">as </span>isize;
+        <span class="kw">let </span>dst_len = dst.len() <span class="kw">as </span>isize;
+        <span class="comment">// if src_len &lt; 0 || dst_len &lt; 0 || offset &lt; 0 {
+        //     return Err(error::Error::BadOffset(format!(&quot;requested operation has negative casts: src len: {} dst len: {} offset: {}&quot;, src_len, dst_len, offset)).into())
+        // }
+        </span><span class="kw">if </span>src_len &gt; dst_len {
+            <span class="prelude-val">Err</span>(error::Error::TooBig {
+                size: <span class="self">self</span>.len(),
+                len: dst.len(),
             })
-        } <span class="kw">else</span> {
-            <span class="kw">unsafe</span> { <span class="ident">copy_nonoverlapping</span>(<span class="self">self</span>.<span class="ident">as_ptr</span>(), <span class="ident">dst</span>.<span class="ident">as_mut_ptr</span>(), <span class="ident">src_len</span> <span class="kw">as</span> <span class="ident">usize</span>) };
-            <span class="prelude-val">Ok</span>(<span class="self">self</span>.<span class="ident">len</span>())
+        } <span class="kw">else </span>{
+            <span class="kw">unsafe </span>{ copy_nonoverlapping(<span class="self">self</span>.as_ptr(), dst.as_mut_ptr(), src_len <span class="kw">as </span>usize) };
+            <span class="prelude-val">Ok</span>(<span class="self">self</span>.len())
         }
     }
 }
 
-<span class="comment">// TODO: make TryIntoCtx use StrCtx for awesomeness</span>
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">TryIntoCtx</span> <span class="kw">for</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span> {
-    <span class="kw">type</span> <span class="ident">Error</span> <span class="op">=</span> <span class="ident">error::Error</span>;
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">try_into_ctx</span>(<span class="self">self</span>, <span class="ident">dst</span>: <span class="kw-2">&amp;mut</span> [<span class="ident">u8</span>], <span class="ident">_ctx</span>: ()) -&gt; <span class="ident">error::Result</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">bytes</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">as_bytes</span>();
-        <span class="ident">TryIntoCtx::try_into_ctx</span>(<span class="ident">bytes</span>, <span class="ident">dst</span>, ())
+<span class="comment">// TODO: make TryIntoCtx use StrCtx for awesomeness
+</span><span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; TryIntoCtx <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str {
+    <span class="kw">type </span>Error = error::Error;
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>try_into_ctx(<span class="self">self</span>, dst: <span class="kw-2">&amp;mut </span>[u8], _ctx: ()) -&gt; error::Result&lt;usize&gt; {
+        <span class="kw">let </span>bytes = <span class="self">self</span>.as_bytes();
+        TryIntoCtx::try_into_ctx(bytes, dst, ())
     }
 }
 
-<span class="comment">// TODO: we can make this compile time without size_of call, but compiler probably does that anyway</span>
-<span class="macro">macro_rules!</span> <span class="ident">sizeof_impl</span> {
-    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">ty</span>:<span class="ident">ty</span>) =&gt; {
-        <span class="kw">impl</span> <span class="ident">SizeWith</span><span class="op">&lt;</span><span class="ident">Endian</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">ty</span> {
-            <span class="attribute">#[<span class="ident">inline</span>]</span>
-            <span class="kw">fn</span> <span class="ident">size_with</span>(<span class="ident">_ctx</span>: <span class="kw-2">&amp;</span><span class="ident">Endian</span>) -&gt; <span class="ident">usize</span> {
-                <span class="ident">size_of</span>::<span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">ty</span><span class="op">&gt;</span>()
+<span class="comment">// TODO: we can make this compile time without size_of call, but compiler probably does that anyway
+</span><span class="macro">macro_rules! </span>sizeof_impl {
+    (<span class="macro-nonterminal">$ty</span>:ty) =&gt; {
+        <span class="kw">impl </span>SizeWith&lt;Endian&gt; <span class="kw">for </span><span class="macro-nonterminal">$ty </span>{
+            <span class="attribute">#[inline]
+            </span><span class="kw">fn </span>size_with(_ctx: <span class="kw-2">&amp;</span>Endian) -&gt; usize {
+                size_of::&lt;<span class="macro-nonterminal">$ty</span>&gt;()
             }
         }
     };
 }
 
-<span class="macro">sizeof_impl!</span>(<span class="ident">u8</span>);
-<span class="macro">sizeof_impl!</span>(<span class="ident">i8</span>);
-<span class="macro">sizeof_impl!</span>(<span class="ident">u16</span>);
-<span class="macro">sizeof_impl!</span>(<span class="ident">i16</span>);
-<span class="macro">sizeof_impl!</span>(<span class="ident">u32</span>);
-<span class="macro">sizeof_impl!</span>(<span class="ident">i32</span>);
-<span class="macro">sizeof_impl!</span>(<span class="ident">u64</span>);
-<span class="macro">sizeof_impl!</span>(<span class="ident">i64</span>);
-<span class="macro">sizeof_impl!</span>(<span class="ident">u128</span>);
-<span class="macro">sizeof_impl!</span>(<span class="ident">i128</span>);
-<span class="macro">sizeof_impl!</span>(<span class="ident">f32</span>);
-<span class="macro">sizeof_impl!</span>(<span class="ident">f64</span>);
+<span class="macro">sizeof_impl!</span>(u8);
+<span class="macro">sizeof_impl!</span>(i8);
+<span class="macro">sizeof_impl!</span>(u16);
+<span class="macro">sizeof_impl!</span>(i16);
+<span class="macro">sizeof_impl!</span>(u32);
+<span class="macro">sizeof_impl!</span>(i32);
+<span class="macro">sizeof_impl!</span>(u64);
+<span class="macro">sizeof_impl!</span>(i64);
+<span class="macro">sizeof_impl!</span>(u128);
+<span class="macro">sizeof_impl!</span>(i128);
+<span class="macro">sizeof_impl!</span>(f32);
+<span class="macro">sizeof_impl!</span>(f64);
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">TryFromCtx</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">usize</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>] {
-    <span class="kw">type</span> <span class="ident">Error</span> <span class="op">=</span> <span class="ident">error::Error</span>;
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">try_from_ctx</span>(<span class="ident">src</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>], <span class="ident">size</span>: <span class="ident">usize</span>) -&gt; <span class="ident">result::Result</span><span class="op">&lt;</span>(<span class="self">Self</span>, <span class="ident">usize</span>), <span class="ident"><span class="self">Self</span>::Error</span><span class="op">&gt;</span> {
-        <span class="kw">if</span> <span class="ident">size</span> <span class="op">&gt;</span> <span class="ident">src</span>.<span class="ident">len</span>() {
-            <span class="prelude-val">Err</span>(<span class="ident">error::Error::TooBig</span> {
-                <span class="ident">size</span>,
-                <span class="ident">len</span>: <span class="ident">src</span>.<span class="ident">len</span>(),
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; TryFromCtx&lt;<span class="lifetime">&#39;a</span>, usize&gt; <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8] {
+    <span class="kw">type </span>Error = error::Error;
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>try_from_ctx(src: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8], size: usize) -&gt; result::Result&lt;(<span class="self">Self</span>, usize), <span class="self">Self</span>::Error&gt; {
+        <span class="kw">if </span>size &gt; src.len() {
+            <span class="prelude-val">Err</span>(error::Error::TooBig {
+                size,
+                len: src.len(),
             })
-        } <span class="kw">else</span> {
-            <span class="prelude-val">Ok</span>((<span class="kw-2">&amp;</span><span class="ident">src</span>[..<span class="ident">size</span>], <span class="ident">size</span>))
+        } <span class="kw">else </span>{
+            <span class="prelude-val">Ok</span>((<span class="kw-2">&amp;</span>src[..size], size))
         }
     }
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;std&quot;</span>)]</span>
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">TryFromCtx</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">CStr</span> {
-    <span class="kw">type</span> <span class="ident">Error</span> <span class="op">=</span> <span class="ident">error::Error</span>;
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">try_from_ctx</span>(<span class="ident">src</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>], <span class="ident">_ctx</span>: ()) -&gt; <span class="ident">result::Result</span><span class="op">&lt;</span>(<span class="self">Self</span>, <span class="ident">usize</span>), <span class="ident"><span class="self">Self</span>::Error</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">null_byte</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">src</span>.<span class="ident">iter</span>().<span class="ident">position</span>(<span class="op">|</span><span class="ident">b</span><span class="op">|</span> <span class="kw-2">*</span><span class="ident">b</span> <span class="op">==</span> <span class="number">0</span>) {
-            <span class="prelude-val">Some</span>(<span class="ident">ix</span>) =&gt; <span class="ident">ix</span>,
-            <span class="prelude-val">None</span> =&gt; {
-                <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">error::Error::BadInput</span> {
-                    <span class="ident">size</span>: <span class="number">0</span>,
-                    <span class="ident">msg</span>: <span class="string">&quot;The input doesn&#39;t contain a null byte&quot;</span>,
+<span class="attribute">#[cfg(feature = <span class="string">&quot;std&quot;</span>)]
+</span><span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; TryFromCtx&lt;<span class="lifetime">&#39;a</span>&gt; <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>CStr {
+    <span class="kw">type </span>Error = error::Error;
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>try_from_ctx(src: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8], _ctx: ()) -&gt; result::Result&lt;(<span class="self">Self</span>, usize), <span class="self">Self</span>::Error&gt; {
+        <span class="kw">let </span>null_byte = <span class="kw">match </span>src.iter().position(|b| <span class="kw-2">*</span>b == <span class="number">0</span>) {
+            <span class="prelude-val">Some</span>(ix) =&gt; ix,
+            <span class="prelude-val">None </span>=&gt; {
+                <span class="kw">return </span><span class="prelude-val">Err</span>(error::Error::BadInput {
+                    size: <span class="number">0</span>,
+                    msg: <span class="string">&quot;The input doesn&#39;t contain a null byte&quot;</span>,
                 })
             }
         };
 
-        <span class="kw">let</span> <span class="ident">cstr</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">CStr::from_bytes_with_nul_unchecked</span>(<span class="kw-2">&amp;</span><span class="ident">src</span>[..<span class="op">=</span><span class="ident">null_byte</span>]) };
-        <span class="prelude-val">Ok</span>((<span class="ident">cstr</span>, <span class="ident">null_byte</span> <span class="op">+</span> <span class="number">1</span>))
+        <span class="kw">let </span>cstr = <span class="kw">unsafe </span>{ CStr::from_bytes_with_nul_unchecked(<span class="kw-2">&amp;</span>src[..=null_byte]) };
+        <span class="prelude-val">Ok</span>((cstr, null_byte + <span class="number">1</span>))
     }
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;std&quot;</span>)]</span>
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">TryFromCtx</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">CString</span> {
-    <span class="kw">type</span> <span class="ident">Error</span> <span class="op">=</span> <span class="ident">error::Error</span>;
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">try_from_ctx</span>(<span class="ident">src</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>], <span class="ident">_ctx</span>: ()) -&gt; <span class="ident">result::Result</span><span class="op">&lt;</span>(<span class="self">Self</span>, <span class="ident">usize</span>), <span class="ident"><span class="self">Self</span>::Error</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> (<span class="ident">raw</span>, <span class="ident">bytes_read</span>) <span class="op">=</span> <span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">CStr</span> <span class="kw">as</span> <span class="ident">TryFromCtx</span><span class="op">&gt;</span><span class="ident">::try_from_ctx</span>(<span class="ident">src</span>, <span class="ident">_ctx</span>)<span class="question-mark">?</span>;
-        <span class="prelude-val">Ok</span>((<span class="ident">raw</span>.<span class="ident">to_owned</span>(), <span class="ident">bytes_read</span>))
+<span class="attribute">#[cfg(feature = <span class="string">&quot;std&quot;</span>)]
+</span><span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; TryFromCtx&lt;<span class="lifetime">&#39;a</span>&gt; <span class="kw">for </span>CString {
+    <span class="kw">type </span>Error = error::Error;
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>try_from_ctx(src: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8], _ctx: ()) -&gt; result::Result&lt;(<span class="self">Self</span>, usize), <span class="self">Self</span>::Error&gt; {
+        <span class="kw">let </span>(raw, bytes_read) = &lt;<span class="kw-2">&amp;</span>CStr <span class="kw">as </span>TryFromCtx&gt;::try_from_ctx(src, _ctx)<span class="question-mark">?</span>;
+        <span class="prelude-val">Ok</span>((raw.to_owned(), bytes_read))
     }
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;std&quot;</span>)]</span>
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">TryIntoCtx</span> <span class="kw">for</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">CStr</span> {
-    <span class="kw">type</span> <span class="ident">Error</span> <span class="op">=</span> <span class="ident">error::Error</span>;
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">try_into_ctx</span>(<span class="self">self</span>, <span class="ident">dst</span>: <span class="kw-2">&amp;mut</span> [<span class="ident">u8</span>], <span class="ident">_ctx</span>: ()) -&gt; <span class="ident">error::Result</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">to_bytes_with_nul</span>();
+<span class="attribute">#[cfg(feature = <span class="string">&quot;std&quot;</span>)]
+</span><span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; TryIntoCtx <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>CStr {
+    <span class="kw">type </span>Error = error::Error;
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>try_into_ctx(<span class="self">self</span>, dst: <span class="kw-2">&amp;mut </span>[u8], _ctx: ()) -&gt; error::Result&lt;usize&gt; {
+        <span class="kw">let </span>data = <span class="self">self</span>.to_bytes_with_nul();
 
-        <span class="kw">if</span> <span class="ident">dst</span>.<span class="ident">len</span>() <span class="op">&lt;</span> <span class="ident">data</span>.<span class="ident">len</span>() {
-            <span class="prelude-val">Err</span>(<span class="ident">error::Error::TooBig</span> {
-                <span class="ident">size</span>: <span class="ident">dst</span>.<span class="ident">len</span>(),
-                <span class="ident">len</span>: <span class="ident">data</span>.<span class="ident">len</span>(),
+        <span class="kw">if </span>dst.len() &lt; data.len() {
+            <span class="prelude-val">Err</span>(error::Error::TooBig {
+                size: dst.len(),
+                len: data.len(),
             })
-        } <span class="kw">else</span> {
-            <span class="kw">unsafe</span> {
-                <span class="ident">copy_nonoverlapping</span>(<span class="ident">data</span>.<span class="ident">as_ptr</span>(), <span class="ident">dst</span>.<span class="ident">as_mut_ptr</span>(), <span class="ident">data</span>.<span class="ident">len</span>());
+        } <span class="kw">else </span>{
+            <span class="kw">unsafe </span>{
+                copy_nonoverlapping(data.as_ptr(), dst.as_mut_ptr(), data.len());
             }
 
-            <span class="prelude-val">Ok</span>(<span class="ident">data</span>.<span class="ident">len</span>())
+            <span class="prelude-val">Ok</span>(data.len())
         }
     }
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;std&quot;</span>)]</span>
-<span class="kw">impl</span> <span class="ident">TryIntoCtx</span> <span class="kw">for</span> <span class="ident">CString</span> {
-    <span class="kw">type</span> <span class="ident">Error</span> <span class="op">=</span> <span class="ident">error::Error</span>;
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">try_into_ctx</span>(<span class="self">self</span>, <span class="ident">dst</span>: <span class="kw-2">&amp;mut</span> [<span class="ident">u8</span>], <span class="ident">_ctx</span>: ()) -&gt; <span class="ident">error::Result</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">as_c_str</span>().<span class="ident">try_into_ctx</span>(<span class="ident">dst</span>, ())
+<span class="attribute">#[cfg(feature = <span class="string">&quot;std&quot;</span>)]
+</span><span class="kw">impl </span>TryIntoCtx <span class="kw">for </span>CString {
+    <span class="kw">type </span>Error = error::Error;
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>try_into_ctx(<span class="self">self</span>, dst: <span class="kw-2">&amp;mut </span>[u8], _ctx: ()) -&gt; error::Result&lt;usize&gt; {
+        <span class="self">self</span>.as_c_str().try_into_ctx(dst, ())
     }
 }
 
-<span class="comment">// example of marshalling to bytes, let&#39;s wait until const is an option</span>
-<span class="comment">// impl FromCtx for [u8; 10] {</span>
-<span class="comment">//     fn from_ctx(bytes: &amp;[u8], _ctx: Endian) -&gt; Self {</span>
-<span class="comment">//         let mut dst: Self = [0; 10];</span>
-<span class="comment">//         assert!(bytes.len() &gt;= dst.len());</span>
-<span class="comment">//         unsafe {</span>
-<span class="comment">//             copy_nonoverlapping(bytes.as_ptr(), dst.as_mut_ptr(), dst.len());</span>
-<span class="comment">//         }</span>
-<span class="comment">//         dst</span>
-<span class="comment">//     }</span>
-<span class="comment">// }</span>
+<span class="comment">// example of marshalling to bytes, let&#39;s wait until const is an option
+// impl FromCtx for [u8; 10] {
+//     fn from_ctx(bytes: &amp;[u8], _ctx: Endian) -&gt; Self {
+//         let mut dst: Self = [0; 10];
+//         assert!(bytes.len() &gt;= dst.len());
+//         unsafe {
+//             copy_nonoverlapping(bytes.as_ptr(), dst.as_mut_ptr(), dst.len());
+//         }
+//         dst
+//     }
+// }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
-<span class="kw">mod</span> <span class="ident">tests</span> {
-    <span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
+</span><span class="attribute">#[cfg(test)]
+</span><span class="kw">mod </span>tests {
+    <span class="kw">use super</span>::<span class="kw-2">*</span>;
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;std&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">parse_a_cstr</span>() {
-        <span class="kw">let</span> <span class="ident">src</span> <span class="op">=</span> <span class="ident">CString::new</span>(<span class="string">&quot;Hello World&quot;</span>).<span class="ident">unwrap</span>();
-        <span class="kw">let</span> <span class="ident">as_bytes</span> <span class="op">=</span> <span class="ident">src</span>.<span class="ident">as_bytes_with_nul</span>();
+    <span class="attribute">#[test]
+    #[cfg(feature = <span class="string">&quot;std&quot;</span>)]
+    </span><span class="kw">fn </span>parse_a_cstr() {
+        <span class="kw">let </span>src = CString::new(<span class="string">&quot;Hello World&quot;</span>).unwrap();
+        <span class="kw">let </span>as_bytes = src.as_bytes_with_nul();
 
-        <span class="kw">let</span> (<span class="ident">got</span>, <span class="ident">bytes_read</span>) <span class="op">=</span> <span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">CStr</span> <span class="kw">as</span> <span class="ident">TryFromCtx</span><span class="op">&gt;</span><span class="ident">::try_from_ctx</span>(<span class="ident">as_bytes</span>, ()).<span class="ident">unwrap</span>();
+        <span class="kw">let </span>(got, bytes_read) = &lt;<span class="kw-2">&amp;</span>CStr <span class="kw">as </span>TryFromCtx&gt;::try_from_ctx(as_bytes, ()).unwrap();
 
-        <span class="macro">assert_eq!</span>(<span class="ident">bytes_read</span>, <span class="ident">as_bytes</span>.<span class="ident">len</span>());
-        <span class="macro">assert_eq!</span>(<span class="ident">got</span>, <span class="ident">src</span>.<span class="ident">as_c_str</span>());
+        <span class="macro">assert_eq!</span>(bytes_read, as_bytes.len());
+        <span class="macro">assert_eq!</span>(got, src.as_c_str());
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;std&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">round_trip_a_c_str</span>() {
-        <span class="kw">let</span> <span class="ident">src</span> <span class="op">=</span> <span class="ident">CString::new</span>(<span class="string">&quot;Hello World&quot;</span>).<span class="ident">unwrap</span>();
-        <span class="kw">let</span> <span class="ident">src</span> <span class="op">=</span> <span class="ident">src</span>.<span class="ident">as_c_str</span>();
-        <span class="kw">let</span> <span class="ident">as_bytes</span> <span class="op">=</span> <span class="ident">src</span>.<span class="ident">to_bytes_with_nul</span>();
+    <span class="attribute">#[test]
+    #[cfg(feature = <span class="string">&quot;std&quot;</span>)]
+    </span><span class="kw">fn </span>round_trip_a_c_str() {
+        <span class="kw">let </span>src = CString::new(<span class="string">&quot;Hello World&quot;</span>).unwrap();
+        <span class="kw">let </span>src = src.as_c_str();
+        <span class="kw">let </span>as_bytes = src.to_bytes_with_nul();
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">buffer</span> <span class="op">=</span> <span class="macro">vec!</span>[<span class="number">0</span>; <span class="ident">as_bytes</span>.<span class="ident">len</span>()];
-        <span class="kw">let</span> <span class="ident">bytes_written</span> <span class="op">=</span> <span class="ident">src</span>.<span class="ident">try_into_ctx</span>(<span class="kw-2">&amp;mut</span> <span class="ident">buffer</span>, ()).<span class="ident">unwrap</span>();
-        <span class="macro">assert_eq!</span>(<span class="ident">bytes_written</span>, <span class="ident">as_bytes</span>.<span class="ident">len</span>());
+        <span class="kw">let </span><span class="kw-2">mut </span>buffer = <span class="macro">vec!</span>[<span class="number">0</span>; as_bytes.len()];
+        <span class="kw">let </span>bytes_written = src.try_into_ctx(<span class="kw-2">&amp;mut </span>buffer, ()).unwrap();
+        <span class="macro">assert_eq!</span>(bytes_written, as_bytes.len());
 
-        <span class="kw">let</span> (<span class="ident">got</span>, <span class="ident">bytes_read</span>) <span class="op">=</span> <span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">CStr</span> <span class="kw">as</span> <span class="ident">TryFromCtx</span><span class="op">&gt;</span><span class="ident">::try_from_ctx</span>(<span class="kw-2">&amp;</span><span class="ident">buffer</span>, ()).<span class="ident">unwrap</span>();
+        <span class="kw">let </span>(got, bytes_read) = &lt;<span class="kw-2">&amp;</span>CStr <span class="kw">as </span>TryFromCtx&gt;::try_from_ctx(<span class="kw-2">&amp;</span>buffer, ()).unwrap();
 
-        <span class="macro">assert_eq!</span>(<span class="ident">bytes_read</span>, <span class="ident">as_bytes</span>.<span class="ident">len</span>());
-        <span class="macro">assert_eq!</span>(<span class="ident">got</span>, <span class="ident">src</span>);
+        <span class="macro">assert_eq!</span>(bytes_read, as_bytes.len());
+        <span class="macro">assert_eq!</span>(got, src);
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="scroll" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="scroll" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (77e57db38 2022-10-30)" ></div></body></html>

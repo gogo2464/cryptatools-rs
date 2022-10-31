@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/goblin-0.5.4/src/mach/imports.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>imports.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../goblin/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../goblin/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../goblin/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/goblin-0.5.4/src/mach/imports.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>imports.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../normalize.css"><link rel="stylesheet" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../ayu.css" disabled><link rel="stylesheet" href="../../../dark.css" disabled><link rel="stylesheet" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../goblin/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -306,313 +306,313 @@
 <span id="306">306</span>
 <span id="307">307</span>
 <span id="308">308</span>
-</pre><pre class="rust"><code><span class="doccomment">//! Dynamically linked symbolic imports</span>
+</pre><pre class="rust"><code><span class="doccomment">//! Dynamically linked symbolic imports
 
-<span class="comment">// table of tuples:</span>
-<span class="comment">// &lt;seg-index, seg-offset, type, symbol-library-ordinal, symbol-name, addend&gt;</span>
-<span class="comment">// symbol flags are undocumented</span>
+</span><span class="comment">// table of tuples:
+// &lt;seg-index, seg-offset, type, symbol-library-ordinal, symbol-name, addend&gt;
+// symbol flags are undocumented
 
-<span class="kw">use</span> <span class="ident">alloc::vec::Vec</span>;
-<span class="kw">use</span> <span class="ident">core::fmt</span>::{<span class="self">self</span>, <span class="ident">Debug</span>};
-<span class="kw">use</span> <span class="ident">core::ops::Range</span>;
-<span class="kw">use</span> <span class="ident">scroll</span>::{<span class="ident">Pread</span>, <span class="ident">Sleb128</span>, <span class="ident">Uleb128</span>};
+</span><span class="kw">use </span>alloc::vec::Vec;
+<span class="kw">use </span>core::fmt::{<span class="self">self</span>, Debug};
+<span class="kw">use </span>core::ops::Range;
+<span class="kw">use </span>scroll::{Pread, Sleb128, Uleb128};
 
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::container</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::error</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::mach::bind_opcodes</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::mach::load_command</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::mach::segment</span>;
+<span class="kw">use </span><span class="kw">crate</span>::container;
+<span class="kw">use </span><span class="kw">crate</span>::error;
+<span class="kw">use </span><span class="kw">crate</span>::mach::bind_opcodes;
+<span class="kw">use </span><span class="kw">crate</span>::mach::load_command;
+<span class="kw">use </span><span class="kw">crate</span>::mach::segment;
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
-<span class="doccomment">/// Import binding information generated by running the Finite State Automaton programmed via `bind_opcodes`</span>
-<span class="kw">struct</span> <span class="ident">BindInformation</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="ident">seg_index</span>: <span class="ident">u8</span>,
-    <span class="ident">seg_offset</span>: <span class="ident">u64</span>,
-    <span class="ident">bind_type</span>: <span class="ident">u8</span>,
-    <span class="ident">symbol_library_ordinal</span>: <span class="ident">u8</span>,
-    <span class="ident">symbol_name</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>,
-    <span class="ident">symbol_flags</span>: <span class="ident">u8</span>,
-    <span class="ident">addend</span>: <span class="ident">i64</span>,
-    <span class="ident">special_dylib</span>: <span class="ident">u8</span>, <span class="comment">// seeing self = 0 assuming this means the symbol is imported from itself, because its... libSystem.B.dylib?</span>
-    <span class="ident">is_lazy</span>: <span class="ident">bool</span>,
+<span class="attribute">#[derive(Debug)]
+</span><span class="doccomment">/// Import binding information generated by running the Finite State Automaton programmed via `bind_opcodes`
+</span><span class="kw">struct </span>BindInformation&lt;<span class="lifetime">&#39;a</span>&gt; {
+    seg_index: u8,
+    seg_offset: u64,
+    bind_type: u8,
+    symbol_library_ordinal: u8,
+    symbol_name: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str,
+    symbol_flags: u8,
+    addend: i64,
+    special_dylib: u8, <span class="comment">// seeing self = 0 assuming this means the symbol is imported from itself, because its... libSystem.B.dylib?
+    </span>is_lazy: bool,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">BindInformation</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">is_lazy</span>: <span class="ident">bool</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">bind_info</span> <span class="op">=</span> <span class="ident">BindInformation::default</span>();
-        <span class="kw">if</span> <span class="ident">is_lazy</span> {
-            <span class="ident">bind_info</span>.<span class="ident">is_lazy</span> <span class="op">=</span> <span class="bool-val">true</span>;
-            <span class="ident">bind_info</span>.<span class="ident">bind_type</span> <span class="op">=</span> <span class="ident">bind_opcodes::BIND_TYPE_POINTER</span>;
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; BindInformation&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">pub fn </span>new(is_lazy: bool) -&gt; <span class="self">Self </span>{
+        <span class="kw">let </span><span class="kw-2">mut </span>bind_info = BindInformation::default();
+        <span class="kw">if </span>is_lazy {
+            bind_info.is_lazy = <span class="bool-val">true</span>;
+            bind_info.bind_type = bind_opcodes::BIND_TYPE_POINTER;
         }
-        <span class="ident">bind_info</span>
+        bind_info
     }
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_weak</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">symbol_flags</span> <span class="op">&amp;</span> <span class="ident">bind_opcodes::BIND_SYMBOL_FLAGS_WEAK_IMPORT</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span>
-    }
+    <span class="kw">pub fn </span>is_weak(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.symbol_flags &amp; bind_opcodes::BIND_SYMBOL_FLAGS_WEAK_IMPORT != <span class="number">0
+    </span>}
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">BindInformation</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">default</span>() -&gt; <span class="self">Self</span> {
-        <span class="ident">BindInformation</span> {
-            <span class="ident">seg_index</span>: <span class="number">0</span>,
-            <span class="ident">seg_offset</span>: <span class="number">0x0</span>,
-            <span class="ident">bind_type</span>: <span class="number">0x0</span>,
-            <span class="ident">special_dylib</span>: <span class="number">1</span>,
-            <span class="ident">symbol_library_ordinal</span>: <span class="number">0</span>,
-            <span class="ident">symbol_name</span>: <span class="string">&quot;&quot;</span>,
-            <span class="ident">symbol_flags</span>: <span class="number">0</span>,
-            <span class="ident">addend</span>: <span class="number">0</span>,
-            <span class="ident">is_lazy</span>: <span class="bool-val">false</span>,
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Default <span class="kw">for </span>BindInformation&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">fn </span>default() -&gt; <span class="self">Self </span>{
+        BindInformation {
+            seg_index: <span class="number">0</span>,
+            seg_offset: <span class="number">0x0</span>,
+            bind_type: <span class="number">0x0</span>,
+            special_dylib: <span class="number">1</span>,
+            symbol_library_ordinal: <span class="number">0</span>,
+            symbol_name: <span class="string">&quot;&quot;</span>,
+            symbol_flags: <span class="number">0</span>,
+            addend: <span class="number">0</span>,
+            is_lazy: <span class="bool-val">false</span>,
         }
     }
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
-<span class="doccomment">/// An dynamically linked symbolic import</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Import</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// The symbol name dyld uses to resolve this import</span>
-    <span class="kw">pub</span> <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>,
-    <span class="doccomment">/// The library this symbol belongs to (thanks to two-level namespaces)</span>
-    <span class="kw">pub</span> <span class="ident">dylib</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>,
-    <span class="doccomment">///  Whether the symbol is lazily resolved or not</span>
-    <span class="kw">pub</span> <span class="ident">is_lazy</span>: <span class="ident">bool</span>,
-    <span class="doccomment">/// The offset in the binary this import is found</span>
-    <span class="kw">pub</span> <span class="ident">offset</span>: <span class="ident">u64</span>,
-    <span class="doccomment">/// The size of this import</span>
-    <span class="kw">pub</span> <span class="ident">size</span>: <span class="ident">usize</span>,
-    <span class="doccomment">/// The virtual memory address at which this import is found</span>
-    <span class="kw">pub</span> <span class="ident">address</span>: <span class="ident">u64</span>,
-    <span class="doccomment">/// The addend of this import</span>
-    <span class="kw">pub</span> <span class="ident">addend</span>: <span class="ident">i64</span>,
-    <span class="doccomment">/// Whether this import is weak</span>
-    <span class="kw">pub</span> <span class="ident">is_weak</span>: <span class="ident">bool</span>,
-    <span class="doccomment">/// The offset in the stream of bind opcodes that caused this import</span>
-    <span class="kw">pub</span> <span class="ident">start_of_sequence_offset</span>: <span class="ident">u64</span>,
+<span class="attribute">#[derive(Debug)]
+</span><span class="doccomment">/// An dynamically linked symbolic import
+</span><span class="kw">pub struct </span>Import&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="doccomment">/// The symbol name dyld uses to resolve this import
+    </span><span class="kw">pub </span>name: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str,
+    <span class="doccomment">/// The library this symbol belongs to (thanks to two-level namespaces)
+    </span><span class="kw">pub </span>dylib: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str,
+    <span class="doccomment">///  Whether the symbol is lazily resolved or not
+    </span><span class="kw">pub </span>is_lazy: bool,
+    <span class="doccomment">/// The offset in the binary this import is found
+    </span><span class="kw">pub </span>offset: u64,
+    <span class="doccomment">/// The size of this import
+    </span><span class="kw">pub </span>size: usize,
+    <span class="doccomment">/// The virtual memory address at which this import is found
+    </span><span class="kw">pub </span>address: u64,
+    <span class="doccomment">/// The addend of this import
+    </span><span class="kw">pub </span>addend: i64,
+    <span class="doccomment">/// Whether this import is weak
+    </span><span class="kw">pub </span>is_weak: bool,
+    <span class="doccomment">/// The offset in the stream of bind opcodes that caused this import
+    </span><span class="kw">pub </span>start_of_sequence_offset: u64,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Import</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// Create a new import from the import binding information in `bi`</span>
-    <span class="kw">fn</span> <span class="ident">new</span>(
-        <span class="ident">bi</span>: <span class="kw-2">&amp;</span><span class="ident">BindInformation</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>,
-        <span class="ident">libs</span>: <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>],
-        <span class="ident">segments</span>: <span class="kw-2">&amp;</span>[<span class="ident">segment::Segment</span>],
-        <span class="ident">start_of_sequence_offset</span>: <span class="ident">usize</span>,
-    ) -&gt; <span class="ident">Import</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> (<span class="ident">offset</span>, <span class="ident">address</span>) <span class="op">=</span> {
-            <span class="kw">let</span> <span class="ident">segment</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">segments</span>[<span class="ident">bi</span>.<span class="ident">seg_index</span> <span class="kw">as</span> <span class="ident">usize</span>];
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Import&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="doccomment">/// Create a new import from the import binding information in `bi`
+    </span><span class="kw">fn </span>new(
+        bi: <span class="kw-2">&amp;</span>BindInformation&lt;<span class="lifetime">&#39;a</span>&gt;,
+        libs: <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str],
+        segments: <span class="kw-2">&amp;</span>[segment::Segment],
+        start_of_sequence_offset: usize,
+    ) -&gt; Import&lt;<span class="lifetime">&#39;a</span>&gt; {
+        <span class="kw">let </span>(offset, address) = {
+            <span class="kw">let </span>segment = <span class="kw-2">&amp;</span>segments[bi.seg_index <span class="kw">as </span>usize];
             (
-                <span class="ident">segment</span>.<span class="ident">fileoff</span> <span class="op">+</span> <span class="ident">bi</span>.<span class="ident">seg_offset</span>,
-                <span class="ident">segment</span>.<span class="ident">vmaddr</span> <span class="op">+</span> <span class="ident">bi</span>.<span class="ident">seg_offset</span>,
+                segment.fileoff + bi.seg_offset,
+                segment.vmaddr + bi.seg_offset,
             )
         };
-        <span class="kw">let</span> <span class="ident">size</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">bi</span>.<span class="ident">is_lazy</span> { <span class="number">8</span> } <span class="kw">else</span> { <span class="number">0</span> };
-        <span class="ident">Import</span> {
-            <span class="ident">name</span>: <span class="ident">bi</span>.<span class="ident">symbol_name</span>,
-            <span class="ident">dylib</span>: <span class="ident">libs</span>[<span class="ident">bi</span>.<span class="ident">symbol_library_ordinal</span> <span class="kw">as</span> <span class="ident">usize</span>],
-            <span class="ident">is_lazy</span>: <span class="ident">bi</span>.<span class="ident">is_lazy</span>,
-            <span class="ident">offset</span>,
-            <span class="ident">size</span>,
-            <span class="ident">address</span>,
-            <span class="ident">addend</span>: <span class="ident">bi</span>.<span class="ident">addend</span>,
-            <span class="ident">is_weak</span>: <span class="ident">bi</span>.<span class="ident">is_weak</span>(),
-            <span class="ident">start_of_sequence_offset</span>: <span class="ident">start_of_sequence_offset</span> <span class="kw">as</span> <span class="ident">u64</span>,
+        <span class="kw">let </span>size = <span class="kw">if </span>bi.is_lazy { <span class="number">8 </span>} <span class="kw">else </span>{ <span class="number">0 </span>};
+        Import {
+            name: bi.symbol_name,
+            dylib: libs[bi.symbol_library_ordinal <span class="kw">as </span>usize],
+            is_lazy: bi.is_lazy,
+            offset,
+            size,
+            address,
+            addend: bi.addend,
+            is_weak: bi.is_weak(),
+            start_of_sequence_offset: start_of_sequence_offset <span class="kw">as </span>u64,
         }
     }
 }
 
-<span class="doccomment">/// An interpreter for mach BIND opcodes.</span>
-<span class="doccomment">/// Runs on prebound (non lazy) symbols (usually dylib extern consts and extern variables),</span>
-<span class="doccomment">/// and lazy symbols (usually dylib functions)</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">BindInterpreter</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="ident">data</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
-    <span class="ident">location</span>: <span class="ident">Range</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span>,
-    <span class="ident">lazy_location</span>: <span class="ident">Range</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span>,
+<span class="doccomment">/// An interpreter for mach BIND opcodes.
+/// Runs on prebound (non lazy) symbols (usually dylib extern consts and extern variables),
+/// and lazy symbols (usually dylib functions)
+</span><span class="kw">pub struct </span>BindInterpreter&lt;<span class="lifetime">&#39;a</span>&gt; {
+    data: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8],
+    location: Range&lt;usize&gt;,
+    lazy_location: Range&lt;usize&gt;,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Debug</span> <span class="kw">for</span> <span class="ident">BindInterpreter</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">fmt</span>: <span class="kw-2">&amp;mut</span> <span class="ident">fmt::Formatter</span>) -&gt; <span class="ident">fmt::Result</span> {
-        <span class="ident">fmt</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;BindInterpreter&quot;</span>)
-            .<span class="ident">field</span>(<span class="string">&quot;data&quot;</span>, <span class="kw-2">&amp;</span><span class="string">&quot;&lt;... redacted ...&gt;&quot;</span>)
-            .<span class="ident">field</span>(
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Debug <span class="kw">for </span>BindInterpreter&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, fmt: <span class="kw-2">&amp;mut </span>fmt::Formatter) -&gt; fmt::Result {
+        fmt.debug_struct(<span class="string">&quot;BindInterpreter&quot;</span>)
+            .field(<span class="string">&quot;data&quot;</span>, <span class="kw-2">&amp;</span><span class="string">&quot;&lt;... redacted ...&gt;&quot;</span>)
+            .field(
                 <span class="string">&quot;location&quot;</span>,
-                <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{:#x}..{:#x}&quot;</span>, <span class="self">self</span>.<span class="ident">location</span>.<span class="ident">start</span>, <span class="self">self</span>.<span class="ident">location</span>.<span class="ident">end</span>),
+                <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{:#x}..{:#x}&quot;</span>, <span class="self">self</span>.location.start, <span class="self">self</span>.location.end),
             )
-            .<span class="ident">field</span>(
+            .field(
                 <span class="string">&quot;lazy_location&quot;</span>,
                 <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(
                     <span class="string">&quot;{:#x}..{:#x}&quot;</span>,
-                    <span class="self">self</span>.<span class="ident">lazy_location</span>.<span class="ident">start</span>, <span class="self">self</span>.<span class="ident">lazy_location</span>.<span class="ident">end</span>
+                    <span class="self">self</span>.lazy_location.start, <span class="self">self</span>.lazy_location.end
                 ),
             )
-            .<span class="ident">finish</span>()
+            .finish()
     }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">BindInterpreter</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// Construct a new import binding interpreter from `bytes` and the load `command`</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>], <span class="ident">command</span>: <span class="kw-2">&amp;</span><span class="ident">load_command::DyldInfoCommand</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw">let</span> <span class="ident">get_pos</span> <span class="op">=</span> <span class="op">|</span><span class="ident">off</span>: <span class="ident">u32</span>, <span class="ident">size</span>: <span class="ident">u32</span><span class="op">|</span> -&gt; <span class="ident">Range</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span> {
-            <span class="kw">let</span> <span class="ident">start</span> <span class="op">=</span> <span class="ident">off</span> <span class="kw">as</span> <span class="ident">usize</span>;
-            <span class="ident">start</span>..<span class="ident">start</span>.<span class="ident">saturating_add</span>(<span class="ident">size</span> <span class="kw">as</span> <span class="ident">usize</span>)
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; BindInterpreter&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="doccomment">/// Construct a new import binding interpreter from `bytes` and the load `command`
+    </span><span class="kw">pub fn </span>new(bytes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8], command: <span class="kw-2">&amp;</span>load_command::DyldInfoCommand) -&gt; <span class="self">Self </span>{
+        <span class="kw">let </span>get_pos = |off: u32, size: u32| -&gt; Range&lt;usize&gt; {
+            <span class="kw">let </span>start = off <span class="kw">as </span>usize;
+            start..start.saturating_add(size <span class="kw">as </span>usize)
         };
-        <span class="kw">let</span> <span class="ident">location</span> <span class="op">=</span> <span class="ident">get_pos</span>(<span class="ident">command</span>.<span class="ident">bind_off</span>, <span class="ident">command</span>.<span class="ident">bind_size</span>);
-        <span class="kw">let</span> <span class="ident">lazy_location</span> <span class="op">=</span> <span class="ident">get_pos</span>(<span class="ident">command</span>.<span class="ident">lazy_bind_off</span>, <span class="ident">command</span>.<span class="ident">lazy_bind_size</span>);
-        <span class="ident">BindInterpreter</span> {
-            <span class="ident">data</span>: <span class="ident">bytes</span>,
-            <span class="ident">location</span>,
-            <span class="ident">lazy_location</span>,
+        <span class="kw">let </span>location = get_pos(command.bind_off, command.bind_size);
+        <span class="kw">let </span>lazy_location = get_pos(command.lazy_bind_off, command.lazy_bind_size);
+        BindInterpreter {
+            data: bytes,
+            location,
+            lazy_location,
         }
     }
-    <span class="doccomment">/// Return the imports in this binary</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">imports</span>(
+    <span class="doccomment">/// Return the imports in this binary
+    </span><span class="kw">pub fn </span>imports(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">libs</span>: <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>],
-        <span class="ident">segments</span>: <span class="kw-2">&amp;</span>[<span class="ident">segment::Segment</span>],
-        <span class="ident">ctx</span>: <span class="ident">container::Ctx</span>,
-    ) -&gt; <span class="ident">error::Result</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Import</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">imports</span> <span class="op">=</span> <span class="ident">Vec::new</span>();
-        <span class="self">self</span>.<span class="ident">run</span>(<span class="bool-val">false</span>, <span class="ident">libs</span>, <span class="ident">segments</span>, <span class="ident">ctx</span>, <span class="kw-2">&amp;mut</span> <span class="ident">imports</span>)<span class="question-mark">?</span>;
-        <span class="self">self</span>.<span class="ident">run</span>(<span class="bool-val">true</span>, <span class="ident">libs</span>, <span class="ident">segments</span>, <span class="ident">ctx</span>, <span class="kw-2">&amp;mut</span> <span class="ident">imports</span>)<span class="question-mark">?</span>;
-        <span class="prelude-val">Ok</span>(<span class="ident">imports</span>)
+        libs: <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str],
+        segments: <span class="kw-2">&amp;</span>[segment::Segment],
+        ctx: container::Ctx,
+    ) -&gt; error::Result&lt;Vec&lt;Import&lt;<span class="lifetime">&#39;a</span>&gt;&gt;&gt; {
+        <span class="kw">let </span><span class="kw-2">mut </span>imports = Vec::new();
+        <span class="self">self</span>.run(<span class="bool-val">false</span>, libs, segments, ctx, <span class="kw-2">&amp;mut </span>imports)<span class="question-mark">?</span>;
+        <span class="self">self</span>.run(<span class="bool-val">true</span>, libs, segments, ctx, <span class="kw-2">&amp;mut </span>imports)<span class="question-mark">?</span>;
+        <span class="prelude-val">Ok</span>(imports)
     }
-    <span class="kw">fn</span> <span class="ident">run</span>(
+    <span class="kw">fn </span>run(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">is_lazy</span>: <span class="ident">bool</span>,
-        <span class="ident">libs</span>: <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>],
-        <span class="ident">segments</span>: <span class="kw-2">&amp;</span>[<span class="ident">segment::Segment</span>],
-        <span class="ident">ctx</span>: <span class="ident">container::Ctx</span>,
-        <span class="ident">imports</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Import</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-    ) -&gt; <span class="ident">error::Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
-        <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::mach::bind_opcodes</span>::<span class="kw-2">*</span>;
-        <span class="kw">let</span> <span class="ident">location</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">is_lazy</span> {
-            <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">lazy_location</span>
-        } <span class="kw">else</span> {
-            <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">location</span>
+        is_lazy: bool,
+        libs: <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str],
+        segments: <span class="kw-2">&amp;</span>[segment::Segment],
+        ctx: container::Ctx,
+        imports: <span class="kw-2">&amp;mut </span>Vec&lt;Import&lt;<span class="lifetime">&#39;a</span>&gt;&gt;,
+    ) -&gt; error::Result&lt;()&gt; {
+        <span class="kw">use </span><span class="kw">crate</span>::mach::bind_opcodes::<span class="kw-2">*</span>;
+        <span class="kw">let </span>location = <span class="kw">if </span>is_lazy {
+            <span class="kw-2">&amp;</span><span class="self">self</span>.lazy_location
+        } <span class="kw">else </span>{
+            <span class="kw-2">&amp;</span><span class="self">self</span>.location
         };
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">bind_info</span> <span class="op">=</span> <span class="ident">BindInformation::new</span>(<span class="ident">is_lazy</span>);
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">offset</span> <span class="op">=</span> <span class="ident">location</span>.<span class="ident">start</span>;
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">start_of_sequence</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">0</span>;
-        <span class="kw">while</span> <span class="ident">offset</span> <span class="op">&lt;</span> <span class="ident">location</span>.<span class="ident">end</span> {
-            <span class="kw">let</span> <span class="ident">opcode</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">data</span>.<span class="ident">gread</span>::<span class="op">&lt;</span><span class="ident">i8</span><span class="op">&gt;</span>(<span class="kw-2">&amp;mut</span> <span class="ident">offset</span>)<span class="question-mark">?</span> <span class="kw">as</span> <span class="ident">bind_opcodes::Opcode</span>;
-            <span class="comment">// let mut input = String::new();</span>
-            <span class="comment">// ::std::io::stdin().read_line(&amp;mut input).unwrap();</span>
-            <span class="comment">// println!(&quot;opcode: {} ({:#x}) offset: {:#x}\n {:?}&quot;, opcode_to_str(opcode &amp; BIND_OPCODE_MASK), opcode, offset - location.start - 1, &amp;bind_info);</span>
-            <span class="kw">match</span> <span class="ident">opcode</span> <span class="op">&amp;</span> <span class="ident">BIND_OPCODE_MASK</span> {
-                <span class="comment">// we do nothing, don&#39;t update our records, and add a new, fresh record</span>
-                <span class="ident">BIND_OPCODE_DONE</span> =&gt; {
-                    <span class="ident">bind_info</span> <span class="op">=</span> <span class="ident">BindInformation::new</span>(<span class="ident">is_lazy</span>);
-                    <span class="ident">start_of_sequence</span> <span class="op">=</span> <span class="ident">offset</span> <span class="op">-</span> <span class="ident">location</span>.<span class="ident">start</span>;
+        <span class="kw">let </span><span class="kw-2">mut </span>bind_info = BindInformation::new(is_lazy);
+        <span class="kw">let </span><span class="kw-2">mut </span>offset = location.start;
+        <span class="kw">let </span><span class="kw-2">mut </span>start_of_sequence: usize = <span class="number">0</span>;
+        <span class="kw">while </span>offset &lt; location.end {
+            <span class="kw">let </span>opcode = <span class="self">self</span>.data.gread::&lt;i8&gt;(<span class="kw-2">&amp;mut </span>offset)<span class="question-mark">? </span><span class="kw">as </span>bind_opcodes::Opcode;
+            <span class="comment">// let mut input = String::new();
+            // ::std::io::stdin().read_line(&amp;mut input).unwrap();
+            // println!(&quot;opcode: {} ({:#x}) offset: {:#x}\n {:?}&quot;, opcode_to_str(opcode &amp; BIND_OPCODE_MASK), opcode, offset - location.start - 1, &amp;bind_info);
+            </span><span class="kw">match </span>opcode &amp; BIND_OPCODE_MASK {
+                <span class="comment">// we do nothing, don&#39;t update our records, and add a new, fresh record
+                </span>BIND_OPCODE_DONE =&gt; {
+                    bind_info = BindInformation::new(is_lazy);
+                    start_of_sequence = offset - location.start;
                 }
-                <span class="ident">BIND_OPCODE_SET_DYLIB_ORDINAL_IMM</span> =&gt; {
-                    <span class="kw">let</span> <span class="ident">symbol_library_ordinal</span> <span class="op">=</span> <span class="ident">opcode</span> <span class="op">&amp;</span> <span class="ident">BIND_IMMEDIATE_MASK</span>;
-                    <span class="ident">bind_info</span>.<span class="ident">symbol_library_ordinal</span> <span class="op">=</span> <span class="ident">symbol_library_ordinal</span>;
+                BIND_OPCODE_SET_DYLIB_ORDINAL_IMM =&gt; {
+                    <span class="kw">let </span>symbol_library_ordinal = opcode &amp; BIND_IMMEDIATE_MASK;
+                    bind_info.symbol_library_ordinal = symbol_library_ordinal;
                 }
-                <span class="ident">BIND_OPCODE_SET_DYLIB_ORDINAL_ULEB</span> =&gt; {
-                    <span class="kw">let</span> <span class="ident">symbol_library_ordinal</span> <span class="op">=</span> <span class="ident">Uleb128::read</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">data</span>, <span class="kw-2">&amp;mut</span> <span class="ident">offset</span>)<span class="question-mark">?</span>;
-                    <span class="ident">bind_info</span>.<span class="ident">symbol_library_ordinal</span> <span class="op">=</span> <span class="ident">symbol_library_ordinal</span> <span class="kw">as</span> <span class="ident">u8</span>;
+                BIND_OPCODE_SET_DYLIB_ORDINAL_ULEB =&gt; {
+                    <span class="kw">let </span>symbol_library_ordinal = Uleb128::read(<span class="kw-2">&amp;</span><span class="self">self</span>.data, <span class="kw-2">&amp;mut </span>offset)<span class="question-mark">?</span>;
+                    bind_info.symbol_library_ordinal = symbol_library_ordinal <span class="kw">as </span>u8;
                 }
-                <span class="ident">BIND_OPCODE_SET_DYLIB_SPECIAL_IMM</span> =&gt; {
-                    <span class="comment">// dyld puts the immediate into the symbol_library_ordinal field...</span>
-                    <span class="kw">let</span> <span class="ident">special_dylib</span> <span class="op">=</span> <span class="ident">opcode</span> <span class="op">&amp;</span> <span class="ident">BIND_IMMEDIATE_MASK</span>;
-                    <span class="comment">// Printf.printf &quot;special_dylib: 0x%x\n&quot; special_dylib</span>
-                    <span class="ident">bind_info</span>.<span class="ident">special_dylib</span> <span class="op">=</span> <span class="ident">special_dylib</span>;
+                BIND_OPCODE_SET_DYLIB_SPECIAL_IMM =&gt; {
+                    <span class="comment">// dyld puts the immediate into the symbol_library_ordinal field...
+                    </span><span class="kw">let </span>special_dylib = opcode &amp; BIND_IMMEDIATE_MASK;
+                    <span class="comment">// Printf.printf &quot;special_dylib: 0x%x\n&quot; special_dylib
+                    </span>bind_info.special_dylib = special_dylib;
                 }
-                <span class="ident">BIND_OPCODE_SET_SYMBOL_TRAILING_FLAGS_IMM</span> =&gt; {
-                    <span class="kw">let</span> <span class="ident">symbol_flags</span> <span class="op">=</span> <span class="ident">opcode</span> <span class="op">&amp;</span> <span class="ident">BIND_IMMEDIATE_MASK</span>;
-                    <span class="kw">let</span> <span class="ident">symbol_name</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">data</span>.<span class="ident">pread</span>::<span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>(<span class="ident">offset</span>)<span class="question-mark">?</span>;
-                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">symbol_name</span>.<span class="ident">len</span>() <span class="op">+</span> <span class="number">1</span>; <span class="comment">// second time this \0 caused debug woes</span>
-                    <span class="ident">bind_info</span>.<span class="ident">symbol_name</span> <span class="op">=</span> <span class="ident">symbol_name</span>;
-                    <span class="ident">bind_info</span>.<span class="ident">symbol_flags</span> <span class="op">=</span> <span class="ident">symbol_flags</span>;
+                BIND_OPCODE_SET_SYMBOL_TRAILING_FLAGS_IMM =&gt; {
+                    <span class="kw">let </span>symbol_flags = opcode &amp; BIND_IMMEDIATE_MASK;
+                    <span class="kw">let </span>symbol_name = <span class="self">self</span>.data.pread::&lt;<span class="kw-2">&amp;</span>str&gt;(offset)<span class="question-mark">?</span>;
+                    offset += symbol_name.len() + <span class="number">1</span>; <span class="comment">// second time this \0 caused debug woes
+                    </span>bind_info.symbol_name = symbol_name;
+                    bind_info.symbol_flags = symbol_flags;
                 }
-                <span class="ident">BIND_OPCODE_SET_TYPE_IMM</span> =&gt; {
-                    <span class="kw">let</span> <span class="ident">bind_type</span> <span class="op">=</span> <span class="ident">opcode</span> <span class="op">&amp;</span> <span class="ident">BIND_IMMEDIATE_MASK</span>;
-                    <span class="ident">bind_info</span>.<span class="ident">bind_type</span> <span class="op">=</span> <span class="ident">bind_type</span>;
+                BIND_OPCODE_SET_TYPE_IMM =&gt; {
+                    <span class="kw">let </span>bind_type = opcode &amp; BIND_IMMEDIATE_MASK;
+                    bind_info.bind_type = bind_type;
                 }
-                <span class="ident">BIND_OPCODE_SET_ADDEND_SLEB</span> =&gt; {
-                    <span class="kw">let</span> <span class="ident">addend</span> <span class="op">=</span> <span class="ident">Sleb128::read</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">data</span>, <span class="kw-2">&amp;mut</span> <span class="ident">offset</span>)<span class="question-mark">?</span>;
-                    <span class="ident">bind_info</span>.<span class="ident">addend</span> <span class="op">=</span> <span class="ident">addend</span>;
+                BIND_OPCODE_SET_ADDEND_SLEB =&gt; {
+                    <span class="kw">let </span>addend = Sleb128::read(<span class="kw-2">&amp;</span><span class="self">self</span>.data, <span class="kw-2">&amp;mut </span>offset)<span class="question-mark">?</span>;
+                    bind_info.addend = addend;
                 }
-                <span class="ident">BIND_OPCODE_SET_SEGMENT_AND_OFFSET_ULEB</span> =&gt; {
-                    <span class="kw">let</span> <span class="ident">seg_index</span> <span class="op">=</span> <span class="ident">opcode</span> <span class="op">&amp;</span> <span class="ident">BIND_IMMEDIATE_MASK</span>;
-                    <span class="comment">// dyld sets the address to the segActualLoadAddress(segIndex) + uleb128</span>
-                    <span class="comment">// address = segActualLoadAddress(segmentIndex) + read_uleb128(p, end);</span>
-                    <span class="kw">let</span> <span class="ident">seg_offset</span> <span class="op">=</span> <span class="ident">Uleb128::read</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">data</span>, <span class="kw-2">&amp;mut</span> <span class="ident">offset</span>)<span class="question-mark">?</span>;
-                    <span class="ident">bind_info</span>.<span class="ident">seg_index</span> <span class="op">=</span> <span class="ident">seg_index</span>;
-                    <span class="ident">bind_info</span>.<span class="ident">seg_offset</span> <span class="op">=</span> <span class="ident">seg_offset</span>;
+                BIND_OPCODE_SET_SEGMENT_AND_OFFSET_ULEB =&gt; {
+                    <span class="kw">let </span>seg_index = opcode &amp; BIND_IMMEDIATE_MASK;
+                    <span class="comment">// dyld sets the address to the segActualLoadAddress(segIndex) + uleb128
+                    // address = segActualLoadAddress(segmentIndex) + read_uleb128(p, end);
+                    </span><span class="kw">let </span>seg_offset = Uleb128::read(<span class="kw-2">&amp;</span><span class="self">self</span>.data, <span class="kw-2">&amp;mut </span>offset)<span class="question-mark">?</span>;
+                    bind_info.seg_index = seg_index;
+                    bind_info.seg_offset = seg_offset;
                 }
-                <span class="ident">BIND_OPCODE_ADD_ADDR_ULEB</span> =&gt; {
-                    <span class="kw">let</span> <span class="ident">addr</span> <span class="op">=</span> <span class="ident">Uleb128::read</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">data</span>, <span class="kw-2">&amp;mut</span> <span class="ident">offset</span>)<span class="question-mark">?</span>;
-                    <span class="kw">let</span> <span class="ident">seg_offset</span> <span class="op">=</span> <span class="ident">bind_info</span>.<span class="ident">seg_offset</span>.<span class="ident">wrapping_add</span>(<span class="ident">addr</span>);
-                    <span class="ident">bind_info</span>.<span class="ident">seg_offset</span> <span class="op">=</span> <span class="ident">seg_offset</span>;
+                BIND_OPCODE_ADD_ADDR_ULEB =&gt; {
+                    <span class="kw">let </span>addr = Uleb128::read(<span class="kw-2">&amp;</span><span class="self">self</span>.data, <span class="kw-2">&amp;mut </span>offset)<span class="question-mark">?</span>;
+                    <span class="kw">let </span>seg_offset = bind_info.seg_offset.wrapping_add(addr);
+                    bind_info.seg_offset = seg_offset;
                 }
-                <span class="comment">// record the record by placing its value into our list</span>
-                <span class="ident">BIND_OPCODE_DO_BIND</span> =&gt; {
-                    <span class="comment">// from dyld:</span>
-                    <span class="comment">//      if ( address &gt;= segmentEndAddress )</span>
-                    <span class="comment">// throwBadBindingAddress(address, segmentEndAddress, segmentIndex, start, end, p);</span>
-                    <span class="comment">// (this-&gt;*handler)(context, address, type, symbolName, symboFlags, addend, libraryOrdinal, &quot;&quot;, &amp;last);</span>
-                    <span class="comment">// address += sizeof(intptr_t);</span>
-                    <span class="ident">imports</span>.<span class="ident">push</span>(<span class="ident">Import::new</span>(<span class="kw-2">&amp;</span><span class="ident">bind_info</span>, <span class="ident">libs</span>, <span class="ident">segments</span>, <span class="ident">start_of_sequence</span>));
-                    <span class="kw">let</span> <span class="ident">seg_offset</span> <span class="op">=</span> <span class="ident">bind_info</span>.<span class="ident">seg_offset</span>.<span class="ident">wrapping_add</span>(<span class="ident">ctx</span>.<span class="ident">size</span>() <span class="kw">as</span> <span class="ident">u64</span>);
-                    <span class="ident">bind_info</span>.<span class="ident">seg_offset</span> <span class="op">=</span> <span class="ident">seg_offset</span>;
+                <span class="comment">// record the record by placing its value into our list
+                </span>BIND_OPCODE_DO_BIND =&gt; {
+                    <span class="comment">// from dyld:
+                    //      if ( address &gt;= segmentEndAddress )
+                    // throwBadBindingAddress(address, segmentEndAddress, segmentIndex, start, end, p);
+                    // (this-&gt;*handler)(context, address, type, symbolName, symboFlags, addend, libraryOrdinal, &quot;&quot;, &amp;last);
+                    // address += sizeof(intptr_t);
+                    </span>imports.push(Import::new(<span class="kw-2">&amp;</span>bind_info, libs, segments, start_of_sequence));
+                    <span class="kw">let </span>seg_offset = bind_info.seg_offset.wrapping_add(ctx.size() <span class="kw">as </span>u64);
+                    bind_info.seg_offset = seg_offset;
                 }
-                <span class="ident">BIND_OPCODE_DO_BIND_ADD_ADDR_ULEB</span> =&gt; {
-                    <span class="comment">// dyld:</span>
-                    <span class="comment">// if ( address &gt;= segmentEndAddress )</span>
-                    <span class="comment">// throwBadBindingAddress(address, segmentEndAddress, segmentIndex, start, end, p);</span>
-                    <span class="comment">// (this-&gt;*handler)(context, address, type, symbolName, symboFlags, addend, libraryOrdinal, &quot;&quot;, &amp;last);</span>
-                    <span class="comment">// address += read_uleb128(p, end) + sizeof(intptr_t);</span>
-                    <span class="comment">// we bind the old record, then increment bind info address for the next guy, plus the ptr offset *)</span>
-                    <span class="ident">imports</span>.<span class="ident">push</span>(<span class="ident">Import::new</span>(<span class="kw-2">&amp;</span><span class="ident">bind_info</span>, <span class="ident">libs</span>, <span class="ident">segments</span>, <span class="ident">start_of_sequence</span>));
-                    <span class="kw">let</span> <span class="ident">addr</span> <span class="op">=</span> <span class="ident">Uleb128::read</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">data</span>, <span class="kw-2">&amp;mut</span> <span class="ident">offset</span>)<span class="question-mark">?</span>;
-                    <span class="kw">let</span> <span class="ident">seg_offset</span> <span class="op">=</span> <span class="ident">bind_info</span>
-                        .<span class="ident">seg_offset</span>
-                        .<span class="ident">wrapping_add</span>(<span class="ident">addr</span>)
-                        .<span class="ident">wrapping_add</span>(<span class="ident">ctx</span>.<span class="ident">size</span>() <span class="kw">as</span> <span class="ident">u64</span>);
-                    <span class="ident">bind_info</span>.<span class="ident">seg_offset</span> <span class="op">=</span> <span class="ident">seg_offset</span>;
+                BIND_OPCODE_DO_BIND_ADD_ADDR_ULEB =&gt; {
+                    <span class="comment">// dyld:
+                    // if ( address &gt;= segmentEndAddress )
+                    // throwBadBindingAddress(address, segmentEndAddress, segmentIndex, start, end, p);
+                    // (this-&gt;*handler)(context, address, type, symbolName, symboFlags, addend, libraryOrdinal, &quot;&quot;, &amp;last);
+                    // address += read_uleb128(p, end) + sizeof(intptr_t);
+                    // we bind the old record, then increment bind info address for the next guy, plus the ptr offset *)
+                    </span>imports.push(Import::new(<span class="kw-2">&amp;</span>bind_info, libs, segments, start_of_sequence));
+                    <span class="kw">let </span>addr = Uleb128::read(<span class="kw-2">&amp;</span><span class="self">self</span>.data, <span class="kw-2">&amp;mut </span>offset)<span class="question-mark">?</span>;
+                    <span class="kw">let </span>seg_offset = bind_info
+                        .seg_offset
+                        .wrapping_add(addr)
+                        .wrapping_add(ctx.size() <span class="kw">as </span>u64);
+                    bind_info.seg_offset = seg_offset;
                 }
-                <span class="ident">BIND_OPCODE_DO_BIND_ADD_ADDR_IMM_SCALED</span> =&gt; {
-                    <span class="comment">// dyld:</span>
-                    <span class="comment">// if ( address &gt;= segmentEndAddress )</span>
-                    <span class="comment">// throwBadBindingAddress(address, segmentEndAddress, segmentIndex, start, end, p);</span>
-                    <span class="comment">// (this-&gt;*handler)(context, address, type, symbolName, symboFlags, addend, libraryOrdinal, &quot;&quot;, &amp;last);</span>
-                    <span class="comment">// address += immediate*sizeof(intptr_t) + sizeof(intptr_t);</span>
-                    <span class="comment">// break;</span>
-                    <span class="comment">// similarly, we bind the old record, then perform address manipulation for the next record</span>
-                    <span class="ident">imports</span>.<span class="ident">push</span>(<span class="ident">Import::new</span>(<span class="kw-2">&amp;</span><span class="ident">bind_info</span>, <span class="ident">libs</span>, <span class="ident">segments</span>, <span class="ident">start_of_sequence</span>));
-                    <span class="kw">let</span> <span class="ident">scale</span> <span class="op">=</span> <span class="ident">opcode</span> <span class="op">&amp;</span> <span class="ident">BIND_IMMEDIATE_MASK</span>;
-                    <span class="kw">let</span> <span class="ident">size</span> <span class="op">=</span> <span class="ident">ctx</span>.<span class="ident">size</span>() <span class="kw">as</span> <span class="ident">u64</span>;
-                    <span class="kw">let</span> <span class="ident">seg_offset</span> <span class="op">=</span> <span class="ident">bind_info</span>
-                        .<span class="ident">seg_offset</span>
-                        .<span class="ident">wrapping_add</span>(<span class="ident">u64::from</span>(<span class="ident">scale</span>) <span class="op">*</span> <span class="ident">size</span>)
-                        .<span class="ident">wrapping_add</span>(<span class="ident">size</span>);
-                    <span class="ident">bind_info</span>.<span class="ident">seg_offset</span> <span class="op">=</span> <span class="ident">seg_offset</span>;
+                BIND_OPCODE_DO_BIND_ADD_ADDR_IMM_SCALED =&gt; {
+                    <span class="comment">// dyld:
+                    // if ( address &gt;= segmentEndAddress )
+                    // throwBadBindingAddress(address, segmentEndAddress, segmentIndex, start, end, p);
+                    // (this-&gt;*handler)(context, address, type, symbolName, symboFlags, addend, libraryOrdinal, &quot;&quot;, &amp;last);
+                    // address += immediate*sizeof(intptr_t) + sizeof(intptr_t);
+                    // break;
+                    // similarly, we bind the old record, then perform address manipulation for the next record
+                    </span>imports.push(Import::new(<span class="kw-2">&amp;</span>bind_info, libs, segments, start_of_sequence));
+                    <span class="kw">let </span>scale = opcode &amp; BIND_IMMEDIATE_MASK;
+                    <span class="kw">let </span>size = ctx.size() <span class="kw">as </span>u64;
+                    <span class="kw">let </span>seg_offset = bind_info
+                        .seg_offset
+                        .wrapping_add(u64::from(scale) * size)
+                        .wrapping_add(size);
+                    bind_info.seg_offset = seg_offset;
                 }
-                <span class="ident">BIND_OPCODE_DO_BIND_ULEB_TIMES_SKIPPING_ULEB</span> =&gt; {
-                    <span class="comment">// dyld:</span>
-                    <span class="comment">// count = read_uleb128(p, end);</span>
-                    <span class="comment">// skip = read_uleb128(p, end);</span>
-                    <span class="comment">// for (uint32_t i=0; i &lt; count; ++i) {</span>
-                    <span class="comment">// if ( address &gt;= segmentEndAddress )</span>
-                    <span class="comment">// throwBadBindingAddress(address, segmentEndAddress, segmentIndex, start, end, p);</span>
-                    <span class="comment">// (this-&gt;*handler)(context, address, type, symbolName, symboFlags, addend, libraryOrdinal, &quot;&quot;, &amp;last);</span>
-                    <span class="comment">// address += skip + sizeof(intptr_t);</span>
-                    <span class="comment">// }</span>
-                    <span class="comment">// break;</span>
-                    <span class="kw">let</span> <span class="ident">count</span> <span class="op">=</span> <span class="ident">Uleb128::read</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">data</span>, <span class="kw-2">&amp;mut</span> <span class="ident">offset</span>)<span class="question-mark">?</span>;
-                    <span class="kw">let</span> <span class="ident">skip</span> <span class="op">=</span> <span class="ident">Uleb128::read</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">data</span>, <span class="kw-2">&amp;mut</span> <span class="ident">offset</span>)<span class="question-mark">?</span>;
-                    <span class="kw">let</span> <span class="ident">skip_plus_size</span> <span class="op">=</span> <span class="ident">skip</span> <span class="op">+</span> <span class="ident">ctx</span>.<span class="ident">size</span>() <span class="kw">as</span> <span class="ident">u64</span>;
-                    <span class="kw">for</span> <span class="ident">_i</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">count</span> {
-                        <span class="ident">imports</span>.<span class="ident">push</span>(<span class="ident">Import::new</span>(<span class="kw-2">&amp;</span><span class="ident">bind_info</span>, <span class="ident">libs</span>, <span class="ident">segments</span>, <span class="ident">start_of_sequence</span>));
-                        <span class="kw">let</span> <span class="ident">seg_offset</span> <span class="op">=</span> <span class="ident">bind_info</span>.<span class="ident">seg_offset</span>.<span class="ident">wrapping_add</span>(<span class="ident">skip_plus_size</span>);
-                        <span class="ident">bind_info</span>.<span class="ident">seg_offset</span> <span class="op">=</span> <span class="ident">seg_offset</span>;
+                BIND_OPCODE_DO_BIND_ULEB_TIMES_SKIPPING_ULEB =&gt; {
+                    <span class="comment">// dyld:
+                    // count = read_uleb128(p, end);
+                    // skip = read_uleb128(p, end);
+                    // for (uint32_t i=0; i &lt; count; ++i) {
+                    // if ( address &gt;= segmentEndAddress )
+                    // throwBadBindingAddress(address, segmentEndAddress, segmentIndex, start, end, p);
+                    // (this-&gt;*handler)(context, address, type, symbolName, symboFlags, addend, libraryOrdinal, &quot;&quot;, &amp;last);
+                    // address += skip + sizeof(intptr_t);
+                    // }
+                    // break;
+                    </span><span class="kw">let </span>count = Uleb128::read(<span class="kw-2">&amp;</span><span class="self">self</span>.data, <span class="kw-2">&amp;mut </span>offset)<span class="question-mark">?</span>;
+                    <span class="kw">let </span>skip = Uleb128::read(<span class="kw-2">&amp;</span><span class="self">self</span>.data, <span class="kw-2">&amp;mut </span>offset)<span class="question-mark">?</span>;
+                    <span class="kw">let </span>skip_plus_size = skip + ctx.size() <span class="kw">as </span>u64;
+                    <span class="kw">for </span>_i <span class="kw">in </span><span class="number">0</span>..count {
+                        imports.push(Import::new(<span class="kw-2">&amp;</span>bind_info, libs, segments, start_of_sequence));
+                        <span class="kw">let </span>seg_offset = bind_info.seg_offset.wrapping_add(skip_plus_size);
+                        bind_info.seg_offset = seg_offset;
                     }
                 }
-                <span class="kw">_</span> =&gt; {}
+                <span class="kw">_ </span>=&gt; {}
             }
         }
         <span class="prelude-val">Ok</span>(())
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="goblin" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="goblin" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (77e57db38 2022-10-30)" ></div></body></html>

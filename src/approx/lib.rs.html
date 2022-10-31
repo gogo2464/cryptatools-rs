@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/approx-0.5.1/src/lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../approx/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../approx/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../approx/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/approx-0.5.1/src/lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../approx/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -386,393 +386,393 @@
 <span id="386">386</span>
 <span id="387">387</span>
 <span id="388">388</span>
-</pre><pre class="rust"><code><span class="comment">// Copyright 2015 Brendan Zabarauskas</span>
-<span class="comment">//</span>
-<span class="comment">// Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span>
-<span class="comment">// you may not use this file except in compliance with the License.</span>
-<span class="comment">// You may obtain a copy of the License at</span>
-<span class="comment">//</span>
-<span class="comment">//     http://www.apache.org/licenses/LICENSE-2.0</span>
-<span class="comment">//</span>
-<span class="comment">// Unless required by applicable law or agreed to in writing, software</span>
-<span class="comment">// distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span>
-<span class="comment">// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
-<span class="comment">// See the License for the specific language governing permissions and</span>
-<span class="comment">// limitations under the License.</span>
+</pre><pre class="rust"><code><span class="comment">// Copyright 2015 Brendan Zabarauskas
+//
+// Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
 
-<span class="doccomment">//! A crate that provides facilities for testing the approximate equality of floating-point</span>
-<span class="doccomment">//! based types, using either relative difference, or units in the last place (ULPs)</span>
-<span class="doccomment">//! comparisons.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! You can also use the `*_{eq, ne}!` and `assert_*_{eq, ne}!` macros to test for equality using a</span>
-<span class="doccomment">//! more positional style:</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! ```rust</span>
-<span class="doccomment">//! #[macro_use]</span>
-<span class="doccomment">//! extern crate approx;</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! use std::f64;</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! # fn main() {</span>
-<span class="doccomment">//! abs_diff_eq!(1.0, 1.0);</span>
-<span class="doccomment">//! abs_diff_eq!(1.0, 1.0, epsilon = f64::EPSILON);</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! relative_eq!(1.0, 1.0);</span>
-<span class="doccomment">//! relative_eq!(1.0, 1.0, epsilon = f64::EPSILON);</span>
-<span class="doccomment">//! relative_eq!(1.0, 1.0, max_relative = 1.0);</span>
-<span class="doccomment">//! relative_eq!(1.0, 1.0, epsilon = f64::EPSILON, max_relative = 1.0);</span>
-<span class="doccomment">//! relative_eq!(1.0, 1.0, max_relative = 1.0, epsilon = f64::EPSILON);</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! ulps_eq!(1.0, 1.0);</span>
-<span class="doccomment">//! ulps_eq!(1.0, 1.0, epsilon = f64::EPSILON);</span>
-<span class="doccomment">//! ulps_eq!(1.0, 1.0, max_ulps = 4);</span>
-<span class="doccomment">//! ulps_eq!(1.0, 1.0, epsilon = f64::EPSILON, max_ulps = 4);</span>
-<span class="doccomment">//! ulps_eq!(1.0, 1.0, max_ulps = 4, epsilon = f64::EPSILON);</span>
-<span class="doccomment">//! # }</span>
-<span class="doccomment">//! ```</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! # Implementing approximate equality for custom types</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! The `*Eq` traits allow approximate equalities to be implemented on types, based on the</span>
-<span class="doccomment">//! fundamental floating point implementations.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! For example, we might want to be able to do approximate assertions on a complex number type:</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! ```rust</span>
-<span class="doccomment">//! #[macro_use]</span>
-<span class="doccomment">//! extern crate approx;</span>
-<span class="doccomment">//! # use approx::{AbsDiffEq, RelativeEq, UlpsEq};</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! #[derive(Debug, PartialEq)]</span>
-<span class="doccomment">//! struct Complex&lt;T&gt; {</span>
-<span class="doccomment">//!     x: T,</span>
-<span class="doccomment">//!     i: T,</span>
-<span class="doccomment">//! }</span>
-<span class="doccomment">//! # impl&lt;T: AbsDiffEq&gt; AbsDiffEq for Complex&lt;T&gt; where T::Epsilon: Copy {</span>
-<span class="doccomment">//! #     type Epsilon = T::Epsilon;</span>
-<span class="doccomment">//! #     fn default_epsilon() -&gt; T::Epsilon { T::default_epsilon() }</span>
-<span class="doccomment">//! #     fn abs_diff_eq(&amp;self, other: &amp;Self, epsilon: T::Epsilon) -&gt; bool {</span>
-<span class="doccomment">//! #         T::abs_diff_eq(&amp;self.x, &amp;other.x, epsilon) &amp;&amp;</span>
-<span class="doccomment">//! #         T::abs_diff_eq(&amp;self.i, &amp;other.i, epsilon)</span>
-<span class="doccomment">//! #     }</span>
-<span class="doccomment">//! # }</span>
-<span class="doccomment">//! # impl&lt;T: RelativeEq&gt; RelativeEq for Complex&lt;T&gt; where T::Epsilon: Copy {</span>
-<span class="doccomment">//! #     fn default_max_relative() -&gt; T::Epsilon { T::default_max_relative() }</span>
-<span class="doccomment">//! #     fn relative_eq(&amp;self, other: &amp;Self, epsilon: T::Epsilon, max_relative: T::Epsilon)</span>
-<span class="doccomment">//! #                   -&gt; bool {</span>
-<span class="doccomment">//! #         T::relative_eq(&amp;self.x, &amp;other.x, epsilon, max_relative) &amp;&amp;</span>
-<span class="doccomment">//! #         T::relative_eq(&amp;self.i, &amp;other.i, epsilon, max_relative)</span>
-<span class="doccomment">//! #     }</span>
-<span class="doccomment">//! # }</span>
-<span class="doccomment">//! # impl&lt;T: UlpsEq&gt; UlpsEq for Complex&lt;T&gt; where T::Epsilon: Copy {</span>
-<span class="doccomment">//! #     fn default_max_ulps() -&gt; u32 { T::default_max_ulps() }</span>
-<span class="doccomment">//! #     fn ulps_eq(&amp;self, other: &amp;Self, epsilon: T::Epsilon, max_ulps: u32) -&gt; bool {</span>
-<span class="doccomment">//! #         T::ulps_eq(&amp;self.x, &amp;other.x, epsilon, max_ulps) &amp;&amp;</span>
-<span class="doccomment">//! #         T::ulps_eq(&amp;self.i, &amp;other.i, epsilon, max_ulps)</span>
-<span class="doccomment">//! #     }</span>
-<span class="doccomment">//! # }</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! # fn main() {</span>
-<span class="doccomment">//! let x = Complex { x: 1.2, i: 2.3 };</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! assert_relative_eq!(x, x);</span>
-<span class="doccomment">//! assert_ulps_eq!(x, x, max_ulps = 4);</span>
-<span class="doccomment">//! # }</span>
-<span class="doccomment">//! ```</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! To do this we can implement [`AbsDiffEq`], [`RelativeEq`] and [`UlpsEq`] generically in terms</span>
-<span class="doccomment">//! of a type parameter that also implements `AbsDiffEq`, `RelativeEq` and `UlpsEq` respectively.</span>
-<span class="doccomment">//! This means that we can make comparisons for either `Complex&lt;f32&gt;` or `Complex&lt;f64&gt;`:</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! ```rust</span>
-<span class="doccomment">//! # use approx::{AbsDiffEq, RelativeEq, UlpsEq};</span>
-<span class="doccomment">//! # #[derive(Debug, PartialEq)]</span>
-<span class="doccomment">//! # struct Complex&lt;T&gt; { x: T, i: T, }</span>
-<span class="doccomment">//! #</span>
-<span class="doccomment">//! impl&lt;T: AbsDiffEq&gt; AbsDiffEq for Complex&lt;T&gt; where</span>
-<span class="doccomment">//!     T::Epsilon: Copy,</span>
-<span class="doccomment">//! {</span>
-<span class="doccomment">//!     type Epsilon = T::Epsilon;</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//!     fn default_epsilon() -&gt; T::Epsilon {</span>
-<span class="doccomment">//!         T::default_epsilon()</span>
-<span class="doccomment">//!     }</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//!     fn abs_diff_eq(&amp;self, other: &amp;Self, epsilon: T::Epsilon) -&gt; bool {</span>
-<span class="doccomment">//!         T::abs_diff_eq(&amp;self.x, &amp;other.x, epsilon) &amp;&amp;</span>
-<span class="doccomment">//!         T::abs_diff_eq(&amp;self.i, &amp;other.i, epsilon)</span>
-<span class="doccomment">//!     }</span>
-<span class="doccomment">//! }</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! impl&lt;T: RelativeEq&gt; RelativeEq for Complex&lt;T&gt; where</span>
-<span class="doccomment">//!     T::Epsilon: Copy,</span>
-<span class="doccomment">//! {</span>
-<span class="doccomment">//!     fn default_max_relative() -&gt; T::Epsilon {</span>
-<span class="doccomment">//!         T::default_max_relative()</span>
-<span class="doccomment">//!     }</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//!     fn relative_eq(&amp;self, other: &amp;Self, epsilon: T::Epsilon, max_relative: T::Epsilon) -&gt; bool {</span>
-<span class="doccomment">//!         T::relative_eq(&amp;self.x, &amp;other.x, epsilon, max_relative) &amp;&amp;</span>
-<span class="doccomment">//!         T::relative_eq(&amp;self.i, &amp;other.i, epsilon, max_relative)</span>
-<span class="doccomment">//!     }</span>
-<span class="doccomment">//! }</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! impl&lt;T: UlpsEq&gt; UlpsEq for Complex&lt;T&gt; where</span>
-<span class="doccomment">//!     T::Epsilon: Copy,</span>
-<span class="doccomment">//! {</span>
-<span class="doccomment">//!     fn default_max_ulps() -&gt; u32 {</span>
-<span class="doccomment">//!         T::default_max_ulps()</span>
-<span class="doccomment">//!     }</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//!     fn ulps_eq(&amp;self, other: &amp;Self, epsilon: T::Epsilon, max_ulps: u32) -&gt; bool {</span>
-<span class="doccomment">//!         T::ulps_eq(&amp;self.x, &amp;other.x, epsilon, max_ulps) &amp;&amp;</span>
-<span class="doccomment">//!         T::ulps_eq(&amp;self.i, &amp;other.i, epsilon, max_ulps)</span>
-<span class="doccomment">//!     }</span>
-<span class="doccomment">//! }</span>
-<span class="doccomment">//! ```</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! # References</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! Floating point is hard! Thanks goes to these links for helping to make things a _little_</span>
-<span class="doccomment">//! easier to understand:</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! - [Comparing Floating Point Numbers, 2012 Edition](</span>
-<span class="doccomment">//!   https://randomascii.wordpress.com/2012/02/25/comparing-floating-point-numbers-2012-edition/)</span>
-<span class="doccomment">//! - [The Floating Point Guide - Comparison](http://floating-point-gui.de/errors/comparison/)</span>
-<span class="doccomment">//! - [What Every Computer Scientist Should Know About Floating-Point Arithmetic](</span>
-<span class="doccomment">//!   https://docs.oracle.com/cd/E19957-01/806-3568/ncg_goldberg.html)</span>
+</span><span class="doccomment">//! A crate that provides facilities for testing the approximate equality of floating-point
+//! based types, using either relative difference, or units in the last place (ULPs)
+//! comparisons.
+//!
+//! You can also use the `*_{eq, ne}!` and `assert_*_{eq, ne}!` macros to test for equality using a
+//! more positional style:
+//!
+//! ```rust
+//! #[macro_use]
+//! extern crate approx;
+//!
+//! use std::f64;
+//!
+//! # fn main() {
+//! abs_diff_eq!(1.0, 1.0);
+//! abs_diff_eq!(1.0, 1.0, epsilon = f64::EPSILON);
+//!
+//! relative_eq!(1.0, 1.0);
+//! relative_eq!(1.0, 1.0, epsilon = f64::EPSILON);
+//! relative_eq!(1.0, 1.0, max_relative = 1.0);
+//! relative_eq!(1.0, 1.0, epsilon = f64::EPSILON, max_relative = 1.0);
+//! relative_eq!(1.0, 1.0, max_relative = 1.0, epsilon = f64::EPSILON);
+//!
+//! ulps_eq!(1.0, 1.0);
+//! ulps_eq!(1.0, 1.0, epsilon = f64::EPSILON);
+//! ulps_eq!(1.0, 1.0, max_ulps = 4);
+//! ulps_eq!(1.0, 1.0, epsilon = f64::EPSILON, max_ulps = 4);
+//! ulps_eq!(1.0, 1.0, max_ulps = 4, epsilon = f64::EPSILON);
+//! # }
+//! ```
+//!
+//! # Implementing approximate equality for custom types
+//!
+//! The `*Eq` traits allow approximate equalities to be implemented on types, based on the
+//! fundamental floating point implementations.
+//!
+//! For example, we might want to be able to do approximate assertions on a complex number type:
+//!
+//! ```rust
+//! #[macro_use]
+//! extern crate approx;
+//! # use approx::{AbsDiffEq, RelativeEq, UlpsEq};
+//!
+//! #[derive(Debug, PartialEq)]
+//! struct Complex&lt;T&gt; {
+//!     x: T,
+//!     i: T,
+//! }
+//! # impl&lt;T: AbsDiffEq&gt; AbsDiffEq for Complex&lt;T&gt; where T::Epsilon: Copy {
+//! #     type Epsilon = T::Epsilon;
+//! #     fn default_epsilon() -&gt; T::Epsilon { T::default_epsilon() }
+//! #     fn abs_diff_eq(&amp;self, other: &amp;Self, epsilon: T::Epsilon) -&gt; bool {
+//! #         T::abs_diff_eq(&amp;self.x, &amp;other.x, epsilon) &amp;&amp;
+//! #         T::abs_diff_eq(&amp;self.i, &amp;other.i, epsilon)
+//! #     }
+//! # }
+//! # impl&lt;T: RelativeEq&gt; RelativeEq for Complex&lt;T&gt; where T::Epsilon: Copy {
+//! #     fn default_max_relative() -&gt; T::Epsilon { T::default_max_relative() }
+//! #     fn relative_eq(&amp;self, other: &amp;Self, epsilon: T::Epsilon, max_relative: T::Epsilon)
+//! #                   -&gt; bool {
+//! #         T::relative_eq(&amp;self.x, &amp;other.x, epsilon, max_relative) &amp;&amp;
+//! #         T::relative_eq(&amp;self.i, &amp;other.i, epsilon, max_relative)
+//! #     }
+//! # }
+//! # impl&lt;T: UlpsEq&gt; UlpsEq for Complex&lt;T&gt; where T::Epsilon: Copy {
+//! #     fn default_max_ulps() -&gt; u32 { T::default_max_ulps() }
+//! #     fn ulps_eq(&amp;self, other: &amp;Self, epsilon: T::Epsilon, max_ulps: u32) -&gt; bool {
+//! #         T::ulps_eq(&amp;self.x, &amp;other.x, epsilon, max_ulps) &amp;&amp;
+//! #         T::ulps_eq(&amp;self.i, &amp;other.i, epsilon, max_ulps)
+//! #     }
+//! # }
+//!
+//! # fn main() {
+//! let x = Complex { x: 1.2, i: 2.3 };
+//!
+//! assert_relative_eq!(x, x);
+//! assert_ulps_eq!(x, x, max_ulps = 4);
+//! # }
+//! ```
+//!
+//! To do this we can implement [`AbsDiffEq`], [`RelativeEq`] and [`UlpsEq`] generically in terms
+//! of a type parameter that also implements `AbsDiffEq`, `RelativeEq` and `UlpsEq` respectively.
+//! This means that we can make comparisons for either `Complex&lt;f32&gt;` or `Complex&lt;f64&gt;`:
+//!
+//! ```rust
+//! # use approx::{AbsDiffEq, RelativeEq, UlpsEq};
+//! # #[derive(Debug, PartialEq)]
+//! # struct Complex&lt;T&gt; { x: T, i: T, }
+//! #
+//! impl&lt;T: AbsDiffEq&gt; AbsDiffEq for Complex&lt;T&gt; where
+//!     T::Epsilon: Copy,
+//! {
+//!     type Epsilon = T::Epsilon;
+//!
+//!     fn default_epsilon() -&gt; T::Epsilon {
+//!         T::default_epsilon()
+//!     }
+//!
+//!     fn abs_diff_eq(&amp;self, other: &amp;Self, epsilon: T::Epsilon) -&gt; bool {
+//!         T::abs_diff_eq(&amp;self.x, &amp;other.x, epsilon) &amp;&amp;
+//!         T::abs_diff_eq(&amp;self.i, &amp;other.i, epsilon)
+//!     }
+//! }
+//!
+//! impl&lt;T: RelativeEq&gt; RelativeEq for Complex&lt;T&gt; where
+//!     T::Epsilon: Copy,
+//! {
+//!     fn default_max_relative() -&gt; T::Epsilon {
+//!         T::default_max_relative()
+//!     }
+//!
+//!     fn relative_eq(&amp;self, other: &amp;Self, epsilon: T::Epsilon, max_relative: T::Epsilon) -&gt; bool {
+//!         T::relative_eq(&amp;self.x, &amp;other.x, epsilon, max_relative) &amp;&amp;
+//!         T::relative_eq(&amp;self.i, &amp;other.i, epsilon, max_relative)
+//!     }
+//! }
+//!
+//! impl&lt;T: UlpsEq&gt; UlpsEq for Complex&lt;T&gt; where
+//!     T::Epsilon: Copy,
+//! {
+//!     fn default_max_ulps() -&gt; u32 {
+//!         T::default_max_ulps()
+//!     }
+//!
+//!     fn ulps_eq(&amp;self, other: &amp;Self, epsilon: T::Epsilon, max_ulps: u32) -&gt; bool {
+//!         T::ulps_eq(&amp;self.x, &amp;other.x, epsilon, max_ulps) &amp;&amp;
+//!         T::ulps_eq(&amp;self.i, &amp;other.i, epsilon, max_ulps)
+//!     }
+//! }
+//! ```
+//!
+//! # References
+//!
+//! Floating point is hard! Thanks goes to these links for helping to make things a _little_
+//! easier to understand:
+//!
+//! - [Comparing Floating Point Numbers, 2012 Edition](
+//!   https://randomascii.wordpress.com/2012/02/25/comparing-floating-point-numbers-2012-edition/)
+//! - [The Floating Point Guide - Comparison](http://floating-point-gui.de/errors/comparison/)
+//! - [What Every Computer Scientist Should Know About Floating-Point Arithmetic](
+//!   https://docs.oracle.com/cd/E19957-01/806-3568/ncg_goldberg.html)
 
-<span class="attribute">#![<span class="ident">no_std</span>]</span>
-<span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy::transmute_float_to_int</span>)]</span>
+</span><span class="attribute">#![no_std]
+#![allow(clippy::transmute_float_to_int)]
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;num-complex&quot;</span>)]</span>
-<span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">num_complex</span>;
-<span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">num_traits</span>;
+#[cfg(feature = <span class="string">&quot;num-complex&quot;</span>)]
+</span><span class="kw">extern crate </span>num_complex;
+<span class="kw">extern crate </span>num_traits;
 
-<span class="kw">mod</span> <span class="ident">abs_diff_eq</span>;
-<span class="kw">mod</span> <span class="ident">relative_eq</span>;
-<span class="kw">mod</span> <span class="ident">ulps_eq</span>;
+<span class="kw">mod </span>abs_diff_eq;
+<span class="kw">mod </span>relative_eq;
+<span class="kw">mod </span>ulps_eq;
 
-<span class="kw">mod</span> <span class="ident">macros</span>;
+<span class="kw">mod </span>macros;
 
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">abs_diff_eq::AbsDiffEq</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">relative_eq::RelativeEq</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">ulps_eq::UlpsEq</span>;
+<span class="kw">pub use </span>abs_diff_eq::AbsDiffEq;
+<span class="kw">pub use </span>relative_eq::RelativeEq;
+<span class="kw">pub use </span>ulps_eq::UlpsEq;
 
-<span class="doccomment">/// The requisite parameters for testing for approximate equality using a</span>
-<span class="doccomment">/// absolute difference based comparison.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// This is not normally used directly, rather via the</span>
-<span class="doccomment">/// `assert_abs_diff_{eq|ne}!` and `abs_diff_{eq|ne}!` macros.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// # Example</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ```rust</span>
-<span class="doccomment">/// use std::f64;</span>
-<span class="doccomment">/// use approx::AbsDiff;</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// AbsDiff::default().eq(&amp;1.0, &amp;1.0);</span>
-<span class="doccomment">/// AbsDiff::default().epsilon(f64::EPSILON).eq(&amp;1.0, &amp;1.0);</span>
-<span class="doccomment">/// ```</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">AbsDiff</span><span class="op">&lt;</span><span class="ident">A</span>, <span class="ident">B</span> <span class="op">=</span> <span class="ident">A</span><span class="op">&gt;</span>
-<span class="kw">where</span>
-    <span class="ident">A</span>: <span class="ident">AbsDiffEq</span><span class="op">&lt;</span><span class="ident">B</span><span class="op">&gt;</span> <span class="op">+</span> <span class="question-mark">?</span><span class="ident">Sized</span>,
-    <span class="ident">B</span>: <span class="question-mark">?</span><span class="ident">Sized</span>,
+<span class="doccomment">/// The requisite parameters for testing for approximate equality using a
+/// absolute difference based comparison.
+///
+/// This is not normally used directly, rather via the
+/// `assert_abs_diff_{eq|ne}!` and `abs_diff_{eq|ne}!` macros.
+///
+/// # Example
+///
+/// ```rust
+/// use std::f64;
+/// use approx::AbsDiff;
+///
+/// AbsDiff::default().eq(&amp;1.0, &amp;1.0);
+/// AbsDiff::default().epsilon(f64::EPSILON).eq(&amp;1.0, &amp;1.0);
+/// ```
+</span><span class="kw">pub struct </span>AbsDiff&lt;A, B = A&gt;
+<span class="kw">where
+    </span>A: AbsDiffEq&lt;B&gt; + <span class="question-mark">?</span>Sized,
+    B: <span class="question-mark">?</span>Sized,
 {
-    <span class="doccomment">/// The tolerance to use when testing values that are close together.</span>
-    <span class="kw">pub</span> <span class="ident">epsilon</span>: <span class="ident">A::Epsilon</span>,
+    <span class="doccomment">/// The tolerance to use when testing values that are close together.
+    </span><span class="kw">pub </span>epsilon: A::Epsilon,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">A</span>, <span class="ident">B</span><span class="op">&gt;</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">AbsDiff</span><span class="op">&lt;</span><span class="ident">A</span>, <span class="ident">B</span><span class="op">&gt;</span>
-<span class="kw">where</span>
-    <span class="ident">A</span>: <span class="ident">AbsDiffEq</span><span class="op">&lt;</span><span class="ident">B</span><span class="op">&gt;</span> <span class="op">+</span> <span class="question-mark">?</span><span class="ident">Sized</span>,
-    <span class="ident">B</span>: <span class="question-mark">?</span><span class="ident">Sized</span>,
+<span class="kw">impl</span>&lt;A, B&gt; Default <span class="kw">for </span>AbsDiff&lt;A, B&gt;
+<span class="kw">where
+    </span>A: AbsDiffEq&lt;B&gt; + <span class="question-mark">?</span>Sized,
+    B: <span class="question-mark">?</span>Sized,
 {
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">default</span>() -&gt; <span class="ident">AbsDiff</span><span class="op">&lt;</span><span class="ident">A</span>, <span class="ident">B</span><span class="op">&gt;</span> {
-        <span class="ident">AbsDiff</span> {
-            <span class="ident">epsilon</span>: <span class="ident">A::default_epsilon</span>(),
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>default() -&gt; AbsDiff&lt;A, B&gt; {
+        AbsDiff {
+            epsilon: A::default_epsilon(),
         }
     }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">A</span>, <span class="ident">B</span><span class="op">&gt;</span> <span class="ident">AbsDiff</span><span class="op">&lt;</span><span class="ident">A</span>, <span class="ident">B</span><span class="op">&gt;</span>
-<span class="kw">where</span>
-    <span class="ident">A</span>: <span class="ident">AbsDiffEq</span><span class="op">&lt;</span><span class="ident">B</span><span class="op">&gt;</span> <span class="op">+</span> <span class="question-mark">?</span><span class="ident">Sized</span>,
-    <span class="ident">B</span>: <span class="question-mark">?</span><span class="ident">Sized</span>,
+<span class="kw">impl</span>&lt;A, B&gt; AbsDiff&lt;A, B&gt;
+<span class="kw">where
+    </span>A: AbsDiffEq&lt;B&gt; + <span class="question-mark">?</span>Sized,
+    B: <span class="question-mark">?</span>Sized,
 {
-    <span class="doccomment">/// Replace the epsilon value with the one specified.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">epsilon</span>(<span class="self">self</span>, <span class="ident">epsilon</span>: <span class="ident">A::Epsilon</span>) -&gt; <span class="ident">AbsDiff</span><span class="op">&lt;</span><span class="ident">A</span>, <span class="ident">B</span><span class="op">&gt;</span> {
-        <span class="ident">AbsDiff</span> { <span class="ident">epsilon</span> }
+    <span class="doccomment">/// Replace the epsilon value with the one specified.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>epsilon(<span class="self">self</span>, epsilon: A::Epsilon) -&gt; AbsDiff&lt;A, B&gt; {
+        AbsDiff { epsilon }
     }
 
-    <span class="doccomment">/// Peform the equality comparison</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="attribute">#[<span class="ident">must_use</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">eq</span>(<span class="self">self</span>, <span class="ident">lhs</span>: <span class="kw-2">&amp;</span><span class="ident">A</span>, <span class="ident">rhs</span>: <span class="kw-2">&amp;</span><span class="ident">B</span>) -&gt; <span class="ident">bool</span> {
-        <span class="ident">A::abs_diff_eq</span>(<span class="ident">lhs</span>, <span class="ident">rhs</span>, <span class="self">self</span>.<span class="ident">epsilon</span>)
+    <span class="doccomment">/// Peform the equality comparison
+    </span><span class="attribute">#[inline]
+    #[must_use]
+    </span><span class="kw">pub fn </span>eq(<span class="self">self</span>, lhs: <span class="kw-2">&amp;</span>A, rhs: <span class="kw-2">&amp;</span>B) -&gt; bool {
+        A::abs_diff_eq(lhs, rhs, <span class="self">self</span>.epsilon)
     }
 
-    <span class="doccomment">/// Peform the inequality comparison</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="attribute">#[<span class="ident">must_use</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ne</span>(<span class="self">self</span>, <span class="ident">lhs</span>: <span class="kw-2">&amp;</span><span class="ident">A</span>, <span class="ident">rhs</span>: <span class="kw-2">&amp;</span><span class="ident">B</span>) -&gt; <span class="ident">bool</span> {
-        <span class="ident">A::abs_diff_ne</span>(<span class="ident">lhs</span>, <span class="ident">rhs</span>, <span class="self">self</span>.<span class="ident">epsilon</span>)
+    <span class="doccomment">/// Peform the inequality comparison
+    </span><span class="attribute">#[inline]
+    #[must_use]
+    </span><span class="kw">pub fn </span>ne(<span class="self">self</span>, lhs: <span class="kw-2">&amp;</span>A, rhs: <span class="kw-2">&amp;</span>B) -&gt; bool {
+        A::abs_diff_ne(lhs, rhs, <span class="self">self</span>.epsilon)
     }
 }
 
-<span class="doccomment">/// The requisite parameters for testing for approximate equality using a</span>
-<span class="doccomment">/// relative based comparison.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// This is not normally used directly, rather via the</span>
-<span class="doccomment">/// `assert_relative_{eq|ne}!` and `relative_{eq|ne}!` macros.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// # Example</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ```rust</span>
-<span class="doccomment">/// use std::f64;</span>
-<span class="doccomment">/// use approx::Relative;</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Relative::default().eq(&amp;1.0, &amp;1.0);</span>
-<span class="doccomment">/// Relative::default().epsilon(f64::EPSILON).eq(&amp;1.0, &amp;1.0);</span>
-<span class="doccomment">/// Relative::default().max_relative(1.0).eq(&amp;1.0, &amp;1.0);</span>
-<span class="doccomment">/// Relative::default().epsilon(f64::EPSILON).max_relative(1.0).eq(&amp;1.0, &amp;1.0);</span>
-<span class="doccomment">/// Relative::default().max_relative(1.0).epsilon(f64::EPSILON).eq(&amp;1.0, &amp;1.0);</span>
-<span class="doccomment">/// ```</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Relative</span><span class="op">&lt;</span><span class="ident">A</span>, <span class="ident">B</span> <span class="op">=</span> <span class="ident">A</span><span class="op">&gt;</span>
-<span class="kw">where</span>
-    <span class="ident">A</span>: <span class="ident">RelativeEq</span><span class="op">&lt;</span><span class="ident">B</span><span class="op">&gt;</span> <span class="op">+</span> <span class="question-mark">?</span><span class="ident">Sized</span>,
-    <span class="ident">B</span>: <span class="question-mark">?</span><span class="ident">Sized</span>,
+<span class="doccomment">/// The requisite parameters for testing for approximate equality using a
+/// relative based comparison.
+///
+/// This is not normally used directly, rather via the
+/// `assert_relative_{eq|ne}!` and `relative_{eq|ne}!` macros.
+///
+/// # Example
+///
+/// ```rust
+/// use std::f64;
+/// use approx::Relative;
+///
+/// Relative::default().eq(&amp;1.0, &amp;1.0);
+/// Relative::default().epsilon(f64::EPSILON).eq(&amp;1.0, &amp;1.0);
+/// Relative::default().max_relative(1.0).eq(&amp;1.0, &amp;1.0);
+/// Relative::default().epsilon(f64::EPSILON).max_relative(1.0).eq(&amp;1.0, &amp;1.0);
+/// Relative::default().max_relative(1.0).epsilon(f64::EPSILON).eq(&amp;1.0, &amp;1.0);
+/// ```
+</span><span class="kw">pub struct </span>Relative&lt;A, B = A&gt;
+<span class="kw">where
+    </span>A: RelativeEq&lt;B&gt; + <span class="question-mark">?</span>Sized,
+    B: <span class="question-mark">?</span>Sized,
 {
-    <span class="doccomment">/// The tolerance to use when testing values that are close together.</span>
-    <span class="kw">pub</span> <span class="ident">epsilon</span>: <span class="ident">A::Epsilon</span>,
-    <span class="doccomment">/// The relative tolerance for testing values that are far-apart.</span>
-    <span class="kw">pub</span> <span class="ident">max_relative</span>: <span class="ident">A::Epsilon</span>,
+    <span class="doccomment">/// The tolerance to use when testing values that are close together.
+    </span><span class="kw">pub </span>epsilon: A::Epsilon,
+    <span class="doccomment">/// The relative tolerance for testing values that are far-apart.
+    </span><span class="kw">pub </span>max_relative: A::Epsilon,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">A</span>, <span class="ident">B</span><span class="op">&gt;</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">Relative</span><span class="op">&lt;</span><span class="ident">A</span>, <span class="ident">B</span><span class="op">&gt;</span>
-<span class="kw">where</span>
-    <span class="ident">A</span>: <span class="ident">RelativeEq</span><span class="op">&lt;</span><span class="ident">B</span><span class="op">&gt;</span> <span class="op">+</span> <span class="question-mark">?</span><span class="ident">Sized</span>,
-    <span class="ident">B</span>: <span class="question-mark">?</span><span class="ident">Sized</span>,
+<span class="kw">impl</span>&lt;A, B&gt; Default <span class="kw">for </span>Relative&lt;A, B&gt;
+<span class="kw">where
+    </span>A: RelativeEq&lt;B&gt; + <span class="question-mark">?</span>Sized,
+    B: <span class="question-mark">?</span>Sized,
 {
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">default</span>() -&gt; <span class="ident">Relative</span><span class="op">&lt;</span><span class="ident">A</span>, <span class="ident">B</span><span class="op">&gt;</span> {
-        <span class="ident">Relative</span> {
-            <span class="ident">epsilon</span>: <span class="ident">A::default_epsilon</span>(),
-            <span class="ident">max_relative</span>: <span class="ident">A::default_max_relative</span>(),
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>default() -&gt; Relative&lt;A, B&gt; {
+        Relative {
+            epsilon: A::default_epsilon(),
+            max_relative: A::default_max_relative(),
         }
     }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">A</span>, <span class="ident">B</span><span class="op">&gt;</span> <span class="ident">Relative</span><span class="op">&lt;</span><span class="ident">A</span>, <span class="ident">B</span><span class="op">&gt;</span>
-<span class="kw">where</span>
-    <span class="ident">A</span>: <span class="ident">RelativeEq</span><span class="op">&lt;</span><span class="ident">B</span><span class="op">&gt;</span> <span class="op">+</span> <span class="question-mark">?</span><span class="ident">Sized</span>,
-    <span class="ident">B</span>: <span class="question-mark">?</span><span class="ident">Sized</span>,
+<span class="kw">impl</span>&lt;A, B&gt; Relative&lt;A, B&gt;
+<span class="kw">where
+    </span>A: RelativeEq&lt;B&gt; + <span class="question-mark">?</span>Sized,
+    B: <span class="question-mark">?</span>Sized,
 {
-    <span class="doccomment">/// Replace the epsilon value with the one specified.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">epsilon</span>(<span class="self">self</span>, <span class="ident">epsilon</span>: <span class="ident">A::Epsilon</span>) -&gt; <span class="ident">Relative</span><span class="op">&lt;</span><span class="ident">A</span>, <span class="ident">B</span><span class="op">&gt;</span> {
-        <span class="ident">Relative</span> { <span class="ident">epsilon</span>, ..<span class="self">self</span> }
+    <span class="doccomment">/// Replace the epsilon value with the one specified.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>epsilon(<span class="self">self</span>, epsilon: A::Epsilon) -&gt; Relative&lt;A, B&gt; {
+        Relative { epsilon, ..<span class="self">self </span>}
     }
 
-    <span class="doccomment">/// Replace the maximum relative value with the one specified.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">max_relative</span>(<span class="self">self</span>, <span class="ident">max_relative</span>: <span class="ident">A::Epsilon</span>) -&gt; <span class="ident">Relative</span><span class="op">&lt;</span><span class="ident">A</span>, <span class="ident">B</span><span class="op">&gt;</span> {
-        <span class="ident">Relative</span> {
-            <span class="ident">max_relative</span>,
-            ..<span class="self">self</span>
+    <span class="doccomment">/// Replace the maximum relative value with the one specified.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>max_relative(<span class="self">self</span>, max_relative: A::Epsilon) -&gt; Relative&lt;A, B&gt; {
+        Relative {
+            max_relative,
+            ..<span class="self">self
+        </span>}
+    }
+
+    <span class="doccomment">/// Peform the equality comparison
+    </span><span class="attribute">#[inline]
+    #[must_use]
+    </span><span class="kw">pub fn </span>eq(<span class="self">self</span>, lhs: <span class="kw-2">&amp;</span>A, rhs: <span class="kw-2">&amp;</span>B) -&gt; bool {
+        A::relative_eq(lhs, rhs, <span class="self">self</span>.epsilon, <span class="self">self</span>.max_relative)
+    }
+
+    <span class="doccomment">/// Peform the inequality comparison
+    </span><span class="attribute">#[inline]
+    #[must_use]
+    </span><span class="kw">pub fn </span>ne(<span class="self">self</span>, lhs: <span class="kw-2">&amp;</span>A, rhs: <span class="kw-2">&amp;</span>B) -&gt; bool {
+        A::relative_ne(lhs, rhs, <span class="self">self</span>.epsilon, <span class="self">self</span>.max_relative)
+    }
+}
+
+<span class="doccomment">/// The requisite parameters for testing for approximate equality using an ULPs
+/// based comparison.
+///
+/// This is not normally used directly, rather via the `assert_ulps_{eq|ne}!`
+/// and `ulps_{eq|ne}!` macros.
+///
+/// # Example
+///
+/// ```rust
+/// use std::f64;
+/// use approx::Ulps;
+///
+/// Ulps::default().eq(&amp;1.0, &amp;1.0);
+/// Ulps::default().epsilon(f64::EPSILON).eq(&amp;1.0, &amp;1.0);
+/// Ulps::default().max_ulps(4).eq(&amp;1.0, &amp;1.0);
+/// Ulps::default().epsilon(f64::EPSILON).max_ulps(4).eq(&amp;1.0, &amp;1.0);
+/// Ulps::default().max_ulps(4).epsilon(f64::EPSILON).eq(&amp;1.0, &amp;1.0);
+/// ```
+</span><span class="kw">pub struct </span>Ulps&lt;A, B = A&gt;
+<span class="kw">where
+    </span>A: UlpsEq&lt;B&gt; + <span class="question-mark">?</span>Sized,
+    B: <span class="question-mark">?</span>Sized,
+{
+    <span class="doccomment">/// The tolerance to use when testing values that are close together.
+    </span><span class="kw">pub </span>epsilon: A::Epsilon,
+    <span class="doccomment">/// The ULPs to tolerate when testing values that are far-apart.
+    </span><span class="kw">pub </span>max_ulps: u32,
+}
+
+<span class="kw">impl</span>&lt;A, B&gt; Default <span class="kw">for </span>Ulps&lt;A, B&gt;
+<span class="kw">where
+    </span>A: UlpsEq&lt;B&gt; + <span class="question-mark">?</span>Sized,
+    B: <span class="question-mark">?</span>Sized,
+{
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>default() -&gt; Ulps&lt;A, B&gt; {
+        Ulps {
+            epsilon: A::default_epsilon(),
+            max_ulps: A::default_max_ulps(),
         }
     }
-
-    <span class="doccomment">/// Peform the equality comparison</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="attribute">#[<span class="ident">must_use</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">eq</span>(<span class="self">self</span>, <span class="ident">lhs</span>: <span class="kw-2">&amp;</span><span class="ident">A</span>, <span class="ident">rhs</span>: <span class="kw-2">&amp;</span><span class="ident">B</span>) -&gt; <span class="ident">bool</span> {
-        <span class="ident">A::relative_eq</span>(<span class="ident">lhs</span>, <span class="ident">rhs</span>, <span class="self">self</span>.<span class="ident">epsilon</span>, <span class="self">self</span>.<span class="ident">max_relative</span>)
-    }
-
-    <span class="doccomment">/// Peform the inequality comparison</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="attribute">#[<span class="ident">must_use</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ne</span>(<span class="self">self</span>, <span class="ident">lhs</span>: <span class="kw-2">&amp;</span><span class="ident">A</span>, <span class="ident">rhs</span>: <span class="kw-2">&amp;</span><span class="ident">B</span>) -&gt; <span class="ident">bool</span> {
-        <span class="ident">A::relative_ne</span>(<span class="ident">lhs</span>, <span class="ident">rhs</span>, <span class="self">self</span>.<span class="ident">epsilon</span>, <span class="self">self</span>.<span class="ident">max_relative</span>)
-    }
 }
 
-<span class="doccomment">/// The requisite parameters for testing for approximate equality using an ULPs</span>
-<span class="doccomment">/// based comparison.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// This is not normally used directly, rather via the `assert_ulps_{eq|ne}!`</span>
-<span class="doccomment">/// and `ulps_{eq|ne}!` macros.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// # Example</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ```rust</span>
-<span class="doccomment">/// use std::f64;</span>
-<span class="doccomment">/// use approx::Ulps;</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Ulps::default().eq(&amp;1.0, &amp;1.0);</span>
-<span class="doccomment">/// Ulps::default().epsilon(f64::EPSILON).eq(&amp;1.0, &amp;1.0);</span>
-<span class="doccomment">/// Ulps::default().max_ulps(4).eq(&amp;1.0, &amp;1.0);</span>
-<span class="doccomment">/// Ulps::default().epsilon(f64::EPSILON).max_ulps(4).eq(&amp;1.0, &amp;1.0);</span>
-<span class="doccomment">/// Ulps::default().max_ulps(4).epsilon(f64::EPSILON).eq(&amp;1.0, &amp;1.0);</span>
-<span class="doccomment">/// ```</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Ulps</span><span class="op">&lt;</span><span class="ident">A</span>, <span class="ident">B</span> <span class="op">=</span> <span class="ident">A</span><span class="op">&gt;</span>
-<span class="kw">where</span>
-    <span class="ident">A</span>: <span class="ident">UlpsEq</span><span class="op">&lt;</span><span class="ident">B</span><span class="op">&gt;</span> <span class="op">+</span> <span class="question-mark">?</span><span class="ident">Sized</span>,
-    <span class="ident">B</span>: <span class="question-mark">?</span><span class="ident">Sized</span>,
+<span class="kw">impl</span>&lt;A, B&gt; Ulps&lt;A, B&gt;
+<span class="kw">where
+    </span>A: UlpsEq&lt;B&gt; + <span class="question-mark">?</span>Sized,
+    B: <span class="question-mark">?</span>Sized,
 {
-    <span class="doccomment">/// The tolerance to use when testing values that are close together.</span>
-    <span class="kw">pub</span> <span class="ident">epsilon</span>: <span class="ident">A::Epsilon</span>,
-    <span class="doccomment">/// The ULPs to tolerate when testing values that are far-apart.</span>
-    <span class="kw">pub</span> <span class="ident">max_ulps</span>: <span class="ident">u32</span>,
-}
-
-<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">A</span>, <span class="ident">B</span><span class="op">&gt;</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">Ulps</span><span class="op">&lt;</span><span class="ident">A</span>, <span class="ident">B</span><span class="op">&gt;</span>
-<span class="kw">where</span>
-    <span class="ident">A</span>: <span class="ident">UlpsEq</span><span class="op">&lt;</span><span class="ident">B</span><span class="op">&gt;</span> <span class="op">+</span> <span class="question-mark">?</span><span class="ident">Sized</span>,
-    <span class="ident">B</span>: <span class="question-mark">?</span><span class="ident">Sized</span>,
-{
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">default</span>() -&gt; <span class="ident">Ulps</span><span class="op">&lt;</span><span class="ident">A</span>, <span class="ident">B</span><span class="op">&gt;</span> {
-        <span class="ident">Ulps</span> {
-            <span class="ident">epsilon</span>: <span class="ident">A::default_epsilon</span>(),
-            <span class="ident">max_ulps</span>: <span class="ident">A::default_max_ulps</span>(),
-        }
-    }
-}
-
-<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">A</span>, <span class="ident">B</span><span class="op">&gt;</span> <span class="ident">Ulps</span><span class="op">&lt;</span><span class="ident">A</span>, <span class="ident">B</span><span class="op">&gt;</span>
-<span class="kw">where</span>
-    <span class="ident">A</span>: <span class="ident">UlpsEq</span><span class="op">&lt;</span><span class="ident">B</span><span class="op">&gt;</span> <span class="op">+</span> <span class="question-mark">?</span><span class="ident">Sized</span>,
-    <span class="ident">B</span>: <span class="question-mark">?</span><span class="ident">Sized</span>,
-{
-    <span class="doccomment">/// Replace the epsilon value with the one specified.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">epsilon</span>(<span class="self">self</span>, <span class="ident">epsilon</span>: <span class="ident">A::Epsilon</span>) -&gt; <span class="ident">Ulps</span><span class="op">&lt;</span><span class="ident">A</span>, <span class="ident">B</span><span class="op">&gt;</span> {
-        <span class="ident">Ulps</span> { <span class="ident">epsilon</span>, ..<span class="self">self</span> }
+    <span class="doccomment">/// Replace the epsilon value with the one specified.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>epsilon(<span class="self">self</span>, epsilon: A::Epsilon) -&gt; Ulps&lt;A, B&gt; {
+        Ulps { epsilon, ..<span class="self">self </span>}
     }
 
-    <span class="doccomment">/// Replace the max ulps value with the one specified.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">max_ulps</span>(<span class="self">self</span>, <span class="ident">max_ulps</span>: <span class="ident">u32</span>) -&gt; <span class="ident">Ulps</span><span class="op">&lt;</span><span class="ident">A</span>, <span class="ident">B</span><span class="op">&gt;</span> {
-        <span class="ident">Ulps</span> { <span class="ident">max_ulps</span>, ..<span class="self">self</span> }
+    <span class="doccomment">/// Replace the max ulps value with the one specified.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>max_ulps(<span class="self">self</span>, max_ulps: u32) -&gt; Ulps&lt;A, B&gt; {
+        Ulps { max_ulps, ..<span class="self">self </span>}
     }
 
-    <span class="doccomment">/// Peform the equality comparison</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="attribute">#[<span class="ident">must_use</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">eq</span>(<span class="self">self</span>, <span class="ident">lhs</span>: <span class="kw-2">&amp;</span><span class="ident">A</span>, <span class="ident">rhs</span>: <span class="kw-2">&amp;</span><span class="ident">B</span>) -&gt; <span class="ident">bool</span> {
-        <span class="ident">A::ulps_eq</span>(<span class="ident">lhs</span>, <span class="ident">rhs</span>, <span class="self">self</span>.<span class="ident">epsilon</span>, <span class="self">self</span>.<span class="ident">max_ulps</span>)
+    <span class="doccomment">/// Peform the equality comparison
+    </span><span class="attribute">#[inline]
+    #[must_use]
+    </span><span class="kw">pub fn </span>eq(<span class="self">self</span>, lhs: <span class="kw-2">&amp;</span>A, rhs: <span class="kw-2">&amp;</span>B) -&gt; bool {
+        A::ulps_eq(lhs, rhs, <span class="self">self</span>.epsilon, <span class="self">self</span>.max_ulps)
     }
 
-    <span class="doccomment">/// Peform the inequality comparison</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="attribute">#[<span class="ident">must_use</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ne</span>(<span class="self">self</span>, <span class="ident">lhs</span>: <span class="kw-2">&amp;</span><span class="ident">A</span>, <span class="ident">rhs</span>: <span class="kw-2">&amp;</span><span class="ident">B</span>) -&gt; <span class="ident">bool</span> {
-        <span class="ident">A::ulps_ne</span>(<span class="ident">lhs</span>, <span class="ident">rhs</span>, <span class="self">self</span>.<span class="ident">epsilon</span>, <span class="self">self</span>.<span class="ident">max_ulps</span>)
+    <span class="doccomment">/// Peform the inequality comparison
+    </span><span class="attribute">#[inline]
+    #[must_use]
+    </span><span class="kw">pub fn </span>ne(<span class="self">self</span>, lhs: <span class="kw-2">&amp;</span>A, rhs: <span class="kw-2">&amp;</span>B) -&gt; bool {
+        A::ulps_ne(lhs, rhs, <span class="self">self</span>.epsilon, <span class="self">self</span>.max_ulps)
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="approx" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="approx" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (77e57db38 2022-10-30)" ></div></body></html>

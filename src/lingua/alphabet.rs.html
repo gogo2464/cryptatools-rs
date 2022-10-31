@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/lingua-1.4.0/src/alphabet.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>alphabet.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../lingua/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../lingua/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../lingua/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/lingua-1.4.0/src/alphabet.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>alphabet.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../lingua/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -125,104 +125,104 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either expressed or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */</span>
+ */
 
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::language::Language</span>;
-<span class="kw">use</span> <span class="ident">once_cell::sync::Lazy</span>;
-<span class="kw">use</span> <span class="ident">regex::Regex</span>;
-<span class="kw">use</span> <span class="ident">std::collections::HashMap</span>;
-<span class="kw">use</span> <span class="ident">strum::IntoEnumIterator</span>;
-<span class="kw">use</span> <span class="ident">strum_macros::EnumIter</span>;
+</span><span class="kw">use </span><span class="kw">crate</span>::language::Language;
+<span class="kw">use </span>once_cell::sync::Lazy;
+<span class="kw">use </span>regex::Regex;
+<span class="kw">use </span>std::collections::HashMap;
+<span class="kw">use </span>strum::IntoEnumIterator;
+<span class="kw">use </span>strum_macros::EnumIter;
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">EnumIter</span>, <span class="ident">Eq</span>, <span class="ident">PartialEq</span>, <span class="ident">Hash</span>)]</span>
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">enum</span> <span class="ident">Alphabet</span> {
-    <span class="ident">Arabic</span>,
-    <span class="ident">Armenian</span>,
-    <span class="ident">Bengali</span>,
-    <span class="ident">Cyrillic</span>,
-    <span class="ident">Devanagari</span>,
-    <span class="ident">Georgian</span>,
-    <span class="ident">Greek</span>,
-    <span class="ident">Gujarati</span>,
-    <span class="ident">Gurmukhi</span>,
-    <span class="ident">Han</span>,
-    <span class="ident">Hangul</span>,
-    <span class="ident">Hebrew</span>,
-    <span class="ident">Hiragana</span>,
-    <span class="ident">Katakana</span>,
-    <span class="ident">Latin</span>,
-    <span class="ident">Tamil</span>,
-    <span class="ident">Telugu</span>,
-    <span class="ident">Thai</span>,
+<span class="attribute">#[derive(EnumIter, Eq, PartialEq, Hash)]
+</span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">enum </span>Alphabet {
+    Arabic,
+    Armenian,
+    Bengali,
+    Cyrillic,
+    Devanagari,
+    Georgian,
+    Greek,
+    Gujarati,
+    Gurmukhi,
+    Han,
+    Hangul,
+    Hebrew,
+    Hiragana,
+    Katakana,
+    Latin,
+    Tamil,
+    Telugu,
+    Thai,
 }
 
-<span class="kw">impl</span> <span class="ident">Alphabet</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">matches</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="ident">bool</span> {
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident">Alphabet::Arabic</span> =&gt; <span class="ident">ARABIC</span>.<span class="ident">is_match</span>(<span class="ident">text</span>),
-            <span class="ident">Alphabet::Armenian</span> =&gt; <span class="ident">ARMENIAN</span>.<span class="ident">is_match</span>(<span class="ident">text</span>),
-            <span class="ident">Alphabet::Bengali</span> =&gt; <span class="ident">BENGALI</span>.<span class="ident">is_match</span>(<span class="ident">text</span>),
-            <span class="ident">Alphabet::Cyrillic</span> =&gt; <span class="ident">CYRILLIC</span>.<span class="ident">is_match</span>(<span class="ident">text</span>),
-            <span class="ident">Alphabet::Devanagari</span> =&gt; <span class="ident">DEVANAGARI</span>.<span class="ident">is_match</span>(<span class="ident">text</span>),
-            <span class="ident">Alphabet::Georgian</span> =&gt; <span class="ident">GEORGIAN</span>.<span class="ident">is_match</span>(<span class="ident">text</span>),
-            <span class="ident">Alphabet::Greek</span> =&gt; <span class="ident">GREEK</span>.<span class="ident">is_match</span>(<span class="ident">text</span>),
-            <span class="ident">Alphabet::Gujarati</span> =&gt; <span class="ident">GUJARATI</span>.<span class="ident">is_match</span>(<span class="ident">text</span>),
-            <span class="ident">Alphabet::Gurmukhi</span> =&gt; <span class="ident">GURMUKHI</span>.<span class="ident">is_match</span>(<span class="ident">text</span>),
-            <span class="ident">Alphabet::Han</span> =&gt; <span class="ident">HAN</span>.<span class="ident">is_match</span>(<span class="ident">text</span>),
-            <span class="ident">Alphabet::Hangul</span> =&gt; <span class="ident">HANGUL</span>.<span class="ident">is_match</span>(<span class="ident">text</span>),
-            <span class="ident">Alphabet::Hebrew</span> =&gt; <span class="ident">HEBREW</span>.<span class="ident">is_match</span>(<span class="ident">text</span>),
-            <span class="ident">Alphabet::Hiragana</span> =&gt; <span class="ident">HIRAGANA</span>.<span class="ident">is_match</span>(<span class="ident">text</span>),
-            <span class="ident">Alphabet::Katakana</span> =&gt; <span class="ident">KATAKANA</span>.<span class="ident">is_match</span>(<span class="ident">text</span>),
-            <span class="ident">Alphabet::Latin</span> =&gt; <span class="ident">LATIN</span>.<span class="ident">is_match</span>(<span class="ident">text</span>),
-            <span class="ident">Alphabet::Tamil</span> =&gt; <span class="ident">TAMIL</span>.<span class="ident">is_match</span>(<span class="ident">text</span>),
-            <span class="ident">Alphabet::Telugu</span> =&gt; <span class="ident">TELUGU</span>.<span class="ident">is_match</span>(<span class="ident">text</span>),
-            <span class="ident">Alphabet::Thai</span> =&gt; <span class="ident">THAI</span>.<span class="ident">is_match</span>(<span class="ident">text</span>),
+<span class="kw">impl </span>Alphabet {
+    <span class="kw">pub fn </span>matches(<span class="kw-2">&amp;</span><span class="self">self</span>, text: <span class="kw-2">&amp;</span>str) -&gt; bool {
+        <span class="kw">match </span><span class="self">self </span>{
+            Alphabet::Arabic =&gt; ARABIC.is_match(text),
+            Alphabet::Armenian =&gt; ARMENIAN.is_match(text),
+            Alphabet::Bengali =&gt; BENGALI.is_match(text),
+            Alphabet::Cyrillic =&gt; CYRILLIC.is_match(text),
+            Alphabet::Devanagari =&gt; DEVANAGARI.is_match(text),
+            Alphabet::Georgian =&gt; GEORGIAN.is_match(text),
+            Alphabet::Greek =&gt; GREEK.is_match(text),
+            Alphabet::Gujarati =&gt; GUJARATI.is_match(text),
+            Alphabet::Gurmukhi =&gt; GURMUKHI.is_match(text),
+            Alphabet::Han =&gt; HAN.is_match(text),
+            Alphabet::Hangul =&gt; HANGUL.is_match(text),
+            Alphabet::Hebrew =&gt; HEBREW.is_match(text),
+            Alphabet::Hiragana =&gt; HIRAGANA.is_match(text),
+            Alphabet::Katakana =&gt; KATAKANA.is_match(text),
+            Alphabet::Latin =&gt; LATIN.is_match(text),
+            Alphabet::Tamil =&gt; TAMIL.is_match(text),
+            Alphabet::Telugu =&gt; TELUGU.is_match(text),
+            Alphabet::Thai =&gt; THAI.is_match(text),
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">all_supporting_single_language</span>() -&gt; <span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">Alphabet</span>, <span class="ident">Language</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">alphabets</span> <span class="op">=</span> <span class="ident">HashMap::new</span>();
-        <span class="kw">for</span> <span class="ident">alphabet</span> <span class="kw">in</span> <span class="ident">Alphabet::iter</span>() {
-            <span class="kw">let</span> <span class="ident">supported_languages</span> <span class="op">=</span> <span class="ident">alphabet</span>.<span class="ident">supported_languages</span>();
-            <span class="kw">if</span> <span class="ident">supported_languages</span>.<span class="ident">len</span>() <span class="op">==</span> <span class="number">1</span> {
-                <span class="ident">alphabets</span>.<span class="ident">insert</span>(<span class="ident">alphabet</span>, <span class="ident">supported_languages</span>[<span class="number">0</span>].<span class="ident">clone</span>());
+    <span class="kw">pub fn </span>all_supporting_single_language() -&gt; HashMap&lt;Alphabet, Language&gt; {
+        <span class="kw">let </span><span class="kw-2">mut </span>alphabets = HashMap::new();
+        <span class="kw">for </span>alphabet <span class="kw">in </span>Alphabet::iter() {
+            <span class="kw">let </span>supported_languages = alphabet.supported_languages();
+            <span class="kw">if </span>supported_languages.len() == <span class="number">1 </span>{
+                alphabets.insert(alphabet, supported_languages[<span class="number">0</span>].clone());
             }
         }
-        <span class="ident">alphabets</span>
+        alphabets
     }
 
-    <span class="kw">fn</span> <span class="ident">supported_languages</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Language</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">languages</span> <span class="op">=</span> <span class="macro">vec!</span>[];
-        <span class="kw">for</span> <span class="ident">language</span> <span class="kw">in</span> <span class="ident">Language::iter</span>() {
-            <span class="kw">if</span> <span class="ident">language</span>.<span class="ident">alphabets</span>().<span class="ident">contains</span>(<span class="self">self</span>) {
-                <span class="ident">languages</span>.<span class="ident">push</span>(<span class="ident">language</span>);
+    <span class="kw">fn </span>supported_languages(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Vec&lt;Language&gt; {
+        <span class="kw">let </span><span class="kw-2">mut </span>languages = <span class="macro">vec!</span>[];
+        <span class="kw">for </span>language <span class="kw">in </span>Language::iter() {
+            <span class="kw">if </span>language.alphabets().contains(<span class="self">self</span>) {
+                languages.push(language);
             }
         }
-        <span class="ident">languages</span>
+        languages
     }
 }
 
-<span class="kw">static</span> <span class="ident">ARABIC</span>: <span class="ident">Lazy</span><span class="op">&lt;</span><span class="ident">Regex</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Lazy::new</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">create_regex</span>(<span class="string">&quot;Arabic&quot;</span>));
-<span class="kw">static</span> <span class="ident">ARMENIAN</span>: <span class="ident">Lazy</span><span class="op">&lt;</span><span class="ident">Regex</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Lazy::new</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">create_regex</span>(<span class="string">&quot;Armenian&quot;</span>));
-<span class="kw">static</span> <span class="ident">BENGALI</span>: <span class="ident">Lazy</span><span class="op">&lt;</span><span class="ident">Regex</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Lazy::new</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">create_regex</span>(<span class="string">&quot;Bengali&quot;</span>));
-<span class="kw">static</span> <span class="ident">CYRILLIC</span>: <span class="ident">Lazy</span><span class="op">&lt;</span><span class="ident">Regex</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Lazy::new</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">create_regex</span>(<span class="string">&quot;Cyrillic&quot;</span>));
-<span class="kw">static</span> <span class="ident">DEVANAGARI</span>: <span class="ident">Lazy</span><span class="op">&lt;</span><span class="ident">Regex</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Lazy::new</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">create_regex</span>(<span class="string">&quot;Devanagari&quot;</span>));
-<span class="kw">static</span> <span class="ident">GEORGIAN</span>: <span class="ident">Lazy</span><span class="op">&lt;</span><span class="ident">Regex</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Lazy::new</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">create_regex</span>(<span class="string">&quot;Georgian&quot;</span>));
-<span class="kw">static</span> <span class="ident">GREEK</span>: <span class="ident">Lazy</span><span class="op">&lt;</span><span class="ident">Regex</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Lazy::new</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">create_regex</span>(<span class="string">&quot;Greek&quot;</span>));
-<span class="kw">static</span> <span class="ident">GUJARATI</span>: <span class="ident">Lazy</span><span class="op">&lt;</span><span class="ident">Regex</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Lazy::new</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">create_regex</span>(<span class="string">&quot;Gujarati&quot;</span>));
-<span class="kw">static</span> <span class="ident">GURMUKHI</span>: <span class="ident">Lazy</span><span class="op">&lt;</span><span class="ident">Regex</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Lazy::new</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">create_regex</span>(<span class="string">&quot;Gurmukhi&quot;</span>));
-<span class="kw">static</span> <span class="ident">HAN</span>: <span class="ident">Lazy</span><span class="op">&lt;</span><span class="ident">Regex</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Lazy::new</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">create_regex</span>(<span class="string">&quot;Han&quot;</span>));
-<span class="kw">static</span> <span class="ident">HANGUL</span>: <span class="ident">Lazy</span><span class="op">&lt;</span><span class="ident">Regex</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Lazy::new</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">create_regex</span>(<span class="string">&quot;Hangul&quot;</span>));
-<span class="kw">static</span> <span class="ident">HEBREW</span>: <span class="ident">Lazy</span><span class="op">&lt;</span><span class="ident">Regex</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Lazy::new</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">create_regex</span>(<span class="string">&quot;Hebrew&quot;</span>));
-<span class="kw">static</span> <span class="ident">HIRAGANA</span>: <span class="ident">Lazy</span><span class="op">&lt;</span><span class="ident">Regex</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Lazy::new</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">create_regex</span>(<span class="string">&quot;Hiragana&quot;</span>));
-<span class="kw">static</span> <span class="ident">KATAKANA</span>: <span class="ident">Lazy</span><span class="op">&lt;</span><span class="ident">Regex</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Lazy::new</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">create_regex</span>(<span class="string">&quot;Katakana&quot;</span>));
-<span class="kw">static</span> <span class="ident">LATIN</span>: <span class="ident">Lazy</span><span class="op">&lt;</span><span class="ident">Regex</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Lazy::new</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">create_regex</span>(<span class="string">&quot;Latin&quot;</span>));
-<span class="kw">static</span> <span class="ident">TAMIL</span>: <span class="ident">Lazy</span><span class="op">&lt;</span><span class="ident">Regex</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Lazy::new</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">create_regex</span>(<span class="string">&quot;Tamil&quot;</span>));
-<span class="kw">static</span> <span class="ident">TELUGU</span>: <span class="ident">Lazy</span><span class="op">&lt;</span><span class="ident">Regex</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Lazy::new</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">create_regex</span>(<span class="string">&quot;Telugu&quot;</span>));
-<span class="kw">static</span> <span class="ident">THAI</span>: <span class="ident">Lazy</span><span class="op">&lt;</span><span class="ident">Regex</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Lazy::new</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">create_regex</span>(<span class="string">&quot;Thai&quot;</span>));
+<span class="kw">static </span>ARABIC: Lazy&lt;Regex&gt; = Lazy::new(|| create_regex(<span class="string">&quot;Arabic&quot;</span>));
+<span class="kw">static </span>ARMENIAN: Lazy&lt;Regex&gt; = Lazy::new(|| create_regex(<span class="string">&quot;Armenian&quot;</span>));
+<span class="kw">static </span>BENGALI: Lazy&lt;Regex&gt; = Lazy::new(|| create_regex(<span class="string">&quot;Bengali&quot;</span>));
+<span class="kw">static </span>CYRILLIC: Lazy&lt;Regex&gt; = Lazy::new(|| create_regex(<span class="string">&quot;Cyrillic&quot;</span>));
+<span class="kw">static </span>DEVANAGARI: Lazy&lt;Regex&gt; = Lazy::new(|| create_regex(<span class="string">&quot;Devanagari&quot;</span>));
+<span class="kw">static </span>GEORGIAN: Lazy&lt;Regex&gt; = Lazy::new(|| create_regex(<span class="string">&quot;Georgian&quot;</span>));
+<span class="kw">static </span>GREEK: Lazy&lt;Regex&gt; = Lazy::new(|| create_regex(<span class="string">&quot;Greek&quot;</span>));
+<span class="kw">static </span>GUJARATI: Lazy&lt;Regex&gt; = Lazy::new(|| create_regex(<span class="string">&quot;Gujarati&quot;</span>));
+<span class="kw">static </span>GURMUKHI: Lazy&lt;Regex&gt; = Lazy::new(|| create_regex(<span class="string">&quot;Gurmukhi&quot;</span>));
+<span class="kw">static </span>HAN: Lazy&lt;Regex&gt; = Lazy::new(|| create_regex(<span class="string">&quot;Han&quot;</span>));
+<span class="kw">static </span>HANGUL: Lazy&lt;Regex&gt; = Lazy::new(|| create_regex(<span class="string">&quot;Hangul&quot;</span>));
+<span class="kw">static </span>HEBREW: Lazy&lt;Regex&gt; = Lazy::new(|| create_regex(<span class="string">&quot;Hebrew&quot;</span>));
+<span class="kw">static </span>HIRAGANA: Lazy&lt;Regex&gt; = Lazy::new(|| create_regex(<span class="string">&quot;Hiragana&quot;</span>));
+<span class="kw">static </span>KATAKANA: Lazy&lt;Regex&gt; = Lazy::new(|| create_regex(<span class="string">&quot;Katakana&quot;</span>));
+<span class="kw">static </span>LATIN: Lazy&lt;Regex&gt; = Lazy::new(|| create_regex(<span class="string">&quot;Latin&quot;</span>));
+<span class="kw">static </span>TAMIL: Lazy&lt;Regex&gt; = Lazy::new(|| create_regex(<span class="string">&quot;Tamil&quot;</span>));
+<span class="kw">static </span>TELUGU: Lazy&lt;Regex&gt; = Lazy::new(|| create_regex(<span class="string">&quot;Telugu&quot;</span>));
+<span class="kw">static </span>THAI: Lazy&lt;Regex&gt; = Lazy::new(|| create_regex(<span class="string">&quot;Thai&quot;</span>));
 
-<span class="kw">fn</span> <span class="ident">create_regex</span>(<span class="ident">char_class</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="ident">Regex</span> {
-    <span class="ident">Regex::new</span>(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;^\\p{{{}}}+$&quot;</span>, <span class="ident">char_class</span>)).<span class="ident">unwrap</span>()
+<span class="kw">fn </span>create_regex(char_class: <span class="kw-2">&amp;</span>str) -&gt; Regex {
+    Regex::new(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;^\\p{{{}}}+$&quot;</span>, char_class)).unwrap()
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="lingua" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="lingua" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (77e57db38 2022-10-30)" ></div></body></html>

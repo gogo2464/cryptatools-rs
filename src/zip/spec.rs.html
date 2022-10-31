@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/zip-0.6.3/src/spec.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>spec.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../zip/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../zip/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../zip/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/zip-0.6.3/src/spec.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>spec.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../zip/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -205,212 +205,212 @@
 <span id="205">205</span>
 <span id="206">206</span>
 <span id="207">207</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::result</span>::{<span class="ident">ZipError</span>, <span class="ident">ZipResult</span>};
-<span class="kw">use</span> <span class="ident">byteorder</span>::{<span class="ident">LittleEndian</span>, <span class="ident">ReadBytesExt</span>, <span class="ident">WriteBytesExt</span>};
-<span class="kw">use</span> <span class="ident">std::io</span>;
-<span class="kw">use</span> <span class="ident">std::io::prelude</span>::<span class="kw-2">*</span>;
+</pre><pre class="rust"><code><span class="kw">use </span><span class="kw">crate</span>::result::{ZipError, ZipResult};
+<span class="kw">use </span>byteorder::{LittleEndian, ReadBytesExt, WriteBytesExt};
+<span class="kw">use </span>std::io;
+<span class="kw">use </span>std::io::prelude::<span class="kw-2">*</span>;
 
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">LOCAL_FILE_HEADER_SIGNATURE</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">0x04034b50</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CENTRAL_DIRECTORY_HEADER_SIGNATURE</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">0x02014b50</span>;
-<span class="kw">const</span> <span class="ident">CENTRAL_DIRECTORY_END_SIGNATURE</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">0x06054b50</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ZIP64_CENTRAL_DIRECTORY_END_SIGNATURE</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">0x06064b50</span>;
-<span class="kw">const</span> <span class="ident">ZIP64_CENTRAL_DIRECTORY_END_LOCATOR_SIGNATURE</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">0x07064b50</span>;
+<span class="kw">pub const </span>LOCAL_FILE_HEADER_SIGNATURE: u32 = <span class="number">0x04034b50</span>;
+<span class="kw">pub const </span>CENTRAL_DIRECTORY_HEADER_SIGNATURE: u32 = <span class="number">0x02014b50</span>;
+<span class="kw">const </span>CENTRAL_DIRECTORY_END_SIGNATURE: u32 = <span class="number">0x06054b50</span>;
+<span class="kw">pub const </span>ZIP64_CENTRAL_DIRECTORY_END_SIGNATURE: u32 = <span class="number">0x06064b50</span>;
+<span class="kw">const </span>ZIP64_CENTRAL_DIRECTORY_END_LOCATOR_SIGNATURE: u32 = <span class="number">0x07064b50</span>;
 
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ZIP64_BYTES_THR</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="ident">u32::MAX</span> <span class="kw">as</span> <span class="ident">u64</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ZIP64_ENTRY_THR</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="ident">u16::MAX</span> <span class="kw">as</span> <span class="ident">usize</span>;
+<span class="kw">pub const </span>ZIP64_BYTES_THR: u64 = u32::MAX <span class="kw">as </span>u64;
+<span class="kw">pub const </span>ZIP64_ENTRY_THR: usize = u16::MAX <span class="kw">as </span>usize;
 
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CentralDirectoryEnd</span> {
-    <span class="kw">pub</span> <span class="ident">disk_number</span>: <span class="ident">u16</span>,
-    <span class="kw">pub</span> <span class="ident">disk_with_central_directory</span>: <span class="ident">u16</span>,
-    <span class="kw">pub</span> <span class="ident">number_of_files_on_this_disk</span>: <span class="ident">u16</span>,
-    <span class="kw">pub</span> <span class="ident">number_of_files</span>: <span class="ident">u16</span>,
-    <span class="kw">pub</span> <span class="ident">central_directory_size</span>: <span class="ident">u32</span>,
-    <span class="kw">pub</span> <span class="ident">central_directory_offset</span>: <span class="ident">u32</span>,
-    <span class="kw">pub</span> <span class="ident">zip_file_comment</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>,
+<span class="kw">pub struct </span>CentralDirectoryEnd {
+    <span class="kw">pub </span>disk_number: u16,
+    <span class="kw">pub </span>disk_with_central_directory: u16,
+    <span class="kw">pub </span>number_of_files_on_this_disk: u16,
+    <span class="kw">pub </span>number_of_files: u16,
+    <span class="kw">pub </span>central_directory_size: u32,
+    <span class="kw">pub </span>central_directory_offset: u32,
+    <span class="kw">pub </span>zip_file_comment: Vec&lt;u8&gt;,
 }
 
-<span class="kw">impl</span> <span class="ident">CentralDirectoryEnd</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">parse</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Read</span><span class="op">&gt;</span>(<span class="ident">reader</span>: <span class="kw-2">&amp;mut</span> <span class="ident">T</span>) -&gt; <span class="ident">ZipResult</span><span class="op">&lt;</span><span class="ident">CentralDirectoryEnd</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">magic</span> <span class="op">=</span> <span class="ident">reader</span>.<span class="ident">read_u32</span>::<span class="op">&lt;</span><span class="ident">LittleEndian</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
-        <span class="kw">if</span> <span class="ident">magic</span> <span class="op">!</span><span class="op">=</span> <span class="ident">CENTRAL_DIRECTORY_END_SIGNATURE</span> {
-            <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">ZipError::InvalidArchive</span>(<span class="string">&quot;Invalid digital signature header&quot;</span>));
+<span class="kw">impl </span>CentralDirectoryEnd {
+    <span class="kw">pub fn </span>parse&lt;T: Read&gt;(reader: <span class="kw-2">&amp;mut </span>T) -&gt; ZipResult&lt;CentralDirectoryEnd&gt; {
+        <span class="kw">let </span>magic = reader.read_u32::&lt;LittleEndian&gt;()<span class="question-mark">?</span>;
+        <span class="kw">if </span>magic != CENTRAL_DIRECTORY_END_SIGNATURE {
+            <span class="kw">return </span><span class="prelude-val">Err</span>(ZipError::InvalidArchive(<span class="string">&quot;Invalid digital signature header&quot;</span>));
         }
-        <span class="kw">let</span> <span class="ident">disk_number</span> <span class="op">=</span> <span class="ident">reader</span>.<span class="ident">read_u16</span>::<span class="op">&lt;</span><span class="ident">LittleEndian</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">disk_with_central_directory</span> <span class="op">=</span> <span class="ident">reader</span>.<span class="ident">read_u16</span>::<span class="op">&lt;</span><span class="ident">LittleEndian</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">number_of_files_on_this_disk</span> <span class="op">=</span> <span class="ident">reader</span>.<span class="ident">read_u16</span>::<span class="op">&lt;</span><span class="ident">LittleEndian</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">number_of_files</span> <span class="op">=</span> <span class="ident">reader</span>.<span class="ident">read_u16</span>::<span class="op">&lt;</span><span class="ident">LittleEndian</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">central_directory_size</span> <span class="op">=</span> <span class="ident">reader</span>.<span class="ident">read_u32</span>::<span class="op">&lt;</span><span class="ident">LittleEndian</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">central_directory_offset</span> <span class="op">=</span> <span class="ident">reader</span>.<span class="ident">read_u32</span>::<span class="op">&lt;</span><span class="ident">LittleEndian</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">zip_file_comment_length</span> <span class="op">=</span> <span class="ident">reader</span>.<span class="ident">read_u16</span>::<span class="op">&lt;</span><span class="ident">LittleEndian</span><span class="op">&gt;</span>()<span class="question-mark">?</span> <span class="kw">as</span> <span class="ident">usize</span>;
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">zip_file_comment</span> <span class="op">=</span> <span class="macro">vec!</span>[<span class="number">0</span>; <span class="ident">zip_file_comment_length</span>];
-        <span class="ident">reader</span>.<span class="ident">read_exact</span>(<span class="kw-2">&amp;mut</span> <span class="ident">zip_file_comment</span>)<span class="question-mark">?</span>;
+        <span class="kw">let </span>disk_number = reader.read_u16::&lt;LittleEndian&gt;()<span class="question-mark">?</span>;
+        <span class="kw">let </span>disk_with_central_directory = reader.read_u16::&lt;LittleEndian&gt;()<span class="question-mark">?</span>;
+        <span class="kw">let </span>number_of_files_on_this_disk = reader.read_u16::&lt;LittleEndian&gt;()<span class="question-mark">?</span>;
+        <span class="kw">let </span>number_of_files = reader.read_u16::&lt;LittleEndian&gt;()<span class="question-mark">?</span>;
+        <span class="kw">let </span>central_directory_size = reader.read_u32::&lt;LittleEndian&gt;()<span class="question-mark">?</span>;
+        <span class="kw">let </span>central_directory_offset = reader.read_u32::&lt;LittleEndian&gt;()<span class="question-mark">?</span>;
+        <span class="kw">let </span>zip_file_comment_length = reader.read_u16::&lt;LittleEndian&gt;()<span class="question-mark">? </span><span class="kw">as </span>usize;
+        <span class="kw">let </span><span class="kw-2">mut </span>zip_file_comment = <span class="macro">vec!</span>[<span class="number">0</span>; zip_file_comment_length];
+        reader.read_exact(<span class="kw-2">&amp;mut </span>zip_file_comment)<span class="question-mark">?</span>;
 
-        <span class="prelude-val">Ok</span>(<span class="ident">CentralDirectoryEnd</span> {
-            <span class="ident">disk_number</span>,
-            <span class="ident">disk_with_central_directory</span>,
-            <span class="ident">number_of_files_on_this_disk</span>,
-            <span class="ident">number_of_files</span>,
-            <span class="ident">central_directory_size</span>,
-            <span class="ident">central_directory_offset</span>,
-            <span class="ident">zip_file_comment</span>,
+        <span class="prelude-val">Ok</span>(CentralDirectoryEnd {
+            disk_number,
+            disk_with_central_directory,
+            number_of_files_on_this_disk,
+            number_of_files,
+            central_directory_size,
+            central_directory_offset,
+            zip_file_comment,
         })
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">find_and_parse</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Read</span> <span class="op">+</span> <span class="ident">io::Seek</span><span class="op">&gt;</span>(
-        <span class="ident">reader</span>: <span class="kw-2">&amp;mut</span> <span class="ident">T</span>,
-    ) -&gt; <span class="ident">ZipResult</span><span class="op">&lt;</span>(<span class="ident">CentralDirectoryEnd</span>, <span class="ident">u64</span>)<span class="op">&gt;</span> {
-        <span class="kw">const</span> <span class="ident">HEADER_SIZE</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">22</span>;
-        <span class="kw">const</span> <span class="ident">BYTES_BETWEEN_MAGIC_AND_COMMENT_SIZE</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="ident">HEADER_SIZE</span> <span class="op">-</span> <span class="number">6</span>;
-        <span class="kw">let</span> <span class="ident">file_length</span> <span class="op">=</span> <span class="ident">reader</span>.<span class="ident">seek</span>(<span class="ident">io::SeekFrom::End</span>(<span class="number">0</span>))<span class="question-mark">?</span>;
+    <span class="kw">pub fn </span>find_and_parse&lt;T: Read + io::Seek&gt;(
+        reader: <span class="kw-2">&amp;mut </span>T,
+    ) -&gt; ZipResult&lt;(CentralDirectoryEnd, u64)&gt; {
+        <span class="kw">const </span>HEADER_SIZE: u64 = <span class="number">22</span>;
+        <span class="kw">const </span>BYTES_BETWEEN_MAGIC_AND_COMMENT_SIZE: u64 = HEADER_SIZE - <span class="number">6</span>;
+        <span class="kw">let </span>file_length = reader.seek(io::SeekFrom::End(<span class="number">0</span>))<span class="question-mark">?</span>;
 
-        <span class="kw">let</span> <span class="ident">search_upper_bound</span> <span class="op">=</span> <span class="ident">file_length</span>.<span class="ident">saturating_sub</span>(<span class="ident">HEADER_SIZE</span> <span class="op">+</span> <span class="ident">::std::u16::MAX</span> <span class="kw">as</span> <span class="ident">u64</span>);
+        <span class="kw">let </span>search_upper_bound = file_length.saturating_sub(HEADER_SIZE + ::std::u16::MAX <span class="kw">as </span>u64);
 
-        <span class="kw">if</span> <span class="ident">file_length</span> <span class="op">&lt;</span> <span class="ident">HEADER_SIZE</span> {
-            <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">ZipError::InvalidArchive</span>(<span class="string">&quot;Invalid zip header&quot;</span>));
+        <span class="kw">if </span>file_length &lt; HEADER_SIZE {
+            <span class="kw">return </span><span class="prelude-val">Err</span>(ZipError::InvalidArchive(<span class="string">&quot;Invalid zip header&quot;</span>));
         }
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">pos</span> <span class="op">=</span> <span class="ident">file_length</span> <span class="op">-</span> <span class="ident">HEADER_SIZE</span>;
-        <span class="kw">while</span> <span class="ident">pos</span> <span class="op">&gt;</span><span class="op">=</span> <span class="ident">search_upper_bound</span> {
-            <span class="ident">reader</span>.<span class="ident">seek</span>(<span class="ident">io::SeekFrom::Start</span>(<span class="ident">pos</span> <span class="kw">as</span> <span class="ident">u64</span>))<span class="question-mark">?</span>;
-            <span class="kw">if</span> <span class="ident">reader</span>.<span class="ident">read_u32</span>::<span class="op">&lt;</span><span class="ident">LittleEndian</span><span class="op">&gt;</span>()<span class="question-mark">?</span> <span class="op">==</span> <span class="ident">CENTRAL_DIRECTORY_END_SIGNATURE</span> {
-                <span class="ident">reader</span>.<span class="ident">seek</span>(<span class="ident">io::SeekFrom::Current</span>(
-                    <span class="ident">BYTES_BETWEEN_MAGIC_AND_COMMENT_SIZE</span> <span class="kw">as</span> <span class="ident">i64</span>,
+        <span class="kw">let </span><span class="kw-2">mut </span>pos = file_length - HEADER_SIZE;
+        <span class="kw">while </span>pos &gt;= search_upper_bound {
+            reader.seek(io::SeekFrom::Start(pos <span class="kw">as </span>u64))<span class="question-mark">?</span>;
+            <span class="kw">if </span>reader.read_u32::&lt;LittleEndian&gt;()<span class="question-mark">? </span>== CENTRAL_DIRECTORY_END_SIGNATURE {
+                reader.seek(io::SeekFrom::Current(
+                    BYTES_BETWEEN_MAGIC_AND_COMMENT_SIZE <span class="kw">as </span>i64,
                 ))<span class="question-mark">?</span>;
-                <span class="kw">let</span> <span class="ident">cde_start_pos</span> <span class="op">=</span> <span class="ident">reader</span>.<span class="ident">seek</span>(<span class="ident">io::SeekFrom::Start</span>(<span class="ident">pos</span> <span class="kw">as</span> <span class="ident">u64</span>))<span class="question-mark">?</span>;
-                <span class="kw">return</span> <span class="ident">CentralDirectoryEnd::parse</span>(<span class="ident">reader</span>).<span class="ident">map</span>(<span class="op">|</span><span class="ident">cde</span><span class="op">|</span> (<span class="ident">cde</span>, <span class="ident">cde_start_pos</span>));
+                <span class="kw">let </span>cde_start_pos = reader.seek(io::SeekFrom::Start(pos <span class="kw">as </span>u64))<span class="question-mark">?</span>;
+                <span class="kw">return </span>CentralDirectoryEnd::parse(reader).map(|cde| (cde, cde_start_pos));
             }
-            <span class="ident">pos</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">pos</span>.<span class="ident">checked_sub</span>(<span class="number">1</span>) {
-                <span class="prelude-val">Some</span>(<span class="ident">p</span>) =&gt; <span class="ident">p</span>,
-                <span class="prelude-val">None</span> =&gt; <span class="kw">break</span>,
+            pos = <span class="kw">match </span>pos.checked_sub(<span class="number">1</span>) {
+                <span class="prelude-val">Some</span>(p) =&gt; p,
+                <span class="prelude-val">None </span>=&gt; <span class="kw">break</span>,
             };
         }
-        <span class="prelude-val">Err</span>(<span class="ident">ZipError::InvalidArchive</span>(
+        <span class="prelude-val">Err</span>(ZipError::InvalidArchive(
             <span class="string">&quot;Could not find central directory end&quot;</span>,
         ))
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">write</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Write</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">writer</span>: <span class="kw-2">&amp;mut</span> <span class="ident">T</span>) -&gt; <span class="ident">ZipResult</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
-        <span class="ident">writer</span>.<span class="ident">write_u32</span>::<span class="op">&lt;</span><span class="ident">LittleEndian</span><span class="op">&gt;</span>(<span class="ident">CENTRAL_DIRECTORY_END_SIGNATURE</span>)<span class="question-mark">?</span>;
-        <span class="ident">writer</span>.<span class="ident">write_u16</span>::<span class="op">&lt;</span><span class="ident">LittleEndian</span><span class="op">&gt;</span>(<span class="self">self</span>.<span class="ident">disk_number</span>)<span class="question-mark">?</span>;
-        <span class="ident">writer</span>.<span class="ident">write_u16</span>::<span class="op">&lt;</span><span class="ident">LittleEndian</span><span class="op">&gt;</span>(<span class="self">self</span>.<span class="ident">disk_with_central_directory</span>)<span class="question-mark">?</span>;
-        <span class="ident">writer</span>.<span class="ident">write_u16</span>::<span class="op">&lt;</span><span class="ident">LittleEndian</span><span class="op">&gt;</span>(<span class="self">self</span>.<span class="ident">number_of_files_on_this_disk</span>)<span class="question-mark">?</span>;
-        <span class="ident">writer</span>.<span class="ident">write_u16</span>::<span class="op">&lt;</span><span class="ident">LittleEndian</span><span class="op">&gt;</span>(<span class="self">self</span>.<span class="ident">number_of_files</span>)<span class="question-mark">?</span>;
-        <span class="ident">writer</span>.<span class="ident">write_u32</span>::<span class="op">&lt;</span><span class="ident">LittleEndian</span><span class="op">&gt;</span>(<span class="self">self</span>.<span class="ident">central_directory_size</span>)<span class="question-mark">?</span>;
-        <span class="ident">writer</span>.<span class="ident">write_u32</span>::<span class="op">&lt;</span><span class="ident">LittleEndian</span><span class="op">&gt;</span>(<span class="self">self</span>.<span class="ident">central_directory_offset</span>)<span class="question-mark">?</span>;
-        <span class="ident">writer</span>.<span class="ident">write_u16</span>::<span class="op">&lt;</span><span class="ident">LittleEndian</span><span class="op">&gt;</span>(<span class="self">self</span>.<span class="ident">zip_file_comment</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">u16</span>)<span class="question-mark">?</span>;
-        <span class="ident">writer</span>.<span class="ident">write_all</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">zip_file_comment</span>)<span class="question-mark">?</span>;
+    <span class="kw">pub fn </span>write&lt;T: Write&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, writer: <span class="kw-2">&amp;mut </span>T) -&gt; ZipResult&lt;()&gt; {
+        writer.write_u32::&lt;LittleEndian&gt;(CENTRAL_DIRECTORY_END_SIGNATURE)<span class="question-mark">?</span>;
+        writer.write_u16::&lt;LittleEndian&gt;(<span class="self">self</span>.disk_number)<span class="question-mark">?</span>;
+        writer.write_u16::&lt;LittleEndian&gt;(<span class="self">self</span>.disk_with_central_directory)<span class="question-mark">?</span>;
+        writer.write_u16::&lt;LittleEndian&gt;(<span class="self">self</span>.number_of_files_on_this_disk)<span class="question-mark">?</span>;
+        writer.write_u16::&lt;LittleEndian&gt;(<span class="self">self</span>.number_of_files)<span class="question-mark">?</span>;
+        writer.write_u32::&lt;LittleEndian&gt;(<span class="self">self</span>.central_directory_size)<span class="question-mark">?</span>;
+        writer.write_u32::&lt;LittleEndian&gt;(<span class="self">self</span>.central_directory_offset)<span class="question-mark">?</span>;
+        writer.write_u16::&lt;LittleEndian&gt;(<span class="self">self</span>.zip_file_comment.len() <span class="kw">as </span>u16)<span class="question-mark">?</span>;
+        writer.write_all(<span class="kw-2">&amp;</span><span class="self">self</span>.zip_file_comment)<span class="question-mark">?</span>;
         <span class="prelude-val">Ok</span>(())
     }
 }
 
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Zip64CentralDirectoryEndLocator</span> {
-    <span class="kw">pub</span> <span class="ident">disk_with_central_directory</span>: <span class="ident">u32</span>,
-    <span class="kw">pub</span> <span class="ident">end_of_central_directory_offset</span>: <span class="ident">u64</span>,
-    <span class="kw">pub</span> <span class="ident">number_of_disks</span>: <span class="ident">u32</span>,
+<span class="kw">pub struct </span>Zip64CentralDirectoryEndLocator {
+    <span class="kw">pub </span>disk_with_central_directory: u32,
+    <span class="kw">pub </span>end_of_central_directory_offset: u64,
+    <span class="kw">pub </span>number_of_disks: u32,
 }
 
-<span class="kw">impl</span> <span class="ident">Zip64CentralDirectoryEndLocator</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">parse</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Read</span><span class="op">&gt;</span>(<span class="ident">reader</span>: <span class="kw-2">&amp;mut</span> <span class="ident">T</span>) -&gt; <span class="ident">ZipResult</span><span class="op">&lt;</span><span class="ident">Zip64CentralDirectoryEndLocator</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">magic</span> <span class="op">=</span> <span class="ident">reader</span>.<span class="ident">read_u32</span>::<span class="op">&lt;</span><span class="ident">LittleEndian</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
-        <span class="kw">if</span> <span class="ident">magic</span> <span class="op">!</span><span class="op">=</span> <span class="ident">ZIP64_CENTRAL_DIRECTORY_END_LOCATOR_SIGNATURE</span> {
-            <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">ZipError::InvalidArchive</span>(
+<span class="kw">impl </span>Zip64CentralDirectoryEndLocator {
+    <span class="kw">pub fn </span>parse&lt;T: Read&gt;(reader: <span class="kw-2">&amp;mut </span>T) -&gt; ZipResult&lt;Zip64CentralDirectoryEndLocator&gt; {
+        <span class="kw">let </span>magic = reader.read_u32::&lt;LittleEndian&gt;()<span class="question-mark">?</span>;
+        <span class="kw">if </span>magic != ZIP64_CENTRAL_DIRECTORY_END_LOCATOR_SIGNATURE {
+            <span class="kw">return </span><span class="prelude-val">Err</span>(ZipError::InvalidArchive(
                 <span class="string">&quot;Invalid zip64 locator digital signature header&quot;</span>,
             ));
         }
-        <span class="kw">let</span> <span class="ident">disk_with_central_directory</span> <span class="op">=</span> <span class="ident">reader</span>.<span class="ident">read_u32</span>::<span class="op">&lt;</span><span class="ident">LittleEndian</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">end_of_central_directory_offset</span> <span class="op">=</span> <span class="ident">reader</span>.<span class="ident">read_u64</span>::<span class="op">&lt;</span><span class="ident">LittleEndian</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">number_of_disks</span> <span class="op">=</span> <span class="ident">reader</span>.<span class="ident">read_u32</span>::<span class="op">&lt;</span><span class="ident">LittleEndian</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
+        <span class="kw">let </span>disk_with_central_directory = reader.read_u32::&lt;LittleEndian&gt;()<span class="question-mark">?</span>;
+        <span class="kw">let </span>end_of_central_directory_offset = reader.read_u64::&lt;LittleEndian&gt;()<span class="question-mark">?</span>;
+        <span class="kw">let </span>number_of_disks = reader.read_u32::&lt;LittleEndian&gt;()<span class="question-mark">?</span>;
 
-        <span class="prelude-val">Ok</span>(<span class="ident">Zip64CentralDirectoryEndLocator</span> {
-            <span class="ident">disk_with_central_directory</span>,
-            <span class="ident">end_of_central_directory_offset</span>,
-            <span class="ident">number_of_disks</span>,
+        <span class="prelude-val">Ok</span>(Zip64CentralDirectoryEndLocator {
+            disk_with_central_directory,
+            end_of_central_directory_offset,
+            number_of_disks,
         })
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">write</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Write</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">writer</span>: <span class="kw-2">&amp;mut</span> <span class="ident">T</span>) -&gt; <span class="ident">ZipResult</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
-        <span class="ident">writer</span>.<span class="ident">write_u32</span>::<span class="op">&lt;</span><span class="ident">LittleEndian</span><span class="op">&gt;</span>(<span class="ident">ZIP64_CENTRAL_DIRECTORY_END_LOCATOR_SIGNATURE</span>)<span class="question-mark">?</span>;
-        <span class="ident">writer</span>.<span class="ident">write_u32</span>::<span class="op">&lt;</span><span class="ident">LittleEndian</span><span class="op">&gt;</span>(<span class="self">self</span>.<span class="ident">disk_with_central_directory</span>)<span class="question-mark">?</span>;
-        <span class="ident">writer</span>.<span class="ident">write_u64</span>::<span class="op">&lt;</span><span class="ident">LittleEndian</span><span class="op">&gt;</span>(<span class="self">self</span>.<span class="ident">end_of_central_directory_offset</span>)<span class="question-mark">?</span>;
-        <span class="ident">writer</span>.<span class="ident">write_u32</span>::<span class="op">&lt;</span><span class="ident">LittleEndian</span><span class="op">&gt;</span>(<span class="self">self</span>.<span class="ident">number_of_disks</span>)<span class="question-mark">?</span>;
+    <span class="kw">pub fn </span>write&lt;T: Write&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, writer: <span class="kw-2">&amp;mut </span>T) -&gt; ZipResult&lt;()&gt; {
+        writer.write_u32::&lt;LittleEndian&gt;(ZIP64_CENTRAL_DIRECTORY_END_LOCATOR_SIGNATURE)<span class="question-mark">?</span>;
+        writer.write_u32::&lt;LittleEndian&gt;(<span class="self">self</span>.disk_with_central_directory)<span class="question-mark">?</span>;
+        writer.write_u64::&lt;LittleEndian&gt;(<span class="self">self</span>.end_of_central_directory_offset)<span class="question-mark">?</span>;
+        writer.write_u32::&lt;LittleEndian&gt;(<span class="self">self</span>.number_of_disks)<span class="question-mark">?</span>;
         <span class="prelude-val">Ok</span>(())
     }
 }
 
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Zip64CentralDirectoryEnd</span> {
-    <span class="kw">pub</span> <span class="ident">version_made_by</span>: <span class="ident">u16</span>,
-    <span class="kw">pub</span> <span class="ident">version_needed_to_extract</span>: <span class="ident">u16</span>,
-    <span class="kw">pub</span> <span class="ident">disk_number</span>: <span class="ident">u32</span>,
-    <span class="kw">pub</span> <span class="ident">disk_with_central_directory</span>: <span class="ident">u32</span>,
-    <span class="kw">pub</span> <span class="ident">number_of_files_on_this_disk</span>: <span class="ident">u64</span>,
-    <span class="kw">pub</span> <span class="ident">number_of_files</span>: <span class="ident">u64</span>,
-    <span class="kw">pub</span> <span class="ident">central_directory_size</span>: <span class="ident">u64</span>,
-    <span class="kw">pub</span> <span class="ident">central_directory_offset</span>: <span class="ident">u64</span>,
-    <span class="comment">//pub extensible_data_sector: Vec&lt;u8&gt;, &lt;-- We don&#39;t do anything with this at the moment.</span>
-}
+<span class="kw">pub struct </span>Zip64CentralDirectoryEnd {
+    <span class="kw">pub </span>version_made_by: u16,
+    <span class="kw">pub </span>version_needed_to_extract: u16,
+    <span class="kw">pub </span>disk_number: u32,
+    <span class="kw">pub </span>disk_with_central_directory: u32,
+    <span class="kw">pub </span>number_of_files_on_this_disk: u64,
+    <span class="kw">pub </span>number_of_files: u64,
+    <span class="kw">pub </span>central_directory_size: u64,
+    <span class="kw">pub </span>central_directory_offset: u64,
+    <span class="comment">//pub extensible_data_sector: Vec&lt;u8&gt;, &lt;-- We don&#39;t do anything with this at the moment.
+</span>}
 
-<span class="kw">impl</span> <span class="ident">Zip64CentralDirectoryEnd</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">find_and_parse</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Read</span> <span class="op">+</span> <span class="ident">io::Seek</span><span class="op">&gt;</span>(
-        <span class="ident">reader</span>: <span class="kw-2">&amp;mut</span> <span class="ident">T</span>,
-        <span class="ident">nominal_offset</span>: <span class="ident">u64</span>,
-        <span class="ident">search_upper_bound</span>: <span class="ident">u64</span>,
-    ) -&gt; <span class="ident">ZipResult</span><span class="op">&lt;</span>(<span class="ident">Zip64CentralDirectoryEnd</span>, <span class="ident">u64</span>)<span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">pos</span> <span class="op">=</span> <span class="ident">nominal_offset</span>;
+<span class="kw">impl </span>Zip64CentralDirectoryEnd {
+    <span class="kw">pub fn </span>find_and_parse&lt;T: Read + io::Seek&gt;(
+        reader: <span class="kw-2">&amp;mut </span>T,
+        nominal_offset: u64,
+        search_upper_bound: u64,
+    ) -&gt; ZipResult&lt;(Zip64CentralDirectoryEnd, u64)&gt; {
+        <span class="kw">let </span><span class="kw-2">mut </span>pos = nominal_offset;
 
-        <span class="kw">while</span> <span class="ident">pos</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">search_upper_bound</span> {
-            <span class="ident">reader</span>.<span class="ident">seek</span>(<span class="ident">io::SeekFrom::Start</span>(<span class="ident">pos</span>))<span class="question-mark">?</span>;
+        <span class="kw">while </span>pos &lt;= search_upper_bound {
+            reader.seek(io::SeekFrom::Start(pos))<span class="question-mark">?</span>;
 
-            <span class="kw">if</span> <span class="ident">reader</span>.<span class="ident">read_u32</span>::<span class="op">&lt;</span><span class="ident">LittleEndian</span><span class="op">&gt;</span>()<span class="question-mark">?</span> <span class="op">==</span> <span class="ident">ZIP64_CENTRAL_DIRECTORY_END_SIGNATURE</span> {
-                <span class="kw">let</span> <span class="ident">archive_offset</span> <span class="op">=</span> <span class="ident">pos</span> <span class="op">-</span> <span class="ident">nominal_offset</span>;
+            <span class="kw">if </span>reader.read_u32::&lt;LittleEndian&gt;()<span class="question-mark">? </span>== ZIP64_CENTRAL_DIRECTORY_END_SIGNATURE {
+                <span class="kw">let </span>archive_offset = pos - nominal_offset;
 
-                <span class="kw">let</span> <span class="ident">_record_size</span> <span class="op">=</span> <span class="ident">reader</span>.<span class="ident">read_u64</span>::<span class="op">&lt;</span><span class="ident">LittleEndian</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
-                <span class="comment">// We would use this value if we did anything with the &quot;zip64 extensible data sector&quot;.</span>
+                <span class="kw">let </span>_record_size = reader.read_u64::&lt;LittleEndian&gt;()<span class="question-mark">?</span>;
+                <span class="comment">// We would use this value if we did anything with the &quot;zip64 extensible data sector&quot;.
 
-                <span class="kw">let</span> <span class="ident">version_made_by</span> <span class="op">=</span> <span class="ident">reader</span>.<span class="ident">read_u16</span>::<span class="op">&lt;</span><span class="ident">LittleEndian</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
-                <span class="kw">let</span> <span class="ident">version_needed_to_extract</span> <span class="op">=</span> <span class="ident">reader</span>.<span class="ident">read_u16</span>::<span class="op">&lt;</span><span class="ident">LittleEndian</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
-                <span class="kw">let</span> <span class="ident">disk_number</span> <span class="op">=</span> <span class="ident">reader</span>.<span class="ident">read_u32</span>::<span class="op">&lt;</span><span class="ident">LittleEndian</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
-                <span class="kw">let</span> <span class="ident">disk_with_central_directory</span> <span class="op">=</span> <span class="ident">reader</span>.<span class="ident">read_u32</span>::<span class="op">&lt;</span><span class="ident">LittleEndian</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
-                <span class="kw">let</span> <span class="ident">number_of_files_on_this_disk</span> <span class="op">=</span> <span class="ident">reader</span>.<span class="ident">read_u64</span>::<span class="op">&lt;</span><span class="ident">LittleEndian</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
-                <span class="kw">let</span> <span class="ident">number_of_files</span> <span class="op">=</span> <span class="ident">reader</span>.<span class="ident">read_u64</span>::<span class="op">&lt;</span><span class="ident">LittleEndian</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
-                <span class="kw">let</span> <span class="ident">central_directory_size</span> <span class="op">=</span> <span class="ident">reader</span>.<span class="ident">read_u64</span>::<span class="op">&lt;</span><span class="ident">LittleEndian</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
-                <span class="kw">let</span> <span class="ident">central_directory_offset</span> <span class="op">=</span> <span class="ident">reader</span>.<span class="ident">read_u64</span>::<span class="op">&lt;</span><span class="ident">LittleEndian</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
+                </span><span class="kw">let </span>version_made_by = reader.read_u16::&lt;LittleEndian&gt;()<span class="question-mark">?</span>;
+                <span class="kw">let </span>version_needed_to_extract = reader.read_u16::&lt;LittleEndian&gt;()<span class="question-mark">?</span>;
+                <span class="kw">let </span>disk_number = reader.read_u32::&lt;LittleEndian&gt;()<span class="question-mark">?</span>;
+                <span class="kw">let </span>disk_with_central_directory = reader.read_u32::&lt;LittleEndian&gt;()<span class="question-mark">?</span>;
+                <span class="kw">let </span>number_of_files_on_this_disk = reader.read_u64::&lt;LittleEndian&gt;()<span class="question-mark">?</span>;
+                <span class="kw">let </span>number_of_files = reader.read_u64::&lt;LittleEndian&gt;()<span class="question-mark">?</span>;
+                <span class="kw">let </span>central_directory_size = reader.read_u64::&lt;LittleEndian&gt;()<span class="question-mark">?</span>;
+                <span class="kw">let </span>central_directory_offset = reader.read_u64::&lt;LittleEndian&gt;()<span class="question-mark">?</span>;
 
-                <span class="kw">return</span> <span class="prelude-val">Ok</span>((
-                    <span class="ident">Zip64CentralDirectoryEnd</span> {
-                        <span class="ident">version_made_by</span>,
-                        <span class="ident">version_needed_to_extract</span>,
-                        <span class="ident">disk_number</span>,
-                        <span class="ident">disk_with_central_directory</span>,
-                        <span class="ident">number_of_files_on_this_disk</span>,
-                        <span class="ident">number_of_files</span>,
-                        <span class="ident">central_directory_size</span>,
-                        <span class="ident">central_directory_offset</span>,
+                <span class="kw">return </span><span class="prelude-val">Ok</span>((
+                    Zip64CentralDirectoryEnd {
+                        version_made_by,
+                        version_needed_to_extract,
+                        disk_number,
+                        disk_with_central_directory,
+                        number_of_files_on_this_disk,
+                        number_of_files,
+                        central_directory_size,
+                        central_directory_offset,
                     },
-                    <span class="ident">archive_offset</span>,
+                    archive_offset,
                 ));
             }
 
-            <span class="ident">pos</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
+            pos += <span class="number">1</span>;
         }
 
-        <span class="prelude-val">Err</span>(<span class="ident">ZipError::InvalidArchive</span>(
+        <span class="prelude-val">Err</span>(ZipError::InvalidArchive(
             <span class="string">&quot;Could not find ZIP64 central directory end&quot;</span>,
         ))
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">write</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Write</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">writer</span>: <span class="kw-2">&amp;mut</span> <span class="ident">T</span>) -&gt; <span class="ident">ZipResult</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
-        <span class="ident">writer</span>.<span class="ident">write_u32</span>::<span class="op">&lt;</span><span class="ident">LittleEndian</span><span class="op">&gt;</span>(<span class="ident">ZIP64_CENTRAL_DIRECTORY_END_SIGNATURE</span>)<span class="question-mark">?</span>;
-        <span class="ident">writer</span>.<span class="ident">write_u64</span>::<span class="op">&lt;</span><span class="ident">LittleEndian</span><span class="op">&gt;</span>(<span class="number">44</span>)<span class="question-mark">?</span>; <span class="comment">// record size</span>
-        <span class="ident">writer</span>.<span class="ident">write_u16</span>::<span class="op">&lt;</span><span class="ident">LittleEndian</span><span class="op">&gt;</span>(<span class="self">self</span>.<span class="ident">version_made_by</span>)<span class="question-mark">?</span>;
-        <span class="ident">writer</span>.<span class="ident">write_u16</span>::<span class="op">&lt;</span><span class="ident">LittleEndian</span><span class="op">&gt;</span>(<span class="self">self</span>.<span class="ident">version_needed_to_extract</span>)<span class="question-mark">?</span>;
-        <span class="ident">writer</span>.<span class="ident">write_u32</span>::<span class="op">&lt;</span><span class="ident">LittleEndian</span><span class="op">&gt;</span>(<span class="self">self</span>.<span class="ident">disk_number</span>)<span class="question-mark">?</span>;
-        <span class="ident">writer</span>.<span class="ident">write_u32</span>::<span class="op">&lt;</span><span class="ident">LittleEndian</span><span class="op">&gt;</span>(<span class="self">self</span>.<span class="ident">disk_with_central_directory</span>)<span class="question-mark">?</span>;
-        <span class="ident">writer</span>.<span class="ident">write_u64</span>::<span class="op">&lt;</span><span class="ident">LittleEndian</span><span class="op">&gt;</span>(<span class="self">self</span>.<span class="ident">number_of_files_on_this_disk</span>)<span class="question-mark">?</span>;
-        <span class="ident">writer</span>.<span class="ident">write_u64</span>::<span class="op">&lt;</span><span class="ident">LittleEndian</span><span class="op">&gt;</span>(<span class="self">self</span>.<span class="ident">number_of_files</span>)<span class="question-mark">?</span>;
-        <span class="ident">writer</span>.<span class="ident">write_u64</span>::<span class="op">&lt;</span><span class="ident">LittleEndian</span><span class="op">&gt;</span>(<span class="self">self</span>.<span class="ident">central_directory_size</span>)<span class="question-mark">?</span>;
-        <span class="ident">writer</span>.<span class="ident">write_u64</span>::<span class="op">&lt;</span><span class="ident">LittleEndian</span><span class="op">&gt;</span>(<span class="self">self</span>.<span class="ident">central_directory_offset</span>)<span class="question-mark">?</span>;
+    <span class="kw">pub fn </span>write&lt;T: Write&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, writer: <span class="kw-2">&amp;mut </span>T) -&gt; ZipResult&lt;()&gt; {
+        writer.write_u32::&lt;LittleEndian&gt;(ZIP64_CENTRAL_DIRECTORY_END_SIGNATURE)<span class="question-mark">?</span>;
+        writer.write_u64::&lt;LittleEndian&gt;(<span class="number">44</span>)<span class="question-mark">?</span>; <span class="comment">// record size
+        </span>writer.write_u16::&lt;LittleEndian&gt;(<span class="self">self</span>.version_made_by)<span class="question-mark">?</span>;
+        writer.write_u16::&lt;LittleEndian&gt;(<span class="self">self</span>.version_needed_to_extract)<span class="question-mark">?</span>;
+        writer.write_u32::&lt;LittleEndian&gt;(<span class="self">self</span>.disk_number)<span class="question-mark">?</span>;
+        writer.write_u32::&lt;LittleEndian&gt;(<span class="self">self</span>.disk_with_central_directory)<span class="question-mark">?</span>;
+        writer.write_u64::&lt;LittleEndian&gt;(<span class="self">self</span>.number_of_files_on_this_disk)<span class="question-mark">?</span>;
+        writer.write_u64::&lt;LittleEndian&gt;(<span class="self">self</span>.number_of_files)<span class="question-mark">?</span>;
+        writer.write_u64::&lt;LittleEndian&gt;(<span class="self">self</span>.central_directory_size)<span class="question-mark">?</span>;
+        writer.write_u64::&lt;LittleEndian&gt;(<span class="self">self</span>.central_directory_offset)<span class="question-mark">?</span>;
         <span class="prelude-val">Ok</span>(())
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="zip" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="zip" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (77e57db38 2022-10-30)" ></div></body></html>

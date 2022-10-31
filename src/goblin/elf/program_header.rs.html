@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/goblin-0.5.4/src/elf/program_header.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>program_header.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../goblin/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../goblin/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../goblin/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/goblin-0.5.4/src/elf/program_header.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>program_header.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../normalize.css"><link rel="stylesheet" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../ayu.css" disabled><link rel="stylesheet" href="../../../dark.css" disabled><link rel="stylesheet" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../goblin/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -425,432 +425,432 @@
 <span id="425">425</span>
 <span id="426">426</span>
 <span id="427">427</span>
-</pre><pre class="rust"><code><span class="comment">/* Legal values for p_type (segment type).  */</span>
+</pre><pre class="rust"><code><span class="comment">/* Legal values for p_type (segment type).  */
 
-<span class="doccomment">/// Programg header table entry unused</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PT_NULL</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">0</span>;
-<span class="doccomment">/// Loadable program segment</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PT_LOAD</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">1</span>;
-<span class="doccomment">/// Dynamic linking information</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PT_DYNAMIC</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">2</span>;
-<span class="doccomment">/// Program interpreter</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PT_INTERP</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">3</span>;
-<span class="doccomment">/// Auxiliary information</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PT_NOTE</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">4</span>;
-<span class="doccomment">/// Reserved</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PT_SHLIB</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">5</span>;
-<span class="doccomment">/// Entry for header table itself</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PT_PHDR</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">6</span>;
-<span class="doccomment">/// Thread-local storage segment</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PT_TLS</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">7</span>;
-<span class="doccomment">/// Number of defined types</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PT_NUM</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">8</span>;
-<span class="doccomment">/// Start of OS-specific</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PT_LOOS</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">0x6000_0000</span>;
-<span class="doccomment">/// GCC .eh_frame_hdr segment</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PT_GNU_EH_FRAME</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">0x6474_e550</span>;
-<span class="doccomment">/// Indicates stack executability</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PT_GNU_STACK</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">0x6474_e551</span>;
-<span class="doccomment">/// Read-only after relocation</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PT_GNU_RELRO</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">0x6474_e552</span>;
-<span class="doccomment">/// Sun Specific segment</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PT_LOSUNW</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">0x6fff_fffa</span>;
-<span class="doccomment">/// Sun Specific segment</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PT_SUNWBSS</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">0x6fff_fffa</span>;
-<span class="doccomment">/// Stack segment</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PT_SUNWSTACK</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">0x6fff_fffb</span>;
-<span class="doccomment">/// End of OS-specific</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PT_HISUNW</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">0x6fff_ffff</span>;
-<span class="doccomment">/// End of OS-specific</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PT_HIOS</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">0x6fff_ffff</span>;
-<span class="doccomment">/// Start of processor-specific</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PT_LOPROC</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">0x7000_0000</span>;
-<span class="doccomment">/// ARM unwind segment</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PT_ARM_EXIDX</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">0x7000_0001</span>;
-<span class="doccomment">/// End of processor-specific</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PT_HIPROC</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">0x7fff_ffff</span>;
+</span><span class="doccomment">/// Programg header table entry unused
+</span><span class="kw">pub const </span>PT_NULL: u32 = <span class="number">0</span>;
+<span class="doccomment">/// Loadable program segment
+</span><span class="kw">pub const </span>PT_LOAD: u32 = <span class="number">1</span>;
+<span class="doccomment">/// Dynamic linking information
+</span><span class="kw">pub const </span>PT_DYNAMIC: u32 = <span class="number">2</span>;
+<span class="doccomment">/// Program interpreter
+</span><span class="kw">pub const </span>PT_INTERP: u32 = <span class="number">3</span>;
+<span class="doccomment">/// Auxiliary information
+</span><span class="kw">pub const </span>PT_NOTE: u32 = <span class="number">4</span>;
+<span class="doccomment">/// Reserved
+</span><span class="kw">pub const </span>PT_SHLIB: u32 = <span class="number">5</span>;
+<span class="doccomment">/// Entry for header table itself
+</span><span class="kw">pub const </span>PT_PHDR: u32 = <span class="number">6</span>;
+<span class="doccomment">/// Thread-local storage segment
+</span><span class="kw">pub const </span>PT_TLS: u32 = <span class="number">7</span>;
+<span class="doccomment">/// Number of defined types
+</span><span class="kw">pub const </span>PT_NUM: u32 = <span class="number">8</span>;
+<span class="doccomment">/// Start of OS-specific
+</span><span class="kw">pub const </span>PT_LOOS: u32 = <span class="number">0x6000_0000</span>;
+<span class="doccomment">/// GCC .eh_frame_hdr segment
+</span><span class="kw">pub const </span>PT_GNU_EH_FRAME: u32 = <span class="number">0x6474_e550</span>;
+<span class="doccomment">/// Indicates stack executability
+</span><span class="kw">pub const </span>PT_GNU_STACK: u32 = <span class="number">0x6474_e551</span>;
+<span class="doccomment">/// Read-only after relocation
+</span><span class="kw">pub const </span>PT_GNU_RELRO: u32 = <span class="number">0x6474_e552</span>;
+<span class="doccomment">/// Sun Specific segment
+</span><span class="kw">pub const </span>PT_LOSUNW: u32 = <span class="number">0x6fff_fffa</span>;
+<span class="doccomment">/// Sun Specific segment
+</span><span class="kw">pub const </span>PT_SUNWBSS: u32 = <span class="number">0x6fff_fffa</span>;
+<span class="doccomment">/// Stack segment
+</span><span class="kw">pub const </span>PT_SUNWSTACK: u32 = <span class="number">0x6fff_fffb</span>;
+<span class="doccomment">/// End of OS-specific
+</span><span class="kw">pub const </span>PT_HISUNW: u32 = <span class="number">0x6fff_ffff</span>;
+<span class="doccomment">/// End of OS-specific
+</span><span class="kw">pub const </span>PT_HIOS: u32 = <span class="number">0x6fff_ffff</span>;
+<span class="doccomment">/// Start of processor-specific
+</span><span class="kw">pub const </span>PT_LOPROC: u32 = <span class="number">0x7000_0000</span>;
+<span class="doccomment">/// ARM unwind segment
+</span><span class="kw">pub const </span>PT_ARM_EXIDX: u32 = <span class="number">0x7000_0001</span>;
+<span class="doccomment">/// End of processor-specific
+</span><span class="kw">pub const </span>PT_HIPROC: u32 = <span class="number">0x7fff_ffff</span>;
 
-<span class="comment">/* Legal values for p_flags (segment flags).  */</span>
+<span class="comment">/* Legal values for p_flags (segment flags).  */
 
-<span class="doccomment">/// Segment is executable</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PF_X</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">1</span>;
-<span class="doccomment">/// Segment is writable</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PF_W</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">1</span>;
-<span class="doccomment">/// Segment is readable</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PF_R</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">2</span>;
-<span class="doccomment">/// Bits reserved for OS-specific usage</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PF_MASKOS</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">0x0ff0_0000</span>;
-<span class="doccomment">/// Bits reserved for processor-specific usage</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PF_MASKPROC</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">0xf000_0000</span>;
+</span><span class="doccomment">/// Segment is executable
+</span><span class="kw">pub const </span>PF_X: u32 = <span class="number">1</span>;
+<span class="doccomment">/// Segment is writable
+</span><span class="kw">pub const </span>PF_W: u32 = <span class="number">1 </span>&lt;&lt; <span class="number">1</span>;
+<span class="doccomment">/// Segment is readable
+</span><span class="kw">pub const </span>PF_R: u32 = <span class="number">1 </span>&lt;&lt; <span class="number">2</span>;
+<span class="doccomment">/// Bits reserved for OS-specific usage
+</span><span class="kw">pub const </span>PF_MASKOS: u32 = <span class="number">0x0ff0_0000</span>;
+<span class="doccomment">/// Bits reserved for processor-specific usage
+</span><span class="kw">pub const </span>PF_MASKPROC: u32 = <span class="number">0xf000_0000</span>;
 
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">pt_to_str</span>(<span class="ident">pt</span>: <span class="ident">u32</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> {
-    <span class="kw">match</span> <span class="ident">pt</span> {
-        <span class="ident">PT_NULL</span> =&gt; <span class="string">&quot;PT_NULL&quot;</span>,
-        <span class="ident">PT_LOAD</span> =&gt; <span class="string">&quot;PT_LOAD&quot;</span>,
-        <span class="ident">PT_DYNAMIC</span> =&gt; <span class="string">&quot;PT_DYNAMIC&quot;</span>,
-        <span class="ident">PT_INTERP</span> =&gt; <span class="string">&quot;PT_INTERP&quot;</span>,
-        <span class="ident">PT_NOTE</span> =&gt; <span class="string">&quot;PT_NOTE&quot;</span>,
-        <span class="ident">PT_SHLIB</span> =&gt; <span class="string">&quot;PT_SHLIB&quot;</span>,
-        <span class="ident">PT_PHDR</span> =&gt; <span class="string">&quot;PT_PHDR&quot;</span>,
-        <span class="ident">PT_TLS</span> =&gt; <span class="string">&quot;PT_TLS&quot;</span>,
-        <span class="ident">PT_NUM</span> =&gt; <span class="string">&quot;PT_NUM&quot;</span>,
-        <span class="ident">PT_LOOS</span> =&gt; <span class="string">&quot;PT_LOOS&quot;</span>,
-        <span class="ident">PT_GNU_EH_FRAME</span> =&gt; <span class="string">&quot;PT_GNU_EH_FRAME&quot;</span>,
-        <span class="ident">PT_GNU_STACK</span> =&gt; <span class="string">&quot;PT_GNU_STACK&quot;</span>,
-        <span class="ident">PT_GNU_RELRO</span> =&gt; <span class="string">&quot;PT_GNU_RELRO&quot;</span>,
-        <span class="ident">PT_SUNWBSS</span> =&gt; <span class="string">&quot;PT_SUNWBSS&quot;</span>,
-        <span class="ident">PT_SUNWSTACK</span> =&gt; <span class="string">&quot;PT_SUNWSTACK&quot;</span>,
-        <span class="ident">PT_HIOS</span> =&gt; <span class="string">&quot;PT_HIOS&quot;</span>,
-        <span class="ident">PT_LOPROC</span> =&gt; <span class="string">&quot;PT_LOPROC&quot;</span>,
-        <span class="ident">PT_HIPROC</span> =&gt; <span class="string">&quot;PT_HIPROC&quot;</span>,
-        <span class="ident">PT_ARM_EXIDX</span> =&gt; <span class="string">&quot;PT_ARM_EXIDX&quot;</span>,
-        <span class="kw">_</span> =&gt; <span class="string">&quot;UNKNOWN_PT&quot;</span>,
+<span class="kw">pub fn </span>pt_to_str(pt: u32) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str {
+    <span class="kw">match </span>pt {
+        PT_NULL =&gt; <span class="string">&quot;PT_NULL&quot;</span>,
+        PT_LOAD =&gt; <span class="string">&quot;PT_LOAD&quot;</span>,
+        PT_DYNAMIC =&gt; <span class="string">&quot;PT_DYNAMIC&quot;</span>,
+        PT_INTERP =&gt; <span class="string">&quot;PT_INTERP&quot;</span>,
+        PT_NOTE =&gt; <span class="string">&quot;PT_NOTE&quot;</span>,
+        PT_SHLIB =&gt; <span class="string">&quot;PT_SHLIB&quot;</span>,
+        PT_PHDR =&gt; <span class="string">&quot;PT_PHDR&quot;</span>,
+        PT_TLS =&gt; <span class="string">&quot;PT_TLS&quot;</span>,
+        PT_NUM =&gt; <span class="string">&quot;PT_NUM&quot;</span>,
+        PT_LOOS =&gt; <span class="string">&quot;PT_LOOS&quot;</span>,
+        PT_GNU_EH_FRAME =&gt; <span class="string">&quot;PT_GNU_EH_FRAME&quot;</span>,
+        PT_GNU_STACK =&gt; <span class="string">&quot;PT_GNU_STACK&quot;</span>,
+        PT_GNU_RELRO =&gt; <span class="string">&quot;PT_GNU_RELRO&quot;</span>,
+        PT_SUNWBSS =&gt; <span class="string">&quot;PT_SUNWBSS&quot;</span>,
+        PT_SUNWSTACK =&gt; <span class="string">&quot;PT_SUNWSTACK&quot;</span>,
+        PT_HIOS =&gt; <span class="string">&quot;PT_HIOS&quot;</span>,
+        PT_LOPROC =&gt; <span class="string">&quot;PT_LOPROC&quot;</span>,
+        PT_HIPROC =&gt; <span class="string">&quot;PT_HIPROC&quot;</span>,
+        PT_ARM_EXIDX =&gt; <span class="string">&quot;PT_ARM_EXIDX&quot;</span>,
+        <span class="kw">_ </span>=&gt; <span class="string">&quot;UNKNOWN_PT&quot;</span>,
     }
 }
 
-<span class="macro">if_alloc!</span> {
-    <span class="kw">use</span> <span class="ident">core::fmt</span>;
-    <span class="kw">use</span> <span class="ident">scroll::ctx</span>;
-    <span class="kw">use</span> <span class="ident">core::result</span>;
-    <span class="kw">use</span> <span class="ident">core::ops::Range</span>;
-    <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::container</span>::{<span class="ident">Ctx</span>, <span class="ident">Container</span>};
-    <span class="kw">use</span> <span class="ident">alloc::vec::Vec</span>;
+<span class="macro">if_alloc! </span>{
+    <span class="kw">use </span>core::fmt;
+    <span class="kw">use </span>scroll::ctx;
+    <span class="kw">use </span>core::result;
+    <span class="kw">use </span>core::ops::Range;
+    <span class="kw">use </span><span class="kw">crate</span>::container::{Ctx, Container};
+    <span class="kw">use </span>alloc::vec::Vec;
 
-    <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Default</span>, <span class="ident">PartialEq</span>, <span class="ident">Clone</span>)]</span>
-    <span class="doccomment">/// A unified ProgramHeader - convertable to and from 32-bit and 64-bit variants</span>
-    <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ProgramHeader</span> {
-        <span class="kw">pub</span> <span class="ident">p_type</span>  : <span class="ident">u32</span>,
-        <span class="kw">pub</span> <span class="ident">p_flags</span> : <span class="ident">u32</span>,
-        <span class="kw">pub</span> <span class="ident">p_offset</span>: <span class="ident">u64</span>,
-        <span class="kw">pub</span> <span class="ident">p_vaddr</span> : <span class="ident">u64</span>,
-        <span class="kw">pub</span> <span class="ident">p_paddr</span> : <span class="ident">u64</span>,
-        <span class="kw">pub</span> <span class="ident">p_filesz</span>: <span class="ident">u64</span>,
-        <span class="kw">pub</span> <span class="ident">p_memsz</span> : <span class="ident">u64</span>,
-        <span class="kw">pub</span> <span class="ident">p_align</span> : <span class="ident">u64</span>,
+    <span class="attribute">#[derive(Default, PartialEq, Clone)]
+    </span><span class="doccomment">/// A unified ProgramHeader - convertable to and from 32-bit and 64-bit variants
+    </span><span class="kw">pub struct </span>ProgramHeader {
+        <span class="kw">pub </span>p_type  : u32,
+        <span class="kw">pub </span>p_flags : u32,
+        <span class="kw">pub </span>p_offset: u64,
+        <span class="kw">pub </span>p_vaddr : u64,
+        <span class="kw">pub </span>p_paddr : u64,
+        <span class="kw">pub </span>p_filesz: u64,
+        <span class="kw">pub </span>p_memsz : u64,
+        <span class="kw">pub </span>p_align : u64,
     }
 
-    <span class="kw">impl</span> <span class="ident">ProgramHeader</span> {
-        <span class="doccomment">/// Return the size of the underlying program header, given a `Ctx`</span>
-        <span class="attribute">#[<span class="ident">inline</span>]</span>
-        <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">size</span>(<span class="ident">ctx</span>: <span class="ident">Ctx</span>) -&gt; <span class="ident">usize</span> {
-            <span class="kw">use</span> <span class="ident">scroll::ctx::SizeWith</span>;
-            <span class="ident"><span class="self">Self</span>::size_with</span>(<span class="kw-2">&amp;</span><span class="ident">ctx</span>)
+    <span class="kw">impl </span>ProgramHeader {
+        <span class="doccomment">/// Return the size of the underlying program header, given a `Ctx`
+        </span><span class="attribute">#[inline]
+        </span><span class="kw">pub fn </span>size(ctx: Ctx) -&gt; usize {
+            <span class="kw">use </span>scroll::ctx::SizeWith;
+            <span class="self">Self</span>::size_with(<span class="kw-2">&amp;</span>ctx)
         }
-        <span class="doccomment">/// Create a new `PT_LOAD` ELF program header</span>
-        <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() -&gt; <span class="self">Self</span> {
-            <span class="ident">ProgramHeader</span> {
-                <span class="ident">p_type</span>  : <span class="ident">PT_LOAD</span>,
-                <span class="ident">p_flags</span> : <span class="number">0</span>,
-                <span class="ident">p_offset</span>: <span class="number">0</span>,
-                <span class="ident">p_vaddr</span> : <span class="number">0</span>,
-                <span class="ident">p_paddr</span> : <span class="number">0</span>,
-                <span class="ident">p_filesz</span>: <span class="number">0</span>,
-                <span class="ident">p_memsz</span> : <span class="number">0</span>,
-                <span class="comment">//TODO: check if this is true for 32-bit pt_load</span>
-                <span class="ident">p_align</span> : <span class="number">2</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">20</span>,
+        <span class="doccomment">/// Create a new `PT_LOAD` ELF program header
+        </span><span class="kw">pub fn </span>new() -&gt; <span class="self">Self </span>{
+            ProgramHeader {
+                p_type  : PT_LOAD,
+                p_flags : <span class="number">0</span>,
+                p_offset: <span class="number">0</span>,
+                p_vaddr : <span class="number">0</span>,
+                p_paddr : <span class="number">0</span>,
+                p_filesz: <span class="number">0</span>,
+                p_memsz : <span class="number">0</span>,
+                <span class="comment">//TODO: check if this is true for 32-bit pt_load
+                </span>p_align : <span class="number">2 </span>&lt;&lt; <span class="number">20</span>,
             }
         }
-        <span class="doccomment">/// Returns this program header&#39;s file offset range</span>
-        <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">file_range</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Range</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span> {
-            <span class="self">self</span>.<span class="ident">p_offset</span> <span class="kw">as</span> <span class="ident">usize</span>..<span class="self">self</span>.<span class="ident">p_offset</span>.<span class="ident">saturating_add</span>(<span class="self">self</span>.<span class="ident">p_filesz</span>) <span class="kw">as</span> <span class="ident">usize</span>
+        <span class="doccomment">/// Returns this program header&#39;s file offset range
+        </span><span class="kw">pub fn </span>file_range(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Range&lt;usize&gt; {
+            <span class="self">self</span>.p_offset <span class="kw">as </span>usize..<span class="self">self</span>.p_offset.saturating_add(<span class="self">self</span>.p_filesz) <span class="kw">as </span>usize
         }
-        <span class="doccomment">/// Returns this program header&#39;s virtual memory range</span>
-        <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">vm_range</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Range</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span> {
-            <span class="self">self</span>.<span class="ident">p_vaddr</span> <span class="kw">as</span> <span class="ident">usize</span>..<span class="self">self</span>.<span class="ident">p_vaddr</span>.<span class="ident">saturating_add</span>(<span class="self">self</span>.<span class="ident">p_memsz</span>) <span class="kw">as</span> <span class="ident">usize</span>
+        <span class="doccomment">/// Returns this program header&#39;s virtual memory range
+        </span><span class="kw">pub fn </span>vm_range(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Range&lt;usize&gt; {
+            <span class="self">self</span>.p_vaddr <span class="kw">as </span>usize..<span class="self">self</span>.p_vaddr.saturating_add(<span class="self">self</span>.p_memsz) <span class="kw">as </span>usize
         }
-        <span class="doccomment">/// Sets the executable flag</span>
-        <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">executable</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) {
-            <span class="self">self</span>.<span class="ident">p_flags</span> <span class="op">|</span><span class="op">=</span> <span class="ident">PF_X</span>;
+        <span class="doccomment">/// Sets the executable flag
+        </span><span class="kw">pub fn </span>executable(<span class="kw-2">&amp;mut </span><span class="self">self</span>) {
+            <span class="self">self</span>.p_flags |= PF_X;
         }
-        <span class="doccomment">/// Sets the write flag</span>
-        <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">write</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) {
-            <span class="self">self</span>.<span class="ident">p_flags</span> <span class="op">|</span><span class="op">=</span> <span class="ident">PF_W</span>;
+        <span class="doccomment">/// Sets the write flag
+        </span><span class="kw">pub fn </span>write(<span class="kw-2">&amp;mut </span><span class="self">self</span>) {
+            <span class="self">self</span>.p_flags |= PF_W;
         }
-        <span class="doccomment">/// Sets the read flag</span>
-        <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">read</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) {
-            <span class="self">self</span>.<span class="ident">p_flags</span> <span class="op">|</span><span class="op">=</span> <span class="ident">PF_R</span>;
+        <span class="doccomment">/// Sets the read flag
+        </span><span class="kw">pub fn </span>read(<span class="kw-2">&amp;mut </span><span class="self">self</span>) {
+            <span class="self">self</span>.p_flags |= PF_R;
         }
-        <span class="doccomment">/// Whether this program header is executable</span>
-        <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_executable</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-            <span class="self">self</span>.<span class="ident">p_flags</span> <span class="op">&amp;</span> <span class="ident">PF_X</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span>
-        }
-        <span class="doccomment">/// Whether this program header is readable</span>
-        <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_read</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-            <span class="self">self</span>.<span class="ident">p_flags</span> <span class="op">&amp;</span> <span class="ident">PF_R</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span>
-        }
-        <span class="doccomment">/// Whether this program header is writable</span>
-        <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_write</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-            <span class="self">self</span>.<span class="ident">p_flags</span> <span class="op">&amp;</span> <span class="ident">PF_W</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span>
-        }
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;endian_fd&quot;</span>)]</span>
-        <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">bytes</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>], <span class="kw-2">mut</span> <span class="ident">offset</span>: <span class="ident">usize</span>, <span class="ident">count</span>: <span class="ident">usize</span>, <span class="ident">ctx</span>: <span class="ident">Ctx</span>) -&gt; <span class="ident"><span class="kw">crate</span>::error::Result</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">ProgramHeader</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-            <span class="kw">use</span> <span class="ident">scroll::Pread</span>;
-            <span class="comment">// Sanity check to avoid OOM</span>
-            <span class="kw">if</span> <span class="ident">count</span> <span class="op">&gt;</span> <span class="ident">bytes</span>.<span class="ident">len</span>() <span class="op">/</span> <span class="ident"><span class="self">Self</span>::size</span>(<span class="ident">ctx</span>) {
-                <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident"><span class="kw">crate</span>::error::Error::BufferTooShort</span>(<span class="ident">count</span>, <span class="string">&quot;program headers&quot;</span>));
+        <span class="doccomment">/// Whether this program header is executable
+        </span><span class="kw">pub fn </span>is_executable(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+            <span class="self">self</span>.p_flags &amp; PF_X != <span class="number">0
+        </span>}
+        <span class="doccomment">/// Whether this program header is readable
+        </span><span class="kw">pub fn </span>is_read(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+            <span class="self">self</span>.p_flags &amp; PF_R != <span class="number">0
+        </span>}
+        <span class="doccomment">/// Whether this program header is writable
+        </span><span class="kw">pub fn </span>is_write(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+            <span class="self">self</span>.p_flags &amp; PF_W != <span class="number">0
+        </span>}
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;endian_fd&quot;</span>)]
+        </span><span class="kw">pub fn </span>parse(bytes: <span class="kw-2">&amp;</span>[u8], <span class="kw-2">mut </span>offset: usize, count: usize, ctx: Ctx) -&gt; <span class="kw">crate</span>::error::Result&lt;Vec&lt;ProgramHeader&gt;&gt; {
+            <span class="kw">use </span>scroll::Pread;
+            <span class="comment">// Sanity check to avoid OOM
+            </span><span class="kw">if </span>count &gt; bytes.len() / <span class="self">Self</span>::size(ctx) {
+                <span class="kw">return </span><span class="prelude-val">Err</span>(<span class="kw">crate</span>::error::Error::BufferTooShort(count, <span class="string">&quot;program headers&quot;</span>));
             }
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">program_headers</span> <span class="op">=</span> <span class="ident">Vec::with_capacity</span>(<span class="ident">count</span>);
-            <span class="kw">for</span> <span class="kw">_</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">count</span> {
-                <span class="kw">let</span> <span class="ident">phdr</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">gread_with</span>(<span class="kw-2">&amp;mut</span> <span class="ident">offset</span>, <span class="ident">ctx</span>)<span class="question-mark">?</span>;
-                <span class="ident">program_headers</span>.<span class="ident">push</span>(<span class="ident">phdr</span>);
+            <span class="kw">let </span><span class="kw-2">mut </span>program_headers = Vec::with_capacity(count);
+            <span class="kw">for _ in </span><span class="number">0</span>..count {
+                <span class="kw">let </span>phdr = bytes.gread_with(<span class="kw-2">&amp;mut </span>offset, ctx)<span class="question-mark">?</span>;
+                program_headers.push(phdr);
             }
-            <span class="prelude-val">Ok</span>(<span class="ident">program_headers</span>)
-        }
-    }
-
-    <span class="kw">impl</span> <span class="ident">fmt::Debug</span> <span class="kw">for</span> <span class="ident">ProgramHeader</span> {
-        <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">fmt::Formatter</span>) -&gt; <span class="ident">fmt::Result</span> {
-            <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;ProgramHeader&quot;</span>)
-                .<span class="ident">field</span>(<span class="string">&quot;p_type&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">pt_to_str</span>(<span class="self">self</span>.<span class="ident">p_type</span>))
-                .<span class="ident">field</span>(<span class="string">&quot;p_flags&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;0x{:x}&quot;</span>, <span class="self">self</span>.<span class="ident">p_flags</span>))
-                .<span class="ident">field</span>(<span class="string">&quot;p_offset&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;0x{:x}&quot;</span>, <span class="self">self</span>.<span class="ident">p_offset</span>))
-                .<span class="ident">field</span>(<span class="string">&quot;p_vaddr&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;0x{:x}&quot;</span>, <span class="self">self</span>.<span class="ident">p_vaddr</span>))
-                .<span class="ident">field</span>(<span class="string">&quot;p_paddr&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;0x{:x}&quot;</span>, <span class="self">self</span>.<span class="ident">p_paddr</span>))
-                .<span class="ident">field</span>(<span class="string">&quot;p_filesz&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;0x{:x}&quot;</span>, <span class="self">self</span>.<span class="ident">p_filesz</span>))
-                .<span class="ident">field</span>(<span class="string">&quot;p_memsz&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;0x{:x}&quot;</span>, <span class="self">self</span>.<span class="ident">p_memsz</span>))
-                .<span class="ident">field</span>(<span class="string">&quot;p_align&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">p_align</span>)
-                .<span class="ident">finish</span>()
+            <span class="prelude-val">Ok</span>(program_headers)
         }
     }
 
-    <span class="kw">impl</span> <span class="ident">ctx::SizeWith</span><span class="op">&lt;</span><span class="ident">Ctx</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">ProgramHeader</span> {
-        <span class="kw">fn</span> <span class="ident">size_with</span>(<span class="ident">ctx</span>: <span class="kw-2">&amp;</span><span class="ident">Ctx</span>) -&gt; <span class="ident">usize</span> {
-            <span class="kw">match</span> <span class="ident">ctx</span>.<span class="ident">container</span> {
-                <span class="ident">Container::Little</span> =&gt; {
-                    <span class="ident">program_header32::SIZEOF_PHDR</span>
+    <span class="kw">impl </span>fmt::Debug <span class="kw">for </span>ProgramHeader {
+        <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>fmt::Formatter) -&gt; fmt::Result {
+            f.debug_struct(<span class="string">&quot;ProgramHeader&quot;</span>)
+                .field(<span class="string">&quot;p_type&quot;</span>, <span class="kw-2">&amp;</span>pt_to_str(<span class="self">self</span>.p_type))
+                .field(<span class="string">&quot;p_flags&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;0x{:x}&quot;</span>, <span class="self">self</span>.p_flags))
+                .field(<span class="string">&quot;p_offset&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;0x{:x}&quot;</span>, <span class="self">self</span>.p_offset))
+                .field(<span class="string">&quot;p_vaddr&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;0x{:x}&quot;</span>, <span class="self">self</span>.p_vaddr))
+                .field(<span class="string">&quot;p_paddr&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;0x{:x}&quot;</span>, <span class="self">self</span>.p_paddr))
+                .field(<span class="string">&quot;p_filesz&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;0x{:x}&quot;</span>, <span class="self">self</span>.p_filesz))
+                .field(<span class="string">&quot;p_memsz&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;0x{:x}&quot;</span>, <span class="self">self</span>.p_memsz))
+                .field(<span class="string">&quot;p_align&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.p_align)
+                .finish()
+        }
+    }
+
+    <span class="kw">impl </span>ctx::SizeWith&lt;Ctx&gt; <span class="kw">for </span>ProgramHeader {
+        <span class="kw">fn </span>size_with(ctx: <span class="kw-2">&amp;</span>Ctx) -&gt; usize {
+            <span class="kw">match </span>ctx.container {
+                Container::Little =&gt; {
+                    program_header32::SIZEOF_PHDR
                 },
-                <span class="ident">Container::Big</span> =&gt; {
-                    <span class="ident">program_header64::SIZEOF_PHDR</span>
+                Container::Big =&gt; {
+                    program_header64::SIZEOF_PHDR
                 },
             }
         }
     }
 
-    <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">ctx::TryFromCtx</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">Ctx</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">ProgramHeader</span> {
-        <span class="kw">type</span> <span class="ident">Error</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::error::Error</span>;
-        <span class="kw">fn</span> <span class="ident">try_from_ctx</span>(<span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>], <span class="ident">Ctx</span> { <span class="ident">container</span>, <span class="ident">le</span>}: <span class="ident">Ctx</span>) -&gt; <span class="ident">result::Result</span><span class="op">&lt;</span>(<span class="self">Self</span>, <span class="ident">usize</span>), <span class="ident"><span class="self">Self</span>::Error</span><span class="op">&gt;</span> {
-            <span class="kw">use</span> <span class="ident">scroll::Pread</span>;
-            <span class="kw">let</span> <span class="ident">res</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">container</span> {
-                <span class="ident">Container::Little</span> =&gt; {
-                    (<span class="ident">bytes</span>.<span class="ident">pread_with</span>::<span class="op">&lt;</span><span class="ident">program_header32::ProgramHeader</span><span class="op">&gt;</span>(<span class="number">0</span>, <span class="ident">le</span>)<span class="question-mark">?</span>.<span class="ident">into</span>(), <span class="ident">program_header32::SIZEOF_PHDR</span>)
+    <span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; ctx::TryFromCtx&lt;<span class="lifetime">&#39;a</span>, Ctx&gt; <span class="kw">for </span>ProgramHeader {
+        <span class="kw">type </span>Error = <span class="kw">crate</span>::error::Error;
+        <span class="kw">fn </span>try_from_ctx(bytes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8], Ctx { container, le}: Ctx) -&gt; result::Result&lt;(<span class="self">Self</span>, usize), <span class="self">Self</span>::Error&gt; {
+            <span class="kw">use </span>scroll::Pread;
+            <span class="kw">let </span>res = <span class="kw">match </span>container {
+                Container::Little =&gt; {
+                    (bytes.pread_with::&lt;program_header32::ProgramHeader&gt;(<span class="number">0</span>, le)<span class="question-mark">?</span>.into(), program_header32::SIZEOF_PHDR)
                 },
-                <span class="ident">Container::Big</span> =&gt; {
-                    (<span class="ident">bytes</span>.<span class="ident">pread_with</span>::<span class="op">&lt;</span><span class="ident">program_header64::ProgramHeader</span><span class="op">&gt;</span>(<span class="number">0</span>, <span class="ident">le</span>)<span class="question-mark">?</span>.<span class="ident">into</span>(), <span class="ident">program_header64::SIZEOF_PHDR</span>)
+                Container::Big =&gt; {
+                    (bytes.pread_with::&lt;program_header64::ProgramHeader&gt;(<span class="number">0</span>, le)<span class="question-mark">?</span>.into(), program_header64::SIZEOF_PHDR)
                 }
             };
-            <span class="prelude-val">Ok</span>(<span class="ident">res</span>)
+            <span class="prelude-val">Ok</span>(res)
         }
     }
 
-    <span class="kw">impl</span> <span class="ident">ctx::TryIntoCtx</span><span class="op">&lt;</span><span class="ident">Ctx</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">ProgramHeader</span> {
-        <span class="kw">type</span> <span class="ident">Error</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::error::Error</span>;
-        <span class="kw">fn</span> <span class="ident">try_into_ctx</span>(<span class="self">self</span>, <span class="ident">bytes</span>: <span class="kw-2">&amp;mut</span> [<span class="ident">u8</span>], <span class="ident">Ctx</span> {<span class="ident">container</span>, <span class="ident">le</span>}: <span class="ident">Ctx</span>) -&gt; <span class="ident">result::Result</span><span class="op">&lt;</span><span class="ident">usize</span>, <span class="ident"><span class="self">Self</span>::Error</span><span class="op">&gt;</span> {
-            <span class="kw">use</span> <span class="ident">scroll::Pwrite</span>;
-            <span class="kw">match</span> <span class="ident">container</span> {
-                <span class="ident">Container::Little</span> =&gt; {
-                    <span class="kw">let</span> <span class="ident">phdr</span>: <span class="ident">program_header32::ProgramHeader</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">into</span>();
-                    <span class="prelude-val">Ok</span>(<span class="ident">bytes</span>.<span class="ident">pwrite_with</span>(<span class="ident">phdr</span>, <span class="number">0</span>, <span class="ident">le</span>)<span class="question-mark">?</span>)
+    <span class="kw">impl </span>ctx::TryIntoCtx&lt;Ctx&gt; <span class="kw">for </span>ProgramHeader {
+        <span class="kw">type </span>Error = <span class="kw">crate</span>::error::Error;
+        <span class="kw">fn </span>try_into_ctx(<span class="self">self</span>, bytes: <span class="kw-2">&amp;mut </span>[u8], Ctx {container, le}: Ctx) -&gt; result::Result&lt;usize, <span class="self">Self</span>::Error&gt; {
+            <span class="kw">use </span>scroll::Pwrite;
+            <span class="kw">match </span>container {
+                Container::Little =&gt; {
+                    <span class="kw">let </span>phdr: program_header32::ProgramHeader = <span class="self">self</span>.into();
+                    <span class="prelude-val">Ok</span>(bytes.pwrite_with(phdr, <span class="number">0</span>, le)<span class="question-mark">?</span>)
                 },
-                <span class="ident">Container::Big</span> =&gt; {
-                    <span class="kw">let</span> <span class="ident">phdr</span>: <span class="ident">program_header64::ProgramHeader</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">into</span>();
-                    <span class="prelude-val">Ok</span>(<span class="ident">bytes</span>.<span class="ident">pwrite_with</span>(<span class="ident">phdr</span>, <span class="number">0</span>, <span class="ident">le</span>)<span class="question-mark">?</span>)
+                Container::Big =&gt; {
+                    <span class="kw">let </span>phdr: program_header64::ProgramHeader = <span class="self">self</span>.into();
+                    <span class="prelude-val">Ok</span>(bytes.pwrite_with(phdr, <span class="number">0</span>, le)<span class="question-mark">?</span>)
                 }
             }
         }
     }
-} <span class="comment">// end if_alloc</span>
+} <span class="comment">// end if_alloc
 
-<span class="macro">macro_rules!</span> <span class="ident">elf_program_header_std_impl</span> {
-    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">size</span>:<span class="ident">ty</span>) =&gt; {
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
-        <span class="kw">mod</span> <span class="ident">tests</span> {
-            <span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
-            <span class="attribute">#[<span class="ident">test</span>]</span>
-            <span class="kw">fn</span> <span class="ident">size_of</span>() {
-                <span class="macro">assert_eq!</span>(<span class="ident">::std::mem::size_of</span>::<span class="op">&lt;</span><span class="ident">ProgramHeader</span><span class="op">&gt;</span>(), <span class="ident">SIZEOF_PHDR</span>);
+</span><span class="macro">macro_rules! </span>elf_program_header_std_impl {
+    (<span class="macro-nonterminal">$size</span>:ty) =&gt; {
+        <span class="attribute">#[cfg(test)]
+        </span><span class="kw">mod </span>tests {
+            <span class="kw">use super</span>::<span class="kw-2">*</span>;
+            <span class="attribute">#[test]
+            </span><span class="kw">fn </span>size_of() {
+                <span class="macro">assert_eq!</span>(::std::mem::size_of::&lt;ProgramHeader&gt;(), SIZEOF_PHDR);
             }
         }
 
-        <span class="macro">if_alloc!</span> {
+        <span class="macro">if_alloc! </span>{
 
 
-            <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::elf::program_header::ProgramHeader</span> <span class="kw">as</span> <span class="ident">ElfProgramHeader</span>;
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;std&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;endian_fd&quot;</span>))]</span>
-            <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::error::Result</span>;
+            <span class="kw">use </span><span class="kw">crate</span>::elf::program_header::ProgramHeader <span class="kw">as </span>ElfProgramHeader;
+            <span class="attribute">#[cfg(any(feature = <span class="string">&quot;std&quot;</span>, feature = <span class="string">&quot;endian_fd&quot;</span>))]
+            </span><span class="kw">use </span><span class="kw">crate</span>::error::Result;
 
-            <span class="kw">use</span> <span class="ident">plain::Plain</span>;
+            <span class="kw">use </span>plain::Plain;
 
-            <span class="macro">if_std!</span> {
-                <span class="kw">use</span> <span class="ident">std::fs::File</span>;
-                <span class="kw">use</span> <span class="ident">std::io</span>::{<span class="ident">Seek</span>, <span class="ident">Read</span>};
-                <span class="kw">use</span> <span class="ident">std::io::SeekFrom::Start</span>;
+            <span class="macro">if_std! </span>{
+                <span class="kw">use </span>std::fs::File;
+                <span class="kw">use </span>std::io::{Seek, Read};
+                <span class="kw">use </span>std::io::SeekFrom::Start;
             }
 
-            <span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">ProgramHeader</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">ElfProgramHeader</span> {
-                <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">ph</span>: <span class="ident">ProgramHeader</span>) -&gt; <span class="self">Self</span> {
-                    <span class="ident">ElfProgramHeader</span> {
-                        <span class="ident">p_type</span>   : <span class="ident">ph</span>.<span class="ident">p_type</span>,
-                        <span class="ident">p_flags</span>  : <span class="ident">ph</span>.<span class="ident">p_flags</span>,
-                        <span class="ident">p_offset</span> : <span class="ident">u64::from</span>(<span class="ident">ph</span>.<span class="ident">p_offset</span>),
-                        <span class="ident">p_vaddr</span>  : <span class="ident">u64::from</span>(<span class="ident">ph</span>.<span class="ident">p_vaddr</span>),
-                        <span class="ident">p_paddr</span>  : <span class="ident">u64::from</span>(<span class="ident">ph</span>.<span class="ident">p_paddr</span>),
-                        <span class="ident">p_filesz</span> : <span class="ident">u64::from</span>(<span class="ident">ph</span>.<span class="ident">p_filesz</span>),
-                        <span class="ident">p_memsz</span>  : <span class="ident">u64::from</span>(<span class="ident">ph</span>.<span class="ident">p_memsz</span>),
-                        <span class="ident">p_align</span>  : <span class="ident">u64::from</span>(<span class="ident">ph</span>.<span class="ident">p_align</span>),
+            <span class="kw">impl </span>From&lt;ProgramHeader&gt; <span class="kw">for </span>ElfProgramHeader {
+                <span class="kw">fn </span>from(ph: ProgramHeader) -&gt; <span class="self">Self </span>{
+                    ElfProgramHeader {
+                        p_type   : ph.p_type,
+                        p_flags  : ph.p_flags,
+                        p_offset : u64::from(ph.p_offset),
+                        p_vaddr  : u64::from(ph.p_vaddr),
+                        p_paddr  : u64::from(ph.p_paddr),
+                        p_filesz : u64::from(ph.p_filesz),
+                        p_memsz  : u64::from(ph.p_memsz),
+                        p_align  : u64::from(ph.p_align),
                     }
                 }
             }
 
-            <span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">ElfProgramHeader</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">ProgramHeader</span> {
-                <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">ph</span>: <span class="ident">ElfProgramHeader</span>) -&gt; <span class="self">Self</span> {
-                    <span class="ident">ProgramHeader</span> {
-                        <span class="ident">p_type</span>   : <span class="ident">ph</span>.<span class="ident">p_type</span>,
-                        <span class="ident">p_flags</span>  : <span class="ident">ph</span>.<span class="ident">p_flags</span>,
-                        <span class="ident">p_offset</span> : <span class="ident">ph</span>.<span class="ident">p_offset</span> <span class="kw">as</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">size</span>,
-                        <span class="ident">p_vaddr</span>  : <span class="ident">ph</span>.<span class="ident">p_vaddr</span>  <span class="kw">as</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">size</span>,
-                        <span class="ident">p_paddr</span>  : <span class="ident">ph</span>.<span class="ident">p_paddr</span>  <span class="kw">as</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">size</span>,
-                        <span class="ident">p_filesz</span> : <span class="ident">ph</span>.<span class="ident">p_filesz</span> <span class="kw">as</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">size</span>,
-                        <span class="ident">p_memsz</span>  : <span class="ident">ph</span>.<span class="ident">p_memsz</span>  <span class="kw">as</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">size</span>,
-                        <span class="ident">p_align</span>  : <span class="ident">ph</span>.<span class="ident">p_align</span>  <span class="kw">as</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">size</span>,
+            <span class="kw">impl </span>From&lt;ElfProgramHeader&gt; <span class="kw">for </span>ProgramHeader {
+                <span class="kw">fn </span>from(ph: ElfProgramHeader) -&gt; <span class="self">Self </span>{
+                    ProgramHeader {
+                        p_type   : ph.p_type,
+                        p_flags  : ph.p_flags,
+                        p_offset : ph.p_offset <span class="kw">as </span><span class="macro-nonterminal">$size</span>,
+                        p_vaddr  : ph.p_vaddr  <span class="kw">as </span><span class="macro-nonterminal">$size</span>,
+                        p_paddr  : ph.p_paddr  <span class="kw">as </span><span class="macro-nonterminal">$size</span>,
+                        p_filesz : ph.p_filesz <span class="kw">as </span><span class="macro-nonterminal">$size</span>,
+                        p_memsz  : ph.p_memsz  <span class="kw">as </span><span class="macro-nonterminal">$size</span>,
+                        p_align  : ph.p_align  <span class="kw">as </span><span class="macro-nonterminal">$size</span>,
                     }
                 }
             }
-        } <span class="comment">// end if_alloc</span>
+        } <span class="comment">// end if_alloc
 
-        <span class="kw">use</span> <span class="ident">core::fmt</span>;
-        <span class="kw">use</span> <span class="ident">core::slice</span>;
+        </span><span class="kw">use </span>core::fmt;
+        <span class="kw">use </span>core::slice;
 
-        <span class="kw">impl</span> <span class="ident">fmt::Debug</span> <span class="kw">for</span> <span class="ident">ProgramHeader</span> {
-            <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">fmt::Formatter</span>) -&gt; <span class="ident">fmt::Result</span> {
-                <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;ProgramHeader&quot;</span>)
-                    .<span class="ident">field</span>(<span class="string">&quot;p_type&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">pt_to_str</span>(<span class="self">self</span>.<span class="ident">p_type</span>))
-                    .<span class="ident">field</span>(<span class="string">&quot;p_flags&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;0x{:x}&quot;</span>, <span class="self">self</span>.<span class="ident">p_flags</span>))
-                    .<span class="ident">field</span>(<span class="string">&quot;p_offset&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;0x{:x}&quot;</span>, <span class="self">self</span>.<span class="ident">p_offset</span>))
-                    .<span class="ident">field</span>(<span class="string">&quot;p_vaddr&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;0x{:x}&quot;</span>, <span class="self">self</span>.<span class="ident">p_vaddr</span>))
-                    .<span class="ident">field</span>(<span class="string">&quot;p_paddr&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;0x{:x}&quot;</span>, <span class="self">self</span>.<span class="ident">p_paddr</span>))
-                    .<span class="ident">field</span>(<span class="string">&quot;p_filesz&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;0x{:x}&quot;</span>, <span class="self">self</span>.<span class="ident">p_filesz</span>))
-                    .<span class="ident">field</span>(<span class="string">&quot;p_memsz&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;0x{:x}&quot;</span>, <span class="self">self</span>.<span class="ident">p_memsz</span>))
-                    .<span class="ident">field</span>(<span class="string">&quot;p_align&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">p_align</span>)
-                    .<span class="ident">finish</span>()
+        <span class="kw">impl </span>fmt::Debug <span class="kw">for </span>ProgramHeader {
+            <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>fmt::Formatter) -&gt; fmt::Result {
+                f.debug_struct(<span class="string">&quot;ProgramHeader&quot;</span>)
+                    .field(<span class="string">&quot;p_type&quot;</span>, <span class="kw-2">&amp;</span>pt_to_str(<span class="self">self</span>.p_type))
+                    .field(<span class="string">&quot;p_flags&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;0x{:x}&quot;</span>, <span class="self">self</span>.p_flags))
+                    .field(<span class="string">&quot;p_offset&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;0x{:x}&quot;</span>, <span class="self">self</span>.p_offset))
+                    .field(<span class="string">&quot;p_vaddr&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;0x{:x}&quot;</span>, <span class="self">self</span>.p_vaddr))
+                    .field(<span class="string">&quot;p_paddr&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;0x{:x}&quot;</span>, <span class="self">self</span>.p_paddr))
+                    .field(<span class="string">&quot;p_filesz&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;0x{:x}&quot;</span>, <span class="self">self</span>.p_filesz))
+                    .field(<span class="string">&quot;p_memsz&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;0x{:x}&quot;</span>, <span class="self">self</span>.p_memsz))
+                    .field(<span class="string">&quot;p_align&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.p_align)
+                    .finish()
             }
         }
 
-        <span class="kw">impl</span> <span class="ident">ProgramHeader</span> {
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;endian_fd&quot;</span>)]</span>
-            <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">parse</span>(
-                <span class="ident">bytes</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>],
-                <span class="kw-2">mut</span> <span class="ident">offset</span>: <span class="ident">usize</span>,
-                <span class="ident">count</span>: <span class="ident">usize</span>,
-                <span class="ident">ctx</span>: <span class="ident">::scroll::Endian</span>,
-            ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">ProgramHeader</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-                <span class="kw">use</span> <span class="ident">scroll::Pread</span>;
-                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">program_headers</span> <span class="op">=</span> <span class="macro">vec!</span>[<span class="ident">ProgramHeader::default</span>(); <span class="ident">count</span>];
-                <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> <span class="kw-2">&amp;mut</span> <span class="ident">offset</span>;
-                <span class="ident">bytes</span>.<span class="ident">gread_inout_with</span>(<span class="ident">offset</span>, <span class="kw-2">&amp;mut</span> <span class="ident">program_headers</span>, <span class="ident">ctx</span>)<span class="question-mark">?</span>;
-                <span class="prelude-val">Ok</span>(<span class="ident">program_headers</span>)
+        <span class="kw">impl </span>ProgramHeader {
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;endian_fd&quot;</span>)]
+            </span><span class="kw">pub fn </span>parse(
+                bytes: <span class="kw-2">&amp;</span>[u8],
+                <span class="kw-2">mut </span>offset: usize,
+                count: usize,
+                ctx: ::scroll::Endian,
+            ) -&gt; <span class="prelude-ty">Result</span>&lt;Vec&lt;ProgramHeader&gt;&gt; {
+                <span class="kw">use </span>scroll::Pread;
+                <span class="kw">let </span><span class="kw-2">mut </span>program_headers = <span class="macro">vec!</span>[ProgramHeader::default(); count];
+                <span class="kw">let </span>offset = <span class="kw-2">&amp;mut </span>offset;
+                bytes.gread_inout_with(offset, <span class="kw-2">&amp;mut </span>program_headers, ctx)<span class="question-mark">?</span>;
+                <span class="prelude-val">Ok</span>(program_headers)
             }
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;alloc&quot;</span>)]</span>
-            <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_bytes</span>(<span class="ident">bytes</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>], <span class="ident">phnum</span>: <span class="ident">usize</span>) -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">ProgramHeader</span><span class="op">&gt;</span> {
-                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">phdrs</span> <span class="op">=</span> <span class="macro">vec!</span>[<span class="ident">ProgramHeader::default</span>(); <span class="ident">phnum</span>];
-                <span class="ident">phdrs</span>
-                    .<span class="ident">copy_from_bytes</span>(<span class="ident">bytes</span>)
-                    .<span class="ident">expect</span>(<span class="string">&quot;buffer is too short for given number of entries&quot;</span>);
-                <span class="ident">phdrs</span>
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;alloc&quot;</span>)]
+            </span><span class="kw">pub fn </span>from_bytes(bytes: <span class="kw-2">&amp;</span>[u8], phnum: usize) -&gt; Vec&lt;ProgramHeader&gt; {
+                <span class="kw">let </span><span class="kw-2">mut </span>phdrs = <span class="macro">vec!</span>[ProgramHeader::default(); phnum];
+                phdrs
+                    .copy_from_bytes(bytes)
+                    .expect(<span class="string">&quot;buffer is too short for given number of entries&quot;</span>);
+                phdrs
             }
 
-            <span class="doccomment">/// # Safety</span>
-            <span class="doccomment">///</span>
-            <span class="doccomment">/// This function creates a `ProgramHeader` directly from a raw pointer</span>
-            <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_raw_parts</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>(
-                <span class="ident">phdrp</span>: <span class="kw-2">*const</span> <span class="ident">ProgramHeader</span>,
-                <span class="ident">phnum</span>: <span class="ident">usize</span>,
-            ) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">ProgramHeader</span>] {
-                <span class="ident">slice::from_raw_parts</span>(<span class="ident">phdrp</span>, <span class="ident">phnum</span>)
+            <span class="doccomment">/// # Safety
+            ///
+            /// This function creates a `ProgramHeader` directly from a raw pointer
+            </span><span class="kw">pub unsafe fn </span>from_raw_parts&lt;<span class="lifetime">&#39;a</span>&gt;(
+                phdrp: <span class="kw-2">*const </span>ProgramHeader,
+                phnum: usize,
+            ) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[ProgramHeader] {
+                slice::from_raw_parts(phdrp, phnum)
             }
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;std&quot;</span>)]</span>
-            <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_fd</span>(<span class="ident">fd</span>: <span class="kw-2">&amp;mut</span> <span class="ident">File</span>, <span class="ident">offset</span>: <span class="ident">u64</span>, <span class="ident">count</span>: <span class="ident">usize</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">ProgramHeader</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">phdrs</span> <span class="op">=</span> <span class="macro">vec!</span>[<span class="ident">ProgramHeader::default</span>(); <span class="ident">count</span>];
-                <span class="ident">fd</span>.<span class="ident">seek</span>(<span class="ident">Start</span>(<span class="ident">offset</span>))<span class="question-mark">?</span>;
-                <span class="kw">unsafe</span> {
-                    <span class="ident">fd</span>.<span class="ident">read_exact</span>(<span class="ident">plain::as_mut_bytes</span>(<span class="kw-2">&amp;mut</span> <span class="kw-2">*</span><span class="ident">phdrs</span>))<span class="question-mark">?</span>;
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;std&quot;</span>)]
+            </span><span class="kw">pub fn </span>from_fd(fd: <span class="kw-2">&amp;mut </span>File, offset: u64, count: usize) -&gt; <span class="prelude-ty">Result</span>&lt;Vec&lt;ProgramHeader&gt;&gt; {
+                <span class="kw">let </span><span class="kw-2">mut </span>phdrs = <span class="macro">vec!</span>[ProgramHeader::default(); count];
+                fd.seek(Start(offset))<span class="question-mark">?</span>;
+                <span class="kw">unsafe </span>{
+                    fd.read_exact(plain::as_mut_bytes(<span class="kw-2">&amp;mut *</span>phdrs))<span class="question-mark">?</span>;
                 }
-                <span class="prelude-val">Ok</span>(<span class="ident">phdrs</span>)
+                <span class="prelude-val">Ok</span>(phdrs)
             }
         }
     };
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;alloc&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">scroll</span>::{<span class="ident">Pread</span>, <span class="ident">Pwrite</span>, <span class="ident">SizeWith</span>};
+<span class="attribute">#[cfg(feature = <span class="string">&quot;alloc&quot;</span>)]
+</span><span class="kw">use </span>scroll::{Pread, Pwrite, SizeWith};
 
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">program_header32</span> {
-    <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::elf::program_header</span>::<span class="kw-2">*</span>;
+<span class="kw">pub mod </span>program_header32 {
+    <span class="kw">pub use </span><span class="kw">crate</span>::elf::program_header::<span class="kw-2">*</span>;
 
-    <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-    <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">PartialEq</span>, <span class="ident">Default</span>)]</span>
-    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;alloc&quot;</span>, <span class="ident">derive</span>(<span class="ident">Pread</span>, <span class="ident">Pwrite</span>, <span class="ident">SizeWith</span>))]</span>
-    <span class="doccomment">/// A 32-bit ProgramHeader typically specifies how to map executable and data segments into memory</span>
-    <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ProgramHeader</span> {
-        <span class="doccomment">/// Segment type</span>
-        <span class="kw">pub</span> <span class="ident">p_type</span>: <span class="ident">u32</span>,
-        <span class="doccomment">/// Segment file offset</span>
-        <span class="kw">pub</span> <span class="ident">p_offset</span>: <span class="ident">u32</span>,
-        <span class="doccomment">/// Segment virtual address</span>
-        <span class="kw">pub</span> <span class="ident">p_vaddr</span>: <span class="ident">u32</span>,
-        <span class="doccomment">/// Segment physical address</span>
-        <span class="kw">pub</span> <span class="ident">p_paddr</span>: <span class="ident">u32</span>,
-        <span class="doccomment">/// Segment size in file</span>
-        <span class="kw">pub</span> <span class="ident">p_filesz</span>: <span class="ident">u32</span>,
-        <span class="doccomment">/// Segment size in memory</span>
-        <span class="kw">pub</span> <span class="ident">p_memsz</span>: <span class="ident">u32</span>,
-        <span class="doccomment">/// Segment flags</span>
-        <span class="kw">pub</span> <span class="ident">p_flags</span>: <span class="ident">u32</span>,
-        <span class="doccomment">/// Segment alignment</span>
-        <span class="kw">pub</span> <span class="ident">p_align</span>: <span class="ident">u32</span>,
+    <span class="attribute">#[repr(C)]
+    #[derive(Copy, Clone, PartialEq, Default)]
+    #[cfg_attr(feature = <span class="string">&quot;alloc&quot;</span>, derive(Pread, Pwrite, SizeWith))]
+    </span><span class="doccomment">/// A 32-bit ProgramHeader typically specifies how to map executable and data segments into memory
+    </span><span class="kw">pub struct </span>ProgramHeader {
+        <span class="doccomment">/// Segment type
+        </span><span class="kw">pub </span>p_type: u32,
+        <span class="doccomment">/// Segment file offset
+        </span><span class="kw">pub </span>p_offset: u32,
+        <span class="doccomment">/// Segment virtual address
+        </span><span class="kw">pub </span>p_vaddr: u32,
+        <span class="doccomment">/// Segment physical address
+        </span><span class="kw">pub </span>p_paddr: u32,
+        <span class="doccomment">/// Segment size in file
+        </span><span class="kw">pub </span>p_filesz: u32,
+        <span class="doccomment">/// Segment size in memory
+        </span><span class="kw">pub </span>p_memsz: u32,
+        <span class="doccomment">/// Segment flags
+        </span><span class="kw">pub </span>p_flags: u32,
+        <span class="doccomment">/// Segment alignment
+        </span><span class="kw">pub </span>p_align: u32,
     }
 
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIZEOF_PHDR</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">32</span>;
+    <span class="kw">pub const </span>SIZEOF_PHDR: usize = <span class="number">32</span>;
 
-    <span class="comment">// Declare that this is a plain type.</span>
-    <span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">plain::Plain</span> <span class="kw">for</span> <span class="ident">ProgramHeader</span> {}
+    <span class="comment">// Declare that this is a plain type.
+    </span><span class="kw">unsafe impl </span>plain::Plain <span class="kw">for </span>ProgramHeader {}
 
-    <span class="macro">elf_program_header_std_impl!</span>(<span class="ident">u32</span>);
+    <span class="macro">elf_program_header_std_impl!</span>(u32);
 }
 
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">program_header64</span> {
-    <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::elf::program_header</span>::<span class="kw-2">*</span>;
+<span class="kw">pub mod </span>program_header64 {
+    <span class="kw">pub use </span><span class="kw">crate</span>::elf::program_header::<span class="kw-2">*</span>;
 
-    <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-    <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">PartialEq</span>, <span class="ident">Default</span>)]</span>
-    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;alloc&quot;</span>, <span class="ident">derive</span>(<span class="ident">Pread</span>, <span class="ident">Pwrite</span>, <span class="ident">SizeWith</span>))]</span>
-    <span class="doccomment">/// A 64-bit ProgramHeader typically specifies how to map executable and data segments into memory</span>
-    <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ProgramHeader</span> {
-        <span class="doccomment">/// Segment type</span>
-        <span class="kw">pub</span> <span class="ident">p_type</span>: <span class="ident">u32</span>,
-        <span class="doccomment">/// Segment flags</span>
-        <span class="kw">pub</span> <span class="ident">p_flags</span>: <span class="ident">u32</span>,
-        <span class="doccomment">/// Segment file offset</span>
-        <span class="kw">pub</span> <span class="ident">p_offset</span>: <span class="ident">u64</span>,
-        <span class="doccomment">/// Segment virtual address</span>
-        <span class="kw">pub</span> <span class="ident">p_vaddr</span>: <span class="ident">u64</span>,
-        <span class="doccomment">/// Segment physical address</span>
-        <span class="kw">pub</span> <span class="ident">p_paddr</span>: <span class="ident">u64</span>,
-        <span class="doccomment">/// Segment size in file</span>
-        <span class="kw">pub</span> <span class="ident">p_filesz</span>: <span class="ident">u64</span>,
-        <span class="doccomment">/// Segment size in memory</span>
-        <span class="kw">pub</span> <span class="ident">p_memsz</span>: <span class="ident">u64</span>,
-        <span class="doccomment">/// Segment alignment</span>
-        <span class="kw">pub</span> <span class="ident">p_align</span>: <span class="ident">u64</span>,
+    <span class="attribute">#[repr(C)]
+    #[derive(Copy, Clone, PartialEq, Default)]
+    #[cfg_attr(feature = <span class="string">&quot;alloc&quot;</span>, derive(Pread, Pwrite, SizeWith))]
+    </span><span class="doccomment">/// A 64-bit ProgramHeader typically specifies how to map executable and data segments into memory
+    </span><span class="kw">pub struct </span>ProgramHeader {
+        <span class="doccomment">/// Segment type
+        </span><span class="kw">pub </span>p_type: u32,
+        <span class="doccomment">/// Segment flags
+        </span><span class="kw">pub </span>p_flags: u32,
+        <span class="doccomment">/// Segment file offset
+        </span><span class="kw">pub </span>p_offset: u64,
+        <span class="doccomment">/// Segment virtual address
+        </span><span class="kw">pub </span>p_vaddr: u64,
+        <span class="doccomment">/// Segment physical address
+        </span><span class="kw">pub </span>p_paddr: u64,
+        <span class="doccomment">/// Segment size in file
+        </span><span class="kw">pub </span>p_filesz: u64,
+        <span class="doccomment">/// Segment size in memory
+        </span><span class="kw">pub </span>p_memsz: u64,
+        <span class="doccomment">/// Segment alignment
+        </span><span class="kw">pub </span>p_align: u64,
     }
 
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIZEOF_PHDR</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">56</span>;
+    <span class="kw">pub const </span>SIZEOF_PHDR: usize = <span class="number">56</span>;
 
-    <span class="comment">// Declare that this is a plain type.</span>
-    <span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">plain::Plain</span> <span class="kw">for</span> <span class="ident">ProgramHeader</span> {}
+    <span class="comment">// Declare that this is a plain type.
+    </span><span class="kw">unsafe impl </span>plain::Plain <span class="kw">for </span>ProgramHeader {}
 
-    <span class="macro">elf_program_header_std_impl!</span>(<span class="ident">u64</span>);
+    <span class="macro">elf_program_header_std_impl!</span>(u64);
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="goblin" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="goblin" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (77e57db38 2022-10-30)" ></div></body></html>

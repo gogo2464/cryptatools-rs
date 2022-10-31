@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/strum_macros-0.24.3/src/helpers/type_props.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>type_props.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../strum_macros/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../strum_macros/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../strum_macros/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/strum_macros-0.24.3/src/helpers/type_props.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>type_props.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../normalize.css"><link rel="stylesheet" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../ayu.css" disabled><link rel="stylesheet" href="../../../dark.css" disabled><link rel="stylesheet" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../strum_macros/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -114,121 +114,121 @@
 <span id="114">114</span>
 <span id="115">115</span>
 <span id="116">116</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">proc_macro2::TokenStream</span>;
-<span class="kw">use</span> <span class="ident">quote::quote</span>;
-<span class="kw">use</span> <span class="ident">std::default::Default</span>;
-<span class="kw">use</span> <span class="ident">syn</span>::{<span class="ident">parse_quote</span>, <span class="ident">DeriveInput</span>, <span class="ident">Ident</span>, <span class="ident">Path</span>, <span class="ident">Visibility</span>};
+</pre><pre class="rust"><code><span class="kw">use </span>proc_macro2::TokenStream;
+<span class="kw">use </span>quote::quote;
+<span class="kw">use </span>std::default::Default;
+<span class="kw">use </span>syn::{parse_quote, DeriveInput, Ident, Path, Visibility};
 
-<span class="kw">use</span> <span class="ident"><span class="kw">super</span>::case_style::CaseStyle</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">super</span>::metadata</span>::{<span class="ident">DeriveInputExt</span>, <span class="ident">EnumDiscriminantsMeta</span>, <span class="ident">EnumMeta</span>};
-<span class="kw">use</span> <span class="ident"><span class="kw">super</span>::occurrence_error</span>;
+<span class="kw">use </span><span class="kw">super</span>::case_style::CaseStyle;
+<span class="kw">use </span><span class="kw">super</span>::metadata::{DeriveInputExt, EnumDiscriminantsMeta, EnumMeta};
+<span class="kw">use </span><span class="kw">super</span>::occurrence_error;
 
-<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">HasTypeProperties</span> {
-    <span class="kw">fn</span> <span class="ident">get_type_properties</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">syn::Result</span><span class="op">&lt;</span><span class="ident">StrumTypeProperties</span><span class="op">&gt;</span>;
+<span class="kw">pub trait </span>HasTypeProperties {
+    <span class="kw">fn </span>get_type_properties(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; syn::Result&lt;StrumTypeProperties&gt;;
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Default</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">StrumTypeProperties</span> {
-    <span class="kw">pub</span> <span class="ident">case_style</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">CaseStyle</span><span class="op">&gt;</span>,
-    <span class="kw">pub</span> <span class="ident">ascii_case_insensitive</span>: <span class="ident">bool</span>,
-    <span class="kw">pub</span> <span class="ident">crate_module_path</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Path</span><span class="op">&gt;</span>,
-    <span class="kw">pub</span> <span class="ident">discriminant_derives</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Path</span><span class="op">&gt;</span>,
-    <span class="kw">pub</span> <span class="ident">discriminant_name</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Ident</span><span class="op">&gt;</span>,
-    <span class="kw">pub</span> <span class="ident">discriminant_others</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">TokenStream</span><span class="op">&gt;</span>,
-    <span class="kw">pub</span> <span class="ident">discriminant_vis</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Visibility</span><span class="op">&gt;</span>,
-    <span class="kw">pub</span> <span class="ident">use_phf</span>: <span class="ident">bool</span>,
+<span class="attribute">#[derive(Debug, Clone, Default)]
+</span><span class="kw">pub struct </span>StrumTypeProperties {
+    <span class="kw">pub </span>case_style: <span class="prelude-ty">Option</span>&lt;CaseStyle&gt;,
+    <span class="kw">pub </span>ascii_case_insensitive: bool,
+    <span class="kw">pub </span>crate_module_path: <span class="prelude-ty">Option</span>&lt;Path&gt;,
+    <span class="kw">pub </span>discriminant_derives: Vec&lt;Path&gt;,
+    <span class="kw">pub </span>discriminant_name: <span class="prelude-ty">Option</span>&lt;Ident&gt;,
+    <span class="kw">pub </span>discriminant_others: Vec&lt;TokenStream&gt;,
+    <span class="kw">pub </span>discriminant_vis: <span class="prelude-ty">Option</span>&lt;Visibility&gt;,
+    <span class="kw">pub </span>use_phf: bool,
 }
 
-<span class="kw">impl</span> <span class="ident">HasTypeProperties</span> <span class="kw">for</span> <span class="ident">DeriveInput</span> {
-    <span class="kw">fn</span> <span class="ident">get_type_properties</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">syn::Result</span><span class="op">&lt;</span><span class="ident">StrumTypeProperties</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">output</span> <span class="op">=</span> <span class="ident">StrumTypeProperties::default</span>();
+<span class="kw">impl </span>HasTypeProperties <span class="kw">for </span>DeriveInput {
+    <span class="kw">fn </span>get_type_properties(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; syn::Result&lt;StrumTypeProperties&gt; {
+        <span class="kw">let </span><span class="kw-2">mut </span>output = StrumTypeProperties::default();
 
-        <span class="kw">let</span> <span class="ident">strum_meta</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">get_metadata</span>()<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">discriminants_meta</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">get_discriminants_metadata</span>()<span class="question-mark">?</span>;
+        <span class="kw">let </span>strum_meta = <span class="self">self</span>.get_metadata()<span class="question-mark">?</span>;
+        <span class="kw">let </span>discriminants_meta = <span class="self">self</span>.get_discriminants_metadata()<span class="question-mark">?</span>;
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">serialize_all_kw</span> <span class="op">=</span> <span class="prelude-val">None</span>;
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">ascii_case_insensitive_kw</span> <span class="op">=</span> <span class="prelude-val">None</span>;
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">use_phf_kw</span> <span class="op">=</span> <span class="prelude-val">None</span>;
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">crate_module_path_kw</span> <span class="op">=</span> <span class="prelude-val">None</span>;
-        <span class="kw">for</span> <span class="ident">meta</span> <span class="kw">in</span> <span class="ident">strum_meta</span> {
-            <span class="kw">match</span> <span class="ident">meta</span> {
-                <span class="ident">EnumMeta::SerializeAll</span> { <span class="ident">case_style</span>, <span class="ident">kw</span> } =&gt; {
-                    <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">fst_kw</span>) <span class="op">=</span> <span class="ident">serialize_all_kw</span> {
-                        <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">occurrence_error</span>(<span class="ident">fst_kw</span>, <span class="ident">kw</span>, <span class="string">&quot;serialize_all&quot;</span>));
+        <span class="kw">let </span><span class="kw-2">mut </span>serialize_all_kw = <span class="prelude-val">None</span>;
+        <span class="kw">let </span><span class="kw-2">mut </span>ascii_case_insensitive_kw = <span class="prelude-val">None</span>;
+        <span class="kw">let </span><span class="kw-2">mut </span>use_phf_kw = <span class="prelude-val">None</span>;
+        <span class="kw">let </span><span class="kw-2">mut </span>crate_module_path_kw = <span class="prelude-val">None</span>;
+        <span class="kw">for </span>meta <span class="kw">in </span>strum_meta {
+            <span class="kw">match </span>meta {
+                EnumMeta::SerializeAll { case_style, kw } =&gt; {
+                    <span class="kw">if let </span><span class="prelude-val">Some</span>(fst_kw) = serialize_all_kw {
+                        <span class="kw">return </span><span class="prelude-val">Err</span>(occurrence_error(fst_kw, kw, <span class="string">&quot;serialize_all&quot;</span>));
                     }
 
-                    <span class="ident">serialize_all_kw</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">kw</span>);
-                    <span class="ident">output</span>.<span class="ident">case_style</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">case_style</span>);
+                    serialize_all_kw = <span class="prelude-val">Some</span>(kw);
+                    output.case_style = <span class="prelude-val">Some</span>(case_style);
                 }
-                <span class="ident">EnumMeta::AsciiCaseInsensitive</span>(<span class="ident">kw</span>) =&gt; {
-                    <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">fst_kw</span>) <span class="op">=</span> <span class="ident">ascii_case_insensitive_kw</span> {
-                        <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">occurrence_error</span>(<span class="ident">fst_kw</span>, <span class="ident">kw</span>, <span class="string">&quot;ascii_case_insensitive&quot;</span>));
+                EnumMeta::AsciiCaseInsensitive(kw) =&gt; {
+                    <span class="kw">if let </span><span class="prelude-val">Some</span>(fst_kw) = ascii_case_insensitive_kw {
+                        <span class="kw">return </span><span class="prelude-val">Err</span>(occurrence_error(fst_kw, kw, <span class="string">&quot;ascii_case_insensitive&quot;</span>));
                     }
 
-                    <span class="ident">ascii_case_insensitive_kw</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">kw</span>);
-                    <span class="ident">output</span>.<span class="ident">ascii_case_insensitive</span> <span class="op">=</span> <span class="bool-val">true</span>;
+                    ascii_case_insensitive_kw = <span class="prelude-val">Some</span>(kw);
+                    output.ascii_case_insensitive = <span class="bool-val">true</span>;
                 }
-                <span class="ident">EnumMeta::UsePhf</span>(<span class="ident">kw</span>) =&gt; {
-                    <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">fst_kw</span>) <span class="op">=</span> <span class="ident">use_phf_kw</span> {
-                        <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">occurrence_error</span>(<span class="ident">fst_kw</span>, <span class="ident">kw</span>, <span class="string">&quot;use_phf&quot;</span>));
+                EnumMeta::UsePhf(kw) =&gt; {
+                    <span class="kw">if let </span><span class="prelude-val">Some</span>(fst_kw) = use_phf_kw {
+                        <span class="kw">return </span><span class="prelude-val">Err</span>(occurrence_error(fst_kw, kw, <span class="string">&quot;use_phf&quot;</span>));
                     }
 
-                    <span class="ident">use_phf_kw</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">kw</span>);
-                    <span class="ident">output</span>.<span class="ident">use_phf</span> <span class="op">=</span> <span class="bool-val">true</span>;
+                    use_phf_kw = <span class="prelude-val">Some</span>(kw);
+                    output.use_phf = <span class="bool-val">true</span>;
                 }
-                <span class="ident">EnumMeta::Crate</span> {
-                    <span class="ident">crate_module_path</span>,
-                    <span class="ident">kw</span>,
+                EnumMeta::Crate {
+                    crate_module_path,
+                    kw,
                 } =&gt; {
-                    <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">fst_kw</span>) <span class="op">=</span> <span class="ident">crate_module_path_kw</span> {
-                        <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">occurrence_error</span>(<span class="ident">fst_kw</span>, <span class="ident">kw</span>, <span class="string">&quot;Crate&quot;</span>));
+                    <span class="kw">if let </span><span class="prelude-val">Some</span>(fst_kw) = crate_module_path_kw {
+                        <span class="kw">return </span><span class="prelude-val">Err</span>(occurrence_error(fst_kw, kw, <span class="string">&quot;Crate&quot;</span>));
                     }
 
-                    <span class="ident">crate_module_path_kw</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">kw</span>);
-                    <span class="ident">output</span>.<span class="ident">crate_module_path</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">crate_module_path</span>);
+                    crate_module_path_kw = <span class="prelude-val">Some</span>(kw);
+                    output.crate_module_path = <span class="prelude-val">Some</span>(crate_module_path);
                 }
             }
         }
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">name_kw</span> <span class="op">=</span> <span class="prelude-val">None</span>;
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">vis_kw</span> <span class="op">=</span> <span class="prelude-val">None</span>;
-        <span class="kw">for</span> <span class="ident">meta</span> <span class="kw">in</span> <span class="ident">discriminants_meta</span> {
-            <span class="kw">match</span> <span class="ident">meta</span> {
-                <span class="ident">EnumDiscriminantsMeta::Derive</span> { <span class="ident">paths</span>, .. } =&gt; {
-                    <span class="ident">output</span>.<span class="ident">discriminant_derives</span>.<span class="ident">extend</span>(<span class="ident">paths</span>);
+        <span class="kw">let </span><span class="kw-2">mut </span>name_kw = <span class="prelude-val">None</span>;
+        <span class="kw">let </span><span class="kw-2">mut </span>vis_kw = <span class="prelude-val">None</span>;
+        <span class="kw">for </span>meta <span class="kw">in </span>discriminants_meta {
+            <span class="kw">match </span>meta {
+                EnumDiscriminantsMeta::Derive { paths, .. } =&gt; {
+                    output.discriminant_derives.extend(paths);
                 }
-                <span class="ident">EnumDiscriminantsMeta::Name</span> { <span class="ident">name</span>, <span class="ident">kw</span> } =&gt; {
-                    <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">fst_kw</span>) <span class="op">=</span> <span class="ident">name_kw</span> {
-                        <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">occurrence_error</span>(<span class="ident">fst_kw</span>, <span class="ident">kw</span>, <span class="string">&quot;name&quot;</span>));
+                EnumDiscriminantsMeta::Name { name, kw } =&gt; {
+                    <span class="kw">if let </span><span class="prelude-val">Some</span>(fst_kw) = name_kw {
+                        <span class="kw">return </span><span class="prelude-val">Err</span>(occurrence_error(fst_kw, kw, <span class="string">&quot;name&quot;</span>));
                     }
 
-                    <span class="ident">name_kw</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">kw</span>);
-                    <span class="ident">output</span>.<span class="ident">discriminant_name</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">name</span>);
+                    name_kw = <span class="prelude-val">Some</span>(kw);
+                    output.discriminant_name = <span class="prelude-val">Some</span>(name);
                 }
-                <span class="ident">EnumDiscriminantsMeta::Vis</span> { <span class="ident">vis</span>, <span class="ident">kw</span> } =&gt; {
-                    <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">fst_kw</span>) <span class="op">=</span> <span class="ident">vis_kw</span> {
-                        <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">occurrence_error</span>(<span class="ident">fst_kw</span>, <span class="ident">kw</span>, <span class="string">&quot;vis&quot;</span>));
+                EnumDiscriminantsMeta::Vis { vis, kw } =&gt; {
+                    <span class="kw">if let </span><span class="prelude-val">Some</span>(fst_kw) = vis_kw {
+                        <span class="kw">return </span><span class="prelude-val">Err</span>(occurrence_error(fst_kw, kw, <span class="string">&quot;vis&quot;</span>));
                     }
 
-                    <span class="ident">vis_kw</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">kw</span>);
-                    <span class="ident">output</span>.<span class="ident">discriminant_vis</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">vis</span>);
+                    vis_kw = <span class="prelude-val">Some</span>(kw);
+                    output.discriminant_vis = <span class="prelude-val">Some</span>(vis);
                 }
-                <span class="ident">EnumDiscriminantsMeta::Other</span> { <span class="ident">path</span>, <span class="ident">nested</span> } =&gt; {
-                    <span class="ident">output</span>.<span class="ident">discriminant_others</span>.<span class="ident">push</span>(<span class="macro">quote!</span> { #<span class="ident">path</span>(#<span class="ident">nested</span>) });
+                EnumDiscriminantsMeta::Other { path, nested } =&gt; {
+                    output.discriminant_others.push(<span class="macro">quote! </span>{ #path(#nested) });
                 }
             }
         }
 
-        <span class="prelude-val">Ok</span>(<span class="ident">output</span>)
+        <span class="prelude-val">Ok</span>(output)
     }
 }
 
-<span class="kw">impl</span> <span class="ident">StrumTypeProperties</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">crate_module_path</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Path</span> {
-        <span class="self">self</span>.<span class="ident">crate_module_path</span>
-            .<span class="ident">as_ref</span>()
-            .<span class="ident">map_or_else</span>(<span class="op">|</span><span class="op">|</span> <span class="macro">parse_quote!</span>(<span class="ident">::strum</span>), <span class="op">|</span><span class="ident">path</span><span class="op">|</span> <span class="macro">parse_quote!</span>(#<span class="ident">path</span>))
+<span class="kw">impl </span>StrumTypeProperties {
+    <span class="kw">pub fn </span>crate_module_path(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Path {
+        <span class="self">self</span>.crate_module_path
+            .as_ref()
+            .map_or_else(|| <span class="macro">parse_quote!</span>(::strum), |path| <span class="macro">parse_quote!</span>(#path))
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="strum_macros" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="strum_macros" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (77e57db38 2022-10-30)" ></div></body></html>

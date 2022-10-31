@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/goblin-0.5.4/src/elf/dynamic.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>dynamic.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../goblin/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../goblin/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../goblin/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/goblin-0.5.4/src/elf/dynamic.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>dynamic.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../normalize.css"><link rel="stylesheet" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../ayu.css" disabled><link rel="stylesheet" href="../../../dark.css" disabled><link rel="stylesheet" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../goblin/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -805,812 +805,812 @@
 <span id="805">805</span>
 <span id="806">806</span>
 <span id="807">807</span>
-</pre><pre class="rust"><code><span class="macro">macro_rules!</span> <span class="ident">elf_dyn</span> {
-    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">size</span>:<span class="ident">ty</span>) =&gt; {
-        <span class="comment">// XXX: Do not import scroll traits here.</span>
-        <span class="comment">// See: https://github.com/rust-lang/rust/issues/65090#issuecomment-538668155</span>
+</pre><pre class="rust"><code><span class="macro">macro_rules! </span>elf_dyn {
+    (<span class="macro-nonterminal">$size</span>:ty) =&gt; {
+        <span class="comment">// XXX: Do not import scroll traits here.
+        // See: https://github.com/rust-lang/rust/issues/65090#issuecomment-538668155
 
-        <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-        <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">PartialEq</span>, <span class="ident">Default</span>)]</span>
-        <span class="attribute">#[<span class="ident">cfg_attr</span>(
-            <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;alloc&quot;</span>,
-            <span class="ident">derive</span>(<span class="ident">scroll::Pread</span>, <span class="ident">scroll::Pwrite</span>, <span class="ident">scroll::SizeWith</span>)
-        )]</span>
-        <span class="doccomment">/// An entry in the dynamic array</span>
-        <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Dyn</span> {
-            <span class="doccomment">/// Dynamic entry type</span>
-            <span class="kw">pub</span> <span class="ident">d_tag</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">size</span>,
-            <span class="doccomment">/// Integer value</span>
-            <span class="kw">pub</span> <span class="ident">d_val</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">size</span>,
+        </span><span class="attribute">#[repr(C)]
+        #[derive(Copy, Clone, PartialEq, Default)]
+        #[cfg_attr(
+            feature = <span class="string">&quot;alloc&quot;</span>,
+            derive(scroll::Pread, scroll::Pwrite, scroll::SizeWith)
+        )]
+        </span><span class="doccomment">/// An entry in the dynamic array
+        </span><span class="kw">pub struct </span>Dyn {
+            <span class="doccomment">/// Dynamic entry type
+            </span><span class="kw">pub </span>d_tag: <span class="macro-nonterminal">$size</span>,
+            <span class="doccomment">/// Integer value
+            </span><span class="kw">pub </span>d_val: <span class="macro-nonterminal">$size</span>,
         }
 
-        <span class="kw">use</span> <span class="ident">plain</span>;
-        <span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">plain::Plain</span> <span class="kw">for</span> <span class="ident">Dyn</span> {}
+        <span class="kw">use </span>plain;
+        <span class="kw">unsafe impl </span>plain::Plain <span class="kw">for </span>Dyn {}
     };
 }
 
-<span class="comment">// TODO: figure out what&#39;s the best, most friendly + safe API choice here - u32s or u64s</span>
-<span class="comment">// remember that DT_TAG is &quot;pointer sized&quot;/used as address sometimes Original rationale: I</span>
-<span class="comment">// decided to use u64 instead of u32 due to pattern matching use case seems safer to cast the</span>
-<span class="comment">// elf32&#39;s d_tag from u32 -&gt; u64 at runtime instead of casting the elf64&#39;s d_tag from u64 -&gt;</span>
-<span class="comment">// u32 at runtime</span>
+<span class="comment">// TODO: figure out what&#39;s the best, most friendly + safe API choice here - u32s or u64s
+// remember that DT_TAG is &quot;pointer sized&quot;/used as address sometimes Original rationale: I
+// decided to use u64 instead of u32 due to pattern matching use case seems safer to cast the
+// elf32&#39;s d_tag from u32 -&gt; u64 at runtime instead of casting the elf64&#39;s d_tag from u64 -&gt;
+// u32 at runtime
 
-<span class="doccomment">/// Marks end of dynamic section</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DT_NULL</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">0</span>;
-<span class="doccomment">/// Name of needed library</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DT_NEEDED</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span>;
-<span class="doccomment">/// Size in bytes of PLT relocs</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DT_PLTRELSZ</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">2</span>;
-<span class="doccomment">/// Processor defined value</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DT_PLTGOT</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">3</span>;
-<span class="doccomment">/// Address of symbol hash table</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DT_HASH</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">4</span>;
-<span class="doccomment">/// Address of string table</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DT_STRTAB</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">5</span>;
-<span class="doccomment">/// Address of symbol table</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DT_SYMTAB</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">6</span>;
-<span class="doccomment">/// Address of Rela relocs</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DT_RELA</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">7</span>;
-<span class="doccomment">/// Total size of Rela relocs</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DT_RELASZ</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">8</span>;
-<span class="doccomment">/// Size of one Rela reloc</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DT_RELAENT</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">9</span>;
-<span class="doccomment">/// Size of string table</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DT_STRSZ</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">10</span>;
-<span class="doccomment">/// Size of one symbol table entry</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DT_SYMENT</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">11</span>;
-<span class="doccomment">/// Address of init function</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DT_INIT</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">12</span>;
-<span class="doccomment">/// Address of termination function</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DT_FINI</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">13</span>;
-<span class="doccomment">/// Name of shared object</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DT_SONAME</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">14</span>;
-<span class="doccomment">/// Library search path (deprecated)</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DT_RPATH</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">15</span>;
-<span class="doccomment">/// Start symbol search here</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DT_SYMBOLIC</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">16</span>;
-<span class="doccomment">/// Address of Rel relocs</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DT_REL</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">17</span>;
-<span class="doccomment">/// Total size of Rel relocs</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DT_RELSZ</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">18</span>;
-<span class="doccomment">/// Size of one Rel reloc</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DT_RELENT</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">19</span>;
-<span class="doccomment">/// Type of reloc in PLT</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DT_PLTREL</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">20</span>;
-<span class="doccomment">/// For debugging; unspecified</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DT_DEBUG</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">21</span>;
-<span class="doccomment">/// Reloc might modify .text</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DT_TEXTREL</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">22</span>;
-<span class="doccomment">/// Address of PLT relocs</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DT_JMPREL</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">23</span>;
-<span class="doccomment">/// Process relocations of object</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DT_BIND_NOW</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">24</span>;
-<span class="doccomment">/// Array with addresses of init fct</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DT_INIT_ARRAY</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">25</span>;
-<span class="doccomment">/// Array with addresses of fini fct</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DT_FINI_ARRAY</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">26</span>;
-<span class="doccomment">/// Size in bytes of DT_INIT_ARRAY</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DT_INIT_ARRAYSZ</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">27</span>;
-<span class="doccomment">/// Size in bytes of DT_FINI_ARRAY</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DT_FINI_ARRAYSZ</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">28</span>;
-<span class="doccomment">/// Library search path</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DT_RUNPATH</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">29</span>;
-<span class="doccomment">/// Flags for the object being loaded</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DT_FLAGS</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">30</span>;
-<span class="doccomment">/// Start of encoded range</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DT_ENCODING</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">32</span>;
-<span class="doccomment">/// Array with addresses of preinit fct</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DT_PREINIT_ARRAY</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">32</span>;
-<span class="doccomment">/// size in bytes of DT_PREINIT_ARRAY</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DT_PREINIT_ARRAYSZ</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">33</span>;
-<span class="doccomment">/// Number used</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DT_NUM</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">34</span>;
-<span class="doccomment">/// Start of OS-specific</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DT_LOOS</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">0x6000_000d</span>;
-<span class="doccomment">/// End of OS-specific</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DT_HIOS</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">0x6fff_f000</span>;
-<span class="doccomment">/// Start of processor-specific</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DT_LOPROC</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">0x7000_0000</span>;
-<span class="doccomment">/// End of processor-specific</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DT_HIPROC</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">0x7fff_ffff</span>;
-<span class="comment">// Most used by any processor</span>
-<span class="comment">// pub const DT_PROCNUM: u64 = DT_MIPS_NUM;</span>
+</span><span class="doccomment">/// Marks end of dynamic section
+</span><span class="kw">pub const </span>DT_NULL: u64 = <span class="number">0</span>;
+<span class="doccomment">/// Name of needed library
+</span><span class="kw">pub const </span>DT_NEEDED: u64 = <span class="number">1</span>;
+<span class="doccomment">/// Size in bytes of PLT relocs
+</span><span class="kw">pub const </span>DT_PLTRELSZ: u64 = <span class="number">2</span>;
+<span class="doccomment">/// Processor defined value
+</span><span class="kw">pub const </span>DT_PLTGOT: u64 = <span class="number">3</span>;
+<span class="doccomment">/// Address of symbol hash table
+</span><span class="kw">pub const </span>DT_HASH: u64 = <span class="number">4</span>;
+<span class="doccomment">/// Address of string table
+</span><span class="kw">pub const </span>DT_STRTAB: u64 = <span class="number">5</span>;
+<span class="doccomment">/// Address of symbol table
+</span><span class="kw">pub const </span>DT_SYMTAB: u64 = <span class="number">6</span>;
+<span class="doccomment">/// Address of Rela relocs
+</span><span class="kw">pub const </span>DT_RELA: u64 = <span class="number">7</span>;
+<span class="doccomment">/// Total size of Rela relocs
+</span><span class="kw">pub const </span>DT_RELASZ: u64 = <span class="number">8</span>;
+<span class="doccomment">/// Size of one Rela reloc
+</span><span class="kw">pub const </span>DT_RELAENT: u64 = <span class="number">9</span>;
+<span class="doccomment">/// Size of string table
+</span><span class="kw">pub const </span>DT_STRSZ: u64 = <span class="number">10</span>;
+<span class="doccomment">/// Size of one symbol table entry
+</span><span class="kw">pub const </span>DT_SYMENT: u64 = <span class="number">11</span>;
+<span class="doccomment">/// Address of init function
+</span><span class="kw">pub const </span>DT_INIT: u64 = <span class="number">12</span>;
+<span class="doccomment">/// Address of termination function
+</span><span class="kw">pub const </span>DT_FINI: u64 = <span class="number">13</span>;
+<span class="doccomment">/// Name of shared object
+</span><span class="kw">pub const </span>DT_SONAME: u64 = <span class="number">14</span>;
+<span class="doccomment">/// Library search path (deprecated)
+</span><span class="kw">pub const </span>DT_RPATH: u64 = <span class="number">15</span>;
+<span class="doccomment">/// Start symbol search here
+</span><span class="kw">pub const </span>DT_SYMBOLIC: u64 = <span class="number">16</span>;
+<span class="doccomment">/// Address of Rel relocs
+</span><span class="kw">pub const </span>DT_REL: u64 = <span class="number">17</span>;
+<span class="doccomment">/// Total size of Rel relocs
+</span><span class="kw">pub const </span>DT_RELSZ: u64 = <span class="number">18</span>;
+<span class="doccomment">/// Size of one Rel reloc
+</span><span class="kw">pub const </span>DT_RELENT: u64 = <span class="number">19</span>;
+<span class="doccomment">/// Type of reloc in PLT
+</span><span class="kw">pub const </span>DT_PLTREL: u64 = <span class="number">20</span>;
+<span class="doccomment">/// For debugging; unspecified
+</span><span class="kw">pub const </span>DT_DEBUG: u64 = <span class="number">21</span>;
+<span class="doccomment">/// Reloc might modify .text
+</span><span class="kw">pub const </span>DT_TEXTREL: u64 = <span class="number">22</span>;
+<span class="doccomment">/// Address of PLT relocs
+</span><span class="kw">pub const </span>DT_JMPREL: u64 = <span class="number">23</span>;
+<span class="doccomment">/// Process relocations of object
+</span><span class="kw">pub const </span>DT_BIND_NOW: u64 = <span class="number">24</span>;
+<span class="doccomment">/// Array with addresses of init fct
+</span><span class="kw">pub const </span>DT_INIT_ARRAY: u64 = <span class="number">25</span>;
+<span class="doccomment">/// Array with addresses of fini fct
+</span><span class="kw">pub const </span>DT_FINI_ARRAY: u64 = <span class="number">26</span>;
+<span class="doccomment">/// Size in bytes of DT_INIT_ARRAY
+</span><span class="kw">pub const </span>DT_INIT_ARRAYSZ: u64 = <span class="number">27</span>;
+<span class="doccomment">/// Size in bytes of DT_FINI_ARRAY
+</span><span class="kw">pub const </span>DT_FINI_ARRAYSZ: u64 = <span class="number">28</span>;
+<span class="doccomment">/// Library search path
+</span><span class="kw">pub const </span>DT_RUNPATH: u64 = <span class="number">29</span>;
+<span class="doccomment">/// Flags for the object being loaded
+</span><span class="kw">pub const </span>DT_FLAGS: u64 = <span class="number">30</span>;
+<span class="doccomment">/// Start of encoded range
+</span><span class="kw">pub const </span>DT_ENCODING: u64 = <span class="number">32</span>;
+<span class="doccomment">/// Array with addresses of preinit fct
+</span><span class="kw">pub const </span>DT_PREINIT_ARRAY: u64 = <span class="number">32</span>;
+<span class="doccomment">/// size in bytes of DT_PREINIT_ARRAY
+</span><span class="kw">pub const </span>DT_PREINIT_ARRAYSZ: u64 = <span class="number">33</span>;
+<span class="doccomment">/// Number used
+</span><span class="kw">pub const </span>DT_NUM: u64 = <span class="number">34</span>;
+<span class="doccomment">/// Start of OS-specific
+</span><span class="kw">pub const </span>DT_LOOS: u64 = <span class="number">0x6000_000d</span>;
+<span class="doccomment">/// End of OS-specific
+</span><span class="kw">pub const </span>DT_HIOS: u64 = <span class="number">0x6fff_f000</span>;
+<span class="doccomment">/// Start of processor-specific
+</span><span class="kw">pub const </span>DT_LOPROC: u64 = <span class="number">0x7000_0000</span>;
+<span class="doccomment">/// End of processor-specific
+</span><span class="kw">pub const </span>DT_HIPROC: u64 = <span class="number">0x7fff_ffff</span>;
+<span class="comment">// Most used by any processor
+// pub const DT_PROCNUM: u64 = DT_MIPS_NUM;
 
-<span class="doccomment">/// DT_* entries which fall between DT_ADDRRNGHI &amp; DT_ADDRRNGLO use the</span>
-<span class="doccomment">/// Dyn.d_un.d_ptr field of the Elf*_Dyn structure.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// If any adjustment is made to the ELF object after it has been</span>
-<span class="doccomment">/// built these entries will need to be adjusted.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DT_ADDRRNGLO</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">0x6fff_fe00</span>;
-<span class="doccomment">/// GNU-style hash table</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DT_GNU_HASH</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">0x6fff_fef5</span>;
-<span class="doccomment">///</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DT_TLSDESC_PLT</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">0x6fff_fef6</span>;
-<span class="doccomment">///</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DT_TLSDESC_GOT</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">0x6fff_fef7</span>;
-<span class="doccomment">/// Start of conflict section</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DT_GNU_CONFLICT</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">0x6fff_fef8</span>;
-<span class="doccomment">/// Library list</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DT_GNU_LIBLIST</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">0x6fff_fef9</span>;
-<span class="doccomment">/// Configuration information</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DT_CONFIG</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">0x6fff_fefa</span>;
-<span class="doccomment">/// Dependency auditing</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DT_DEPAUDIT</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">0x6fff_fefb</span>;
-<span class="doccomment">/// Object auditing</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DT_AUDIT</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">0x6fff_fefc</span>;
-<span class="doccomment">/// PLT padding</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DT_PLTPAD</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">0x6fff_fefd</span>;
-<span class="doccomment">/// Move table</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DT_MOVETAB</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">0x6fff_fefe</span>;
-<span class="doccomment">/// Syminfo table</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DT_SYMINFO</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">0x6fff_feff</span>;
-<span class="doccomment">///</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DT_ADDRRNGHI</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">0x6fff_feff</span>;
+</span><span class="doccomment">/// DT_* entries which fall between DT_ADDRRNGHI &amp; DT_ADDRRNGLO use the
+/// Dyn.d_un.d_ptr field of the Elf*_Dyn structure.
+///
+/// If any adjustment is made to the ELF object after it has been
+/// built these entries will need to be adjusted.
+</span><span class="kw">pub const </span>DT_ADDRRNGLO: u64 = <span class="number">0x6fff_fe00</span>;
+<span class="doccomment">/// GNU-style hash table
+</span><span class="kw">pub const </span>DT_GNU_HASH: u64 = <span class="number">0x6fff_fef5</span>;
+<span class="doccomment">///
+</span><span class="kw">pub const </span>DT_TLSDESC_PLT: u64 = <span class="number">0x6fff_fef6</span>;
+<span class="doccomment">///
+</span><span class="kw">pub const </span>DT_TLSDESC_GOT: u64 = <span class="number">0x6fff_fef7</span>;
+<span class="doccomment">/// Start of conflict section
+</span><span class="kw">pub const </span>DT_GNU_CONFLICT: u64 = <span class="number">0x6fff_fef8</span>;
+<span class="doccomment">/// Library list
+</span><span class="kw">pub const </span>DT_GNU_LIBLIST: u64 = <span class="number">0x6fff_fef9</span>;
+<span class="doccomment">/// Configuration information
+</span><span class="kw">pub const </span>DT_CONFIG: u64 = <span class="number">0x6fff_fefa</span>;
+<span class="doccomment">/// Dependency auditing
+</span><span class="kw">pub const </span>DT_DEPAUDIT: u64 = <span class="number">0x6fff_fefb</span>;
+<span class="doccomment">/// Object auditing
+</span><span class="kw">pub const </span>DT_AUDIT: u64 = <span class="number">0x6fff_fefc</span>;
+<span class="doccomment">/// PLT padding
+</span><span class="kw">pub const </span>DT_PLTPAD: u64 = <span class="number">0x6fff_fefd</span>;
+<span class="doccomment">/// Move table
+</span><span class="kw">pub const </span>DT_MOVETAB: u64 = <span class="number">0x6fff_fefe</span>;
+<span class="doccomment">/// Syminfo table
+</span><span class="kw">pub const </span>DT_SYMINFO: u64 = <span class="number">0x6fff_feff</span>;
+<span class="doccomment">///
+</span><span class="kw">pub const </span>DT_ADDRRNGHI: u64 = <span class="number">0x6fff_feff</span>;
 
-<span class="comment">//DT_ADDRTAGIDX(tag)	(DT_ADDRRNGHI - (tag))	/* Reverse order! */</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DT_ADDRNUM</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">11</span>;
+<span class="comment">//DT_ADDRTAGIDX(tag)	(DT_ADDRRNGHI - (tag))	/* Reverse order! */
+</span><span class="kw">pub const </span>DT_ADDRNUM: u64 = <span class="number">11</span>;
 
-<span class="doccomment">/// The versioning entry types. The next are defined as part of the GNU extension</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DT_VERSYM</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">0x6fff_fff0</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DT_RELACOUNT</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">0x6fff_fff9</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DT_RELCOUNT</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">0x6fff_fffa</span>;
-<span class="doccomment">/// State flags, see DF_1_* below</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DT_FLAGS_1</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">0x6fff_fffb</span>;
-<span class="doccomment">/// Address of version definition table</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DT_VERDEF</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">0x6fff_fffc</span>;
-<span class="doccomment">/// Number of version definitions</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DT_VERDEFNUM</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">0x6fff_fffd</span>;
-<span class="doccomment">/// Address of table with needed versions</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DT_VERNEED</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">0x6fff_fffe</span>;
-<span class="doccomment">/// Number of needed versions</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DT_VERNEEDNUM</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">0x6fff_ffff</span>;
+<span class="doccomment">/// The versioning entry types. The next are defined as part of the GNU extension
+</span><span class="kw">pub const </span>DT_VERSYM: u64 = <span class="number">0x6fff_fff0</span>;
+<span class="kw">pub const </span>DT_RELACOUNT: u64 = <span class="number">0x6fff_fff9</span>;
+<span class="kw">pub const </span>DT_RELCOUNT: u64 = <span class="number">0x6fff_fffa</span>;
+<span class="doccomment">/// State flags, see DF_1_* below
+</span><span class="kw">pub const </span>DT_FLAGS_1: u64 = <span class="number">0x6fff_fffb</span>;
+<span class="doccomment">/// Address of version definition table
+</span><span class="kw">pub const </span>DT_VERDEF: u64 = <span class="number">0x6fff_fffc</span>;
+<span class="doccomment">/// Number of version definitions
+</span><span class="kw">pub const </span>DT_VERDEFNUM: u64 = <span class="number">0x6fff_fffd</span>;
+<span class="doccomment">/// Address of table with needed versions
+</span><span class="kw">pub const </span>DT_VERNEED: u64 = <span class="number">0x6fff_fffe</span>;
+<span class="doccomment">/// Number of needed versions
+</span><span class="kw">pub const </span>DT_VERNEEDNUM: u64 = <span class="number">0x6fff_ffff</span>;
 
-<span class="doccomment">/// Converts a tag to its string representation.</span>
-<span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">tag_to_str</span>(<span class="ident">tag</span>: <span class="ident">u64</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> {
-    <span class="kw">match</span> <span class="ident">tag</span> {
-        <span class="ident">DT_NULL</span> =&gt; <span class="string">&quot;DT_NULL&quot;</span>,
-        <span class="ident">DT_NEEDED</span> =&gt; <span class="string">&quot;DT_NEEDED&quot;</span>,
-        <span class="ident">DT_PLTRELSZ</span> =&gt; <span class="string">&quot;DT_PLTRELSZ&quot;</span>,
-        <span class="ident">DT_PLTGOT</span> =&gt; <span class="string">&quot;DT_PLTGOT&quot;</span>,
-        <span class="ident">DT_HASH</span> =&gt; <span class="string">&quot;DT_HASH&quot;</span>,
-        <span class="ident">DT_STRTAB</span> =&gt; <span class="string">&quot;DT_STRTAB&quot;</span>,
-        <span class="ident">DT_SYMTAB</span> =&gt; <span class="string">&quot;DT_SYMTAB&quot;</span>,
-        <span class="ident">DT_RELA</span> =&gt; <span class="string">&quot;DT_RELA&quot;</span>,
-        <span class="ident">DT_RELASZ</span> =&gt; <span class="string">&quot;DT_RELASZ&quot;</span>,
-        <span class="ident">DT_RELAENT</span> =&gt; <span class="string">&quot;DT_RELAENT&quot;</span>,
-        <span class="ident">DT_STRSZ</span> =&gt; <span class="string">&quot;DT_STRSZ&quot;</span>,
-        <span class="ident">DT_SYMENT</span> =&gt; <span class="string">&quot;DT_SYMENT&quot;</span>,
-        <span class="ident">DT_INIT</span> =&gt; <span class="string">&quot;DT_INIT&quot;</span>,
-        <span class="ident">DT_FINI</span> =&gt; <span class="string">&quot;DT_FINI&quot;</span>,
-        <span class="ident">DT_SONAME</span> =&gt; <span class="string">&quot;DT_SONAME&quot;</span>,
-        <span class="ident">DT_RPATH</span> =&gt; <span class="string">&quot;DT_RPATH&quot;</span>,
-        <span class="ident">DT_SYMBOLIC</span> =&gt; <span class="string">&quot;DT_SYMBOLIC&quot;</span>,
-        <span class="ident">DT_REL</span> =&gt; <span class="string">&quot;DT_REL&quot;</span>,
-        <span class="ident">DT_RELSZ</span> =&gt; <span class="string">&quot;DT_RELSZ&quot;</span>,
-        <span class="ident">DT_RELENT</span> =&gt; <span class="string">&quot;DT_RELENT&quot;</span>,
-        <span class="ident">DT_PLTREL</span> =&gt; <span class="string">&quot;DT_PLTREL&quot;</span>,
-        <span class="ident">DT_DEBUG</span> =&gt; <span class="string">&quot;DT_DEBUG&quot;</span>,
-        <span class="ident">DT_TEXTREL</span> =&gt; <span class="string">&quot;DT_TEXTREL&quot;</span>,
-        <span class="ident">DT_JMPREL</span> =&gt; <span class="string">&quot;DT_JMPREL&quot;</span>,
-        <span class="ident">DT_BIND_NOW</span> =&gt; <span class="string">&quot;DT_BIND_NOW&quot;</span>,
-        <span class="ident">DT_INIT_ARRAY</span> =&gt; <span class="string">&quot;DT_INIT_ARRAY&quot;</span>,
-        <span class="ident">DT_FINI_ARRAY</span> =&gt; <span class="string">&quot;DT_FINI_ARRAY&quot;</span>,
-        <span class="ident">DT_INIT_ARRAYSZ</span> =&gt; <span class="string">&quot;DT_INIT_ARRAYSZ&quot;</span>,
-        <span class="ident">DT_FINI_ARRAYSZ</span> =&gt; <span class="string">&quot;DT_FINI_ARRAYSZ&quot;</span>,
-        <span class="ident">DT_RUNPATH</span> =&gt; <span class="string">&quot;DT_RUNPATH&quot;</span>,
-        <span class="ident">DT_FLAGS</span> =&gt; <span class="string">&quot;DT_FLAGS&quot;</span>,
-        <span class="ident">DT_PREINIT_ARRAY</span> =&gt; <span class="string">&quot;DT_PREINIT_ARRAY&quot;</span>,
-        <span class="ident">DT_PREINIT_ARRAYSZ</span> =&gt; <span class="string">&quot;DT_PREINIT_ARRAYSZ&quot;</span>,
-        <span class="ident">DT_NUM</span> =&gt; <span class="string">&quot;DT_NUM&quot;</span>,
-        <span class="ident">DT_LOOS</span> =&gt; <span class="string">&quot;DT_LOOS&quot;</span>,
-        <span class="ident">DT_HIOS</span> =&gt; <span class="string">&quot;DT_HIOS&quot;</span>,
-        <span class="ident">DT_LOPROC</span> =&gt; <span class="string">&quot;DT_LOPROC&quot;</span>,
-        <span class="ident">DT_HIPROC</span> =&gt; <span class="string">&quot;DT_HIPROC&quot;</span>,
-        <span class="ident">DT_VERSYM</span> =&gt; <span class="string">&quot;DT_VERSYM&quot;</span>,
-        <span class="ident">DT_RELACOUNT</span> =&gt; <span class="string">&quot;DT_RELACOUNT&quot;</span>,
-        <span class="ident">DT_RELCOUNT</span> =&gt; <span class="string">&quot;DT_RELCOUNT&quot;</span>,
-        <span class="ident">DT_GNU_HASH</span> =&gt; <span class="string">&quot;DT_GNU_HASH&quot;</span>,
-        <span class="ident">DT_VERDEF</span> =&gt; <span class="string">&quot;DT_VERDEF&quot;</span>,
-        <span class="ident">DT_VERDEFNUM</span> =&gt; <span class="string">&quot;DT_VERDEFNUM&quot;</span>,
-        <span class="ident">DT_VERNEED</span> =&gt; <span class="string">&quot;DT_VERNEED&quot;</span>,
-        <span class="ident">DT_VERNEEDNUM</span> =&gt; <span class="string">&quot;DT_VERNEEDNUM&quot;</span>,
-        <span class="ident">DT_FLAGS_1</span> =&gt; <span class="string">&quot;DT_FLAGS_1&quot;</span>,
-        <span class="kw">_</span> =&gt; <span class="string">&quot;UNKNOWN_TAG&quot;</span>,
+<span class="doccomment">/// Converts a tag to its string representation.
+</span><span class="attribute">#[inline]
+</span><span class="kw">pub fn </span>tag_to_str(tag: u64) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str {
+    <span class="kw">match </span>tag {
+        DT_NULL =&gt; <span class="string">&quot;DT_NULL&quot;</span>,
+        DT_NEEDED =&gt; <span class="string">&quot;DT_NEEDED&quot;</span>,
+        DT_PLTRELSZ =&gt; <span class="string">&quot;DT_PLTRELSZ&quot;</span>,
+        DT_PLTGOT =&gt; <span class="string">&quot;DT_PLTGOT&quot;</span>,
+        DT_HASH =&gt; <span class="string">&quot;DT_HASH&quot;</span>,
+        DT_STRTAB =&gt; <span class="string">&quot;DT_STRTAB&quot;</span>,
+        DT_SYMTAB =&gt; <span class="string">&quot;DT_SYMTAB&quot;</span>,
+        DT_RELA =&gt; <span class="string">&quot;DT_RELA&quot;</span>,
+        DT_RELASZ =&gt; <span class="string">&quot;DT_RELASZ&quot;</span>,
+        DT_RELAENT =&gt; <span class="string">&quot;DT_RELAENT&quot;</span>,
+        DT_STRSZ =&gt; <span class="string">&quot;DT_STRSZ&quot;</span>,
+        DT_SYMENT =&gt; <span class="string">&quot;DT_SYMENT&quot;</span>,
+        DT_INIT =&gt; <span class="string">&quot;DT_INIT&quot;</span>,
+        DT_FINI =&gt; <span class="string">&quot;DT_FINI&quot;</span>,
+        DT_SONAME =&gt; <span class="string">&quot;DT_SONAME&quot;</span>,
+        DT_RPATH =&gt; <span class="string">&quot;DT_RPATH&quot;</span>,
+        DT_SYMBOLIC =&gt; <span class="string">&quot;DT_SYMBOLIC&quot;</span>,
+        DT_REL =&gt; <span class="string">&quot;DT_REL&quot;</span>,
+        DT_RELSZ =&gt; <span class="string">&quot;DT_RELSZ&quot;</span>,
+        DT_RELENT =&gt; <span class="string">&quot;DT_RELENT&quot;</span>,
+        DT_PLTREL =&gt; <span class="string">&quot;DT_PLTREL&quot;</span>,
+        DT_DEBUG =&gt; <span class="string">&quot;DT_DEBUG&quot;</span>,
+        DT_TEXTREL =&gt; <span class="string">&quot;DT_TEXTREL&quot;</span>,
+        DT_JMPREL =&gt; <span class="string">&quot;DT_JMPREL&quot;</span>,
+        DT_BIND_NOW =&gt; <span class="string">&quot;DT_BIND_NOW&quot;</span>,
+        DT_INIT_ARRAY =&gt; <span class="string">&quot;DT_INIT_ARRAY&quot;</span>,
+        DT_FINI_ARRAY =&gt; <span class="string">&quot;DT_FINI_ARRAY&quot;</span>,
+        DT_INIT_ARRAYSZ =&gt; <span class="string">&quot;DT_INIT_ARRAYSZ&quot;</span>,
+        DT_FINI_ARRAYSZ =&gt; <span class="string">&quot;DT_FINI_ARRAYSZ&quot;</span>,
+        DT_RUNPATH =&gt; <span class="string">&quot;DT_RUNPATH&quot;</span>,
+        DT_FLAGS =&gt; <span class="string">&quot;DT_FLAGS&quot;</span>,
+        DT_PREINIT_ARRAY =&gt; <span class="string">&quot;DT_PREINIT_ARRAY&quot;</span>,
+        DT_PREINIT_ARRAYSZ =&gt; <span class="string">&quot;DT_PREINIT_ARRAYSZ&quot;</span>,
+        DT_NUM =&gt; <span class="string">&quot;DT_NUM&quot;</span>,
+        DT_LOOS =&gt; <span class="string">&quot;DT_LOOS&quot;</span>,
+        DT_HIOS =&gt; <span class="string">&quot;DT_HIOS&quot;</span>,
+        DT_LOPROC =&gt; <span class="string">&quot;DT_LOPROC&quot;</span>,
+        DT_HIPROC =&gt; <span class="string">&quot;DT_HIPROC&quot;</span>,
+        DT_VERSYM =&gt; <span class="string">&quot;DT_VERSYM&quot;</span>,
+        DT_RELACOUNT =&gt; <span class="string">&quot;DT_RELACOUNT&quot;</span>,
+        DT_RELCOUNT =&gt; <span class="string">&quot;DT_RELCOUNT&quot;</span>,
+        DT_GNU_HASH =&gt; <span class="string">&quot;DT_GNU_HASH&quot;</span>,
+        DT_VERDEF =&gt; <span class="string">&quot;DT_VERDEF&quot;</span>,
+        DT_VERDEFNUM =&gt; <span class="string">&quot;DT_VERDEFNUM&quot;</span>,
+        DT_VERNEED =&gt; <span class="string">&quot;DT_VERNEED&quot;</span>,
+        DT_VERNEEDNUM =&gt; <span class="string">&quot;DT_VERNEEDNUM&quot;</span>,
+        DT_FLAGS_1 =&gt; <span class="string">&quot;DT_FLAGS_1&quot;</span>,
+        <span class="kw">_ </span>=&gt; <span class="string">&quot;UNKNOWN_TAG&quot;</span>,
     }
 }
 
-<span class="comment">// Values of `d_un.d_val` in the DT_FLAGS entry</span>
-<span class="doccomment">/// Object may use DF_ORIGIN.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DF_ORIGIN</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">0x0000_0001</span>;
-<span class="doccomment">/// Symbol resolutions starts here.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DF_SYMBOLIC</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">0x0000_0002</span>;
-<span class="doccomment">/// Object contains text relocations.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DF_TEXTREL</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">0x0000_0004</span>;
-<span class="doccomment">/// No lazy binding for this object.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DF_BIND_NOW</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">0x0000_0008</span>;
-<span class="doccomment">/// Module uses the static TLS model.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DF_STATIC_TLS</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">0x0000_0010</span>;
+<span class="comment">// Values of `d_un.d_val` in the DT_FLAGS entry
+</span><span class="doccomment">/// Object may use DF_ORIGIN.
+</span><span class="kw">pub const </span>DF_ORIGIN: u64 = <span class="number">0x0000_0001</span>;
+<span class="doccomment">/// Symbol resolutions starts here.
+</span><span class="kw">pub const </span>DF_SYMBOLIC: u64 = <span class="number">0x0000_0002</span>;
+<span class="doccomment">/// Object contains text relocations.
+</span><span class="kw">pub const </span>DF_TEXTREL: u64 = <span class="number">0x0000_0004</span>;
+<span class="doccomment">/// No lazy binding for this object.
+</span><span class="kw">pub const </span>DF_BIND_NOW: u64 = <span class="number">0x0000_0008</span>;
+<span class="doccomment">/// Module uses the static TLS model.
+</span><span class="kw">pub const </span>DF_STATIC_TLS: u64 = <span class="number">0x0000_0010</span>;
 
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">df_tag_to_str</span>(<span class="ident">tag</span>: <span class="ident">u64</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> {
-    <span class="kw">match</span> <span class="ident">tag</span> {
-        <span class="ident">DF_ORIGIN</span> =&gt; <span class="string">&quot;DF_ORIGIN&quot;</span>,
-        <span class="ident">DF_SYMBOLIC</span> =&gt; <span class="string">&quot;DF_SYMBOLIC&quot;</span>,
-        <span class="ident">DF_TEXTREL</span> =&gt; <span class="string">&quot;DF_TEXTREL&quot;</span>,
-        <span class="ident">DF_BIND_NOW</span> =&gt; <span class="string">&quot;DF_BIND_NOW&quot;</span>,
-        <span class="ident">DF_STATIC_TLS</span> =&gt; <span class="string">&quot;DF_STATIC_TLS&quot;</span>,
-        <span class="kw">_</span> =&gt; <span class="string">&quot;UNKNOWN_TAG&quot;</span>,
+<span class="kw">pub fn </span>df_tag_to_str(tag: u64) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str {
+    <span class="kw">match </span>tag {
+        DF_ORIGIN =&gt; <span class="string">&quot;DF_ORIGIN&quot;</span>,
+        DF_SYMBOLIC =&gt; <span class="string">&quot;DF_SYMBOLIC&quot;</span>,
+        DF_TEXTREL =&gt; <span class="string">&quot;DF_TEXTREL&quot;</span>,
+        DF_BIND_NOW =&gt; <span class="string">&quot;DF_BIND_NOW&quot;</span>,
+        DF_STATIC_TLS =&gt; <span class="string">&quot;DF_STATIC_TLS&quot;</span>,
+        <span class="kw">_ </span>=&gt; <span class="string">&quot;UNKNOWN_TAG&quot;</span>,
     }
 }
 
-<span class="doccomment">/// === State flags ===</span>
-<span class="doccomment">/// selectable in the `d_un.d_val` element of the DT_FLAGS_1 entry in the dynamic section.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Set RTLD_NOW for this object.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DF_1_NOW</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">0x0000_0001</span>;
-<span class="doccomment">/// Set RTLD_GLOBAL for this object.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DF_1_GLOBAL</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">0x0000_0002</span>;
-<span class="doccomment">/// Set RTLD_GROUP for this object.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DF_1_GROUP</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">0x0000_0004</span>;
-<span class="doccomment">/// Set RTLD_NODELETE for this object.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DF_1_NODELETE</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">0x0000_0008</span>;
-<span class="doccomment">/// Trigger filtee loading at runtime.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DF_1_LOADFLTR</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">0x0000_0010</span>;
-<span class="doccomment">/// Set RTLD_INITFIRST for this object.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DF_1_INITFIRST</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">0x0000_0020</span>;
-<span class="doccomment">/// Set RTLD_NOOPEN for this object.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DF_1_NOOPEN</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">0x0000_0040</span>;
-<span class="doccomment">/// $ORIGIN must be handled.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DF_1_ORIGIN</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">0x0000_0080</span>;
-<span class="doccomment">/// Direct binding enabled.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DF_1_DIRECT</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">0x0000_0100</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DF_1_TRANS</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">0x0000_0200</span>;
-<span class="doccomment">/// Object is used to interpose.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DF_1_INTERPOSE</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">0x0000_0400</span>;
-<span class="doccomment">/// Ignore default lib search path.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DF_1_NODEFLIB</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">0x0000_0800</span>;
-<span class="doccomment">/// Object can&#39;t be dldump&#39;ed.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DF_1_NODUMP</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">0x0000_1000</span>;
-<span class="doccomment">/// Configuration alternative created.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DF_1_CONFALT</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">0x0000_2000</span>;
-<span class="doccomment">/// Filtee terminates filters search.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DF_1_ENDFILTEE</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">0x0000_4000</span>;
-<span class="doccomment">/// Disp reloc applied at build time.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DF_1_DISPRELDNE</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">0x0000_8000</span>;
-<span class="doccomment">/// Disp reloc applied at run-time.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DF_1_DISPRELPND</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">0x0001_0000</span>;
-<span class="doccomment">/// Object has no-direct binding.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DF_1_NODIRECT</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">0x0002_0000</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DF_1_IGNMULDEF</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">0x0004_0000</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DF_1_NOKSYMS</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">0x0008_0000</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DF_1_NOHDR</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">0x0010_0000</span>;
-<span class="doccomment">/// Object is modified after built.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DF_1_EDITED</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">0x0020_0000</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DF_1_NORELOC</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">0x0040_0000</span>;
-<span class="doccomment">/// Object has individual interposers.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DF_1_SYMINTPOSE</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">0x0080_0000</span>;
-<span class="doccomment">/// Global auditing required.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DF_1_GLOBAUDIT</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">0x0100_0000</span>;
-<span class="doccomment">/// Singleton dyn are used.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DF_1_SINGLETON</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">0x0200_0000</span>;
-<span class="doccomment">/// Object is a Position Independent Executable (PIE).</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DF_1_PIE</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">0x0800_0000</span>;
+<span class="doccomment">/// === State flags ===
+/// selectable in the `d_un.d_val` element of the DT_FLAGS_1 entry in the dynamic section.
+///
+/// Set RTLD_NOW for this object.
+</span><span class="kw">pub const </span>DF_1_NOW: u64 = <span class="number">0x0000_0001</span>;
+<span class="doccomment">/// Set RTLD_GLOBAL for this object.
+</span><span class="kw">pub const </span>DF_1_GLOBAL: u64 = <span class="number">0x0000_0002</span>;
+<span class="doccomment">/// Set RTLD_GROUP for this object.
+</span><span class="kw">pub const </span>DF_1_GROUP: u64 = <span class="number">0x0000_0004</span>;
+<span class="doccomment">/// Set RTLD_NODELETE for this object.
+</span><span class="kw">pub const </span>DF_1_NODELETE: u64 = <span class="number">0x0000_0008</span>;
+<span class="doccomment">/// Trigger filtee loading at runtime.
+</span><span class="kw">pub const </span>DF_1_LOADFLTR: u64 = <span class="number">0x0000_0010</span>;
+<span class="doccomment">/// Set RTLD_INITFIRST for this object.
+</span><span class="kw">pub const </span>DF_1_INITFIRST: u64 = <span class="number">0x0000_0020</span>;
+<span class="doccomment">/// Set RTLD_NOOPEN for this object.
+</span><span class="kw">pub const </span>DF_1_NOOPEN: u64 = <span class="number">0x0000_0040</span>;
+<span class="doccomment">/// $ORIGIN must be handled.
+</span><span class="kw">pub const </span>DF_1_ORIGIN: u64 = <span class="number">0x0000_0080</span>;
+<span class="doccomment">/// Direct binding enabled.
+</span><span class="kw">pub const </span>DF_1_DIRECT: u64 = <span class="number">0x0000_0100</span>;
+<span class="kw">pub const </span>DF_1_TRANS: u64 = <span class="number">0x0000_0200</span>;
+<span class="doccomment">/// Object is used to interpose.
+</span><span class="kw">pub const </span>DF_1_INTERPOSE: u64 = <span class="number">0x0000_0400</span>;
+<span class="doccomment">/// Ignore default lib search path.
+</span><span class="kw">pub const </span>DF_1_NODEFLIB: u64 = <span class="number">0x0000_0800</span>;
+<span class="doccomment">/// Object can&#39;t be dldump&#39;ed.
+</span><span class="kw">pub const </span>DF_1_NODUMP: u64 = <span class="number">0x0000_1000</span>;
+<span class="doccomment">/// Configuration alternative created.
+</span><span class="kw">pub const </span>DF_1_CONFALT: u64 = <span class="number">0x0000_2000</span>;
+<span class="doccomment">/// Filtee terminates filters search.
+</span><span class="kw">pub const </span>DF_1_ENDFILTEE: u64 = <span class="number">0x0000_4000</span>;
+<span class="doccomment">/// Disp reloc applied at build time.
+</span><span class="kw">pub const </span>DF_1_DISPRELDNE: u64 = <span class="number">0x0000_8000</span>;
+<span class="doccomment">/// Disp reloc applied at run-time.
+</span><span class="kw">pub const </span>DF_1_DISPRELPND: u64 = <span class="number">0x0001_0000</span>;
+<span class="doccomment">/// Object has no-direct binding.
+</span><span class="kw">pub const </span>DF_1_NODIRECT: u64 = <span class="number">0x0002_0000</span>;
+<span class="kw">pub const </span>DF_1_IGNMULDEF: u64 = <span class="number">0x0004_0000</span>;
+<span class="kw">pub const </span>DF_1_NOKSYMS: u64 = <span class="number">0x0008_0000</span>;
+<span class="kw">pub const </span>DF_1_NOHDR: u64 = <span class="number">0x0010_0000</span>;
+<span class="doccomment">/// Object is modified after built.
+</span><span class="kw">pub const </span>DF_1_EDITED: u64 = <span class="number">0x0020_0000</span>;
+<span class="kw">pub const </span>DF_1_NORELOC: u64 = <span class="number">0x0040_0000</span>;
+<span class="doccomment">/// Object has individual interposers.
+</span><span class="kw">pub const </span>DF_1_SYMINTPOSE: u64 = <span class="number">0x0080_0000</span>;
+<span class="doccomment">/// Global auditing required.
+</span><span class="kw">pub const </span>DF_1_GLOBAUDIT: u64 = <span class="number">0x0100_0000</span>;
+<span class="doccomment">/// Singleton dyn are used.
+</span><span class="kw">pub const </span>DF_1_SINGLETON: u64 = <span class="number">0x0200_0000</span>;
+<span class="doccomment">/// Object is a Position Independent Executable (PIE).
+</span><span class="kw">pub const </span>DF_1_PIE: u64 = <span class="number">0x0800_0000</span>;
 
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">df_1_tag_to_str</span>(<span class="ident">tag</span>: <span class="ident">u64</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> {
-    <span class="kw">match</span> <span class="ident">tag</span> {
-        <span class="ident">DF_1_NOW</span> =&gt; <span class="string">&quot;DF_1_NOW&quot;</span>,
-        <span class="ident">DF_1_GLOBAL</span> =&gt; <span class="string">&quot;DF_1_GLOBAL&quot;</span>,
-        <span class="ident">DF_1_GROUP</span> =&gt; <span class="string">&quot;DF_1_GROUP&quot;</span>,
-        <span class="ident">DF_1_NODELETE</span> =&gt; <span class="string">&quot;DF_1_NODELETE&quot;</span>,
-        <span class="ident">DF_1_LOADFLTR</span> =&gt; <span class="string">&quot;DF_1_LOADFLTR&quot;</span>,
-        <span class="ident">DF_1_INITFIRST</span> =&gt; <span class="string">&quot;DF_1_INITFIRST&quot;</span>,
-        <span class="ident">DF_1_NOOPEN</span> =&gt; <span class="string">&quot;DF_1_NOOPEN&quot;</span>,
-        <span class="ident">DF_1_ORIGIN</span> =&gt; <span class="string">&quot;DF_1_ORIGIN&quot;</span>,
-        <span class="ident">DF_1_DIRECT</span> =&gt; <span class="string">&quot;DF_1_DIRECT&quot;</span>,
-        <span class="ident">DF_1_TRANS</span> =&gt; <span class="string">&quot;DF_1_TRANS&quot;</span>,
-        <span class="ident">DF_1_INTERPOSE</span> =&gt; <span class="string">&quot;DF_1_INTERPOSE&quot;</span>,
-        <span class="ident">DF_1_NODEFLIB</span> =&gt; <span class="string">&quot;DF_1_NODEFLIB&quot;</span>,
-        <span class="ident">DF_1_NODUMP</span> =&gt; <span class="string">&quot;DF_1_NODUMP&quot;</span>,
-        <span class="ident">DF_1_CONFALT</span> =&gt; <span class="string">&quot;DF_1_CONFALT&quot;</span>,
-        <span class="ident">DF_1_ENDFILTEE</span> =&gt; <span class="string">&quot;DF_1_ENDFILTEE&quot;</span>,
-        <span class="ident">DF_1_DISPRELDNE</span> =&gt; <span class="string">&quot;DF_1_DISPRELDNE&quot;</span>,
-        <span class="ident">DF_1_DISPRELPND</span> =&gt; <span class="string">&quot;DF_1_DISPRELPND&quot;</span>,
-        <span class="ident">DF_1_NODIRECT</span> =&gt; <span class="string">&quot;DF_1_NODIRECT&quot;</span>,
-        <span class="ident">DF_1_IGNMULDEF</span> =&gt; <span class="string">&quot;DF_1_IGNMULDEF&quot;</span>,
-        <span class="ident">DF_1_NOKSYMS</span> =&gt; <span class="string">&quot;DF_1_NOKSYMS&quot;</span>,
-        <span class="ident">DF_1_NOHDR</span> =&gt; <span class="string">&quot;DF_1_NOHDR&quot;</span>,
-        <span class="ident">DF_1_EDITED</span> =&gt; <span class="string">&quot;DF_1_EDITED&quot;</span>,
-        <span class="ident">DF_1_NORELOC</span> =&gt; <span class="string">&quot;DF_1_NORELOC&quot;</span>,
-        <span class="ident">DF_1_SYMINTPOSE</span> =&gt; <span class="string">&quot;DF_1_SYMINTPOSE&quot;</span>,
-        <span class="ident">DF_1_GLOBAUDIT</span> =&gt; <span class="string">&quot;DF_1_GLOBAUDIT&quot;</span>,
-        <span class="ident">DF_1_SINGLETON</span> =&gt; <span class="string">&quot;DF_1_SINGLETON&quot;</span>,
-        <span class="ident">DF_1_PIE</span> =&gt; <span class="string">&quot;DF_1_PIE&quot;</span>,
-        <span class="kw">_</span> =&gt; <span class="string">&quot;UNKNOWN_TAG&quot;</span>,
+<span class="kw">pub fn </span>df_1_tag_to_str(tag: u64) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str {
+    <span class="kw">match </span>tag {
+        DF_1_NOW =&gt; <span class="string">&quot;DF_1_NOW&quot;</span>,
+        DF_1_GLOBAL =&gt; <span class="string">&quot;DF_1_GLOBAL&quot;</span>,
+        DF_1_GROUP =&gt; <span class="string">&quot;DF_1_GROUP&quot;</span>,
+        DF_1_NODELETE =&gt; <span class="string">&quot;DF_1_NODELETE&quot;</span>,
+        DF_1_LOADFLTR =&gt; <span class="string">&quot;DF_1_LOADFLTR&quot;</span>,
+        DF_1_INITFIRST =&gt; <span class="string">&quot;DF_1_INITFIRST&quot;</span>,
+        DF_1_NOOPEN =&gt; <span class="string">&quot;DF_1_NOOPEN&quot;</span>,
+        DF_1_ORIGIN =&gt; <span class="string">&quot;DF_1_ORIGIN&quot;</span>,
+        DF_1_DIRECT =&gt; <span class="string">&quot;DF_1_DIRECT&quot;</span>,
+        DF_1_TRANS =&gt; <span class="string">&quot;DF_1_TRANS&quot;</span>,
+        DF_1_INTERPOSE =&gt; <span class="string">&quot;DF_1_INTERPOSE&quot;</span>,
+        DF_1_NODEFLIB =&gt; <span class="string">&quot;DF_1_NODEFLIB&quot;</span>,
+        DF_1_NODUMP =&gt; <span class="string">&quot;DF_1_NODUMP&quot;</span>,
+        DF_1_CONFALT =&gt; <span class="string">&quot;DF_1_CONFALT&quot;</span>,
+        DF_1_ENDFILTEE =&gt; <span class="string">&quot;DF_1_ENDFILTEE&quot;</span>,
+        DF_1_DISPRELDNE =&gt; <span class="string">&quot;DF_1_DISPRELDNE&quot;</span>,
+        DF_1_DISPRELPND =&gt; <span class="string">&quot;DF_1_DISPRELPND&quot;</span>,
+        DF_1_NODIRECT =&gt; <span class="string">&quot;DF_1_NODIRECT&quot;</span>,
+        DF_1_IGNMULDEF =&gt; <span class="string">&quot;DF_1_IGNMULDEF&quot;</span>,
+        DF_1_NOKSYMS =&gt; <span class="string">&quot;DF_1_NOKSYMS&quot;</span>,
+        DF_1_NOHDR =&gt; <span class="string">&quot;DF_1_NOHDR&quot;</span>,
+        DF_1_EDITED =&gt; <span class="string">&quot;DF_1_EDITED&quot;</span>,
+        DF_1_NORELOC =&gt; <span class="string">&quot;DF_1_NORELOC&quot;</span>,
+        DF_1_SYMINTPOSE =&gt; <span class="string">&quot;DF_1_SYMINTPOSE&quot;</span>,
+        DF_1_GLOBAUDIT =&gt; <span class="string">&quot;DF_1_GLOBAUDIT&quot;</span>,
+        DF_1_SINGLETON =&gt; <span class="string">&quot;DF_1_SINGLETON&quot;</span>,
+        DF_1_PIE =&gt; <span class="string">&quot;DF_1_PIE&quot;</span>,
+        <span class="kw">_ </span>=&gt; <span class="string">&quot;UNKNOWN_TAG&quot;</span>,
     }
 }
 
-<span class="macro">if_alloc!</span> {
-    <span class="kw">use</span> <span class="ident">core::fmt</span>;
-    <span class="kw">use</span> <span class="ident">scroll::ctx</span>;
-    <span class="kw">use</span> <span class="ident">core::result</span>;
-    <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::container</span>::{<span class="ident">Ctx</span>, <span class="ident">Container</span>};
-    <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::strtab::Strtab</span>;
-    <span class="kw">use</span> <span class="ident">alloc::vec::Vec</span>;
+<span class="macro">if_alloc! </span>{
+    <span class="kw">use </span>core::fmt;
+    <span class="kw">use </span>scroll::ctx;
+    <span class="kw">use </span>core::result;
+    <span class="kw">use </span><span class="kw">crate</span>::container::{Ctx, Container};
+    <span class="kw">use </span><span class="kw">crate</span>::strtab::Strtab;
+    <span class="kw">use </span>alloc::vec::Vec;
 
-    <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Default</span>, <span class="ident">PartialEq</span>, <span class="ident">Clone</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Dyn</span> {
-        <span class="kw">pub</span> <span class="ident">d_tag</span>: <span class="ident">u64</span>,
-        <span class="kw">pub</span> <span class="ident">d_val</span>: <span class="ident">u64</span>,
+    <span class="attribute">#[derive(Default, PartialEq, Clone)]
+    </span><span class="kw">pub struct </span>Dyn {
+        <span class="kw">pub </span>d_tag: u64,
+        <span class="kw">pub </span>d_val: u64,
     }
 
-    <span class="kw">impl</span> <span class="ident">Dyn</span> {
-        <span class="attribute">#[<span class="ident">inline</span>]</span>
-        <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">size</span>(<span class="ident">container</span>: <span class="ident">Container</span>) -&gt; <span class="ident">usize</span> {
-            <span class="kw">use</span> <span class="ident">scroll::ctx::SizeWith</span>;
-            <span class="ident"><span class="self">Self</span>::size_with</span>(<span class="kw-2">&amp;</span><span class="ident">Ctx::from</span>(<span class="ident">container</span>))
+    <span class="kw">impl </span>Dyn {
+        <span class="attribute">#[inline]
+        </span><span class="kw">pub fn </span>size(container: Container) -&gt; usize {
+            <span class="kw">use </span>scroll::ctx::SizeWith;
+            <span class="self">Self</span>::size_with(<span class="kw-2">&amp;</span>Ctx::from(container))
         }
     }
 
-    <span class="kw">impl</span> <span class="ident">fmt::Debug</span> <span class="kw">for</span> <span class="ident">Dyn</span> {
-        <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">fmt::Formatter</span>) -&gt; <span class="ident">fmt::Result</span> {
-            <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;Dyn&quot;</span>)
-                .<span class="ident">field</span>(<span class="string">&quot;d_tag&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">tag_to_str</span>(<span class="self">self</span>.<span class="ident">d_tag</span>))
-                .<span class="ident">field</span>(<span class="string">&quot;d_val&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;0x{:x}&quot;</span>, <span class="self">self</span>.<span class="ident">d_val</span>))
-                .<span class="ident">finish</span>()
+    <span class="kw">impl </span>fmt::Debug <span class="kw">for </span>Dyn {
+        <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>fmt::Formatter) -&gt; fmt::Result {
+            f.debug_struct(<span class="string">&quot;Dyn&quot;</span>)
+                .field(<span class="string">&quot;d_tag&quot;</span>, <span class="kw-2">&amp;</span>tag_to_str(<span class="self">self</span>.d_tag))
+                .field(<span class="string">&quot;d_val&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;0x{:x}&quot;</span>, <span class="self">self</span>.d_val))
+                .finish()
         }
     }
 
-    <span class="kw">impl</span> <span class="ident">ctx::SizeWith</span><span class="op">&lt;</span><span class="ident">Ctx</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Dyn</span> {
-        <span class="kw">fn</span> <span class="ident">size_with</span>(<span class="kw-2">&amp;</span><span class="ident">Ctx</span> { <span class="ident">container</span>, .. }: <span class="kw-2">&amp;</span><span class="ident">Ctx</span>) -&gt; <span class="ident">usize</span> {
-            <span class="kw">match</span> <span class="ident">container</span> {
-                <span class="ident">Container::Little</span> =&gt; {
-                    <span class="ident">dyn32::SIZEOF_DYN</span>
+    <span class="kw">impl </span>ctx::SizeWith&lt;Ctx&gt; <span class="kw">for </span>Dyn {
+        <span class="kw">fn </span>size_with(<span class="kw-2">&amp;</span>Ctx { container, .. }: <span class="kw-2">&amp;</span>Ctx) -&gt; usize {
+            <span class="kw">match </span>container {
+                Container::Little =&gt; {
+                    dyn32::SIZEOF_DYN
                 },
-                <span class="ident">Container::Big</span> =&gt; {
-                    <span class="ident">dyn64::SIZEOF_DYN</span>
+                Container::Big =&gt; {
+                    dyn64::SIZEOF_DYN
                 },
             }
         }
     }
 
-    <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">ctx::TryFromCtx</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">Ctx</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Dyn</span> {
-        <span class="kw">type</span> <span class="ident">Error</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::error::Error</span>;
-        <span class="kw">fn</span> <span class="ident">try_from_ctx</span>(<span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>], <span class="ident">Ctx</span> { <span class="ident">container</span>, <span class="ident">le</span>}: <span class="ident">Ctx</span>) -&gt; <span class="ident">result::Result</span><span class="op">&lt;</span>(<span class="self">Self</span>, <span class="ident">usize</span>), <span class="ident"><span class="self">Self</span>::Error</span><span class="op">&gt;</span> {
-            <span class="kw">use</span> <span class="ident">scroll::Pread</span>;
-            <span class="kw">let</span> <span class="ident">dynamic</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">container</span> {
-                <span class="ident">Container::Little</span> =&gt; {
-                    (<span class="ident">bytes</span>.<span class="ident">pread_with</span>::<span class="op">&lt;</span><span class="ident">dyn32::Dyn</span><span class="op">&gt;</span>(<span class="number">0</span>, <span class="ident">le</span>)<span class="question-mark">?</span>.<span class="ident">into</span>(), <span class="ident">dyn32::SIZEOF_DYN</span>)
+    <span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; ctx::TryFromCtx&lt;<span class="lifetime">&#39;a</span>, Ctx&gt; <span class="kw">for </span>Dyn {
+        <span class="kw">type </span>Error = <span class="kw">crate</span>::error::Error;
+        <span class="kw">fn </span>try_from_ctx(bytes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8], Ctx { container, le}: Ctx) -&gt; result::Result&lt;(<span class="self">Self</span>, usize), <span class="self">Self</span>::Error&gt; {
+            <span class="kw">use </span>scroll::Pread;
+            <span class="kw">let </span>dynamic = <span class="kw">match </span>container {
+                Container::Little =&gt; {
+                    (bytes.pread_with::&lt;dyn32::Dyn&gt;(<span class="number">0</span>, le)<span class="question-mark">?</span>.into(), dyn32::SIZEOF_DYN)
                 },
-                <span class="ident">Container::Big</span> =&gt; {
-                    (<span class="ident">bytes</span>.<span class="ident">pread_with</span>::<span class="op">&lt;</span><span class="ident">dyn64::Dyn</span><span class="op">&gt;</span>(<span class="number">0</span>, <span class="ident">le</span>)<span class="question-mark">?</span>.<span class="ident">into</span>(), <span class="ident">dyn64::SIZEOF_DYN</span>)
+                Container::Big =&gt; {
+                    (bytes.pread_with::&lt;dyn64::Dyn&gt;(<span class="number">0</span>, le)<span class="question-mark">?</span>.into(), dyn64::SIZEOF_DYN)
                 }
             };
-            <span class="prelude-val">Ok</span>(<span class="ident">dynamic</span>)
+            <span class="prelude-val">Ok</span>(dynamic)
         }
     }
 
-    <span class="kw">impl</span> <span class="ident">ctx::TryIntoCtx</span><span class="op">&lt;</span><span class="ident">Ctx</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Dyn</span> {
-        <span class="kw">type</span> <span class="ident">Error</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::error::Error</span>;
-        <span class="kw">fn</span> <span class="ident">try_into_ctx</span>(<span class="self">self</span>, <span class="ident">bytes</span>: <span class="kw-2">&amp;mut</span> [<span class="ident">u8</span>], <span class="ident">Ctx</span> { <span class="ident">container</span>, <span class="ident">le</span>}: <span class="ident">Ctx</span>) -&gt; <span class="ident">result::Result</span><span class="op">&lt;</span><span class="ident">usize</span>, <span class="ident"><span class="self">Self</span>::Error</span><span class="op">&gt;</span> {
-            <span class="kw">use</span> <span class="ident">scroll::Pwrite</span>;
-            <span class="kw">match</span> <span class="ident">container</span> {
-                <span class="ident">Container::Little</span> =&gt; {
-                    <span class="kw">let</span> <span class="ident">dynamic</span>: <span class="ident">dyn32::Dyn</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">into</span>();
-                    <span class="prelude-val">Ok</span>(<span class="ident">bytes</span>.<span class="ident">pwrite_with</span>(<span class="ident">dynamic</span>, <span class="number">0</span>, <span class="ident">le</span>)<span class="question-mark">?</span>)
+    <span class="kw">impl </span>ctx::TryIntoCtx&lt;Ctx&gt; <span class="kw">for </span>Dyn {
+        <span class="kw">type </span>Error = <span class="kw">crate</span>::error::Error;
+        <span class="kw">fn </span>try_into_ctx(<span class="self">self</span>, bytes: <span class="kw-2">&amp;mut </span>[u8], Ctx { container, le}: Ctx) -&gt; result::Result&lt;usize, <span class="self">Self</span>::Error&gt; {
+            <span class="kw">use </span>scroll::Pwrite;
+            <span class="kw">match </span>container {
+                Container::Little =&gt; {
+                    <span class="kw">let </span>dynamic: dyn32::Dyn = <span class="self">self</span>.into();
+                    <span class="prelude-val">Ok</span>(bytes.pwrite_with(dynamic, <span class="number">0</span>, le)<span class="question-mark">?</span>)
                 },
-                <span class="ident">Container::Big</span> =&gt; {
-                    <span class="kw">let</span> <span class="ident">dynamic</span>: <span class="ident">dyn64::Dyn</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">into</span>();
-                    <span class="prelude-val">Ok</span>(<span class="ident">bytes</span>.<span class="ident">pwrite_with</span>(<span class="ident">dynamic</span>, <span class="number">0</span>, <span class="ident">le</span>)<span class="question-mark">?</span>)
+                Container::Big =&gt; {
+                    <span class="kw">let </span>dynamic: dyn64::Dyn = <span class="self">self</span>.into();
+                    <span class="prelude-val">Ok</span>(bytes.pwrite_with(dynamic, <span class="number">0</span>, le)<span class="question-mark">?</span>)
                 }
             }
         }
     }
 
-    <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Dynamic</span> {
-        <span class="kw">pub</span> <span class="ident">dyns</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Dyn</span><span class="op">&gt;</span>,
-        <span class="kw">pub</span> <span class="ident">info</span>: <span class="ident">DynamicInfo</span>,
+    <span class="attribute">#[derive(Debug)]
+    </span><span class="kw">pub struct </span>Dynamic {
+        <span class="kw">pub </span>dyns: Vec&lt;Dyn&gt;,
+        <span class="kw">pub </span>info: DynamicInfo,
     }
 
-    <span class="kw">impl</span> <span class="ident">Dynamic</span> {
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;endian_fd&quot;</span>)]</span>
-        <span class="doccomment">/// Returns a vector of dynamic entries from the underlying byte `bytes`, with `endianness`, using the provided `phdrs`</span>
-        <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">bytes</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>], <span class="ident">phdrs</span>: <span class="kw-2">&amp;</span>[<span class="ident"><span class="kw">crate</span>::elf::program_header::ProgramHeader</span>], <span class="ident">ctx</span>: <span class="ident">Ctx</span>) -&gt; <span class="ident"><span class="kw">crate</span>::error::Result</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-            <span class="kw">use</span> <span class="ident">scroll::ctx::SizeWith</span>;
-            <span class="kw">use</span> <span class="ident">scroll::Pread</span>;
-            <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::elf::program_header</span>;
-            <span class="kw">for</span> <span class="ident">phdr</span> <span class="kw">in</span> <span class="ident">phdrs</span> {
-                <span class="kw">if</span> <span class="ident">phdr</span>.<span class="ident">p_type</span> <span class="op">==</span> <span class="ident">program_header::PT_DYNAMIC</span> {
-                    <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> <span class="ident">phdr</span>.<span class="ident">p_offset</span> <span class="kw">as</span> <span class="ident">usize</span>;
-                    <span class="kw">let</span> <span class="ident">filesz</span> <span class="op">=</span> <span class="ident">phdr</span>.<span class="ident">p_filesz</span> <span class="kw">as</span> <span class="ident">usize</span>;
-                    <span class="comment">// Ensure offset and filesz are valid.</span>
-                    <span class="kw">let</span> <span class="ident">bytes</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">filesz</span> <span class="op">&gt;</span> <span class="number">0</span> {
-                        <span class="ident">bytes</span>
-                            .<span class="ident">pread_with</span>::<span class="op">&lt;</span><span class="kw-2">&amp;</span>[<span class="ident">u8</span>]<span class="op">&gt;</span>(<span class="ident">offset</span>, <span class="ident">filesz</span>)
-                            .<span class="ident">map_err</span>(<span class="op">|</span><span class="kw">_</span><span class="op">|</span> <span class="ident"><span class="kw">crate</span>::error::Error::Malformed</span>(<span class="macro">format!</span>(<span class="string">&quot;Invalid PT_DYNAMIC size (offset {:#x}, filesz {:#x})&quot;</span>,
-                                                               <span class="ident">offset</span>, <span class="ident">filesz</span>)))<span class="question-mark">?</span>
-                    } <span class="kw">else</span> {
+    <span class="kw">impl </span>Dynamic {
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;endian_fd&quot;</span>)]
+        </span><span class="doccomment">/// Returns a vector of dynamic entries from the underlying byte `bytes`, with `endianness`, using the provided `phdrs`
+        </span><span class="kw">pub fn </span>parse(bytes: <span class="kw-2">&amp;</span>[u8], phdrs: <span class="kw-2">&amp;</span>[<span class="kw">crate</span>::elf::program_header::ProgramHeader], ctx: Ctx) -&gt; <span class="kw">crate</span>::error::Result&lt;<span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>&gt;&gt; {
+            <span class="kw">use </span>scroll::ctx::SizeWith;
+            <span class="kw">use </span>scroll::Pread;
+            <span class="kw">use </span><span class="kw">crate</span>::elf::program_header;
+            <span class="kw">for </span>phdr <span class="kw">in </span>phdrs {
+                <span class="kw">if </span>phdr.p_type == program_header::PT_DYNAMIC {
+                    <span class="kw">let </span>offset = phdr.p_offset <span class="kw">as </span>usize;
+                    <span class="kw">let </span>filesz = phdr.p_filesz <span class="kw">as </span>usize;
+                    <span class="comment">// Ensure offset and filesz are valid.
+                    </span><span class="kw">let </span>bytes = <span class="kw">if </span>filesz &gt; <span class="number">0 </span>{
+                        bytes
+                            .pread_with::&lt;<span class="kw-2">&amp;</span>[u8]&gt;(offset, filesz)
+                            .map_err(|<span class="kw">_</span>| <span class="kw">crate</span>::error::Error::Malformed(<span class="macro">format!</span>(<span class="string">&quot;Invalid PT_DYNAMIC size (offset {:#x}, filesz {:#x})&quot;</span>,
+                                                               offset, filesz)))<span class="question-mark">?
+                    </span>} <span class="kw">else </span>{
                         <span class="kw-2">&amp;</span>[]
                     };
-                    <span class="kw">let</span> <span class="ident">size</span> <span class="op">=</span> <span class="ident">Dyn::size_with</span>(<span class="kw-2">&amp;</span><span class="ident">ctx</span>);
-                    <span class="comment">// the validity of `count` was implicitly checked by reading `bytes`.</span>
-                    <span class="kw">let</span> <span class="ident">count</span> <span class="op">=</span> <span class="ident">filesz</span> <span class="op">/</span> <span class="ident">size</span>;
-                    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">dyns</span> <span class="op">=</span> <span class="ident">Vec::with_capacity</span>(<span class="ident">count</span>);
-                    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">offset</span> <span class="op">=</span> <span class="number">0</span>;
-                    <span class="kw">for</span> <span class="kw">_</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">count</span> {
-                        <span class="kw">let</span> <span class="ident">dynamic</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">gread_with</span>::<span class="op">&lt;</span><span class="ident">Dyn</span><span class="op">&gt;</span>(<span class="kw-2">&amp;mut</span> <span class="ident">offset</span>, <span class="ident">ctx</span>)<span class="question-mark">?</span>;
-                        <span class="kw">let</span> <span class="ident">tag</span> <span class="op">=</span> <span class="ident">dynamic</span>.<span class="ident">d_tag</span>;
-                        <span class="ident">dyns</span>.<span class="ident">push</span>(<span class="ident">dynamic</span>);
-                        <span class="kw">if</span> <span class="ident">tag</span> <span class="op">==</span> <span class="ident">DT_NULL</span> { <span class="kw">break</span> }
+                    <span class="kw">let </span>size = Dyn::size_with(<span class="kw-2">&amp;</span>ctx);
+                    <span class="comment">// the validity of `count` was implicitly checked by reading `bytes`.
+                    </span><span class="kw">let </span>count = filesz / size;
+                    <span class="kw">let </span><span class="kw-2">mut </span>dyns = Vec::with_capacity(count);
+                    <span class="kw">let </span><span class="kw-2">mut </span>offset = <span class="number">0</span>;
+                    <span class="kw">for _ in </span><span class="number">0</span>..count {
+                        <span class="kw">let </span>dynamic = bytes.gread_with::&lt;Dyn&gt;(<span class="kw-2">&amp;mut </span>offset, ctx)<span class="question-mark">?</span>;
+                        <span class="kw">let </span>tag = dynamic.d_tag;
+                        dyns.push(dynamic);
+                        <span class="kw">if </span>tag == DT_NULL { <span class="kw">break </span>}
                     }
-                    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">info</span> <span class="op">=</span> <span class="ident">DynamicInfo::default</span>();
-                    <span class="kw">for</span> <span class="ident">dynamic</span> <span class="kw">in</span> <span class="kw-2">&amp;</span><span class="ident">dyns</span> {
-                        <span class="ident">info</span>.<span class="ident">update</span>(<span class="ident">phdrs</span>, <span class="ident">dynamic</span>);
+                    <span class="kw">let </span><span class="kw-2">mut </span>info = DynamicInfo::default();
+                    <span class="kw">for </span>dynamic <span class="kw">in </span><span class="kw-2">&amp;</span>dyns {
+                        info.update(phdrs, dynamic);
                     }
-                    <span class="kw">return</span> <span class="prelude-val">Ok</span>(<span class="prelude-val">Some</span>(<span class="ident">Dynamic</span> { <span class="ident">dyns</span>: <span class="ident">dyns</span>, <span class="ident">info</span>: <span class="ident">info</span>, }));
+                    <span class="kw">return </span><span class="prelude-val">Ok</span>(<span class="prelude-val">Some</span>(Dynamic { dyns: dyns, info: info, }));
                 }
             }
             <span class="prelude-val">Ok</span>(<span class="prelude-val">None</span>)
         }
 
-        <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_libraries</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">strtab</span>: <span class="kw-2">&amp;</span><span class="ident">Strtab</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>) -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span><span class="op">&gt;</span> {
-            <span class="kw">use</span> <span class="ident">log::warn</span>;
-            <span class="kw">let</span> <span class="ident">count</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">info</span>.<span class="ident">needed_count</span>.<span class="ident">min</span>(<span class="self">self</span>.<span class="ident">dyns</span>.<span class="ident">len</span>());
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">needed</span> <span class="op">=</span> <span class="ident">Vec::with_capacity</span>(<span class="ident">count</span>);
-            <span class="kw">for</span> <span class="ident">dynamic</span> <span class="kw">in</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">dyns</span> {
-                <span class="kw">if</span> <span class="ident">dynamic</span>.<span class="ident">d_tag</span> <span class="kw">as</span> <span class="ident">u64</span> <span class="op">==</span> <span class="ident">DT_NEEDED</span> {
-                    <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">lib</span>) <span class="op">=</span> <span class="ident">strtab</span>.<span class="ident">get_at</span>(<span class="ident">dynamic</span>.<span class="ident">d_val</span> <span class="kw">as</span> <span class="ident">usize</span>) {
-                        <span class="ident">needed</span>.<span class="ident">push</span>(<span class="ident">lib</span>)
-                    } <span class="kw">else</span> {
-                        <span class="macro">warn!</span>(<span class="string">&quot;Invalid DT_NEEDED {}&quot;</span>, <span class="ident">dynamic</span>.<span class="ident">d_val</span>)
+        <span class="kw">pub fn </span>get_libraries&lt;<span class="lifetime">&#39;a</span>&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, strtab: <span class="kw-2">&amp;</span>Strtab&lt;<span class="lifetime">&#39;a</span>&gt;) -&gt; Vec&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str&gt; {
+            <span class="kw">use </span>log::warn;
+            <span class="kw">let </span>count = <span class="self">self</span>.info.needed_count.min(<span class="self">self</span>.dyns.len());
+            <span class="kw">let </span><span class="kw-2">mut </span>needed = Vec::with_capacity(count);
+            <span class="kw">for </span>dynamic <span class="kw">in </span><span class="kw-2">&amp;</span><span class="self">self</span>.dyns {
+                <span class="kw">if </span>dynamic.d_tag <span class="kw">as </span>u64 == DT_NEEDED {
+                    <span class="kw">if let </span><span class="prelude-val">Some</span>(lib) = strtab.get_at(dynamic.d_val <span class="kw">as </span>usize) {
+                        needed.push(lib)
+                    } <span class="kw">else </span>{
+                        <span class="macro">warn!</span>(<span class="string">&quot;Invalid DT_NEEDED {}&quot;</span>, dynamic.d_val)
                     }
                 }
             }
-            <span class="ident">needed</span>
+            needed
         }
     }
 }
 
-<span class="macro">macro_rules!</span> <span class="ident">elf_dyn_std_impl</span> {
-    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">size</span>:<span class="ident">ident</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">phdr</span>:<span class="ident">ty</span>) =&gt; {
+<span class="macro">macro_rules! </span>elf_dyn_std_impl {
+    (<span class="macro-nonterminal">$size</span>:ident, <span class="macro-nonterminal">$phdr</span>:ty) =&gt; {
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
-        <span class="kw">mod</span> <span class="ident">tests</span> {
-            <span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
-            <span class="attribute">#[<span class="ident">test</span>]</span>
-            <span class="kw">fn</span> <span class="ident">size_of</span>() {
-                <span class="macro">assert_eq!</span>(<span class="ident">::std::mem::size_of</span>::<span class="op">&lt;</span><span class="ident">Dyn</span><span class="op">&gt;</span>(), <span class="ident">SIZEOF_DYN</span>);
+        <span class="attribute">#[cfg(test)]
+        </span><span class="kw">mod </span>tests {
+            <span class="kw">use super</span>::<span class="kw-2">*</span>;
+            <span class="attribute">#[test]
+            </span><span class="kw">fn </span>size_of() {
+                <span class="macro">assert_eq!</span>(::std::mem::size_of::&lt;Dyn&gt;(), SIZEOF_DYN);
             }
         }
 
-        <span class="macro">if_alloc!</span> {
-            <span class="kw">use</span> <span class="ident">core::fmt</span>;
-            <span class="kw">use</span> <span class="ident">core::slice</span>;
-            <span class="kw">use</span> <span class="ident">alloc::vec::Vec</span>;
+        <span class="macro">if_alloc! </span>{
+            <span class="kw">use </span>core::fmt;
+            <span class="kw">use </span>core::slice;
+            <span class="kw">use </span>alloc::vec::Vec;
 
-            <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::elf::program_header</span>::{<span class="ident">PT_DYNAMIC</span>};
-            <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::strtab::Strtab</span>;
+            <span class="kw">use </span><span class="kw">crate</span>::elf::program_header::{PT_DYNAMIC};
+            <span class="kw">use </span><span class="kw">crate</span>::strtab::Strtab;
 
-            <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::elf::dynamic::Dyn</span> <span class="kw">as</span> <span class="ident">ElfDyn</span>;
+            <span class="kw">use </span><span class="kw">crate</span>::elf::dynamic::Dyn <span class="kw">as </span>ElfDyn;
 
-            <span class="macro">if_std!</span> {
-                <span class="kw">use</span> <span class="ident">std::fs::File</span>;
-                <span class="kw">use</span> <span class="ident">std::io</span>::{<span class="ident">Read</span>, <span class="ident">Seek</span>};
-                <span class="kw">use</span> <span class="ident">std::io::SeekFrom::Start</span>;
-                <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::error::Result</span>;
+            <span class="macro">if_std! </span>{
+                <span class="kw">use </span>std::fs::File;
+                <span class="kw">use </span>std::io::{Read, Seek};
+                <span class="kw">use </span>std::io::SeekFrom::Start;
+                <span class="kw">use </span><span class="kw">crate</span>::error::Result;
             }
 
-            <span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">ElfDyn</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Dyn</span> {
-                <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">dynamic</span>: <span class="ident">ElfDyn</span>) -&gt; <span class="self">Self</span> {
-                    <span class="ident">Dyn</span> {
-                        <span class="ident">d_tag</span>: <span class="ident">dynamic</span>.<span class="ident">d_tag</span> <span class="kw">as</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">size</span>,
-                        <span class="ident">d_val</span>: <span class="ident">dynamic</span>.<span class="ident">d_val</span> <span class="kw">as</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">size</span>,
+            <span class="kw">impl </span>From&lt;ElfDyn&gt; <span class="kw">for </span>Dyn {
+                <span class="kw">fn </span>from(dynamic: ElfDyn) -&gt; <span class="self">Self </span>{
+                    Dyn {
+                        d_tag: dynamic.d_tag <span class="kw">as </span><span class="macro-nonterminal">$size</span>,
+                        d_val: dynamic.d_val <span class="kw">as </span><span class="macro-nonterminal">$size</span>,
                     }
                 }
             }
-            <span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">Dyn</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">ElfDyn</span> {
-                <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">dynamic</span>: <span class="ident">Dyn</span>) -&gt; <span class="self">Self</span> {
-                    <span class="ident">ElfDyn</span> {
-                        <span class="ident">d_tag</span>: <span class="ident">u64::from</span>(<span class="ident">dynamic</span>.<span class="ident">d_tag</span>),
-                        <span class="ident">d_val</span>: <span class="ident">u64::from</span>(<span class="ident">dynamic</span>.<span class="ident">d_val</span>),
+            <span class="kw">impl </span>From&lt;Dyn&gt; <span class="kw">for </span>ElfDyn {
+                <span class="kw">fn </span>from(dynamic: Dyn) -&gt; <span class="self">Self </span>{
+                    ElfDyn {
+                        d_tag: u64::from(dynamic.d_tag),
+                        d_val: u64::from(dynamic.d_val),
                     }
                 }
             }
 
-            <span class="kw">impl</span> <span class="ident">fmt::Debug</span> <span class="kw">for</span> <span class="ident">Dyn</span> {
-                <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">fmt::Formatter</span>) -&gt; <span class="ident">fmt::Result</span> {
-                    <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;Dyn&quot;</span>)
-                        .<span class="ident">field</span>(<span class="string">&quot;d_tag&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">tag_to_str</span>(<span class="ident">u64::from</span>(<span class="self">self</span>.<span class="ident">d_tag</span>)))
-                        .<span class="ident">field</span>(<span class="string">&quot;d_val&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;0x{:x}&quot;</span>, <span class="self">self</span>.<span class="ident">d_val</span>))
-                        .<span class="ident">finish</span>()
+            <span class="kw">impl </span>fmt::Debug <span class="kw">for </span>Dyn {
+                <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>fmt::Formatter) -&gt; fmt::Result {
+                    f.debug_struct(<span class="string">&quot;Dyn&quot;</span>)
+                        .field(<span class="string">&quot;d_tag&quot;</span>, <span class="kw-2">&amp;</span>tag_to_str(u64::from(<span class="self">self</span>.d_tag)))
+                        .field(<span class="string">&quot;d_val&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;0x{:x}&quot;</span>, <span class="self">self</span>.d_val))
+                        .finish()
                 }
             }
 
-            <span class="doccomment">/// Returns a vector of dynamic entries from the given fd and program headers</span>
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;std&quot;</span>)]</span>
-            <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_fd</span>(<span class="kw-2">mut</span> <span class="ident">fd</span>: <span class="kw-2">&amp;</span><span class="ident">File</span>, <span class="ident">phdrs</span>: <span class="kw-2">&amp;</span>[<span class="macro-nonterminal">$</span><span class="macro-nonterminal">phdr</span>]) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Dyn</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-                <span class="kw">for</span> <span class="ident">phdr</span> <span class="kw">in</span> <span class="ident">phdrs</span> {
-                    <span class="kw">if</span> <span class="ident">phdr</span>.<span class="ident">p_type</span> <span class="op">==</span> <span class="ident">PT_DYNAMIC</span> {
-                        <span class="comment">// FIXME: validate filesz before allocating</span>
-                        <span class="kw">let</span> <span class="ident">filesz</span> <span class="op">=</span> <span class="ident">phdr</span>.<span class="ident">p_filesz</span> <span class="kw">as</span> <span class="ident">usize</span>;
-                        <span class="kw">let</span> <span class="ident">dync</span> <span class="op">=</span> <span class="ident">filesz</span> <span class="op">/</span> <span class="ident">SIZEOF_DYN</span>;
-                        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">dyns</span> <span class="op">=</span> <span class="macro">vec!</span>[<span class="ident">Dyn::default</span>(); <span class="ident">dync</span>];
-                        <span class="ident">fd</span>.<span class="ident">seek</span>(<span class="ident">Start</span>(<span class="ident">u64::from</span>(<span class="ident">phdr</span>.<span class="ident">p_offset</span>)))<span class="question-mark">?</span>;
-                        <span class="kw">unsafe</span> {
-                            <span class="ident">fd</span>.<span class="ident">read_exact</span>(<span class="ident">plain::as_mut_bytes</span>(<span class="kw-2">&amp;mut</span> <span class="kw-2">*</span><span class="ident">dyns</span>))<span class="question-mark">?</span>;
+            <span class="doccomment">/// Returns a vector of dynamic entries from the given fd and program headers
+            </span><span class="attribute">#[cfg(feature = <span class="string">&quot;std&quot;</span>)]
+            </span><span class="kw">pub fn </span>from_fd(<span class="kw-2">mut </span>fd: <span class="kw-2">&amp;</span>File, phdrs: <span class="kw-2">&amp;</span>[<span class="macro-nonterminal">$phdr</span>]) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="prelude-ty">Option</span>&lt;Vec&lt;Dyn&gt;&gt;&gt; {
+                <span class="kw">for </span>phdr <span class="kw">in </span>phdrs {
+                    <span class="kw">if </span>phdr.p_type == PT_DYNAMIC {
+                        <span class="comment">// FIXME: validate filesz before allocating
+                        </span><span class="kw">let </span>filesz = phdr.p_filesz <span class="kw">as </span>usize;
+                        <span class="kw">let </span>dync = filesz / SIZEOF_DYN;
+                        <span class="kw">let </span><span class="kw-2">mut </span>dyns = <span class="macro">vec!</span>[Dyn::default(); dync];
+                        fd.seek(Start(u64::from(phdr.p_offset)))<span class="question-mark">?</span>;
+                        <span class="kw">unsafe </span>{
+                            fd.read_exact(plain::as_mut_bytes(<span class="kw-2">&amp;mut *</span>dyns))<span class="question-mark">?</span>;
                         }
-                        <span class="ident">dyns</span>.<span class="ident">dedup</span>();
-                        <span class="kw">return</span> <span class="prelude-val">Ok</span>(<span class="prelude-val">Some</span>(<span class="ident">dyns</span>));
+                        dyns.dedup();
+                        <span class="kw">return </span><span class="prelude-val">Ok</span>(<span class="prelude-val">Some</span>(dyns));
                     }
                 }
                 <span class="prelude-val">Ok</span>(<span class="prelude-val">None</span>)
             }
 
-            <span class="doccomment">/// Given a bias and a memory address (typically for a _correctly_ mmap&#39;d binary in memory), returns the `_DYNAMIC` array as a slice of that memory</span>
-            <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_raw</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>(<span class="ident">bias</span>: <span class="ident">usize</span>, <span class="ident">vaddr</span>: <span class="ident">usize</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">Dyn</span>] {
-                <span class="kw">let</span> <span class="ident">dynp</span> <span class="op">=</span> <span class="ident">vaddr</span>.<span class="ident">wrapping_add</span>(<span class="ident">bias</span>) <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">Dyn</span>;
-                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">idx</span> <span class="op">=</span> <span class="number">0</span>;
-                <span class="kw">while</span> <span class="ident">u64::from</span>((<span class="kw-2">*</span><span class="ident">dynp</span>.<span class="ident">offset</span>(<span class="ident">idx</span>)).<span class="ident">d_tag</span>) <span class="op">!</span><span class="op">=</span> <span class="ident">DT_NULL</span> {
-                    <span class="ident">idx</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
+            <span class="doccomment">/// Given a bias and a memory address (typically for a _correctly_ mmap&#39;d binary in memory), returns the `_DYNAMIC` array as a slice of that memory
+            </span><span class="kw">pub unsafe fn </span>from_raw&lt;<span class="lifetime">&#39;a</span>&gt;(bias: usize, vaddr: usize) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[Dyn] {
+                <span class="kw">let </span>dynp = vaddr.wrapping_add(bias) <span class="kw">as </span><span class="kw-2">*const </span>Dyn;
+                <span class="kw">let </span><span class="kw-2">mut </span>idx = <span class="number">0</span>;
+                <span class="kw">while </span>u64::from((<span class="kw-2">*</span>dynp.offset(idx)).d_tag) != DT_NULL {
+                    idx += <span class="number">1</span>;
                 }
-                <span class="ident">slice::from_raw_parts</span>(<span class="ident">dynp</span>, <span class="ident">idx</span> <span class="kw">as</span> <span class="ident">usize</span>)
+                slice::from_raw_parts(dynp, idx <span class="kw">as </span>usize)
             }
 
-            <span class="comment">// TODO: these bare functions have always seemed awkward, but not sure where they should go...</span>
-            <span class="doccomment">/// Maybe gets and returns the dynamic array with the same lifetime as the [phdrs], using the provided bias with wrapping addition.</span>
-            <span class="doccomment">/// If the bias is wrong, it will either segfault or give you incorrect values, beware</span>
-            <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_phdrs</span>(<span class="ident">bias</span>: <span class="ident">usize</span>, <span class="ident">phdrs</span>: <span class="kw-2">&amp;</span>[<span class="macro-nonterminal">$</span><span class="macro-nonterminal">phdr</span>]) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span>[<span class="ident">Dyn</span>]<span class="op">&gt;</span> {
-                <span class="kw">for</span> <span class="ident">phdr</span> <span class="kw">in</span> <span class="ident">phdrs</span> {
-                    <span class="comment">// FIXME: change to casting to u64 similar to DT_*?</span>
-                    <span class="kw">if</span> <span class="ident">phdr</span>.<span class="ident">p_type</span> <span class="kw">as</span> <span class="ident">u32</span> <span class="op">==</span> <span class="ident">PT_DYNAMIC</span> {
-                        <span class="kw">return</span> <span class="prelude-val">Some</span>(<span class="ident">from_raw</span>(<span class="ident">bias</span>, <span class="ident">phdr</span>.<span class="ident">p_vaddr</span> <span class="kw">as</span> <span class="ident">usize</span>));
+            <span class="comment">// TODO: these bare functions have always seemed awkward, but not sure where they should go...
+            </span><span class="doccomment">/// Maybe gets and returns the dynamic array with the same lifetime as the [phdrs], using the provided bias with wrapping addition.
+            /// If the bias is wrong, it will either segfault or give you incorrect values, beware
+            </span><span class="kw">pub unsafe fn </span>from_phdrs(bias: usize, phdrs: <span class="kw-2">&amp;</span>[<span class="macro-nonterminal">$phdr</span>]) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>[Dyn]&gt; {
+                <span class="kw">for </span>phdr <span class="kw">in </span>phdrs {
+                    <span class="comment">// FIXME: change to casting to u64 similar to DT_*?
+                    </span><span class="kw">if </span>phdr.p_type <span class="kw">as </span>u32 == PT_DYNAMIC {
+                        <span class="kw">return </span><span class="prelude-val">Some</span>(from_raw(bias, phdr.p_vaddr <span class="kw">as </span>usize));
                     }
                 }
-                <span class="prelude-val">None</span>
-            }
+                <span class="prelude-val">None
+            </span>}
 
-            <span class="doccomment">/// Gets the needed libraries from the `_DYNAMIC` array, with the str slices lifetime tied to the dynamic array/strtab&#39;s lifetime(s)</span>
-            <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">get_needed</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>(<span class="ident">dyns</span>: <span class="kw-2">&amp;</span>[<span class="ident">Dyn</span>], <span class="ident">strtab</span>: <span class="kw-2">*const</span> <span class="ident">Strtab</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>, <span class="ident">count</span>: <span class="ident">usize</span>) -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span><span class="op">&gt;</span> {
-                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">needed</span> <span class="op">=</span> <span class="ident">Vec::with_capacity</span>(<span class="ident">count</span>.<span class="ident">min</span>(<span class="ident">dyns</span>.<span class="ident">len</span>()));
-                <span class="kw">for</span> <span class="ident">dynamic</span> <span class="kw">in</span> <span class="ident">dyns</span> {
-                    <span class="kw">if</span> <span class="ident">u64::from</span>(<span class="ident">dynamic</span>.<span class="ident">d_tag</span>) <span class="op">==</span> <span class="ident">DT_NEEDED</span> {
-                        <span class="kw">let</span> <span class="ident">lib</span> <span class="op">=</span> <span class="kw-2">&amp;</span>(<span class="kw-2">*</span><span class="ident">strtab</span>)[<span class="ident">dynamic</span>.<span class="ident">d_val</span> <span class="kw">as</span> <span class="ident">usize</span>];
-                        <span class="ident">needed</span>.<span class="ident">push</span>(<span class="ident">lib</span>);
+            <span class="doccomment">/// Gets the needed libraries from the `_DYNAMIC` array, with the str slices lifetime tied to the dynamic array/strtab&#39;s lifetime(s)
+            </span><span class="kw">pub unsafe fn </span>get_needed&lt;<span class="lifetime">&#39;a</span>&gt;(dyns: <span class="kw-2">&amp;</span>[Dyn], strtab: <span class="kw-2">*const </span>Strtab&lt;<span class="lifetime">&#39;a</span>&gt;, count: usize) -&gt; Vec&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str&gt; {
+                <span class="kw">let </span><span class="kw-2">mut </span>needed = Vec::with_capacity(count.min(dyns.len()));
+                <span class="kw">for </span>dynamic <span class="kw">in </span>dyns {
+                    <span class="kw">if </span>u64::from(dynamic.d_tag) == DT_NEEDED {
+                        <span class="kw">let </span>lib = <span class="kw-2">&amp;</span>(<span class="kw-2">*</span>strtab)[dynamic.d_val <span class="kw">as </span>usize];
+                        needed.push(lib);
                     }
                 }
-                <span class="ident">needed</span>
+                needed
             }
         }
     };
 }
 
-<span class="macro">macro_rules!</span> <span class="ident">elf_dynamic_info_std_impl</span> {
-    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">size</span>:<span class="ident">ident</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">phdr</span>:<span class="ident">ty</span>) =&gt; {
-        <span class="doccomment">/// Convert a virtual memory address to a file offset</span>
-        <span class="kw">fn</span> <span class="ident">vm_to_offset</span>(<span class="ident">phdrs</span>: <span class="kw-2">&amp;</span>[<span class="macro-nonterminal">$</span><span class="macro-nonterminal">phdr</span>], <span class="ident">address</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">size</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">size</span><span class="op">&gt;</span> {
-            <span class="kw">for</span> <span class="ident">ph</span> <span class="kw">in</span> <span class="ident">phdrs</span> {
-                <span class="kw">if</span> <span class="ident">address</span> <span class="op">&gt;</span><span class="op">=</span> <span class="ident">ph</span>.<span class="ident">p_vaddr</span> {
-                    <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> <span class="ident">address</span> <span class="op">-</span> <span class="ident">ph</span>.<span class="ident">p_vaddr</span>;
-                    <span class="kw">if</span> <span class="ident">offset</span> <span class="op">&lt;</span> <span class="ident">ph</span>.<span class="ident">p_memsz</span> {
-                        <span class="kw">return</span> <span class="ident">ph</span>.<span class="ident">p_offset</span>.<span class="ident">checked_add</span>(<span class="ident">offset</span>);
+<span class="macro">macro_rules! </span>elf_dynamic_info_std_impl {
+    (<span class="macro-nonterminal">$size</span>:ident, <span class="macro-nonterminal">$phdr</span>:ty) =&gt; {
+        <span class="doccomment">/// Convert a virtual memory address to a file offset
+        </span><span class="kw">fn </span>vm_to_offset(phdrs: <span class="kw-2">&amp;</span>[<span class="macro-nonterminal">$phdr</span>], address: <span class="macro-nonterminal">$size</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="macro-nonterminal">$size</span>&gt; {
+            <span class="kw">for </span>ph <span class="kw">in </span>phdrs {
+                <span class="kw">if </span>address &gt;= ph.p_vaddr {
+                    <span class="kw">let </span>offset = address - ph.p_vaddr;
+                    <span class="kw">if </span>offset &lt; ph.p_memsz {
+                        <span class="kw">return </span>ph.p_offset.checked_add(offset);
                     }
                 }
             }
-            <span class="prelude-val">None</span>
+            <span class="prelude-val">None
+        </span>}
+
+        <span class="doccomment">/// Important dynamic linking info generated via a single pass through the `_DYNAMIC` array
+        </span><span class="attribute">#[derive(Default, PartialEq)]
+        </span><span class="kw">pub struct </span>DynamicInfo {
+            <span class="kw">pub </span>rela: usize,
+            <span class="kw">pub </span>relasz: usize,
+            <span class="kw">pub </span>relaent: <span class="macro-nonterminal">$size</span>,
+            <span class="kw">pub </span>relacount: usize,
+            <span class="kw">pub </span>rel: usize,
+            <span class="kw">pub </span>relsz: usize,
+            <span class="kw">pub </span>relent: <span class="macro-nonterminal">$size</span>,
+            <span class="kw">pub </span>relcount: usize,
+            <span class="kw">pub </span>gnu_hash: <span class="prelude-ty">Option</span>&lt;<span class="macro-nonterminal">$size</span>&gt;,
+            <span class="kw">pub </span>hash: <span class="prelude-ty">Option</span>&lt;<span class="macro-nonterminal">$size</span>&gt;,
+            <span class="kw">pub </span>strtab: usize,
+            <span class="kw">pub </span>strsz: usize,
+            <span class="kw">pub </span>symtab: usize,
+            <span class="kw">pub </span>syment: usize,
+            <span class="kw">pub </span>pltgot: <span class="prelude-ty">Option</span>&lt;<span class="macro-nonterminal">$size</span>&gt;,
+            <span class="kw">pub </span>pltrelsz: usize,
+            <span class="kw">pub </span>pltrel: <span class="macro-nonterminal">$size</span>,
+            <span class="kw">pub </span>jmprel: usize,
+            <span class="kw">pub </span>verdef: <span class="macro-nonterminal">$size</span>,
+            <span class="kw">pub </span>verdefnum: <span class="macro-nonterminal">$size</span>,
+            <span class="kw">pub </span>verneed: <span class="macro-nonterminal">$size</span>,
+            <span class="kw">pub </span>verneednum: <span class="macro-nonterminal">$size</span>,
+            <span class="kw">pub </span>versym: <span class="macro-nonterminal">$size</span>,
+            <span class="kw">pub </span>init: <span class="macro-nonterminal">$size</span>,
+            <span class="kw">pub </span>fini: <span class="macro-nonterminal">$size</span>,
+            <span class="kw">pub </span>init_array: <span class="macro-nonterminal">$size</span>,
+            <span class="kw">pub </span>init_arraysz: usize,
+            <span class="kw">pub </span>fini_array: <span class="macro-nonterminal">$size</span>,
+            <span class="kw">pub </span>fini_arraysz: usize,
+            <span class="kw">pub </span>needed_count: usize,
+            <span class="kw">pub </span>flags: <span class="macro-nonterminal">$size</span>,
+            <span class="kw">pub </span>flags_1: <span class="macro-nonterminal">$size</span>,
+            <span class="kw">pub </span>soname: usize,
+            <span class="kw">pub </span>textrel: bool,
         }
 
-        <span class="doccomment">/// Important dynamic linking info generated via a single pass through the `_DYNAMIC` array</span>
-        <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Default</span>, <span class="ident">PartialEq</span>)]</span>
-        <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">DynamicInfo</span> {
-            <span class="kw">pub</span> <span class="ident">rela</span>: <span class="ident">usize</span>,
-            <span class="kw">pub</span> <span class="ident">relasz</span>: <span class="ident">usize</span>,
-            <span class="kw">pub</span> <span class="ident">relaent</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">size</span>,
-            <span class="kw">pub</span> <span class="ident">relacount</span>: <span class="ident">usize</span>,
-            <span class="kw">pub</span> <span class="ident">rel</span>: <span class="ident">usize</span>,
-            <span class="kw">pub</span> <span class="ident">relsz</span>: <span class="ident">usize</span>,
-            <span class="kw">pub</span> <span class="ident">relent</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">size</span>,
-            <span class="kw">pub</span> <span class="ident">relcount</span>: <span class="ident">usize</span>,
-            <span class="kw">pub</span> <span class="ident">gnu_hash</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">size</span><span class="op">&gt;</span>,
-            <span class="kw">pub</span> <span class="ident">hash</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">size</span><span class="op">&gt;</span>,
-            <span class="kw">pub</span> <span class="ident">strtab</span>: <span class="ident">usize</span>,
-            <span class="kw">pub</span> <span class="ident">strsz</span>: <span class="ident">usize</span>,
-            <span class="kw">pub</span> <span class="ident">symtab</span>: <span class="ident">usize</span>,
-            <span class="kw">pub</span> <span class="ident">syment</span>: <span class="ident">usize</span>,
-            <span class="kw">pub</span> <span class="ident">pltgot</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">size</span><span class="op">&gt;</span>,
-            <span class="kw">pub</span> <span class="ident">pltrelsz</span>: <span class="ident">usize</span>,
-            <span class="kw">pub</span> <span class="ident">pltrel</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">size</span>,
-            <span class="kw">pub</span> <span class="ident">jmprel</span>: <span class="ident">usize</span>,
-            <span class="kw">pub</span> <span class="ident">verdef</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">size</span>,
-            <span class="kw">pub</span> <span class="ident">verdefnum</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">size</span>,
-            <span class="kw">pub</span> <span class="ident">verneed</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">size</span>,
-            <span class="kw">pub</span> <span class="ident">verneednum</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">size</span>,
-            <span class="kw">pub</span> <span class="ident">versym</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">size</span>,
-            <span class="kw">pub</span> <span class="ident">init</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">size</span>,
-            <span class="kw">pub</span> <span class="ident">fini</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">size</span>,
-            <span class="kw">pub</span> <span class="ident">init_array</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">size</span>,
-            <span class="kw">pub</span> <span class="ident">init_arraysz</span>: <span class="ident">usize</span>,
-            <span class="kw">pub</span> <span class="ident">fini_array</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">size</span>,
-            <span class="kw">pub</span> <span class="ident">fini_arraysz</span>: <span class="ident">usize</span>,
-            <span class="kw">pub</span> <span class="ident">needed_count</span>: <span class="ident">usize</span>,
-            <span class="kw">pub</span> <span class="ident">flags</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">size</span>,
-            <span class="kw">pub</span> <span class="ident">flags_1</span>: <span class="macro-nonterminal">$</span><span class="macro-nonterminal">size</span>,
-            <span class="kw">pub</span> <span class="ident">soname</span>: <span class="ident">usize</span>,
-            <span class="kw">pub</span> <span class="ident">textrel</span>: <span class="ident">bool</span>,
-        }
-
-        <span class="kw">impl</span> <span class="ident">DynamicInfo</span> {
-            <span class="attribute">#[<span class="ident">inline</span>]</span>
-            <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">update</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">phdrs</span>: <span class="kw-2">&amp;</span>[<span class="macro-nonterminal">$</span><span class="macro-nonterminal">phdr</span>], <span class="ident">dynamic</span>: <span class="kw-2">&amp;</span><span class="ident">Dyn</span>) {
-                <span class="kw">match</span> <span class="ident">u64::from</span>(<span class="ident">dynamic</span>.<span class="ident">d_tag</span>) {
-                    <span class="ident">DT_RELA</span> =&gt; <span class="self">self</span>.<span class="ident">rela</span> <span class="op">=</span> <span class="ident">vm_to_offset</span>(<span class="ident">phdrs</span>, <span class="ident">dynamic</span>.<span class="ident">d_val</span>).<span class="ident">unwrap_or</span>(<span class="number">0</span>) <span class="kw">as</span> <span class="ident">usize</span>, <span class="comment">// .rela.dyn</span>
-                    <span class="ident">DT_RELASZ</span> =&gt; <span class="self">self</span>.<span class="ident">relasz</span> <span class="op">=</span> <span class="ident">dynamic</span>.<span class="ident">d_val</span> <span class="kw">as</span> <span class="ident">usize</span>,
-                    <span class="ident">DT_RELAENT</span> =&gt; <span class="self">self</span>.<span class="ident">relaent</span> <span class="op">=</span> <span class="ident">dynamic</span>.<span class="ident">d_val</span> <span class="kw">as</span> <span class="kw">_</span>,
-                    <span class="ident">DT_RELACOUNT</span> =&gt; <span class="self">self</span>.<span class="ident">relacount</span> <span class="op">=</span> <span class="ident">dynamic</span>.<span class="ident">d_val</span> <span class="kw">as</span> <span class="ident">usize</span>,
-                    <span class="ident">DT_REL</span> =&gt; <span class="self">self</span>.<span class="ident">rel</span> <span class="op">=</span> <span class="ident">vm_to_offset</span>(<span class="ident">phdrs</span>, <span class="ident">dynamic</span>.<span class="ident">d_val</span>).<span class="ident">unwrap_or</span>(<span class="number">0</span>) <span class="kw">as</span> <span class="ident">usize</span>, <span class="comment">// .rel.dyn</span>
-                    <span class="ident">DT_RELSZ</span> =&gt; <span class="self">self</span>.<span class="ident">relsz</span> <span class="op">=</span> <span class="ident">dynamic</span>.<span class="ident">d_val</span> <span class="kw">as</span> <span class="ident">usize</span>,
-                    <span class="ident">DT_RELENT</span> =&gt; <span class="self">self</span>.<span class="ident">relent</span> <span class="op">=</span> <span class="ident">dynamic</span>.<span class="ident">d_val</span> <span class="kw">as</span> <span class="kw">_</span>,
-                    <span class="ident">DT_RELCOUNT</span> =&gt; <span class="self">self</span>.<span class="ident">relcount</span> <span class="op">=</span> <span class="ident">dynamic</span>.<span class="ident">d_val</span> <span class="kw">as</span> <span class="ident">usize</span>,
-                    <span class="ident">DT_GNU_HASH</span> =&gt; <span class="self">self</span>.<span class="ident">gnu_hash</span> <span class="op">=</span> <span class="ident">vm_to_offset</span>(<span class="ident">phdrs</span>, <span class="ident">dynamic</span>.<span class="ident">d_val</span>),
-                    <span class="ident">DT_HASH</span> =&gt; <span class="self">self</span>.<span class="ident">hash</span> <span class="op">=</span> <span class="ident">vm_to_offset</span>(<span class="ident">phdrs</span>, <span class="ident">dynamic</span>.<span class="ident">d_val</span>),
-                    <span class="ident">DT_STRTAB</span> =&gt; {
-                        <span class="self">self</span>.<span class="ident">strtab</span> <span class="op">=</span> <span class="ident">vm_to_offset</span>(<span class="ident">phdrs</span>, <span class="ident">dynamic</span>.<span class="ident">d_val</span>).<span class="ident">unwrap_or</span>(<span class="number">0</span>) <span class="kw">as</span> <span class="ident">usize</span>
+        <span class="kw">impl </span>DynamicInfo {
+            <span class="attribute">#[inline]
+            </span><span class="kw">pub fn </span>update(<span class="kw-2">&amp;mut </span><span class="self">self</span>, phdrs: <span class="kw-2">&amp;</span>[<span class="macro-nonterminal">$phdr</span>], dynamic: <span class="kw-2">&amp;</span>Dyn) {
+                <span class="kw">match </span>u64::from(dynamic.d_tag) {
+                    DT_RELA =&gt; <span class="self">self</span>.rela = vm_to_offset(phdrs, dynamic.d_val).unwrap_or(<span class="number">0</span>) <span class="kw">as </span>usize, <span class="comment">// .rela.dyn
+                    </span>DT_RELASZ =&gt; <span class="self">self</span>.relasz = dynamic.d_val <span class="kw">as </span>usize,
+                    DT_RELAENT =&gt; <span class="self">self</span>.relaent = dynamic.d_val <span class="kw">as _</span>,
+                    DT_RELACOUNT =&gt; <span class="self">self</span>.relacount = dynamic.d_val <span class="kw">as </span>usize,
+                    DT_REL =&gt; <span class="self">self</span>.rel = vm_to_offset(phdrs, dynamic.d_val).unwrap_or(<span class="number">0</span>) <span class="kw">as </span>usize, <span class="comment">// .rel.dyn
+                    </span>DT_RELSZ =&gt; <span class="self">self</span>.relsz = dynamic.d_val <span class="kw">as </span>usize,
+                    DT_RELENT =&gt; <span class="self">self</span>.relent = dynamic.d_val <span class="kw">as _</span>,
+                    DT_RELCOUNT =&gt; <span class="self">self</span>.relcount = dynamic.d_val <span class="kw">as </span>usize,
+                    DT_GNU_HASH =&gt; <span class="self">self</span>.gnu_hash = vm_to_offset(phdrs, dynamic.d_val),
+                    DT_HASH =&gt; <span class="self">self</span>.hash = vm_to_offset(phdrs, dynamic.d_val),
+                    DT_STRTAB =&gt; {
+                        <span class="self">self</span>.strtab = vm_to_offset(phdrs, dynamic.d_val).unwrap_or(<span class="number">0</span>) <span class="kw">as </span>usize
                     }
-                    <span class="ident">DT_STRSZ</span> =&gt; <span class="self">self</span>.<span class="ident">strsz</span> <span class="op">=</span> <span class="ident">dynamic</span>.<span class="ident">d_val</span> <span class="kw">as</span> <span class="ident">usize</span>,
-                    <span class="ident">DT_SYMTAB</span> =&gt; {
-                        <span class="self">self</span>.<span class="ident">symtab</span> <span class="op">=</span> <span class="ident">vm_to_offset</span>(<span class="ident">phdrs</span>, <span class="ident">dynamic</span>.<span class="ident">d_val</span>).<span class="ident">unwrap_or</span>(<span class="number">0</span>) <span class="kw">as</span> <span class="ident">usize</span>
+                    DT_STRSZ =&gt; <span class="self">self</span>.strsz = dynamic.d_val <span class="kw">as </span>usize,
+                    DT_SYMTAB =&gt; {
+                        <span class="self">self</span>.symtab = vm_to_offset(phdrs, dynamic.d_val).unwrap_or(<span class="number">0</span>) <span class="kw">as </span>usize
                     }
-                    <span class="ident">DT_SYMENT</span> =&gt; <span class="self">self</span>.<span class="ident">syment</span> <span class="op">=</span> <span class="ident">dynamic</span>.<span class="ident">d_val</span> <span class="kw">as</span> <span class="ident">usize</span>,
-                    <span class="ident">DT_PLTGOT</span> =&gt; <span class="self">self</span>.<span class="ident">pltgot</span> <span class="op">=</span> <span class="ident">vm_to_offset</span>(<span class="ident">phdrs</span>, <span class="ident">dynamic</span>.<span class="ident">d_val</span>),
-                    <span class="ident">DT_PLTRELSZ</span> =&gt; <span class="self">self</span>.<span class="ident">pltrelsz</span> <span class="op">=</span> <span class="ident">dynamic</span>.<span class="ident">d_val</span> <span class="kw">as</span> <span class="ident">usize</span>,
-                    <span class="ident">DT_PLTREL</span> =&gt; <span class="self">self</span>.<span class="ident">pltrel</span> <span class="op">=</span> <span class="ident">dynamic</span>.<span class="ident">d_val</span> <span class="kw">as</span> <span class="kw">_</span>,
-                    <span class="ident">DT_JMPREL</span> =&gt; {
-                        <span class="self">self</span>.<span class="ident">jmprel</span> <span class="op">=</span> <span class="ident">vm_to_offset</span>(<span class="ident">phdrs</span>, <span class="ident">dynamic</span>.<span class="ident">d_val</span>).<span class="ident">unwrap_or</span>(<span class="number">0</span>) <span class="kw">as</span> <span class="ident">usize</span>
-                    } <span class="comment">// .rela.plt</span>
-                    <span class="ident">DT_VERDEF</span> =&gt; <span class="self">self</span>.<span class="ident">verdef</span> <span class="op">=</span> <span class="ident">vm_to_offset</span>(<span class="ident">phdrs</span>, <span class="ident">dynamic</span>.<span class="ident">d_val</span>).<span class="ident">unwrap_or</span>(<span class="number">0</span>),
-                    <span class="ident">DT_VERDEFNUM</span> =&gt; <span class="self">self</span>.<span class="ident">verdefnum</span> <span class="op">=</span> <span class="ident">vm_to_offset</span>(<span class="ident">phdrs</span>, <span class="ident">dynamic</span>.<span class="ident">d_val</span>).<span class="ident">unwrap_or</span>(<span class="number">0</span>),
-                    <span class="ident">DT_VERNEED</span> =&gt; <span class="self">self</span>.<span class="ident">verneed</span> <span class="op">=</span> <span class="ident">vm_to_offset</span>(<span class="ident">phdrs</span>, <span class="ident">dynamic</span>.<span class="ident">d_val</span>).<span class="ident">unwrap_or</span>(<span class="number">0</span>),
-                    <span class="ident">DT_VERNEEDNUM</span> =&gt; <span class="self">self</span>.<span class="ident">verneednum</span> <span class="op">=</span> <span class="ident">dynamic</span>.<span class="ident">d_val</span> <span class="kw">as</span> <span class="kw">_</span>,
-                    <span class="ident">DT_VERSYM</span> =&gt; <span class="self">self</span>.<span class="ident">versym</span> <span class="op">=</span> <span class="ident">vm_to_offset</span>(<span class="ident">phdrs</span>, <span class="ident">dynamic</span>.<span class="ident">d_val</span>).<span class="ident">unwrap_or</span>(<span class="number">0</span>),
-                    <span class="ident">DT_INIT</span> =&gt; <span class="self">self</span>.<span class="ident">init</span> <span class="op">=</span> <span class="ident">vm_to_offset</span>(<span class="ident">phdrs</span>, <span class="ident">dynamic</span>.<span class="ident">d_val</span>).<span class="ident">unwrap_or</span>(<span class="number">0</span>),
-                    <span class="ident">DT_FINI</span> =&gt; <span class="self">self</span>.<span class="ident">fini</span> <span class="op">=</span> <span class="ident">vm_to_offset</span>(<span class="ident">phdrs</span>, <span class="ident">dynamic</span>.<span class="ident">d_val</span>).<span class="ident">unwrap_or</span>(<span class="number">0</span>),
-                    <span class="ident">DT_INIT_ARRAY</span> =&gt; {
-                        <span class="self">self</span>.<span class="ident">init_array</span> <span class="op">=</span> <span class="ident">vm_to_offset</span>(<span class="ident">phdrs</span>, <span class="ident">dynamic</span>.<span class="ident">d_val</span>).<span class="ident">unwrap_or</span>(<span class="number">0</span>)
+                    DT_SYMENT =&gt; <span class="self">self</span>.syment = dynamic.d_val <span class="kw">as </span>usize,
+                    DT_PLTGOT =&gt; <span class="self">self</span>.pltgot = vm_to_offset(phdrs, dynamic.d_val),
+                    DT_PLTRELSZ =&gt; <span class="self">self</span>.pltrelsz = dynamic.d_val <span class="kw">as </span>usize,
+                    DT_PLTREL =&gt; <span class="self">self</span>.pltrel = dynamic.d_val <span class="kw">as _</span>,
+                    DT_JMPREL =&gt; {
+                        <span class="self">self</span>.jmprel = vm_to_offset(phdrs, dynamic.d_val).unwrap_or(<span class="number">0</span>) <span class="kw">as </span>usize
+                    } <span class="comment">// .rela.plt
+                    </span>DT_VERDEF =&gt; <span class="self">self</span>.verdef = vm_to_offset(phdrs, dynamic.d_val).unwrap_or(<span class="number">0</span>),
+                    DT_VERDEFNUM =&gt; <span class="self">self</span>.verdefnum = vm_to_offset(phdrs, dynamic.d_val).unwrap_or(<span class="number">0</span>),
+                    DT_VERNEED =&gt; <span class="self">self</span>.verneed = vm_to_offset(phdrs, dynamic.d_val).unwrap_or(<span class="number">0</span>),
+                    DT_VERNEEDNUM =&gt; <span class="self">self</span>.verneednum = dynamic.d_val <span class="kw">as _</span>,
+                    DT_VERSYM =&gt; <span class="self">self</span>.versym = vm_to_offset(phdrs, dynamic.d_val).unwrap_or(<span class="number">0</span>),
+                    DT_INIT =&gt; <span class="self">self</span>.init = vm_to_offset(phdrs, dynamic.d_val).unwrap_or(<span class="number">0</span>),
+                    DT_FINI =&gt; <span class="self">self</span>.fini = vm_to_offset(phdrs, dynamic.d_val).unwrap_or(<span class="number">0</span>),
+                    DT_INIT_ARRAY =&gt; {
+                        <span class="self">self</span>.init_array = vm_to_offset(phdrs, dynamic.d_val).unwrap_or(<span class="number">0</span>)
                     }
-                    <span class="ident">DT_INIT_ARRAYSZ</span> =&gt; <span class="self">self</span>.<span class="ident">init_arraysz</span> <span class="op">=</span> <span class="ident">dynamic</span>.<span class="ident">d_val</span> <span class="kw">as</span> <span class="kw">_</span>,
-                    <span class="ident">DT_FINI_ARRAY</span> =&gt; {
-                        <span class="self">self</span>.<span class="ident">fini_array</span> <span class="op">=</span> <span class="ident">vm_to_offset</span>(<span class="ident">phdrs</span>, <span class="ident">dynamic</span>.<span class="ident">d_val</span>).<span class="ident">unwrap_or</span>(<span class="number">0</span>)
+                    DT_INIT_ARRAYSZ =&gt; <span class="self">self</span>.init_arraysz = dynamic.d_val <span class="kw">as _</span>,
+                    DT_FINI_ARRAY =&gt; {
+                        <span class="self">self</span>.fini_array = vm_to_offset(phdrs, dynamic.d_val).unwrap_or(<span class="number">0</span>)
                     }
-                    <span class="ident">DT_FINI_ARRAYSZ</span> =&gt; <span class="self">self</span>.<span class="ident">fini_arraysz</span> <span class="op">=</span> <span class="ident">dynamic</span>.<span class="ident">d_val</span> <span class="kw">as</span> <span class="kw">_</span>,
-                    <span class="ident">DT_NEEDED</span> =&gt; <span class="self">self</span>.<span class="ident">needed_count</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>,
-                    <span class="ident">DT_FLAGS</span> =&gt; <span class="self">self</span>.<span class="ident">flags</span> <span class="op">=</span> <span class="ident">dynamic</span>.<span class="ident">d_val</span> <span class="kw">as</span> <span class="kw">_</span>,
-                    <span class="ident">DT_FLAGS_1</span> =&gt; <span class="self">self</span>.<span class="ident">flags_1</span> <span class="op">=</span> <span class="ident">dynamic</span>.<span class="ident">d_val</span> <span class="kw">as</span> <span class="kw">_</span>,
-                    <span class="ident">DT_SONAME</span> =&gt; <span class="self">self</span>.<span class="ident">soname</span> <span class="op">=</span> <span class="ident">dynamic</span>.<span class="ident">d_val</span> <span class="kw">as</span> <span class="kw">_</span>,
-                    <span class="ident">DT_TEXTREL</span> =&gt; <span class="self">self</span>.<span class="ident">textrel</span> <span class="op">=</span> <span class="bool-val">true</span>,
-                    <span class="kw">_</span> =&gt; (),
+                    DT_FINI_ARRAYSZ =&gt; <span class="self">self</span>.fini_arraysz = dynamic.d_val <span class="kw">as _</span>,
+                    DT_NEEDED =&gt; <span class="self">self</span>.needed_count += <span class="number">1</span>,
+                    DT_FLAGS =&gt; <span class="self">self</span>.flags = dynamic.d_val <span class="kw">as _</span>,
+                    DT_FLAGS_1 =&gt; <span class="self">self</span>.flags_1 = dynamic.d_val <span class="kw">as _</span>,
+                    DT_SONAME =&gt; <span class="self">self</span>.soname = dynamic.d_val <span class="kw">as _</span>,
+                    DT_TEXTREL =&gt; <span class="self">self</span>.textrel = <span class="bool-val">true</span>,
+                    <span class="kw">_ </span>=&gt; (),
                 }
             }
-            <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">dynamic</span>: <span class="kw-2">&amp;</span>[<span class="ident">Dyn</span>], <span class="ident">phdrs</span>: <span class="kw-2">&amp;</span>[<span class="macro-nonterminal">$</span><span class="macro-nonterminal">phdr</span>]) -&gt; <span class="ident">DynamicInfo</span> {
-                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">info</span> <span class="op">=</span> <span class="ident">DynamicInfo::default</span>();
-                <span class="kw">for</span> <span class="ident">dyna</span> <span class="kw">in</span> <span class="ident">dynamic</span> {
-                    <span class="ident">info</span>.<span class="ident">update</span>(<span class="ident">phdrs</span>, <span class="kw-2">&amp;</span><span class="ident">dyna</span>);
+            <span class="kw">pub fn </span>new(dynamic: <span class="kw-2">&amp;</span>[Dyn], phdrs: <span class="kw-2">&amp;</span>[<span class="macro-nonterminal">$phdr</span>]) -&gt; DynamicInfo {
+                <span class="kw">let </span><span class="kw-2">mut </span>info = DynamicInfo::default();
+                <span class="kw">for </span>dyna <span class="kw">in </span>dynamic {
+                    info.update(phdrs, <span class="kw-2">&amp;</span>dyna);
                 }
-                <span class="ident">info</span>
+                info
             }
         }
 
-        <span class="macro">if_alloc!</span> {
-            <span class="kw">impl</span> <span class="ident">fmt::Debug</span> <span class="kw">for</span> <span class="ident">DynamicInfo</span> {
-                <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">fmt::Formatter</span>) -&gt; <span class="ident">fmt::Result</span> {
-                    <span class="kw">let</span> <span class="ident">gnu_hash</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">gnu_hash</span>.<span class="ident">unwrap_or</span>(<span class="number">0</span>);
-                    <span class="kw">let</span> <span class="ident">hash</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">hash</span>.<span class="ident">unwrap_or</span>(<span class="number">0</span>);
-                    <span class="kw">let</span> <span class="ident">pltgot</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">pltgot</span>.<span class="ident">unwrap_or</span>(<span class="number">0</span>);
+        <span class="macro">if_alloc! </span>{
+            <span class="kw">impl </span>fmt::Debug <span class="kw">for </span>DynamicInfo {
+                <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>fmt::Formatter) -&gt; fmt::Result {
+                    <span class="kw">let </span>gnu_hash = <span class="self">self</span>.gnu_hash.unwrap_or(<span class="number">0</span>);
+                    <span class="kw">let </span>hash = <span class="self">self</span>.hash.unwrap_or(<span class="number">0</span>);
+                    <span class="kw">let </span>pltgot = <span class="self">self</span>.pltgot.unwrap_or(<span class="number">0</span>);
 
-                    <span class="kw">let</span> <span class="ident">flags</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span> <span class="op">=</span> [<span class="ident">DF_ORIGIN</span>, <span class="ident">DF_SYMBOLIC</span>, <span class="ident">DF_TEXTREL</span>, <span class="ident">DF_BIND_NOW</span>, <span class="ident">DF_STATIC_TLS</span>,][..]
-                                    .<span class="ident">iter</span>()
-                                    .<span class="ident">filter</span>(<span class="op">|</span><span class="ident">f</span><span class="op">|</span> (<span class="self">self</span>.<span class="ident">flags</span> <span class="kw">as</span> <span class="ident">u64</span> <span class="op">&amp;</span> <span class="kw-2">*</span><span class="ident">f</span>) <span class="op">!</span><span class="op">=</span> <span class="number">0</span>)
-                                    .<span class="ident">map</span>(<span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">df_tag_to_str</span>(<span class="kw-2">*</span><span class="ident">f</span>))
-                                    .<span class="ident">collect</span>();
+                    <span class="kw">let </span>flags: Vec&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str&gt; = [DF_ORIGIN, DF_SYMBOLIC, DF_TEXTREL, DF_BIND_NOW, DF_STATIC_TLS,][..]
+                                    .iter()
+                                    .filter(|f| (<span class="self">self</span>.flags <span class="kw">as </span>u64 &amp; <span class="kw-2">*</span>f) != <span class="number">0</span>)
+                                    .map(|f| df_tag_to_str(<span class="kw-2">*</span>f))
+                                    .collect();
 
-                    <span class="kw">let</span> <span class="ident">flags_1</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span> <span class="op">=</span> [
-                            <span class="ident">DF_1_NOW</span>,
-                            <span class="ident">DF_1_GLOBAL</span>,
-                            <span class="ident">DF_1_GROUP</span>,
-                            <span class="ident">DF_1_NODELETE</span>,
-                            <span class="ident">DF_1_LOADFLTR</span>,
-                            <span class="ident">DF_1_INITFIRST</span>,
-                            <span class="ident">DF_1_NOOPEN</span>,
-                            <span class="ident">DF_1_ORIGIN</span>,
-                            <span class="ident">DF_1_DIRECT</span>,
-                            <span class="ident">DF_1_TRANS</span>,
-                            <span class="ident">DF_1_INTERPOSE</span>,
-                            <span class="ident">DF_1_NODEFLIB</span>,
-                            <span class="ident">DF_1_NODUMP</span>,
-                            <span class="ident">DF_1_CONFALT</span>,
-                            <span class="ident">DF_1_ENDFILTEE</span>,
-                            <span class="ident">DF_1_DISPRELDNE</span>,
-                            <span class="ident">DF_1_DISPRELPND</span>,
-                            <span class="ident">DF_1_NODIRECT</span>,
-                            <span class="ident">DF_1_IGNMULDEF</span>,
-                            <span class="ident">DF_1_NOKSYMS</span>,
-                            <span class="ident">DF_1_NOHDR</span>,
-                            <span class="ident">DF_1_EDITED</span>,
-                            <span class="ident">DF_1_NORELOC</span>,
-                            <span class="ident">DF_1_SYMINTPOSE</span>,
-                            <span class="ident">DF_1_GLOBAUDIT</span>,
-                            <span class="ident">DF_1_SINGLETON</span>,
-                            <span class="ident">DF_1_PIE</span>,
+                    <span class="kw">let </span>flags_1: Vec&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str&gt; = [
+                            DF_1_NOW,
+                            DF_1_GLOBAL,
+                            DF_1_GROUP,
+                            DF_1_NODELETE,
+                            DF_1_LOADFLTR,
+                            DF_1_INITFIRST,
+                            DF_1_NOOPEN,
+                            DF_1_ORIGIN,
+                            DF_1_DIRECT,
+                            DF_1_TRANS,
+                            DF_1_INTERPOSE,
+                            DF_1_NODEFLIB,
+                            DF_1_NODUMP,
+                            DF_1_CONFALT,
+                            DF_1_ENDFILTEE,
+                            DF_1_DISPRELDNE,
+                            DF_1_DISPRELPND,
+                            DF_1_NODIRECT,
+                            DF_1_IGNMULDEF,
+                            DF_1_NOKSYMS,
+                            DF_1_NOHDR,
+                            DF_1_EDITED,
+                            DF_1_NORELOC,
+                            DF_1_SYMINTPOSE,
+                            DF_1_GLOBAUDIT,
+                            DF_1_SINGLETON,
+                            DF_1_PIE,
                         ][..]
-                        .<span class="ident">iter</span>()
-                        .<span class="ident">filter</span>(<span class="op">|</span><span class="ident">f</span><span class="op">|</span> (<span class="self">self</span>.<span class="ident">flags_1</span> <span class="kw">as</span> <span class="ident">u64</span> <span class="op">&amp;</span> <span class="kw-2">*</span><span class="ident">f</span>) <span class="op">!</span><span class="op">=</span> <span class="number">0</span>)
-                        .<span class="ident">map</span>(<span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">df_1_tag_to_str</span>(<span class="kw-2">*</span><span class="ident">f</span>))
-                        .<span class="ident">collect</span>();
+                        .iter()
+                        .filter(|f| (<span class="self">self</span>.flags_1 <span class="kw">as </span>u64 &amp; <span class="kw-2">*</span>f) != <span class="number">0</span>)
+                        .map(|f| df_1_tag_to_str(<span class="kw-2">*</span>f))
+                        .collect();
 
-                    <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;DynamicInfo&quot;</span>)
-                        .<span class="ident">field</span>(<span class="string">&quot;rela&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;0x{:x}&quot;</span>, <span class="self">self</span>.<span class="ident">rela</span>))
-                        .<span class="ident">field</span>(<span class="string">&quot;relasz&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">relasz</span>)
-                        .<span class="ident">field</span>(<span class="string">&quot;relaent&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">relaent</span>)
-                        .<span class="ident">field</span>(<span class="string">&quot;relacount&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">relacount</span>)
-                        .<span class="ident">field</span>(<span class="string">&quot;gnu_hash&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;0x{:x}&quot;</span>, <span class="ident">gnu_hash</span>))
-                        .<span class="ident">field</span>(<span class="string">&quot;hash&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;0x{:x}&quot;</span>, <span class="ident">hash</span>))
-                        .<span class="ident">field</span>(<span class="string">&quot;strtab&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;0x{:x}&quot;</span>, <span class="self">self</span>.<span class="ident">strtab</span>))
-                        .<span class="ident">field</span>(<span class="string">&quot;strsz&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">strsz</span>)
-                        .<span class="ident">field</span>(<span class="string">&quot;symtab&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;0x{:x}&quot;</span>, <span class="self">self</span>.<span class="ident">symtab</span>))
-                        .<span class="ident">field</span>(<span class="string">&quot;syment&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">syment</span>)
-                        .<span class="ident">field</span>(<span class="string">&quot;pltgot&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;0x{:x}&quot;</span>, <span class="ident">pltgot</span>))
-                        .<span class="ident">field</span>(<span class="string">&quot;pltrelsz&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">pltrelsz</span>)
-                        .<span class="ident">field</span>(<span class="string">&quot;pltrel&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">pltrel</span>)
-                        .<span class="ident">field</span>(<span class="string">&quot;jmprel&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;0x{:x}&quot;</span>, <span class="self">self</span>.<span class="ident">jmprel</span>))
-                        .<span class="ident">field</span>(<span class="string">&quot;verdef&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;0x{:x}&quot;</span>, <span class="self">self</span>.<span class="ident">verdef</span>))
-                        .<span class="ident">field</span>(<span class="string">&quot;verdefnum&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">verdefnum</span>)
-                        .<span class="ident">field</span>(<span class="string">&quot;verneed&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;0x{:x}&quot;</span>, <span class="self">self</span>.<span class="ident">verneed</span>))
-                        .<span class="ident">field</span>(<span class="string">&quot;verneednum&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">verneednum</span>)
-                        .<span class="ident">field</span>(<span class="string">&quot;versym&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;0x{:x}&quot;</span>, <span class="self">self</span>.<span class="ident">versym</span>))
-                        .<span class="ident">field</span>(<span class="string">&quot;init&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;0x{:x}&quot;</span>, <span class="self">self</span>.<span class="ident">init</span>))
-                        .<span class="ident">field</span>(<span class="string">&quot;fini&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;0x{:x}&quot;</span>, <span class="self">self</span>.<span class="ident">fini</span>))
-                        .<span class="ident">field</span>(<span class="string">&quot;init_array&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{:#x}&quot;</span>, <span class="self">self</span>.<span class="ident">init_array</span>))
-                        .<span class="ident">field</span>(<span class="string">&quot;init_arraysz&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">init_arraysz</span>)
-                        .<span class="ident">field</span>(<span class="string">&quot;needed_count&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">needed_count</span>)
-                        .<span class="ident">field</span>(<span class="string">&quot;flags&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{:#0width$x} {:?}&quot;</span>, <span class="self">self</span>.<span class="ident">flags</span>, <span class="ident">flags</span>, <span class="ident">width</span> <span class="op">=</span> <span class="ident">core::mem::size_of_val</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">flags</span>)))
-                        .<span class="ident">field</span>(<span class="string">&quot;flags_1&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{:#0width$x} {:?}&quot;</span>, <span class="self">self</span>.<span class="ident">flags_1</span>, <span class="ident">flags_1</span>, <span class="ident">width</span> <span class="op">=</span> <span class="ident">core::mem::size_of_val</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">flags_1</span>)))
-                        .<span class="ident">field</span>(<span class="string">&quot;soname&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">soname</span>)
-                        .<span class="ident">field</span>(<span class="string">&quot;textrel&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">textrel</span>)
-                        .<span class="ident">finish</span>()
+                    f.debug_struct(<span class="string">&quot;DynamicInfo&quot;</span>)
+                        .field(<span class="string">&quot;rela&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;0x{:x}&quot;</span>, <span class="self">self</span>.rela))
+                        .field(<span class="string">&quot;relasz&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.relasz)
+                        .field(<span class="string">&quot;relaent&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.relaent)
+                        .field(<span class="string">&quot;relacount&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.relacount)
+                        .field(<span class="string">&quot;gnu_hash&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;0x{:x}&quot;</span>, gnu_hash))
+                        .field(<span class="string">&quot;hash&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;0x{:x}&quot;</span>, hash))
+                        .field(<span class="string">&quot;strtab&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;0x{:x}&quot;</span>, <span class="self">self</span>.strtab))
+                        .field(<span class="string">&quot;strsz&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.strsz)
+                        .field(<span class="string">&quot;symtab&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;0x{:x}&quot;</span>, <span class="self">self</span>.symtab))
+                        .field(<span class="string">&quot;syment&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.syment)
+                        .field(<span class="string">&quot;pltgot&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;0x{:x}&quot;</span>, pltgot))
+                        .field(<span class="string">&quot;pltrelsz&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.pltrelsz)
+                        .field(<span class="string">&quot;pltrel&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.pltrel)
+                        .field(<span class="string">&quot;jmprel&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;0x{:x}&quot;</span>, <span class="self">self</span>.jmprel))
+                        .field(<span class="string">&quot;verdef&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;0x{:x}&quot;</span>, <span class="self">self</span>.verdef))
+                        .field(<span class="string">&quot;verdefnum&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.verdefnum)
+                        .field(<span class="string">&quot;verneed&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;0x{:x}&quot;</span>, <span class="self">self</span>.verneed))
+                        .field(<span class="string">&quot;verneednum&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.verneednum)
+                        .field(<span class="string">&quot;versym&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;0x{:x}&quot;</span>, <span class="self">self</span>.versym))
+                        .field(<span class="string">&quot;init&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;0x{:x}&quot;</span>, <span class="self">self</span>.init))
+                        .field(<span class="string">&quot;fini&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;0x{:x}&quot;</span>, <span class="self">self</span>.fini))
+                        .field(<span class="string">&quot;init_array&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{:#x}&quot;</span>, <span class="self">self</span>.init_array))
+                        .field(<span class="string">&quot;init_arraysz&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.init_arraysz)
+                        .field(<span class="string">&quot;needed_count&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.needed_count)
+                        .field(<span class="string">&quot;flags&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{:#0width$x} {:?}&quot;</span>, <span class="self">self</span>.flags, flags, width = core::mem::size_of_val(<span class="kw-2">&amp;</span><span class="self">self</span>.flags)))
+                        .field(<span class="string">&quot;flags_1&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{:#0width$x} {:?}&quot;</span>, <span class="self">self</span>.flags_1, flags_1, width = core::mem::size_of_val(<span class="kw-2">&amp;</span><span class="self">self</span>.flags_1)))
+                        .field(<span class="string">&quot;soname&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.soname)
+                        .field(<span class="string">&quot;textrel&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.textrel)
+                        .finish()
                 }
             }
         }
     };
 }
 
-<span class="macro">if_alloc!</span> {
-    <span class="macro">elf_dynamic_info_std_impl!</span>(<span class="ident">u64</span>, <span class="ident"><span class="kw">crate</span>::elf::program_header::ProgramHeader</span>);
+<span class="macro">if_alloc! </span>{
+    <span class="macro">elf_dynamic_info_std_impl!</span>(u64, <span class="kw">crate</span>::elf::program_header::ProgramHeader);
 }
 
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">dyn32</span> {
-    <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::elf::dynamic</span>::<span class="kw-2">*</span>;
+<span class="kw">pub mod </span>dyn32 {
+    <span class="kw">pub use </span><span class="kw">crate</span>::elf::dynamic::<span class="kw-2">*</span>;
 
-    <span class="macro">elf_dyn!</span>(<span class="ident">u32</span>);
+    <span class="macro">elf_dyn!</span>(u32);
 
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIZEOF_DYN</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">8</span>;
+    <span class="kw">pub const </span>SIZEOF_DYN: usize = <span class="number">8</span>;
 
-    <span class="macro">elf_dyn_std_impl!</span>(<span class="ident">u32</span>, <span class="ident"><span class="kw">crate</span>::elf32::program_header::ProgramHeader</span>);
+    <span class="macro">elf_dyn_std_impl!</span>(u32, <span class="kw">crate</span>::elf32::program_header::ProgramHeader);
     <span class="macro">elf_dynamic_info_std_impl!</span>(
-        <span class="ident">u32</span>,
-        <span class="ident"><span class="kw">crate</span>::elf::program_header::program_header32::ProgramHeader</span>
+        u32,
+        <span class="kw">crate</span>::elf::program_header::program_header32::ProgramHeader
     );
 }
 
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">dyn64</span> {
-    <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::elf::dynamic</span>::<span class="kw-2">*</span>;
+<span class="kw">pub mod </span>dyn64 {
+    <span class="kw">pub use </span><span class="kw">crate</span>::elf::dynamic::<span class="kw-2">*</span>;
 
-    <span class="macro">elf_dyn!</span>(<span class="ident">u64</span>);
+    <span class="macro">elf_dyn!</span>(u64);
 
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIZEOF_DYN</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">16</span>;
+    <span class="kw">pub const </span>SIZEOF_DYN: usize = <span class="number">16</span>;
 
-    <span class="macro">elf_dyn_std_impl!</span>(<span class="ident">u64</span>, <span class="ident"><span class="kw">crate</span>::elf64::program_header::ProgramHeader</span>);
+    <span class="macro">elf_dyn_std_impl!</span>(u64, <span class="kw">crate</span>::elf64::program_header::ProgramHeader);
     <span class="macro">elf_dynamic_info_std_impl!</span>(
-        <span class="ident">u64</span>,
-        <span class="ident"><span class="kw">crate</span>::elf::program_header::program_header64::ProgramHeader</span>
+        u64,
+        <span class="kw">crate</span>::elf::program_header::program_header64::ProgramHeader
     );
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="goblin" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="goblin" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (77e57db38 2022-10-30)" ></div></body></html>

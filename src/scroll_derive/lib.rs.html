@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/scroll_derive-0.11.0/src/lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../scroll_derive/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../scroll_derive/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../scroll_derive/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/scroll_derive-0.11.0/src/lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../scroll_derive/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -536,543 +536,543 @@
 <span id="536">536</span>
 <span id="537">537</span>
 <span id="538">538</span>
-</pre><pre class="rust"><code><span class="attribute">#![<span class="ident">recursion_limit</span> <span class="op">=</span> <span class="string">&quot;1024&quot;</span>]</span>
+</pre><pre class="rust"><code><span class="attribute">#![recursion_limit = <span class="string">&quot;1024&quot;</span>]
 
-<span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">proc_macro</span>;
-<span class="kw">use</span> <span class="ident">proc_macro2</span>;
-<span class="kw">use</span> <span class="ident">quote::quote</span>;
+</span><span class="kw">extern crate </span>proc_macro;
+<span class="kw">use </span>proc_macro2;
+<span class="kw">use </span>quote::quote;
 
-<span class="kw">use</span> <span class="ident">proc_macro::TokenStream</span>;
+<span class="kw">use </span>proc_macro::TokenStream;
 
-<span class="kw">fn</span> <span class="ident">impl_field</span>(<span class="ident">ident</span>: <span class="kw-2">&amp;</span><span class="ident">proc_macro2::TokenStream</span>, <span class="ident">ty</span>: <span class="kw-2">&amp;</span><span class="ident">syn::Type</span>) -&gt; <span class="ident">proc_macro2::TokenStream</span> {
-    <span class="kw">match</span> <span class="kw-2">*</span><span class="ident">ty</span> {
-        <span class="ident">syn::Type::Array</span>(<span class="kw-2">ref</span> <span class="ident">array</span>) =&gt; <span class="kw">match</span> <span class="ident">array</span>.<span class="ident">len</span> {
-            <span class="ident">syn::Expr::Lit</span>(<span class="ident">syn::ExprLit</span> {
-                <span class="ident">lit</span>: <span class="ident">syn::Lit::Int</span>(<span class="kw-2">ref</span> <span class="ident">int</span>),
+<span class="kw">fn </span>impl_field(ident: <span class="kw-2">&amp;</span>proc_macro2::TokenStream, ty: <span class="kw-2">&amp;</span>syn::Type) -&gt; proc_macro2::TokenStream {
+    <span class="kw">match </span><span class="kw-2">*</span>ty {
+        syn::Type::Array(<span class="kw-2">ref </span>array) =&gt; <span class="kw">match </span>array.len {
+            syn::Expr::Lit(syn::ExprLit {
+                lit: syn::Lit::Int(<span class="kw-2">ref </span>int),
                 ..
             }) =&gt; {
-                <span class="kw">let</span> <span class="ident">size</span> <span class="op">=</span> <span class="ident">int</span>.<span class="ident">base10_parse</span>::<span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span>().<span class="ident">unwrap</span>();
-                <span class="macro">quote!</span> {
-                    #<span class="ident">ident</span>: { <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">__tmp</span>: #<span class="ident">ty</span> <span class="op">=</span> [<span class="number">0u8</span>.<span class="ident">into</span>(); #<span class="ident">size</span>]; <span class="ident">src</span>.<span class="ident">gread_inout_with</span>(<span class="ident">offset</span>, <span class="kw-2">&amp;mut</span> <span class="ident">__tmp</span>, <span class="ident">ctx</span>)<span class="question-mark">?</span>; <span class="ident">__tmp</span> }
+                <span class="kw">let </span>size = int.base10_parse::&lt;usize&gt;().unwrap();
+                <span class="macro">quote! </span>{
+                    #ident: { <span class="kw">let </span><span class="kw-2">mut </span>__tmp: #ty = [<span class="number">0u8</span>.into(); #size]; src.gread_inout_with(offset, <span class="kw-2">&amp;mut </span>__tmp, ctx)<span class="question-mark">?</span>; __tmp }
                 }
             }
-            <span class="kw">_</span> =&gt; <span class="macro">panic!</span>(<span class="string">&quot;Pread derive with bad array constexpr&quot;</span>),
+            <span class="kw">_ </span>=&gt; <span class="macro">panic!</span>(<span class="string">&quot;Pread derive with bad array constexpr&quot;</span>),
         },
-        <span class="ident">syn::Type::Group</span>(<span class="kw-2">ref</span> <span class="ident">group</span>) =&gt; <span class="ident">impl_field</span>(<span class="ident">ident</span>, <span class="kw-2">&amp;</span><span class="ident">group</span>.<span class="ident">elem</span>),
-        <span class="kw">_</span> =&gt; {
-            <span class="macro">quote!</span> {
-                #<span class="ident">ident</span>: <span class="ident">src</span>.<span class="ident">gread_with</span>::<span class="op">&lt;</span>#<span class="ident">ty</span><span class="op">&gt;</span>(<span class="ident">offset</span>, <span class="ident">ctx</span>)<span class="question-mark">?</span>
-            }
+        syn::Type::Group(<span class="kw-2">ref </span>group) =&gt; impl_field(ident, <span class="kw-2">&amp;</span>group.elem),
+        <span class="kw">_ </span>=&gt; {
+            <span class="macro">quote! </span>{
+                #ident: src.gread_with::&lt;#ty&gt;(offset, ctx)<span class="question-mark">?
+            </span>}
         }
     }
 }
 
-<span class="kw">fn</span> <span class="ident">impl_struct</span>(
-    <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">syn::Ident</span>,
-    <span class="ident">fields</span>: <span class="kw-2">&amp;</span><span class="ident">syn::punctuated::Punctuated</span><span class="op">&lt;</span><span class="ident">syn::Field</span>, <span class="macro">syn::Token!</span>[,]<span class="op">&gt;</span>,
-    <span class="ident">generics</span>: <span class="kw-2">&amp;</span><span class="ident">syn::Generics</span>,
-) -&gt; <span class="ident">proc_macro2::TokenStream</span> {
-    <span class="kw">let</span> <span class="ident">items</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="kw">_</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">fields</span>
-        .<span class="ident">iter</span>()
-        .<span class="ident">enumerate</span>()
-        .<span class="ident">map</span>(<span class="op">|</span>(<span class="ident">i</span>, <span class="ident">f</span>)<span class="op">|</span> {
-            <span class="kw">let</span> <span class="ident">ident</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">f</span>.<span class="ident">ident</span>.<span class="ident">as_ref</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">i</span><span class="op">|</span> <span class="macro">quote!</span> {#<span class="ident">i</span>}).<span class="ident">unwrap_or</span>({
-                <span class="kw">let</span> <span class="ident">t</span> <span class="op">=</span> <span class="ident">proc_macro2::Literal::usize_unsuffixed</span>(<span class="ident">i</span>);
-                <span class="macro">quote!</span> {#<span class="ident">t</span>}
+<span class="kw">fn </span>impl_struct(
+    name: <span class="kw-2">&amp;</span>syn::Ident,
+    fields: <span class="kw-2">&amp;</span>syn::punctuated::Punctuated&lt;syn::Field, <span class="macro">syn::Token!</span>[,]&gt;,
+    generics: <span class="kw-2">&amp;</span>syn::Generics,
+) -&gt; proc_macro2::TokenStream {
+    <span class="kw">let </span>items: Vec&lt;<span class="kw">_</span>&gt; = fields
+        .iter()
+        .enumerate()
+        .map(|(i, f)| {
+            <span class="kw">let </span>ident = <span class="kw-2">&amp;</span>f.ident.as_ref().map(|i| <span class="macro">quote! </span>{#i}).unwrap_or({
+                <span class="kw">let </span>t = proc_macro2::Literal::usize_unsuffixed(i);
+                <span class="macro">quote! </span>{#t}
             });
-            <span class="kw">let</span> <span class="ident">ty</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">f</span>.<span class="ident">ty</span>;
-            <span class="ident">impl_field</span>(<span class="ident">ident</span>, <span class="ident">ty</span>)
+            <span class="kw">let </span>ty = <span class="kw-2">&amp;</span>f.ty;
+            impl_field(ident, ty)
         })
-        .<span class="ident">collect</span>();
+        .collect();
 
-    <span class="kw">let</span> <span class="ident">gl</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">generics</span>.<span class="ident">lt_token</span>;
-    <span class="kw">let</span> <span class="ident">gp</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">generics</span>.<span class="ident">params</span>;
-    <span class="kw">let</span> <span class="ident">gg</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">generics</span>.<span class="ident">gt_token</span>;
-    <span class="kw">let</span> <span class="ident">gn</span> <span class="op">=</span> <span class="ident">gp</span>.<span class="ident">iter</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">param</span>: <span class="kw-2">&amp;</span><span class="ident">syn::GenericParam</span><span class="op">|</span> <span class="kw">match</span> <span class="ident">param</span> {
-        <span class="ident">syn::GenericParam::Type</span>(<span class="kw-2">ref</span> <span class="ident">t</span>) =&gt; {
-            <span class="kw">let</span> <span class="ident">ident</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">t</span>.<span class="ident">ident</span>;
-            <span class="macro">quote!</span> { #<span class="ident">ident</span> }
+    <span class="kw">let </span>gl = <span class="kw-2">&amp;</span>generics.lt_token;
+    <span class="kw">let </span>gp = <span class="kw-2">&amp;</span>generics.params;
+    <span class="kw">let </span>gg = <span class="kw-2">&amp;</span>generics.gt_token;
+    <span class="kw">let </span>gn = gp.iter().map(|param: <span class="kw-2">&amp;</span>syn::GenericParam| <span class="kw">match </span>param {
+        syn::GenericParam::Type(<span class="kw-2">ref </span>t) =&gt; {
+            <span class="kw">let </span>ident = <span class="kw-2">&amp;</span>t.ident;
+            <span class="macro">quote! </span>{ #ident }
         }
-        <span class="ident">p</span> =&gt; <span class="macro">quote!</span> { #<span class="ident">p</span> },
+        p =&gt; <span class="macro">quote! </span>{ #p },
     });
-    <span class="kw">let</span> <span class="ident">gn</span> <span class="op">=</span> <span class="macro">quote!</span> { #<span class="ident">gl</span> #( #<span class="ident">gn</span> ),<span class="op">*</span> #<span class="ident">gg</span> };
-    <span class="kw">let</span> <span class="ident">gw</span> <span class="op">=</span> <span class="kw">if</span> <span class="op">!</span><span class="ident">gp</span>.<span class="ident">is_empty</span>() {
-        <span class="kw">let</span> <span class="ident">gi</span> <span class="op">=</span> <span class="ident">gp</span>.<span class="ident">iter</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">param</span>: <span class="kw-2">&amp;</span><span class="ident">syn::GenericParam</span><span class="op">|</span> <span class="kw">match</span> <span class="ident">param</span> {
-            <span class="ident">syn::GenericParam::Type</span>(<span class="kw-2">ref</span> <span class="ident">t</span>) =&gt; {
-                <span class="kw">let</span> <span class="ident">ident</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">t</span>.<span class="ident">ident</span>;
-                <span class="macro">quote!</span> {
-                    #<span class="ident">ident</span> : <span class="ident">::scroll::ctx::TryFromCtx</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">::scroll::Endian</span><span class="op">&gt;</span> <span class="op">+</span> <span class="ident">::std::convert::From</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span> <span class="op">+</span> <span class="ident">::std::marker::Copy</span>,
-                    <span class="ident">::scroll::Error</span> : <span class="ident">::std::convert::From</span><span class="op">&lt;</span><span class="op">&lt;</span> #<span class="ident">ident</span> <span class="kw">as</span> <span class="ident">::scroll::ctx::TryFromCtx</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">::scroll::Endian</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="ident">::Error</span><span class="op">&gt;</span>,
-                    <span class="op">&lt;</span> #<span class="ident">ident</span> <span class="kw">as</span> <span class="ident">::scroll::ctx::TryFromCtx</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">::scroll::Endian</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="ident">::Error</span> : <span class="ident">::std::convert::From</span><span class="op">&lt;</span><span class="ident">scroll::Error</span><span class="op">&gt;</span>
+    <span class="kw">let </span>gn = <span class="macro">quote! </span>{ #gl #( #gn ),* #gg };
+    <span class="kw">let </span>gw = <span class="kw">if </span>!gp.is_empty() {
+        <span class="kw">let </span>gi = gp.iter().map(|param: <span class="kw-2">&amp;</span>syn::GenericParam| <span class="kw">match </span>param {
+            syn::GenericParam::Type(<span class="kw-2">ref </span>t) =&gt; {
+                <span class="kw">let </span>ident = <span class="kw-2">&amp;</span>t.ident;
+                <span class="macro">quote! </span>{
+                    #ident : ::scroll::ctx::TryFromCtx&lt;<span class="lifetime">&#39;a</span>, ::scroll::Endian&gt; + ::std::convert::From&lt;u8&gt; + ::std::marker::Copy,
+                    ::scroll::Error : ::std::convert::From&lt;&lt; #ident <span class="kw">as </span>::scroll::ctx::TryFromCtx&lt;<span class="lifetime">&#39;a</span>, ::scroll::Endian&gt;&gt;::Error&gt;,
+                    &lt; #ident <span class="kw">as </span>::scroll::ctx::TryFromCtx&lt;<span class="lifetime">&#39;a</span>, ::scroll::Endian&gt;&gt;::Error : ::std::convert::From&lt;scroll::Error&gt;
                 }
             },
-            <span class="ident">p</span> =&gt; <span class="macro">quote!</span> { #<span class="ident">p</span> }
+            p =&gt; <span class="macro">quote! </span>{ #p }
         });
-        <span class="macro">quote!</span> { #( #<span class="ident">gi</span> ),<span class="op">*</span> , }
-    } <span class="kw">else</span> {
-        <span class="macro">quote!</span> {}
+        <span class="macro">quote! </span>{ #( #gi ),* , }
+    } <span class="kw">else </span>{
+        <span class="macro">quote! </span>{}
     };
 
-    <span class="macro">quote!</span> {
-        <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, #<span class="ident">gp</span> <span class="op">&gt;</span> <span class="ident">::scroll::ctx::TryFromCtx</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">::scroll::Endian</span><span class="op">&gt;</span> <span class="kw">for</span> #<span class="ident">name</span> #<span class="ident">gn</span> <span class="kw">where</span> #<span class="ident">gw</span> #<span class="ident">name</span> #<span class="ident">gn</span> : <span class="lifetime">&#39;a</span> {
-            <span class="kw">type</span> <span class="ident">Error</span> <span class="op">=</span> <span class="ident">::scroll::Error</span>;
-            <span class="attribute">#[<span class="ident">inline</span>]</span>
-            <span class="kw">fn</span> <span class="ident">try_from_ctx</span>(<span class="ident">src</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>], <span class="ident">ctx</span>: <span class="ident">::scroll::Endian</span>) -&gt; <span class="ident">::scroll::export::result::Result</span><span class="op">&lt;</span>(<span class="self">Self</span>, <span class="ident">usize</span>), <span class="ident"><span class="self">Self</span>::Error</span><span class="op">&gt;</span> {
-                <span class="kw">use</span> <span class="ident">::scroll::Pread</span>;
-                <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> <span class="kw-2">&amp;mut</span> <span class="number">0</span>;
-                <span class="kw">let</span> <span class="ident">data</span>  <span class="op">=</span> <span class="self">Self</span> { #(#<span class="ident">items</span>,)<span class="op">*</span> };
-                <span class="prelude-val">Ok</span>((<span class="ident">data</span>, <span class="kw-2">*</span><span class="ident">offset</span>))
+    <span class="macro">quote! </span>{
+        <span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>, #gp &gt; ::scroll::ctx::TryFromCtx&lt;<span class="lifetime">&#39;a</span>, ::scroll::Endian&gt; <span class="kw">for </span>#name #gn <span class="kw">where </span>#gw #name #gn : <span class="lifetime">&#39;a </span>{
+            <span class="kw">type </span>Error = ::scroll::Error;
+            <span class="attribute">#[inline]
+            </span><span class="kw">fn </span>try_from_ctx(src: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8], ctx: ::scroll::Endian) -&gt; ::scroll::export::result::Result&lt;(<span class="self">Self</span>, usize), <span class="self">Self</span>::Error&gt; {
+                <span class="kw">use </span>::scroll::Pread;
+                <span class="kw">let </span>offset = <span class="kw-2">&amp;mut </span><span class="number">0</span>;
+                <span class="kw">let </span>data  = <span class="self">Self </span>{ #(#items,)* };
+                <span class="prelude-val">Ok</span>((data, <span class="kw-2">*</span>offset))
             }
         }
     }
 }
 
-<span class="kw">fn</span> <span class="ident">impl_try_from_ctx</span>(<span class="ident">ast</span>: <span class="kw-2">&amp;</span><span class="ident">syn::DeriveInput</span>) -&gt; <span class="ident">proc_macro2::TokenStream</span> {
-    <span class="kw">let</span> <span class="ident">name</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">ast</span>.<span class="ident">ident</span>;
-    <span class="kw">let</span> <span class="ident">generics</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">ast</span>.<span class="ident">generics</span>;
-    <span class="kw">match</span> <span class="ident">ast</span>.<span class="ident">data</span> {
-        <span class="ident">syn::Data::Struct</span>(<span class="kw-2">ref</span> <span class="ident">data</span>) =&gt; <span class="kw">match</span> <span class="ident">data</span>.<span class="ident">fields</span> {
-            <span class="ident">syn::Fields::Named</span>(<span class="kw-2">ref</span> <span class="ident">fields</span>) =&gt; <span class="ident">impl_struct</span>(<span class="ident">name</span>, <span class="kw-2">&amp;</span><span class="ident">fields</span>.<span class="ident">named</span>, <span class="ident">generics</span>),
-            <span class="ident">syn::Fields::Unnamed</span>(<span class="kw-2">ref</span> <span class="ident">fields</span>) =&gt; <span class="ident">impl_struct</span>(<span class="ident">name</span>, <span class="kw-2">&amp;</span><span class="ident">fields</span>.<span class="ident">unnamed</span>, <span class="ident">generics</span>),
-            <span class="kw">_</span> =&gt; {
+<span class="kw">fn </span>impl_try_from_ctx(ast: <span class="kw-2">&amp;</span>syn::DeriveInput) -&gt; proc_macro2::TokenStream {
+    <span class="kw">let </span>name = <span class="kw-2">&amp;</span>ast.ident;
+    <span class="kw">let </span>generics = <span class="kw-2">&amp;</span>ast.generics;
+    <span class="kw">match </span>ast.data {
+        syn::Data::Struct(<span class="kw-2">ref </span>data) =&gt; <span class="kw">match </span>data.fields {
+            syn::Fields::Named(<span class="kw-2">ref </span>fields) =&gt; impl_struct(name, <span class="kw-2">&amp;</span>fields.named, generics),
+            syn::Fields::Unnamed(<span class="kw-2">ref </span>fields) =&gt; impl_struct(name, <span class="kw-2">&amp;</span>fields.unnamed, generics),
+            <span class="kw">_ </span>=&gt; {
                 <span class="macro">panic!</span>(<span class="string">&quot;Pread can not be derived for unit structs&quot;</span>)
             }
         },
-        <span class="kw">_</span> =&gt; <span class="macro">panic!</span>(<span class="string">&quot;Pread can only be derived for structs&quot;</span>),
+        <span class="kw">_ </span>=&gt; <span class="macro">panic!</span>(<span class="string">&quot;Pread can only be derived for structs&quot;</span>),
     }
 }
 
-<span class="attribute">#[<span class="ident">proc_macro_derive</span>(<span class="ident">Pread</span>)]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">derive_pread</span>(<span class="ident">input</span>: <span class="ident">TokenStream</span>) -&gt; <span class="ident">TokenStream</span> {
-    <span class="kw">let</span> <span class="ident">ast</span>: <span class="ident">syn::DeriveInput</span> <span class="op">=</span> <span class="ident">syn::parse</span>(<span class="ident">input</span>).<span class="ident">unwrap</span>();
-    <span class="kw">let</span> <span class="ident">gen</span> <span class="op">=</span> <span class="ident">impl_try_from_ctx</span>(<span class="kw-2">&amp;</span><span class="ident">ast</span>);
-    <span class="ident">gen</span>.<span class="ident">into</span>()
+<span class="attribute">#[proc_macro_derive(Pread)]
+</span><span class="kw">pub fn </span>derive_pread(input: TokenStream) -&gt; TokenStream {
+    <span class="kw">let </span>ast: syn::DeriveInput = syn::parse(input).unwrap();
+    <span class="kw">let </span>gen = impl_try_from_ctx(<span class="kw-2">&amp;</span>ast);
+    gen.into()
 }
 
-<span class="kw">fn</span> <span class="ident">impl_pwrite_field</span>(<span class="ident">ident</span>: <span class="kw-2">&amp;</span><span class="ident">proc_macro2::TokenStream</span>, <span class="ident">ty</span>: <span class="kw-2">&amp;</span><span class="ident">syn::Type</span>) -&gt; <span class="ident">proc_macro2::TokenStream</span> {
-    <span class="kw">match</span> <span class="ident">ty</span> {
-        <span class="ident">syn::Type::Array</span>(<span class="kw-2">ref</span> <span class="ident">array</span>) =&gt; <span class="kw">match</span> <span class="ident">array</span>.<span class="ident">len</span> {
-            <span class="ident">syn::Expr::Lit</span>(<span class="ident">syn::ExprLit</span> {
-                <span class="ident">lit</span>: <span class="ident">syn::Lit::Int</span>(<span class="kw-2">ref</span> <span class="ident">int</span>),
+<span class="kw">fn </span>impl_pwrite_field(ident: <span class="kw-2">&amp;</span>proc_macro2::TokenStream, ty: <span class="kw-2">&amp;</span>syn::Type) -&gt; proc_macro2::TokenStream {
+    <span class="kw">match </span>ty {
+        syn::Type::Array(<span class="kw-2">ref </span>array) =&gt; <span class="kw">match </span>array.len {
+            syn::Expr::Lit(syn::ExprLit {
+                lit: syn::Lit::Int(<span class="kw-2">ref </span>int),
                 ..
             }) =&gt; {
-                <span class="kw">let</span> <span class="ident">size</span> <span class="op">=</span> <span class="ident">int</span>.<span class="ident">base10_parse</span>::<span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span>().<span class="ident">unwrap</span>();
-                <span class="macro">quote!</span> {
-                    <span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> <span class="number">0</span>..#<span class="ident">size</span> {
-                        <span class="ident">dst</span>.<span class="ident">gwrite_with</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.#<span class="ident">ident</span>[<span class="ident">i</span>], <span class="ident">offset</span>, <span class="ident">ctx</span>)<span class="question-mark">?</span>;
+                <span class="kw">let </span>size = int.base10_parse::&lt;usize&gt;().unwrap();
+                <span class="macro">quote! </span>{
+                    <span class="kw">for </span>i <span class="kw">in </span><span class="number">0</span>..#size {
+                        dst.gwrite_with(<span class="kw-2">&amp;</span><span class="self">self</span>.#ident[i], offset, ctx)<span class="question-mark">?</span>;
                     }
                 }
             }
-            <span class="kw">_</span> =&gt; <span class="macro">panic!</span>(<span class="string">&quot;Pwrite derive with bad array constexpr&quot;</span>),
+            <span class="kw">_ </span>=&gt; <span class="macro">panic!</span>(<span class="string">&quot;Pwrite derive with bad array constexpr&quot;</span>),
         },
-        <span class="ident">syn::Type::Group</span>(<span class="ident">group</span>) =&gt; <span class="ident">impl_pwrite_field</span>(<span class="ident">ident</span>, <span class="kw-2">&amp;</span><span class="ident">group</span>.<span class="ident">elem</span>),
-        <span class="kw">_</span> =&gt; {
-            <span class="macro">quote!</span> {
-                <span class="ident">dst</span>.<span class="ident">gwrite_with</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.#<span class="ident">ident</span>, <span class="ident">offset</span>, <span class="ident">ctx</span>)<span class="question-mark">?</span>
-            }
+        syn::Type::Group(group) =&gt; impl_pwrite_field(ident, <span class="kw-2">&amp;</span>group.elem),
+        <span class="kw">_ </span>=&gt; {
+            <span class="macro">quote! </span>{
+                dst.gwrite_with(<span class="kw-2">&amp;</span><span class="self">self</span>.#ident, offset, ctx)<span class="question-mark">?
+            </span>}
         }
     }
 }
 
-<span class="kw">fn</span> <span class="ident">impl_try_into_ctx</span>(
-    <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">syn::Ident</span>,
-    <span class="ident">fields</span>: <span class="kw-2">&amp;</span><span class="ident">syn::punctuated::Punctuated</span><span class="op">&lt;</span><span class="ident">syn::Field</span>, <span class="macro">syn::Token!</span>[,]<span class="op">&gt;</span>,
-    <span class="ident">generics</span>: <span class="kw-2">&amp;</span><span class="ident">syn::Generics</span>,
-) -&gt; <span class="ident">proc_macro2::TokenStream</span> {
-    <span class="kw">let</span> <span class="ident">items</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="kw">_</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">fields</span>
-        .<span class="ident">iter</span>()
-        .<span class="ident">enumerate</span>()
-        .<span class="ident">map</span>(<span class="op">|</span>(<span class="ident">i</span>, <span class="ident">f</span>)<span class="op">|</span> {
-            <span class="kw">let</span> <span class="ident">ident</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">f</span>.<span class="ident">ident</span>.<span class="ident">as_ref</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">i</span><span class="op">|</span> <span class="macro">quote!</span> {#<span class="ident">i</span>}).<span class="ident">unwrap_or</span>({
-                <span class="kw">let</span> <span class="ident">t</span> <span class="op">=</span> <span class="ident">proc_macro2::Literal::usize_unsuffixed</span>(<span class="ident">i</span>);
-                <span class="macro">quote!</span> {#<span class="ident">t</span>}
+<span class="kw">fn </span>impl_try_into_ctx(
+    name: <span class="kw-2">&amp;</span>syn::Ident,
+    fields: <span class="kw-2">&amp;</span>syn::punctuated::Punctuated&lt;syn::Field, <span class="macro">syn::Token!</span>[,]&gt;,
+    generics: <span class="kw-2">&amp;</span>syn::Generics,
+) -&gt; proc_macro2::TokenStream {
+    <span class="kw">let </span>items: Vec&lt;<span class="kw">_</span>&gt; = fields
+        .iter()
+        .enumerate()
+        .map(|(i, f)| {
+            <span class="kw">let </span>ident = <span class="kw-2">&amp;</span>f.ident.as_ref().map(|i| <span class="macro">quote! </span>{#i}).unwrap_or({
+                <span class="kw">let </span>t = proc_macro2::Literal::usize_unsuffixed(i);
+                <span class="macro">quote! </span>{#t}
             });
-            <span class="kw">let</span> <span class="ident">ty</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">f</span>.<span class="ident">ty</span>;
-            <span class="ident">impl_pwrite_field</span>(<span class="ident">ident</span>, <span class="ident">ty</span>)
+            <span class="kw">let </span>ty = <span class="kw-2">&amp;</span>f.ty;
+            impl_pwrite_field(ident, ty)
         })
-        .<span class="ident">collect</span>();
+        .collect();
 
-    <span class="kw">let</span> <span class="ident">gl</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">generics</span>.<span class="ident">lt_token</span>;
-    <span class="kw">let</span> <span class="ident">gp</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">generics</span>.<span class="ident">params</span>;
-    <span class="kw">let</span> <span class="ident">gg</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">generics</span>.<span class="ident">gt_token</span>;
-    <span class="kw">let</span> <span class="ident">gn</span> <span class="op">=</span> <span class="ident">gp</span>.<span class="ident">iter</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">param</span>: <span class="kw-2">&amp;</span><span class="ident">syn::GenericParam</span><span class="op">|</span> <span class="kw">match</span> <span class="ident">param</span> {
-        <span class="ident">syn::GenericParam::Type</span>(<span class="kw-2">ref</span> <span class="ident">t</span>) =&gt; {
-            <span class="kw">let</span> <span class="ident">ident</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">t</span>.<span class="ident">ident</span>;
-            <span class="macro">quote!</span> { #<span class="ident">ident</span> }
+    <span class="kw">let </span>gl = <span class="kw-2">&amp;</span>generics.lt_token;
+    <span class="kw">let </span>gp = <span class="kw-2">&amp;</span>generics.params;
+    <span class="kw">let </span>gg = <span class="kw-2">&amp;</span>generics.gt_token;
+    <span class="kw">let </span>gn = gp.iter().map(|param: <span class="kw-2">&amp;</span>syn::GenericParam| <span class="kw">match </span>param {
+        syn::GenericParam::Type(<span class="kw-2">ref </span>t) =&gt; {
+            <span class="kw">let </span>ident = <span class="kw-2">&amp;</span>t.ident;
+            <span class="macro">quote! </span>{ #ident }
         }
-        <span class="ident">p</span> =&gt; <span class="macro">quote!</span> { #<span class="ident">p</span> },
+        p =&gt; <span class="macro">quote! </span>{ #p },
     });
-    <span class="kw">let</span> <span class="ident">gn</span> <span class="op">=</span> <span class="macro">quote!</span> { #<span class="ident">gl</span> #( #<span class="ident">gn</span> ),<span class="op">*</span> #<span class="ident">gg</span> };
-    <span class="kw">let</span> <span class="ident">gwref</span> <span class="op">=</span> <span class="kw">if</span> <span class="op">!</span><span class="ident">gp</span>.<span class="ident">is_empty</span>() {
-        <span class="kw">let</span> <span class="ident">gi</span> <span class="op">=</span> <span class="ident">gp</span>.<span class="ident">iter</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">param</span>: <span class="kw-2">&amp;</span><span class="ident">syn::GenericParam</span><span class="op">|</span> <span class="kw">match</span> <span class="ident">param</span> {
-            <span class="ident">syn::GenericParam::Type</span>(<span class="kw-2">ref</span> <span class="ident">t</span>) =&gt; {
-                <span class="kw">let</span> <span class="ident">ident</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">t</span>.<span class="ident">ident</span>;
-                <span class="macro">quote!</span> {
-                    <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> #<span class="ident">ident</span> : <span class="ident">::scroll::ctx::TryIntoCtx</span><span class="op">&lt;</span><span class="ident">::scroll::Endian</span><span class="op">&gt;</span>,
-                    <span class="ident">::scroll::Error</span>: <span class="ident">::std::convert::From</span><span class="op">&lt;</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> #<span class="ident">ident</span> <span class="kw">as</span> <span class="ident">::scroll::ctx::TryIntoCtx</span><span class="op">&lt;</span><span class="ident">::scroll::Endian</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="ident">::Error</span><span class="op">&gt;</span>,
-                    <span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> #<span class="ident">ident</span> <span class="kw">as</span> <span class="ident">::scroll::ctx::TryIntoCtx</span><span class="op">&lt;</span><span class="ident">::scroll::Endian</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="ident">::Error</span>: <span class="ident">::std::convert::From</span><span class="op">&lt;</span><span class="ident">scroll::Error</span><span class="op">&gt;</span>
+    <span class="kw">let </span>gn = <span class="macro">quote! </span>{ #gl #( #gn ),* #gg };
+    <span class="kw">let </span>gwref = <span class="kw">if </span>!gp.is_empty() {
+        <span class="kw">let </span>gi = gp.iter().map(|param: <span class="kw-2">&amp;</span>syn::GenericParam| <span class="kw">match </span>param {
+            syn::GenericParam::Type(<span class="kw-2">ref </span>t) =&gt; {
+                <span class="kw">let </span>ident = <span class="kw-2">&amp;</span>t.ident;
+                <span class="macro">quote! </span>{
+                    <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>#ident : ::scroll::ctx::TryIntoCtx&lt;::scroll::Endian&gt;,
+                    ::scroll::Error: ::std::convert::From&lt;&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>#ident <span class="kw">as </span>::scroll::ctx::TryIntoCtx&lt;::scroll::Endian&gt;&gt;::Error&gt;,
+                    &lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>#ident <span class="kw">as </span>::scroll::ctx::TryIntoCtx&lt;::scroll::Endian&gt;&gt;::Error: ::std::convert::From&lt;scroll::Error&gt;
                 }
             },
-            <span class="ident">p</span> =&gt; <span class="macro">quote!</span> { #<span class="ident">p</span> }
+            p =&gt; <span class="macro">quote! </span>{ #p }
         });
-        <span class="macro">quote!</span> { <span class="kw">where</span> #( #<span class="ident">gi</span> ),<span class="op">*</span> }
-    } <span class="kw">else</span> {
-        <span class="macro">quote!</span> {}
+        <span class="macro">quote! </span>{ <span class="kw">where </span>#( #gi ),* }
+    } <span class="kw">else </span>{
+        <span class="macro">quote! </span>{}
     };
-    <span class="kw">let</span> <span class="ident">gw</span> <span class="op">=</span> <span class="kw">if</span> <span class="op">!</span><span class="ident">gp</span>.<span class="ident">is_empty</span>() {
-        <span class="kw">let</span> <span class="ident">gi</span> <span class="op">=</span> <span class="ident">gp</span>.<span class="ident">iter</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">param</span>: <span class="kw-2">&amp;</span><span class="ident">syn::GenericParam</span><span class="op">|</span> <span class="kw">match</span> <span class="ident">param</span> {
-            <span class="ident">syn::GenericParam::Type</span>(<span class="kw-2">ref</span> <span class="ident">t</span>) =&gt; {
-                <span class="kw">let</span> <span class="ident">ident</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">t</span>.<span class="ident">ident</span>;
-                <span class="macro">quote!</span> {
-                    #<span class="ident">ident</span> : <span class="ident">::scroll::ctx::TryIntoCtx</span><span class="op">&lt;</span><span class="ident">::scroll::Endian</span><span class="op">&gt;</span>,
-                    <span class="ident">::scroll::Error</span>: <span class="ident">::std::convert::From</span><span class="op">&lt;</span><span class="op">&lt;</span>#<span class="ident">ident</span> <span class="kw">as</span> <span class="ident">::scroll::ctx::TryIntoCtx</span><span class="op">&lt;</span><span class="ident">::scroll::Endian</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="ident">::Error</span><span class="op">&gt;</span>,
-                    <span class="op">&lt;</span>#<span class="ident">ident</span> <span class="kw">as</span> <span class="ident">::scroll::ctx::TryIntoCtx</span><span class="op">&lt;</span><span class="ident">::scroll::Endian</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="ident">::Error</span>: <span class="ident">::std::convert::From</span><span class="op">&lt;</span><span class="ident">scroll::Error</span><span class="op">&gt;</span>
+    <span class="kw">let </span>gw = <span class="kw">if </span>!gp.is_empty() {
+        <span class="kw">let </span>gi = gp.iter().map(|param: <span class="kw-2">&amp;</span>syn::GenericParam| <span class="kw">match </span>param {
+            syn::GenericParam::Type(<span class="kw-2">ref </span>t) =&gt; {
+                <span class="kw">let </span>ident = <span class="kw-2">&amp;</span>t.ident;
+                <span class="macro">quote! </span>{
+                    #ident : ::scroll::ctx::TryIntoCtx&lt;::scroll::Endian&gt;,
+                    ::scroll::Error: ::std::convert::From&lt;&lt;#ident <span class="kw">as </span>::scroll::ctx::TryIntoCtx&lt;::scroll::Endian&gt;&gt;::Error&gt;,
+                    &lt;#ident <span class="kw">as </span>::scroll::ctx::TryIntoCtx&lt;::scroll::Endian&gt;&gt;::Error: ::std::convert::From&lt;scroll::Error&gt;
                 }
             },
-            <span class="ident">p</span> =&gt; <span class="macro">quote!</span> { #<span class="ident">p</span> }
+            p =&gt; <span class="macro">quote! </span>{ #p }
         });
-        <span class="macro">quote!</span> { <span class="kw">where</span> <span class="self">Self</span>: <span class="ident">::std::marker::Copy</span>, #( #<span class="ident">gi</span> ),<span class="op">*</span> }
-    } <span class="kw">else</span> {
-        <span class="macro">quote!</span> {}
+        <span class="macro">quote! </span>{ <span class="kw">where </span><span class="self">Self</span>: ::std::marker::Copy, #( #gi ),* }
+    } <span class="kw">else </span>{
+        <span class="macro">quote! </span>{}
     };
 
-    <span class="macro">quote!</span> {
-        <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, #<span class="ident">gp</span> <span class="op">&gt;</span> <span class="ident">::scroll::ctx::TryIntoCtx</span><span class="op">&lt;</span><span class="ident">::scroll::Endian</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> #<span class="ident">name</span> #<span class="ident">gn</span> #<span class="ident">gwref</span> {
-            <span class="kw">type</span> <span class="ident">Error</span> <span class="op">=</span> <span class="ident">::scroll::Error</span>;
-            <span class="attribute">#[<span class="ident">inline</span>]</span>
-            <span class="kw">fn</span> <span class="ident">try_into_ctx</span>(<span class="self">self</span>, <span class="ident">dst</span>: <span class="kw-2">&amp;mut</span> [<span class="ident">u8</span>], <span class="ident">ctx</span>: <span class="ident">::scroll::Endian</span>) -&gt; <span class="ident">::scroll::export::result::Result</span><span class="op">&lt;</span><span class="ident">usize</span>, <span class="ident"><span class="self">Self</span>::Error</span><span class="op">&gt;</span> {
-                <span class="kw">use</span> <span class="ident">::scroll::Pwrite</span>;
-                <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> <span class="kw-2">&amp;mut</span> <span class="number">0</span>;
-                #(#<span class="ident">items</span>;)<span class="kw-2">*</span>;
-                <span class="prelude-val">Ok</span>(<span class="kw-2">*</span><span class="ident">offset</span>)
+    <span class="macro">quote! </span>{
+        <span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>, #gp &gt; ::scroll::ctx::TryIntoCtx&lt;::scroll::Endian&gt; <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>#name #gn #gwref {
+            <span class="kw">type </span>Error = ::scroll::Error;
+            <span class="attribute">#[inline]
+            </span><span class="kw">fn </span>try_into_ctx(<span class="self">self</span>, dst: <span class="kw-2">&amp;mut </span>[u8], ctx: ::scroll::Endian) -&gt; ::scroll::export::result::Result&lt;usize, <span class="self">Self</span>::Error&gt; {
+                <span class="kw">use </span>::scroll::Pwrite;
+                <span class="kw">let </span>offset = <span class="kw-2">&amp;mut </span><span class="number">0</span>;
+                #(#items;)<span class="kw-2">*</span>;
+                <span class="prelude-val">Ok</span>(<span class="kw-2">*</span>offset)
             }
         }
 
-        <span class="kw">impl</span> #<span class="ident">gl</span> #<span class="ident">gp</span> #<span class="ident">gg</span> <span class="ident">::scroll::ctx::TryIntoCtx</span><span class="op">&lt;</span><span class="ident">::scroll::Endian</span><span class="op">&gt;</span> <span class="kw">for</span> #<span class="ident">name</span> #<span class="ident">gn</span> #<span class="ident">gw</span> {
-            <span class="kw">type</span> <span class="ident">Error</span> <span class="op">=</span> <span class="ident">::scroll::Error</span>;
-            <span class="attribute">#[<span class="ident">inline</span>]</span>
-            <span class="kw">fn</span> <span class="ident">try_into_ctx</span>(<span class="self">self</span>, <span class="ident">dst</span>: <span class="kw-2">&amp;mut</span> [<span class="ident">u8</span>], <span class="ident">ctx</span>: <span class="ident">::scroll::Endian</span>) -&gt; <span class="ident">::scroll::export::result::Result</span><span class="op">&lt;</span><span class="ident">usize</span>, <span class="ident"><span class="self">Self</span>::Error</span><span class="op">&gt;</span> {
-                (<span class="kw-2">&amp;</span><span class="self">self</span>).<span class="ident">try_into_ctx</span>(<span class="ident">dst</span>, <span class="ident">ctx</span>)
+        <span class="kw">impl </span>#gl #gp #gg ::scroll::ctx::TryIntoCtx&lt;::scroll::Endian&gt; <span class="kw">for </span>#name #gn #gw {
+            <span class="kw">type </span>Error = ::scroll::Error;
+            <span class="attribute">#[inline]
+            </span><span class="kw">fn </span>try_into_ctx(<span class="self">self</span>, dst: <span class="kw-2">&amp;mut </span>[u8], ctx: ::scroll::Endian) -&gt; ::scroll::export::result::Result&lt;usize, <span class="self">Self</span>::Error&gt; {
+                (<span class="kw-2">&amp;</span><span class="self">self</span>).try_into_ctx(dst, ctx)
             }
         }
     }
 }
 
-<span class="kw">fn</span> <span class="ident">impl_pwrite</span>(<span class="ident">ast</span>: <span class="kw-2">&amp;</span><span class="ident">syn::DeriveInput</span>) -&gt; <span class="ident">proc_macro2::TokenStream</span> {
-    <span class="kw">let</span> <span class="ident">name</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">ast</span>.<span class="ident">ident</span>;
-    <span class="kw">let</span> <span class="ident">generics</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">ast</span>.<span class="ident">generics</span>;
-    <span class="kw">match</span> <span class="ident">ast</span>.<span class="ident">data</span> {
-        <span class="ident">syn::Data::Struct</span>(<span class="kw-2">ref</span> <span class="ident">data</span>) =&gt; <span class="kw">match</span> <span class="ident">data</span>.<span class="ident">fields</span> {
-            <span class="ident">syn::Fields::Named</span>(<span class="kw-2">ref</span> <span class="ident">fields</span>) =&gt; <span class="ident">impl_try_into_ctx</span>(<span class="ident">name</span>, <span class="kw-2">&amp;</span><span class="ident">fields</span>.<span class="ident">named</span>, <span class="ident">generics</span>),
-            <span class="ident">syn::Fields::Unnamed</span>(<span class="kw-2">ref</span> <span class="ident">fields</span>) =&gt; <span class="ident">impl_try_into_ctx</span>(<span class="ident">name</span>, <span class="kw-2">&amp;</span><span class="ident">fields</span>.<span class="ident">unnamed</span>, <span class="ident">generics</span>),
-            <span class="kw">_</span> =&gt; {
+<span class="kw">fn </span>impl_pwrite(ast: <span class="kw-2">&amp;</span>syn::DeriveInput) -&gt; proc_macro2::TokenStream {
+    <span class="kw">let </span>name = <span class="kw-2">&amp;</span>ast.ident;
+    <span class="kw">let </span>generics = <span class="kw-2">&amp;</span>ast.generics;
+    <span class="kw">match </span>ast.data {
+        syn::Data::Struct(<span class="kw-2">ref </span>data) =&gt; <span class="kw">match </span>data.fields {
+            syn::Fields::Named(<span class="kw-2">ref </span>fields) =&gt; impl_try_into_ctx(name, <span class="kw-2">&amp;</span>fields.named, generics),
+            syn::Fields::Unnamed(<span class="kw-2">ref </span>fields) =&gt; impl_try_into_ctx(name, <span class="kw-2">&amp;</span>fields.unnamed, generics),
+            <span class="kw">_ </span>=&gt; {
                 <span class="macro">panic!</span>(<span class="string">&quot;Pwrite can not be derived for unit structs&quot;</span>)
             }
         },
-        <span class="kw">_</span> =&gt; <span class="macro">panic!</span>(<span class="string">&quot;Pwrite can only be derived for structs&quot;</span>),
+        <span class="kw">_ </span>=&gt; <span class="macro">panic!</span>(<span class="string">&quot;Pwrite can only be derived for structs&quot;</span>),
     }
 }
 
-<span class="attribute">#[<span class="ident">proc_macro_derive</span>(<span class="ident">Pwrite</span>)]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">derive_pwrite</span>(<span class="ident">input</span>: <span class="ident">TokenStream</span>) -&gt; <span class="ident">TokenStream</span> {
-    <span class="kw">let</span> <span class="ident">ast</span>: <span class="ident">syn::DeriveInput</span> <span class="op">=</span> <span class="ident">syn::parse</span>(<span class="ident">input</span>).<span class="ident">unwrap</span>();
-    <span class="kw">let</span> <span class="ident">gen</span> <span class="op">=</span> <span class="ident">impl_pwrite</span>(<span class="kw-2">&amp;</span><span class="ident">ast</span>);
-    <span class="ident">gen</span>.<span class="ident">into</span>()
+<span class="attribute">#[proc_macro_derive(Pwrite)]
+</span><span class="kw">pub fn </span>derive_pwrite(input: TokenStream) -&gt; TokenStream {
+    <span class="kw">let </span>ast: syn::DeriveInput = syn::parse(input).unwrap();
+    <span class="kw">let </span>gen = impl_pwrite(<span class="kw-2">&amp;</span>ast);
+    gen.into()
 }
 
-<span class="kw">fn</span> <span class="ident">size_with</span>(
-    <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">syn::Ident</span>,
-    <span class="ident">fields</span>: <span class="kw-2">&amp;</span><span class="ident">syn::punctuated::Punctuated</span><span class="op">&lt;</span><span class="ident">syn::Field</span>, <span class="macro">syn::Token!</span>[,]<span class="op">&gt;</span>,
-    <span class="ident">generics</span>: <span class="kw-2">&amp;</span><span class="ident">syn::Generics</span>,
-) -&gt; <span class="ident">proc_macro2::TokenStream</span> {
-    <span class="kw">let</span> <span class="ident">items</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="kw">_</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">fields</span>
-        .<span class="ident">iter</span>()
-        .<span class="ident">map</span>(<span class="op">|</span><span class="ident">f</span><span class="op">|</span> {
-            <span class="kw">let</span> <span class="ident">ty</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">f</span>.<span class="ident">ty</span>;
-            <span class="kw">match</span> <span class="kw-2">*</span><span class="ident">ty</span> {
-                <span class="ident">syn::Type::Array</span>(<span class="kw-2">ref</span> <span class="ident">array</span>) =&gt; {
-                    <span class="kw">let</span> <span class="ident">elem</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">array</span>.<span class="ident">elem</span>;
-                    <span class="kw">match</span> <span class="ident">array</span>.<span class="ident">len</span> {
-                        <span class="ident">syn::Expr::Lit</span>(<span class="ident">syn::ExprLit</span> {
-                            <span class="ident">lit</span>: <span class="ident">syn::Lit::Int</span>(<span class="kw-2">ref</span> <span class="ident">int</span>),
+<span class="kw">fn </span>size_with(
+    name: <span class="kw-2">&amp;</span>syn::Ident,
+    fields: <span class="kw-2">&amp;</span>syn::punctuated::Punctuated&lt;syn::Field, <span class="macro">syn::Token!</span>[,]&gt;,
+    generics: <span class="kw-2">&amp;</span>syn::Generics,
+) -&gt; proc_macro2::TokenStream {
+    <span class="kw">let </span>items: Vec&lt;<span class="kw">_</span>&gt; = fields
+        .iter()
+        .map(|f| {
+            <span class="kw">let </span>ty = <span class="kw-2">&amp;</span>f.ty;
+            <span class="kw">match </span><span class="kw-2">*</span>ty {
+                syn::Type::Array(<span class="kw-2">ref </span>array) =&gt; {
+                    <span class="kw">let </span>elem = <span class="kw-2">&amp;</span>array.elem;
+                    <span class="kw">match </span>array.len {
+                        syn::Expr::Lit(syn::ExprLit {
+                            lit: syn::Lit::Int(<span class="kw-2">ref </span>int),
                             ..
                         }) =&gt; {
-                            <span class="kw">let</span> <span class="ident">size</span> <span class="op">=</span> <span class="ident">int</span>.<span class="ident">base10_parse</span>::<span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span>().<span class="ident">unwrap</span>();
-                            <span class="macro">quote!</span> {
-                                (#<span class="ident">size</span> <span class="op">*</span> <span class="op">&lt;</span>#<span class="ident">elem</span><span class="op">&gt;</span><span class="ident">::size_with</span>(<span class="ident">ctx</span>))
+                            <span class="kw">let </span>size = int.base10_parse::&lt;usize&gt;().unwrap();
+                            <span class="macro">quote! </span>{
+                                (#size * &lt;#elem&gt;::size_with(ctx))
                             }
                         }
-                        <span class="kw">_</span> =&gt; <span class="macro">panic!</span>(<span class="string">&quot;Pread derive with bad array constexpr&quot;</span>),
+                        <span class="kw">_ </span>=&gt; <span class="macro">panic!</span>(<span class="string">&quot;Pread derive with bad array constexpr&quot;</span>),
                     }
                 }
-                <span class="kw">_</span> =&gt; {
-                    <span class="macro">quote!</span> {
-                        <span class="op">&lt;</span>#<span class="ident">ty</span><span class="op">&gt;</span><span class="ident">::size_with</span>(<span class="ident">ctx</span>)
+                <span class="kw">_ </span>=&gt; {
+                    <span class="macro">quote! </span>{
+                        &lt;#ty&gt;::size_with(ctx)
                     }
                 }
             }
         })
-        .<span class="ident">collect</span>();
+        .collect();
 
-    <span class="kw">let</span> <span class="ident">gl</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">generics</span>.<span class="ident">lt_token</span>;
-    <span class="kw">let</span> <span class="ident">gp</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">generics</span>.<span class="ident">params</span>;
-    <span class="kw">let</span> <span class="ident">gg</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">generics</span>.<span class="ident">gt_token</span>;
-    <span class="kw">let</span> <span class="ident">gn</span> <span class="op">=</span> <span class="ident">gp</span>.<span class="ident">iter</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">param</span>: <span class="kw-2">&amp;</span><span class="ident">syn::GenericParam</span><span class="op">|</span> <span class="kw">match</span> <span class="ident">param</span> {
-        <span class="ident">syn::GenericParam::Type</span>(<span class="kw-2">ref</span> <span class="ident">t</span>) =&gt; {
-            <span class="kw">let</span> <span class="ident">ident</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">t</span>.<span class="ident">ident</span>;
-            <span class="macro">quote!</span> { #<span class="ident">ident</span> }
+    <span class="kw">let </span>gl = <span class="kw-2">&amp;</span>generics.lt_token;
+    <span class="kw">let </span>gp = <span class="kw-2">&amp;</span>generics.params;
+    <span class="kw">let </span>gg = <span class="kw-2">&amp;</span>generics.gt_token;
+    <span class="kw">let </span>gn = gp.iter().map(|param: <span class="kw-2">&amp;</span>syn::GenericParam| <span class="kw">match </span>param {
+        syn::GenericParam::Type(<span class="kw-2">ref </span>t) =&gt; {
+            <span class="kw">let </span>ident = <span class="kw-2">&amp;</span>t.ident;
+            <span class="macro">quote! </span>{ #ident }
         }
-        <span class="ident">p</span> =&gt; <span class="macro">quote!</span> { #<span class="ident">p</span> },
+        p =&gt; <span class="macro">quote! </span>{ #p },
     });
-    <span class="kw">let</span> <span class="ident">gn</span> <span class="op">=</span> <span class="macro">quote!</span> { #<span class="ident">gl</span> #( #<span class="ident">gn</span> ),<span class="op">*</span> #<span class="ident">gg</span> };
-    <span class="kw">let</span> <span class="ident">gw</span> <span class="op">=</span> <span class="kw">if</span> <span class="op">!</span><span class="ident">gp</span>.<span class="ident">is_empty</span>() {
-        <span class="kw">let</span> <span class="ident">gi</span> <span class="op">=</span> <span class="ident">gp</span>.<span class="ident">iter</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">param</span>: <span class="kw-2">&amp;</span><span class="ident">syn::GenericParam</span><span class="op">|</span> <span class="kw">match</span> <span class="ident">param</span> {
-            <span class="ident">syn::GenericParam::Type</span>(<span class="kw-2">ref</span> <span class="ident">t</span>) =&gt; {
-                <span class="kw">let</span> <span class="ident">ident</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">t</span>.<span class="ident">ident</span>;
-                <span class="macro">quote!</span> {
-                    #<span class="ident">ident</span> : <span class="ident">::scroll::ctx::SizeWith</span><span class="op">&lt;</span><span class="ident">::scroll::Endian</span><span class="op">&gt;</span>
+    <span class="kw">let </span>gn = <span class="macro">quote! </span>{ #gl #( #gn ),* #gg };
+    <span class="kw">let </span>gw = <span class="kw">if </span>!gp.is_empty() {
+        <span class="kw">let </span>gi = gp.iter().map(|param: <span class="kw-2">&amp;</span>syn::GenericParam| <span class="kw">match </span>param {
+            syn::GenericParam::Type(<span class="kw-2">ref </span>t) =&gt; {
+                <span class="kw">let </span>ident = <span class="kw-2">&amp;</span>t.ident;
+                <span class="macro">quote! </span>{
+                    #ident : ::scroll::ctx::SizeWith&lt;::scroll::Endian&gt;
                 }
             }
-            <span class="ident">p</span> =&gt; <span class="macro">quote!</span> { #<span class="ident">p</span> },
+            p =&gt; <span class="macro">quote! </span>{ #p },
         });
-        <span class="macro">quote!</span> { <span class="kw">where</span> #( #<span class="ident">gi</span> ),<span class="op">*</span> }
-    } <span class="kw">else</span> {
-        <span class="macro">quote!</span> {}
+        <span class="macro">quote! </span>{ <span class="kw">where </span>#( #gi ),* }
+    } <span class="kw">else </span>{
+        <span class="macro">quote! </span>{}
     };
 
-    <span class="macro">quote!</span> {
-        <span class="kw">impl</span> #<span class="ident">gl</span> #<span class="ident">gp</span> #<span class="ident">gg</span> <span class="ident">::scroll::ctx::SizeWith</span><span class="op">&lt;</span><span class="ident">::scroll::Endian</span><span class="op">&gt;</span> <span class="kw">for</span> #<span class="ident">name</span> #<span class="ident">gn</span> #<span class="ident">gw</span> {
-            <span class="attribute">#[<span class="ident">inline</span>]</span>
-            <span class="kw">fn</span> <span class="ident">size_with</span>(<span class="ident">ctx</span>: <span class="kw-2">&amp;</span><span class="ident">::scroll::Endian</span>) -&gt; <span class="ident">usize</span> {
-                <span class="number">0</span> #(<span class="op">+</span> #<span class="ident">items</span>)<span class="op">*</span>
+    <span class="macro">quote! </span>{
+        <span class="kw">impl </span>#gl #gp #gg ::scroll::ctx::SizeWith&lt;::scroll::Endian&gt; <span class="kw">for </span>#name #gn #gw {
+            <span class="attribute">#[inline]
+            </span><span class="kw">fn </span>size_with(ctx: <span class="kw-2">&amp;</span>::scroll::Endian) -&gt; usize {
+                <span class="number">0 </span>#(+ #items)*
             }
         }
     }
 }
 
-<span class="kw">fn</span> <span class="ident">impl_size_with</span>(<span class="ident">ast</span>: <span class="kw-2">&amp;</span><span class="ident">syn::DeriveInput</span>) -&gt; <span class="ident">proc_macro2::TokenStream</span> {
-    <span class="kw">let</span> <span class="ident">name</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">ast</span>.<span class="ident">ident</span>;
-    <span class="kw">let</span> <span class="ident">generics</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">ast</span>.<span class="ident">generics</span>;
-    <span class="kw">match</span> <span class="ident">ast</span>.<span class="ident">data</span> {
-        <span class="ident">syn::Data::Struct</span>(<span class="kw-2">ref</span> <span class="ident">data</span>) =&gt; <span class="kw">match</span> <span class="ident">data</span>.<span class="ident">fields</span> {
-            <span class="ident">syn::Fields::Named</span>(<span class="kw-2">ref</span> <span class="ident">fields</span>) =&gt; <span class="ident">size_with</span>(<span class="ident">name</span>, <span class="kw-2">&amp;</span><span class="ident">fields</span>.<span class="ident">named</span>, <span class="ident">generics</span>),
-            <span class="ident">syn::Fields::Unnamed</span>(<span class="kw-2">ref</span> <span class="ident">fields</span>) =&gt; <span class="ident">size_with</span>(<span class="ident">name</span>, <span class="kw-2">&amp;</span><span class="ident">fields</span>.<span class="ident">unnamed</span>, <span class="ident">generics</span>),
-            <span class="kw">_</span> =&gt; {
+<span class="kw">fn </span>impl_size_with(ast: <span class="kw-2">&amp;</span>syn::DeriveInput) -&gt; proc_macro2::TokenStream {
+    <span class="kw">let </span>name = <span class="kw-2">&amp;</span>ast.ident;
+    <span class="kw">let </span>generics = <span class="kw-2">&amp;</span>ast.generics;
+    <span class="kw">match </span>ast.data {
+        syn::Data::Struct(<span class="kw-2">ref </span>data) =&gt; <span class="kw">match </span>data.fields {
+            syn::Fields::Named(<span class="kw-2">ref </span>fields) =&gt; size_with(name, <span class="kw-2">&amp;</span>fields.named, generics),
+            syn::Fields::Unnamed(<span class="kw-2">ref </span>fields) =&gt; size_with(name, <span class="kw-2">&amp;</span>fields.unnamed, generics),
+            <span class="kw">_ </span>=&gt; {
                 <span class="macro">panic!</span>(<span class="string">&quot;SizeWith can not be derived for unit structs&quot;</span>)
             }
         },
-        <span class="kw">_</span> =&gt; <span class="macro">panic!</span>(<span class="string">&quot;SizeWith can only be derived for structs&quot;</span>),
+        <span class="kw">_ </span>=&gt; <span class="macro">panic!</span>(<span class="string">&quot;SizeWith can only be derived for structs&quot;</span>),
     }
 }
 
-<span class="attribute">#[<span class="ident">proc_macro_derive</span>(<span class="ident">SizeWith</span>)]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">derive_sizewith</span>(<span class="ident">input</span>: <span class="ident">TokenStream</span>) -&gt; <span class="ident">TokenStream</span> {
-    <span class="kw">let</span> <span class="ident">ast</span>: <span class="ident">syn::DeriveInput</span> <span class="op">=</span> <span class="ident">syn::parse</span>(<span class="ident">input</span>).<span class="ident">unwrap</span>();
-    <span class="kw">let</span> <span class="ident">gen</span> <span class="op">=</span> <span class="ident">impl_size_with</span>(<span class="kw-2">&amp;</span><span class="ident">ast</span>);
-    <span class="ident">gen</span>.<span class="ident">into</span>()
+<span class="attribute">#[proc_macro_derive(SizeWith)]
+</span><span class="kw">pub fn </span>derive_sizewith(input: TokenStream) -&gt; TokenStream {
+    <span class="kw">let </span>ast: syn::DeriveInput = syn::parse(input).unwrap();
+    <span class="kw">let </span>gen = impl_size_with(<span class="kw-2">&amp;</span>ast);
+    gen.into()
 }
 
-<span class="kw">fn</span> <span class="ident">impl_cread_struct</span>(
-    <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">syn::Ident</span>,
-    <span class="ident">fields</span>: <span class="kw-2">&amp;</span><span class="ident">syn::punctuated::Punctuated</span><span class="op">&lt;</span><span class="ident">syn::Field</span>, <span class="macro">syn::Token!</span>[,]<span class="op">&gt;</span>,
-    <span class="ident">generics</span>: <span class="kw-2">&amp;</span><span class="ident">syn::Generics</span>,
-) -&gt; <span class="ident">proc_macro2::TokenStream</span> {
-    <span class="kw">let</span> <span class="ident">items</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="kw">_</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">fields</span>.<span class="ident">iter</span>().<span class="ident">enumerate</span>().<span class="ident">map</span>(<span class="op">|</span>(<span class="ident">i</span>, <span class="ident">f</span>)<span class="op">|</span> {
-        <span class="kw">let</span> <span class="ident">ident</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">f</span>.<span class="ident">ident</span>.<span class="ident">as_ref</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">i</span><span class="op">|</span><span class="macro">quote!</span>{#<span class="ident">i</span>}).<span class="ident">unwrap_or</span>({<span class="kw">let</span> <span class="ident">t</span> <span class="op">=</span> <span class="ident">proc_macro2::Literal::usize_unsuffixed</span>(<span class="ident">i</span>); <span class="macro">quote!</span>{#<span class="ident">t</span>}});
-        <span class="kw">let</span> <span class="ident">ty</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">f</span>.<span class="ident">ty</span>;
-        <span class="kw">match</span> <span class="kw-2">*</span><span class="ident">ty</span> {
-            <span class="ident">syn::Type::Array</span>(<span class="kw-2">ref</span> <span class="ident">array</span>) =&gt; {
-                <span class="kw">let</span> <span class="ident">arrty</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">array</span>.<span class="ident">elem</span>;
-                <span class="kw">match</span> <span class="ident">array</span>.<span class="ident">len</span> {
-                    <span class="ident">syn::Expr::Lit</span>(<span class="ident">syn::ExprLit</span> { <span class="ident">lit</span>: <span class="ident">syn::Lit::Int</span>(<span class="kw-2">ref</span> <span class="ident">int</span>), ..}) =&gt; {
-                        <span class="kw">let</span> <span class="ident">size</span> <span class="op">=</span> <span class="ident">int</span>.<span class="ident">base10_parse</span>::<span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span>().<span class="ident">unwrap</span>();
-                        <span class="kw">let</span> <span class="ident">incr</span> <span class="op">=</span> <span class="macro">quote!</span> { <span class="ident">::scroll::export::mem::size_of</span>::<span class="op">&lt;</span>#<span class="ident">arrty</span><span class="op">&gt;</span>() };
-                        <span class="macro">quote!</span> {
-                            #<span class="ident">ident</span>: {
-                                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">__tmp</span>: #<span class="ident">ty</span> <span class="op">=</span> [<span class="number">0u8</span>.<span class="ident">into</span>(); #<span class="ident">size</span>];
-                                <span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">__tmp</span>.<span class="ident">len</span>() {
-                                    <span class="ident">__tmp</span>[<span class="ident">i</span>] <span class="op">=</span> <span class="ident">src</span>.<span class="ident">cread_with</span>(<span class="kw-2">*</span><span class="ident">offset</span>, <span class="ident">ctx</span>);
-                                    <span class="kw-2">*</span><span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> #<span class="ident">incr</span>;
+<span class="kw">fn </span>impl_cread_struct(
+    name: <span class="kw-2">&amp;</span>syn::Ident,
+    fields: <span class="kw-2">&amp;</span>syn::punctuated::Punctuated&lt;syn::Field, <span class="macro">syn::Token!</span>[,]&gt;,
+    generics: <span class="kw-2">&amp;</span>syn::Generics,
+) -&gt; proc_macro2::TokenStream {
+    <span class="kw">let </span>items: Vec&lt;<span class="kw">_</span>&gt; = fields.iter().enumerate().map(|(i, f)| {
+        <span class="kw">let </span>ident = <span class="kw-2">&amp;</span>f.ident.as_ref().map(|i|<span class="macro">quote!</span>{#i}).unwrap_or({<span class="kw">let </span>t = proc_macro2::Literal::usize_unsuffixed(i); <span class="macro">quote!</span>{#t}});
+        <span class="kw">let </span>ty = <span class="kw-2">&amp;</span>f.ty;
+        <span class="kw">match </span><span class="kw-2">*</span>ty {
+            syn::Type::Array(<span class="kw-2">ref </span>array) =&gt; {
+                <span class="kw">let </span>arrty = <span class="kw-2">&amp;</span>array.elem;
+                <span class="kw">match </span>array.len {
+                    syn::Expr::Lit(syn::ExprLit { lit: syn::Lit::Int(<span class="kw-2">ref </span>int), ..}) =&gt; {
+                        <span class="kw">let </span>size = int.base10_parse::&lt;usize&gt;().unwrap();
+                        <span class="kw">let </span>incr = <span class="macro">quote! </span>{ ::scroll::export::mem::size_of::&lt;#arrty&gt;() };
+                        <span class="macro">quote! </span>{
+                            #ident: {
+                                <span class="kw">let </span><span class="kw-2">mut </span>__tmp: #ty = [<span class="number">0u8</span>.into(); #size];
+                                <span class="kw">for </span>i <span class="kw">in </span><span class="number">0</span>..__tmp.len() {
+                                    __tmp[i] = src.cread_with(<span class="kw-2">*</span>offset, ctx);
+                                    <span class="kw-2">*</span>offset += #incr;
                                 }
-                                <span class="ident">__tmp</span>
+                                __tmp
                             }
                         }
                     },
-                    <span class="kw">_</span> =&gt; <span class="macro">panic!</span>(<span class="string">&quot;IOread derive with bad array constexpr&quot;</span>)
+                    <span class="kw">_ </span>=&gt; <span class="macro">panic!</span>(<span class="string">&quot;IOread derive with bad array constexpr&quot;</span>)
                 }
             },
-            <span class="kw">_</span> =&gt; {
-                <span class="kw">let</span> <span class="ident">size</span> <span class="op">=</span> <span class="macro">quote!</span> { <span class="ident">::scroll::export::mem::size_of</span>::<span class="op">&lt;</span>#<span class="ident">ty</span><span class="op">&gt;</span>() };
-                <span class="macro">quote!</span> {
-                    #<span class="ident">ident</span>: { <span class="kw">let</span> <span class="ident">res</span> <span class="op">=</span> <span class="ident">src</span>.<span class="ident">cread_with</span>::<span class="op">&lt;</span>#<span class="ident">ty</span><span class="op">&gt;</span>(<span class="kw-2">*</span><span class="ident">offset</span>, <span class="ident">ctx</span>); <span class="kw-2">*</span><span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> #<span class="ident">size</span>; <span class="ident">res</span> }
+            <span class="kw">_ </span>=&gt; {
+                <span class="kw">let </span>size = <span class="macro">quote! </span>{ ::scroll::export::mem::size_of::&lt;#ty&gt;() };
+                <span class="macro">quote! </span>{
+                    #ident: { <span class="kw">let </span>res = src.cread_with::&lt;#ty&gt;(<span class="kw-2">*</span>offset, ctx); <span class="kw-2">*</span>offset += #size; res }
                 }
             }
         }
-    }).<span class="ident">collect</span>();
+    }).collect();
 
-    <span class="kw">let</span> <span class="ident">gl</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">generics</span>.<span class="ident">lt_token</span>;
-    <span class="kw">let</span> <span class="ident">gp</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">generics</span>.<span class="ident">params</span>;
-    <span class="kw">let</span> <span class="ident">gg</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">generics</span>.<span class="ident">gt_token</span>;
-    <span class="kw">let</span> <span class="ident">gn</span> <span class="op">=</span> <span class="ident">gp</span>.<span class="ident">iter</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">param</span>: <span class="kw-2">&amp;</span><span class="ident">syn::GenericParam</span><span class="op">|</span> <span class="kw">match</span> <span class="ident">param</span> {
-        <span class="ident">syn::GenericParam::Type</span>(<span class="kw-2">ref</span> <span class="ident">t</span>) =&gt; {
-            <span class="kw">let</span> <span class="ident">ident</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">t</span>.<span class="ident">ident</span>;
-            <span class="macro">quote!</span> { #<span class="ident">ident</span> }
+    <span class="kw">let </span>gl = <span class="kw-2">&amp;</span>generics.lt_token;
+    <span class="kw">let </span>gp = <span class="kw-2">&amp;</span>generics.params;
+    <span class="kw">let </span>gg = <span class="kw-2">&amp;</span>generics.gt_token;
+    <span class="kw">let </span>gn = gp.iter().map(|param: <span class="kw-2">&amp;</span>syn::GenericParam| <span class="kw">match </span>param {
+        syn::GenericParam::Type(<span class="kw-2">ref </span>t) =&gt; {
+            <span class="kw">let </span>ident = <span class="kw-2">&amp;</span>t.ident;
+            <span class="macro">quote! </span>{ #ident }
         }
-        <span class="ident">p</span> =&gt; <span class="macro">quote!</span> { #<span class="ident">p</span> },
+        p =&gt; <span class="macro">quote! </span>{ #p },
     });
-    <span class="kw">let</span> <span class="ident">gn</span> <span class="op">=</span> <span class="macro">quote!</span> { #<span class="ident">gl</span> #( #<span class="ident">gn</span> ),<span class="op">*</span> #<span class="ident">gg</span> };
-    <span class="kw">let</span> <span class="ident">gw</span> <span class="op">=</span> <span class="kw">if</span> <span class="op">!</span><span class="ident">gp</span>.<span class="ident">is_empty</span>() {
-        <span class="kw">let</span> <span class="ident">gi</span> <span class="op">=</span> <span class="ident">gp</span>.<span class="ident">iter</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">param</span>: <span class="kw-2">&amp;</span><span class="ident">syn::GenericParam</span><span class="op">|</span> <span class="kw">match</span> <span class="ident">param</span> {
-            <span class="ident">syn::GenericParam::Type</span>(<span class="kw-2">ref</span> <span class="ident">t</span>) =&gt; {
-                <span class="kw">let</span> <span class="ident">ident</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">t</span>.<span class="ident">ident</span>;
-                <span class="macro">quote!</span> {
-                    #<span class="ident">ident</span> : <span class="ident">::scroll::ctx::FromCtx</span><span class="op">&lt;</span><span class="ident">::scroll::Endian</span><span class="op">&gt;</span> <span class="op">+</span> <span class="ident">::std::convert::From</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span> <span class="op">+</span> <span class="ident">::std::marker::Copy</span>
+    <span class="kw">let </span>gn = <span class="macro">quote! </span>{ #gl #( #gn ),* #gg };
+    <span class="kw">let </span>gw = <span class="kw">if </span>!gp.is_empty() {
+        <span class="kw">let </span>gi = gp.iter().map(|param: <span class="kw-2">&amp;</span>syn::GenericParam| <span class="kw">match </span>param {
+            syn::GenericParam::Type(<span class="kw-2">ref </span>t) =&gt; {
+                <span class="kw">let </span>ident = <span class="kw-2">&amp;</span>t.ident;
+                <span class="macro">quote! </span>{
+                    #ident : ::scroll::ctx::FromCtx&lt;::scroll::Endian&gt; + ::std::convert::From&lt;u8&gt; + ::std::marker::Copy
                 }
             },
-            <span class="ident">p</span> =&gt; <span class="macro">quote!</span> { #<span class="ident">p</span> }
+            p =&gt; <span class="macro">quote! </span>{ #p }
         });
-        <span class="macro">quote!</span> { <span class="kw">where</span> #( #<span class="ident">gi</span> ),<span class="op">*</span> , }
-    } <span class="kw">else</span> {
-        <span class="macro">quote!</span> {}
+        <span class="macro">quote! </span>{ <span class="kw">where </span>#( #gi ),* , }
+    } <span class="kw">else </span>{
+        <span class="macro">quote! </span>{}
     };
 
-    <span class="macro">quote!</span> {
-        <span class="kw">impl</span> #<span class="ident">gl</span> #<span class="ident">gp</span> #<span class="ident">gg</span> <span class="ident">::scroll::ctx::FromCtx</span><span class="op">&lt;</span><span class="ident">::scroll::Endian</span><span class="op">&gt;</span> <span class="kw">for</span> #<span class="ident">name</span> #<span class="ident">gn</span> #<span class="ident">gw</span> {
-            <span class="attribute">#[<span class="ident">inline</span>]</span>
-            <span class="kw">fn</span> <span class="ident">from_ctx</span>(<span class="ident">src</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>], <span class="ident">ctx</span>: <span class="ident">::scroll::Endian</span>) -&gt; <span class="self">Self</span> {
-                <span class="kw">use</span> <span class="ident">::scroll::Cread</span>;
-                <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> <span class="kw-2">&amp;mut</span> <span class="number">0</span>;
-                <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="self">Self</span> { #(#<span class="ident">items</span>,)<span class="op">*</span> };
-                <span class="ident">data</span>
+    <span class="macro">quote! </span>{
+        <span class="kw">impl </span>#gl #gp #gg ::scroll::ctx::FromCtx&lt;::scroll::Endian&gt; <span class="kw">for </span>#name #gn #gw {
+            <span class="attribute">#[inline]
+            </span><span class="kw">fn </span>from_ctx(src: <span class="kw-2">&amp;</span>[u8], ctx: ::scroll::Endian) -&gt; <span class="self">Self </span>{
+                <span class="kw">use </span>::scroll::Cread;
+                <span class="kw">let </span>offset = <span class="kw-2">&amp;mut </span><span class="number">0</span>;
+                <span class="kw">let </span>data = <span class="self">Self </span>{ #(#items,)* };
+                data
             }
         }
     }
 }
 
-<span class="kw">fn</span> <span class="ident">impl_from_ctx</span>(<span class="ident">ast</span>: <span class="kw-2">&amp;</span><span class="ident">syn::DeriveInput</span>) -&gt; <span class="ident">proc_macro2::TokenStream</span> {
-    <span class="kw">let</span> <span class="ident">name</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">ast</span>.<span class="ident">ident</span>;
-    <span class="kw">let</span> <span class="ident">generics</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">ast</span>.<span class="ident">generics</span>;
-    <span class="kw">match</span> <span class="ident">ast</span>.<span class="ident">data</span> {
-        <span class="ident">syn::Data::Struct</span>(<span class="kw-2">ref</span> <span class="ident">data</span>) =&gt; <span class="kw">match</span> <span class="ident">data</span>.<span class="ident">fields</span> {
-            <span class="ident">syn::Fields::Named</span>(<span class="kw-2">ref</span> <span class="ident">fields</span>) =&gt; <span class="ident">impl_cread_struct</span>(<span class="ident">name</span>, <span class="kw-2">&amp;</span><span class="ident">fields</span>.<span class="ident">named</span>, <span class="ident">generics</span>),
-            <span class="ident">syn::Fields::Unnamed</span>(<span class="kw-2">ref</span> <span class="ident">fields</span>) =&gt; <span class="ident">impl_cread_struct</span>(<span class="ident">name</span>, <span class="kw-2">&amp;</span><span class="ident">fields</span>.<span class="ident">unnamed</span>, <span class="ident">generics</span>),
-            <span class="kw">_</span> =&gt; {
+<span class="kw">fn </span>impl_from_ctx(ast: <span class="kw-2">&amp;</span>syn::DeriveInput) -&gt; proc_macro2::TokenStream {
+    <span class="kw">let </span>name = <span class="kw-2">&amp;</span>ast.ident;
+    <span class="kw">let </span>generics = <span class="kw-2">&amp;</span>ast.generics;
+    <span class="kw">match </span>ast.data {
+        syn::Data::Struct(<span class="kw-2">ref </span>data) =&gt; <span class="kw">match </span>data.fields {
+            syn::Fields::Named(<span class="kw-2">ref </span>fields) =&gt; impl_cread_struct(name, <span class="kw-2">&amp;</span>fields.named, generics),
+            syn::Fields::Unnamed(<span class="kw-2">ref </span>fields) =&gt; impl_cread_struct(name, <span class="kw-2">&amp;</span>fields.unnamed, generics),
+            <span class="kw">_ </span>=&gt; {
                 <span class="macro">panic!</span>(<span class="string">&quot;IOread can not be derived for unit structs&quot;</span>)
             }
         },
-        <span class="kw">_</span> =&gt; <span class="macro">panic!</span>(<span class="string">&quot;IOread can only be derived for structs&quot;</span>),
+        <span class="kw">_ </span>=&gt; <span class="macro">panic!</span>(<span class="string">&quot;IOread can only be derived for structs&quot;</span>),
     }
 }
 
-<span class="attribute">#[<span class="ident">proc_macro_derive</span>(<span class="ident">IOread</span>)]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">derive_ioread</span>(<span class="ident">input</span>: <span class="ident">TokenStream</span>) -&gt; <span class="ident">TokenStream</span> {
-    <span class="kw">let</span> <span class="ident">ast</span>: <span class="ident">syn::DeriveInput</span> <span class="op">=</span> <span class="ident">syn::parse</span>(<span class="ident">input</span>).<span class="ident">unwrap</span>();
-    <span class="kw">let</span> <span class="ident">gen</span> <span class="op">=</span> <span class="ident">impl_from_ctx</span>(<span class="kw-2">&amp;</span><span class="ident">ast</span>);
-    <span class="ident">gen</span>.<span class="ident">into</span>()
+<span class="attribute">#[proc_macro_derive(IOread)]
+</span><span class="kw">pub fn </span>derive_ioread(input: TokenStream) -&gt; TokenStream {
+    <span class="kw">let </span>ast: syn::DeriveInput = syn::parse(input).unwrap();
+    <span class="kw">let </span>gen = impl_from_ctx(<span class="kw-2">&amp;</span>ast);
+    gen.into()
 }
 
-<span class="kw">fn</span> <span class="ident">impl_into_ctx</span>(
-    <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">syn::Ident</span>,
-    <span class="ident">fields</span>: <span class="kw-2">&amp;</span><span class="ident">syn::punctuated::Punctuated</span><span class="op">&lt;</span><span class="ident">syn::Field</span>, <span class="macro">syn::Token!</span>[,]<span class="op">&gt;</span>,
-    <span class="ident">generics</span>: <span class="kw-2">&amp;</span><span class="ident">syn::Generics</span>,
-) -&gt; <span class="ident">proc_macro2::TokenStream</span> {
-    <span class="kw">let</span> <span class="ident">items</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="kw">_</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">fields</span>
-        .<span class="ident">iter</span>()
-        .<span class="ident">enumerate</span>()
-        .<span class="ident">map</span>(<span class="op">|</span>(<span class="ident">i</span>, <span class="ident">f</span>)<span class="op">|</span> {
-            <span class="kw">let</span> <span class="ident">ident</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">f</span>.<span class="ident">ident</span>.<span class="ident">as_ref</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">i</span><span class="op">|</span> <span class="macro">quote!</span> {#<span class="ident">i</span>}).<span class="ident">unwrap_or</span>({
-                <span class="kw">let</span> <span class="ident">t</span> <span class="op">=</span> <span class="ident">proc_macro2::Literal::usize_unsuffixed</span>(<span class="ident">i</span>);
-                <span class="macro">quote!</span> {#<span class="ident">t</span>}
+<span class="kw">fn </span>impl_into_ctx(
+    name: <span class="kw-2">&amp;</span>syn::Ident,
+    fields: <span class="kw-2">&amp;</span>syn::punctuated::Punctuated&lt;syn::Field, <span class="macro">syn::Token!</span>[,]&gt;,
+    generics: <span class="kw-2">&amp;</span>syn::Generics,
+) -&gt; proc_macro2::TokenStream {
+    <span class="kw">let </span>items: Vec&lt;<span class="kw">_</span>&gt; = fields
+        .iter()
+        .enumerate()
+        .map(|(i, f)| {
+            <span class="kw">let </span>ident = <span class="kw-2">&amp;</span>f.ident.as_ref().map(|i| <span class="macro">quote! </span>{#i}).unwrap_or({
+                <span class="kw">let </span>t = proc_macro2::Literal::usize_unsuffixed(i);
+                <span class="macro">quote! </span>{#t}
             });
-            <span class="kw">let</span> <span class="ident">ty</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">f</span>.<span class="ident">ty</span>;
-            <span class="kw">let</span> <span class="ident">size</span> <span class="op">=</span> <span class="macro">quote!</span> { <span class="ident">::scroll::export::mem::size_of</span>::<span class="op">&lt;</span>#<span class="ident">ty</span><span class="op">&gt;</span>() };
-            <span class="kw">match</span> <span class="kw-2">*</span><span class="ident">ty</span> {
-                <span class="ident">syn::Type::Array</span>(<span class="kw-2">ref</span> <span class="ident">array</span>) =&gt; {
-                    <span class="kw">let</span> <span class="ident">arrty</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">array</span>.<span class="ident">elem</span>;
-                    <span class="macro">quote!</span> {
-                        <span class="kw">let</span> <span class="ident">size</span> <span class="op">=</span> <span class="ident">::scroll::export::mem::size_of</span>::<span class="op">&lt;</span>#<span class="ident">arrty</span><span class="op">&gt;</span>();
-                        <span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> <span class="number">0</span>..<span class="self">self</span>.#<span class="ident">ident</span>.<span class="ident">len</span>() {
-                            <span class="ident">dst</span>.<span class="ident">cwrite_with</span>(<span class="self">self</span>.#<span class="ident">ident</span>[<span class="ident">i</span>], <span class="kw-2">*</span><span class="ident">offset</span>, <span class="ident">ctx</span>);
-                            <span class="kw-2">*</span><span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">size</span>;
+            <span class="kw">let </span>ty = <span class="kw-2">&amp;</span>f.ty;
+            <span class="kw">let </span>size = <span class="macro">quote! </span>{ ::scroll::export::mem::size_of::&lt;#ty&gt;() };
+            <span class="kw">match </span><span class="kw-2">*</span>ty {
+                syn::Type::Array(<span class="kw-2">ref </span>array) =&gt; {
+                    <span class="kw">let </span>arrty = <span class="kw-2">&amp;</span>array.elem;
+                    <span class="macro">quote! </span>{
+                        <span class="kw">let </span>size = ::scroll::export::mem::size_of::&lt;#arrty&gt;();
+                        <span class="kw">for </span>i <span class="kw">in </span><span class="number">0</span>..<span class="self">self</span>.#ident.len() {
+                            dst.cwrite_with(<span class="self">self</span>.#ident[i], <span class="kw-2">*</span>offset, ctx);
+                            <span class="kw-2">*</span>offset += size;
                         }
                     }
                 }
-                <span class="kw">_</span> =&gt; {
-                    <span class="macro">quote!</span> {
-                        <span class="ident">dst</span>.<span class="ident">cwrite_with</span>(<span class="self">self</span>.#<span class="ident">ident</span>, <span class="kw-2">*</span><span class="ident">offset</span>, <span class="ident">ctx</span>);
-                        <span class="kw-2">*</span><span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> #<span class="ident">size</span>;
+                <span class="kw">_ </span>=&gt; {
+                    <span class="macro">quote! </span>{
+                        dst.cwrite_with(<span class="self">self</span>.#ident, <span class="kw-2">*</span>offset, ctx);
+                        <span class="kw-2">*</span>offset += #size;
                     }
                 }
             }
         })
-        .<span class="ident">collect</span>();
+        .collect();
 
-    <span class="kw">let</span> <span class="ident">gl</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">generics</span>.<span class="ident">lt_token</span>;
-    <span class="kw">let</span> <span class="ident">gp</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">generics</span>.<span class="ident">params</span>;
-    <span class="kw">let</span> <span class="ident">gg</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">generics</span>.<span class="ident">gt_token</span>;
-    <span class="kw">let</span> <span class="ident">gn</span> <span class="op">=</span> <span class="ident">gp</span>.<span class="ident">iter</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">param</span>: <span class="kw-2">&amp;</span><span class="ident">syn::GenericParam</span><span class="op">|</span> <span class="kw">match</span> <span class="ident">param</span> {
-        <span class="ident">syn::GenericParam::Type</span>(<span class="kw-2">ref</span> <span class="ident">t</span>) =&gt; {
-            <span class="kw">let</span> <span class="ident">ident</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">t</span>.<span class="ident">ident</span>;
-            <span class="macro">quote!</span> { #<span class="ident">ident</span> }
+    <span class="kw">let </span>gl = <span class="kw-2">&amp;</span>generics.lt_token;
+    <span class="kw">let </span>gp = <span class="kw-2">&amp;</span>generics.params;
+    <span class="kw">let </span>gg = <span class="kw-2">&amp;</span>generics.gt_token;
+    <span class="kw">let </span>gn = gp.iter().map(|param: <span class="kw-2">&amp;</span>syn::GenericParam| <span class="kw">match </span>param {
+        syn::GenericParam::Type(<span class="kw-2">ref </span>t) =&gt; {
+            <span class="kw">let </span>ident = <span class="kw-2">&amp;</span>t.ident;
+            <span class="macro">quote! </span>{ #ident }
         }
-        <span class="ident">p</span> =&gt; <span class="macro">quote!</span> { #<span class="ident">p</span> },
+        p =&gt; <span class="macro">quote! </span>{ #p },
     });
-    <span class="kw">let</span> <span class="ident">gw</span> <span class="op">=</span> <span class="kw">if</span> <span class="op">!</span><span class="ident">gp</span>.<span class="ident">is_empty</span>() {
-        <span class="kw">let</span> <span class="ident">gi</span> <span class="op">=</span> <span class="ident">gp</span>.<span class="ident">iter</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">param</span>: <span class="kw-2">&amp;</span><span class="ident">syn::GenericParam</span><span class="op">|</span> <span class="kw">match</span> <span class="ident">param</span> {
-            <span class="ident">syn::GenericParam::Type</span>(<span class="kw-2">ref</span> <span class="ident">t</span>) =&gt; {
-                <span class="kw">let</span> <span class="ident">ident</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">t</span>.<span class="ident">ident</span>;
-                <span class="macro">quote!</span> {
-                    #<span class="ident">ident</span> : <span class="ident">::scroll::ctx::IntoCtx</span><span class="op">&lt;</span><span class="ident">::scroll::Endian</span><span class="op">&gt;</span> <span class="op">+</span> <span class="ident">::std::marker::Copy</span>
+    <span class="kw">let </span>gw = <span class="kw">if </span>!gp.is_empty() {
+        <span class="kw">let </span>gi = gp.iter().map(|param: <span class="kw-2">&amp;</span>syn::GenericParam| <span class="kw">match </span>param {
+            syn::GenericParam::Type(<span class="kw-2">ref </span>t) =&gt; {
+                <span class="kw">let </span>ident = <span class="kw-2">&amp;</span>t.ident;
+                <span class="macro">quote! </span>{
+                    #ident : ::scroll::ctx::IntoCtx&lt;::scroll::Endian&gt; + ::std::marker::Copy
                 }
             }
-            <span class="ident">p</span> =&gt; <span class="macro">quote!</span> { #<span class="ident">p</span> },
+            p =&gt; <span class="macro">quote! </span>{ #p },
         });
-        <span class="macro">quote!</span> { <span class="kw">where</span> #( #<span class="ident">gi</span> ),<span class="op">*</span> }
-    } <span class="kw">else</span> {
-        <span class="macro">quote!</span> {}
+        <span class="macro">quote! </span>{ <span class="kw">where </span>#( #gi ),* }
+    } <span class="kw">else </span>{
+        <span class="macro">quote! </span>{}
     };
-    <span class="kw">let</span> <span class="ident">gn</span> <span class="op">=</span> <span class="macro">quote!</span> { #<span class="ident">gl</span> #( #<span class="ident">gn</span> ),<span class="op">*</span> #<span class="ident">gg</span> };
+    <span class="kw">let </span>gn = <span class="macro">quote! </span>{ #gl #( #gn ),* #gg };
 
-    <span class="macro">quote!</span> {
-        <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, #<span class="ident">gp</span> <span class="op">&gt;</span> <span class="ident">::scroll::ctx::IntoCtx</span><span class="op">&lt;</span><span class="ident">::scroll::Endian</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> #<span class="ident">name</span> #<span class="ident">gn</span> #<span class="ident">gw</span> {
-            <span class="attribute">#[<span class="ident">inline</span>]</span>
-            <span class="kw">fn</span> <span class="ident">into_ctx</span>(<span class="self">self</span>, <span class="ident">dst</span>: <span class="kw-2">&amp;mut</span> [<span class="ident">u8</span>], <span class="ident">ctx</span>: <span class="ident">::scroll::Endian</span>) {
-                <span class="kw">use</span> <span class="ident">::scroll::Cwrite</span>;
-                <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> <span class="kw-2">&amp;mut</span> <span class="number">0</span>;
-                #(#<span class="ident">items</span>;)<span class="kw-2">*</span>;
+    <span class="macro">quote! </span>{
+        <span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>, #gp &gt; ::scroll::ctx::IntoCtx&lt;::scroll::Endian&gt; <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>#name #gn #gw {
+            <span class="attribute">#[inline]
+            </span><span class="kw">fn </span>into_ctx(<span class="self">self</span>, dst: <span class="kw-2">&amp;mut </span>[u8], ctx: ::scroll::Endian) {
+                <span class="kw">use </span>::scroll::Cwrite;
+                <span class="kw">let </span>offset = <span class="kw-2">&amp;mut </span><span class="number">0</span>;
+                #(#items;)<span class="kw-2">*</span>;
                 ()
             }
         }
 
-        <span class="kw">impl</span> #<span class="ident">gl</span> #<span class="ident">gp</span> #<span class="ident">gg</span> <span class="ident">::scroll::ctx::IntoCtx</span><span class="op">&lt;</span><span class="ident">::scroll::Endian</span><span class="op">&gt;</span> <span class="kw">for</span> #<span class="ident">name</span> #<span class="ident">gn</span> #<span class="ident">gw</span> {
-            <span class="attribute">#[<span class="ident">inline</span>]</span>
-            <span class="kw">fn</span> <span class="ident">into_ctx</span>(<span class="self">self</span>, <span class="ident">dst</span>: <span class="kw-2">&amp;mut</span> [<span class="ident">u8</span>], <span class="ident">ctx</span>: <span class="ident">::scroll::Endian</span>) {
-                (<span class="kw-2">&amp;</span><span class="self">self</span>).<span class="ident">into_ctx</span>(<span class="ident">dst</span>, <span class="ident">ctx</span>)
+        <span class="kw">impl </span>#gl #gp #gg ::scroll::ctx::IntoCtx&lt;::scroll::Endian&gt; <span class="kw">for </span>#name #gn #gw {
+            <span class="attribute">#[inline]
+            </span><span class="kw">fn </span>into_ctx(<span class="self">self</span>, dst: <span class="kw-2">&amp;mut </span>[u8], ctx: ::scroll::Endian) {
+                (<span class="kw-2">&amp;</span><span class="self">self</span>).into_ctx(dst, ctx)
             }
         }
     }
 }
 
-<span class="kw">fn</span> <span class="ident">impl_iowrite</span>(<span class="ident">ast</span>: <span class="kw-2">&amp;</span><span class="ident">syn::DeriveInput</span>) -&gt; <span class="ident">proc_macro2::TokenStream</span> {
-    <span class="kw">let</span> <span class="ident">name</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">ast</span>.<span class="ident">ident</span>;
-    <span class="kw">let</span> <span class="ident">generics</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">ast</span>.<span class="ident">generics</span>;
-    <span class="kw">match</span> <span class="ident">ast</span>.<span class="ident">data</span> {
-        <span class="ident">syn::Data::Struct</span>(<span class="kw-2">ref</span> <span class="ident">data</span>) =&gt; <span class="kw">match</span> <span class="ident">data</span>.<span class="ident">fields</span> {
-            <span class="ident">syn::Fields::Named</span>(<span class="kw-2">ref</span> <span class="ident">fields</span>) =&gt; <span class="ident">impl_into_ctx</span>(<span class="ident">name</span>, <span class="kw-2">&amp;</span><span class="ident">fields</span>.<span class="ident">named</span>, <span class="ident">generics</span>),
-            <span class="ident">syn::Fields::Unnamed</span>(<span class="kw-2">ref</span> <span class="ident">fields</span>) =&gt; <span class="ident">impl_into_ctx</span>(<span class="ident">name</span>, <span class="kw-2">&amp;</span><span class="ident">fields</span>.<span class="ident">unnamed</span>, <span class="ident">generics</span>),
-            <span class="kw">_</span> =&gt; {
+<span class="kw">fn </span>impl_iowrite(ast: <span class="kw-2">&amp;</span>syn::DeriveInput) -&gt; proc_macro2::TokenStream {
+    <span class="kw">let </span>name = <span class="kw-2">&amp;</span>ast.ident;
+    <span class="kw">let </span>generics = <span class="kw-2">&amp;</span>ast.generics;
+    <span class="kw">match </span>ast.data {
+        syn::Data::Struct(<span class="kw-2">ref </span>data) =&gt; <span class="kw">match </span>data.fields {
+            syn::Fields::Named(<span class="kw-2">ref </span>fields) =&gt; impl_into_ctx(name, <span class="kw-2">&amp;</span>fields.named, generics),
+            syn::Fields::Unnamed(<span class="kw-2">ref </span>fields) =&gt; impl_into_ctx(name, <span class="kw-2">&amp;</span>fields.unnamed, generics),
+            <span class="kw">_ </span>=&gt; {
                 <span class="macro">panic!</span>(<span class="string">&quot;IOwrite can not be derived for unit structs&quot;</span>)
             }
         },
-        <span class="kw">_</span> =&gt; <span class="macro">panic!</span>(<span class="string">&quot;IOwrite can only be derived for structs&quot;</span>),
+        <span class="kw">_ </span>=&gt; <span class="macro">panic!</span>(<span class="string">&quot;IOwrite can only be derived for structs&quot;</span>),
     }
 }
 
-<span class="attribute">#[<span class="ident">proc_macro_derive</span>(<span class="ident">IOwrite</span>)]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">derive_iowrite</span>(<span class="ident">input</span>: <span class="ident">TokenStream</span>) -&gt; <span class="ident">TokenStream</span> {
-    <span class="kw">let</span> <span class="ident">ast</span>: <span class="ident">syn::DeriveInput</span> <span class="op">=</span> <span class="ident">syn::parse</span>(<span class="ident">input</span>).<span class="ident">unwrap</span>();
-    <span class="kw">let</span> <span class="ident">gen</span> <span class="op">=</span> <span class="ident">impl_iowrite</span>(<span class="kw-2">&amp;</span><span class="ident">ast</span>);
-    <span class="ident">gen</span>.<span class="ident">into</span>()
+<span class="attribute">#[proc_macro_derive(IOwrite)]
+</span><span class="kw">pub fn </span>derive_iowrite(input: TokenStream) -&gt; TokenStream {
+    <span class="kw">let </span>ast: syn::DeriveInput = syn::parse(input).unwrap();
+    <span class="kw">let </span>gen = impl_iowrite(<span class="kw-2">&amp;</span>ast);
+    gen.into()
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="scroll_derive" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="scroll_derive" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (77e57db38 2022-10-30)" ></div></body></html>

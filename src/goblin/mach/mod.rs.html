@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/goblin-0.5.4/src/mach/mod.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../goblin/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../goblin/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../goblin/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/goblin-0.5.4/src/mach/mod.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../normalize.css"><link rel="stylesheet" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../ayu.css" disabled><link rel="stylesheet" href="../../../dark.css" disabled><link rel="stylesheet" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../goblin/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -464,471 +464,471 @@
 <span id="464">464</span>
 <span id="465">465</span>
 <span id="466">466</span>
-</pre><pre class="rust"><code><span class="doccomment">//! The Mach-o, mostly zero-copy, binary format parser and raw struct definitions</span>
-<span class="kw">use</span> <span class="ident">alloc::vec::Vec</span>;
-<span class="kw">use</span> <span class="ident">core::fmt</span>;
+</pre><pre class="rust"><code><span class="doccomment">//! The Mach-o, mostly zero-copy, binary format parser and raw struct definitions
+</span><span class="kw">use </span>alloc::vec::Vec;
+<span class="kw">use </span>core::fmt;
 
-<span class="kw">use</span> <span class="ident">log::debug</span>;
+<span class="kw">use </span>log::debug;
 
-<span class="kw">use</span> <span class="ident">scroll::ctx::SizeWith</span>;
-<span class="kw">use</span> <span class="ident">scroll</span>::{<span class="ident">Pread</span>, <span class="ident">BE</span>};
+<span class="kw">use </span>scroll::ctx::SizeWith;
+<span class="kw">use </span>scroll::{Pread, BE};
 
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::container</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::error</span>;
+<span class="kw">use </span><span class="kw">crate</span>::container;
+<span class="kw">use </span><span class="kw">crate</span>::error;
 
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">bind_opcodes</span>;
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">constants</span>;
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">exports</span>;
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">fat</span>;
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">header</span>;
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">imports</span>;
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">load_command</span>;
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">relocation</span>;
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">segment</span>;
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">symbols</span>;
+<span class="kw">pub mod </span>bind_opcodes;
+<span class="kw">pub mod </span>constants;
+<span class="kw">pub mod </span>exports;
+<span class="kw">pub mod </span>fat;
+<span class="kw">pub mod </span>header;
+<span class="kw">pub mod </span>imports;
+<span class="kw">pub mod </span>load_command;
+<span class="kw">pub mod </span>relocation;
+<span class="kw">pub mod </span>segment;
+<span class="kw">pub mod </span>symbols;
 
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::constants::cputype</span>;
+<span class="kw">pub use </span><span class="self">self</span>::constants::cputype;
 
-<span class="doccomment">/// Returns a big endian magical number</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">peek</span>(<span class="ident">bytes</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>], <span class="ident">offset</span>: <span class="ident">usize</span>) -&gt; <span class="ident">error::Result</span><span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span> {
-    <span class="prelude-val">Ok</span>(<span class="ident">bytes</span>.<span class="ident">pread_with</span>::<span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>(<span class="ident">offset</span>, <span class="ident">scroll::BE</span>)<span class="question-mark">?</span>)
+<span class="doccomment">/// Returns a big endian magical number
+</span><span class="kw">pub fn </span>peek(bytes: <span class="kw-2">&amp;</span>[u8], offset: usize) -&gt; error::Result&lt;u32&gt; {
+    <span class="prelude-val">Ok</span>(bytes.pread_with::&lt;u32&gt;(offset, scroll::BE)<span class="question-mark">?</span>)
 }
 
-<span class="doccomment">/// Parses a magic number, and an accompanying mach-o binary parsing context, according to the magic number.</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">parse_magic_and_ctx</span>(
-    <span class="ident">bytes</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>],
-    <span class="ident">offset</span>: <span class="ident">usize</span>,
-) -&gt; <span class="ident">error::Result</span><span class="op">&lt;</span>(<span class="ident">u32</span>, <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">container::Ctx</span><span class="op">&gt;</span>)<span class="op">&gt;</span> {
-    <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::container::Container</span>;
-    <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::mach::header</span>::<span class="kw-2">*</span>;
-    <span class="kw">let</span> <span class="ident">magic</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">pread_with</span>::<span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>(<span class="ident">offset</span>, <span class="ident">BE</span>)<span class="question-mark">?</span>;
-    <span class="kw">let</span> <span class="ident">ctx</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">magic</span> {
-        <span class="ident">MH_CIGAM_64</span> <span class="op">|</span> <span class="ident">MH_CIGAM</span> <span class="op">|</span> <span class="ident">MH_MAGIC_64</span> <span class="op">|</span> <span class="ident">MH_MAGIC</span> =&gt; {
-            <span class="kw">let</span> <span class="ident">is_lsb</span> <span class="op">=</span> <span class="ident">magic</span> <span class="op">==</span> <span class="ident">MH_CIGAM</span> <span class="op">|</span><span class="op">|</span> <span class="ident">magic</span> <span class="op">==</span> <span class="ident">MH_CIGAM_64</span>;
-            <span class="kw">let</span> <span class="ident">le</span> <span class="op">=</span> <span class="ident">scroll::Endian::from</span>(<span class="ident">is_lsb</span>);
-            <span class="kw">let</span> <span class="ident">container</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">magic</span> <span class="op">==</span> <span class="ident">MH_MAGIC_64</span> <span class="op">|</span><span class="op">|</span> <span class="ident">magic</span> <span class="op">==</span> <span class="ident">MH_CIGAM_64</span> {
-                <span class="ident">Container::Big</span>
-            } <span class="kw">else</span> {
-                <span class="ident">Container::Little</span>
+<span class="doccomment">/// Parses a magic number, and an accompanying mach-o binary parsing context, according to the magic number.
+</span><span class="kw">pub fn </span>parse_magic_and_ctx(
+    bytes: <span class="kw-2">&amp;</span>[u8],
+    offset: usize,
+) -&gt; error::Result&lt;(u32, <span class="prelude-ty">Option</span>&lt;container::Ctx&gt;)&gt; {
+    <span class="kw">use </span><span class="kw">crate</span>::container::Container;
+    <span class="kw">use </span><span class="kw">crate</span>::mach::header::<span class="kw-2">*</span>;
+    <span class="kw">let </span>magic = bytes.pread_with::&lt;u32&gt;(offset, BE)<span class="question-mark">?</span>;
+    <span class="kw">let </span>ctx = <span class="kw">match </span>magic {
+        MH_CIGAM_64 | MH_CIGAM | MH_MAGIC_64 | MH_MAGIC =&gt; {
+            <span class="kw">let </span>is_lsb = magic == MH_CIGAM || magic == MH_CIGAM_64;
+            <span class="kw">let </span>le = scroll::Endian::from(is_lsb);
+            <span class="kw">let </span>container = <span class="kw">if </span>magic == MH_MAGIC_64 || magic == MH_CIGAM_64 {
+                Container::Big
+            } <span class="kw">else </span>{
+                Container::Little
             };
-            <span class="prelude-val">Some</span>(<span class="ident">container::Ctx::new</span>(<span class="ident">container</span>, <span class="ident">le</span>))
+            <span class="prelude-val">Some</span>(container::Ctx::new(container, le))
         }
-        <span class="kw">_</span> =&gt; <span class="prelude-val">None</span>,
+        <span class="kw">_ </span>=&gt; <span class="prelude-val">None</span>,
     };
-    <span class="prelude-val">Ok</span>((<span class="ident">magic</span>, <span class="ident">ctx</span>))
+    <span class="prelude-val">Ok</span>((magic, ctx))
 }
 
-<span class="doccomment">/// A cross-platform, zero-copy, endian-aware, 32/64 bit Mach-o binary parser</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">MachO</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// The mach-o header</span>
-    <span class="kw">pub</span> <span class="ident">header</span>: <span class="ident">header::Header</span>,
-    <span class="doccomment">/// The load commands tell the kernel and dynamic linker how to use/interpret this binary</span>
-    <span class="kw">pub</span> <span class="ident">load_commands</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">load_command::LoadCommand</span><span class="op">&gt;</span>,
-    <span class="doccomment">/// The load command &quot;segments&quot; - typically the pieces of the binary that are loaded into memory</span>
-    <span class="kw">pub</span> <span class="ident">segments</span>: <span class="ident">segment::Segments</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>,
-    <span class="doccomment">/// The &quot;Nlist&quot; style symbols in this binary - strippable</span>
-    <span class="kw">pub</span> <span class="ident">symbols</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">symbols::Symbols</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-    <span class="doccomment">/// The dylibs this library depends on</span>
-    <span class="kw">pub</span> <span class="ident">libs</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span><span class="op">&gt;</span>,
-    <span class="doccomment">/// The runtime search paths for dylibs this library depends on</span>
-    <span class="kw">pub</span> <span class="ident">rpaths</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span><span class="op">&gt;</span>,
-    <span class="doccomment">/// The entry point (as a virtual memory address), 0 if none</span>
-    <span class="kw">pub</span> <span class="ident">entry</span>: <span class="ident">u64</span>,
-    <span class="doccomment">/// Whether `entry` refers to an older `LC_UNIXTHREAD` instead of the newer `LC_MAIN` entrypoint</span>
-    <span class="kw">pub</span> <span class="ident">old_style_entry</span>: <span class="ident">bool</span>,
-    <span class="doccomment">/// The name of the dylib, if any</span>
-    <span class="kw">pub</span> <span class="ident">name</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span><span class="op">&gt;</span>,
-    <span class="doccomment">/// Are we a little-endian binary?</span>
-    <span class="kw">pub</span> <span class="ident">little_endian</span>: <span class="ident">bool</span>,
-    <span class="doccomment">/// Are we a 64-bit binary</span>
-    <span class="kw">pub</span> <span class="ident">is_64</span>: <span class="ident">bool</span>,
-    <span class="ident">data</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
-    <span class="ident">ctx</span>: <span class="ident">container::Ctx</span>,
-    <span class="ident">export_trie</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">exports::ExportTrie</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-    <span class="ident">bind_interpreter</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">imports::BindInterpreter</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+<span class="doccomment">/// A cross-platform, zero-copy, endian-aware, 32/64 bit Mach-o binary parser
+</span><span class="kw">pub struct </span>MachO&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="doccomment">/// The mach-o header
+    </span><span class="kw">pub </span>header: header::Header,
+    <span class="doccomment">/// The load commands tell the kernel and dynamic linker how to use/interpret this binary
+    </span><span class="kw">pub </span>load_commands: Vec&lt;load_command::LoadCommand&gt;,
+    <span class="doccomment">/// The load command &quot;segments&quot; - typically the pieces of the binary that are loaded into memory
+    </span><span class="kw">pub </span>segments: segment::Segments&lt;<span class="lifetime">&#39;a</span>&gt;,
+    <span class="doccomment">/// The &quot;Nlist&quot; style symbols in this binary - strippable
+    </span><span class="kw">pub </span>symbols: <span class="prelude-ty">Option</span>&lt;symbols::Symbols&lt;<span class="lifetime">&#39;a</span>&gt;&gt;,
+    <span class="doccomment">/// The dylibs this library depends on
+    </span><span class="kw">pub </span>libs: Vec&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str&gt;,
+    <span class="doccomment">/// The runtime search paths for dylibs this library depends on
+    </span><span class="kw">pub </span>rpaths: Vec&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str&gt;,
+    <span class="doccomment">/// The entry point (as a virtual memory address), 0 if none
+    </span><span class="kw">pub </span>entry: u64,
+    <span class="doccomment">/// Whether `entry` refers to an older `LC_UNIXTHREAD` instead of the newer `LC_MAIN` entrypoint
+    </span><span class="kw">pub </span>old_style_entry: bool,
+    <span class="doccomment">/// The name of the dylib, if any
+    </span><span class="kw">pub </span>name: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str&gt;,
+    <span class="doccomment">/// Are we a little-endian binary?
+    </span><span class="kw">pub </span>little_endian: bool,
+    <span class="doccomment">/// Are we a 64-bit binary
+    </span><span class="kw">pub </span>is_64: bool,
+    data: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8],
+    ctx: container::Ctx,
+    export_trie: <span class="prelude-ty">Option</span>&lt;exports::ExportTrie&lt;<span class="lifetime">&#39;a</span>&gt;&gt;,
+    bind_interpreter: <span class="prelude-ty">Option</span>&lt;imports::BindInterpreter&lt;<span class="lifetime">&#39;a</span>&gt;&gt;,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">fmt::Debug</span> <span class="kw">for</span> <span class="ident">MachO</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">fmt</span>: <span class="kw-2">&amp;mut</span> <span class="ident">fmt::Formatter</span>) -&gt; <span class="ident">fmt::Result</span> {
-        <span class="ident">fmt</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;MachO&quot;</span>)
-            .<span class="ident">field</span>(<span class="string">&quot;header&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">header</span>)
-            .<span class="ident">field</span>(<span class="string">&quot;load_commands&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">load_commands</span>)
-            .<span class="ident">field</span>(<span class="string">&quot;segments&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">segments</span>)
-            .<span class="ident">field</span>(<span class="string">&quot;entry&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">entry</span>)
-            .<span class="ident">field</span>(<span class="string">&quot;old_style_entry&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">old_style_entry</span>)
-            .<span class="ident">field</span>(<span class="string">&quot;libs&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">libs</span>)
-            .<span class="ident">field</span>(<span class="string">&quot;name&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">name</span>)
-            .<span class="ident">field</span>(<span class="string">&quot;little_endian&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">little_endian</span>)
-            .<span class="ident">field</span>(<span class="string">&quot;is_64&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">is_64</span>)
-            .<span class="ident">field</span>(<span class="string">&quot;symbols()&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">symbols</span>().<span class="ident">collect</span>::<span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="kw">_</span><span class="op">&gt;</span><span class="op">&gt;</span>())
-            .<span class="ident">field</span>(<span class="string">&quot;exports()&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">exports</span>())
-            .<span class="ident">field</span>(<span class="string">&quot;imports()&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">imports</span>())
-            .<span class="ident">finish</span>()
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; fmt::Debug <span class="kw">for </span>MachO&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, fmt: <span class="kw-2">&amp;mut </span>fmt::Formatter) -&gt; fmt::Result {
+        fmt.debug_struct(<span class="string">&quot;MachO&quot;</span>)
+            .field(<span class="string">&quot;header&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.header)
+            .field(<span class="string">&quot;load_commands&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.load_commands)
+            .field(<span class="string">&quot;segments&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.segments)
+            .field(<span class="string">&quot;entry&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.entry)
+            .field(<span class="string">&quot;old_style_entry&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.old_style_entry)
+            .field(<span class="string">&quot;libs&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.libs)
+            .field(<span class="string">&quot;name&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.name)
+            .field(<span class="string">&quot;little_endian&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.little_endian)
+            .field(<span class="string">&quot;is_64&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.is_64)
+            .field(<span class="string">&quot;symbols()&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.symbols().collect::&lt;Vec&lt;<span class="kw">_</span>&gt;&gt;())
+            .field(<span class="string">&quot;exports()&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.exports())
+            .field(<span class="string">&quot;imports()&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.imports())
+            .finish()
     }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">MachO</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// Is this a relocatable object file?</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_object_file</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">header</span>.<span class="ident">filetype</span> <span class="op">==</span> <span class="ident">header::MH_OBJECT</span>
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; MachO&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="doccomment">/// Is this a relocatable object file?
+    </span><span class="kw">pub fn </span>is_object_file(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.header.filetype == header::MH_OBJECT
     }
-    <span class="doccomment">/// Return an iterator over all the symbols in this binary</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">symbols</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">symbols::SymbolIterator</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="kw-2">ref</span> <span class="ident">symbols</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">symbols</span> {
-            <span class="ident">symbols</span>.<span class="ident">into_iter</span>()
-        } <span class="kw">else</span> {
-            <span class="ident">symbols::SymbolIterator::default</span>()
+    <span class="doccomment">/// Return an iterator over all the symbols in this binary
+    </span><span class="kw">pub fn </span>symbols(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; symbols::SymbolIterator&lt;<span class="lifetime">&#39;a</span>&gt; {
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(<span class="kw-2">ref </span>symbols) = <span class="self">self</span>.symbols {
+            symbols.into_iter()
+        } <span class="kw">else </span>{
+            symbols::SymbolIterator::default()
         }
     }
-    <span class="doccomment">/// Return a vector of the relocations in this binary</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">relocations</span>(
+    <span class="doccomment">/// Return a vector of the relocations in this binary
+    </span><span class="kw">pub fn </span>relocations(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-    ) -&gt; <span class="ident">error::Result</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">usize</span>, <span class="ident">segment::RelocationIterator</span>, <span class="ident">segment::Section</span>)<span class="op">&gt;</span><span class="op">&gt;</span> {
+    ) -&gt; error::Result&lt;Vec&lt;(usize, segment::RelocationIterator, segment::Section)&gt;&gt; {
         <span class="macro">debug!</span>(<span class="string">&quot;Iterating relocations&quot;</span>);
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">relocs</span> <span class="op">=</span> <span class="ident">Vec::new</span>();
-        <span class="kw">for</span> (<span class="ident">_i</span>, <span class="ident">segment</span>) <span class="kw">in</span> (<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">segments</span>).<span class="ident">into_iter</span>().<span class="ident">enumerate</span>() {
-            <span class="kw">for</span> (<span class="ident">j</span>, <span class="ident">section</span>) <span class="kw">in</span> <span class="ident">segment</span>.<span class="ident">into_iter</span>().<span class="ident">enumerate</span>() {
-                <span class="kw">let</span> (<span class="ident">section</span>, <span class="ident">_data</span>) <span class="op">=</span> <span class="ident">section</span><span class="question-mark">?</span>;
-                <span class="kw">if</span> <span class="ident">section</span>.<span class="ident">nreloc</span> <span class="op">&gt;</span> <span class="number">0</span> {
-                    <span class="ident">relocs</span>.<span class="ident">push</span>((<span class="ident">j</span>, <span class="ident">section</span>.<span class="ident">iter_relocations</span>(<span class="self">self</span>.<span class="ident">data</span>, <span class="self">self</span>.<span class="ident">ctx</span>), <span class="ident">section</span>));
+        <span class="kw">let </span><span class="kw-2">mut </span>relocs = Vec::new();
+        <span class="kw">for </span>(_i, segment) <span class="kw">in </span>(<span class="kw-2">&amp;</span><span class="self">self</span>.segments).into_iter().enumerate() {
+            <span class="kw">for </span>(j, section) <span class="kw">in </span>segment.into_iter().enumerate() {
+                <span class="kw">let </span>(section, _data) = section<span class="question-mark">?</span>;
+                <span class="kw">if </span>section.nreloc &gt; <span class="number">0 </span>{
+                    relocs.push((j, section.iter_relocations(<span class="self">self</span>.data, <span class="self">self</span>.ctx), section));
                 }
             }
         }
-        <span class="prelude-val">Ok</span>(<span class="ident">relocs</span>)
+        <span class="prelude-val">Ok</span>(relocs)
     }
-    <span class="doccomment">/// Return the exported symbols in this binary (if any)</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">exports</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">error::Result</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">exports::Export</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="kw-2">ref</span> <span class="ident">trie</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">export_trie</span> {
-            <span class="ident">trie</span>.<span class="ident">exports</span>(<span class="self">self</span>.<span class="ident">libs</span>.<span class="ident">as_slice</span>())
-        } <span class="kw">else</span> {
+    <span class="doccomment">/// Return the exported symbols in this binary (if any)
+    </span><span class="kw">pub fn </span>exports(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; error::Result&lt;Vec&lt;exports::Export&gt;&gt; {
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(<span class="kw-2">ref </span>trie) = <span class="self">self</span>.export_trie {
+            trie.exports(<span class="self">self</span>.libs.as_slice())
+        } <span class="kw">else </span>{
             <span class="prelude-val">Ok</span>(<span class="macro">vec!</span>[])
         }
     }
-    <span class="doccomment">/// Return the imported symbols in this binary that dyld knows about (if any)</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">imports</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">error::Result</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">imports::Import</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="kw-2">ref</span> <span class="ident">interpreter</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">bind_interpreter</span> {
-            <span class="ident">interpreter</span>.<span class="ident">imports</span>(<span class="self">self</span>.<span class="ident">libs</span>.<span class="ident">as_slice</span>(), <span class="self">self</span>.<span class="ident">segments</span>.<span class="ident">as_slice</span>(), <span class="self">self</span>.<span class="ident">ctx</span>)
-        } <span class="kw">else</span> {
+    <span class="doccomment">/// Return the imported symbols in this binary that dyld knows about (if any)
+    </span><span class="kw">pub fn </span>imports(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; error::Result&lt;Vec&lt;imports::Import&gt;&gt; {
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(<span class="kw-2">ref </span>interpreter) = <span class="self">self</span>.bind_interpreter {
+            interpreter.imports(<span class="self">self</span>.libs.as_slice(), <span class="self">self</span>.segments.as_slice(), <span class="self">self</span>.ctx)
+        } <span class="kw">else </span>{
             <span class="prelude-val">Ok</span>(<span class="macro">vec!</span>[])
         }
     }
-    <span class="doccomment">/// Parses the Mach-o binary from `bytes` at `offset`</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>], <span class="kw-2">mut</span> <span class="ident">offset</span>: <span class="ident">usize</span>) -&gt; <span class="ident">error::Result</span><span class="op">&lt;</span><span class="ident">MachO</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> (<span class="ident">magic</span>, <span class="ident">maybe_ctx</span>) <span class="op">=</span> <span class="ident">parse_magic_and_ctx</span>(<span class="ident">bytes</span>, <span class="ident">offset</span>)<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">ctx</span> <span class="op">=</span> <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">ctx</span>) <span class="op">=</span> <span class="ident">maybe_ctx</span> {
-            <span class="ident">ctx</span>
-        } <span class="kw">else</span> {
-            <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">error::Error::BadMagic</span>(<span class="ident">u64::from</span>(<span class="ident">magic</span>)));
+    <span class="doccomment">/// Parses the Mach-o binary from `bytes` at `offset`
+    </span><span class="kw">pub fn </span>parse(bytes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8], <span class="kw-2">mut </span>offset: usize) -&gt; error::Result&lt;MachO&lt;<span class="lifetime">&#39;a</span>&gt;&gt; {
+        <span class="kw">let </span>(magic, maybe_ctx) = parse_magic_and_ctx(bytes, offset)<span class="question-mark">?</span>;
+        <span class="kw">let </span>ctx = <span class="kw">if let </span><span class="prelude-val">Some</span>(ctx) = maybe_ctx {
+            ctx
+        } <span class="kw">else </span>{
+            <span class="kw">return </span><span class="prelude-val">Err</span>(error::Error::BadMagic(u64::from(magic)));
         };
-        <span class="macro">debug!</span>(<span class="string">&quot;Ctx: {:?}&quot;</span>, <span class="ident">ctx</span>);
-        <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> <span class="kw-2">&amp;mut</span> <span class="ident">offset</span>;
-        <span class="kw">let</span> <span class="ident">header</span>: <span class="ident">header::Header</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">pread_with</span>(<span class="kw-2">*</span><span class="ident">offset</span>, <span class="ident">ctx</span>)<span class="question-mark">?</span>;
-        <span class="macro">debug!</span>(<span class="string">&quot;Mach-o header: {:?}&quot;</span>, <span class="ident">header</span>);
-        <span class="kw">let</span> <span class="ident">little_endian</span> <span class="op">=</span> <span class="ident">ctx</span>.<span class="ident">le</span>.<span class="ident">is_little</span>();
-        <span class="kw">let</span> <span class="ident">is_64</span> <span class="op">=</span> <span class="ident">ctx</span>.<span class="ident">container</span>.<span class="ident">is_big</span>();
-        <span class="kw-2">*</span><span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">header::Header::size_with</span>(<span class="kw-2">&amp;</span><span class="ident">ctx</span>.<span class="ident">container</span>);
-        <span class="kw">let</span> <span class="ident">ncmds</span> <span class="op">=</span> <span class="ident">header</span>.<span class="ident">ncmds</span>;
+        <span class="macro">debug!</span>(<span class="string">&quot;Ctx: {:?}&quot;</span>, ctx);
+        <span class="kw">let </span>offset = <span class="kw-2">&amp;mut </span>offset;
+        <span class="kw">let </span>header: header::Header = bytes.pread_with(<span class="kw-2">*</span>offset, ctx)<span class="question-mark">?</span>;
+        <span class="macro">debug!</span>(<span class="string">&quot;Mach-o header: {:?}&quot;</span>, header);
+        <span class="kw">let </span>little_endian = ctx.le.is_little();
+        <span class="kw">let </span>is_64 = ctx.container.is_big();
+        <span class="kw-2">*</span>offset += header::Header::size_with(<span class="kw-2">&amp;</span>ctx.container);
+        <span class="kw">let </span>ncmds = header.ncmds;
 
-        <span class="kw">let</span> <span class="ident">sizeofcmds</span> <span class="op">=</span> <span class="ident">header</span>.<span class="ident">sizeofcmds</span> <span class="kw">as</span> <span class="ident">usize</span>;
-        <span class="comment">// a load cmd is at least 2 * 4 bytes, (type, sizeof)</span>
-        <span class="kw">if</span> <span class="ident">ncmds</span> <span class="op">&gt;</span> <span class="ident">sizeofcmds</span> <span class="op">/</span> <span class="number">8</span> <span class="op">|</span><span class="op">|</span> <span class="ident">sizeofcmds</span> <span class="op">&gt;</span> <span class="ident">bytes</span>.<span class="ident">len</span>() {
-            <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">error::Error::BufferTooShort</span>(<span class="ident">ncmds</span>, <span class="string">&quot;load commands&quot;</span>));
+        <span class="kw">let </span>sizeofcmds = header.sizeofcmds <span class="kw">as </span>usize;
+        <span class="comment">// a load cmd is at least 2 * 4 bytes, (type, sizeof)
+        </span><span class="kw">if </span>ncmds &gt; sizeofcmds / <span class="number">8 </span>|| sizeofcmds &gt; bytes.len() {
+            <span class="kw">return </span><span class="prelude-val">Err</span>(error::Error::BufferTooShort(ncmds, <span class="string">&quot;load commands&quot;</span>));
         }
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">cmds</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">load_command::LoadCommand</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Vec::with_capacity</span>(<span class="ident">ncmds</span>);
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">symbols</span> <span class="op">=</span> <span class="prelude-val">None</span>;
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">libs</span> <span class="op">=</span> <span class="macro">vec!</span>[<span class="string">&quot;self&quot;</span>];
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">rpaths</span> <span class="op">=</span> <span class="macro">vec!</span>[];
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">export_trie</span> <span class="op">=</span> <span class="prelude-val">None</span>;
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">bind_interpreter</span> <span class="op">=</span> <span class="prelude-val">None</span>;
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">unixthread_entry_address</span> <span class="op">=</span> <span class="prelude-val">None</span>;
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">main_entry_offset</span> <span class="op">=</span> <span class="prelude-val">None</span>;
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">name</span> <span class="op">=</span> <span class="prelude-val">None</span>;
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">segments</span> <span class="op">=</span> <span class="ident">segment::Segments::new</span>(<span class="ident">ctx</span>);
-        <span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">ncmds</span> {
-            <span class="kw">let</span> <span class="ident">cmd</span> <span class="op">=</span> <span class="ident">load_command::LoadCommand::parse</span>(<span class="ident">bytes</span>, <span class="ident">offset</span>, <span class="ident">ctx</span>.<span class="ident">le</span>)<span class="question-mark">?</span>;
-            <span class="macro">debug!</span>(<span class="string">&quot;{} - {:?}&quot;</span>, <span class="ident">i</span>, <span class="ident">cmd</span>);
-            <span class="kw">match</span> <span class="ident">cmd</span>.<span class="ident">command</span> {
-                <span class="ident">load_command::CommandVariant::Segment32</span>(<span class="ident">command</span>) =&gt; {
-                    <span class="comment">// FIXME: we may want to be less strict about failure here, and just return an empty segment to allow parsing to continue?</span>
-                    <span class="ident">segments</span>.<span class="ident">push</span>(<span class="ident">segment::Segment::from_32</span>(<span class="ident">bytes</span>, <span class="kw-2">&amp;</span><span class="ident">command</span>, <span class="ident">cmd</span>.<span class="ident">offset</span>, <span class="ident">ctx</span>)<span class="question-mark">?</span>)
+        <span class="kw">let </span><span class="kw-2">mut </span>cmds: Vec&lt;load_command::LoadCommand&gt; = Vec::with_capacity(ncmds);
+        <span class="kw">let </span><span class="kw-2">mut </span>symbols = <span class="prelude-val">None</span>;
+        <span class="kw">let </span><span class="kw-2">mut </span>libs = <span class="macro">vec!</span>[<span class="string">&quot;self&quot;</span>];
+        <span class="kw">let </span><span class="kw-2">mut </span>rpaths = <span class="macro">vec!</span>[];
+        <span class="kw">let </span><span class="kw-2">mut </span>export_trie = <span class="prelude-val">None</span>;
+        <span class="kw">let </span><span class="kw-2">mut </span>bind_interpreter = <span class="prelude-val">None</span>;
+        <span class="kw">let </span><span class="kw-2">mut </span>unixthread_entry_address = <span class="prelude-val">None</span>;
+        <span class="kw">let </span><span class="kw-2">mut </span>main_entry_offset = <span class="prelude-val">None</span>;
+        <span class="kw">let </span><span class="kw-2">mut </span>name = <span class="prelude-val">None</span>;
+        <span class="kw">let </span><span class="kw-2">mut </span>segments = segment::Segments::new(ctx);
+        <span class="kw">for </span>i <span class="kw">in </span><span class="number">0</span>..ncmds {
+            <span class="kw">let </span>cmd = load_command::LoadCommand::parse(bytes, offset, ctx.le)<span class="question-mark">?</span>;
+            <span class="macro">debug!</span>(<span class="string">&quot;{} - {:?}&quot;</span>, i, cmd);
+            <span class="kw">match </span>cmd.command {
+                load_command::CommandVariant::Segment32(command) =&gt; {
+                    <span class="comment">// FIXME: we may want to be less strict about failure here, and just return an empty segment to allow parsing to continue?
+                    </span>segments.push(segment::Segment::from_32(bytes, <span class="kw-2">&amp;</span>command, cmd.offset, ctx)<span class="question-mark">?</span>)
                 }
-                <span class="ident">load_command::CommandVariant::Segment64</span>(<span class="ident">command</span>) =&gt; {
-                    <span class="ident">segments</span>.<span class="ident">push</span>(<span class="ident">segment::Segment::from_64</span>(<span class="ident">bytes</span>, <span class="kw-2">&amp;</span><span class="ident">command</span>, <span class="ident">cmd</span>.<span class="ident">offset</span>, <span class="ident">ctx</span>)<span class="question-mark">?</span>)
+                load_command::CommandVariant::Segment64(command) =&gt; {
+                    segments.push(segment::Segment::from_64(bytes, <span class="kw-2">&amp;</span>command, cmd.offset, ctx)<span class="question-mark">?</span>)
                 }
-                <span class="ident">load_command::CommandVariant::Symtab</span>(<span class="ident">command</span>) =&gt; {
-                    <span class="ident">symbols</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">symbols::Symbols::parse</span>(<span class="ident">bytes</span>, <span class="kw-2">&amp;</span><span class="ident">command</span>, <span class="ident">ctx</span>)<span class="question-mark">?</span>);
+                load_command::CommandVariant::Symtab(command) =&gt; {
+                    symbols = <span class="prelude-val">Some</span>(symbols::Symbols::parse(bytes, <span class="kw-2">&amp;</span>command, ctx)<span class="question-mark">?</span>);
                 }
-                <span class="ident">load_command::CommandVariant::LoadDylib</span>(<span class="ident">command</span>)
-                <span class="op">|</span> <span class="ident">load_command::CommandVariant::LoadUpwardDylib</span>(<span class="ident">command</span>)
-                <span class="op">|</span> <span class="ident">load_command::CommandVariant::ReexportDylib</span>(<span class="ident">command</span>)
-                <span class="op">|</span> <span class="ident">load_command::CommandVariant::LoadWeakDylib</span>(<span class="ident">command</span>)
-                <span class="op">|</span> <span class="ident">load_command::CommandVariant::LazyLoadDylib</span>(<span class="ident">command</span>) =&gt; {
-                    <span class="kw">let</span> <span class="ident">lib</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">pread</span>::<span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>(<span class="ident">cmd</span>.<span class="ident">offset</span> <span class="op">+</span> <span class="ident">command</span>.<span class="ident">dylib</span>.<span class="ident">name</span> <span class="kw">as</span> <span class="ident">usize</span>)<span class="question-mark">?</span>;
-                    <span class="ident">libs</span>.<span class="ident">push</span>(<span class="ident">lib</span>);
+                load_command::CommandVariant::LoadDylib(command)
+                | load_command::CommandVariant::LoadUpwardDylib(command)
+                | load_command::CommandVariant::ReexportDylib(command)
+                | load_command::CommandVariant::LoadWeakDylib(command)
+                | load_command::CommandVariant::LazyLoadDylib(command) =&gt; {
+                    <span class="kw">let </span>lib = bytes.pread::&lt;<span class="kw-2">&amp;</span>str&gt;(cmd.offset + command.dylib.name <span class="kw">as </span>usize)<span class="question-mark">?</span>;
+                    libs.push(lib);
                 }
-                <span class="ident">load_command::CommandVariant::Rpath</span>(<span class="ident">command</span>) =&gt; {
-                    <span class="kw">let</span> <span class="ident">rpath</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">pread</span>::<span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>(<span class="ident">cmd</span>.<span class="ident">offset</span> <span class="op">+</span> <span class="ident">command</span>.<span class="ident">path</span> <span class="kw">as</span> <span class="ident">usize</span>)<span class="question-mark">?</span>;
-                    <span class="ident">rpaths</span>.<span class="ident">push</span>(<span class="ident">rpath</span>);
+                load_command::CommandVariant::Rpath(command) =&gt; {
+                    <span class="kw">let </span>rpath = bytes.pread::&lt;<span class="kw-2">&amp;</span>str&gt;(cmd.offset + command.path <span class="kw">as </span>usize)<span class="question-mark">?</span>;
+                    rpaths.push(rpath);
                 }
-                <span class="ident">load_command::CommandVariant::DyldInfo</span>(<span class="ident">command</span>)
-                <span class="op">|</span> <span class="ident">load_command::CommandVariant::DyldInfoOnly</span>(<span class="ident">command</span>) =&gt; {
-                    <span class="ident">export_trie</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">exports::ExportTrie::new</span>(<span class="ident">bytes</span>, <span class="kw-2">&amp;</span><span class="ident">command</span>));
-                    <span class="ident">bind_interpreter</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">imports::BindInterpreter::new</span>(<span class="ident">bytes</span>, <span class="kw-2">&amp;</span><span class="ident">command</span>));
+                load_command::CommandVariant::DyldInfo(command)
+                | load_command::CommandVariant::DyldInfoOnly(command) =&gt; {
+                    export_trie = <span class="prelude-val">Some</span>(exports::ExportTrie::new(bytes, <span class="kw-2">&amp;</span>command));
+                    bind_interpreter = <span class="prelude-val">Some</span>(imports::BindInterpreter::new(bytes, <span class="kw-2">&amp;</span>command));
                 }
-                <span class="ident">load_command::CommandVariant::DyldExportsTrie</span>(<span class="ident">command</span>) =&gt; {
-                    <span class="ident">export_trie</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">exports::ExportTrie::new_from_linkedit_data_command</span>(
-                        <span class="ident">bytes</span>, <span class="kw-2">&amp;</span><span class="ident">command</span>,
+                load_command::CommandVariant::DyldExportsTrie(command) =&gt; {
+                    export_trie = <span class="prelude-val">Some</span>(exports::ExportTrie::new_from_linkedit_data_command(
+                        bytes, <span class="kw-2">&amp;</span>command,
                     ));
                 }
-                <span class="ident">load_command::CommandVariant::Unixthread</span>(<span class="ident">command</span>) =&gt; {
-                    <span class="comment">// dyld cares only about the first LC_UNIXTHREAD</span>
-                    <span class="kw">if</span> <span class="ident">unixthread_entry_address</span>.<span class="ident">is_none</span>() {
-                        <span class="ident">unixthread_entry_address</span> <span class="op">=</span>
-                            <span class="prelude-val">Some</span>(<span class="ident">command</span>.<span class="ident">instruction_pointer</span>(<span class="ident">header</span>.<span class="ident">cputype</span>)<span class="question-mark">?</span>);
+                load_command::CommandVariant::Unixthread(command) =&gt; {
+                    <span class="comment">// dyld cares only about the first LC_UNIXTHREAD
+                    </span><span class="kw">if </span>unixthread_entry_address.is_none() {
+                        unixthread_entry_address =
+                            <span class="prelude-val">Some</span>(command.instruction_pointer(header.cputype)<span class="question-mark">?</span>);
                     }
                 }
-                <span class="ident">load_command::CommandVariant::Main</span>(<span class="ident">command</span>) =&gt; {
-                    <span class="comment">// dyld cares only about the first LC_MAIN</span>
-                    <span class="kw">if</span> <span class="ident">main_entry_offset</span>.<span class="ident">is_none</span>() {
-                        <span class="ident">main_entry_offset</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">command</span>.<span class="ident">entryoff</span>);
+                load_command::CommandVariant::Main(command) =&gt; {
+                    <span class="comment">// dyld cares only about the first LC_MAIN
+                    </span><span class="kw">if </span>main_entry_offset.is_none() {
+                        main_entry_offset = <span class="prelude-val">Some</span>(command.entryoff);
                     }
                 }
-                <span class="ident">load_command::CommandVariant::IdDylib</span>(<span class="ident">command</span>) =&gt; {
-                    <span class="kw">let</span> <span class="ident">id</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">pread</span>::<span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>(<span class="ident">cmd</span>.<span class="ident">offset</span> <span class="op">+</span> <span class="ident">command</span>.<span class="ident">dylib</span>.<span class="ident">name</span> <span class="kw">as</span> <span class="ident">usize</span>)<span class="question-mark">?</span>;
-                    <span class="ident">libs</span>[<span class="number">0</span>] <span class="op">=</span> <span class="ident">id</span>;
-                    <span class="ident">name</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">id</span>);
+                load_command::CommandVariant::IdDylib(command) =&gt; {
+                    <span class="kw">let </span>id = bytes.pread::&lt;<span class="kw-2">&amp;</span>str&gt;(cmd.offset + command.dylib.name <span class="kw">as </span>usize)<span class="question-mark">?</span>;
+                    libs[<span class="number">0</span>] = id;
+                    name = <span class="prelude-val">Some</span>(id);
                 }
-                <span class="kw">_</span> =&gt; (),
+                <span class="kw">_ </span>=&gt; (),
             }
-            <span class="ident">cmds</span>.<span class="ident">push</span>(<span class="ident">cmd</span>)
+            cmds.push(cmd)
         }
 
-        <span class="comment">// dyld prefers LC_MAIN over LC_UNIXTHREAD</span>
-        <span class="comment">// choose the same way here</span>
-        <span class="kw">let</span> (<span class="ident">entry</span>, <span class="ident">old_style_entry</span>) <span class="op">=</span> <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">offset</span>) <span class="op">=</span> <span class="ident">main_entry_offset</span> {
-            <span class="comment">// map the entrypoint offset to a virtual memory address</span>
-            <span class="kw">let</span> <span class="ident">base_address</span> <span class="op">=</span> <span class="ident">segments</span>
-                .<span class="ident">iter</span>()
-                .<span class="ident">filter</span>(<span class="op">|</span><span class="ident">s</span><span class="op">|</span> <span class="kw-2">&amp;</span><span class="ident">s</span>.<span class="ident">segname</span>[<span class="number">0</span>..<span class="number">7</span>] <span class="op">==</span> <span class="string">b&quot;__TEXT\0&quot;</span>)
-                .<span class="ident">map</span>(<span class="op">|</span><span class="ident">s</span><span class="op">|</span> <span class="ident">s</span>.<span class="ident">vmaddr</span> <span class="op">-</span> <span class="ident">s</span>.<span class="ident">fileoff</span>)
-                .<span class="ident">next</span>()
-                .<span class="ident">ok_or_else</span>(<span class="op">|</span><span class="op">|</span> {
-                    <span class="ident">error::Error::Malformed</span>(<span class="macro">format!</span>(
+        <span class="comment">// dyld prefers LC_MAIN over LC_UNIXTHREAD
+        // choose the same way here
+        </span><span class="kw">let </span>(entry, old_style_entry) = <span class="kw">if let </span><span class="prelude-val">Some</span>(offset) = main_entry_offset {
+            <span class="comment">// map the entrypoint offset to a virtual memory address
+            </span><span class="kw">let </span>base_address = segments
+                .iter()
+                .filter(|s| <span class="kw-2">&amp;</span>s.segname[<span class="number">0</span>..<span class="number">7</span>] == <span class="string">b&quot;__TEXT\0&quot;</span>)
+                .map(|s| s.vmaddr - s.fileoff)
+                .next()
+                .ok_or_else(|| {
+                    error::Error::Malformed(<span class="macro">format!</span>(
                         <span class="string">&quot;image specifies LC_MAIN offset {} but has no __TEXT segment&quot;</span>,
-                        <span class="ident">offset</span>
+                        offset
                     ))
                 })<span class="question-mark">?</span>;
 
-            (<span class="ident">base_address</span> <span class="op">+</span> <span class="ident">offset</span>, <span class="bool-val">false</span>)
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">address</span>) <span class="op">=</span> <span class="ident">unixthread_entry_address</span> {
-            (<span class="ident">address</span>, <span class="bool-val">true</span>)
-        } <span class="kw">else</span> {
+            (base_address + offset, <span class="bool-val">false</span>)
+        } <span class="kw">else if let </span><span class="prelude-val">Some</span>(address) = unixthread_entry_address {
+            (address, <span class="bool-val">true</span>)
+        } <span class="kw">else </span>{
             (<span class="number">0</span>, <span class="bool-val">false</span>)
         };
 
-        <span class="prelude-val">Ok</span>(<span class="ident">MachO</span> {
-            <span class="ident">header</span>,
-            <span class="ident">load_commands</span>: <span class="ident">cmds</span>,
-            <span class="ident">segments</span>,
-            <span class="ident">symbols</span>,
-            <span class="ident">libs</span>,
-            <span class="ident">rpaths</span>,
-            <span class="ident">export_trie</span>,
-            <span class="ident">bind_interpreter</span>,
-            <span class="ident">entry</span>,
-            <span class="ident">old_style_entry</span>,
-            <span class="ident">name</span>,
-            <span class="ident">ctx</span>,
-            <span class="ident">is_64</span>,
-            <span class="ident">little_endian</span>,
-            <span class="ident">data</span>: <span class="ident">bytes</span>,
+        <span class="prelude-val">Ok</span>(MachO {
+            header,
+            load_commands: cmds,
+            segments,
+            symbols,
+            libs,
+            rpaths,
+            export_trie,
+            bind_interpreter,
+            entry,
+            old_style_entry,
+            name,
+            ctx,
+            is_64,
+            little_endian,
+            data: bytes,
         })
     }
 }
 
-<span class="doccomment">/// A Mach-o multi architecture (Fat) binary container</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">MultiArch</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="ident">data</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
-    <span class="ident">start</span>: <span class="ident">usize</span>,
-    <span class="kw">pub</span> <span class="ident">narches</span>: <span class="ident">usize</span>,
+<span class="doccomment">/// A Mach-o multi architecture (Fat) binary container
+</span><span class="kw">pub struct </span>MultiArch&lt;<span class="lifetime">&#39;a</span>&gt; {
+    data: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8],
+    start: usize,
+    <span class="kw">pub </span>narches: usize,
 }
 
-<span class="doccomment">/// Iterator over the fat architecture headers in a `MultiArch` container</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">FatArchIterator</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="ident">index</span>: <span class="ident">usize</span>,
-    <span class="ident">data</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
-    <span class="ident">narches</span>: <span class="ident">usize</span>,
-    <span class="ident">start</span>: <span class="ident">usize</span>,
+<span class="doccomment">/// Iterator over the fat architecture headers in a `MultiArch` container
+</span><span class="kw">pub struct </span>FatArchIterator&lt;<span class="lifetime">&#39;a</span>&gt; {
+    index: usize,
+    data: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8],
+    narches: usize,
+    start: usize,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Iterator</span> <span class="kw">for</span> <span class="ident">FatArchIterator</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">type</span> <span class="ident">Item</span> <span class="op">=</span> <span class="ident">error::Result</span><span class="op">&lt;</span><span class="ident">fat::FatArch</span><span class="op">&gt;</span>;
-    <span class="kw">fn</span> <span class="ident">next</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident"><span class="self">Self</span>::Item</span><span class="op">&gt;</span> {
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">index</span> <span class="op">&gt;</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">narches</span> {
-            <span class="prelude-val">None</span>
-        } <span class="kw">else</span> {
-            <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> (<span class="self">self</span>.<span class="ident">index</span> <span class="op">*</span> <span class="ident">fat::SIZEOF_FAT_ARCH</span>) <span class="op">+</span> <span class="self">self</span>.<span class="ident">start</span>;
-            <span class="kw">let</span> <span class="ident">arch</span> <span class="op">=</span> <span class="self">self</span>
-                .<span class="ident">data</span>
-                .<span class="ident">pread_with</span>::<span class="op">&lt;</span><span class="ident">fat::FatArch</span><span class="op">&gt;</span>(<span class="ident">offset</span>, <span class="ident">scroll::BE</span>)
-                .<span class="ident">map_err</span>(<span class="ident">core::convert::Into::into</span>);
-            <span class="self">self</span>.<span class="ident">index</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
-            <span class="prelude-val">Some</span>(<span class="ident">arch</span>)
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Iterator <span class="kw">for </span>FatArchIterator&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">type </span>Item = error::Result&lt;fat::FatArch&gt;;
+    <span class="kw">fn </span>next(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>::Item&gt; {
+        <span class="kw">if </span><span class="self">self</span>.index &gt;= <span class="self">self</span>.narches {
+            <span class="prelude-val">None
+        </span>} <span class="kw">else </span>{
+            <span class="kw">let </span>offset = (<span class="self">self</span>.index * fat::SIZEOF_FAT_ARCH) + <span class="self">self</span>.start;
+            <span class="kw">let </span>arch = <span class="self">self
+                </span>.data
+                .pread_with::&lt;fat::FatArch&gt;(offset, scroll::BE)
+                .map_err(core::convert::Into::into);
+            <span class="self">self</span>.index += <span class="number">1</span>;
+            <span class="prelude-val">Some</span>(arch)
         }
     }
 }
 
-<span class="doccomment">/// Iterator over every `MachO` binary contained in this `MultiArch` container</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">MachOIterator</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="ident">index</span>: <span class="ident">usize</span>,
-    <span class="ident">data</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
-    <span class="ident">narches</span>: <span class="ident">usize</span>,
-    <span class="ident">start</span>: <span class="ident">usize</span>,
+<span class="doccomment">/// Iterator over every `MachO` binary contained in this `MultiArch` container
+</span><span class="kw">pub struct </span>MachOIterator&lt;<span class="lifetime">&#39;a</span>&gt; {
+    index: usize,
+    data: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8],
+    narches: usize,
+    start: usize,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Iterator</span> <span class="kw">for</span> <span class="ident">MachOIterator</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">type</span> <span class="ident">Item</span> <span class="op">=</span> <span class="ident">error::Result</span><span class="op">&lt;</span><span class="ident">MachO</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span>;
-    <span class="kw">fn</span> <span class="ident">next</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident"><span class="self">Self</span>::Item</span><span class="op">&gt;</span> {
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">index</span> <span class="op">&gt;</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">narches</span> {
-            <span class="prelude-val">None</span>
-        } <span class="kw">else</span> {
-            <span class="kw">let</span> <span class="ident">index</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">index</span>;
-            <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> (<span class="ident">index</span> <span class="op">*</span> <span class="ident">fat::SIZEOF_FAT_ARCH</span>) <span class="op">+</span> <span class="self">self</span>.<span class="ident">start</span>;
-            <span class="self">self</span>.<span class="ident">index</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
-            <span class="kw">match</span> <span class="self">self</span>.<span class="ident">data</span>.<span class="ident">pread_with</span>::<span class="op">&lt;</span><span class="ident">fat::FatArch</span><span class="op">&gt;</span>(<span class="ident">offset</span>, <span class="ident">scroll::BE</span>) {
-                <span class="prelude-val">Ok</span>(<span class="ident">arch</span>) =&gt; {
-                    <span class="kw">let</span> <span class="ident">bytes</span> <span class="op">=</span> <span class="ident">arch</span>.<span class="ident">slice</span>(<span class="self">self</span>.<span class="ident">data</span>);
-                    <span class="kw">let</span> <span class="ident">binary</span> <span class="op">=</span> <span class="ident">MachO::parse</span>(<span class="ident">bytes</span>, <span class="number">0</span>);
-                    <span class="prelude-val">Some</span>(<span class="ident">binary</span>)
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Iterator <span class="kw">for </span>MachOIterator&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">type </span>Item = error::Result&lt;MachO&lt;<span class="lifetime">&#39;a</span>&gt;&gt;;
+    <span class="kw">fn </span>next(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>::Item&gt; {
+        <span class="kw">if </span><span class="self">self</span>.index &gt;= <span class="self">self</span>.narches {
+            <span class="prelude-val">None
+        </span>} <span class="kw">else </span>{
+            <span class="kw">let </span>index = <span class="self">self</span>.index;
+            <span class="kw">let </span>offset = (index * fat::SIZEOF_FAT_ARCH) + <span class="self">self</span>.start;
+            <span class="self">self</span>.index += <span class="number">1</span>;
+            <span class="kw">match </span><span class="self">self</span>.data.pread_with::&lt;fat::FatArch&gt;(offset, scroll::BE) {
+                <span class="prelude-val">Ok</span>(arch) =&gt; {
+                    <span class="kw">let </span>bytes = arch.slice(<span class="self">self</span>.data);
+                    <span class="kw">let </span>binary = MachO::parse(bytes, <span class="number">0</span>);
+                    <span class="prelude-val">Some</span>(binary)
                 }
-                <span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; <span class="prelude-val">Some</span>(<span class="prelude-val">Err</span>(<span class="ident">e</span>.<span class="ident">into</span>())),
+                <span class="prelude-val">Err</span>(e) =&gt; <span class="prelude-val">Some</span>(<span class="prelude-val">Err</span>(e.into())),
             }
         }
     }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="lifetime">&#39;b</span><span class="op">&gt;</span> <span class="ident">IntoIterator</span> <span class="kw">for</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;b</span> <span class="ident">MultiArch</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">type</span> <span class="ident">Item</span> <span class="op">=</span> <span class="ident">error::Result</span><span class="op">&lt;</span><span class="ident">MachO</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span>;
-    <span class="kw">type</span> <span class="ident">IntoIter</span> <span class="op">=</span> <span class="ident">MachOIterator</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>;
-    <span class="kw">fn</span> <span class="ident">into_iter</span>(<span class="self">self</span>) -&gt; <span class="ident"><span class="self">Self</span>::IntoIter</span> {
-        <span class="ident">MachOIterator</span> {
-            <span class="ident">index</span>: <span class="number">0</span>,
-            <span class="ident">data</span>: <span class="self">self</span>.<span class="ident">data</span>,
-            <span class="ident">narches</span>: <span class="self">self</span>.<span class="ident">narches</span>,
-            <span class="ident">start</span>: <span class="self">self</span>.<span class="ident">start</span>,
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>, <span class="lifetime">&#39;b</span>&gt; IntoIterator <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;b </span>MultiArch&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">type </span>Item = error::Result&lt;MachO&lt;<span class="lifetime">&#39;a</span>&gt;&gt;;
+    <span class="kw">type </span>IntoIter = MachOIterator&lt;<span class="lifetime">&#39;a</span>&gt;;
+    <span class="kw">fn </span>into_iter(<span class="self">self</span>) -&gt; <span class="self">Self</span>::IntoIter {
+        MachOIterator {
+            index: <span class="number">0</span>,
+            data: <span class="self">self</span>.data,
+            narches: <span class="self">self</span>.narches,
+            start: <span class="self">self</span>.start,
         }
     }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">MultiArch</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// Lazily construct `Self`</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>]) -&gt; <span class="ident">error::Result</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">header</span> <span class="op">=</span> <span class="ident">fat::FatHeader::parse</span>(<span class="ident">bytes</span>)<span class="question-mark">?</span>;
-        <span class="prelude-val">Ok</span>(<span class="ident">MultiArch</span> {
-            <span class="ident">data</span>: <span class="ident">bytes</span>,
-            <span class="ident">start</span>: <span class="ident">fat::SIZEOF_FAT_HEADER</span>,
-            <span class="ident">narches</span>: <span class="ident">header</span>.<span class="ident">nfat_arch</span> <span class="kw">as</span> <span class="ident">usize</span>,
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; MultiArch&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="doccomment">/// Lazily construct `Self`
+    </span><span class="kw">pub fn </span>new(bytes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8]) -&gt; error::Result&lt;<span class="self">Self</span>&gt; {
+        <span class="kw">let </span>header = fat::FatHeader::parse(bytes)<span class="question-mark">?</span>;
+        <span class="prelude-val">Ok</span>(MultiArch {
+            data: bytes,
+            start: fat::SIZEOF_FAT_HEADER,
+            narches: header.nfat_arch <span class="kw">as </span>usize,
         })
     }
-    <span class="doccomment">/// Iterate every fat arch header</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">iter_arches</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">FatArchIterator</span> {
-        <span class="ident">FatArchIterator</span> {
-            <span class="ident">index</span>: <span class="number">0</span>,
-            <span class="ident">data</span>: <span class="self">self</span>.<span class="ident">data</span>,
-            <span class="ident">narches</span>: <span class="self">self</span>.<span class="ident">narches</span>,
-            <span class="ident">start</span>: <span class="self">self</span>.<span class="ident">start</span>,
+    <span class="doccomment">/// Iterate every fat arch header
+    </span><span class="kw">pub fn </span>iter_arches(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; FatArchIterator {
+        FatArchIterator {
+            index: <span class="number">0</span>,
+            data: <span class="self">self</span>.data,
+            narches: <span class="self">self</span>.narches,
+            start: <span class="self">self</span>.start,
         }
     }
-    <span class="doccomment">/// Return all the architectures in this binary</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">arches</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">error::Result</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">fat::FatArch</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">narches</span> <span class="op">&gt;</span> <span class="self">self</span>.<span class="ident">data</span>.<span class="ident">len</span>() <span class="op">/</span> <span class="ident">fat::SIZEOF_FAT_ARCH</span> {
-            <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">error::Error::BufferTooShort</span>(<span class="self">self</span>.<span class="ident">narches</span>, <span class="string">&quot;arches&quot;</span>));
+    <span class="doccomment">/// Return all the architectures in this binary
+    </span><span class="kw">pub fn </span>arches(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; error::Result&lt;Vec&lt;fat::FatArch&gt;&gt; {
+        <span class="kw">if </span><span class="self">self</span>.narches &gt; <span class="self">self</span>.data.len() / fat::SIZEOF_FAT_ARCH {
+            <span class="kw">return </span><span class="prelude-val">Err</span>(error::Error::BufferTooShort(<span class="self">self</span>.narches, <span class="string">&quot;arches&quot;</span>));
         }
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">arches</span> <span class="op">=</span> <span class="ident">Vec::with_capacity</span>(<span class="self">self</span>.<span class="ident">narches</span>);
-        <span class="kw">for</span> <span class="ident">arch</span> <span class="kw">in</span> <span class="self">self</span>.<span class="ident">iter_arches</span>() {
-            <span class="ident">arches</span>.<span class="ident">push</span>(<span class="ident">arch</span><span class="question-mark">?</span>);
+        <span class="kw">let </span><span class="kw-2">mut </span>arches = Vec::with_capacity(<span class="self">self</span>.narches);
+        <span class="kw">for </span>arch <span class="kw">in </span><span class="self">self</span>.iter_arches() {
+            arches.push(arch<span class="question-mark">?</span>);
         }
-        <span class="prelude-val">Ok</span>(<span class="ident">arches</span>)
+        <span class="prelude-val">Ok</span>(arches)
     }
-    <span class="doccomment">/// Try to get the Mach-o binary at `index`</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">index</span>: <span class="ident">usize</span>) -&gt; <span class="ident">error::Result</span><span class="op">&lt;</span><span class="ident">MachO</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-        <span class="kw">if</span> <span class="ident">index</span> <span class="op">&gt;</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">narches</span> {
-            <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">error::Error::Malformed</span>(<span class="macro">format!</span>(
+    <span class="doccomment">/// Try to get the Mach-o binary at `index`
+    </span><span class="kw">pub fn </span>get(<span class="kw-2">&amp;</span><span class="self">self</span>, index: usize) -&gt; error::Result&lt;MachO&lt;<span class="lifetime">&#39;a</span>&gt;&gt; {
+        <span class="kw">if </span>index &gt;= <span class="self">self</span>.narches {
+            <span class="kw">return </span><span class="prelude-val">Err</span>(error::Error::Malformed(<span class="macro">format!</span>(
                 <span class="string">&quot;Requested the {}-th binary, but there are only {} architectures in this container&quot;</span>,
-                <span class="ident">index</span>, <span class="self">self</span>.<span class="ident">narches</span>
+                index, <span class="self">self</span>.narches
             )));
         }
-        <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> (<span class="ident">index</span> <span class="op">*</span> <span class="ident">fat::SIZEOF_FAT_ARCH</span>) <span class="op">+</span> <span class="self">self</span>.<span class="ident">start</span>;
-        <span class="kw">let</span> <span class="ident">arch</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">data</span>.<span class="ident">pread_with</span>::<span class="op">&lt;</span><span class="ident">fat::FatArch</span><span class="op">&gt;</span>(<span class="ident">offset</span>, <span class="ident">scroll::BE</span>)<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">bytes</span> <span class="op">=</span> <span class="ident">arch</span>.<span class="ident">slice</span>(<span class="self">self</span>.<span class="ident">data</span>);
-        <span class="prelude-val">Ok</span>(<span class="ident">MachO::parse</span>(<span class="ident">bytes</span>, <span class="number">0</span>)<span class="question-mark">?</span>)
+        <span class="kw">let </span>offset = (index * fat::SIZEOF_FAT_ARCH) + <span class="self">self</span>.start;
+        <span class="kw">let </span>arch = <span class="self">self</span>.data.pread_with::&lt;fat::FatArch&gt;(offset, scroll::BE)<span class="question-mark">?</span>;
+        <span class="kw">let </span>bytes = arch.slice(<span class="self">self</span>.data);
+        <span class="prelude-val">Ok</span>(MachO::parse(bytes, <span class="number">0</span>)<span class="question-mark">?</span>)
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">find</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="ident">error::Result</span><span class="op">&lt;</span><span class="ident">fat::FatArch</span><span class="op">&gt;</span>) -&gt; <span class="ident">bool</span><span class="op">&gt;</span>(
-        <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="self">self</span>,
-        <span class="ident">f</span>: <span class="ident">F</span>,
-    ) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">error::Result</span><span class="op">&lt;</span><span class="ident">MachO</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-        <span class="kw">for</span> (<span class="ident">i</span>, <span class="ident">arch</span>) <span class="kw">in</span> <span class="self">self</span>.<span class="ident">iter_arches</span>().<span class="ident">enumerate</span>() {
-            <span class="kw">if</span> <span class="ident">f</span>(<span class="ident">arch</span>) {
-                <span class="kw">return</span> <span class="prelude-val">Some</span>(<span class="self">self</span>.<span class="ident">get</span>(<span class="ident">i</span>));
+    <span class="kw">pub fn </span>find&lt;F: Fn(error::Result&lt;fat::FatArch&gt;) -&gt; bool&gt;(
+        <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="self">self</span>,
+        f: F,
+    ) -&gt; <span class="prelude-ty">Option</span>&lt;error::Result&lt;MachO&lt;<span class="lifetime">&#39;a</span>&gt;&gt;&gt; {
+        <span class="kw">for </span>(i, arch) <span class="kw">in </span><span class="self">self</span>.iter_arches().enumerate() {
+            <span class="kw">if </span>f(arch) {
+                <span class="kw">return </span><span class="prelude-val">Some</span>(<span class="self">self</span>.get(i));
             }
         }
-        <span class="prelude-val">None</span>
-    }
-    <span class="doccomment">/// Try and find the `cputype` in `Self`, if there is one</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">find_cputype</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">cputype</span>: <span class="ident">u32</span>) -&gt; <span class="ident">error::Result</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">fat::FatArch</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-        <span class="kw">for</span> <span class="ident">arch</span> <span class="kw">in</span> <span class="self">self</span>.<span class="ident">iter_arches</span>() {
-            <span class="kw">let</span> <span class="ident">arch</span> <span class="op">=</span> <span class="ident">arch</span><span class="question-mark">?</span>;
-            <span class="kw">if</span> <span class="ident">arch</span>.<span class="ident">cputype</span> <span class="op">==</span> <span class="ident">cputype</span> {
-                <span class="kw">return</span> <span class="prelude-val">Ok</span>(<span class="prelude-val">Some</span>(<span class="ident">arch</span>));
+        <span class="prelude-val">None
+    </span>}
+    <span class="doccomment">/// Try and find the `cputype` in `Self`, if there is one
+    </span><span class="kw">pub fn </span>find_cputype(<span class="kw-2">&amp;</span><span class="self">self</span>, cputype: u32) -&gt; error::Result&lt;<span class="prelude-ty">Option</span>&lt;fat::FatArch&gt;&gt; {
+        <span class="kw">for </span>arch <span class="kw">in </span><span class="self">self</span>.iter_arches() {
+            <span class="kw">let </span>arch = arch<span class="question-mark">?</span>;
+            <span class="kw">if </span>arch.cputype == cputype {
+                <span class="kw">return </span><span class="prelude-val">Ok</span>(<span class="prelude-val">Some</span>(arch));
             }
         }
         <span class="prelude-val">Ok</span>(<span class="prelude-val">None</span>)
     }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">fmt::Debug</span> <span class="kw">for</span> <span class="ident">MultiArch</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">fmt</span>: <span class="kw-2">&amp;mut</span> <span class="ident">fmt::Formatter</span>) -&gt; <span class="ident">fmt::Result</span> {
-        <span class="ident">fmt</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;MultiArch&quot;</span>)
-            .<span class="ident">field</span>(<span class="string">&quot;arches&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">arches</span>().<span class="ident">unwrap_or_default</span>())
-            .<span class="ident">field</span>(<span class="string">&quot;data&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">data</span>.<span class="ident">len</span>())
-            .<span class="ident">finish</span>()
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; fmt::Debug <span class="kw">for </span>MultiArch&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, fmt: <span class="kw-2">&amp;mut </span>fmt::Formatter) -&gt; fmt::Result {
+        fmt.debug_struct(<span class="string">&quot;MultiArch&quot;</span>)
+            .field(<span class="string">&quot;arches&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.arches().unwrap_or_default())
+            .field(<span class="string">&quot;data&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.data.len())
+            .finish()
     }
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
-<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::large_enum_variant</span>)]</span>
-<span class="doccomment">/// Either a collection of multiple architectures, or a single mach-o binary</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Mach</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// A &quot;fat&quot; multi-architecture binary container</span>
-    <span class="ident">Fat</span>(<span class="ident">MultiArch</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>),
-    <span class="doccomment">/// A regular Mach-o binary</span>
-    <span class="ident">Binary</span>(<span class="ident">MachO</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>),
+<span class="attribute">#[derive(Debug)]
+#[allow(clippy::large_enum_variant)]
+</span><span class="doccomment">/// Either a collection of multiple architectures, or a single mach-o binary
+</span><span class="kw">pub enum </span>Mach&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="doccomment">/// A &quot;fat&quot; multi-architecture binary container
+    </span>Fat(MultiArch&lt;<span class="lifetime">&#39;a</span>&gt;),
+    <span class="doccomment">/// A regular Mach-o binary
+    </span>Binary(MachO&lt;<span class="lifetime">&#39;a</span>&gt;),
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Mach</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// Parse from `bytes` either a multi-arch binary or a regular mach-o binary</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>]) -&gt; <span class="ident">error::Result</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">size</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">len</span>();
-        <span class="kw">if</span> <span class="ident">size</span> <span class="op">&lt;</span> <span class="number">4</span> {
-            <span class="kw">let</span> <span class="ident">error</span> <span class="op">=</span> <span class="ident">error::Error::Malformed</span>(<span class="string">&quot;size is smaller than a magical number&quot;</span>.<span class="ident">into</span>());
-            <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">error</span>);
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Mach&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="doccomment">/// Parse from `bytes` either a multi-arch binary or a regular mach-o binary
+    </span><span class="kw">pub fn </span>parse(bytes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8]) -&gt; error::Result&lt;<span class="self">Self</span>&gt; {
+        <span class="kw">let </span>size = bytes.len();
+        <span class="kw">if </span>size &lt; <span class="number">4 </span>{
+            <span class="kw">let </span>error = error::Error::Malformed(<span class="string">&quot;size is smaller than a magical number&quot;</span>.into());
+            <span class="kw">return </span><span class="prelude-val">Err</span>(error);
         }
-        <span class="kw">let</span> <span class="ident">magic</span> <span class="op">=</span> <span class="ident">peek</span>(<span class="kw-2">&amp;</span><span class="ident">bytes</span>, <span class="number">0</span>)<span class="question-mark">?</span>;
-        <span class="kw">match</span> <span class="ident">magic</span> {
-            <span class="ident">fat::FAT_MAGIC</span> =&gt; {
-                <span class="kw">let</span> <span class="ident">multi</span> <span class="op">=</span> <span class="ident">MultiArch::new</span>(<span class="ident">bytes</span>)<span class="question-mark">?</span>;
-                <span class="prelude-val">Ok</span>(<span class="ident">Mach::Fat</span>(<span class="ident">multi</span>))
+        <span class="kw">let </span>magic = peek(<span class="kw-2">&amp;</span>bytes, <span class="number">0</span>)<span class="question-mark">?</span>;
+        <span class="kw">match </span>magic {
+            fat::FAT_MAGIC =&gt; {
+                <span class="kw">let </span>multi = MultiArch::new(bytes)<span class="question-mark">?</span>;
+                <span class="prelude-val">Ok</span>(Mach::Fat(multi))
             }
-            <span class="comment">// we might be a regular binary</span>
-            <span class="kw">_</span> =&gt; {
-                <span class="kw">let</span> <span class="ident">binary</span> <span class="op">=</span> <span class="ident">MachO::parse</span>(<span class="ident">bytes</span>, <span class="number">0</span>)<span class="question-mark">?</span>;
-                <span class="prelude-val">Ok</span>(<span class="ident">Mach::Binary</span>(<span class="ident">binary</span>))
+            <span class="comment">// we might be a regular binary
+            </span><span class="kw">_ </span>=&gt; {
+                <span class="kw">let </span>binary = MachO::parse(bytes, <span class="number">0</span>)<span class="question-mark">?</span>;
+                <span class="prelude-val">Ok</span>(Mach::Binary(binary))
             }
         }
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="goblin" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="goblin" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (77e57db38 2022-10-30)" ></div></body></html>

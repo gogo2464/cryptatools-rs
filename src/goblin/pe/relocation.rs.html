@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/goblin-0.5.4/src/pe/relocation.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>relocation.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../goblin/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../goblin/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../goblin/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/goblin-0.5.4/src/pe/relocation.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>relocation.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../normalize.css"><link rel="stylesheet" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../ayu.css" disabled><link rel="stylesheet" href="../../../dark.css" disabled><link rel="stylesheet" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../goblin/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -131,138 +131,138 @@
 <span id="131">131</span>
 <span id="132">132</span>
 <span id="133">133</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::error</span>;
-<span class="kw">use</span> <span class="ident">scroll</span>::{<span class="ident">IOread</span>, <span class="ident">IOwrite</span>, <span class="ident">Pread</span>, <span class="ident">Pwrite</span>, <span class="ident">SizeWith</span>};
+</pre><pre class="rust"><code><span class="kw">use </span><span class="kw">crate</span>::error;
+<span class="kw">use </span>scroll::{IOread, IOwrite, Pread, Pwrite, SizeWith};
 
-<span class="doccomment">/// Size of a single COFF relocation.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">COFF_RELOCATION_SIZE</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">10</span>;
+<span class="doccomment">/// Size of a single COFF relocation.
+</span><span class="kw">pub const </span>COFF_RELOCATION_SIZE: usize = <span class="number">10</span>;
 
-<span class="comment">// x86 relocations.</span>
+<span class="comment">// x86 relocations.
 
-<span class="doccomment">/// The relocation is ignored.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_REL_I386_ABSOLUTE</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0x0000</span>;
-<span class="doccomment">/// Not supported.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_REL_I386_DIR16</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0x0001</span>;
-<span class="doccomment">/// Not supported.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_REL_I386_REL16</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0x0002</span>;
-<span class="doccomment">/// The target&#39;s 32-bit VA.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_REL_I386_DIR32</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0x0006</span>;
-<span class="doccomment">/// The target&#39;s 32-bit RVA.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_REL_I386_DIR32NB</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0x0007</span>;
-<span class="doccomment">/// Not supported.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_REL_I386_SEG12</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0x0009</span>;
-<span class="doccomment">/// The 16-bit section index of the section that contains the target.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// This is used to support debugging information.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_REL_I386_SECTION</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0x000A</span>;
-<span class="doccomment">/// The 32-bit offset of the target from the beginning of its section.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// This is used to support debugging information and static thread local storage.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_REL_I386_SECREL</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0x000B</span>;
-<span class="doccomment">/// The CLR token.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_REL_I386_TOKEN</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0x000C</span>;
-<span class="doccomment">/// A 7-bit offset from the base of the section that contains the target.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_REL_I386_SECREL7</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0x000D</span>;
-<span class="doccomment">/// The 32-bit relative displacement to the target.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// This supports the x86 relative branch and call instructions.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_REL_I386_REL32</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0x0014</span>;
+</span><span class="doccomment">/// The relocation is ignored.
+</span><span class="kw">pub const </span>IMAGE_REL_I386_ABSOLUTE: u16 = <span class="number">0x0000</span>;
+<span class="doccomment">/// Not supported.
+</span><span class="kw">pub const </span>IMAGE_REL_I386_DIR16: u16 = <span class="number">0x0001</span>;
+<span class="doccomment">/// Not supported.
+</span><span class="kw">pub const </span>IMAGE_REL_I386_REL16: u16 = <span class="number">0x0002</span>;
+<span class="doccomment">/// The target&#39;s 32-bit VA.
+</span><span class="kw">pub const </span>IMAGE_REL_I386_DIR32: u16 = <span class="number">0x0006</span>;
+<span class="doccomment">/// The target&#39;s 32-bit RVA.
+</span><span class="kw">pub const </span>IMAGE_REL_I386_DIR32NB: u16 = <span class="number">0x0007</span>;
+<span class="doccomment">/// Not supported.
+</span><span class="kw">pub const </span>IMAGE_REL_I386_SEG12: u16 = <span class="number">0x0009</span>;
+<span class="doccomment">/// The 16-bit section index of the section that contains the target.
+///
+/// This is used to support debugging information.
+</span><span class="kw">pub const </span>IMAGE_REL_I386_SECTION: u16 = <span class="number">0x000A</span>;
+<span class="doccomment">/// The 32-bit offset of the target from the beginning of its section.
+///
+/// This is used to support debugging information and static thread local storage.
+</span><span class="kw">pub const </span>IMAGE_REL_I386_SECREL: u16 = <span class="number">0x000B</span>;
+<span class="doccomment">/// The CLR token.
+</span><span class="kw">pub const </span>IMAGE_REL_I386_TOKEN: u16 = <span class="number">0x000C</span>;
+<span class="doccomment">/// A 7-bit offset from the base of the section that contains the target.
+</span><span class="kw">pub const </span>IMAGE_REL_I386_SECREL7: u16 = <span class="number">0x000D</span>;
+<span class="doccomment">/// The 32-bit relative displacement to the target.
+///
+/// This supports the x86 relative branch and call instructions.
+</span><span class="kw">pub const </span>IMAGE_REL_I386_REL32: u16 = <span class="number">0x0014</span>;
 
-<span class="comment">// x86-64 relocations.</span>
+<span class="comment">// x86-64 relocations.
 
-<span class="doccomment">/// The relocation is ignored.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_REL_AMD64_ABSOLUTE</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0x0000</span>;
-<span class="doccomment">/// The 64-bit VA of the relocation target.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_REL_AMD64_ADDR64</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0x0001</span>;
-<span class="doccomment">/// The 32-bit VA of the relocation target.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_REL_AMD64_ADDR32</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0x0002</span>;
-<span class="doccomment">/// The 32-bit address without an image base (RVA).</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_REL_AMD64_ADDR32NB</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0x0003</span>;
-<span class="doccomment">/// The 32-bit relative address from the byte following the relocation.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_REL_AMD64_REL32</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0x0004</span>;
-<span class="doccomment">/// The 32-bit address relative to byte distance 1 from the relocation.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_REL_AMD64_REL32_1</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0x0005</span>;
-<span class="doccomment">/// The 32-bit address relative to byte distance 2 from the relocation.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_REL_AMD64_REL32_2</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0x0006</span>;
-<span class="doccomment">/// The 32-bit address relative to byte distance 3 from the relocation.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_REL_AMD64_REL32_3</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0x0007</span>;
-<span class="doccomment">/// The 32-bit address relative to byte distance 4 from the relocation.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_REL_AMD64_REL32_4</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0x0008</span>;
-<span class="doccomment">/// The 32-bit address relative to byte distance 5 from the relocation.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_REL_AMD64_REL32_5</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0x0009</span>;
-<span class="doccomment">/// The 16-bit section index of the section that contains the target.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// This is used to support debugging information.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_REL_AMD64_SECTION</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0x000A</span>;
-<span class="doccomment">/// The 32-bit offset of the target from the beginning of its section.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// This is used to support debugging information and static thread local storage.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_REL_AMD64_SECREL</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0x000B</span>;
-<span class="doccomment">/// A 7-bit unsigned offset from the base of the section that contains the target.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_REL_AMD64_SECREL7</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0x000C</span>;
-<span class="doccomment">/// CLR tokens.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_REL_AMD64_TOKEN</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0x000D</span>;
-<span class="doccomment">/// A 32-bit signed span-dependent value emitted into the object.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_REL_AMD64_SREL32</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0x000E</span>;
-<span class="doccomment">/// A pair that must immediately follow every span-dependent value.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_REL_AMD64_PAIR</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0x000F</span>;
-<span class="doccomment">/// A 32-bit signed span-dependent value that is applied at link time.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_REL_AMD64_SSPAN32</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0x0010</span>;
+</span><span class="doccomment">/// The relocation is ignored.
+</span><span class="kw">pub const </span>IMAGE_REL_AMD64_ABSOLUTE: u16 = <span class="number">0x0000</span>;
+<span class="doccomment">/// The 64-bit VA of the relocation target.
+</span><span class="kw">pub const </span>IMAGE_REL_AMD64_ADDR64: u16 = <span class="number">0x0001</span>;
+<span class="doccomment">/// The 32-bit VA of the relocation target.
+</span><span class="kw">pub const </span>IMAGE_REL_AMD64_ADDR32: u16 = <span class="number">0x0002</span>;
+<span class="doccomment">/// The 32-bit address without an image base (RVA).
+</span><span class="kw">pub const </span>IMAGE_REL_AMD64_ADDR32NB: u16 = <span class="number">0x0003</span>;
+<span class="doccomment">/// The 32-bit relative address from the byte following the relocation.
+</span><span class="kw">pub const </span>IMAGE_REL_AMD64_REL32: u16 = <span class="number">0x0004</span>;
+<span class="doccomment">/// The 32-bit address relative to byte distance 1 from the relocation.
+</span><span class="kw">pub const </span>IMAGE_REL_AMD64_REL32_1: u16 = <span class="number">0x0005</span>;
+<span class="doccomment">/// The 32-bit address relative to byte distance 2 from the relocation.
+</span><span class="kw">pub const </span>IMAGE_REL_AMD64_REL32_2: u16 = <span class="number">0x0006</span>;
+<span class="doccomment">/// The 32-bit address relative to byte distance 3 from the relocation.
+</span><span class="kw">pub const </span>IMAGE_REL_AMD64_REL32_3: u16 = <span class="number">0x0007</span>;
+<span class="doccomment">/// The 32-bit address relative to byte distance 4 from the relocation.
+</span><span class="kw">pub const </span>IMAGE_REL_AMD64_REL32_4: u16 = <span class="number">0x0008</span>;
+<span class="doccomment">/// The 32-bit address relative to byte distance 5 from the relocation.
+</span><span class="kw">pub const </span>IMAGE_REL_AMD64_REL32_5: u16 = <span class="number">0x0009</span>;
+<span class="doccomment">/// The 16-bit section index of the section that contains the target.
+///
+/// This is used to support debugging information.
+</span><span class="kw">pub const </span>IMAGE_REL_AMD64_SECTION: u16 = <span class="number">0x000A</span>;
+<span class="doccomment">/// The 32-bit offset of the target from the beginning of its section.
+///
+/// This is used to support debugging information and static thread local storage.
+</span><span class="kw">pub const </span>IMAGE_REL_AMD64_SECREL: u16 = <span class="number">0x000B</span>;
+<span class="doccomment">/// A 7-bit unsigned offset from the base of the section that contains the target.
+</span><span class="kw">pub const </span>IMAGE_REL_AMD64_SECREL7: u16 = <span class="number">0x000C</span>;
+<span class="doccomment">/// CLR tokens.
+</span><span class="kw">pub const </span>IMAGE_REL_AMD64_TOKEN: u16 = <span class="number">0x000D</span>;
+<span class="doccomment">/// A 32-bit signed span-dependent value emitted into the object.
+</span><span class="kw">pub const </span>IMAGE_REL_AMD64_SREL32: u16 = <span class="number">0x000E</span>;
+<span class="doccomment">/// A pair that must immediately follow every span-dependent value.
+</span><span class="kw">pub const </span>IMAGE_REL_AMD64_PAIR: u16 = <span class="number">0x000F</span>;
+<span class="doccomment">/// A 32-bit signed span-dependent value that is applied at link time.
+</span><span class="kw">pub const </span>IMAGE_REL_AMD64_SSPAN32: u16 = <span class="number">0x0010</span>;
 
-<span class="doccomment">/// A COFF relocation.</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">PartialEq</span>, <span class="ident">Default</span>, <span class="ident">Pread</span>, <span class="ident">Pwrite</span>, <span class="ident">IOread</span>, <span class="ident">IOwrite</span>, <span class="ident">SizeWith</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Relocation</span> {
-    <span class="doccomment">/// The address of the item to which relocation is applied.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// This is the offset from the beginning of the section, plus the</span>
-    <span class="doccomment">/// value of the section&#39;s `virtual_address` field.</span>
-    <span class="kw">pub</span> <span class="ident">virtual_address</span>: <span class="ident">u32</span>,
-    <span class="doccomment">/// A zero-based index into the symbol table.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// This symbol gives the address that is to be used for the relocation. If the specified</span>
-    <span class="doccomment">/// symbol has section storage class, then the symbol&#39;s address is the address with the</span>
-    <span class="doccomment">/// first section of the same name.</span>
-    <span class="kw">pub</span> <span class="ident">symbol_table_index</span>: <span class="ident">u32</span>,
-    <span class="doccomment">/// A value that indicates the kind of relocation that should be performed.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Valid relocation types depend on machine type.</span>
-    <span class="kw">pub</span> <span class="ident">typ</span>: <span class="ident">u16</span>,
+<span class="doccomment">/// A COFF relocation.
+</span><span class="attribute">#[repr(C)]
+#[derive(Debug, Copy, Clone, PartialEq, Default, Pread, Pwrite, IOread, IOwrite, SizeWith)]
+</span><span class="kw">pub struct </span>Relocation {
+    <span class="doccomment">/// The address of the item to which relocation is applied.
+    ///
+    /// This is the offset from the beginning of the section, plus the
+    /// value of the section&#39;s `virtual_address` field.
+    </span><span class="kw">pub </span>virtual_address: u32,
+    <span class="doccomment">/// A zero-based index into the symbol table.
+    ///
+    /// This symbol gives the address that is to be used for the relocation. If the specified
+    /// symbol has section storage class, then the symbol&#39;s address is the address with the
+    /// first section of the same name.
+    </span><span class="kw">pub </span>symbol_table_index: u32,
+    <span class="doccomment">/// A value that indicates the kind of relocation that should be performed.
+    ///
+    /// Valid relocation types depend on machine type.
+    </span><span class="kw">pub </span>typ: u16,
 }
 
-<span class="doccomment">/// An iterator for COFF relocations.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Default</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Relocations</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="ident">offset</span>: <span class="ident">usize</span>,
-    <span class="ident">relocations</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
+<span class="doccomment">/// An iterator for COFF relocations.
+</span><span class="attribute">#[derive(Default)]
+</span><span class="kw">pub struct </span>Relocations&lt;<span class="lifetime">&#39;a</span>&gt; {
+    offset: usize,
+    relocations: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8],
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Relocations</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// Parse a COFF relocation table at the given offset.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// The offset and number of relocations should be from the COFF section header.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>], <span class="ident">offset</span>: <span class="ident">usize</span>, <span class="ident">number</span>: <span class="ident">usize</span>) -&gt; <span class="ident">error::Result</span><span class="op">&lt;</span><span class="ident">Relocations</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">relocations</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">pread_with</span>(<span class="ident">offset</span>, <span class="ident">number</span> <span class="op">*</span> <span class="ident">COFF_RELOCATION_SIZE</span>)<span class="question-mark">?</span>;
-        <span class="prelude-val">Ok</span>(<span class="ident">Relocations</span> {
-            <span class="ident">offset</span>: <span class="number">0</span>,
-            <span class="ident">relocations</span>,
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Relocations&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="doccomment">/// Parse a COFF relocation table at the given offset.
+    ///
+    /// The offset and number of relocations should be from the COFF section header.
+    </span><span class="kw">pub fn </span>parse(bytes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8], offset: usize, number: usize) -&gt; error::Result&lt;Relocations&lt;<span class="lifetime">&#39;a</span>&gt;&gt; {
+        <span class="kw">let </span>relocations = bytes.pread_with(offset, number * COFF_RELOCATION_SIZE)<span class="question-mark">?</span>;
+        <span class="prelude-val">Ok</span>(Relocations {
+            offset: <span class="number">0</span>,
+            relocations,
         })
     }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Iterator</span> <span class="kw">for</span> <span class="ident">Relocations</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">type</span> <span class="ident">Item</span> <span class="op">=</span> <span class="ident">Relocation</span>;
-    <span class="kw">fn</span> <span class="ident">next</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident"><span class="self">Self</span>::Item</span><span class="op">&gt;</span> {
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">offset</span> <span class="op">&gt;</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">relocations</span>.<span class="ident">len</span>() {
-            <span class="prelude-val">None</span>
-        } <span class="kw">else</span> {
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Iterator <span class="kw">for </span>Relocations&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">type </span>Item = Relocation;
+    <span class="kw">fn </span>next(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>::Item&gt; {
+        <span class="kw">if </span><span class="self">self</span>.offset &gt;= <span class="self">self</span>.relocations.len() {
+            <span class="prelude-val">None
+        </span>} <span class="kw">else </span>{
             <span class="prelude-val">Some</span>(
-                <span class="self">self</span>.<span class="ident">relocations</span>
-                    .<span class="ident">gread_with</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="ident">offset</span>, <span class="ident">scroll::LE</span>)
-                    .<span class="ident">unwrap</span>(),
+                <span class="self">self</span>.relocations
+                    .gread_with(<span class="kw-2">&amp;mut </span><span class="self">self</span>.offset, scroll::LE)
+                    .unwrap(),
             )
         }
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="goblin" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="goblin" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (77e57db38 2022-10-30)" ></div></body></html>

@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/plain-0.2.3/src/methods.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>methods.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../plain/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../plain/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../plain/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/plain-0.2.3/src/methods.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>methods.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../plain/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -197,202 +197,202 @@
 <span id="197">197</span>
 <span id="198">198</span>
 </pre><pre class="rust"><code>
-<span class="kw">use</span> <span class="ident">core</span>::{<span class="ident">mem</span>, <span class="ident">slice</span>};
+<span class="kw">use </span>core::{mem, slice};
 
-<span class="kw">use</span> {<span class="ident">Error</span>, <span class="ident">Plain</span>};
+<span class="kw">use </span>{Error, Plain};
 
-<span class="doccomment">/// Check if a byte slice is aligned suitably for type T.</span>
-<span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_aligned</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>(<span class="ident">bytes</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>]) -&gt; <span class="ident">bool</span> {
-    ((<span class="ident">bytes</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="ident">usize</span>) <span class="op">%</span> <span class="ident">mem::align_of</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>()) <span class="op">==</span> <span class="number">0</span>
-}
+<span class="doccomment">/// Check if a byte slice is aligned suitably for type T.
+</span><span class="attribute">#[inline]
+</span><span class="kw">pub fn </span>is_aligned&lt;T&gt;(bytes: <span class="kw-2">&amp;</span>[u8]) -&gt; bool {
+    ((bytes.as_ptr() <span class="kw">as </span>usize) % mem::align_of::&lt;T&gt;()) == <span class="number">0
+</span>}
 
-<span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-<span class="kw">fn</span> <span class="ident">check_alignment</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>(<span class="ident">bytes</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>]) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
-    <span class="kw">if</span> <span class="ident">is_aligned</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>(<span class="ident">bytes</span>) {
+<span class="attribute">#[inline(always)]
+</span><span class="kw">fn </span>check_alignment&lt;T&gt;(bytes: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;(), Error&gt; {
+    <span class="kw">if </span>is_aligned::&lt;T&gt;(bytes) {
         <span class="prelude-val">Ok</span>(())
-    } <span class="kw">else</span> {
-        <span class="prelude-val">Err</span>(<span class="ident">Error::BadAlignment</span>)
+    } <span class="kw">else </span>{
+        <span class="prelude-val">Err</span>(Error::BadAlignment)
     }
 }
 
-<span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-<span class="kw">fn</span> <span class="ident">check_length</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>(<span class="ident">bytes</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>], <span class="ident">len</span>: <span class="ident">usize</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
-    <span class="kw">if</span> <span class="ident">mem::size_of</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>() <span class="op">&gt;</span> <span class="number">0</span> <span class="op">&amp;&amp;</span> (<span class="ident">bytes</span>.<span class="ident">len</span>() <span class="op">/</span> <span class="ident">mem::size_of</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>()) <span class="op">&lt;</span> <span class="ident">len</span> {
-        <span class="prelude-val">Err</span>(<span class="ident">Error::TooShort</span>)
-    } <span class="kw">else</span> {
+<span class="attribute">#[inline(always)]
+</span><span class="kw">fn </span>check_length&lt;T&gt;(bytes: <span class="kw-2">&amp;</span>[u8], len: usize) -&gt; <span class="prelude-ty">Result</span>&lt;(), Error&gt; {
+    <span class="kw">if </span>mem::size_of::&lt;T&gt;() &gt; <span class="number">0 </span>&amp;&amp; (bytes.len() / mem::size_of::&lt;T&gt;()) &lt; len {
+        <span class="prelude-val">Err</span>(Error::TooShort)
+    } <span class="kw">else </span>{
         <span class="prelude-val">Ok</span>(())
     }
 }
 
-<span class="doccomment">/// Interpret data as bytes. Not safe for data with padding.</span>
-<span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-<span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">as_bytes</span><span class="op">&lt;</span><span class="ident">S</span><span class="op">&gt;</span>(<span class="ident">s</span>: <span class="kw-2">&amp;</span><span class="ident">S</span>) -&gt; <span class="kw-2">&amp;</span>[<span class="ident">u8</span>]
-<span class="kw">where</span>
-    <span class="ident">S</span>: <span class="question-mark">?</span><span class="ident">Sized</span>,
+<span class="doccomment">/// Interpret data as bytes. Not safe for data with padding.
+</span><span class="attribute">#[inline(always)]
+</span><span class="kw">pub unsafe fn </span>as_bytes&lt;S&gt;(s: <span class="kw-2">&amp;</span>S) -&gt; <span class="kw-2">&amp;</span>[u8]
+<span class="kw">where
+    </span>S: <span class="question-mark">?</span>Sized,
 {
-    <span class="kw">let</span> <span class="ident">bptr</span> <span class="op">=</span> <span class="ident">s</span> <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">S</span> <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">u8</span>;
-    <span class="kw">let</span> <span class="ident">bsize</span> <span class="op">=</span> <span class="ident">mem::size_of_val</span>(<span class="ident">s</span>);
-    <span class="ident">slice::from_raw_parts</span>(<span class="ident">bptr</span>, <span class="ident">bsize</span>)
+    <span class="kw">let </span>bptr = s <span class="kw">as </span><span class="kw-2">*const </span>S <span class="kw">as </span><span class="kw-2">*const </span>u8;
+    <span class="kw">let </span>bsize = mem::size_of_val(s);
+    slice::from_raw_parts(bptr, bsize)
 }
 
-<span class="doccomment">/// Interpret data as mutable bytes.</span>
-<span class="doccomment">/// Reading is not safe for data with padding. Writing is ok.</span>
-<span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-<span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">as_mut_bytes</span><span class="op">&lt;</span><span class="ident">S</span><span class="op">&gt;</span>(<span class="ident">s</span>: <span class="kw-2">&amp;mut</span> <span class="ident">S</span>) -&gt; <span class="kw-2">&amp;mut</span> [<span class="ident">u8</span>]
-<span class="kw">where</span>
-    <span class="ident">S</span>: <span class="ident">Plain</span> <span class="op">+</span> <span class="question-mark">?</span><span class="ident">Sized</span>,
+<span class="doccomment">/// Interpret data as mutable bytes.
+/// Reading is not safe for data with padding. Writing is ok.
+</span><span class="attribute">#[inline(always)]
+</span><span class="kw">pub unsafe fn </span>as_mut_bytes&lt;S&gt;(s: <span class="kw-2">&amp;mut </span>S) -&gt; <span class="kw-2">&amp;mut </span>[u8]
+<span class="kw">where
+    </span>S: Plain + <span class="question-mark">?</span>Sized,
 {
-    <span class="kw">let</span> <span class="ident">bptr</span> <span class="op">=</span> <span class="ident">s</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">S</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">u8</span>;
-    <span class="kw">let</span> <span class="ident">bsize</span> <span class="op">=</span> <span class="ident">mem::size_of_val</span>(<span class="ident">s</span>);
-    <span class="ident">slice::from_raw_parts_mut</span>(<span class="ident">bptr</span>, <span class="ident">bsize</span>)
+    <span class="kw">let </span>bptr = s <span class="kw">as </span><span class="kw-2">*mut </span>S <span class="kw">as </span><span class="kw-2">*mut </span>u8;
+    <span class="kw">let </span>bsize = mem::size_of_val(s);
+    slice::from_raw_parts_mut(bptr, bsize)
 }
 
-<span class="doccomment">/// Safely converts a byte slice to a reference.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// However, if the byte slice is not long enough</span>
-<span class="doccomment">/// to contain target type, or if it doesn&#39;t</span>
-<span class="doccomment">/// satisfy the type&#39;s alignment requirements,</span>
-<span class="doccomment">/// the function returns an error.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// The function will not fail when the</span>
-<span class="doccomment">/// byte slice is longer than necessary, since it is</span>
-<span class="doccomment">/// a common practice to interpret the beginning of</span>
-<span class="doccomment">/// a slice as a fixed-size header.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// In many cases it is preferrable to allocate</span>
-<span class="doccomment">/// a value/slice of the target type and use</span>
-<span class="doccomment">/// [`copy_from_bytes()`](fn.copy_from_bytes.html) to copy</span>
-<span class="doccomment">/// data instead. That way, any issues with alignment</span>
-<span class="doccomment">/// are implicitly avoided.</span>
-<span class="doccomment">///</span>
-<span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_bytes</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>(<span class="ident">bytes</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>]) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">T</span>, <span class="ident">Error</span><span class="op">&gt;</span>
-<span class="kw">where</span>
-    <span class="ident">T</span>: <span class="ident">Plain</span>,
+<span class="doccomment">/// Safely converts a byte slice to a reference.
+///
+/// However, if the byte slice is not long enough
+/// to contain target type, or if it doesn&#39;t
+/// satisfy the type&#39;s alignment requirements,
+/// the function returns an error.
+///
+/// The function will not fail when the
+/// byte slice is longer than necessary, since it is
+/// a common practice to interpret the beginning of
+/// a slice as a fixed-size header.
+///
+/// In many cases it is preferrable to allocate
+/// a value/slice of the target type and use
+/// [`copy_from_bytes()`](fn.copy_from_bytes.html) to copy
+/// data instead. That way, any issues with alignment
+/// are implicitly avoided.
+///
+</span><span class="attribute">#[inline]
+</span><span class="kw">pub fn </span>from_bytes&lt;T&gt;(bytes: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="kw-2">&amp;</span>T, Error&gt;
+<span class="kw">where
+    </span>T: Plain,
 {
-    <span class="macro">try!</span>(<span class="ident">check_alignment</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>(<span class="ident">bytes</span>));
-    <span class="macro">try!</span>(<span class="ident">check_length</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>(<span class="ident">bytes</span>, <span class="number">1</span>));
-    <span class="prelude-val">Ok</span>(<span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">bytes</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">T</span>) })
+    <span class="macro">try!</span>(check_alignment::&lt;T&gt;(bytes));
+    <span class="macro">try!</span>(check_length::&lt;T&gt;(bytes, <span class="number">1</span>));
+    <span class="prelude-val">Ok</span>(<span class="kw">unsafe </span>{ <span class="kw-2">&amp;*</span>(bytes.as_ptr() <span class="kw">as </span><span class="kw-2">*const </span>T) })
 }
 
-<span class="doccomment">/// Similar to [`from_bytes()`](fn.from_bytes.html),</span>
-<span class="doccomment">/// except that the output is a slice of T, instead</span>
-<span class="doccomment">/// of a reference to a single T. All concerns about</span>
-<span class="doccomment">/// alignment also apply here, but size is handled</span>
-<span class="doccomment">/// differently.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// The result slice&#39;s length is set to be</span>
-<span class="doccomment">/// `bytes.len() / size_of::&lt;T&gt;()`, and there</span>
-<span class="doccomment">/// are no requirements for input size. I.e.</span>
-<span class="doccomment">/// the result may be empty slice, and the input</span>
-<span class="doccomment">/// slice doesn&#39;t necessarily have to end on `T`&#39;s</span>
-<span class="doccomment">/// boundary. The latter has pragmatic reasons: If the</span>
-<span class="doccomment">/// length of the array is not known in advance,</span>
-<span class="doccomment">/// e.g. if it&#39;s terminated by a special element,</span>
-<span class="doccomment">/// it&#39;s perfectly legal to turn the whole rest</span>
-<span class="doccomment">/// of data into `&amp;[T]` and set the proper length</span>
-<span class="doccomment">/// after inspecting the array.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// In many cases it is preferrable to allocate</span>
-<span class="doccomment">/// a value/slice of the target type and use</span>
-<span class="doccomment">/// [`copy_from_bytes()`](fn.copy_from_bytes.html) to copy</span>
-<span class="doccomment">/// data instead. That way, any issues with alignment</span>
-<span class="doccomment">/// are implicitly avoided.</span>
-<span class="doccomment">///</span>
-<span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">slice_from_bytes</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>(<span class="ident">bytes</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>]) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="kw-2">&amp;</span>[<span class="ident">T</span>], <span class="ident">Error</span><span class="op">&gt;</span>
-<span class="kw">where</span>
-    <span class="ident">T</span>: <span class="ident">Plain</span>,
+<span class="doccomment">/// Similar to [`from_bytes()`](fn.from_bytes.html),
+/// except that the output is a slice of T, instead
+/// of a reference to a single T. All concerns about
+/// alignment also apply here, but size is handled
+/// differently.
+///
+/// The result slice&#39;s length is set to be
+/// `bytes.len() / size_of::&lt;T&gt;()`, and there
+/// are no requirements for input size. I.e.
+/// the result may be empty slice, and the input
+/// slice doesn&#39;t necessarily have to end on `T`&#39;s
+/// boundary. The latter has pragmatic reasons: If the
+/// length of the array is not known in advance,
+/// e.g. if it&#39;s terminated by a special element,
+/// it&#39;s perfectly legal to turn the whole rest
+/// of data into `&amp;[T]` and set the proper length
+/// after inspecting the array.
+///
+/// In many cases it is preferrable to allocate
+/// a value/slice of the target type and use
+/// [`copy_from_bytes()`](fn.copy_from_bytes.html) to copy
+/// data instead. That way, any issues with alignment
+/// are implicitly avoided.
+///
+</span><span class="attribute">#[inline]
+</span><span class="kw">pub fn </span>slice_from_bytes&lt;T&gt;(bytes: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="kw-2">&amp;</span>[T], Error&gt;
+<span class="kw">where
+    </span>T: Plain,
 {
-    <span class="kw">let</span> <span class="ident">len</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">len</span>() <span class="op">/</span> <span class="ident">mem::size_of</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>();
-    <span class="ident">slice_from_bytes_len</span>(<span class="ident">bytes</span>, <span class="ident">len</span>)
+    <span class="kw">let </span>len = bytes.len() / mem::size_of::&lt;T&gt;();
+    slice_from_bytes_len(bytes, len)
 }
 
 
-<span class="doccomment">/// Same as [`slice_from_bytes()`](fn.slice_from_bytes.html),</span>
-<span class="doccomment">/// except that it takes explicit length of the result slice.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// If the input slice cannot satisfy the length, returns error.</span>
-<span class="doccomment">/// The input slice is allowed to be longer than necessary.</span>
-<span class="doccomment">///</span>
-<span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">slice_from_bytes_len</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>(<span class="ident">bytes</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>], <span class="ident">len</span>: <span class="ident">usize</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="kw-2">&amp;</span>[<span class="ident">T</span>], <span class="ident">Error</span><span class="op">&gt;</span>
-<span class="kw">where</span>
-    <span class="ident">T</span>: <span class="ident">Plain</span>,
+<span class="doccomment">/// Same as [`slice_from_bytes()`](fn.slice_from_bytes.html),
+/// except that it takes explicit length of the result slice.
+///
+/// If the input slice cannot satisfy the length, returns error.
+/// The input slice is allowed to be longer than necessary.
+///
+</span><span class="attribute">#[inline]
+</span><span class="kw">pub fn </span>slice_from_bytes_len&lt;T&gt;(bytes: <span class="kw-2">&amp;</span>[u8], len: usize) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="kw-2">&amp;</span>[T], Error&gt;
+<span class="kw">where
+    </span>T: Plain,
 {
-    <span class="macro">try!</span>(<span class="ident">check_alignment</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>(<span class="ident">bytes</span>));
-    <span class="macro">try!</span>(<span class="ident">check_length</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>(<span class="ident">bytes</span>, <span class="ident">len</span>));
-    <span class="prelude-val">Ok</span>(<span class="kw">unsafe</span> {
-        <span class="ident">slice::from_raw_parts</span>(<span class="ident">bytes</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">T</span>, <span class="ident">len</span>)
+    <span class="macro">try!</span>(check_alignment::&lt;T&gt;(bytes));
+    <span class="macro">try!</span>(check_length::&lt;T&gt;(bytes, len));
+    <span class="prelude-val">Ok</span>(<span class="kw">unsafe </span>{
+        slice::from_raw_parts(bytes.as_ptr() <span class="kw">as </span><span class="kw-2">*const </span>T, len)
     })
 }
 
-<span class="doccomment">/// See [`from_bytes()`](fn.from_bytes.html).</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Does the same, except with mutable references.</span>
-<span class="doccomment">///</span>
-<span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_mut_bytes</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>(<span class="ident">bytes</span>: <span class="kw-2">&amp;mut</span> [<span class="ident">u8</span>]) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="kw-2">&amp;mut</span> <span class="ident">T</span>, <span class="ident">Error</span><span class="op">&gt;</span>
-<span class="kw">where</span>
-    <span class="ident">T</span>: <span class="ident">Plain</span>,
+<span class="doccomment">/// See [`from_bytes()`](fn.from_bytes.html).
+///
+/// Does the same, except with mutable references.
+///
+</span><span class="attribute">#[inline]
+</span><span class="kw">pub fn </span>from_mut_bytes&lt;T&gt;(bytes: <span class="kw-2">&amp;mut </span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="kw-2">&amp;mut </span>T, Error&gt;
+<span class="kw">where
+    </span>T: Plain,
 {
-    <span class="macro">try!</span>(<span class="ident">check_alignment</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>(<span class="ident">bytes</span>));
-    <span class="macro">try!</span>(<span class="ident">check_length</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>(<span class="ident">bytes</span>, <span class="number">1</span>));
-    <span class="prelude-val">Ok</span>(<span class="kw">unsafe</span> { <span class="kw-2">&amp;mut</span> <span class="kw-2">*</span>(<span class="ident">bytes</span>.<span class="ident">as_mut_ptr</span>() <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T</span>) })
+    <span class="macro">try!</span>(check_alignment::&lt;T&gt;(bytes));
+    <span class="macro">try!</span>(check_length::&lt;T&gt;(bytes, <span class="number">1</span>));
+    <span class="prelude-val">Ok</span>(<span class="kw">unsafe </span>{ <span class="kw-2">&amp;mut *</span>(bytes.as_mut_ptr() <span class="kw">as </span><span class="kw-2">*mut </span>T) })
 }
 
-<span class="doccomment">/// See [`slice_from_bytes()`](fn.slice_from_bytes.html).</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Does the same, except with mutable references.</span>
-<span class="doccomment">///</span>
-<span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">slice_from_mut_bytes</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>(<span class="ident">bytes</span>: <span class="kw-2">&amp;mut</span> [<span class="ident">u8</span>]) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="kw-2">&amp;mut</span> [<span class="ident">T</span>], <span class="ident">Error</span><span class="op">&gt;</span>
-<span class="kw">where</span>
-    <span class="ident">T</span>: <span class="ident">Plain</span>,
+<span class="doccomment">/// See [`slice_from_bytes()`](fn.slice_from_bytes.html).
+///
+/// Does the same, except with mutable references.
+///
+</span><span class="attribute">#[inline]
+</span><span class="kw">pub fn </span>slice_from_mut_bytes&lt;T&gt;(bytes: <span class="kw-2">&amp;mut </span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="kw-2">&amp;mut </span>[T], Error&gt;
+<span class="kw">where
+    </span>T: Plain,
 {
-    <span class="kw">let</span> <span class="ident">len</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">len</span>() <span class="op">/</span> <span class="ident">mem::size_of</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>();
-    <span class="ident">slice_from_mut_bytes_len</span>(<span class="ident">bytes</span>, <span class="ident">len</span>)
+    <span class="kw">let </span>len = bytes.len() / mem::size_of::&lt;T&gt;();
+    slice_from_mut_bytes_len(bytes, len)
 }
 
-<span class="doccomment">/// See [`slice_from_bytes_len()`](fn.slice_from_bytes_len.html).</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Does the same, except with mutable references.</span>
-<span class="doccomment">///</span>
-<span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">slice_from_mut_bytes_len</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>(<span class="ident">bytes</span>: <span class="kw-2">&amp;mut</span> [<span class="ident">u8</span>], <span class="ident">len</span>: <span class="ident">usize</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="kw-2">&amp;mut</span> [<span class="ident">T</span>], <span class="ident">Error</span><span class="op">&gt;</span>
-<span class="kw">where</span>
-    <span class="ident">T</span>: <span class="ident">Plain</span>,
+<span class="doccomment">/// See [`slice_from_bytes_len()`](fn.slice_from_bytes_len.html).
+///
+/// Does the same, except with mutable references.
+///
+</span><span class="attribute">#[inline]
+</span><span class="kw">pub fn </span>slice_from_mut_bytes_len&lt;T&gt;(bytes: <span class="kw-2">&amp;mut </span>[u8], len: usize) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="kw-2">&amp;mut </span>[T], Error&gt;
+<span class="kw">where
+    </span>T: Plain,
 {
-    <span class="macro">try!</span>(<span class="ident">check_alignment</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>(<span class="ident">bytes</span>));
-    <span class="macro">try!</span>(<span class="ident">check_length</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>(<span class="ident">bytes</span>, <span class="ident">len</span>));
-    <span class="prelude-val">Ok</span>(<span class="kw">unsafe</span> {
-        <span class="ident">slice::from_raw_parts_mut</span>(<span class="ident">bytes</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">T</span>, <span class="ident">len</span>)
+    <span class="macro">try!</span>(check_alignment::&lt;T&gt;(bytes));
+    <span class="macro">try!</span>(check_length::&lt;T&gt;(bytes, len));
+    <span class="prelude-val">Ok</span>(<span class="kw">unsafe </span>{
+        slice::from_raw_parts_mut(bytes.as_ptr() <span class="kw">as </span><span class="kw-2">*mut </span>T, len)
     })
 }
 
-<span class="doccomment">/// Copies data from a byte slice into existing memory.</span>
-<span class="doccomment">/// Suitable when [`from_bytes()`](fn.from_bytes.html) would normally</span>
-<span class="doccomment">/// be used, but the data is not aligned properly in memory.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// For an example how to use it, see crate-level documentation.</span>
-<span class="doccomment">///</span>
-<span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">copy_from_bytes</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>(<span class="ident">into</span>: <span class="kw-2">&amp;mut</span> <span class="ident">T</span>, <span class="ident">bytes</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>]) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span>
-<span class="kw">where</span>
-    <span class="ident">T</span>: <span class="ident">Plain</span> <span class="op">+</span> <span class="question-mark">?</span><span class="ident">Sized</span>,
+<span class="doccomment">/// Copies data from a byte slice into existing memory.
+/// Suitable when [`from_bytes()`](fn.from_bytes.html) would normally
+/// be used, but the data is not aligned properly in memory.
+///
+/// For an example how to use it, see crate-level documentation.
+///
+</span><span class="attribute">#[inline]
+</span><span class="kw">pub fn </span>copy_from_bytes&lt;T&gt;(into: <span class="kw-2">&amp;mut </span>T, bytes: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;(), Error&gt;
+<span class="kw">where
+    </span>T: Plain + <span class="question-mark">?</span>Sized,
 {
-    <span class="kw">let</span> <span class="ident">sz</span> <span class="op">=</span> <span class="ident">mem::size_of_val</span>(<span class="ident">into</span>);
+    <span class="kw">let </span>sz = mem::size_of_val(into);
 
-    <span class="kw">if</span> <span class="ident">bytes</span>.<span class="ident">len</span>() <span class="op">&lt;</span> <span class="ident">sz</span> {
-        <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">Error::TooShort</span>);
+    <span class="kw">if </span>bytes.len() &lt; sz {
+        <span class="kw">return </span><span class="prelude-val">Err</span>(Error::TooShort);
     }
 
-    <span class="kw">unsafe</span> {
-        <span class="ident">as_mut_bytes</span>(<span class="ident">into</span>).<span class="ident">copy_from_slice</span>(<span class="kw-2">&amp;</span><span class="ident">bytes</span>[..<span class="ident">sz</span>]);
+    <span class="kw">unsafe </span>{
+        as_mut_bytes(into).copy_from_slice(<span class="kw-2">&amp;</span>bytes[..sz]);
     }
 
     <span class="prelude-val">Ok</span>(())
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="plain" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="plain" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (77e57db38 2022-10-30)" ></div></body></html>

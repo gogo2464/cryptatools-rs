@@ -1,3 +1,3 @@
-(function() {var implementors = {};
-implementors["lingua"] = [{"text":"impl <a class=\"trait\" href=\"strum/trait.IntoEnumIterator.html\" title=\"trait strum::IntoEnumIterator\">IntoEnumIterator</a> for <a class=\"enum\" href=\"lingua/enum.Language.html\" title=\"enum lingua::Language\">Language</a>","synthetic":false,"types":["lingua::language::Language"]}];
-if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()
+(function() {var implementors = {
+"lingua":[["impl <a class=\"trait\" href=\"strum/trait.IntoEnumIterator.html\" title=\"trait strum::IntoEnumIterator\">IntoEnumIterator</a> for <a class=\"enum\" href=\"lingua/enum.Language.html\" title=\"enum lingua::Language\">Language</a>"]]
+};if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()

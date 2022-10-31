@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/plain-0.2.3/src/lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../plain/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../plain/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../plain/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/plain-0.2.3/src/lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../plain/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -156,163 +156,163 @@
 <span id="156">156</span>
 <span id="157">157</span>
 <span id="158">158</span>
-</pre><pre class="rust"><code><span class="doccomment">//! A small Rust library that allows users to interpret arrays of bytes</span>
-<span class="doccomment">//! as certain kinds of structures safely.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! This crate provides an unsafe trait [`Plain`](trait.Plain.html), which the user</span>
-<span class="doccomment">//! of the crate uses to mark types for which operations of this library are safe.</span>
-<span class="doccomment">//! See [`Plain`](trait.Plain.html) for the contractual obligation.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! Other than that, everything else in this crate is perfectly safe to use as long</span>
-<span class="doccomment">//! as the `Plain` trait is not implemented on inadmissible types (similar to how</span>
-<span class="doccomment">//! `Send` and `Sync` in the standard library work).</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! # Purpose</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! In low level systems development, it is sometimes necessary to</span>
-<span class="doccomment">//! interpret locations in memory as data structures. Functions of</span>
-<span class="doccomment">//! this crate serve to avoid pitfalls associated with that, without</span>
-<span class="doccomment">//! having to resort to big, full-featured (de)serialization libraries.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! On the other hand, this crate contains no provisions when it comes</span>
-<span class="doccomment">//! to handling differences in encoding and byte ordering between</span>
-<span class="doccomment">//! platforms. As such, it is entirely unsuitable for processing</span>
-<span class="doccomment">//! external data such as file contents or network packets.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! # Examples</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! To start using the crate, simply do `extern crate plain;`.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! If you want your plain types to have methods from this crate, also include `use plain.Plain;`.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! Then it&#39;s just a matter of marking the right types and using them.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! ```</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! extern crate plain;</span>
-<span class="doccomment">//! use plain::Plain;</span>
-<span class="doccomment">//! use std::mem;</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! #[repr(C)]</span>
-<span class="doccomment">//! #[derive(Default)]</span>
-<span class="doccomment">//! struct ELF64Header {</span>
-<span class="doccomment">//!     pub e_ident: [u8; 16],</span>
-<span class="doccomment">//!     pub e_type: u16,</span>
-<span class="doccomment">//!     pub e_machine: u16,</span>
-<span class="doccomment">//!     pub e_version: u32,</span>
-<span class="doccomment">//!     pub e_entry: u64,</span>
-<span class="doccomment">//!     pub e_phoff: u64,</span>
-<span class="doccomment">//!     pub e_shoff: u64,</span>
-<span class="doccomment">//!     pub e_flags: u32,</span>
-<span class="doccomment">//!     pub e_ehsize: u16,</span>
-<span class="doccomment">//!     pub e_phentsize: u16,</span>
-<span class="doccomment">//!     pub e_phnum: u16,</span>
-<span class="doccomment">//!     pub e_shentsize: u16,</span>
-<span class="doccomment">//!     pub e_shnum: u16,</span>
-<span class="doccomment">//!     pub e_shstrndx: u16,</span>
-<span class="doccomment">//! }</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! // SAFE: ELF64Header satisfies all the requirements of `Plain`.</span>
-<span class="doccomment">//! unsafe impl Plain for ELF64Header {}</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! impl ELF64Header {</span>
-<span class="doccomment">//! 	fn from_bytes(buf: &amp;[u8]) -&gt; &amp;ELF64Header {</span>
-<span class="doccomment">//!			plain::from_bytes(buf).expect(&quot;The buffer is either too short or not aligned!&quot;)</span>
-<span class="doccomment">//!		}</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//!		fn from_mut_bytes(buf: &amp;mut [u8]) -&gt; &amp;mut ELF64Header {</span>
-<span class="doccomment">//!			plain::from_mut_bytes(buf).expect(&quot;The buffer is either too short or not aligned!&quot;)</span>
-<span class="doccomment">//!		}</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//!		fn copy_from_bytes(buf: &amp;[u8]) -&gt; ELF64Header {</span>
-<span class="doccomment">//!			let mut h = ELF64Header::default();</span>
-<span class="doccomment">//!			h.copy_from_bytes(buf).expect(&quot;The buffer is too short!&quot;);</span>
-<span class="doccomment">//!			h</span>
-<span class="doccomment">//!		}</span>
-<span class="doccomment">//! }</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! # fn process_elf(elf: &amp;ELF64Header) {}</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! // Conditional copying for ultimate hackery.</span>
-<span class="doccomment">//! fn opportunistic_elf_processing(buf: &amp;[u8]) {</span>
-<span class="doccomment">//! 	if plain::is_aligned::&lt;ELF64Header&gt;(buf) {</span>
-<span class="doccomment">//!         // No copy necessary.</span>
-<span class="doccomment">//!			let elf_ref = ELF64Header::from_bytes(buf);</span>
-<span class="doccomment">//!			process_elf(elf_ref);</span>
-<span class="doccomment">//!     } else {</span>
-<span class="doccomment">//!         // Not aligned properly, copy to stack first.</span>
-<span class="doccomment">//!			let elf = ELF64Header::copy_from_bytes(buf);</span>
-<span class="doccomment">//!			process_elf(&amp;elf);</span>
-<span class="doccomment">//!     }</span>
-<span class="doccomment">//! }</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! #[repr(C)]</span>
-<span class="doccomment">//! #[derive(Default, Copy, Clone)]</span>
-<span class="doccomment">//! struct ArrayEntry {</span>
-<span class="doccomment">//!     pub name: [u8; 32],</span>
-<span class="doccomment">//!     pub tag: u32,</span>
-<span class="doccomment">//!     pub score: u32,</span>
-<span class="doccomment">//! }</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! // SAFE: ArrayEntry satisfies all the requirements of `Plain`.</span>
-<span class="doccomment">//! unsafe impl Plain for ArrayEntry {}</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! fn array_from_bytes(buf: &amp;[u8]) -&gt; &amp;[ArrayEntry] {</span>
-<span class="doccomment">//!     // NOTE: length is not a concern here,</span>
-<span class="doccomment">//!     // since slice_from_bytes() can return empty slice.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//!     match plain::slice_from_bytes(buf) {</span>
-<span class="doccomment">//!         Err(_) =&gt; panic!(&quot;The buffer is not aligned!&quot;),</span>
-<span class="doccomment">//!         Ok(arr) =&gt; arr,</span>
-<span class="doccomment">//!     }</span>
-<span class="doccomment">//! }</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! fn array_from_unaligned_bytes(buf: &amp;[u8]) -&gt; Vec&lt;ArrayEntry&gt; {</span>
-<span class="doccomment">//!		let length = buf.len() / mem::size_of::&lt;ArrayEntry&gt;();</span>
-<span class="doccomment">//! 	let mut result = vec![ArrayEntry::default(); length];</span>
-<span class="doccomment">//!  	(&amp;mut result).copy_from_bytes(buf).expect(&quot;Cannot fail here.&quot;);</span>
-<span class="doccomment">//!		result</span>
-<span class="doccomment">//! }</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! # fn main() {}</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! ```</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! # Comparison to [`pod`](https://crates.io/crates/pod)</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! [`pod`](https://crates.io/crates/pod) is another crate created to help working with plain data.</span>
-<span class="doccomment">//! The major difference between `pod` and `plain` is scope.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! `plain` currently provides only a few functions (+method wrappers) and its implementation</span>
-<span class="doccomment">//! involves very few lines of unsafe code. It can be used in `no_std` code. Also, it doesn&#39;t</span>
-<span class="doccomment">//! deal with [endianness](https://en.wikipedia.org/wiki/Endianness) in any way,</span>
-<span class="doccomment">//! so it is only suitable for certain kinds of low-level work.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! `pod`, on the other hand, provides a wide arsenal</span>
-<span class="doccomment">//! of various methods, most of which may be unnecessary for a given use case.</span>
-<span class="doccomment">//! It has dependencies on `std` as well as other crates, but among other things</span>
-<span class="doccomment">//! it provides tools to handle endianness properly.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! In short, `plain` is much, much _plainer_...</span>
-<span class="attribute">#![<span class="ident">no_std</span>]</span>
+</pre><pre class="rust"><code><span class="doccomment">//! A small Rust library that allows users to interpret arrays of bytes
+//! as certain kinds of structures safely.
+//!
+//! This crate provides an unsafe trait [`Plain`](trait.Plain.html), which the user
+//! of the crate uses to mark types for which operations of this library are safe.
+//! See [`Plain`](trait.Plain.html) for the contractual obligation.
+//!
+//! Other than that, everything else in this crate is perfectly safe to use as long
+//! as the `Plain` trait is not implemented on inadmissible types (similar to how
+//! `Send` and `Sync` in the standard library work).
+//!
+//! # Purpose
+//!
+//! In low level systems development, it is sometimes necessary to
+//! interpret locations in memory as data structures. Functions of
+//! this crate serve to avoid pitfalls associated with that, without
+//! having to resort to big, full-featured (de)serialization libraries.
+//!
+//! On the other hand, this crate contains no provisions when it comes
+//! to handling differences in encoding and byte ordering between
+//! platforms. As such, it is entirely unsuitable for processing
+//! external data such as file contents or network packets.
+//!
+//! # Examples
+//!
+//! To start using the crate, simply do `extern crate plain;`.
+//!
+//! If you want your plain types to have methods from this crate, also include `use plain.Plain;`.
+//!
+//! Then it&#39;s just a matter of marking the right types and using them.
+//!
+//! ```
+//!
+//! extern crate plain;
+//! use plain::Plain;
+//! use std::mem;
+//!
+//!
+//! #[repr(C)]
+//! #[derive(Default)]
+//! struct ELF64Header {
+//!     pub e_ident: [u8; 16],
+//!     pub e_type: u16,
+//!     pub e_machine: u16,
+//!     pub e_version: u32,
+//!     pub e_entry: u64,
+//!     pub e_phoff: u64,
+//!     pub e_shoff: u64,
+//!     pub e_flags: u32,
+//!     pub e_ehsize: u16,
+//!     pub e_phentsize: u16,
+//!     pub e_phnum: u16,
+//!     pub e_shentsize: u16,
+//!     pub e_shnum: u16,
+//!     pub e_shstrndx: u16,
+//! }
+//!
+//! // SAFE: ELF64Header satisfies all the requirements of `Plain`.
+//! unsafe impl Plain for ELF64Header {}
+//!
+//! impl ELF64Header {
+//! 	fn from_bytes(buf: &amp;[u8]) -&gt; &amp;ELF64Header {
+//!			plain::from_bytes(buf).expect(&quot;The buffer is either too short or not aligned!&quot;)
+//!		}
+//!
+//!		fn from_mut_bytes(buf: &amp;mut [u8]) -&gt; &amp;mut ELF64Header {
+//!			plain::from_mut_bytes(buf).expect(&quot;The buffer is either too short or not aligned!&quot;)
+//!		}
+//!
+//!		fn copy_from_bytes(buf: &amp;[u8]) -&gt; ELF64Header {
+//!			let mut h = ELF64Header::default();
+//!			h.copy_from_bytes(buf).expect(&quot;The buffer is too short!&quot;);
+//!			h
+//!		}
+//! }
+//!
+//! # fn process_elf(elf: &amp;ELF64Header) {}
+//!
+//! // Conditional copying for ultimate hackery.
+//! fn opportunistic_elf_processing(buf: &amp;[u8]) {
+//! 	if plain::is_aligned::&lt;ELF64Header&gt;(buf) {
+//!         // No copy necessary.
+//!			let elf_ref = ELF64Header::from_bytes(buf);
+//!			process_elf(elf_ref);
+//!     } else {
+//!         // Not aligned properly, copy to stack first.
+//!			let elf = ELF64Header::copy_from_bytes(buf);
+//!			process_elf(&amp;elf);
+//!     }
+//! }
+//!
+//! #[repr(C)]
+//! #[derive(Default, Copy, Clone)]
+//! struct ArrayEntry {
+//!     pub name: [u8; 32],
+//!     pub tag: u32,
+//!     pub score: u32,
+//! }
+//!
+//! // SAFE: ArrayEntry satisfies all the requirements of `Plain`.
+//! unsafe impl Plain for ArrayEntry {}
+//!
+//! fn array_from_bytes(buf: &amp;[u8]) -&gt; &amp;[ArrayEntry] {
+//!     // NOTE: length is not a concern here,
+//!     // since slice_from_bytes() can return empty slice.
+//!
+//!     match plain::slice_from_bytes(buf) {
+//!         Err(_) =&gt; panic!(&quot;The buffer is not aligned!&quot;),
+//!         Ok(arr) =&gt; arr,
+//!     }
+//! }
+//!
+//! fn array_from_unaligned_bytes(buf: &amp;[u8]) -&gt; Vec&lt;ArrayEntry&gt; {
+//!		let length = buf.len() / mem::size_of::&lt;ArrayEntry&gt;();
+//! 	let mut result = vec![ArrayEntry::default(); length];
+//!  	(&amp;mut result).copy_from_bytes(buf).expect(&quot;Cannot fail here.&quot;);
+//!		result
+//! }
+//!
+//! # fn main() {}
+//!
+//! ```
+//!
+//! # Comparison to [`pod`](https://crates.io/crates/pod)
+//!
+//! [`pod`](https://crates.io/crates/pod) is another crate created to help working with plain data.
+//! The major difference between `pod` and `plain` is scope.
+//!
+//! `plain` currently provides only a few functions (+method wrappers) and its implementation
+//! involves very few lines of unsafe code. It can be used in `no_std` code. Also, it doesn&#39;t
+//! deal with [endianness](https://en.wikipedia.org/wiki/Endianness) in any way,
+//! so it is only suitable for certain kinds of low-level work.
+//!
+//! `pod`, on the other hand, provides a wide arsenal
+//! of various methods, most of which may be unnecessary for a given use case.
+//! It has dependencies on `std` as well as other crates, but among other things
+//! it provides tools to handle endianness properly.
+//!
+//! In short, `plain` is much, much _plainer_...
+</span><span class="attribute">#![no_std]
 
-<span class="kw">mod</span> <span class="ident">error</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">error::Error</span>;
+</span><span class="kw">mod </span>error;
+<span class="kw">pub use </span>error::Error;
 
-<span class="kw">mod</span> <span class="ident">plain</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">plain::Plain</span>;
+<span class="kw">mod </span>plain;
+<span class="kw">pub use </span>plain::Plain;
 
-<span class="kw">mod</span> <span class="ident">methods</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">methods</span>::{<span class="ident">as_bytes</span>, <span class="ident">as_mut_bytes</span>, <span class="ident">copy_from_bytes</span>, <span class="ident">from_bytes</span>, <span class="ident">from_mut_bytes</span>, <span class="ident">is_aligned</span>,
-                  <span class="ident">slice_from_bytes</span>, <span class="ident">slice_from_bytes_len</span>, <span class="ident">slice_from_mut_bytes</span>,
-                  <span class="ident">slice_from_mut_bytes_len</span>};
+<span class="kw">mod </span>methods;
+<span class="kw">pub use </span>methods::{as_bytes, as_mut_bytes, copy_from_bytes, from_bytes, from_mut_bytes, is_aligned,
+                  slice_from_bytes, slice_from_bytes_len, slice_from_mut_bytes,
+                  slice_from_mut_bytes_len};
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
-<span class="attribute">#[<span class="ident">macro_use</span>]</span>
-<span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">std</span>;
+<span class="attribute">#[cfg(test)]
+#[macro_use]
+</span><span class="kw">extern crate </span>std;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
-<span class="kw">mod</span> <span class="ident">tests</span>;
+<span class="attribute">#[cfg(test)]
+</span><span class="kw">mod </span>tests;
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="plain" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="plain" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (77e57db38 2022-10-30)" ></div></body></html>

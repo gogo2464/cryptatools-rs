@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/strum_macros-0.24.3/src/helpers/metadata.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>metadata.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../strum_macros/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../strum_macros/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../strum_macros/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/strum_macros-0.24.3/src/helpers/metadata.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>metadata.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../normalize.css"><link rel="stylesheet" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../ayu.css" disabled><link rel="stylesheet" href="../../../dark.css" disabled><link rel="stylesheet" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../strum_macros/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -307,314 +307,314 @@
 <span id="307">307</span>
 <span id="308">308</span>
 <span id="309">309</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">proc_macro2</span>::{<span class="ident">Span</span>, <span class="ident">TokenStream</span>};
-<span class="kw">use</span> <span class="ident">syn</span>::{
-    <span class="ident">parenthesized</span>,
-    <span class="ident">parse</span>::{<span class="ident">Parse</span>, <span class="ident">ParseStream</span>},
-    <span class="ident">parse2</span>, <span class="ident">parse_str</span>,
-    <span class="ident">punctuated::Punctuated</span>,
-    <span class="ident">spanned::Spanned</span>,
-    <span class="ident">Attribute</span>, <span class="ident">DeriveInput</span>, <span class="ident">Ident</span>, <span class="ident">Lit</span>, <span class="ident">LitBool</span>, <span class="ident">LitStr</span>, <span class="ident">Meta</span>, <span class="ident">MetaNameValue</span>, <span class="ident">Path</span>, <span class="ident">Token</span>, <span class="ident">Variant</span>,
-    <span class="ident">Visibility</span>,
+</pre><pre class="rust"><code><span class="kw">use </span>proc_macro2::{Span, TokenStream};
+<span class="kw">use </span>syn::{
+    parenthesized,
+    parse::{Parse, ParseStream},
+    parse2, parse_str,
+    punctuated::Punctuated,
+    spanned::Spanned,
+    Attribute, DeriveInput, Ident, Lit, LitBool, LitStr, Meta, MetaNameValue, Path, Token, Variant,
+    Visibility,
 };
 
-<span class="kw">use</span> <span class="ident"><span class="kw">super</span>::case_style::CaseStyle</span>;
+<span class="kw">use </span><span class="kw">super</span>::case_style::CaseStyle;
 
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">kw</span> {
-    <span class="kw">use</span> <span class="ident">syn::custom_keyword</span>;
-    <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">syn::token::Crate</span>;
+<span class="kw">pub mod </span>kw {
+    <span class="kw">use </span>syn::custom_keyword;
+    <span class="kw">pub use </span>syn::token::Crate;
 
-    <span class="comment">// enum metadata</span>
-    <span class="macro">custom_keyword!</span>(<span class="ident">serialize_all</span>);
-    <span class="macro">custom_keyword!</span>(<span class="ident">use_phf</span>);
+    <span class="comment">// enum metadata
+    </span><span class="macro">custom_keyword!</span>(serialize_all);
+    <span class="macro">custom_keyword!</span>(use_phf);
 
-    <span class="comment">// enum discriminant metadata</span>
-    <span class="macro">custom_keyword!</span>(<span class="ident">derive</span>);
-    <span class="macro">custom_keyword!</span>(<span class="ident">name</span>);
-    <span class="macro">custom_keyword!</span>(<span class="ident">vis</span>);
+    <span class="comment">// enum discriminant metadata
+    </span><span class="macro">custom_keyword!</span>(derive);
+    <span class="macro">custom_keyword!</span>(name);
+    <span class="macro">custom_keyword!</span>(vis);
 
-    <span class="comment">// variant metadata</span>
-    <span class="macro">custom_keyword!</span>(<span class="ident">message</span>);
-    <span class="macro">custom_keyword!</span>(<span class="ident">detailed_message</span>);
-    <span class="macro">custom_keyword!</span>(<span class="ident">serialize</span>);
-    <span class="macro">custom_keyword!</span>(<span class="ident">to_string</span>);
-    <span class="macro">custom_keyword!</span>(<span class="ident">disabled</span>);
-    <span class="macro">custom_keyword!</span>(<span class="ident">default</span>);
-    <span class="macro">custom_keyword!</span>(<span class="ident">props</span>);
-    <span class="macro">custom_keyword!</span>(<span class="ident">ascii_case_insensitive</span>);
+    <span class="comment">// variant metadata
+    </span><span class="macro">custom_keyword!</span>(message);
+    <span class="macro">custom_keyword!</span>(detailed_message);
+    <span class="macro">custom_keyword!</span>(serialize);
+    <span class="macro">custom_keyword!</span>(to_string);
+    <span class="macro">custom_keyword!</span>(disabled);
+    <span class="macro">custom_keyword!</span>(default);
+    <span class="macro">custom_keyword!</span>(props);
+    <span class="macro">custom_keyword!</span>(ascii_case_insensitive);
 }
 
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">EnumMeta</span> {
-    <span class="ident">SerializeAll</span> {
-        <span class="ident">kw</span>: <span class="ident">kw::serialize_all</span>,
-        <span class="ident">case_style</span>: <span class="ident">CaseStyle</span>,
+<span class="kw">pub enum </span>EnumMeta {
+    SerializeAll {
+        kw: kw::serialize_all,
+        case_style: CaseStyle,
     },
-    <span class="ident">AsciiCaseInsensitive</span>(<span class="ident">kw::ascii_case_insensitive</span>),
-    <span class="ident">Crate</span> {
-        <span class="ident">kw</span>: <span class="ident">kw::Crate</span>,
-        <span class="ident">crate_module_path</span>: <span class="ident">Path</span>,
+    AsciiCaseInsensitive(kw::ascii_case_insensitive),
+    Crate {
+        kw: kw::Crate,
+        crate_module_path: Path,
     },
-    <span class="ident">UsePhf</span>(<span class="ident">kw::use_phf</span>),
+    UsePhf(kw::use_phf),
 }
 
-<span class="kw">impl</span> <span class="ident">Parse</span> <span class="kw">for</span> <span class="ident">EnumMeta</span> {
-    <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">input</span>: <span class="ident">ParseStream</span>) -&gt; <span class="ident">syn::Result</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">lookahead</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">lookahead1</span>();
-        <span class="kw">if</span> <span class="ident">lookahead</span>.<span class="ident">peek</span>(<span class="ident">kw::serialize_all</span>) {
-            <span class="kw">let</span> <span class="ident">kw</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">parse</span>::<span class="op">&lt;</span><span class="ident">kw::serialize_all</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
-            <span class="ident">input</span>.<span class="ident">parse</span>::<span class="op">&lt;</span><span class="macro">Token!</span>[<span class="op">=</span>]<span class="op">&gt;</span>()<span class="question-mark">?</span>;
-            <span class="kw">let</span> <span class="ident">case_style</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>;
-            <span class="prelude-val">Ok</span>(<span class="ident">EnumMeta::SerializeAll</span> { <span class="ident">kw</span>, <span class="ident">case_style</span> })
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">lookahead</span>.<span class="ident">peek</span>(<span class="ident">kw::Crate</span>) {
-            <span class="kw">let</span> <span class="ident">kw</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">parse</span>::<span class="op">&lt;</span><span class="ident">kw::Crate</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
-            <span class="ident">input</span>.<span class="ident">parse</span>::<span class="op">&lt;</span><span class="macro">Token!</span>[<span class="op">=</span>]<span class="op">&gt;</span>()<span class="question-mark">?</span>;
-            <span class="kw">let</span> <span class="ident">path_str</span>: <span class="ident">LitStr</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>;
-            <span class="kw">let</span> <span class="ident">path_tokens</span> <span class="op">=</span> <span class="ident">parse_str</span>(<span class="kw-2">&amp;</span><span class="ident">path_str</span>.<span class="ident">value</span>())<span class="question-mark">?</span>;
-            <span class="kw">let</span> <span class="ident">crate_module_path</span> <span class="op">=</span> <span class="ident">parse2</span>(<span class="ident">path_tokens</span>)<span class="question-mark">?</span>;
-            <span class="prelude-val">Ok</span>(<span class="ident">EnumMeta::Crate</span> {
-                <span class="ident">kw</span>,
-                <span class="ident">crate_module_path</span>,
+<span class="kw">impl </span>Parse <span class="kw">for </span>EnumMeta {
+    <span class="kw">fn </span>parse(input: ParseStream) -&gt; syn::Result&lt;<span class="self">Self</span>&gt; {
+        <span class="kw">let </span>lookahead = input.lookahead1();
+        <span class="kw">if </span>lookahead.peek(kw::serialize_all) {
+            <span class="kw">let </span>kw = input.parse::&lt;kw::serialize_all&gt;()<span class="question-mark">?</span>;
+            input.parse::&lt;<span class="macro">Token!</span>[=]&gt;()<span class="question-mark">?</span>;
+            <span class="kw">let </span>case_style = input.parse()<span class="question-mark">?</span>;
+            <span class="prelude-val">Ok</span>(EnumMeta::SerializeAll { kw, case_style })
+        } <span class="kw">else if </span>lookahead.peek(kw::Crate) {
+            <span class="kw">let </span>kw = input.parse::&lt;kw::Crate&gt;()<span class="question-mark">?</span>;
+            input.parse::&lt;<span class="macro">Token!</span>[=]&gt;()<span class="question-mark">?</span>;
+            <span class="kw">let </span>path_str: LitStr = input.parse()<span class="question-mark">?</span>;
+            <span class="kw">let </span>path_tokens = parse_str(<span class="kw-2">&amp;</span>path_str.value())<span class="question-mark">?</span>;
+            <span class="kw">let </span>crate_module_path = parse2(path_tokens)<span class="question-mark">?</span>;
+            <span class="prelude-val">Ok</span>(EnumMeta::Crate {
+                kw,
+                crate_module_path,
             })
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">lookahead</span>.<span class="ident">peek</span>(<span class="ident">kw::ascii_case_insensitive</span>) {
-            <span class="prelude-val">Ok</span>(<span class="ident">EnumMeta::AsciiCaseInsensitive</span>(<span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>))
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">lookahead</span>.<span class="ident">peek</span>(<span class="ident">kw::use_phf</span>) {
-            <span class="prelude-val">Ok</span>(<span class="ident">EnumMeta::UsePhf</span>(<span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>))
-        } <span class="kw">else</span> {
-            <span class="prelude-val">Err</span>(<span class="ident">lookahead</span>.<span class="ident">error</span>())
+        } <span class="kw">else if </span>lookahead.peek(kw::ascii_case_insensitive) {
+            <span class="prelude-val">Ok</span>(EnumMeta::AsciiCaseInsensitive(input.parse()<span class="question-mark">?</span>))
+        } <span class="kw">else if </span>lookahead.peek(kw::use_phf) {
+            <span class="prelude-val">Ok</span>(EnumMeta::UsePhf(input.parse()<span class="question-mark">?</span>))
+        } <span class="kw">else </span>{
+            <span class="prelude-val">Err</span>(lookahead.error())
         }
     }
 }
 
-<span class="kw">impl</span> <span class="ident">Spanned</span> <span class="kw">for</span> <span class="ident">EnumMeta</span> {
-    <span class="kw">fn</span> <span class="ident">span</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Span</span> {
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident">EnumMeta::SerializeAll</span> { <span class="ident">kw</span>, .. } =&gt; <span class="ident">kw</span>.<span class="ident">span</span>(),
-            <span class="ident">EnumMeta::AsciiCaseInsensitive</span>(<span class="ident">kw</span>) =&gt; <span class="ident">kw</span>.<span class="ident">span</span>(),
-            <span class="ident">EnumMeta::Crate</span> { <span class="ident">kw</span>, .. } =&gt; <span class="ident">kw</span>.<span class="ident">span</span>(),
-            <span class="ident">EnumMeta::UsePhf</span>(<span class="ident">use_phf</span>) =&gt; <span class="ident">use_phf</span>.<span class="ident">span</span>(),
+<span class="kw">impl </span>Spanned <span class="kw">for </span>EnumMeta {
+    <span class="kw">fn </span>span(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Span {
+        <span class="kw">match </span><span class="self">self </span>{
+            EnumMeta::SerializeAll { kw, .. } =&gt; kw.span(),
+            EnumMeta::AsciiCaseInsensitive(kw) =&gt; kw.span(),
+            EnumMeta::Crate { kw, .. } =&gt; kw.span(),
+            EnumMeta::UsePhf(use_phf) =&gt; use_phf.span(),
         }
     }
 }
 
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">EnumDiscriminantsMeta</span> {
-    <span class="ident">Derive</span> { <span class="ident">kw</span>: <span class="ident">kw::derive</span>, <span class="ident">paths</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Path</span><span class="op">&gt;</span> },
-    <span class="ident">Name</span> { <span class="ident">kw</span>: <span class="ident">kw::name</span>, <span class="ident">name</span>: <span class="ident">Ident</span> },
-    <span class="ident">Vis</span> { <span class="ident">kw</span>: <span class="ident">kw::vis</span>, <span class="ident">vis</span>: <span class="ident">Visibility</span> },
-    <span class="ident">Other</span> { <span class="ident">path</span>: <span class="ident">Path</span>, <span class="ident">nested</span>: <span class="ident">TokenStream</span> },
+<span class="kw">pub enum </span>EnumDiscriminantsMeta {
+    Derive { kw: kw::derive, paths: Vec&lt;Path&gt; },
+    Name { kw: kw::name, name: Ident },
+    Vis { kw: kw::vis, vis: Visibility },
+    Other { path: Path, nested: TokenStream },
 }
 
-<span class="kw">impl</span> <span class="ident">Parse</span> <span class="kw">for</span> <span class="ident">EnumDiscriminantsMeta</span> {
-    <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">input</span>: <span class="ident">ParseStream</span>) -&gt; <span class="ident">syn::Result</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="kw">if</span> <span class="ident">input</span>.<span class="ident">peek</span>(<span class="ident">kw::derive</span>) {
-            <span class="kw">let</span> <span class="ident">kw</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>;
-            <span class="kw">let</span> <span class="ident">content</span>;
-            <span class="macro">parenthesized!</span>(<span class="ident">content</span> <span class="kw">in</span> <span class="ident">input</span>);
-            <span class="kw">let</span> <span class="ident">paths</span> <span class="op">=</span> <span class="ident">content</span>.<span class="ident">parse_terminated</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="macro">Token!</span>[,]<span class="op">&gt;</span>(<span class="ident">Path::parse</span>)<span class="question-mark">?</span>;
-            <span class="prelude-val">Ok</span>(<span class="ident">EnumDiscriminantsMeta::Derive</span> {
-                <span class="ident">kw</span>,
-                <span class="ident">paths</span>: <span class="ident">paths</span>.<span class="ident">into_iter</span>().<span class="ident">collect</span>(),
+<span class="kw">impl </span>Parse <span class="kw">for </span>EnumDiscriminantsMeta {
+    <span class="kw">fn </span>parse(input: ParseStream) -&gt; syn::Result&lt;<span class="self">Self</span>&gt; {
+        <span class="kw">if </span>input.peek(kw::derive) {
+            <span class="kw">let </span>kw = input.parse()<span class="question-mark">?</span>;
+            <span class="kw">let </span>content;
+            <span class="macro">parenthesized!</span>(content <span class="kw">in </span>input);
+            <span class="kw">let </span>paths = content.parse_terminated::&lt;<span class="kw">_</span>, <span class="macro">Token!</span>[,]&gt;(Path::parse)<span class="question-mark">?</span>;
+            <span class="prelude-val">Ok</span>(EnumDiscriminantsMeta::Derive {
+                kw,
+                paths: paths.into_iter().collect(),
             })
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">input</span>.<span class="ident">peek</span>(<span class="ident">kw::name</span>) {
-            <span class="kw">let</span> <span class="ident">kw</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>;
-            <span class="kw">let</span> <span class="ident">content</span>;
-            <span class="macro">parenthesized!</span>(<span class="ident">content</span> <span class="kw">in</span> <span class="ident">input</span>);
-            <span class="kw">let</span> <span class="ident">name</span> <span class="op">=</span> <span class="ident">content</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>;
-            <span class="prelude-val">Ok</span>(<span class="ident">EnumDiscriminantsMeta::Name</span> { <span class="ident">kw</span>, <span class="ident">name</span> })
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">input</span>.<span class="ident">peek</span>(<span class="ident">kw::vis</span>) {
-            <span class="kw">let</span> <span class="ident">kw</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>;
-            <span class="kw">let</span> <span class="ident">content</span>;
-            <span class="macro">parenthesized!</span>(<span class="ident">content</span> <span class="kw">in</span> <span class="ident">input</span>);
-            <span class="kw">let</span> <span class="ident">vis</span> <span class="op">=</span> <span class="ident">content</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>;
-            <span class="prelude-val">Ok</span>(<span class="ident">EnumDiscriminantsMeta::Vis</span> { <span class="ident">kw</span>, <span class="ident">vis</span> })
-        } <span class="kw">else</span> {
-            <span class="kw">let</span> <span class="ident">path</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>;
-            <span class="kw">let</span> <span class="ident">content</span>;
-            <span class="macro">parenthesized!</span>(<span class="ident">content</span> <span class="kw">in</span> <span class="ident">input</span>);
-            <span class="kw">let</span> <span class="ident">nested</span> <span class="op">=</span> <span class="ident">content</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>;
-            <span class="prelude-val">Ok</span>(<span class="ident">EnumDiscriminantsMeta::Other</span> { <span class="ident">path</span>, <span class="ident">nested</span> })
+        } <span class="kw">else if </span>input.peek(kw::name) {
+            <span class="kw">let </span>kw = input.parse()<span class="question-mark">?</span>;
+            <span class="kw">let </span>content;
+            <span class="macro">parenthesized!</span>(content <span class="kw">in </span>input);
+            <span class="kw">let </span>name = content.parse()<span class="question-mark">?</span>;
+            <span class="prelude-val">Ok</span>(EnumDiscriminantsMeta::Name { kw, name })
+        } <span class="kw">else if </span>input.peek(kw::vis) {
+            <span class="kw">let </span>kw = input.parse()<span class="question-mark">?</span>;
+            <span class="kw">let </span>content;
+            <span class="macro">parenthesized!</span>(content <span class="kw">in </span>input);
+            <span class="kw">let </span>vis = content.parse()<span class="question-mark">?</span>;
+            <span class="prelude-val">Ok</span>(EnumDiscriminantsMeta::Vis { kw, vis })
+        } <span class="kw">else </span>{
+            <span class="kw">let </span>path = input.parse()<span class="question-mark">?</span>;
+            <span class="kw">let </span>content;
+            <span class="macro">parenthesized!</span>(content <span class="kw">in </span>input);
+            <span class="kw">let </span>nested = content.parse()<span class="question-mark">?</span>;
+            <span class="prelude-val">Ok</span>(EnumDiscriminantsMeta::Other { path, nested })
         }
     }
 }
 
-<span class="kw">impl</span> <span class="ident">Spanned</span> <span class="kw">for</span> <span class="ident">EnumDiscriminantsMeta</span> {
-    <span class="kw">fn</span> <span class="ident">span</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Span</span> {
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident">EnumDiscriminantsMeta::Derive</span> { <span class="ident">kw</span>, .. } =&gt; <span class="ident">kw</span>.<span class="ident">span</span>,
-            <span class="ident">EnumDiscriminantsMeta::Name</span> { <span class="ident">kw</span>, .. } =&gt; <span class="ident">kw</span>.<span class="ident">span</span>,
-            <span class="ident">EnumDiscriminantsMeta::Vis</span> { <span class="ident">kw</span>, .. } =&gt; <span class="ident">kw</span>.<span class="ident">span</span>,
-            <span class="ident">EnumDiscriminantsMeta::Other</span> { <span class="ident">path</span>, .. } =&gt; <span class="ident">path</span>.<span class="ident">span</span>(),
+<span class="kw">impl </span>Spanned <span class="kw">for </span>EnumDiscriminantsMeta {
+    <span class="kw">fn </span>span(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Span {
+        <span class="kw">match </span><span class="self">self </span>{
+            EnumDiscriminantsMeta::Derive { kw, .. } =&gt; kw.span,
+            EnumDiscriminantsMeta::Name { kw, .. } =&gt; kw.span,
+            EnumDiscriminantsMeta::Vis { kw, .. } =&gt; kw.span,
+            EnumDiscriminantsMeta::Other { path, .. } =&gt; path.span(),
         }
     }
 }
 
-<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">DeriveInputExt</span> {
-    <span class="doccomment">/// Get all the strum metadata associated with an enum.</span>
-    <span class="kw">fn</span> <span class="ident">get_metadata</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">syn::Result</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">EnumMeta</span><span class="op">&gt;</span><span class="op">&gt;</span>;
+<span class="kw">pub trait </span>DeriveInputExt {
+    <span class="doccomment">/// Get all the strum metadata associated with an enum.
+    </span><span class="kw">fn </span>get_metadata(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; syn::Result&lt;Vec&lt;EnumMeta&gt;&gt;;
 
-    <span class="doccomment">/// Get all the `strum_discriminants` metadata associated with an enum.</span>
-    <span class="kw">fn</span> <span class="ident">get_discriminants_metadata</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">syn::Result</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">EnumDiscriminantsMeta</span><span class="op">&gt;</span><span class="op">&gt;</span>;
+    <span class="doccomment">/// Get all the `strum_discriminants` metadata associated with an enum.
+    </span><span class="kw">fn </span>get_discriminants_metadata(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; syn::Result&lt;Vec&lt;EnumDiscriminantsMeta&gt;&gt;;
 }
 
-<span class="kw">impl</span> <span class="ident">DeriveInputExt</span> <span class="kw">for</span> <span class="ident">DeriveInput</span> {
-    <span class="kw">fn</span> <span class="ident">get_metadata</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">syn::Result</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">EnumMeta</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-        <span class="ident">get_metadata_inner</span>(<span class="string">&quot;strum&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">attrs</span>)
+<span class="kw">impl </span>DeriveInputExt <span class="kw">for </span>DeriveInput {
+    <span class="kw">fn </span>get_metadata(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; syn::Result&lt;Vec&lt;EnumMeta&gt;&gt; {
+        get_metadata_inner(<span class="string">&quot;strum&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.attrs)
     }
 
-    <span class="kw">fn</span> <span class="ident">get_discriminants_metadata</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">syn::Result</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">EnumDiscriminantsMeta</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-        <span class="ident">get_metadata_inner</span>(<span class="string">&quot;strum_discriminants&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">attrs</span>)
+    <span class="kw">fn </span>get_discriminants_metadata(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; syn::Result&lt;Vec&lt;EnumDiscriminantsMeta&gt;&gt; {
+        get_metadata_inner(<span class="string">&quot;strum_discriminants&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.attrs)
     }
 }
 
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">VariantMeta</span> {
-    <span class="ident">Message</span> {
-        <span class="ident">kw</span>: <span class="ident">kw::message</span>,
-        <span class="ident">value</span>: <span class="ident">LitStr</span>,
+<span class="kw">pub enum </span>VariantMeta {
+    Message {
+        kw: kw::message,
+        value: LitStr,
     },
-    <span class="ident">DetailedMessage</span> {
-        <span class="ident">kw</span>: <span class="ident">kw::detailed_message</span>,
-        <span class="ident">value</span>: <span class="ident">LitStr</span>,
+    DetailedMessage {
+        kw: kw::detailed_message,
+        value: LitStr,
     },
-    <span class="ident">Serialize</span> {
-        <span class="ident">kw</span>: <span class="ident">kw::serialize</span>,
-        <span class="ident">value</span>: <span class="ident">LitStr</span>,
+    Serialize {
+        kw: kw::serialize,
+        value: LitStr,
     },
-    <span class="ident">Documentation</span> {
-        <span class="ident">value</span>: <span class="ident">LitStr</span>,
+    Documentation {
+        value: LitStr,
     },
-    <span class="ident">ToString</span> {
-        <span class="ident">kw</span>: <span class="ident">kw::to_string</span>,
-        <span class="ident">value</span>: <span class="ident">LitStr</span>,
+    ToString {
+        kw: kw::to_string,
+        value: LitStr,
     },
-    <span class="ident">Disabled</span>(<span class="ident">kw::disabled</span>),
-    <span class="ident">Default</span>(<span class="ident">kw::default</span>),
-    <span class="ident">AsciiCaseInsensitive</span> {
-        <span class="ident">kw</span>: <span class="ident">kw::ascii_case_insensitive</span>,
-        <span class="ident">value</span>: <span class="ident">bool</span>,
+    Disabled(kw::disabled),
+    Default(kw::default),
+    AsciiCaseInsensitive {
+        kw: kw::ascii_case_insensitive,
+        value: bool,
     },
-    <span class="ident">Props</span> {
-        <span class="ident">kw</span>: <span class="ident">kw::props</span>,
-        <span class="ident">props</span>: <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">LitStr</span>, <span class="ident">LitStr</span>)<span class="op">&gt;</span>,
+    Props {
+        kw: kw::props,
+        props: Vec&lt;(LitStr, LitStr)&gt;,
     },
 }
 
-<span class="kw">impl</span> <span class="ident">Parse</span> <span class="kw">for</span> <span class="ident">VariantMeta</span> {
-    <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">input</span>: <span class="ident">ParseStream</span>) -&gt; <span class="ident">syn::Result</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">lookahead</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">lookahead1</span>();
-        <span class="kw">if</span> <span class="ident">lookahead</span>.<span class="ident">peek</span>(<span class="ident">kw::message</span>) {
-            <span class="kw">let</span> <span class="ident">kw</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>;
-            <span class="kw">let</span> <span class="kw">_</span>: <span class="macro">Token!</span>[<span class="op">=</span>] <span class="op">=</span> <span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>;
-            <span class="kw">let</span> <span class="ident">value</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>;
-            <span class="prelude-val">Ok</span>(<span class="ident">VariantMeta::Message</span> { <span class="ident">kw</span>, <span class="ident">value</span> })
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">lookahead</span>.<span class="ident">peek</span>(<span class="ident">kw::detailed_message</span>) {
-            <span class="kw">let</span> <span class="ident">kw</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>;
-            <span class="kw">let</span> <span class="kw">_</span>: <span class="macro">Token!</span>[<span class="op">=</span>] <span class="op">=</span> <span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>;
-            <span class="kw">let</span> <span class="ident">value</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>;
-            <span class="prelude-val">Ok</span>(<span class="ident">VariantMeta::DetailedMessage</span> { <span class="ident">kw</span>, <span class="ident">value</span> })
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">lookahead</span>.<span class="ident">peek</span>(<span class="ident">kw::serialize</span>) {
-            <span class="kw">let</span> <span class="ident">kw</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>;
-            <span class="kw">let</span> <span class="kw">_</span>: <span class="macro">Token!</span>[<span class="op">=</span>] <span class="op">=</span> <span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>;
-            <span class="kw">let</span> <span class="ident">value</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>;
-            <span class="prelude-val">Ok</span>(<span class="ident">VariantMeta::Serialize</span> { <span class="ident">kw</span>, <span class="ident">value</span> })
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">lookahead</span>.<span class="ident">peek</span>(<span class="ident">kw::to_string</span>) {
-            <span class="kw">let</span> <span class="ident">kw</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>;
-            <span class="kw">let</span> <span class="kw">_</span>: <span class="macro">Token!</span>[<span class="op">=</span>] <span class="op">=</span> <span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>;
-            <span class="kw">let</span> <span class="ident">value</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>;
-            <span class="prelude-val">Ok</span>(<span class="ident">VariantMeta::ToString</span> { <span class="ident">kw</span>, <span class="ident">value</span> })
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">lookahead</span>.<span class="ident">peek</span>(<span class="ident">kw::disabled</span>) {
-            <span class="prelude-val">Ok</span>(<span class="ident">VariantMeta::Disabled</span>(<span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>))
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">lookahead</span>.<span class="ident">peek</span>(<span class="ident">kw::default</span>) {
-            <span class="prelude-val">Ok</span>(<span class="ident">VariantMeta::Default</span>(<span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>))
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">lookahead</span>.<span class="ident">peek</span>(<span class="ident">kw::ascii_case_insensitive</span>) {
-            <span class="kw">let</span> <span class="ident">kw</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>;
-            <span class="kw">let</span> <span class="ident">value</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">input</span>.<span class="ident">peek</span>(<span class="macro">Token!</span>[<span class="op">=</span>]) {
-                <span class="kw">let</span> <span class="kw">_</span>: <span class="macro">Token!</span>[<span class="op">=</span>] <span class="op">=</span> <span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>;
-                <span class="ident">input</span>.<span class="ident">parse</span>::<span class="op">&lt;</span><span class="ident">LitBool</span><span class="op">&gt;</span>()<span class="question-mark">?</span>.<span class="ident">value</span>
-            } <span class="kw">else</span> {
-                <span class="bool-val">true</span>
-            };
-            <span class="prelude-val">Ok</span>(<span class="ident">VariantMeta::AsciiCaseInsensitive</span> { <span class="ident">kw</span>, <span class="ident">value</span> })
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">lookahead</span>.<span class="ident">peek</span>(<span class="ident">kw::props</span>) {
-            <span class="kw">let</span> <span class="ident">kw</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>;
-            <span class="kw">let</span> <span class="ident">content</span>;
-            <span class="macro">parenthesized!</span>(<span class="ident">content</span> <span class="kw">in</span> <span class="ident">input</span>);
-            <span class="kw">let</span> <span class="ident">props</span> <span class="op">=</span> <span class="ident">content</span>.<span class="ident">parse_terminated</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="macro">Token!</span>[,]<span class="op">&gt;</span>(<span class="ident">Prop::parse</span>)<span class="question-mark">?</span>;
-            <span class="prelude-val">Ok</span>(<span class="ident">VariantMeta::Props</span> {
-                <span class="ident">kw</span>,
-                <span class="ident">props</span>: <span class="ident">props</span>
-                    .<span class="ident">into_iter</span>()
-                    .<span class="ident">map</span>(<span class="op">|</span><span class="ident">Prop</span>(<span class="ident">k</span>, <span class="ident">v</span>)<span class="op">|</span> (<span class="ident">LitStr::new</span>(<span class="kw-2">&amp;</span><span class="ident">k</span>.<span class="ident">to_string</span>(), <span class="ident">k</span>.<span class="ident">span</span>()), <span class="ident">v</span>))
-                    .<span class="ident">collect</span>(),
+<span class="kw">impl </span>Parse <span class="kw">for </span>VariantMeta {
+    <span class="kw">fn </span>parse(input: ParseStream) -&gt; syn::Result&lt;<span class="self">Self</span>&gt; {
+        <span class="kw">let </span>lookahead = input.lookahead1();
+        <span class="kw">if </span>lookahead.peek(kw::message) {
+            <span class="kw">let </span>kw = input.parse()<span class="question-mark">?</span>;
+            <span class="kw">let _</span>: <span class="macro">Token!</span>[=] = input.parse()<span class="question-mark">?</span>;
+            <span class="kw">let </span>value = input.parse()<span class="question-mark">?</span>;
+            <span class="prelude-val">Ok</span>(VariantMeta::Message { kw, value })
+        } <span class="kw">else if </span>lookahead.peek(kw::detailed_message) {
+            <span class="kw">let </span>kw = input.parse()<span class="question-mark">?</span>;
+            <span class="kw">let _</span>: <span class="macro">Token!</span>[=] = input.parse()<span class="question-mark">?</span>;
+            <span class="kw">let </span>value = input.parse()<span class="question-mark">?</span>;
+            <span class="prelude-val">Ok</span>(VariantMeta::DetailedMessage { kw, value })
+        } <span class="kw">else if </span>lookahead.peek(kw::serialize) {
+            <span class="kw">let </span>kw = input.parse()<span class="question-mark">?</span>;
+            <span class="kw">let _</span>: <span class="macro">Token!</span>[=] = input.parse()<span class="question-mark">?</span>;
+            <span class="kw">let </span>value = input.parse()<span class="question-mark">?</span>;
+            <span class="prelude-val">Ok</span>(VariantMeta::Serialize { kw, value })
+        } <span class="kw">else if </span>lookahead.peek(kw::to_string) {
+            <span class="kw">let </span>kw = input.parse()<span class="question-mark">?</span>;
+            <span class="kw">let _</span>: <span class="macro">Token!</span>[=] = input.parse()<span class="question-mark">?</span>;
+            <span class="kw">let </span>value = input.parse()<span class="question-mark">?</span>;
+            <span class="prelude-val">Ok</span>(VariantMeta::ToString { kw, value })
+        } <span class="kw">else if </span>lookahead.peek(kw::disabled) {
+            <span class="prelude-val">Ok</span>(VariantMeta::Disabled(input.parse()<span class="question-mark">?</span>))
+        } <span class="kw">else if </span>lookahead.peek(kw::default) {
+            <span class="prelude-val">Ok</span>(VariantMeta::Default(input.parse()<span class="question-mark">?</span>))
+        } <span class="kw">else if </span>lookahead.peek(kw::ascii_case_insensitive) {
+            <span class="kw">let </span>kw = input.parse()<span class="question-mark">?</span>;
+            <span class="kw">let </span>value = <span class="kw">if </span>input.peek(<span class="macro">Token!</span>[=]) {
+                <span class="kw">let _</span>: <span class="macro">Token!</span>[=] = input.parse()<span class="question-mark">?</span>;
+                input.parse::&lt;LitBool&gt;()<span class="question-mark">?</span>.value
+            } <span class="kw">else </span>{
+                <span class="bool-val">true
+            </span>};
+            <span class="prelude-val">Ok</span>(VariantMeta::AsciiCaseInsensitive { kw, value })
+        } <span class="kw">else if </span>lookahead.peek(kw::props) {
+            <span class="kw">let </span>kw = input.parse()<span class="question-mark">?</span>;
+            <span class="kw">let </span>content;
+            <span class="macro">parenthesized!</span>(content <span class="kw">in </span>input);
+            <span class="kw">let </span>props = content.parse_terminated::&lt;<span class="kw">_</span>, <span class="macro">Token!</span>[,]&gt;(Prop::parse)<span class="question-mark">?</span>;
+            <span class="prelude-val">Ok</span>(VariantMeta::Props {
+                kw,
+                props: props
+                    .into_iter()
+                    .map(|Prop(k, v)| (LitStr::new(<span class="kw-2">&amp;</span>k.to_string(), k.span()), v))
+                    .collect(),
             })
-        } <span class="kw">else</span> {
-            <span class="prelude-val">Err</span>(<span class="ident">lookahead</span>.<span class="ident">error</span>())
+        } <span class="kw">else </span>{
+            <span class="prelude-val">Err</span>(lookahead.error())
         }
     }
 }
 
-<span class="kw">struct</span> <span class="ident">Prop</span>(<span class="ident">Ident</span>, <span class="ident">LitStr</span>);
+<span class="kw">struct </span>Prop(Ident, LitStr);
 
-<span class="kw">impl</span> <span class="ident">Parse</span> <span class="kw">for</span> <span class="ident">Prop</span> {
-    <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">input</span>: <span class="ident">ParseStream</span>) -&gt; <span class="ident">syn::Result</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="kw">use</span> <span class="ident">syn::ext::IdentExt</span>;
+<span class="kw">impl </span>Parse <span class="kw">for </span>Prop {
+    <span class="kw">fn </span>parse(input: ParseStream) -&gt; syn::Result&lt;<span class="self">Self</span>&gt; {
+        <span class="kw">use </span>syn::ext::IdentExt;
 
-        <span class="kw">let</span> <span class="ident">k</span> <span class="op">=</span> <span class="ident">Ident::parse_any</span>(<span class="ident">input</span>)<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="kw">_</span>: <span class="macro">Token!</span>[<span class="op">=</span>] <span class="op">=</span> <span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">v</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>;
+        <span class="kw">let </span>k = Ident::parse_any(input)<span class="question-mark">?</span>;
+        <span class="kw">let _</span>: <span class="macro">Token!</span>[=] = input.parse()<span class="question-mark">?</span>;
+        <span class="kw">let </span>v = input.parse()<span class="question-mark">?</span>;
 
-        <span class="prelude-val">Ok</span>(<span class="ident">Prop</span>(<span class="ident">k</span>, <span class="ident">v</span>))
+        <span class="prelude-val">Ok</span>(Prop(k, v))
     }
 }
 
-<span class="kw">impl</span> <span class="ident">Spanned</span> <span class="kw">for</span> <span class="ident">VariantMeta</span> {
-    <span class="kw">fn</span> <span class="ident">span</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Span</span> {
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident">VariantMeta::Message</span> { <span class="ident">kw</span>, .. } =&gt; <span class="ident">kw</span>.<span class="ident">span</span>,
-            <span class="ident">VariantMeta::DetailedMessage</span> { <span class="ident">kw</span>, .. } =&gt; <span class="ident">kw</span>.<span class="ident">span</span>,
-            <span class="ident">VariantMeta::Documentation</span> { <span class="ident">value</span> } =&gt; <span class="ident">value</span>.<span class="ident">span</span>(),
-            <span class="ident">VariantMeta::Serialize</span> { <span class="ident">kw</span>, .. } =&gt; <span class="ident">kw</span>.<span class="ident">span</span>,
-            <span class="ident">VariantMeta::ToString</span> { <span class="ident">kw</span>, .. } =&gt; <span class="ident">kw</span>.<span class="ident">span</span>,
-            <span class="ident">VariantMeta::Disabled</span>(<span class="ident">kw</span>) =&gt; <span class="ident">kw</span>.<span class="ident">span</span>,
-            <span class="ident">VariantMeta::Default</span>(<span class="ident">kw</span>) =&gt; <span class="ident">kw</span>.<span class="ident">span</span>,
-            <span class="ident">VariantMeta::AsciiCaseInsensitive</span> { <span class="ident">kw</span>, .. } =&gt; <span class="ident">kw</span>.<span class="ident">span</span>,
-            <span class="ident">VariantMeta::Props</span> { <span class="ident">kw</span>, .. } =&gt; <span class="ident">kw</span>.<span class="ident">span</span>,
+<span class="kw">impl </span>Spanned <span class="kw">for </span>VariantMeta {
+    <span class="kw">fn </span>span(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Span {
+        <span class="kw">match </span><span class="self">self </span>{
+            VariantMeta::Message { kw, .. } =&gt; kw.span,
+            VariantMeta::DetailedMessage { kw, .. } =&gt; kw.span,
+            VariantMeta::Documentation { value } =&gt; value.span(),
+            VariantMeta::Serialize { kw, .. } =&gt; kw.span,
+            VariantMeta::ToString { kw, .. } =&gt; kw.span,
+            VariantMeta::Disabled(kw) =&gt; kw.span,
+            VariantMeta::Default(kw) =&gt; kw.span,
+            VariantMeta::AsciiCaseInsensitive { kw, .. } =&gt; kw.span,
+            VariantMeta::Props { kw, .. } =&gt; kw.span,
         }
     }
 }
 
-<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">VariantExt</span> {
-    <span class="doccomment">/// Get all the metadata associated with an enum variant.</span>
-    <span class="kw">fn</span> <span class="ident">get_metadata</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">syn::Result</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">VariantMeta</span><span class="op">&gt;</span><span class="op">&gt;</span>;
+<span class="kw">pub trait </span>VariantExt {
+    <span class="doccomment">/// Get all the metadata associated with an enum variant.
+    </span><span class="kw">fn </span>get_metadata(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; syn::Result&lt;Vec&lt;VariantMeta&gt;&gt;;
 }
 
-<span class="kw">impl</span> <span class="ident">VariantExt</span> <span class="kw">for</span> <span class="ident">Variant</span> {
-    <span class="kw">fn</span> <span class="ident">get_metadata</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">syn::Result</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">VariantMeta</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">result</span> <span class="op">=</span> <span class="ident">get_metadata_inner</span>(<span class="string">&quot;strum&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">attrs</span>)<span class="question-mark">?</span>;
-        <span class="self">self</span>.<span class="ident">attrs</span>
-            .<span class="ident">iter</span>()
-            .<span class="ident">filter</span>(<span class="op">|</span><span class="ident">attr</span><span class="op">|</span> <span class="ident">attr</span>.<span class="ident">path</span>.<span class="ident">is_ident</span>(<span class="string">&quot;doc&quot;</span>))
-            .<span class="ident">try_fold</span>(<span class="ident">result</span>, <span class="op">|</span><span class="kw-2">mut</span> <span class="ident">vec</span>, <span class="ident">attr</span><span class="op">|</span> {
-                <span class="kw">if</span> <span class="kw">let</span> <span class="ident">Meta::NameValue</span>(<span class="ident">MetaNameValue</span> {
-                    <span class="ident">lit</span>: <span class="ident">Lit::Str</span>(<span class="ident">value</span>),
+<span class="kw">impl </span>VariantExt <span class="kw">for </span>Variant {
+    <span class="kw">fn </span>get_metadata(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; syn::Result&lt;Vec&lt;VariantMeta&gt;&gt; {
+        <span class="kw">let </span>result = get_metadata_inner(<span class="string">&quot;strum&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.attrs)<span class="question-mark">?</span>;
+        <span class="self">self</span>.attrs
+            .iter()
+            .filter(|attr| attr.path.is_ident(<span class="string">&quot;doc&quot;</span>))
+            .try_fold(result, |<span class="kw-2">mut </span>vec, attr| {
+                <span class="kw">if let </span>Meta::NameValue(MetaNameValue {
+                    lit: Lit::Str(value),
                     ..
-                }) <span class="op">=</span> <span class="ident">attr</span>.<span class="ident">parse_meta</span>()<span class="question-mark">?</span>
-                {
-                    <span class="ident">vec</span>.<span class="ident">push</span>(<span class="ident">VariantMeta::Documentation</span> { <span class="ident">value</span> })
+                }) = attr.parse_meta()<span class="question-mark">?
+                </span>{
+                    vec.push(VariantMeta::Documentation { value })
                 }
-                <span class="prelude-val">Ok</span>(<span class="ident">vec</span>)
+                <span class="prelude-val">Ok</span>(vec)
             })
     }
 }
 
-<span class="kw">fn</span> <span class="ident">get_metadata_inner</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">T</span>: <span class="ident">Parse</span> <span class="op">+</span> <span class="ident">Spanned</span><span class="op">&gt;</span>(
-    <span class="ident">ident</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
-    <span class="ident">it</span>: <span class="kw">impl</span> <span class="ident">IntoIterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">Attribute</span><span class="op">&gt;</span>,
-) -&gt; <span class="ident">syn::Result</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-    <span class="ident">it</span>.<span class="ident">into_iter</span>()
-        .<span class="ident">filter</span>(<span class="op">|</span><span class="ident">attr</span><span class="op">|</span> <span class="ident">attr</span>.<span class="ident">path</span>.<span class="ident">is_ident</span>(<span class="ident">ident</span>))
-        .<span class="ident">try_fold</span>(<span class="ident">Vec::new</span>(), <span class="op">|</span><span class="kw-2">mut</span> <span class="ident">vec</span>, <span class="ident">attr</span><span class="op">|</span> {
-            <span class="ident">vec</span>.<span class="ident">extend</span>(<span class="ident">attr</span>.<span class="ident">parse_args_with</span>(<span class="ident">Punctuated</span>::<span class="op">&lt;</span><span class="ident">T</span>, <span class="macro">Token!</span>[,]<span class="op">&gt;</span><span class="ident">::parse_terminated</span>)<span class="question-mark">?</span>);
-            <span class="prelude-val">Ok</span>(<span class="ident">vec</span>)
+<span class="kw">fn </span>get_metadata_inner&lt;<span class="lifetime">&#39;a</span>, T: Parse + Spanned&gt;(
+    ident: <span class="kw-2">&amp;</span>str,
+    it: <span class="kw">impl </span>IntoIterator&lt;Item = <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>Attribute&gt;,
+) -&gt; syn::Result&lt;Vec&lt;T&gt;&gt; {
+    it.into_iter()
+        .filter(|attr| attr.path.is_ident(ident))
+        .try_fold(Vec::new(), |<span class="kw-2">mut </span>vec, attr| {
+            vec.extend(attr.parse_args_with(Punctuated::&lt;T, <span class="macro">Token!</span>[,]&gt;::parse_terminated)<span class="question-mark">?</span>);
+            <span class="prelude-val">Ok</span>(vec)
         })
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="strum_macros" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="strum_macros" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (77e57db38 2022-10-30)" ></div></body></html>

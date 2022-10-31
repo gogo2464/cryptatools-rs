@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/goblin-0.5.4/src/elf/mod.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../goblin/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../goblin/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../goblin/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/goblin-0.5.4/src/elf/mod.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../normalize.css"><link rel="stylesheet" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../ayu.css" disabled><link rel="stylesheet" href="../../../dark.css" disabled><link rel="stylesheet" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../goblin/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -564,571 +564,571 @@
 <span id="564">564</span>
 <span id="565">565</span>
 <span id="566">566</span>
-</pre><pre class="rust"><code><span class="doccomment">//! The generic ELF module, which gives access to ELF constants and other helper functions, which are independent of ELF bithood.  Also defines an `Elf` struct which implements a unified parser that returns a wrapped `Elf64` or `Elf32` binary.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! To access the exact 32-bit or 64-bit versions, use [goblin::elf32::Header](header/header32/struct.Header.html)/[goblin::elf64::Header](header/header64/struct.Header.html), etc., for the various 32/64-bit structs.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! # Example</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! ```rust</span>
-<span class="doccomment">//! use std::fs::File;</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! pub fn read (bytes: &amp;[u8]) {</span>
-<span class="doccomment">//!   match goblin::elf::Elf::parse(&amp;bytes) {</span>
-<span class="doccomment">//!     Ok(binary) =&gt; {</span>
-<span class="doccomment">//!       let entry = binary.entry;</span>
-<span class="doccomment">//!       for ph in binary.program_headers {</span>
-<span class="doccomment">//!         if ph.p_type == goblin::elf::program_header::PT_LOAD {</span>
-<span class="doccomment">//!           // TODO: you should validate p_filesz before allocating.</span>
-<span class="doccomment">//!           let mut _buf = vec![0u8; ph.p_filesz as usize];</span>
-<span class="doccomment">//!           // read responsibly</span>
-<span class="doccomment">//!          }</span>
-<span class="doccomment">//!       }</span>
-<span class="doccomment">//!     },</span>
-<span class="doccomment">//!     Err(_) =&gt; ()</span>
-<span class="doccomment">//!   }</span>
-<span class="doccomment">//! }</span>
-<span class="doccomment">//! ```</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! This will properly access the underlying 32-bit or 64-bit binary automatically. Note that since</span>
-<span class="doccomment">//! 32-bit binaries typically have shorter 32-bit values in some cases (specifically for addresses and pointer</span>
-<span class="doccomment">//! values), these values are upcasted to u64/i64s when appropriate.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! See [goblin::elf::Elf](struct.Elf.html) for more information.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! You are still free to use the specific 32-bit or 64-bit versions by accessing them through `goblin::elf64`, etc., but you will have to parse and/or construct the various components yourself.</span>
-<span class="doccomment">//! In other words, there is no unified 32/64-bit `Elf` struct.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! # Note</span>
-<span class="doccomment">//! To use the automagic ELF datatype union parser, you _must_ enable/opt-in to the  `elf64`, `elf32`, and</span>
-<span class="doccomment">//! `endian_fd` features if you disable `default`.</span>
+</pre><pre class="rust"><code><span class="doccomment">//! The generic ELF module, which gives access to ELF constants and other helper functions, which are independent of ELF bithood.  Also defines an `Elf` struct which implements a unified parser that returns a wrapped `Elf64` or `Elf32` binary.
+//!
+//! To access the exact 32-bit or 64-bit versions, use [goblin::elf32::Header](header/header32/struct.Header.html)/[goblin::elf64::Header](header/header64/struct.Header.html), etc., for the various 32/64-bit structs.
+//!
+//! # Example
+//!
+//! ```rust
+//! use std::fs::File;
+//!
+//! pub fn read (bytes: &amp;[u8]) {
+//!   match goblin::elf::Elf::parse(&amp;bytes) {
+//!     Ok(binary) =&gt; {
+//!       let entry = binary.entry;
+//!       for ph in binary.program_headers {
+//!         if ph.p_type == goblin::elf::program_header::PT_LOAD {
+//!           // TODO: you should validate p_filesz before allocating.
+//!           let mut _buf = vec![0u8; ph.p_filesz as usize];
+//!           // read responsibly
+//!          }
+//!       }
+//!     },
+//!     Err(_) =&gt; ()
+//!   }
+//! }
+//! ```
+//!
+//! This will properly access the underlying 32-bit or 64-bit binary automatically. Note that since
+//! 32-bit binaries typically have shorter 32-bit values in some cases (specifically for addresses and pointer
+//! values), these values are upcasted to u64/i64s when appropriate.
+//!
+//! See [goblin::elf::Elf](struct.Elf.html) for more information.
+//!
+//! You are still free to use the specific 32-bit or 64-bit versions by accessing them through `goblin::elf64`, etc., but you will have to parse and/or construct the various components yourself.
+//! In other words, there is no unified 32/64-bit `Elf` struct.
+//!
+//! # Note
+//! To use the automagic ELF datatype union parser, you _must_ enable/opt-in to the  `elf64`, `elf32`, and
+//! `endian_fd` features if you disable `default`.
 
-<span class="attribute">#[<span class="ident">macro_use</span>]</span>
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">mod</span> <span class="ident">gnu_hash</span>;
+</span><span class="attribute">#[macro_use]
+</span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">mod </span>gnu_hash;
 
-<span class="comment">// These are shareable values for the 32/64 bit implementations.</span>
-<span class="comment">//</span>
-<span class="comment">// They are publicly re-exported by the pub-using module</span>
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">compression_header</span>;
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">header</span>;
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">program_header</span>;
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">section_header</span>;
-<span class="attribute">#[<span class="ident">macro_use</span>]</span>
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">sym</span>;
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">dynamic</span>;
-<span class="attribute">#[<span class="ident">macro_use</span>]</span>
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">reloc</span>;
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">note</span>;
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">all</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;elf32&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;elf64&quot;</span>), <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;alloc&quot;</span>))]</span>
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">symver</span>;
+<span class="comment">// These are shareable values for the 32/64 bit implementations.
+//
+// They are publicly re-exported by the pub-using module
+</span><span class="kw">pub mod </span>compression_header;
+<span class="kw">pub mod </span>header;
+<span class="kw">pub mod </span>program_header;
+<span class="kw">pub mod </span>section_header;
+<span class="attribute">#[macro_use]
+</span><span class="kw">pub mod </span>sym;
+<span class="kw">pub mod </span>dynamic;
+<span class="attribute">#[macro_use]
+</span><span class="kw">pub mod </span>reloc;
+<span class="kw">pub mod </span>note;
+<span class="attribute">#[cfg(all(any(feature = <span class="string">&quot;elf32&quot;</span>, feature = <span class="string">&quot;elf64&quot;</span>), feature = <span class="string">&quot;alloc&quot;</span>))]
+</span><span class="kw">pub mod </span>symver;
 
-<span class="macro">macro_rules!</span> <span class="ident">if_sylvan</span> {
-    ($(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">i</span>:<span class="ident">item</span>)<span class="kw-2">*</span>) =&gt; ($(
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">all</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;elf32&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;elf64&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;endian_fd&quot;</span>))]</span>
-        <span class="macro-nonterminal">$</span><span class="macro-nonterminal">i</span>
-    )<span class="kw-2">*</span>)
+<span class="macro">macro_rules! </span>if_sylvan {
+    ($(<span class="macro-nonterminal">$i</span>:item)<span class="kw-2">*</span>) =&gt; ($(
+        <span class="attribute">#[cfg(all(feature = <span class="string">&quot;elf32&quot;</span>, feature = <span class="string">&quot;elf64&quot;</span>, feature = <span class="string">&quot;endian_fd&quot;</span>))]
+        </span><span class="macro-nonterminal">$i
+    </span>)<span class="kw-2">*</span>)
 }
 
-<span class="macro">if_sylvan!</span> {
-    <span class="kw">use</span> <span class="ident">scroll</span>::{<span class="ident">ctx</span>, <span class="ident">Pread</span>, <span class="ident">Endian</span>};
-    <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::strtab::Strtab</span>;
-    <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::error</span>;
-    <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::container</span>::{<span class="ident">Container</span>, <span class="ident">Ctx</span>};
-    <span class="kw">use</span> <span class="ident">alloc::vec::Vec</span>;
-    <span class="kw">use</span> <span class="ident">core::cmp</span>;
+<span class="macro">if_sylvan! </span>{
+    <span class="kw">use </span>scroll::{ctx, Pread, Endian};
+    <span class="kw">use </span><span class="kw">crate</span>::strtab::Strtab;
+    <span class="kw">use </span><span class="kw">crate</span>::error;
+    <span class="kw">use </span><span class="kw">crate</span>::container::{Container, Ctx};
+    <span class="kw">use </span>alloc::vec::Vec;
+    <span class="kw">use </span>core::cmp;
 
-    <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">header::Header</span>;
-    <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">program_header::ProgramHeader</span>;
-    <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">section_header::SectionHeader</span>;
-    <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">sym::Symtab</span>;
-    <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">sym::Sym</span>;
-    <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">dynamic::Dyn</span>;
-    <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">dynamic::Dynamic</span>;
-    <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">reloc::Reloc</span>;
-    <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">reloc::RelocSection</span>;
-    <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">symver</span>::{<span class="ident">VersymSection</span>, <span class="ident">VerdefSection</span>, <span class="ident">VerneedSection</span>};
+    <span class="kw">pub use </span>header::Header;
+    <span class="kw">pub use </span>program_header::ProgramHeader;
+    <span class="kw">pub use </span>section_header::SectionHeader;
+    <span class="kw">pub use </span>sym::Symtab;
+    <span class="kw">pub use </span>sym::Sym;
+    <span class="kw">pub use </span>dynamic::Dyn;
+    <span class="kw">pub use </span>dynamic::Dynamic;
+    <span class="kw">pub use </span>reloc::Reloc;
+    <span class="kw">pub use </span>reloc::RelocSection;
+    <span class="kw">pub use </span>symver::{VersymSection, VerdefSection, VerneedSection};
 
-    <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">ProgramHeaders</span> <span class="op">=</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">ProgramHeader</span><span class="op">&gt;</span>;
-    <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">SectionHeaders</span> <span class="op">=</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">SectionHeader</span><span class="op">&gt;</span>;
-    <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">ShdrIdx</span> <span class="op">=</span> <span class="ident">usize</span>;
+    <span class="kw">pub type </span>ProgramHeaders = Vec&lt;ProgramHeader&gt;;
+    <span class="kw">pub type </span>SectionHeaders = Vec&lt;SectionHeader&gt;;
+    <span class="kw">pub type </span>ShdrIdx = usize;
 
-    <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
-    <span class="doccomment">/// An ELF binary. The underlying data structures are read according to the headers byte order and container size (32 or 64).</span>
-    <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Elf</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-        <span class="doccomment">/// The ELF header, which provides a rudimentary index into the rest of the binary</span>
-        <span class="kw">pub</span> <span class="ident">header</span>: <span class="ident">Header</span>,
-        <span class="doccomment">/// The program headers; they primarily tell the kernel and the dynamic linker</span>
-        <span class="doccomment">/// how to load this binary</span>
-        <span class="kw">pub</span> <span class="ident">program_headers</span>: <span class="ident">ProgramHeaders</span>,
-        <span class="doccomment">/// The sections headers. These are strippable, never count on them being</span>
-        <span class="doccomment">/// here unless you&#39;re a static linker!</span>
-        <span class="kw">pub</span> <span class="ident">section_headers</span>: <span class="ident">SectionHeaders</span>,
-        <span class="doccomment">/// The section header string table</span>
-        <span class="kw">pub</span> <span class="ident">shdr_strtab</span>: <span class="ident">Strtab</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>,
-        <span class="doccomment">/// The string table for the dynamically accessible symbols</span>
-        <span class="kw">pub</span> <span class="ident">dynstrtab</span>: <span class="ident">Strtab</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>,
-        <span class="doccomment">/// The dynamically accessible symbols, i.e., exports, imports.</span>
-        <span class="doccomment">/// This is what the dynamic linker uses to dynamically load and link your binary,</span>
-        <span class="doccomment">/// or find imported symbols for binaries which dynamically link against your library</span>
-        <span class="kw">pub</span> <span class="ident">dynsyms</span>: <span class="ident">Symtab</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>,
-        <span class="doccomment">/// The debugging symbol table</span>
-        <span class="kw">pub</span> <span class="ident">syms</span>: <span class="ident">Symtab</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>,
-        <span class="doccomment">/// The string table for the symbol table</span>
-        <span class="kw">pub</span> <span class="ident">strtab</span>: <span class="ident">Strtab</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>,
-        <span class="doccomment">/// Contains dynamic linking information, with the _DYNAMIC array + a preprocessed DynamicInfo for that array</span>
-        <span class="kw">pub</span> <span class="ident">dynamic</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Dynamic</span><span class="op">&gt;</span>,
-        <span class="doccomment">/// The dynamic relocation entries (strings, copy-data, etc.) with an addend</span>
-        <span class="kw">pub</span> <span class="ident">dynrelas</span>: <span class="ident">RelocSection</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>,
-        <span class="doccomment">/// The dynamic relocation entries without an addend</span>
-        <span class="kw">pub</span> <span class="ident">dynrels</span>: <span class="ident">RelocSection</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>,
-        <span class="doccomment">/// The plt relocation entries (procedure linkage table). For 32-bit binaries these are usually Rel (no addend)</span>
-        <span class="kw">pub</span> <span class="ident">pltrelocs</span>: <span class="ident">RelocSection</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>,
-        <span class="doccomment">/// Section relocations by section index (only present if this is a relocatable object file)</span>
-        <span class="kw">pub</span> <span class="ident">shdr_relocs</span>: <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">ShdrIdx</span>, <span class="ident">RelocSection</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>)<span class="op">&gt;</span>,
-        <span class="doccomment">/// The binary&#39;s soname, if it has one</span>
-        <span class="kw">pub</span> <span class="ident">soname</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span><span class="op">&gt;</span>,
-        <span class="doccomment">/// The binary&#39;s program interpreter (e.g., dynamic linker), if it has one</span>
-        <span class="kw">pub</span> <span class="ident">interpreter</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span><span class="op">&gt;</span>,
-        <span class="doccomment">/// A list of this binary&#39;s dynamic libraries it uses, if there are any</span>
-        <span class="kw">pub</span> <span class="ident">libraries</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span><span class="op">&gt;</span>,
-        <span class="doccomment">/// A list of runtime search paths for this binary&#39;s dynamic libraries it uses, if there</span>
-        <span class="doccomment">/// are any. (deprecated)</span>
-        <span class="kw">pub</span> <span class="ident">rpaths</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span><span class="op">&gt;</span>,
-        <span class="doccomment">/// A list of runtime search paths for this binary&#39;s dynamic libraries it uses, if there</span>
-        <span class="doccomment">/// are any.</span>
-        <span class="kw">pub</span> <span class="ident">runpaths</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span><span class="op">&gt;</span>,
-        <span class="doccomment">/// Whether this is a 64-bit elf or not</span>
-        <span class="kw">pub</span> <span class="ident">is_64</span>: <span class="ident">bool</span>,
-        <span class="doccomment">/// Whether this is a shared object or not</span>
-        <span class="kw">pub</span> <span class="ident">is_lib</span>: <span class="ident">bool</span>,
-        <span class="doccomment">/// The binaries entry point address, if it has one</span>
-        <span class="kw">pub</span> <span class="ident">entry</span>: <span class="ident">u64</span>,
-        <span class="doccomment">/// Whether the binary is little endian or not</span>
-        <span class="kw">pub</span> <span class="ident">little_endian</span>: <span class="ident">bool</span>,
-        <span class="doccomment">/// Contains the symbol version information from the optional section</span>
-        <span class="doccomment">/// [`SHT_GNU_VERSYM`][section_header::SHT_GNU_VERSYM] (GNU extenstion).</span>
-        <span class="kw">pub</span> <span class="ident">versym</span> : <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">VersymSection</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-        <span class="doccomment">/// Contains the version definition information from the optional section</span>
-        <span class="doccomment">/// [`SHT_GNU_VERDEF`][section_header::SHT_GNU_VERDEF] (GNU extenstion).</span>
-        <span class="kw">pub</span> <span class="ident">verdef</span> : <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">VerdefSection</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-        <span class="doccomment">/// Contains the version needed information from the optional section</span>
-        <span class="doccomment">/// [`SHT_GNU_VERNEED`][section_header::SHT_GNU_VERNEED] (GNU extenstion).</span>
-        <span class="kw">pub</span> <span class="ident">verneed</span> : <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">VerneedSection</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-        <span class="ident">ctx</span>: <span class="ident">Ctx</span>,
+    <span class="attribute">#[derive(Debug)]
+    </span><span class="doccomment">/// An ELF binary. The underlying data structures are read according to the headers byte order and container size (32 or 64).
+    </span><span class="kw">pub struct </span>Elf&lt;<span class="lifetime">&#39;a</span>&gt; {
+        <span class="doccomment">/// The ELF header, which provides a rudimentary index into the rest of the binary
+        </span><span class="kw">pub </span>header: Header,
+        <span class="doccomment">/// The program headers; they primarily tell the kernel and the dynamic linker
+        /// how to load this binary
+        </span><span class="kw">pub </span>program_headers: ProgramHeaders,
+        <span class="doccomment">/// The sections headers. These are strippable, never count on them being
+        /// here unless you&#39;re a static linker!
+        </span><span class="kw">pub </span>section_headers: SectionHeaders,
+        <span class="doccomment">/// The section header string table
+        </span><span class="kw">pub </span>shdr_strtab: Strtab&lt;<span class="lifetime">&#39;a</span>&gt;,
+        <span class="doccomment">/// The string table for the dynamically accessible symbols
+        </span><span class="kw">pub </span>dynstrtab: Strtab&lt;<span class="lifetime">&#39;a</span>&gt;,
+        <span class="doccomment">/// The dynamically accessible symbols, i.e., exports, imports.
+        /// This is what the dynamic linker uses to dynamically load and link your binary,
+        /// or find imported symbols for binaries which dynamically link against your library
+        </span><span class="kw">pub </span>dynsyms: Symtab&lt;<span class="lifetime">&#39;a</span>&gt;,
+        <span class="doccomment">/// The debugging symbol table
+        </span><span class="kw">pub </span>syms: Symtab&lt;<span class="lifetime">&#39;a</span>&gt;,
+        <span class="doccomment">/// The string table for the symbol table
+        </span><span class="kw">pub </span>strtab: Strtab&lt;<span class="lifetime">&#39;a</span>&gt;,
+        <span class="doccomment">/// Contains dynamic linking information, with the _DYNAMIC array + a preprocessed DynamicInfo for that array
+        </span><span class="kw">pub </span>dynamic: <span class="prelude-ty">Option</span>&lt;Dynamic&gt;,
+        <span class="doccomment">/// The dynamic relocation entries (strings, copy-data, etc.) with an addend
+        </span><span class="kw">pub </span>dynrelas: RelocSection&lt;<span class="lifetime">&#39;a</span>&gt;,
+        <span class="doccomment">/// The dynamic relocation entries without an addend
+        </span><span class="kw">pub </span>dynrels: RelocSection&lt;<span class="lifetime">&#39;a</span>&gt;,
+        <span class="doccomment">/// The plt relocation entries (procedure linkage table). For 32-bit binaries these are usually Rel (no addend)
+        </span><span class="kw">pub </span>pltrelocs: RelocSection&lt;<span class="lifetime">&#39;a</span>&gt;,
+        <span class="doccomment">/// Section relocations by section index (only present if this is a relocatable object file)
+        </span><span class="kw">pub </span>shdr_relocs: Vec&lt;(ShdrIdx, RelocSection&lt;<span class="lifetime">&#39;a</span>&gt;)&gt;,
+        <span class="doccomment">/// The binary&#39;s soname, if it has one
+        </span><span class="kw">pub </span>soname: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str&gt;,
+        <span class="doccomment">/// The binary&#39;s program interpreter (e.g., dynamic linker), if it has one
+        </span><span class="kw">pub </span>interpreter: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str&gt;,
+        <span class="doccomment">/// A list of this binary&#39;s dynamic libraries it uses, if there are any
+        </span><span class="kw">pub </span>libraries: Vec&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str&gt;,
+        <span class="doccomment">/// A list of runtime search paths for this binary&#39;s dynamic libraries it uses, if there
+        /// are any. (deprecated)
+        </span><span class="kw">pub </span>rpaths: Vec&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str&gt;,
+        <span class="doccomment">/// A list of runtime search paths for this binary&#39;s dynamic libraries it uses, if there
+        /// are any.
+        </span><span class="kw">pub </span>runpaths: Vec&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str&gt;,
+        <span class="doccomment">/// Whether this is a 64-bit elf or not
+        </span><span class="kw">pub </span>is_64: bool,
+        <span class="doccomment">/// Whether this is a shared object or not
+        </span><span class="kw">pub </span>is_lib: bool,
+        <span class="doccomment">/// The binaries entry point address, if it has one
+        </span><span class="kw">pub </span>entry: u64,
+        <span class="doccomment">/// Whether the binary is little endian or not
+        </span><span class="kw">pub </span>little_endian: bool,
+        <span class="doccomment">/// Contains the symbol version information from the optional section
+        /// [`SHT_GNU_VERSYM`][section_header::SHT_GNU_VERSYM] (GNU extenstion).
+        </span><span class="kw">pub </span>versym : <span class="prelude-ty">Option</span>&lt;VersymSection&lt;<span class="lifetime">&#39;a</span>&gt;&gt;,
+        <span class="doccomment">/// Contains the version definition information from the optional section
+        /// [`SHT_GNU_VERDEF`][section_header::SHT_GNU_VERDEF] (GNU extenstion).
+        </span><span class="kw">pub </span>verdef : <span class="prelude-ty">Option</span>&lt;VerdefSection&lt;<span class="lifetime">&#39;a</span>&gt;&gt;,
+        <span class="doccomment">/// Contains the version needed information from the optional section
+        /// [`SHT_GNU_VERNEED`][section_header::SHT_GNU_VERNEED] (GNU extenstion).
+        </span><span class="kw">pub </span>verneed : <span class="prelude-ty">Option</span>&lt;VerneedSection&lt;<span class="lifetime">&#39;a</span>&gt;&gt;,
+        ctx: Ctx,
     }
 
-    <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Elf</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-        <span class="doccomment">/// Try to iterate notes in PT_NOTE program headers; returns `None` if there aren&#39;t any note headers in this binary</span>
-        <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">iter_note_headers</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">data</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>]) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">note::NoteIterator</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">iters</span> <span class="op">=</span> <span class="macro">vec!</span>[];
-            <span class="kw">for</span> <span class="ident">phdr</span> <span class="kw">in</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">program_headers</span> {
-                <span class="kw">if</span> <span class="ident">phdr</span>.<span class="ident">p_type</span> <span class="op">==</span> <span class="ident">program_header::PT_NOTE</span> {
-                    <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> <span class="ident">phdr</span>.<span class="ident">p_offset</span> <span class="kw">as</span> <span class="ident">usize</span>;
-                    <span class="kw">let</span> <span class="ident">alignment</span> <span class="op">=</span> <span class="ident">phdr</span>.<span class="ident">p_align</span> <span class="kw">as</span> <span class="ident">usize</span>;
+    <span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Elf&lt;<span class="lifetime">&#39;a</span>&gt; {
+        <span class="doccomment">/// Try to iterate notes in PT_NOTE program headers; returns `None` if there aren&#39;t any note headers in this binary
+        </span><span class="kw">pub fn </span>iter_note_headers(<span class="kw-2">&amp;</span><span class="self">self</span>, data: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8]) -&gt; <span class="prelude-ty">Option</span>&lt;note::NoteIterator&lt;<span class="lifetime">&#39;a</span>&gt;&gt; {
+            <span class="kw">let </span><span class="kw-2">mut </span>iters = <span class="macro">vec!</span>[];
+            <span class="kw">for </span>phdr <span class="kw">in </span><span class="kw-2">&amp;</span><span class="self">self</span>.program_headers {
+                <span class="kw">if </span>phdr.p_type == program_header::PT_NOTE {
+                    <span class="kw">let </span>offset = phdr.p_offset <span class="kw">as </span>usize;
+                    <span class="kw">let </span>alignment = phdr.p_align <span class="kw">as </span>usize;
 
-                    <span class="ident">iters</span>.<span class="ident">push</span>(<span class="ident">note::NoteDataIterator</span> {
-                        <span class="ident">data</span>,
-                        <span class="ident">offset</span>,
-                        <span class="ident">size</span>: <span class="ident">offset</span>.<span class="ident">saturating_add</span>(<span class="ident">phdr</span>.<span class="ident">p_filesz</span> <span class="kw">as</span> <span class="ident">usize</span>),
-                        <span class="ident">ctx</span>: (<span class="ident">alignment</span>, <span class="self">self</span>.<span class="ident">ctx</span>)
+                    iters.push(note::NoteDataIterator {
+                        data,
+                        offset,
+                        size: offset.saturating_add(phdr.p_filesz <span class="kw">as </span>usize),
+                        ctx: (alignment, <span class="self">self</span>.ctx)
                     });
                 }
             }
 
-            <span class="kw">if</span> <span class="ident">iters</span>.<span class="ident">is_empty</span>() {
-                <span class="prelude-val">None</span>
-            } <span class="kw">else</span> {
-                <span class="prelude-val">Some</span>(<span class="ident">note::NoteIterator</span> {
-                    <span class="ident">iters</span>: <span class="ident">iters</span>,
-                    <span class="ident">index</span>: <span class="number">0</span>,
+            <span class="kw">if </span>iters.is_empty() {
+                <span class="prelude-val">None
+            </span>} <span class="kw">else </span>{
+                <span class="prelude-val">Some</span>(note::NoteIterator {
+                    iters: iters,
+                    index: <span class="number">0</span>,
                 })
             }
         }
-        <span class="doccomment">/// Try to iterate notes in SHT_NOTE sections; returns `None` if there aren&#39;t any note sections in this binary</span>
-        <span class="doccomment">///</span>
-        <span class="doccomment">/// If a section_name is given, only the section with the according name is iterated.</span>
-        <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">iter_note_sections</span>(
+        <span class="doccomment">/// Try to iterate notes in SHT_NOTE sections; returns `None` if there aren&#39;t any note sections in this binary
+        ///
+        /// If a section_name is given, only the section with the according name is iterated.
+        </span><span class="kw">pub fn </span>iter_note_sections(
             <span class="kw-2">&amp;</span><span class="self">self</span>,
-            <span class="ident">data</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
-            <span class="ident">section_name</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>,
-        ) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">note::NoteIterator</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">iters</span> <span class="op">=</span> <span class="macro">vec!</span>[];
-            <span class="kw">for</span> <span class="ident">sect</span> <span class="kw">in</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">section_headers</span> {
-                <span class="kw">if</span> <span class="ident">sect</span>.<span class="ident">sh_type</span> <span class="op">!</span><span class="op">=</span> <span class="ident">section_header::SHT_NOTE</span> {
+            data: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8],
+            section_name: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>str&gt;,
+        ) -&gt; <span class="prelude-ty">Option</span>&lt;note::NoteIterator&lt;<span class="lifetime">&#39;a</span>&gt;&gt; {
+            <span class="kw">let </span><span class="kw-2">mut </span>iters = <span class="macro">vec!</span>[];
+            <span class="kw">for </span>sect <span class="kw">in </span><span class="kw-2">&amp;</span><span class="self">self</span>.section_headers {
+                <span class="kw">if </span>sect.sh_type != section_header::SHT_NOTE {
                     <span class="kw">continue</span>;
                 }
 
-                <span class="kw">if</span> <span class="ident">section_name</span>.<span class="ident">is_some</span>() <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">shdr_strtab</span>.<span class="ident">get_at</span>(<span class="ident">sect</span>.<span class="ident">sh_name</span>) <span class="op">!</span><span class="op">=</span> <span class="ident">section_name</span> {
+                <span class="kw">if </span>section_name.is_some() &amp;&amp; <span class="self">self</span>.shdr_strtab.get_at(sect.sh_name) != section_name {
                     <span class="kw">continue</span>;
                 }
 
-                <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> <span class="ident">sect</span>.<span class="ident">sh_offset</span> <span class="kw">as</span> <span class="ident">usize</span>;
-                <span class="kw">let</span> <span class="ident">alignment</span> <span class="op">=</span> <span class="ident">sect</span>.<span class="ident">sh_addralign</span> <span class="kw">as</span> <span class="ident">usize</span>;
-                <span class="ident">iters</span>.<span class="ident">push</span>(<span class="ident">note::NoteDataIterator</span> {
-                    <span class="ident">data</span>,
-                    <span class="ident">offset</span>,
-                    <span class="ident">size</span>: <span class="ident">offset</span>.<span class="ident">saturating_add</span>(<span class="ident">sect</span>.<span class="ident">sh_size</span> <span class="kw">as</span> <span class="ident">usize</span>),
-                    <span class="ident">ctx</span>: (<span class="ident">alignment</span>, <span class="self">self</span>.<span class="ident">ctx</span>)
+                <span class="kw">let </span>offset = sect.sh_offset <span class="kw">as </span>usize;
+                <span class="kw">let </span>alignment = sect.sh_addralign <span class="kw">as </span>usize;
+                iters.push(note::NoteDataIterator {
+                    data,
+                    offset,
+                    size: offset.saturating_add(sect.sh_size <span class="kw">as </span>usize),
+                    ctx: (alignment, <span class="self">self</span>.ctx)
                 });
             }
 
-            <span class="kw">if</span> <span class="ident">iters</span>.<span class="ident">is_empty</span>() {
-                <span class="prelude-val">None</span>
-            } <span class="kw">else</span> {
-                <span class="prelude-val">Some</span>(<span class="ident">note::NoteIterator</span> {
-                    <span class="ident">iters</span>: <span class="ident">iters</span>,
-                    <span class="ident">index</span>: <span class="number">0</span>,
+            <span class="kw">if </span>iters.is_empty() {
+                <span class="prelude-val">None
+            </span>} <span class="kw">else </span>{
+                <span class="prelude-val">Some</span>(note::NoteIterator {
+                    iters: iters,
+                    index: <span class="number">0</span>,
                 })
             }
         }
-        <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_object_file</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-            <span class="self">self</span>.<span class="ident">header</span>.<span class="ident">e_type</span> <span class="op">==</span> <span class="ident">header::ET_REL</span>
+        <span class="kw">pub fn </span>is_object_file(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+            <span class="self">self</span>.header.e_type == header::ET_REL
         }
 
-        <span class="doccomment">/// Parses the contents to get the Header only. This `bytes` buffer should contain at least the length for parsing Header.</span>
-        <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">parse_header</span>(<span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>]) -&gt; <span class="ident">error::Result</span><span class="op">&lt;</span><span class="ident">Header</span><span class="op">&gt;</span> {
-            <span class="ident">bytes</span>.<span class="ident">pread</span>::<span class="op">&lt;</span><span class="ident">Header</span><span class="op">&gt;</span>(<span class="number">0</span>)
+        <span class="doccomment">/// Parses the contents to get the Header only. This `bytes` buffer should contain at least the length for parsing Header.
+        </span><span class="kw">pub fn </span>parse_header(bytes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8]) -&gt; error::Result&lt;Header&gt; {
+            bytes.pread::&lt;Header&gt;(<span class="number">0</span>)
         }
 
-        <span class="doccomment">/// Lazy parse the ELF contents. This function mainly just assembles an Elf struct. Once we have the struct, we can choose to parse whatever we want.</span>
-        <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">lazy_parse</span>(<span class="ident">header</span>: <span class="ident">Header</span>) -&gt; <span class="ident">error::Result</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-            <span class="kw">let</span> <span class="ident">misc</span> <span class="op">=</span> <span class="ident">parse_misc</span>(<span class="kw-2">&amp;</span><span class="ident">header</span>)<span class="question-mark">?</span>;
+        <span class="doccomment">/// Lazy parse the ELF contents. This function mainly just assembles an Elf struct. Once we have the struct, we can choose to parse whatever we want.
+        </span><span class="kw">pub fn </span>lazy_parse(header: Header) -&gt; error::Result&lt;<span class="self">Self</span>&gt; {
+            <span class="kw">let </span>misc = parse_misc(<span class="kw-2">&amp;</span>header)<span class="question-mark">?</span>;
 
-            <span class="prelude-val">Ok</span>(<span class="ident">Elf</span> {
-                <span class="ident">header</span>,
-                <span class="ident">program_headers</span>: <span class="macro">vec!</span>[],
-                <span class="ident">section_headers</span>: <span class="ident">Default::default</span>(),
-                <span class="ident">shdr_strtab</span>: <span class="ident">Default::default</span>(),
-                <span class="ident">dynamic</span>: <span class="prelude-val">None</span>,
-                <span class="ident">dynsyms</span>: <span class="ident">Default::default</span>(),
-                <span class="ident">dynstrtab</span>: <span class="ident">Strtab::default</span>(),
-                <span class="ident">syms</span>: <span class="ident">Default::default</span>(),
-                <span class="ident">strtab</span>: <span class="ident">Default::default</span>(),
-                <span class="ident">dynrelas</span>: <span class="ident">Default::default</span>(),
-                <span class="ident">dynrels</span>: <span class="ident">Default::default</span>(),
-                <span class="ident">pltrelocs</span>: <span class="ident">Default::default</span>(),
-                <span class="ident">shdr_relocs</span>: <span class="ident">Default::default</span>(),
-                <span class="ident">soname</span>: <span class="prelude-val">None</span>,
-                <span class="ident">interpreter</span>: <span class="prelude-val">None</span>,
-                <span class="ident">libraries</span>: <span class="macro">vec!</span>[],
-                <span class="ident">rpaths</span>: <span class="macro">vec!</span>[],
-                <span class="ident">runpaths</span>: <span class="macro">vec!</span>[],
-                <span class="ident">is_64</span>: <span class="ident">misc</span>.<span class="ident">is_64</span>,
-                <span class="ident">is_lib</span>: <span class="ident">misc</span>.<span class="ident">is_lib</span>,
-                <span class="ident">entry</span>: <span class="ident">misc</span>.<span class="ident">entry</span>,
-                <span class="ident">little_endian</span>: <span class="ident">misc</span>.<span class="ident">little_endian</span>,
-                <span class="ident">ctx</span>: <span class="ident">misc</span>.<span class="ident">ctx</span>,
-                <span class="ident">versym</span>: <span class="prelude-val">None</span>,
-                <span class="ident">verdef</span>: <span class="prelude-val">None</span>,
-                <span class="ident">verneed</span>: <span class="prelude-val">None</span>,
+            <span class="prelude-val">Ok</span>(Elf {
+                header,
+                program_headers: <span class="macro">vec!</span>[],
+                section_headers: Default::default(),
+                shdr_strtab: Default::default(),
+                dynamic: <span class="prelude-val">None</span>,
+                dynsyms: Default::default(),
+                dynstrtab: Strtab::default(),
+                syms: Default::default(),
+                strtab: Default::default(),
+                dynrelas: Default::default(),
+                dynrels: Default::default(),
+                pltrelocs: Default::default(),
+                shdr_relocs: Default::default(),
+                soname: <span class="prelude-val">None</span>,
+                interpreter: <span class="prelude-val">None</span>,
+                libraries: <span class="macro">vec!</span>[],
+                rpaths: <span class="macro">vec!</span>[],
+                runpaths: <span class="macro">vec!</span>[],
+                is_64: misc.is_64,
+                is_lib: misc.is_lib,
+                entry: misc.entry,
+                little_endian: misc.little_endian,
+                ctx: misc.ctx,
+                versym: <span class="prelude-val">None</span>,
+                verdef: <span class="prelude-val">None</span>,
+                verneed: <span class="prelude-val">None</span>,
             })
         }
 
-        <span class="doccomment">/// Parses the contents of the byte stream in `bytes`, and maybe returns a unified binary</span>
-        <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>]) -&gt; <span class="ident">error::Result</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-            <span class="kw">let</span> <span class="ident">header</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::parse_header</span>(<span class="ident">bytes</span>)<span class="question-mark">?</span>;
-            <span class="kw">let</span> <span class="ident">misc</span> <span class="op">=</span> <span class="ident">parse_misc</span>(<span class="kw-2">&amp;</span><span class="ident">header</span>)<span class="question-mark">?</span>;
-            <span class="kw">let</span> <span class="ident">ctx</span> <span class="op">=</span> <span class="ident">misc</span>.<span class="ident">ctx</span>;
+        <span class="doccomment">/// Parses the contents of the byte stream in `bytes`, and maybe returns a unified binary
+        </span><span class="kw">pub fn </span>parse(bytes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8]) -&gt; error::Result&lt;<span class="self">Self</span>&gt; {
+            <span class="kw">let </span>header = <span class="self">Self</span>::parse_header(bytes)<span class="question-mark">?</span>;
+            <span class="kw">let </span>misc = parse_misc(<span class="kw-2">&amp;</span>header)<span class="question-mark">?</span>;
+            <span class="kw">let </span>ctx = misc.ctx;
 
-            <span class="kw">let</span> <span class="ident">program_headers</span> <span class="op">=</span> <span class="ident">ProgramHeader::parse</span>(<span class="ident">bytes</span>, <span class="ident">header</span>.<span class="ident">e_phoff</span> <span class="kw">as</span> <span class="ident">usize</span>, <span class="ident">header</span>.<span class="ident">e_phnum</span> <span class="kw">as</span> <span class="ident">usize</span>, <span class="ident">ctx</span>)<span class="question-mark">?</span>;
+            <span class="kw">let </span>program_headers = ProgramHeader::parse(bytes, header.e_phoff <span class="kw">as </span>usize, header.e_phnum <span class="kw">as </span>usize, ctx)<span class="question-mark">?</span>;
 
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">interpreter</span> <span class="op">=</span> <span class="prelude-val">None</span>;
-            <span class="kw">for</span> <span class="ident">ph</span> <span class="kw">in</span> <span class="kw-2">&amp;</span><span class="ident">program_headers</span> {
-                <span class="kw">if</span> <span class="ident">ph</span>.<span class="ident">p_type</span> <span class="op">==</span> <span class="ident">program_header::PT_INTERP</span> <span class="op">&amp;&amp;</span> <span class="ident">ph</span>.<span class="ident">p_filesz</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
-                    <span class="kw">let</span> <span class="ident">count</span> <span class="op">=</span> (<span class="ident">ph</span>.<span class="ident">p_filesz</span> <span class="op">-</span> <span class="number">1</span>) <span class="kw">as</span> <span class="ident">usize</span>;
-                    <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> <span class="ident">ph</span>.<span class="ident">p_offset</span> <span class="kw">as</span> <span class="ident">usize</span>;
-                    <span class="ident">interpreter</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">pread_with</span>::<span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>(<span class="ident">offset</span>, <span class="ident">::scroll::ctx::StrCtx::Length</span>(<span class="ident">count</span>)).<span class="ident">ok</span>();
+            <span class="kw">let </span><span class="kw-2">mut </span>interpreter = <span class="prelude-val">None</span>;
+            <span class="kw">for </span>ph <span class="kw">in </span><span class="kw-2">&amp;</span>program_headers {
+                <span class="kw">if </span>ph.p_type == program_header::PT_INTERP &amp;&amp; ph.p_filesz != <span class="number">0 </span>{
+                    <span class="kw">let </span>count = (ph.p_filesz - <span class="number">1</span>) <span class="kw">as </span>usize;
+                    <span class="kw">let </span>offset = ph.p_offset <span class="kw">as </span>usize;
+                    interpreter = bytes.pread_with::&lt;<span class="kw-2">&amp;</span>str&gt;(offset, ::scroll::ctx::StrCtx::Length(count)).ok();
                 }
             }
 
-            <span class="kw">let</span> <span class="ident">section_headers</span> <span class="op">=</span> <span class="ident">SectionHeader::parse</span>(<span class="ident">bytes</span>, <span class="ident">header</span>.<span class="ident">e_shoff</span> <span class="kw">as</span> <span class="ident">usize</span>, <span class="ident">header</span>.<span class="ident">e_shnum</span> <span class="kw">as</span> <span class="ident">usize</span>, <span class="ident">ctx</span>)<span class="question-mark">?</span>;
+            <span class="kw">let </span>section_headers = SectionHeader::parse(bytes, header.e_shoff <span class="kw">as </span>usize, header.e_shnum <span class="kw">as </span>usize, ctx)<span class="question-mark">?</span>;
 
-            <span class="kw">let</span> <span class="ident">get_strtab</span> <span class="op">=</span> <span class="op">|</span><span class="ident">section_headers</span>: <span class="kw-2">&amp;</span>[<span class="ident">SectionHeader</span>], <span class="kw-2">mut</span> <span class="ident">section_idx</span>: <span class="ident">usize</span><span class="op">|</span> {
-                <span class="kw">if</span> <span class="ident">section_idx</span> <span class="op">==</span> <span class="ident">section_header::SHN_XINDEX</span> <span class="kw">as</span> <span class="ident">usize</span> {
-                    <span class="kw">if</span> <span class="ident">section_headers</span>.<span class="ident">is_empty</span>() {
-                        <span class="kw">return</span> <span class="prelude-val">Ok</span>(<span class="ident">Strtab::default</span>())
+            <span class="kw">let </span>get_strtab = |section_headers: <span class="kw-2">&amp;</span>[SectionHeader], <span class="kw-2">mut </span>section_idx: usize| {
+                <span class="kw">if </span>section_idx == section_header::SHN_XINDEX <span class="kw">as </span>usize {
+                    <span class="kw">if </span>section_headers.is_empty() {
+                        <span class="kw">return </span><span class="prelude-val">Ok</span>(Strtab::default())
                     }
-                    <span class="ident">section_idx</span> <span class="op">=</span> <span class="ident">section_headers</span>[<span class="number">0</span>].<span class="ident">sh_link</span> <span class="kw">as</span> <span class="ident">usize</span>;
+                    section_idx = section_headers[<span class="number">0</span>].sh_link <span class="kw">as </span>usize;
                 }
 
-                <span class="kw">if</span> <span class="ident">section_idx</span> <span class="op">&gt;</span><span class="op">=</span> <span class="ident">section_headers</span>.<span class="ident">len</span>() {
-                    <span class="comment">// FIXME: warn! here</span>
-                    <span class="prelude-val">Ok</span>(<span class="ident">Strtab::default</span>())
-                } <span class="kw">else</span> {
-                    <span class="kw">let</span> <span class="ident">shdr</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">section_headers</span>[<span class="ident">section_idx</span>];
-                    <span class="ident">shdr</span>.<span class="ident">check_size</span>(<span class="ident">bytes</span>.<span class="ident">len</span>())<span class="question-mark">?</span>;
-                    <span class="ident">Strtab::parse</span>(<span class="ident">bytes</span>, <span class="ident">shdr</span>.<span class="ident">sh_offset</span> <span class="kw">as</span> <span class="ident">usize</span>, <span class="ident">shdr</span>.<span class="ident">sh_size</span> <span class="kw">as</span> <span class="ident">usize</span>, <span class="number">0x0</span>)
+                <span class="kw">if </span>section_idx &gt;= section_headers.len() {
+                    <span class="comment">// FIXME: warn! here
+                    </span><span class="prelude-val">Ok</span>(Strtab::default())
+                } <span class="kw">else </span>{
+                    <span class="kw">let </span>shdr = <span class="kw-2">&amp;</span>section_headers[section_idx];
+                    shdr.check_size(bytes.len())<span class="question-mark">?</span>;
+                    Strtab::parse(bytes, shdr.sh_offset <span class="kw">as </span>usize, shdr.sh_size <span class="kw">as </span>usize, <span class="number">0x0</span>)
                 }
             };
 
-            <span class="kw">let</span> <span class="ident">strtab_idx</span> <span class="op">=</span> <span class="ident">header</span>.<span class="ident">e_shstrndx</span> <span class="kw">as</span> <span class="ident">usize</span>;
-            <span class="kw">let</span> <span class="ident">shdr_strtab</span> <span class="op">=</span> <span class="ident">get_strtab</span>(<span class="kw-2">&amp;</span><span class="ident">section_headers</span>, <span class="ident">strtab_idx</span>)<span class="question-mark">?</span>;
+            <span class="kw">let </span>strtab_idx = header.e_shstrndx <span class="kw">as </span>usize;
+            <span class="kw">let </span>shdr_strtab = get_strtab(<span class="kw-2">&amp;</span>section_headers, strtab_idx)<span class="question-mark">?</span>;
 
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">syms</span> <span class="op">=</span> <span class="ident">Symtab::default</span>();
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">strtab</span> <span class="op">=</span> <span class="ident">Strtab::default</span>();
-            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">shdr</span>) <span class="op">=</span> <span class="ident">section_headers</span>.<span class="ident">iter</span>().<span class="ident">rfind</span>(<span class="op">|</span><span class="ident">shdr</span><span class="op">|</span> <span class="ident">shdr</span>.<span class="ident">sh_type</span> <span class="kw">as</span> <span class="ident">u32</span> <span class="op">==</span> <span class="ident">section_header::SHT_SYMTAB</span>) {
-                <span class="kw">let</span> <span class="ident">size</span> <span class="op">=</span> <span class="ident">shdr</span>.<span class="ident">sh_entsize</span>;
-                <span class="kw">let</span> <span class="ident">count</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">size</span> <span class="op">==</span> <span class="number">0</span> { <span class="number">0</span> } <span class="kw">else</span> { <span class="ident">shdr</span>.<span class="ident">sh_size</span> <span class="op">/</span> <span class="ident">size</span> };
-                <span class="ident">syms</span> <span class="op">=</span> <span class="ident">Symtab::parse</span>(<span class="ident">bytes</span>, <span class="ident">shdr</span>.<span class="ident">sh_offset</span> <span class="kw">as</span> <span class="ident">usize</span>, <span class="ident">count</span> <span class="kw">as</span> <span class="ident">usize</span>, <span class="ident">ctx</span>)<span class="question-mark">?</span>;
-                <span class="ident">strtab</span> <span class="op">=</span> <span class="ident">get_strtab</span>(<span class="kw-2">&amp;</span><span class="ident">section_headers</span>, <span class="ident">shdr</span>.<span class="ident">sh_link</span> <span class="kw">as</span> <span class="ident">usize</span>)<span class="question-mark">?</span>;
+            <span class="kw">let </span><span class="kw-2">mut </span>syms = Symtab::default();
+            <span class="kw">let </span><span class="kw-2">mut </span>strtab = Strtab::default();
+            <span class="kw">if let </span><span class="prelude-val">Some</span>(shdr) = section_headers.iter().rfind(|shdr| shdr.sh_type <span class="kw">as </span>u32 == section_header::SHT_SYMTAB) {
+                <span class="kw">let </span>size = shdr.sh_entsize;
+                <span class="kw">let </span>count = <span class="kw">if </span>size == <span class="number">0 </span>{ <span class="number">0 </span>} <span class="kw">else </span>{ shdr.sh_size / size };
+                syms = Symtab::parse(bytes, shdr.sh_offset <span class="kw">as </span>usize, count <span class="kw">as </span>usize, ctx)<span class="question-mark">?</span>;
+                strtab = get_strtab(<span class="kw-2">&amp;</span>section_headers, shdr.sh_link <span class="kw">as </span>usize)<span class="question-mark">?</span>;
             }
 
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">soname</span> <span class="op">=</span> <span class="prelude-val">None</span>;
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">libraries</span> <span class="op">=</span> <span class="macro">vec!</span>[];
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">rpaths</span> <span class="op">=</span> <span class="macro">vec!</span>[];
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">runpaths</span> <span class="op">=</span> <span class="macro">vec!</span>[];
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">dynsyms</span> <span class="op">=</span> <span class="ident">Symtab::default</span>();
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">dynrelas</span> <span class="op">=</span> <span class="ident">RelocSection::default</span>();
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">dynrels</span> <span class="op">=</span> <span class="ident">RelocSection::default</span>();
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">pltrelocs</span> <span class="op">=</span> <span class="ident">RelocSection::default</span>();
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">dynstrtab</span> <span class="op">=</span> <span class="ident">Strtab::default</span>();
-            <span class="kw">let</span> <span class="ident">dynamic</span> <span class="op">=</span> <span class="ident">Dynamic::parse</span>(<span class="ident">bytes</span>, <span class="kw-2">&amp;</span><span class="ident">program_headers</span>, <span class="ident">ctx</span>)<span class="question-mark">?</span>;
-            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="kw-2">ref</span> <span class="ident">dynamic</span>) <span class="op">=</span> <span class="ident">dynamic</span> {
-                <span class="kw">let</span> <span class="ident">dyn_info</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">dynamic</span>.<span class="ident">info</span>;
-                <span class="ident">dynstrtab</span> <span class="op">=</span> <span class="ident">Strtab::parse</span>(<span class="ident">bytes</span>,
-                                          <span class="ident">dyn_info</span>.<span class="ident">strtab</span>,
-                                          <span class="ident">dyn_info</span>.<span class="ident">strsz</span>,
+            <span class="kw">let </span><span class="kw-2">mut </span>soname = <span class="prelude-val">None</span>;
+            <span class="kw">let </span><span class="kw-2">mut </span>libraries = <span class="macro">vec!</span>[];
+            <span class="kw">let </span><span class="kw-2">mut </span>rpaths = <span class="macro">vec!</span>[];
+            <span class="kw">let </span><span class="kw-2">mut </span>runpaths = <span class="macro">vec!</span>[];
+            <span class="kw">let </span><span class="kw-2">mut </span>dynsyms = Symtab::default();
+            <span class="kw">let </span><span class="kw-2">mut </span>dynrelas = RelocSection::default();
+            <span class="kw">let </span><span class="kw-2">mut </span>dynrels = RelocSection::default();
+            <span class="kw">let </span><span class="kw-2">mut </span>pltrelocs = RelocSection::default();
+            <span class="kw">let </span><span class="kw-2">mut </span>dynstrtab = Strtab::default();
+            <span class="kw">let </span>dynamic = Dynamic::parse(bytes, <span class="kw-2">&amp;</span>program_headers, ctx)<span class="question-mark">?</span>;
+            <span class="kw">if let </span><span class="prelude-val">Some</span>(<span class="kw-2">ref </span>dynamic) = dynamic {
+                <span class="kw">let </span>dyn_info = <span class="kw-2">&amp;</span>dynamic.info;
+                dynstrtab = Strtab::parse(bytes,
+                                          dyn_info.strtab,
+                                          dyn_info.strsz,
                                           <span class="number">0x0</span>)<span class="question-mark">?</span>;
 
-                <span class="kw">if</span> <span class="ident">dyn_info</span>.<span class="ident">soname</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
-                    <span class="comment">// FIXME: warn! here</span>
-                    <span class="ident">soname</span> <span class="op">=</span> <span class="ident">dynstrtab</span>.<span class="ident">get_at</span>(<span class="ident">dyn_info</span>.<span class="ident">soname</span>);
+                <span class="kw">if </span>dyn_info.soname != <span class="number">0 </span>{
+                    <span class="comment">// FIXME: warn! here
+                    </span>soname = dynstrtab.get_at(dyn_info.soname);
                 }
-                <span class="kw">if</span> <span class="ident">dyn_info</span>.<span class="ident">needed_count</span> <span class="op">&gt;</span> <span class="number">0</span> {
-                    <span class="ident">libraries</span> <span class="op">=</span> <span class="ident">dynamic</span>.<span class="ident">get_libraries</span>(<span class="kw-2">&amp;</span><span class="ident">dynstrtab</span>);
+                <span class="kw">if </span>dyn_info.needed_count &gt; <span class="number">0 </span>{
+                    libraries = dynamic.get_libraries(<span class="kw-2">&amp;</span>dynstrtab);
                 }
-                <span class="kw">for</span> <span class="ident">dyn_</span> <span class="kw">in</span> <span class="kw-2">&amp;</span><span class="ident">dynamic</span>.<span class="ident">dyns</span> {
-                    <span class="kw">if</span> <span class="ident">dyn_</span>.<span class="ident">d_tag</span> <span class="op">==</span> <span class="ident">dynamic::DT_RPATH</span> {
-                        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">path</span>) <span class="op">=</span> <span class="ident">dynstrtab</span>.<span class="ident">get_at</span>(<span class="ident">dyn_</span>.<span class="ident">d_val</span> <span class="kw">as</span> <span class="ident">usize</span>) {
-                            <span class="ident">rpaths</span>.<span class="ident">push</span>(<span class="ident">path</span>);
+                <span class="kw">for </span>dyn_ <span class="kw">in </span><span class="kw-2">&amp;</span>dynamic.dyns {
+                    <span class="kw">if </span>dyn_.d_tag == dynamic::DT_RPATH {
+                        <span class="kw">if let </span><span class="prelude-val">Some</span>(path) = dynstrtab.get_at(dyn_.d_val <span class="kw">as </span>usize) {
+                            rpaths.push(path);
                         }
-                    } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">dyn_</span>.<span class="ident">d_tag</span> <span class="op">==</span> <span class="ident">dynamic::DT_RUNPATH</span> {
-                        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">path</span>) <span class="op">=</span> <span class="ident">dynstrtab</span>.<span class="ident">get_at</span>(<span class="ident">dyn_</span>.<span class="ident">d_val</span> <span class="kw">as</span> <span class="ident">usize</span>) {
-                            <span class="ident">runpaths</span>.<span class="ident">push</span>(<span class="ident">path</span>);
+                    } <span class="kw">else if </span>dyn_.d_tag == dynamic::DT_RUNPATH {
+                        <span class="kw">if let </span><span class="prelude-val">Some</span>(path) = dynstrtab.get_at(dyn_.d_val <span class="kw">as </span>usize) {
+                            runpaths.push(path);
                         }
                     }
                 }
-                <span class="comment">// parse the dynamic relocations</span>
-                <span class="ident">dynrelas</span> <span class="op">=</span> <span class="ident">RelocSection::parse</span>(<span class="ident">bytes</span>, <span class="ident">dyn_info</span>.<span class="ident">rela</span>, <span class="ident">dyn_info</span>.<span class="ident">relasz</span>, <span class="bool-val">true</span>, <span class="ident">ctx</span>)<span class="question-mark">?</span>;
-                <span class="ident">dynrels</span> <span class="op">=</span> <span class="ident">RelocSection::parse</span>(<span class="ident">bytes</span>, <span class="ident">dyn_info</span>.<span class="ident">rel</span>, <span class="ident">dyn_info</span>.<span class="ident">relsz</span>, <span class="bool-val">false</span>, <span class="ident">ctx</span>)<span class="question-mark">?</span>;
-                <span class="kw">let</span> <span class="ident">is_rela</span> <span class="op">=</span> <span class="ident">dyn_info</span>.<span class="ident">pltrel</span> <span class="kw">as</span> <span class="ident">u64</span> <span class="op">==</span> <span class="ident">dynamic::DT_RELA</span>;
-                <span class="ident">pltrelocs</span> <span class="op">=</span> <span class="ident">RelocSection::parse</span>(<span class="ident">bytes</span>, <span class="ident">dyn_info</span>.<span class="ident">jmprel</span>, <span class="ident">dyn_info</span>.<span class="ident">pltrelsz</span>, <span class="ident">is_rela</span>, <span class="ident">ctx</span>)<span class="question-mark">?</span>;
+                <span class="comment">// parse the dynamic relocations
+                </span>dynrelas = RelocSection::parse(bytes, dyn_info.rela, dyn_info.relasz, <span class="bool-val">true</span>, ctx)<span class="question-mark">?</span>;
+                dynrels = RelocSection::parse(bytes, dyn_info.rel, dyn_info.relsz, <span class="bool-val">false</span>, ctx)<span class="question-mark">?</span>;
+                <span class="kw">let </span>is_rela = dyn_info.pltrel <span class="kw">as </span>u64 == dynamic::DT_RELA;
+                pltrelocs = RelocSection::parse(bytes, dyn_info.jmprel, dyn_info.pltrelsz, is_rela, ctx)<span class="question-mark">?</span>;
 
-                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">num_syms</span> <span class="op">=</span> <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">gnu_hash</span>) <span class="op">=</span> <span class="ident">dyn_info</span>.<span class="ident">gnu_hash</span> {
-                    <span class="ident">gnu_hash_len</span>(<span class="ident">bytes</span>, <span class="ident">gnu_hash</span> <span class="kw">as</span> <span class="ident">usize</span>, <span class="ident">ctx</span>)<span class="question-mark">?</span>
-                } <span class="kw">else</span> <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">hash</span>) <span class="op">=</span> <span class="ident">dyn_info</span>.<span class="ident">hash</span> {
-                    <span class="ident">hash_len</span>(<span class="ident">bytes</span>, <span class="ident">hash</span> <span class="kw">as</span> <span class="ident">usize</span>, <span class="ident">header</span>.<span class="ident">e_machine</span>, <span class="ident">ctx</span>)<span class="question-mark">?</span>
-                } <span class="kw">else</span> {
-                    <span class="number">0</span>
-                };
-                <span class="kw">let</span> <span class="ident">max_reloc_sym</span> <span class="op">=</span> <span class="ident">dynrelas</span>.<span class="ident">iter</span>()
-                    .<span class="ident">chain</span>(<span class="ident">dynrels</span>.<span class="ident">iter</span>())
-                    .<span class="ident">chain</span>(<span class="ident">pltrelocs</span>.<span class="ident">iter</span>())
-                    .<span class="ident">fold</span>(<span class="number">0</span>, <span class="op">|</span><span class="ident">num</span>, <span class="ident">reloc</span><span class="op">|</span> <span class="ident">cmp::max</span>(<span class="ident">num</span>, <span class="ident">reloc</span>.<span class="ident">r_sym</span>));
-                <span class="kw">if</span> <span class="ident">max_reloc_sym</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
-                    <span class="ident">num_syms</span> <span class="op">=</span> <span class="ident">cmp::max</span>(<span class="ident">num_syms</span>, <span class="ident">max_reloc_sym</span> <span class="op">+</span> <span class="number">1</span>);
+                <span class="kw">let </span><span class="kw-2">mut </span>num_syms = <span class="kw">if let </span><span class="prelude-val">Some</span>(gnu_hash) = dyn_info.gnu_hash {
+                    gnu_hash_len(bytes, gnu_hash <span class="kw">as </span>usize, ctx)<span class="question-mark">?
+                </span>} <span class="kw">else if let </span><span class="prelude-val">Some</span>(hash) = dyn_info.hash {
+                    hash_len(bytes, hash <span class="kw">as </span>usize, header.e_machine, ctx)<span class="question-mark">?
+                </span>} <span class="kw">else </span>{
+                    <span class="number">0
+                </span>};
+                <span class="kw">let </span>max_reloc_sym = dynrelas.iter()
+                    .chain(dynrels.iter())
+                    .chain(pltrelocs.iter())
+                    .fold(<span class="number">0</span>, |num, reloc| cmp::max(num, reloc.r_sym));
+                <span class="kw">if </span>max_reloc_sym != <span class="number">0 </span>{
+                    num_syms = cmp::max(num_syms, max_reloc_sym + <span class="number">1</span>);
                 }
-                <span class="ident">dynsyms</span> <span class="op">=</span> <span class="ident">Symtab::parse</span>(<span class="ident">bytes</span>, <span class="ident">dyn_info</span>.<span class="ident">symtab</span>, <span class="ident">num_syms</span>, <span class="ident">ctx</span>)<span class="question-mark">?</span>;
+                dynsyms = Symtab::parse(bytes, dyn_info.symtab, num_syms, ctx)<span class="question-mark">?</span>;
             }
 
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">shdr_relocs</span> <span class="op">=</span> <span class="macro">vec!</span>[];
-            <span class="kw">for</span> (<span class="ident">idx</span>, <span class="ident">section</span>) <span class="kw">in</span> <span class="ident">section_headers</span>.<span class="ident">iter</span>().<span class="ident">enumerate</span>() {
-                <span class="kw">let</span> <span class="ident">is_rela</span> <span class="op">=</span> <span class="ident">section</span>.<span class="ident">sh_type</span> <span class="op">==</span> <span class="ident">section_header::SHT_RELA</span>;
-                <span class="kw">if</span> <span class="ident">is_rela</span> <span class="op">|</span><span class="op">|</span> <span class="ident">section</span>.<span class="ident">sh_type</span> <span class="op">==</span> <span class="ident">section_header::SHT_REL</span> {
-                    <span class="ident">section</span>.<span class="ident">check_size</span>(<span class="ident">bytes</span>.<span class="ident">len</span>())<span class="question-mark">?</span>;
-                    <span class="kw">let</span> <span class="ident">sh_relocs</span> <span class="op">=</span> <span class="ident">RelocSection::parse</span>(<span class="ident">bytes</span>, <span class="ident">section</span>.<span class="ident">sh_offset</span> <span class="kw">as</span> <span class="ident">usize</span>, <span class="ident">section</span>.<span class="ident">sh_size</span> <span class="kw">as</span> <span class="ident">usize</span>, <span class="ident">is_rela</span>, <span class="ident">ctx</span>)<span class="question-mark">?</span>;
-                    <span class="ident">shdr_relocs</span>.<span class="ident">push</span>((<span class="ident">idx</span>, <span class="ident">sh_relocs</span>));
+            <span class="kw">let </span><span class="kw-2">mut </span>shdr_relocs = <span class="macro">vec!</span>[];
+            <span class="kw">for </span>(idx, section) <span class="kw">in </span>section_headers.iter().enumerate() {
+                <span class="kw">let </span>is_rela = section.sh_type == section_header::SHT_RELA;
+                <span class="kw">if </span>is_rela || section.sh_type == section_header::SHT_REL {
+                    section.check_size(bytes.len())<span class="question-mark">?</span>;
+                    <span class="kw">let </span>sh_relocs = RelocSection::parse(bytes, section.sh_offset <span class="kw">as </span>usize, section.sh_size <span class="kw">as </span>usize, is_rela, ctx)<span class="question-mark">?</span>;
+                    shdr_relocs.push((idx, sh_relocs));
                 }
             }
 
-            <span class="kw">let</span> <span class="ident">versym</span> <span class="op">=</span> <span class="ident">symver::VersymSection::parse</span>(<span class="ident">bytes</span>, <span class="kw-2">&amp;</span><span class="ident">section_headers</span>, <span class="ident">ctx</span>)<span class="question-mark">?</span>;
-            <span class="kw">let</span> <span class="ident">verdef</span> <span class="op">=</span> <span class="ident">symver::VerdefSection::parse</span>(<span class="ident">bytes</span>, <span class="kw-2">&amp;</span><span class="ident">section_headers</span>, <span class="ident">ctx</span>)<span class="question-mark">?</span>;
-            <span class="kw">let</span> <span class="ident">verneed</span> <span class="op">=</span> <span class="ident">symver::VerneedSection::parse</span>(<span class="ident">bytes</span>, <span class="kw-2">&amp;</span><span class="ident">section_headers</span>, <span class="ident">ctx</span>)<span class="question-mark">?</span>;
+            <span class="kw">let </span>versym = symver::VersymSection::parse(bytes, <span class="kw-2">&amp;</span>section_headers, ctx)<span class="question-mark">?</span>;
+            <span class="kw">let </span>verdef = symver::VerdefSection::parse(bytes, <span class="kw-2">&amp;</span>section_headers, ctx)<span class="question-mark">?</span>;
+            <span class="kw">let </span>verneed = symver::VerneedSection::parse(bytes, <span class="kw-2">&amp;</span>section_headers, ctx)<span class="question-mark">?</span>;
 
-            <span class="prelude-val">Ok</span>(<span class="ident">Elf</span> {
-                <span class="ident">header</span>,
-                <span class="ident">program_headers</span>,
-                <span class="ident">section_headers</span>,
-                <span class="ident">shdr_strtab</span>,
-                <span class="ident">dynamic</span>,
-                <span class="ident">dynsyms</span>,
-                <span class="ident">dynstrtab</span>,
-                <span class="ident">syms</span>,
-                <span class="ident">strtab</span>,
-                <span class="ident">dynrelas</span>,
-                <span class="ident">dynrels</span>,
-                <span class="ident">pltrelocs</span>,
-                <span class="ident">shdr_relocs</span>,
-                <span class="ident">soname</span>,
-                <span class="ident">interpreter</span>,
-                <span class="ident">libraries</span>,
-                <span class="ident">rpaths</span>,
-                <span class="ident">runpaths</span>,
-                <span class="ident">is_64</span>: <span class="ident">misc</span>.<span class="ident">is_64</span>,
-                <span class="ident">is_lib</span>: <span class="ident">misc</span>.<span class="ident">is_lib</span>,
-                <span class="ident">entry</span>: <span class="ident">misc</span>.<span class="ident">entry</span>,
-                <span class="ident">little_endian</span>: <span class="ident">misc</span>.<span class="ident">little_endian</span>,
-                <span class="ident">ctx</span>: <span class="ident">ctx</span>,
-                <span class="ident">versym</span>,
-                <span class="ident">verdef</span>,
-                <span class="ident">verneed</span>,
+            <span class="prelude-val">Ok</span>(Elf {
+                header,
+                program_headers,
+                section_headers,
+                shdr_strtab,
+                dynamic,
+                dynsyms,
+                dynstrtab,
+                syms,
+                strtab,
+                dynrelas,
+                dynrels,
+                pltrelocs,
+                shdr_relocs,
+                soname,
+                interpreter,
+                libraries,
+                rpaths,
+                runpaths,
+                is_64: misc.is_64,
+                is_lib: misc.is_lib,
+                entry: misc.entry,
+                little_endian: misc.little_endian,
+                ctx: ctx,
+                versym,
+                verdef,
+                verneed,
             })
         }
     }
 
-    <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">ctx::TryFromCtx</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, (<span class="ident">usize</span>, <span class="ident">Endian</span>)<span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Elf</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-        <span class="kw">type</span> <span class="ident">Error</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::error::Error</span>;
-        <span class="kw">fn</span> <span class="ident">try_from_ctx</span>(<span class="ident">src</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>], (<span class="kw">_</span>, <span class="kw">_</span>): (<span class="ident">usize</span>, <span class="ident">Endian</span>)) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(<span class="ident">Elf</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>, <span class="ident">usize</span>), <span class="ident"><span class="self">Self</span>::Error</span><span class="op">&gt;</span> {
-            <span class="kw">let</span> <span class="ident">elf</span> <span class="op">=</span> <span class="ident">Elf::parse</span>(<span class="ident">src</span>)<span class="question-mark">?</span>;
-            <span class="prelude-val">Ok</span>((<span class="ident">elf</span>, <span class="ident">src</span>.<span class="ident">len</span>()))
+    <span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; ctx::TryFromCtx&lt;<span class="lifetime">&#39;a</span>, (usize, Endian)&gt; <span class="kw">for </span>Elf&lt;<span class="lifetime">&#39;a</span>&gt; {
+        <span class="kw">type </span>Error = <span class="kw">crate</span>::error::Error;
+        <span class="kw">fn </span>try_from_ctx(src: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8], (<span class="kw">_</span>, <span class="kw">_</span>): (usize, Endian)) -&gt; <span class="prelude-ty">Result</span>&lt;(Elf&lt;<span class="lifetime">&#39;a</span>&gt;, usize), <span class="self">Self</span>::Error&gt; {
+            <span class="kw">let </span>elf = Elf::parse(src)<span class="question-mark">?</span>;
+            <span class="prelude-val">Ok</span>((elf, src.len()))
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">gnu_hash_len</span>(<span class="ident">bytes</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>], <span class="ident">offset</span>: <span class="ident">usize</span>, <span class="ident">ctx</span>: <span class="ident">Ctx</span>) -&gt; <span class="ident">error::Result</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">buckets_num</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">pread_with</span>::<span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>(<span class="ident">offset</span>, <span class="ident">ctx</span>.<span class="ident">le</span>)<span class="question-mark">?</span> <span class="kw">as</span> <span class="ident">usize</span>;
-        <span class="kw">let</span> <span class="ident">min_chain</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">pread_with</span>::<span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>(<span class="ident">offset</span> <span class="op">+</span> <span class="number">4</span>, <span class="ident">ctx</span>.<span class="ident">le</span>)<span class="question-mark">?</span> <span class="kw">as</span> <span class="ident">usize</span>;
-        <span class="kw">let</span> <span class="ident">bloom_size</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">pread_with</span>::<span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>(<span class="ident">offset</span> <span class="op">+</span> <span class="number">8</span>, <span class="ident">ctx</span>.<span class="ident">le</span>)<span class="question-mark">?</span> <span class="kw">as</span> <span class="ident">usize</span>;
-        <span class="comment">// We could handle min_chain==0 if we really had to, but it shouldn&#39;t happen.</span>
-        <span class="kw">if</span> <span class="ident">buckets_num</span> <span class="op">==</span> <span class="number">0</span> <span class="op">|</span><span class="op">|</span> <span class="ident">min_chain</span> <span class="op">==</span> <span class="number">0</span> <span class="op">|</span><span class="op">|</span> <span class="ident">bloom_size</span> <span class="op">==</span> <span class="number">0</span> {
-            <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">error::Error::Malformed</span>(<span class="macro">format!</span>(<span class="string">&quot;Invalid DT_GNU_HASH: buckets_num={} min_chain={} bloom_size={}&quot;</span>,
-                                                       <span class="ident">buckets_num</span>, <span class="ident">min_chain</span>, <span class="ident">bloom_size</span>)));
+    <span class="kw">fn </span>gnu_hash_len(bytes: <span class="kw-2">&amp;</span>[u8], offset: usize, ctx: Ctx) -&gt; error::Result&lt;usize&gt; {
+        <span class="kw">let </span>buckets_num = bytes.pread_with::&lt;u32&gt;(offset, ctx.le)<span class="question-mark">? </span><span class="kw">as </span>usize;
+        <span class="kw">let </span>min_chain = bytes.pread_with::&lt;u32&gt;(offset + <span class="number">4</span>, ctx.le)<span class="question-mark">? </span><span class="kw">as </span>usize;
+        <span class="kw">let </span>bloom_size = bytes.pread_with::&lt;u32&gt;(offset + <span class="number">8</span>, ctx.le)<span class="question-mark">? </span><span class="kw">as </span>usize;
+        <span class="comment">// We could handle min_chain==0 if we really had to, but it shouldn&#39;t happen.
+        </span><span class="kw">if </span>buckets_num == <span class="number">0 </span>|| min_chain == <span class="number">0 </span>|| bloom_size == <span class="number">0 </span>{
+            <span class="kw">return </span><span class="prelude-val">Err</span>(error::Error::Malformed(<span class="macro">format!</span>(<span class="string">&quot;Invalid DT_GNU_HASH: buckets_num={} min_chain={} bloom_size={}&quot;</span>,
+                                                       buckets_num, min_chain, bloom_size)));
         }
-        <span class="comment">// Find the last bucket.</span>
-        <span class="kw">let</span> <span class="ident">buckets_offset</span> <span class="op">=</span> <span class="ident">offset</span> <span class="op">+</span> <span class="number">16</span> <span class="op">+</span> <span class="ident">bloom_size</span> <span class="op">*</span> <span class="kw">if</span> <span class="ident">ctx</span>.<span class="ident">container</span>.<span class="ident">is_big</span>() { <span class="number">8</span> } <span class="kw">else</span> { <span class="number">4</span> };
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">max_chain</span> <span class="op">=</span> <span class="number">0</span>;
-        <span class="kw">for</span> <span class="ident">bucket</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">buckets_num</span> {
-            <span class="kw">let</span> <span class="ident">chain</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">pread_with</span>::<span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>(<span class="ident">buckets_offset</span> <span class="op">+</span> <span class="ident">bucket</span> <span class="op">*</span> <span class="number">4</span>, <span class="ident">ctx</span>.<span class="ident">le</span>)<span class="question-mark">?</span> <span class="kw">as</span> <span class="ident">usize</span>;
-            <span class="kw">if</span> <span class="ident">max_chain</span> <span class="op">&lt;</span> <span class="ident">chain</span> {
-                <span class="ident">max_chain</span> <span class="op">=</span> <span class="ident">chain</span>;
+        <span class="comment">// Find the last bucket.
+        </span><span class="kw">let </span>buckets_offset = offset + <span class="number">16 </span>+ bloom_size * <span class="kw">if </span>ctx.container.is_big() { <span class="number">8 </span>} <span class="kw">else </span>{ <span class="number">4 </span>};
+        <span class="kw">let </span><span class="kw-2">mut </span>max_chain = <span class="number">0</span>;
+        <span class="kw">for </span>bucket <span class="kw">in </span><span class="number">0</span>..buckets_num {
+            <span class="kw">let </span>chain = bytes.pread_with::&lt;u32&gt;(buckets_offset + bucket * <span class="number">4</span>, ctx.le)<span class="question-mark">? </span><span class="kw">as </span>usize;
+            <span class="kw">if </span>max_chain &lt; chain {
+                max_chain = chain;
             }
         }
-        <span class="kw">if</span> <span class="ident">max_chain</span> <span class="op">&lt;</span> <span class="ident">min_chain</span> {
-            <span class="kw">return</span> <span class="prelude-val">Ok</span>(<span class="number">0</span>);
+        <span class="kw">if </span>max_chain &lt; min_chain {
+            <span class="kw">return </span><span class="prelude-val">Ok</span>(<span class="number">0</span>);
         }
-        <span class="comment">// Find the last chain within the bucket.</span>
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">chain_offset</span> <span class="op">=</span> <span class="ident">buckets_offset</span> <span class="op">+</span> <span class="ident">buckets_num</span> <span class="op">*</span> <span class="number">4</span> <span class="op">+</span> (<span class="ident">max_chain</span> <span class="op">-</span> <span class="ident">min_chain</span>) <span class="op">*</span> <span class="number">4</span>;
-        <span class="kw">loop</span> {
-            <span class="kw">let</span> <span class="ident">hash</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">pread_with</span>::<span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>(<span class="ident">chain_offset</span>, <span class="ident">ctx</span>.<span class="ident">le</span>)<span class="question-mark">?</span>;
-            <span class="ident">max_chain</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
-            <span class="ident">chain_offset</span> <span class="op">+</span><span class="op">=</span> <span class="number">4</span>;
-            <span class="kw">if</span> <span class="ident">hash</span> <span class="op">&amp;</span> <span class="number">1</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
-                <span class="kw">return</span> <span class="prelude-val">Ok</span>(<span class="ident">max_chain</span>);
+        <span class="comment">// Find the last chain within the bucket.
+        </span><span class="kw">let </span><span class="kw-2">mut </span>chain_offset = buckets_offset + buckets_num * <span class="number">4 </span>+ (max_chain - min_chain) * <span class="number">4</span>;
+        <span class="kw">loop </span>{
+            <span class="kw">let </span>hash = bytes.pread_with::&lt;u32&gt;(chain_offset, ctx.le)<span class="question-mark">?</span>;
+            max_chain += <span class="number">1</span>;
+            chain_offset += <span class="number">4</span>;
+            <span class="kw">if </span>hash &amp; <span class="number">1 </span>!= <span class="number">0 </span>{
+                <span class="kw">return </span><span class="prelude-val">Ok</span>(max_chain);
             }
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">hash_len</span>(<span class="ident">bytes</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>], <span class="ident">offset</span>: <span class="ident">usize</span>, <span class="ident">machine</span>: <span class="ident">u16</span>, <span class="ident">ctx</span>: <span class="ident">Ctx</span>) -&gt; <span class="ident">error::Result</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span> {
-        <span class="comment">// Based on readelf code.</span>
-        <span class="kw">let</span> <span class="ident">nchain</span> <span class="op">=</span> <span class="kw">if</span> (<span class="ident">machine</span> <span class="op">==</span> <span class="ident">header::EM_FAKE_ALPHA</span> <span class="op">|</span><span class="op">|</span> <span class="ident">machine</span> <span class="op">==</span> <span class="ident">header::EM_S390</span>) <span class="op">&amp;&amp;</span> <span class="ident">ctx</span>.<span class="ident">container</span>.<span class="ident">is_big</span>() {
-            <span class="ident">bytes</span>.<span class="ident">pread_with</span>::<span class="op">&lt;</span><span class="ident">u64</span><span class="op">&gt;</span>(<span class="ident">offset</span>.<span class="ident">saturating_add</span>(<span class="number">4</span>), <span class="ident">ctx</span>.<span class="ident">le</span>)<span class="question-mark">?</span> <span class="kw">as</span> <span class="ident">usize</span>
-        } <span class="kw">else</span> {
-            <span class="ident">bytes</span>.<span class="ident">pread_with</span>::<span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>(<span class="ident">offset</span>.<span class="ident">saturating_add</span>(<span class="number">4</span>), <span class="ident">ctx</span>.<span class="ident">le</span>)<span class="question-mark">?</span> <span class="kw">as</span> <span class="ident">usize</span>
+    <span class="kw">fn </span>hash_len(bytes: <span class="kw-2">&amp;</span>[u8], offset: usize, machine: u16, ctx: Ctx) -&gt; error::Result&lt;usize&gt; {
+        <span class="comment">// Based on readelf code.
+        </span><span class="kw">let </span>nchain = <span class="kw">if </span>(machine == header::EM_FAKE_ALPHA || machine == header::EM_S390) &amp;&amp; ctx.container.is_big() {
+            bytes.pread_with::&lt;u64&gt;(offset.saturating_add(<span class="number">4</span>), ctx.le)<span class="question-mark">? </span><span class="kw">as </span>usize
+        } <span class="kw">else </span>{
+            bytes.pread_with::&lt;u32&gt;(offset.saturating_add(<span class="number">4</span>), ctx.le)<span class="question-mark">? </span><span class="kw">as </span>usize
         };
-        <span class="prelude-val">Ok</span>(<span class="ident">nchain</span>)
+        <span class="prelude-val">Ok</span>(nchain)
     }
 
-    <span class="kw">struct</span> <span class="ident">Misc</span> {
-        <span class="ident">is_64</span>: <span class="ident">bool</span>,
-        <span class="ident">is_lib</span>: <span class="ident">bool</span>,
-        <span class="ident">entry</span>: <span class="ident">u64</span>,
-        <span class="ident">little_endian</span>: <span class="ident">bool</span>,
-        <span class="ident">ctx</span>: <span class="ident">Ctx</span>,
+    <span class="kw">struct </span>Misc {
+        is_64: bool,
+        is_lib: bool,
+        entry: u64,
+        little_endian: bool,
+        ctx: Ctx,
     }
 
-    <span class="kw">fn</span> <span class="ident">parse_misc</span>(<span class="ident">header</span>: <span class="kw-2">&amp;</span><span class="ident">Header</span>) -&gt; <span class="ident">error::Result</span><span class="op">&lt;</span><span class="ident">Misc</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">entry</span> <span class="op">=</span> <span class="ident">header</span>.<span class="ident">e_entry</span> <span class="kw">as</span> <span class="ident">usize</span>;
-        <span class="kw">let</span> <span class="ident">is_lib</span> <span class="op">=</span> <span class="ident">header</span>.<span class="ident">e_type</span> <span class="op">==</span> <span class="ident">header::ET_DYN</span>;
-        <span class="kw">let</span> <span class="ident">is_lsb</span> <span class="op">=</span> <span class="ident">header</span>.<span class="ident">e_ident</span>[<span class="ident">header::EI_DATA</span>] <span class="op">==</span> <span class="ident">header::ELFDATA2LSB</span>;
-        <span class="kw">let</span> <span class="ident">endianness</span> <span class="op">=</span> <span class="ident">scroll::Endian::from</span>(<span class="ident">is_lsb</span>);
-        <span class="kw">let</span> <span class="ident">class</span> <span class="op">=</span> <span class="ident">header</span>.<span class="ident">e_ident</span>[<span class="ident">header::EI_CLASS</span>];
-        <span class="kw">if</span> <span class="ident">class</span> <span class="op">!</span><span class="op">=</span> <span class="ident">header::ELFCLASS64</span> <span class="op">&amp;&amp;</span> <span class="ident">class</span> <span class="op">!</span><span class="op">=</span> <span class="ident">header::ELFCLASS32</span> {
-            <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">error::Error::Malformed</span>(<span class="macro">format!</span>(<span class="string">&quot;Unknown values in ELF ident header: class: {} endianness: {}&quot;</span>,
-                                                        <span class="ident">class</span>,
-                                                        <span class="ident">header</span>.<span class="ident">e_ident</span>[<span class="ident">header::EI_DATA</span>])));
+    <span class="kw">fn </span>parse_misc(header: <span class="kw-2">&amp;</span>Header) -&gt; error::Result&lt;Misc&gt; {
+        <span class="kw">let </span>entry = header.e_entry <span class="kw">as </span>usize;
+        <span class="kw">let </span>is_lib = header.e_type == header::ET_DYN;
+        <span class="kw">let </span>is_lsb = header.e_ident[header::EI_DATA] == header::ELFDATA2LSB;
+        <span class="kw">let </span>endianness = scroll::Endian::from(is_lsb);
+        <span class="kw">let </span>class = header.e_ident[header::EI_CLASS];
+        <span class="kw">if </span>class != header::ELFCLASS64 &amp;&amp; class != header::ELFCLASS32 {
+            <span class="kw">return </span><span class="prelude-val">Err</span>(error::Error::Malformed(<span class="macro">format!</span>(<span class="string">&quot;Unknown values in ELF ident header: class: {} endianness: {}&quot;</span>,
+                                                        class,
+                                                        header.e_ident[header::EI_DATA])));
         }
-        <span class="kw">let</span> <span class="ident">is_64</span> <span class="op">=</span> <span class="ident">class</span> <span class="op">==</span> <span class="ident">header::ELFCLASS64</span>;
-        <span class="kw">let</span> <span class="ident">container</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">is_64</span> { <span class="ident">Container::Big</span> } <span class="kw">else</span> { <span class="ident">Container::Little</span> };
-        <span class="kw">let</span> <span class="ident">ctx</span> <span class="op">=</span> <span class="ident">Ctx::new</span>(<span class="ident">container</span>, <span class="ident">endianness</span>);
+        <span class="kw">let </span>is_64 = class == header::ELFCLASS64;
+        <span class="kw">let </span>container = <span class="kw">if </span>is_64 { Container::Big } <span class="kw">else </span>{ Container::Little };
+        <span class="kw">let </span>ctx = Ctx::new(container, endianness);
 
-        <span class="prelude-val">Ok</span>(<span class="ident">Misc</span>{
-            <span class="ident">is_64</span>,
-            <span class="ident">is_lib</span>,
-            <span class="ident">entry</span>: <span class="ident">entry</span> <span class="kw">as</span> <span class="ident">u64</span>,
-            <span class="ident">little_endian</span>:<span class="ident">is_lsb</span>,
-            <span class="ident">ctx</span>,
+        <span class="prelude-val">Ok</span>(Misc{
+            is_64,
+            is_lib,
+            entry: entry <span class="kw">as </span>u64,
+            little_endian:is_lsb,
+            ctx,
         })
     }
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
-<span class="kw">mod</span> <span class="ident">tests</span> {
-    <span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
+<span class="attribute">#[cfg(test)]
+</span><span class="kw">mod </span>tests {
+    <span class="kw">use super</span>::<span class="kw-2">*</span>;
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">parse_crt1_64bit</span>() {
-        <span class="kw">let</span> <span class="ident">crt1</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span> <span class="op">=</span> <span class="macro">include!</span>(<span class="string">&quot;../../etc/crt1.rs&quot;</span>);
-        <span class="kw">match</span> <span class="ident">Elf::parse</span>(<span class="kw-2">&amp;</span><span class="ident">crt1</span>) {
-            <span class="prelude-val">Ok</span>(<span class="ident">binary</span>) =&gt; {
-                <span class="macro">assert!</span>(<span class="ident">binary</span>.<span class="ident">is_64</span>);
-                <span class="macro">assert!</span>(<span class="op">!</span><span class="ident">binary</span>.<span class="ident">is_lib</span>);
-                <span class="macro">assert_eq!</span>(<span class="ident">binary</span>.<span class="ident">entry</span>, <span class="number">0</span>);
-                <span class="macro">assert!</span>(<span class="ident">binary</span>.<span class="ident">syms</span>.<span class="ident">get</span>(<span class="number">1000</span>).<span class="ident">is_none</span>());
-                <span class="macro">assert!</span>(<span class="ident">binary</span>.<span class="ident">syms</span>.<span class="ident">get</span>(<span class="number">5</span>).<span class="ident">is_some</span>());
-                <span class="kw">let</span> <span class="ident">syms</span> <span class="op">=</span> <span class="ident">binary</span>.<span class="ident">syms</span>.<span class="ident">to_vec</span>();
-                <span class="macro">assert!</span>(<span class="op">!</span><span class="ident">binary</span>.<span class="ident">section_headers</span>.<span class="ident">is_empty</span>());
-                <span class="kw">for</span> (<span class="ident">i</span>, <span class="ident">sym</span>) <span class="kw">in</span> <span class="ident">syms</span>.<span class="ident">iter</span>().<span class="ident">enumerate</span>() {
-                    <span class="kw">if</span> <span class="ident">i</span> <span class="op">==</span> <span class="number">11</span> {
-                        <span class="kw">let</span> <span class="ident">symtab</span> <span class="op">=</span> <span class="ident">binary</span>.<span class="ident">strtab</span>;
-                        <span class="macro">println!</span>(<span class="string">&quot;sym: {:?}&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">sym</span>);
-                        <span class="macro">assert_eq!</span>(<span class="kw-2">&amp;</span><span class="ident">symtab</span>[<span class="ident">sym</span>.<span class="ident">st_name</span>], <span class="string">&quot;_start&quot;</span>);
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>parse_crt1_64bit() {
+        <span class="kw">let </span>crt1: Vec&lt;u8&gt; = <span class="macro">include!</span>(<span class="string">&quot;../../etc/crt1.rs&quot;</span>);
+        <span class="kw">match </span>Elf::parse(<span class="kw-2">&amp;</span>crt1) {
+            <span class="prelude-val">Ok</span>(binary) =&gt; {
+                <span class="macro">assert!</span>(binary.is_64);
+                <span class="macro">assert!</span>(!binary.is_lib);
+                <span class="macro">assert_eq!</span>(binary.entry, <span class="number">0</span>);
+                <span class="macro">assert!</span>(binary.syms.get(<span class="number">1000</span>).is_none());
+                <span class="macro">assert!</span>(binary.syms.get(<span class="number">5</span>).is_some());
+                <span class="kw">let </span>syms = binary.syms.to_vec();
+                <span class="macro">assert!</span>(!binary.section_headers.is_empty());
+                <span class="kw">for </span>(i, sym) <span class="kw">in </span>syms.iter().enumerate() {
+                    <span class="kw">if </span>i == <span class="number">11 </span>{
+                        <span class="kw">let </span>symtab = binary.strtab;
+                        <span class="macro">println!</span>(<span class="string">&quot;sym: {:?}&quot;</span>, <span class="kw-2">&amp;</span>sym);
+                        <span class="macro">assert_eq!</span>(<span class="kw-2">&amp;</span>symtab[sym.st_name], <span class="string">&quot;_start&quot;</span>);
                         <span class="kw">break</span>;
                     }
                 }
-                <span class="macro">assert!</span>(<span class="op">!</span><span class="ident">syms</span>.<span class="ident">is_empty</span>());
+                <span class="macro">assert!</span>(!syms.is_empty());
             }
-            <span class="prelude-val">Err</span>(<span class="ident">err</span>) =&gt; {
-                <span class="macro">panic!</span>(<span class="string">&quot;failed: {}&quot;</span>, <span class="ident">err</span>);
+            <span class="prelude-val">Err</span>(err) =&gt; {
+                <span class="macro">panic!</span>(<span class="string">&quot;failed: {}&quot;</span>, err);
             }
         }
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">parse_crt1_32bit</span>() {
-        <span class="kw">let</span> <span class="ident">crt1</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span> <span class="op">=</span> <span class="macro">include!</span>(<span class="string">&quot;../../etc/crt132.rs&quot;</span>);
-        <span class="kw">match</span> <span class="ident">Elf::parse</span>(<span class="kw-2">&amp;</span><span class="ident">crt1</span>) {
-            <span class="prelude-val">Ok</span>(<span class="ident">binary</span>) =&gt; {
-                <span class="macro">assert!</span>(<span class="op">!</span><span class="ident">binary</span>.<span class="ident">is_64</span>);
-                <span class="macro">assert!</span>(<span class="op">!</span><span class="ident">binary</span>.<span class="ident">is_lib</span>);
-                <span class="macro">assert_eq!</span>(<span class="ident">binary</span>.<span class="ident">entry</span>, <span class="number">0</span>);
-                <span class="macro">assert!</span>(<span class="ident">binary</span>.<span class="ident">syms</span>.<span class="ident">get</span>(<span class="number">1000</span>).<span class="ident">is_none</span>());
-                <span class="macro">assert!</span>(<span class="ident">binary</span>.<span class="ident">syms</span>.<span class="ident">get</span>(<span class="number">5</span>).<span class="ident">is_some</span>());
-                <span class="kw">let</span> <span class="ident">syms</span> <span class="op">=</span> <span class="ident">binary</span>.<span class="ident">syms</span>.<span class="ident">to_vec</span>();
-                <span class="macro">assert!</span>(<span class="op">!</span><span class="ident">binary</span>.<span class="ident">section_headers</span>.<span class="ident">is_empty</span>());
-                <span class="kw">for</span> (<span class="ident">i</span>, <span class="ident">sym</span>) <span class="kw">in</span> <span class="ident">syms</span>.<span class="ident">iter</span>().<span class="ident">enumerate</span>() {
-                    <span class="kw">if</span> <span class="ident">i</span> <span class="op">==</span> <span class="number">11</span> {
-                        <span class="kw">let</span> <span class="ident">symtab</span> <span class="op">=</span> <span class="ident">binary</span>.<span class="ident">strtab</span>;
-                        <span class="macro">println!</span>(<span class="string">&quot;sym: {:?}&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">sym</span>);
-                        <span class="macro">assert_eq!</span>(<span class="kw-2">&amp;</span><span class="ident">symtab</span>[<span class="ident">sym</span>.<span class="ident">st_name</span>], <span class="string">&quot;__libc_csu_fini&quot;</span>);
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>parse_crt1_32bit() {
+        <span class="kw">let </span>crt1: Vec&lt;u8&gt; = <span class="macro">include!</span>(<span class="string">&quot;../../etc/crt132.rs&quot;</span>);
+        <span class="kw">match </span>Elf::parse(<span class="kw-2">&amp;</span>crt1) {
+            <span class="prelude-val">Ok</span>(binary) =&gt; {
+                <span class="macro">assert!</span>(!binary.is_64);
+                <span class="macro">assert!</span>(!binary.is_lib);
+                <span class="macro">assert_eq!</span>(binary.entry, <span class="number">0</span>);
+                <span class="macro">assert!</span>(binary.syms.get(<span class="number">1000</span>).is_none());
+                <span class="macro">assert!</span>(binary.syms.get(<span class="number">5</span>).is_some());
+                <span class="kw">let </span>syms = binary.syms.to_vec();
+                <span class="macro">assert!</span>(!binary.section_headers.is_empty());
+                <span class="kw">for </span>(i, sym) <span class="kw">in </span>syms.iter().enumerate() {
+                    <span class="kw">if </span>i == <span class="number">11 </span>{
+                        <span class="kw">let </span>symtab = binary.strtab;
+                        <span class="macro">println!</span>(<span class="string">&quot;sym: {:?}&quot;</span>, <span class="kw-2">&amp;</span>sym);
+                        <span class="macro">assert_eq!</span>(<span class="kw-2">&amp;</span>symtab[sym.st_name], <span class="string">&quot;__libc_csu_fini&quot;</span>);
                         <span class="kw">break</span>;
                     }
                 }
-                <span class="macro">assert!</span>(<span class="op">!</span><span class="ident">syms</span>.<span class="ident">is_empty</span>());
+                <span class="macro">assert!</span>(!syms.is_empty());
             }
-            <span class="prelude-val">Err</span>(<span class="ident">err</span>) =&gt; {
-                <span class="macro">panic!</span>(<span class="string">&quot;failed: {}&quot;</span>, <span class="ident">err</span>);
+            <span class="prelude-val">Err</span>(err) =&gt; {
+                <span class="macro">panic!</span>(<span class="string">&quot;failed: {}&quot;</span>, err);
             }
         }
     }
 
-    <span class="comment">// See https://github.com/m4b/goblin/issues/257</span>
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">unused</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">no_use_statement_conflict</span>() {
-        <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::elf::section_header</span>::<span class="kw-2">*</span>;
-        <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::elf</span>::<span class="kw-2">*</span>;
+    <span class="comment">// See https://github.com/m4b/goblin/issues/257
+    </span><span class="attribute">#[test]
+    #[allow(unused)]
+    </span><span class="kw">fn </span>no_use_statement_conflict() {
+        <span class="kw">use </span><span class="kw">crate</span>::elf::section_header::<span class="kw-2">*</span>;
+        <span class="kw">use </span><span class="kw">crate</span>::elf::<span class="kw-2">*</span>;
 
-        <span class="kw">fn</span> <span class="ident">f</span>(<span class="kw">_</span>: <span class="ident">SectionHeader</span>) {}
+        <span class="kw">fn </span>f(<span class="kw">_</span>: SectionHeader) {}
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="goblin" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="goblin" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (77e57db38 2022-10-30)" ></div></body></html>

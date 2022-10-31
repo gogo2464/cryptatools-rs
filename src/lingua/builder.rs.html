@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/lingua-1.4.0/src/builder.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>builder.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../lingua/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../lingua/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../lingua/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/lingua-1.4.0/src/builder.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>builder.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../lingua/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -332,311 +332,311 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either expressed or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */</span>
+ */
 
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::detector::LanguageDetector</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::isocode</span>::{<span class="ident">IsoCode639_1</span>, <span class="ident">IsoCode639_3</span>};
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::language::Language</span>;
-<span class="kw">use</span> <span class="ident">std::collections::HashSet</span>;
+</span><span class="kw">use </span><span class="kw">crate</span>::detector::LanguageDetector;
+<span class="kw">use </span><span class="kw">crate</span>::isocode::{IsoCode639_1, IsoCode639_3};
+<span class="kw">use </span><span class="kw">crate</span>::language::Language;
+<span class="kw">use </span>std::collections::HashSet;
 
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">const</span> <span class="ident">MISSING_LANGUAGE_MESSAGE</span>: <span class="kw-2">&amp;</span><span class="ident">str</span> <span class="op">=</span>
+<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">const </span>MISSING_LANGUAGE_MESSAGE: <span class="kw-2">&amp;</span>str =
     <span class="string">&quot;LanguageDetector needs at least 2 languages to choose from&quot;</span>;
 
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">const</span> <span class="ident">MINIMUM_RELATIVE_DISTANCE_MESSAGE</span>: <span class="kw-2">&amp;</span><span class="ident">str</span> <span class="op">=</span>
+<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">const </span>MINIMUM_RELATIVE_DISTANCE_MESSAGE: <span class="kw-2">&amp;</span>str =
     <span class="string">&quot;Minimum relative distance must lie in between 0.0 and 0.99&quot;</span>;
 
-<span class="doccomment">/// This struct configures and creates an instance of [LanguageDetector].</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">LanguageDetectorBuilder</span> {
-    <span class="ident">languages</span>: <span class="ident">HashSet</span><span class="op">&lt;</span><span class="ident">Language</span><span class="op">&gt;</span>,
-    <span class="ident">minimum_relative_distance</span>: <span class="ident">f64</span>,
-    <span class="ident">is_every_language_model_preloaded</span>: <span class="ident">bool</span>,
+<span class="doccomment">/// This struct configures and creates an instance of [LanguageDetector].
+</span><span class="kw">pub struct </span>LanguageDetectorBuilder {
+    languages: HashSet&lt;Language&gt;,
+    minimum_relative_distance: f64,
+    is_every_language_model_preloaded: bool,
 }
 
-<span class="kw">impl</span> <span class="ident">LanguageDetectorBuilder</span> {
-    <span class="doccomment">/// Creates and returns an instance of `LanguageDetectorBuilder` with all built-in languages.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_all_languages</span>() -&gt; <span class="self">Self</span> {
-        <span class="ident"><span class="self">Self</span>::from</span>(<span class="ident">Language::all</span>())
+<span class="kw">impl </span>LanguageDetectorBuilder {
+    <span class="doccomment">/// Creates and returns an instance of `LanguageDetectorBuilder` with all built-in languages.
+    </span><span class="kw">pub fn </span>from_all_languages() -&gt; <span class="self">Self </span>{
+        <span class="self">Self</span>::from(Language::all())
     }
 
-    <span class="doccomment">/// Creates and returns an instance of `LanguageDetectorBuilder`</span>
-    <span class="doccomment">/// with all built-in spoken languages.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_all_spoken_languages</span>() -&gt; <span class="self">Self</span> {
-        <span class="ident"><span class="self">Self</span>::from</span>(<span class="ident">Language::all_spoken_ones</span>())
+    <span class="doccomment">/// Creates and returns an instance of `LanguageDetectorBuilder`
+    /// with all built-in spoken languages.
+    </span><span class="kw">pub fn </span>from_all_spoken_languages() -&gt; <span class="self">Self </span>{
+        <span class="self">Self</span>::from(Language::all_spoken_ones())
     }
 
-    <span class="doccomment">/// Creates and returns an instance of `LanguageDetectorBuilder`</span>
-    <span class="doccomment">/// with all built-in languages supporting the Arabic script.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_all_languages_with_arabic_script</span>() -&gt; <span class="self">Self</span> {
-        <span class="ident"><span class="self">Self</span>::from</span>(<span class="ident">Language::all_with_arabic_script</span>())
+    <span class="doccomment">/// Creates and returns an instance of `LanguageDetectorBuilder`
+    /// with all built-in languages supporting the Arabic script.
+    </span><span class="kw">pub fn </span>from_all_languages_with_arabic_script() -&gt; <span class="self">Self </span>{
+        <span class="self">Self</span>::from(Language::all_with_arabic_script())
     }
 
-    <span class="doccomment">/// Creates and returns an instance of `LanguageDetectorBuilder`</span>
-    <span class="doccomment">/// with all built-in languages supporting the Cyrillic script.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_all_languages_with_cyrillic_script</span>() -&gt; <span class="self">Self</span> {
-        <span class="ident"><span class="self">Self</span>::from</span>(<span class="ident">Language::all_with_cyrillic_script</span>())
+    <span class="doccomment">/// Creates and returns an instance of `LanguageDetectorBuilder`
+    /// with all built-in languages supporting the Cyrillic script.
+    </span><span class="kw">pub fn </span>from_all_languages_with_cyrillic_script() -&gt; <span class="self">Self </span>{
+        <span class="self">Self</span>::from(Language::all_with_cyrillic_script())
     }
 
-    <span class="doccomment">/// Creates and returns an instance of `LanguageDetectorBuilder`</span>
-    <span class="doccomment">/// with all built-in languages supporting the Devanagari script.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_all_languages_with_devanagari_script</span>() -&gt; <span class="self">Self</span> {
-        <span class="ident"><span class="self">Self</span>::from</span>(<span class="ident">Language::all_with_devanagari_script</span>())
+    <span class="doccomment">/// Creates and returns an instance of `LanguageDetectorBuilder`
+    /// with all built-in languages supporting the Devanagari script.
+    </span><span class="kw">pub fn </span>from_all_languages_with_devanagari_script() -&gt; <span class="self">Self </span>{
+        <span class="self">Self</span>::from(Language::all_with_devanagari_script())
     }
 
-    <span class="doccomment">/// Creates and returns an instance of `LanguageDetectorBuilder`</span>
-    <span class="doccomment">/// with all built-in languages supporting the Latin script.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_all_languages_with_latin_script</span>() -&gt; <span class="self">Self</span> {
-        <span class="ident"><span class="self">Self</span>::from</span>(<span class="ident">Language::all_with_latin_script</span>())
+    <span class="doccomment">/// Creates and returns an instance of `LanguageDetectorBuilder`
+    /// with all built-in languages supporting the Latin script.
+    </span><span class="kw">pub fn </span>from_all_languages_with_latin_script() -&gt; <span class="self">Self </span>{
+        <span class="self">Self</span>::from(Language::all_with_latin_script())
     }
 
-    <span class="doccomment">/// Creates and returns an instance of `LanguageDetectorBuilder`</span>
-    <span class="doccomment">/// with all built-in languages except those specified in `languages`.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// ⚠ Panics if less than two `languages` are used to build the</span>
-    <span class="doccomment">/// `LanguageDetector`.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_all_languages_without</span>(<span class="ident">languages</span>: <span class="kw-2">&amp;</span>[<span class="ident">Language</span>]) -&gt; <span class="self">Self</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">languages_to_load</span> <span class="op">=</span> <span class="ident">Language::all</span>();
-        <span class="ident">languages_to_load</span>.<span class="ident">retain</span>(<span class="op">|</span><span class="ident">it</span><span class="op">|</span> <span class="op">!</span><span class="ident">languages</span>.<span class="ident">contains</span>(<span class="ident">it</span>));
-        <span class="kw">if</span> <span class="ident">languages_to_load</span>.<span class="ident">len</span>() <span class="op">&lt;</span> <span class="number">2</span> {
-            <span class="macro">panic!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">MISSING_LANGUAGE_MESSAGE</span>);
+    <span class="doccomment">/// Creates and returns an instance of `LanguageDetectorBuilder`
+    /// with all built-in languages except those specified in `languages`.
+    ///
+    /// ⚠ Panics if less than two `languages` are used to build the
+    /// `LanguageDetector`.
+    </span><span class="kw">pub fn </span>from_all_languages_without(languages: <span class="kw-2">&amp;</span>[Language]) -&gt; <span class="self">Self </span>{
+        <span class="kw">let </span><span class="kw-2">mut </span>languages_to_load = Language::all();
+        languages_to_load.retain(|it| !languages.contains(it));
+        <span class="kw">if </span>languages_to_load.len() &lt; <span class="number">2 </span>{
+            <span class="macro">panic!</span>(<span class="string">&quot;{}&quot;</span>, MISSING_LANGUAGE_MESSAGE);
         }
-        <span class="ident"><span class="self">Self</span>::from</span>(<span class="ident">languages_to_load</span>)
+        <span class="self">Self</span>::from(languages_to_load)
     }
 
-    <span class="doccomment">/// Creates and returns an instance of `LanguageDetectorBuilder`</span>
-    <span class="doccomment">/// with the specified `languages`.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// ⚠ Panics if less than two `languages` are specified.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_languages</span>(<span class="ident">languages</span>: <span class="kw-2">&amp;</span>[<span class="ident">Language</span>]) -&gt; <span class="self">Self</span> {
-        <span class="kw">if</span> <span class="ident">languages</span>.<span class="ident">len</span>() <span class="op">&lt;</span> <span class="number">2</span> {
-            <span class="macro">panic!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">MISSING_LANGUAGE_MESSAGE</span>);
+    <span class="doccomment">/// Creates and returns an instance of `LanguageDetectorBuilder`
+    /// with the specified `languages`.
+    ///
+    /// ⚠ Panics if less than two `languages` are specified.
+    </span><span class="kw">pub fn </span>from_languages(languages: <span class="kw-2">&amp;</span>[Language]) -&gt; <span class="self">Self </span>{
+        <span class="kw">if </span>languages.len() &lt; <span class="number">2 </span>{
+            <span class="macro">panic!</span>(<span class="string">&quot;{}&quot;</span>, MISSING_LANGUAGE_MESSAGE);
         }
-        <span class="ident"><span class="self">Self</span>::from</span>(<span class="ident">languages</span>.<span class="ident">iter</span>().<span class="ident">cloned</span>().<span class="ident">collect</span>())
+        <span class="self">Self</span>::from(languages.iter().cloned().collect())
     }
 
-    <span class="doccomment">/// Creates and returns an instance of `LanguageDetectorBuilder`</span>
-    <span class="doccomment">/// with the languages specified by the respective ISO 639-1 codes.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// ⚠ Panics if less than two `iso_codes` are specified.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_iso_codes_639_1</span>(<span class="ident">iso_codes</span>: <span class="kw-2">&amp;</span>[<span class="ident">IsoCode639_1</span>]) -&gt; <span class="self">Self</span> {
-        <span class="kw">if</span> <span class="ident">iso_codes</span>.<span class="ident">len</span>() <span class="op">&lt;</span> <span class="number">2</span> {
-            <span class="macro">panic!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">MISSING_LANGUAGE_MESSAGE</span>);
+    <span class="doccomment">/// Creates and returns an instance of `LanguageDetectorBuilder`
+    /// with the languages specified by the respective ISO 639-1 codes.
+    ///
+    /// ⚠ Panics if less than two `iso_codes` are specified.
+    </span><span class="kw">pub fn </span>from_iso_codes_639_1(iso_codes: <span class="kw-2">&amp;</span>[IsoCode639_1]) -&gt; <span class="self">Self </span>{
+        <span class="kw">if </span>iso_codes.len() &lt; <span class="number">2 </span>{
+            <span class="macro">panic!</span>(<span class="string">&quot;{}&quot;</span>, MISSING_LANGUAGE_MESSAGE);
         }
-        <span class="kw">let</span> <span class="ident">languages</span> <span class="op">=</span> <span class="ident">iso_codes</span>
-            .<span class="ident">iter</span>()
-            .<span class="ident">map</span>(<span class="ident">Language::from_iso_code_639_1</span>)
-            .<span class="ident">collect</span>::<span class="op">&lt;</span><span class="ident">HashSet</span><span class="op">&lt;</span><span class="kw">_</span><span class="op">&gt;</span><span class="op">&gt;</span>();
-        <span class="ident"><span class="self">Self</span>::from</span>(<span class="ident">languages</span>)
+        <span class="kw">let </span>languages = iso_codes
+            .iter()
+            .map(Language::from_iso_code_639_1)
+            .collect::&lt;HashSet&lt;<span class="kw">_</span>&gt;&gt;();
+        <span class="self">Self</span>::from(languages)
     }
 
-    <span class="doccomment">/// Creates and returns an instance of `LanguageDetectorBuilder`</span>
-    <span class="doccomment">/// with the languages specified by the respective ISO 639-3 codes.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// ⚠ Panics if less than two `iso_codes` are specified.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_iso_codes_639_3</span>(<span class="ident">iso_codes</span>: <span class="kw-2">&amp;</span>[<span class="ident">IsoCode639_3</span>]) -&gt; <span class="self">Self</span> {
-        <span class="kw">if</span> <span class="ident">iso_codes</span>.<span class="ident">len</span>() <span class="op">&lt;</span> <span class="number">2</span> {
-            <span class="macro">panic!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">MISSING_LANGUAGE_MESSAGE</span>);
+    <span class="doccomment">/// Creates and returns an instance of `LanguageDetectorBuilder`
+    /// with the languages specified by the respective ISO 639-3 codes.
+    ///
+    /// ⚠ Panics if less than two `iso_codes` are specified.
+    </span><span class="kw">pub fn </span>from_iso_codes_639_3(iso_codes: <span class="kw-2">&amp;</span>[IsoCode639_3]) -&gt; <span class="self">Self </span>{
+        <span class="kw">if </span>iso_codes.len() &lt; <span class="number">2 </span>{
+            <span class="macro">panic!</span>(<span class="string">&quot;{}&quot;</span>, MISSING_LANGUAGE_MESSAGE);
         }
-        <span class="kw">let</span> <span class="ident">languages</span> <span class="op">=</span> <span class="ident">iso_codes</span>
-            .<span class="ident">iter</span>()
-            .<span class="ident">map</span>(<span class="ident">Language::from_iso_code_639_3</span>)
-            .<span class="ident">collect</span>::<span class="op">&lt;</span><span class="ident">HashSet</span><span class="op">&lt;</span><span class="kw">_</span><span class="op">&gt;</span><span class="op">&gt;</span>();
-        <span class="ident"><span class="self">Self</span>::from</span>(<span class="ident">languages</span>)
+        <span class="kw">let </span>languages = iso_codes
+            .iter()
+            .map(Language::from_iso_code_639_3)
+            .collect::&lt;HashSet&lt;<span class="kw">_</span>&gt;&gt;();
+        <span class="self">Self</span>::from(languages)
     }
 
-    <span class="doccomment">/// Sets the desired value for the minimum relative distance measure.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// By default, *Lingua* returns the most likely language for a given</span>
-    <span class="doccomment">/// input text. However, there are certain words that are spelled the</span>
-    <span class="doccomment">/// same in more than one language. The word *prologue*, for instance,</span>
-    <span class="doccomment">/// is both a valid English and French word. Lingua would output either</span>
-    <span class="doccomment">/// English or French which might be wrong in the given context.</span>
-    <span class="doccomment">/// For cases like that, it is possible to specify a minimum relative</span>
-    <span class="doccomment">/// distance that the logarithmized and summed up probabilities for</span>
-    <span class="doccomment">/// each possible language have to satisfy.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Be aware that the distance between the language probabilities is</span>
-    <span class="doccomment">/// dependent on the length of the input text. The longer the input</span>
-    <span class="doccomment">/// text, the larger the distance between the languages. So if you</span>
-    <span class="doccomment">/// want to classify very short text phrases, do not set the minimum</span>
-    <span class="doccomment">/// relative distance too high. Otherwise you will get most results</span>
-    <span class="doccomment">/// returned as [`None`] which is the return value for cases</span>
-    <span class="doccomment">/// where language detection is not reliably possible.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// ⚠ Panics if `distance` is smaller than 0.0 or greater than 0.99.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">with_minimum_relative_distance</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">distance</span>: <span class="ident">f64</span>) -&gt; <span class="kw-2">&amp;mut</span> <span class="self">Self</span> {
-        <span class="kw">if</span> <span class="op">!</span>(<span class="number">0.0</span>..<span class="op">=</span><span class="number">0.99</span>).<span class="ident">contains</span>(<span class="kw-2">&amp;</span><span class="ident">distance</span>) {
-            <span class="macro">panic!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">MINIMUM_RELATIVE_DISTANCE_MESSAGE</span>);
+    <span class="doccomment">/// Sets the desired value for the minimum relative distance measure.
+    ///
+    /// By default, *Lingua* returns the most likely language for a given
+    /// input text. However, there are certain words that are spelled the
+    /// same in more than one language. The word *prologue*, for instance,
+    /// is both a valid English and French word. Lingua would output either
+    /// English or French which might be wrong in the given context.
+    /// For cases like that, it is possible to specify a minimum relative
+    /// distance that the logarithmized and summed up probabilities for
+    /// each possible language have to satisfy.
+    ///
+    /// Be aware that the distance between the language probabilities is
+    /// dependent on the length of the input text. The longer the input
+    /// text, the larger the distance between the languages. So if you
+    /// want to classify very short text phrases, do not set the minimum
+    /// relative distance too high. Otherwise you will get most results
+    /// returned as [`None`] which is the return value for cases
+    /// where language detection is not reliably possible.
+    ///
+    /// ⚠ Panics if `distance` is smaller than 0.0 or greater than 0.99.
+    </span><span class="kw">pub fn </span>with_minimum_relative_distance(<span class="kw-2">&amp;mut </span><span class="self">self</span>, distance: f64) -&gt; <span class="kw-2">&amp;mut </span><span class="self">Self </span>{
+        <span class="kw">if </span>!(<span class="number">0.0</span>..=<span class="number">0.99</span>).contains(<span class="kw-2">&amp;</span>distance) {
+            <span class="macro">panic!</span>(<span class="string">&quot;{}&quot;</span>, MINIMUM_RELATIVE_DISTANCE_MESSAGE);
         }
-        <span class="self">self</span>.<span class="ident">minimum_relative_distance</span> <span class="op">=</span> <span class="ident">distance</span>;
-        <span class="self">self</span>
-    }
+        <span class="self">self</span>.minimum_relative_distance = distance;
+        <span class="self">self
+    </span>}
 
-    <span class="doccomment">/// Configures `LanguageDetectorBuilder` to preload all language models when creating</span>
-    <span class="doccomment">/// the instance of [LanguageDetector].</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// By default, *Lingua* uses lazy-loading to load only those language models</span>
-    <span class="doccomment">/// on demand which are considered relevant by the rule-based filter engine.</span>
-    <span class="doccomment">/// For web services, for instance, it is rather beneficial to preload all language</span>
-    <span class="doccomment">/// models into memory to avoid unexpected latency while waiting for the</span>
-    <span class="doccomment">/// service response. This method allows to switch between these two loading modes.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">with_preloaded_language_models</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="kw-2">&amp;mut</span> <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">is_every_language_model_preloaded</span> <span class="op">=</span> <span class="bool-val">true</span>;
-        <span class="self">self</span>
-    }
+    <span class="doccomment">/// Configures `LanguageDetectorBuilder` to preload all language models when creating
+    /// the instance of [LanguageDetector].
+    ///
+    /// By default, *Lingua* uses lazy-loading to load only those language models
+    /// on demand which are considered relevant by the rule-based filter engine.
+    /// For web services, for instance, it is rather beneficial to preload all language
+    /// models into memory to avoid unexpected latency while waiting for the
+    /// service response. This method allows to switch between these two loading modes.
+    </span><span class="kw">pub fn </span>with_preloaded_language_models(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;mut </span><span class="self">Self </span>{
+        <span class="self">self</span>.is_every_language_model_preloaded = <span class="bool-val">true</span>;
+        <span class="self">self
+    </span>}
 
-    <span class="doccomment">/// Creates and returns the configured instance of [LanguageDetector].</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">build</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="ident">LanguageDetector</span> {
-        <span class="ident">LanguageDetector::from</span>(
-            <span class="self">self</span>.<span class="ident">languages</span>.<span class="ident">clone</span>(),
-            <span class="self">self</span>.<span class="ident">minimum_relative_distance</span>,
-            <span class="self">self</span>.<span class="ident">is_every_language_model_preloaded</span>,
+    <span class="doccomment">/// Creates and returns the configured instance of [LanguageDetector].
+    </span><span class="kw">pub fn </span>build(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; LanguageDetector {
+        LanguageDetector::from(
+            <span class="self">self</span>.languages.clone(),
+            <span class="self">self</span>.minimum_relative_distance,
+            <span class="self">self</span>.is_every_language_model_preloaded,
         )
     }
 
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">languages</span>: <span class="ident">HashSet</span><span class="op">&lt;</span><span class="ident">Language</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> {
-            <span class="ident">languages</span>,
-            <span class="ident">minimum_relative_distance</span>: <span class="number">0.0</span>,
-            <span class="ident">is_every_language_model_preloaded</span>: <span class="bool-val">false</span>,
+    <span class="kw">fn </span>from(languages: HashSet&lt;Language&gt;) -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{
+            languages,
+            minimum_relative_distance: <span class="number">0.0</span>,
+            is_every_language_model_preloaded: <span class="bool-val">false</span>,
         }
     }
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
-<span class="kw">mod</span> <span class="ident">tests</span> {
-    <span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
+<span class="attribute">#[cfg(test)]
+</span><span class="kw">mod </span>tests {
+    <span class="kw">use super</span>::<span class="kw-2">*</span>;
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">assert_detector_can_be_built_from_all_languages</span>() {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">builder</span> <span class="op">=</span> <span class="ident">LanguageDetectorBuilder::from_all_languages</span>();
-        <span class="macro">assert_eq!</span>(<span class="ident">builder</span>.<span class="ident">languages</span>, <span class="ident">Language::all</span>());
-        <span class="macro">assert_eq!</span>(<span class="ident">builder</span>.<span class="ident">minimum_relative_distance</span>, <span class="number">0.0</span>);
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>assert_detector_can_be_built_from_all_languages() {
+        <span class="kw">let </span><span class="kw-2">mut </span>builder = LanguageDetectorBuilder::from_all_languages();
+        <span class="macro">assert_eq!</span>(builder.languages, Language::all());
+        <span class="macro">assert_eq!</span>(builder.minimum_relative_distance, <span class="number">0.0</span>);
 
-        <span class="ident">builder</span>.<span class="ident">with_minimum_relative_distance</span>(<span class="number">0.2</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">builder</span>.<span class="ident">minimum_relative_distance</span>, <span class="number">0.2</span>);
+        builder.with_minimum_relative_distance(<span class="number">0.2</span>);
+        <span class="macro">assert_eq!</span>(builder.minimum_relative_distance, <span class="number">0.2</span>);
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">assert_detector_can_be_built_from_spoken_languages</span>() {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">builder</span> <span class="op">=</span> <span class="ident">LanguageDetectorBuilder::from_all_spoken_languages</span>();
-        <span class="macro">assert_eq!</span>(<span class="ident">builder</span>.<span class="ident">languages</span>, <span class="ident">Language::all_spoken_ones</span>());
-        <span class="macro">assert_eq!</span>(<span class="ident">builder</span>.<span class="ident">minimum_relative_distance</span>, <span class="number">0.0</span>);
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>assert_detector_can_be_built_from_spoken_languages() {
+        <span class="kw">let </span><span class="kw-2">mut </span>builder = LanguageDetectorBuilder::from_all_spoken_languages();
+        <span class="macro">assert_eq!</span>(builder.languages, Language::all_spoken_ones());
+        <span class="macro">assert_eq!</span>(builder.minimum_relative_distance, <span class="number">0.0</span>);
 
-        <span class="ident">builder</span>.<span class="ident">with_minimum_relative_distance</span>(<span class="number">0.2</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">builder</span>.<span class="ident">minimum_relative_distance</span>, <span class="number">0.2</span>);
+        builder.with_minimum_relative_distance(<span class="number">0.2</span>);
+        <span class="macro">assert_eq!</span>(builder.minimum_relative_distance, <span class="number">0.2</span>);
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">assert_detector_can_be_built_from_languages_with_arabic_script</span>() {
-        <span class="kw">let</span> <span class="ident">builder</span> <span class="op">=</span> <span class="ident">LanguageDetectorBuilder::from_all_languages_with_arabic_script</span>();
-        <span class="macro">assert_eq!</span>(<span class="ident">builder</span>.<span class="ident">languages</span>, <span class="ident">Language::all_with_arabic_script</span>());
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>assert_detector_can_be_built_from_languages_with_arabic_script() {
+        <span class="kw">let </span>builder = LanguageDetectorBuilder::from_all_languages_with_arabic_script();
+        <span class="macro">assert_eq!</span>(builder.languages, Language::all_with_arabic_script());
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">assert_detector_can_be_built_from_languages_with_cyrillic_script</span>() {
-        <span class="kw">let</span> <span class="ident">builder</span> <span class="op">=</span> <span class="ident">LanguageDetectorBuilder::from_all_languages_with_cyrillic_script</span>();
-        <span class="macro">assert_eq!</span>(<span class="ident">builder</span>.<span class="ident">languages</span>, <span class="ident">Language::all_with_cyrillic_script</span>());
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>assert_detector_can_be_built_from_languages_with_cyrillic_script() {
+        <span class="kw">let </span>builder = LanguageDetectorBuilder::from_all_languages_with_cyrillic_script();
+        <span class="macro">assert_eq!</span>(builder.languages, Language::all_with_cyrillic_script());
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">assert_detector_can_be_built_from_languages_with_devanagari_script</span>() {
-        <span class="kw">let</span> <span class="ident">builder</span> <span class="op">=</span> <span class="ident">LanguageDetectorBuilder::from_all_languages_with_devanagari_script</span>();
-        <span class="macro">assert_eq!</span>(<span class="ident">builder</span>.<span class="ident">languages</span>, <span class="ident">Language::all_with_devanagari_script</span>());
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>assert_detector_can_be_built_from_languages_with_devanagari_script() {
+        <span class="kw">let </span>builder = LanguageDetectorBuilder::from_all_languages_with_devanagari_script();
+        <span class="macro">assert_eq!</span>(builder.languages, Language::all_with_devanagari_script());
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">assert_detector_can_be_built_from_languages_with_latin_script</span>() {
-        <span class="kw">let</span> <span class="ident">builder</span> <span class="op">=</span> <span class="ident">LanguageDetectorBuilder::from_all_languages_with_latin_script</span>();
-        <span class="macro">assert_eq!</span>(<span class="ident">builder</span>.<span class="ident">languages</span>, <span class="ident">Language::all_with_latin_script</span>());
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>assert_detector_can_be_built_from_languages_with_latin_script() {
+        <span class="kw">let </span>builder = LanguageDetectorBuilder::from_all_languages_with_latin_script();
+        <span class="macro">assert_eq!</span>(builder.languages, Language::all_with_latin_script());
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">assert_detector_can_be_built_from_blacklist</span>() {
-        <span class="kw">let</span> <span class="ident">builder</span> <span class="op">=</span> <span class="ident">LanguageDetectorBuilder::from_all_languages_without</span>(<span class="kw-2">&amp;</span>[
-            <span class="ident">Language::Turkish</span>,
-            <span class="ident">Language::Romanian</span>,
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>assert_detector_can_be_built_from_blacklist() {
+        <span class="kw">let </span>builder = LanguageDetectorBuilder::from_all_languages_without(<span class="kw-2">&amp;</span>[
+            Language::Turkish,
+            Language::Romanian,
         ]);
-        <span class="kw">let</span> <span class="ident">expected_languages</span> <span class="op">=</span> <span class="ident">Language::all</span>()
-            .<span class="ident">difference</span>(<span class="kw-2">&amp;</span><span class="macro">hashset!</span>(<span class="ident">Language::Turkish</span>, <span class="ident">Language::Romanian</span>))
-            .<span class="ident">cloned</span>()
-            .<span class="ident">collect</span>::<span class="op">&lt;</span><span class="ident">HashSet</span><span class="op">&lt;</span><span class="ident">Language</span><span class="op">&gt;</span><span class="op">&gt;</span>();
+        <span class="kw">let </span>expected_languages = Language::all()
+            .difference(<span class="kw-2">&amp;</span><span class="macro">hashset!</span>(Language::Turkish, Language::Romanian))
+            .cloned()
+            .collect::&lt;HashSet&lt;Language&gt;&gt;();
 
-        <span class="macro">assert_eq!</span>(<span class="ident">builder</span>.<span class="ident">languages</span>, <span class="ident">expected_languages</span>);
+        <span class="macro">assert_eq!</span>(builder.languages, expected_languages);
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="attribute">#[<span class="ident">should_panic</span>(<span class="ident">expected</span> <span class="op">=</span> <span class="string">&quot;LanguageDetector needs at least 2 languages to choose from&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">assert_detector_cannot_be_built_from_too_long_blacklist</span>() {
-        <span class="kw">let</span> <span class="ident">languages</span> <span class="op">=</span> <span class="ident">Language::all</span>()
-            .<span class="ident">difference</span>(<span class="kw-2">&amp;</span><span class="macro">hashset!</span>(<span class="ident">Language::German</span>))
-            .<span class="ident">cloned</span>()
-            .<span class="ident">collect</span>::<span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="kw">_</span><span class="op">&gt;</span><span class="op">&gt;</span>();
+    <span class="attribute">#[test]
+    #[should_panic(expected = <span class="string">&quot;LanguageDetector needs at least 2 languages to choose from&quot;</span>)]
+    </span><span class="kw">fn </span>assert_detector_cannot_be_built_from_too_long_blacklist() {
+        <span class="kw">let </span>languages = Language::all()
+            .difference(<span class="kw-2">&amp;</span><span class="macro">hashset!</span>(Language::German))
+            .cloned()
+            .collect::&lt;Vec&lt;<span class="kw">_</span>&gt;&gt;();
 
-        <span class="ident">LanguageDetectorBuilder::from_all_languages_without</span>(<span class="kw-2">&amp;</span><span class="ident">languages</span>);
+        LanguageDetectorBuilder::from_all_languages_without(<span class="kw-2">&amp;</span>languages);
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">assert_detector_can_be_built_from_whitelist</span>() {
-        <span class="kw">let</span> <span class="ident">builder</span> <span class="op">=</span>
-            <span class="ident">LanguageDetectorBuilder::from_languages</span>(<span class="kw-2">&amp;</span>[<span class="ident">Language::German</span>, <span class="ident">Language::English</span>]);
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>assert_detector_can_be_built_from_whitelist() {
+        <span class="kw">let </span>builder =
+            LanguageDetectorBuilder::from_languages(<span class="kw-2">&amp;</span>[Language::German, Language::English]);
 
         <span class="macro">assert_eq!</span>(
-            <span class="ident">builder</span>.<span class="ident">languages</span>,
-            <span class="macro">hashset!</span>(<span class="ident">Language::German</span>, <span class="ident">Language::English</span>)
+            builder.languages,
+            <span class="macro">hashset!</span>(Language::German, Language::English)
         );
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="attribute">#[<span class="ident">should_panic</span>(<span class="ident">expected</span> <span class="op">=</span> <span class="string">&quot;LanguageDetector needs at least 2 languages to choose from&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">assert_detector_cannot_be_built_from_too_short_whitelist</span>() {
-        <span class="ident">LanguageDetectorBuilder::from_languages</span>(<span class="kw-2">&amp;</span>[<span class="ident">Language::German</span>]);
+    <span class="attribute">#[test]
+    #[should_panic(expected = <span class="string">&quot;LanguageDetector needs at least 2 languages to choose from&quot;</span>)]
+    </span><span class="kw">fn </span>assert_detector_cannot_be_built_from_too_short_whitelist() {
+        LanguageDetectorBuilder::from_languages(<span class="kw-2">&amp;</span>[Language::German]);
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">assert_detector_can_be_built_from_iso_639_1_codes</span>() {
-        <span class="kw">let</span> <span class="ident">builder</span> <span class="op">=</span>
-            <span class="ident">LanguageDetectorBuilder::from_iso_codes_639_1</span>(<span class="kw-2">&amp;</span>[<span class="ident">IsoCode639_1::DE</span>, <span class="ident">IsoCode639_1::ZU</span>]);
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>assert_detector_can_be_built_from_iso_639_1_codes() {
+        <span class="kw">let </span>builder =
+            LanguageDetectorBuilder::from_iso_codes_639_1(<span class="kw-2">&amp;</span>[IsoCode639_1::DE, IsoCode639_1::ZU]);
 
         <span class="macro">assert_eq!</span>(
-            <span class="ident">builder</span>.<span class="ident">languages</span>,
-            <span class="macro">hashset!</span>(<span class="ident">Language::German</span>, <span class="ident">Language::Zulu</span>)
+            builder.languages,
+            <span class="macro">hashset!</span>(Language::German, Language::Zulu)
         );
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="attribute">#[<span class="ident">should_panic</span>(<span class="ident">expected</span> <span class="op">=</span> <span class="string">&quot;LanguageDetector needs at least 2 languages to choose from&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">assert_detector_cannot_be_built_from_too_few_iso_639_1_codes</span>() {
-        <span class="ident">LanguageDetectorBuilder::from_iso_codes_639_1</span>(<span class="kw-2">&amp;</span>[<span class="ident">IsoCode639_1::DE</span>]);
+    <span class="attribute">#[test]
+    #[should_panic(expected = <span class="string">&quot;LanguageDetector needs at least 2 languages to choose from&quot;</span>)]
+    </span><span class="kw">fn </span>assert_detector_cannot_be_built_from_too_few_iso_639_1_codes() {
+        LanguageDetectorBuilder::from_iso_codes_639_1(<span class="kw-2">&amp;</span>[IsoCode639_1::DE]);
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">assert_detector_can_be_built_from_iso_639_3_codes</span>() {
-        <span class="kw">let</span> <span class="ident">builder</span> <span class="op">=</span>
-            <span class="ident">LanguageDetectorBuilder::from_iso_codes_639_3</span>(<span class="kw-2">&amp;</span>[<span class="ident">IsoCode639_3::DEU</span>, <span class="ident">IsoCode639_3::ZUL</span>]);
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>assert_detector_can_be_built_from_iso_639_3_codes() {
+        <span class="kw">let </span>builder =
+            LanguageDetectorBuilder::from_iso_codes_639_3(<span class="kw-2">&amp;</span>[IsoCode639_3::DEU, IsoCode639_3::ZUL]);
 
         <span class="macro">assert_eq!</span>(
-            <span class="ident">builder</span>.<span class="ident">languages</span>,
-            <span class="macro">hashset!</span>(<span class="ident">Language::German</span>, <span class="ident">Language::Zulu</span>)
+            builder.languages,
+            <span class="macro">hashset!</span>(Language::German, Language::Zulu)
         );
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="attribute">#[<span class="ident">should_panic</span>(<span class="ident">expected</span> <span class="op">=</span> <span class="string">&quot;LanguageDetector needs at least 2 languages to choose from&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">assert_detector_cannot_be_built_from_too_few_iso_639_3_codes</span>() {
-        <span class="ident">LanguageDetectorBuilder::from_iso_codes_639_3</span>(<span class="kw-2">&amp;</span>[<span class="ident">IsoCode639_3::DEU</span>]);
+    <span class="attribute">#[test]
+    #[should_panic(expected = <span class="string">&quot;LanguageDetector needs at least 2 languages to choose from&quot;</span>)]
+    </span><span class="kw">fn </span>assert_detector_cannot_be_built_from_too_few_iso_639_3_codes() {
+        LanguageDetectorBuilder::from_iso_codes_639_3(<span class="kw-2">&amp;</span>[IsoCode639_3::DEU]);
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="attribute">#[<span class="ident">should_panic</span>(<span class="ident">expected</span> <span class="op">=</span> <span class="string">&quot;Minimum relative distance must lie in between 0.0 and 0.99&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">assert_detector_cannot_be_built_from_too_small_minimum_relative_distance</span>() {
-        <span class="ident">LanguageDetectorBuilder::from_all_languages</span>().<span class="ident">with_minimum_relative_distance</span>(<span class="op">-</span><span class="number">2.3</span>);
+    <span class="attribute">#[test]
+    #[should_panic(expected = <span class="string">&quot;Minimum relative distance must lie in between 0.0 and 0.99&quot;</span>)]
+    </span><span class="kw">fn </span>assert_detector_cannot_be_built_from_too_small_minimum_relative_distance() {
+        LanguageDetectorBuilder::from_all_languages().with_minimum_relative_distance(-<span class="number">2.3</span>);
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="attribute">#[<span class="ident">should_panic</span>(<span class="ident">expected</span> <span class="op">=</span> <span class="string">&quot;Minimum relative distance must lie in between 0.0 and 0.99&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">assert_detector_cannot_be_built_from_too_large_minimum_relative_distance</span>() {
-        <span class="ident">LanguageDetectorBuilder::from_all_languages</span>().<span class="ident">with_minimum_relative_distance</span>(<span class="number">1.7</span>);
+    <span class="attribute">#[test]
+    #[should_panic(expected = <span class="string">&quot;Minimum relative distance must lie in between 0.0 and 0.99&quot;</span>)]
+    </span><span class="kw">fn </span>assert_detector_cannot_be_built_from_too_large_minimum_relative_distance() {
+        LanguageDetectorBuilder::from_all_languages().with_minimum_relative_distance(<span class="number">1.7</span>);
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="lingua" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="lingua" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (77e57db38 2022-10-30)" ></div></body></html>

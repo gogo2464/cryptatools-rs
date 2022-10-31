@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/askama_shared-0.12.2/src/input.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>input.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../askama_shared/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../askama_shared/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../askama_shared/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/askama_shared-0.12.2/src/input.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>input.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../askama_shared/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -334,341 +334,341 @@
 <span id="334">334</span>
 <span id="335">335</span>
 <span id="336">336</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">CompileError</span>, <span class="ident">Config</span>, <span class="ident">Syntax</span>};
+</pre><pre class="rust"><code><span class="kw">use crate</span>::{CompileError, Config, Syntax};
 
-<span class="kw">use</span> <span class="ident">std::path</span>::{<span class="ident">Path</span>, <span class="ident">PathBuf</span>};
-<span class="kw">use</span> <span class="ident">std::str::FromStr</span>;
+<span class="kw">use </span>std::path::{Path, PathBuf};
+<span class="kw">use </span>std::str::FromStr;
 
-<span class="kw">use</span> <span class="ident">mime::Mime</span>;
-<span class="kw">use</span> <span class="ident">quote::ToTokens</span>;
+<span class="kw">use </span>mime::Mime;
+<span class="kw">use </span>quote::ToTokens;
 
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">TemplateInput</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">pub</span> <span class="ident">ast</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">syn::DeriveInput</span>,
-    <span class="kw">pub</span> <span class="ident">config</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">Config</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>,
-    <span class="kw">pub</span> <span class="ident">syntax</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">Syntax</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>,
-    <span class="kw">pub</span> <span class="ident">source</span>: <span class="ident">Source</span>,
-    <span class="kw">pub</span> <span class="ident">print</span>: <span class="ident">Print</span>,
-    <span class="kw">pub</span> <span class="ident">escaper</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>,
-    <span class="kw">pub</span> <span class="ident">ext</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
-    <span class="kw">pub</span> <span class="ident">mime_type</span>: <span class="ident">String</span>,
-    <span class="kw">pub</span> <span class="ident">parent</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">syn::Type</span><span class="op">&gt;</span>,
-    <span class="kw">pub</span> <span class="ident">path</span>: <span class="ident">PathBuf</span>,
+<span class="kw">pub struct </span>TemplateInput&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">pub </span>ast: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>syn::DeriveInput,
+    <span class="kw">pub </span>config: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>Config&lt;<span class="lifetime">&#39;a</span>&gt;,
+    <span class="kw">pub </span>syntax: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>Syntax&lt;<span class="lifetime">&#39;a</span>&gt;,
+    <span class="kw">pub </span>source: Source,
+    <span class="kw">pub </span>print: Print,
+    <span class="kw">pub </span>escaper: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str,
+    <span class="kw">pub </span>ext: <span class="prelude-ty">Option</span>&lt;String&gt;,
+    <span class="kw">pub </span>mime_type: String,
+    <span class="kw">pub </span>parent: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>syn::Type&gt;,
+    <span class="kw">pub </span>path: PathBuf,
 }
 
-<span class="kw">impl</span> <span class="ident">TemplateInput</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// Extract the template metadata from the `DeriveInput` structure. This</span>
-    <span class="doccomment">/// mostly recovers the data for the `TemplateInput` fields from the</span>
-    <span class="doccomment">/// `template()` attribute list fields; it also finds the of the `_parent`</span>
-    <span class="doccomment">/// field, if any.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span><span class="op">&lt;</span><span class="lifetime">&#39;n</span><span class="op">&gt;</span>(
-        <span class="ident">ast</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;n</span> <span class="ident">syn::DeriveInput</span>,
-        <span class="ident">config</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;n</span> <span class="ident">Config</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>,
-    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">TemplateInput</span><span class="op">&lt;</span><span class="lifetime">&#39;n</span><span class="op">&gt;</span>, <span class="ident">CompileError</span><span class="op">&gt;</span> {
-        <span class="comment">// Check that an attribute called `template()` exists once and that it is</span>
-        <span class="comment">// the proper type (list).</span>
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">template_args</span> <span class="op">=</span> <span class="prelude-val">None</span>;
-        <span class="kw">for</span> <span class="ident">attr</span> <span class="kw">in</span> <span class="kw-2">&amp;</span><span class="ident">ast</span>.<span class="ident">attrs</span> {
-            <span class="kw">let</span> <span class="ident">ident</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">attr</span>.<span class="ident">path</span>.<span class="ident">get_ident</span>() {
-                <span class="prelude-val">Some</span>(<span class="ident">ident</span>) =&gt; <span class="ident">ident</span>,
-                <span class="prelude-val">None</span> =&gt; <span class="kw">continue</span>,
+<span class="kw">impl </span>TemplateInput&lt;<span class="lifetime">&#39;_</span>&gt; {
+    <span class="doccomment">/// Extract the template metadata from the `DeriveInput` structure. This
+    /// mostly recovers the data for the `TemplateInput` fields from the
+    /// `template()` attribute list fields; it also finds the of the `_parent`
+    /// field, if any.
+    </span><span class="kw">pub fn </span>new&lt;<span class="lifetime">&#39;n</span>&gt;(
+        ast: <span class="kw-2">&amp;</span><span class="lifetime">&#39;n </span>syn::DeriveInput,
+        config: <span class="kw-2">&amp;</span><span class="lifetime">&#39;n </span>Config&lt;<span class="lifetime">&#39;_</span>&gt;,
+    ) -&gt; <span class="prelude-ty">Result</span>&lt;TemplateInput&lt;<span class="lifetime">&#39;n</span>&gt;, CompileError&gt; {
+        <span class="comment">// Check that an attribute called `template()` exists once and that it is
+        // the proper type (list).
+        </span><span class="kw">let </span><span class="kw-2">mut </span>template_args = <span class="prelude-val">None</span>;
+        <span class="kw">for </span>attr <span class="kw">in </span><span class="kw-2">&amp;</span>ast.attrs {
+            <span class="kw">let </span>ident = <span class="kw">match </span>attr.path.get_ident() {
+                <span class="prelude-val">Some</span>(ident) =&gt; ident,
+                <span class="prelude-val">None </span>=&gt; <span class="kw">continue</span>,
             };
 
-            <span class="kw">if</span> <span class="ident">ident</span> <span class="op">==</span> <span class="string">&quot;template&quot;</span> {
-                <span class="kw">if</span> <span class="ident">template_args</span>.<span class="ident">is_some</span>() {
-                    <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="string">&quot;duplicated &#39;template&#39; attribute&quot;</span>.<span class="ident">into</span>());
+            <span class="kw">if </span>ident == <span class="string">&quot;template&quot; </span>{
+                <span class="kw">if </span>template_args.is_some() {
+                    <span class="kw">return </span><span class="prelude-val">Err</span>(<span class="string">&quot;duplicated &#39;template&#39; attribute&quot;</span>.into());
                 }
 
-                <span class="kw">match</span> <span class="ident">attr</span>.<span class="ident">parse_meta</span>() {
-                    <span class="prelude-val">Ok</span>(<span class="ident">syn::Meta::List</span>(<span class="ident">syn::MetaList</span> { <span class="ident">nested</span>, .. })) =&gt; {
-                        <span class="ident">template_args</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">nested</span>);
+                <span class="kw">match </span>attr.parse_meta() {
+                    <span class="prelude-val">Ok</span>(syn::Meta::List(syn::MetaList { nested, .. })) =&gt; {
+                        template_args = <span class="prelude-val">Some</span>(nested);
                     }
-                    <span class="prelude-val">Ok</span>(<span class="kw">_</span>) =&gt; <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="string">&quot;&#39;template&#39; attribute must be a list&quot;</span>.<span class="ident">into</span>()),
-                    <span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="macro">format!</span>(<span class="string">&quot;unable to parse attribute: {}&quot;</span>, <span class="ident">e</span>).<span class="ident">into</span>()),
+                    <span class="prelude-val">Ok</span>(<span class="kw">_</span>) =&gt; <span class="kw">return </span><span class="prelude-val">Err</span>(<span class="string">&quot;&#39;template&#39; attribute must be a list&quot;</span>.into()),
+                    <span class="prelude-val">Err</span>(e) =&gt; <span class="kw">return </span><span class="prelude-val">Err</span>(<span class="macro">format!</span>(<span class="string">&quot;unable to parse attribute: {}&quot;</span>, e).into()),
                 }
             }
         }
-        <span class="kw">let</span> <span class="ident">template_args</span> <span class="op">=</span>
-            <span class="ident">template_args</span>.<span class="ident">ok_or_else</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">CompileError::from</span>(<span class="string">&quot;no attribute &#39;template&#39; found&quot;</span>))<span class="question-mark">?</span>;
+        <span class="kw">let </span>template_args =
+            template_args.ok_or_else(|| CompileError::from(<span class="string">&quot;no attribute &#39;template&#39; found&quot;</span>))<span class="question-mark">?</span>;
 
-        <span class="comment">// Loop over the meta attributes and find everything that we</span>
-        <span class="comment">// understand. Return a CompileError if something is not right.</span>
-        <span class="comment">// `source` contains an enum that can represent `path` or `source`.</span>
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">source</span> <span class="op">=</span> <span class="prelude-val">None</span>;
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">print</span> <span class="op">=</span> <span class="ident">Print::None</span>;
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">escaping</span> <span class="op">=</span> <span class="prelude-val">None</span>;
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">ext</span> <span class="op">=</span> <span class="prelude-val">None</span>;
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">syntax</span> <span class="op">=</span> <span class="prelude-val">None</span>;
-        <span class="kw">for</span> <span class="ident">item</span> <span class="kw">in</span> <span class="ident">template_args</span> {
-            <span class="kw">let</span> <span class="ident">pair</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">item</span> {
-                <span class="ident">syn::NestedMeta::Meta</span>(<span class="ident">syn::Meta::NameValue</span>(<span class="kw-2">ref</span> <span class="ident">pair</span>)) =&gt; <span class="ident">pair</span>,
-                <span class="kw">_</span> =&gt; {
-                    <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="macro">format!</span>(
+        <span class="comment">// Loop over the meta attributes and find everything that we
+        // understand. Return a CompileError if something is not right.
+        // `source` contains an enum that can represent `path` or `source`.
+        </span><span class="kw">let </span><span class="kw-2">mut </span>source = <span class="prelude-val">None</span>;
+        <span class="kw">let </span><span class="kw-2">mut </span>print = Print::None;
+        <span class="kw">let </span><span class="kw-2">mut </span>escaping = <span class="prelude-val">None</span>;
+        <span class="kw">let </span><span class="kw-2">mut </span>ext = <span class="prelude-val">None</span>;
+        <span class="kw">let </span><span class="kw-2">mut </span>syntax = <span class="prelude-val">None</span>;
+        <span class="kw">for </span>item <span class="kw">in </span>template_args {
+            <span class="kw">let </span>pair = <span class="kw">match </span>item {
+                syn::NestedMeta::Meta(syn::Meta::NameValue(<span class="kw-2">ref </span>pair)) =&gt; pair,
+                <span class="kw">_ </span>=&gt; {
+                    <span class="kw">return </span><span class="prelude-val">Err</span>(<span class="macro">format!</span>(
                         <span class="string">&quot;unsupported attribute argument {:?}&quot;</span>,
-                        <span class="ident">item</span>.<span class="ident">to_token_stream</span>()
+                        item.to_token_stream()
                     )
-                    .<span class="ident">into</span>())
+                    .into())
                 }
             };
-            <span class="kw">let</span> <span class="ident">ident</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">pair</span>.<span class="ident">path</span>.<span class="ident">get_ident</span>() {
-                <span class="prelude-val">Some</span>(<span class="ident">ident</span>) =&gt; <span class="ident">ident</span>,
-                <span class="prelude-val">None</span> =&gt; <span class="macro">unreachable!</span>(<span class="string">&quot;not possible in syn::Meta::NameValue(…)&quot;</span>),
+            <span class="kw">let </span>ident = <span class="kw">match </span>pair.path.get_ident() {
+                <span class="prelude-val">Some</span>(ident) =&gt; ident,
+                <span class="prelude-val">None </span>=&gt; <span class="macro">unreachable!</span>(<span class="string">&quot;not possible in syn::Meta::NameValue(…)&quot;</span>),
             };
 
-            <span class="kw">if</span> <span class="ident">ident</span> <span class="op">==</span> <span class="string">&quot;path&quot;</span> {
-                <span class="kw">if</span> <span class="kw">let</span> <span class="ident">syn::Lit::Str</span>(<span class="kw-2">ref</span> <span class="ident">s</span>) <span class="op">=</span> <span class="ident">pair</span>.<span class="ident">lit</span> {
-                    <span class="kw">if</span> <span class="ident">source</span>.<span class="ident">is_some</span>() {
-                        <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="string">&quot;must specify &#39;source&#39; or &#39;path&#39;, not both&quot;</span>.<span class="ident">into</span>());
+            <span class="kw">if </span>ident == <span class="string">&quot;path&quot; </span>{
+                <span class="kw">if let </span>syn::Lit::Str(<span class="kw-2">ref </span>s) = pair.lit {
+                    <span class="kw">if </span>source.is_some() {
+                        <span class="kw">return </span><span class="prelude-val">Err</span>(<span class="string">&quot;must specify &#39;source&#39; or &#39;path&#39;, not both&quot;</span>.into());
                     }
-                    <span class="ident">source</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">Source::Path</span>(<span class="ident">s</span>.<span class="ident">value</span>()));
-                } <span class="kw">else</span> {
-                    <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="string">&quot;template path must be string literal&quot;</span>.<span class="ident">into</span>());
+                    source = <span class="prelude-val">Some</span>(Source::Path(s.value()));
+                } <span class="kw">else </span>{
+                    <span class="kw">return </span><span class="prelude-val">Err</span>(<span class="string">&quot;template path must be string literal&quot;</span>.into());
                 }
-            } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">ident</span> <span class="op">==</span> <span class="string">&quot;source&quot;</span> {
-                <span class="kw">if</span> <span class="kw">let</span> <span class="ident">syn::Lit::Str</span>(<span class="kw-2">ref</span> <span class="ident">s</span>) <span class="op">=</span> <span class="ident">pair</span>.<span class="ident">lit</span> {
-                    <span class="kw">if</span> <span class="ident">source</span>.<span class="ident">is_some</span>() {
-                        <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="string">&quot;must specify &#39;source&#39; or &#39;path&#39;, not both&quot;</span>.<span class="ident">into</span>());
+            } <span class="kw">else if </span>ident == <span class="string">&quot;source&quot; </span>{
+                <span class="kw">if let </span>syn::Lit::Str(<span class="kw-2">ref </span>s) = pair.lit {
+                    <span class="kw">if </span>source.is_some() {
+                        <span class="kw">return </span><span class="prelude-val">Err</span>(<span class="string">&quot;must specify &#39;source&#39; or &#39;path&#39;, not both&quot;</span>.into());
                     }
-                    <span class="ident">source</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">Source::Source</span>(<span class="ident">s</span>.<span class="ident">value</span>()));
-                } <span class="kw">else</span> {
-                    <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="string">&quot;template source must be string literal&quot;</span>.<span class="ident">into</span>());
+                    source = <span class="prelude-val">Some</span>(Source::Source(s.value()));
+                } <span class="kw">else </span>{
+                    <span class="kw">return </span><span class="prelude-val">Err</span>(<span class="string">&quot;template source must be string literal&quot;</span>.into());
                 }
-            } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">ident</span> <span class="op">==</span> <span class="string">&quot;print&quot;</span> {
-                <span class="kw">if</span> <span class="kw">let</span> <span class="ident">syn::Lit::Str</span>(<span class="kw-2">ref</span> <span class="ident">s</span>) <span class="op">=</span> <span class="ident">pair</span>.<span class="ident">lit</span> {
-                    <span class="ident">print</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">value</span>().<span class="ident">parse</span>()<span class="question-mark">?</span>;
-                } <span class="kw">else</span> {
-                    <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="string">&quot;print value must be string literal&quot;</span>.<span class="ident">into</span>());
+            } <span class="kw">else if </span>ident == <span class="string">&quot;print&quot; </span>{
+                <span class="kw">if let </span>syn::Lit::Str(<span class="kw-2">ref </span>s) = pair.lit {
+                    print = s.value().parse()<span class="question-mark">?</span>;
+                } <span class="kw">else </span>{
+                    <span class="kw">return </span><span class="prelude-val">Err</span>(<span class="string">&quot;print value must be string literal&quot;</span>.into());
                 }
-            } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">ident</span> <span class="op">==</span> <span class="string">&quot;escape&quot;</span> {
-                <span class="kw">if</span> <span class="kw">let</span> <span class="ident">syn::Lit::Str</span>(<span class="kw-2">ref</span> <span class="ident">s</span>) <span class="op">=</span> <span class="ident">pair</span>.<span class="ident">lit</span> {
-                    <span class="ident">escaping</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">s</span>.<span class="ident">value</span>());
-                } <span class="kw">else</span> {
-                    <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="string">&quot;escape value must be string literal&quot;</span>.<span class="ident">into</span>());
+            } <span class="kw">else if </span>ident == <span class="string">&quot;escape&quot; </span>{
+                <span class="kw">if let </span>syn::Lit::Str(<span class="kw-2">ref </span>s) = pair.lit {
+                    escaping = <span class="prelude-val">Some</span>(s.value());
+                } <span class="kw">else </span>{
+                    <span class="kw">return </span><span class="prelude-val">Err</span>(<span class="string">&quot;escape value must be string literal&quot;</span>.into());
                 }
-            } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">ident</span> <span class="op">==</span> <span class="string">&quot;ext&quot;</span> {
-                <span class="kw">if</span> <span class="kw">let</span> <span class="ident">syn::Lit::Str</span>(<span class="kw-2">ref</span> <span class="ident">s</span>) <span class="op">=</span> <span class="ident">pair</span>.<span class="ident">lit</span> {
-                    <span class="ident">ext</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">s</span>.<span class="ident">value</span>());
-                } <span class="kw">else</span> {
-                    <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="string">&quot;ext value must be string literal&quot;</span>.<span class="ident">into</span>());
+            } <span class="kw">else if </span>ident == <span class="string">&quot;ext&quot; </span>{
+                <span class="kw">if let </span>syn::Lit::Str(<span class="kw-2">ref </span>s) = pair.lit {
+                    ext = <span class="prelude-val">Some</span>(s.value());
+                } <span class="kw">else </span>{
+                    <span class="kw">return </span><span class="prelude-val">Err</span>(<span class="string">&quot;ext value must be string literal&quot;</span>.into());
                 }
-            } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">ident</span> <span class="op">==</span> <span class="string">&quot;syntax&quot;</span> {
-                <span class="kw">if</span> <span class="kw">let</span> <span class="ident">syn::Lit::Str</span>(<span class="kw-2">ref</span> <span class="ident">s</span>) <span class="op">=</span> <span class="ident">pair</span>.<span class="ident">lit</span> {
-                    <span class="ident">syntax</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">s</span>.<span class="ident">value</span>())
-                } <span class="kw">else</span> {
-                    <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="string">&quot;syntax value must be string literal&quot;</span>.<span class="ident">into</span>());
+            } <span class="kw">else if </span>ident == <span class="string">&quot;syntax&quot; </span>{
+                <span class="kw">if let </span>syn::Lit::Str(<span class="kw-2">ref </span>s) = pair.lit {
+                    syntax = <span class="prelude-val">Some</span>(s.value())
+                } <span class="kw">else </span>{
+                    <span class="kw">return </span><span class="prelude-val">Err</span>(<span class="string">&quot;syntax value must be string literal&quot;</span>.into());
                 }
-            } <span class="kw">else</span> {
-                <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="macro">format!</span>(<span class="string">&quot;unsupported attribute key {:?} found&quot;</span>, <span class="ident">ident</span>).<span class="ident">into</span>());
+            } <span class="kw">else </span>{
+                <span class="kw">return </span><span class="prelude-val">Err</span>(<span class="macro">format!</span>(<span class="string">&quot;unsupported attribute key {:?} found&quot;</span>, ident).into());
             }
         }
 
-        <span class="comment">// Validate the `source` and `ext` value together, since they are</span>
-        <span class="comment">// related. In case `source` was used instead of `path`, the value</span>
-        <span class="comment">// of `ext` is merged into a synthetic `path` value here.</span>
-        <span class="kw">let</span> <span class="ident">source</span> <span class="op">=</span> <span class="ident">source</span>.<span class="ident">expect</span>(<span class="string">&quot;template path or source not found in attributes&quot;</span>);
-        <span class="kw">let</span> <span class="ident">path</span> <span class="op">=</span> <span class="kw">match</span> (<span class="kw-2">&amp;</span><span class="ident">source</span>, <span class="kw-2">&amp;</span><span class="ident">ext</span>) {
-            (<span class="kw-2">&amp;</span><span class="ident">Source::Path</span>(<span class="kw-2">ref</span> <span class="ident">path</span>), <span class="kw">_</span>) =&gt; <span class="ident">config</span>.<span class="ident">find_template</span>(<span class="ident">path</span>, <span class="prelude-val">None</span>)<span class="question-mark">?</span>,
-            (<span class="kw-2">&amp;</span><span class="ident">Source::Source</span>(<span class="kw">_</span>), <span class="prelude-val">Some</span>(<span class="ident">ext</span>)) =&gt; <span class="ident">PathBuf::from</span>(<span class="macro">format!</span>(<span class="string">&quot;{}.{}&quot;</span>, <span class="ident">ast</span>.<span class="ident">ident</span>, <span class="ident">ext</span>)),
-            (<span class="kw-2">&amp;</span><span class="ident">Source::Source</span>(<span class="kw">_</span>), <span class="prelude-val">None</span>) =&gt; {
-                <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="string">&quot;must include &#39;ext&#39; attribute when using &#39;source&#39; attribute&quot;</span>.<span class="ident">into</span>())
+        <span class="comment">// Validate the `source` and `ext` value together, since they are
+        // related. In case `source` was used instead of `path`, the value
+        // of `ext` is merged into a synthetic `path` value here.
+        </span><span class="kw">let </span>source = source.expect(<span class="string">&quot;template path or source not found in attributes&quot;</span>);
+        <span class="kw">let </span>path = <span class="kw">match </span>(<span class="kw-2">&amp;</span>source, <span class="kw-2">&amp;</span>ext) {
+            (<span class="kw-2">&amp;</span>Source::Path(<span class="kw-2">ref </span>path), <span class="kw">_</span>) =&gt; config.find_template(path, <span class="prelude-val">None</span>)<span class="question-mark">?</span>,
+            (<span class="kw-2">&amp;</span>Source::Source(<span class="kw">_</span>), <span class="prelude-val">Some</span>(ext)) =&gt; PathBuf::from(<span class="macro">format!</span>(<span class="string">&quot;{}.{}&quot;</span>, ast.ident, ext)),
+            (<span class="kw-2">&amp;</span>Source::Source(<span class="kw">_</span>), <span class="prelude-val">None</span>) =&gt; {
+                <span class="kw">return </span><span class="prelude-val">Err</span>(<span class="string">&quot;must include &#39;ext&#39; attribute when using &#39;source&#39; attribute&quot;</span>.into())
             }
         };
 
-        <span class="comment">// Check to see if a `_parent` field was defined on the context</span>
-        <span class="comment">// struct, and store the type for it for use in the code generator.</span>
-        <span class="kw">let</span> <span class="ident">parent</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">ast</span>.<span class="ident">data</span> {
-            <span class="ident">syn::Data::Struct</span>(<span class="ident">syn::DataStruct</span> {
-                <span class="ident">fields</span>: <span class="ident">syn::Fields::Named</span>(<span class="kw-2">ref</span> <span class="ident">fields</span>),
+        <span class="comment">// Check to see if a `_parent` field was defined on the context
+        // struct, and store the type for it for use in the code generator.
+        </span><span class="kw">let </span>parent = <span class="kw">match </span>ast.data {
+            syn::Data::Struct(syn::DataStruct {
+                fields: syn::Fields::Named(<span class="kw-2">ref </span>fields),
                 ..
-            }) =&gt; <span class="ident">fields</span>
-                .<span class="ident">named</span>
-                .<span class="ident">iter</span>()
-                .<span class="ident">find</span>(<span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="ident">f</span>.<span class="ident">ident</span>.<span class="ident">as_ref</span>().<span class="ident">filter</span>(<span class="op">|</span><span class="ident">name</span><span class="op">|</span> <span class="kw-2">*</span><span class="ident">name</span> <span class="op">==</span> <span class="string">&quot;_parent&quot;</span>).<span class="ident">is_some</span>())
-                .<span class="ident">map</span>(<span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="kw-2">&amp;</span><span class="ident">f</span>.<span class="ident">ty</span>),
-            <span class="kw">_</span> =&gt; <span class="prelude-val">None</span>,
+            }) =&gt; fields
+                .named
+                .iter()
+                .find(|f| f.ident.as_ref().filter(|name| <span class="kw-2">*</span>name == <span class="string">&quot;_parent&quot;</span>).is_some())
+                .map(|f| <span class="kw-2">&amp;</span>f.ty),
+            <span class="kw">_ </span>=&gt; <span class="prelude-val">None</span>,
         };
 
-        <span class="kw">if</span> <span class="ident">parent</span>.<span class="ident">is_some</span>() {
+        <span class="kw">if </span>parent.is_some() {
             <span class="macro">eprint!</span>(
                 <span class="string">&quot;   --&gt; in struct {}\n   = use of deprecated field &#39;_parent&#39;\n&quot;</span>,
-                <span class="ident">ast</span>.<span class="ident">ident</span>
+                ast.ident
             );
         }
 
-        <span class="comment">// Validate syntax</span>
-        <span class="kw">let</span> <span class="ident">syntax</span> <span class="op">=</span> <span class="ident">syntax</span>.<span class="ident">map_or_else</span>(
-            <span class="op">|</span><span class="op">|</span> <span class="prelude-val">Ok</span>(<span class="ident">config</span>.<span class="ident">syntaxes</span>.<span class="ident">get</span>(<span class="ident">config</span>.<span class="ident">default_syntax</span>).<span class="ident">unwrap</span>()),
-            <span class="op">|</span><span class="ident">s</span><span class="op">|</span> {
-                <span class="ident">config</span>
-                    .<span class="ident">syntaxes</span>
-                    .<span class="ident">get</span>(<span class="kw-2">&amp;</span><span class="ident">s</span>)
-                    .<span class="ident">ok_or_else</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">CompileError::from</span>(<span class="macro">format!</span>(<span class="string">&quot;attribute syntax {} not exist&quot;</span>, <span class="ident">s</span>)))
+        <span class="comment">// Validate syntax
+        </span><span class="kw">let </span>syntax = syntax.map_or_else(
+            || <span class="prelude-val">Ok</span>(config.syntaxes.get(config.default_syntax).unwrap()),
+            |s| {
+                config
+                    .syntaxes
+                    .get(<span class="kw-2">&amp;</span>s)
+                    .ok_or_else(|| CompileError::from(<span class="macro">format!</span>(<span class="string">&quot;attribute syntax {} not exist&quot;</span>, s)))
             },
         )<span class="question-mark">?</span>;
 
-        <span class="comment">// Match extension against defined output formats</span>
+        <span class="comment">// Match extension against defined output formats
 
-        <span class="kw">let</span> <span class="ident">escaping</span> <span class="op">=</span> <span class="ident">escaping</span>.<span class="ident">unwrap_or_else</span>(<span class="op">|</span><span class="op">|</span> {
-            <span class="ident">path</span>.<span class="ident">extension</span>()
-                .<span class="ident">map</span>(<span class="op">|</span><span class="ident">s</span><span class="op">|</span> <span class="ident">s</span>.<span class="ident">to_str</span>().<span class="ident">unwrap</span>())
-                .<span class="ident">unwrap_or</span>(<span class="string">&quot;&quot;</span>)
-                .<span class="ident">to_string</span>()
+        </span><span class="kw">let </span>escaping = escaping.unwrap_or_else(|| {
+            path.extension()
+                .map(|s| s.to_str().unwrap())
+                .unwrap_or(<span class="string">&quot;&quot;</span>)
+                .to_string()
         });
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">escaper</span> <span class="op">=</span> <span class="prelude-val">None</span>;
-        <span class="kw">for</span> (<span class="ident">extensions</span>, <span class="ident">path</span>) <span class="kw">in</span> <span class="kw-2">&amp;</span><span class="ident">config</span>.<span class="ident">escapers</span> {
-            <span class="kw">if</span> <span class="ident">extensions</span>.<span class="ident">contains</span>(<span class="kw-2">&amp;</span><span class="ident">escaping</span>) {
-                <span class="ident">escaper</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">path</span>);
+        <span class="kw">let </span><span class="kw-2">mut </span>escaper = <span class="prelude-val">None</span>;
+        <span class="kw">for </span>(extensions, path) <span class="kw">in </span><span class="kw-2">&amp;</span>config.escapers {
+            <span class="kw">if </span>extensions.contains(<span class="kw-2">&amp;</span>escaping) {
+                escaper = <span class="prelude-val">Some</span>(path);
                 <span class="kw">break</span>;
             }
         }
 
-        <span class="kw">let</span> <span class="ident">escaper</span> <span class="op">=</span> <span class="ident">escaper</span>.<span class="ident">ok_or_else</span>(<span class="op">|</span><span class="op">|</span> {
-            <span class="ident">CompileError::from</span>(<span class="macro">format!</span>(<span class="string">&quot;no escaper defined for extension &#39;{}&#39;&quot;</span>, <span class="ident">escaping</span>))
+        <span class="kw">let </span>escaper = escaper.ok_or_else(|| {
+            CompileError::from(<span class="macro">format!</span>(<span class="string">&quot;no escaper defined for extension &#39;{}&#39;&quot;</span>, escaping))
         })<span class="question-mark">?</span>;
 
-        <span class="kw">let</span> <span class="ident">mime_type</span> <span class="op">=</span>
-            <span class="ident">extension_to_mime_type</span>(<span class="ident">ext_default_to_path</span>(<span class="ident">ext</span>.<span class="ident">as_deref</span>(), <span class="kw-2">&amp;</span><span class="ident">path</span>).<span class="ident">unwrap_or</span>(<span class="string">&quot;txt&quot;</span>))
-                .<span class="ident">to_string</span>();
+        <span class="kw">let </span>mime_type =
+            extension_to_mime_type(ext_default_to_path(ext.as_deref(), <span class="kw-2">&amp;</span>path).unwrap_or(<span class="string">&quot;txt&quot;</span>))
+                .to_string();
 
-        <span class="prelude-val">Ok</span>(<span class="ident">TemplateInput</span> {
-            <span class="ident">ast</span>,
-            <span class="ident">config</span>,
-            <span class="ident">syntax</span>,
-            <span class="ident">source</span>,
-            <span class="ident">print</span>,
-            <span class="ident">escaper</span>,
-            <span class="ident">ext</span>,
-            <span class="ident">mime_type</span>,
-            <span class="ident">parent</span>,
-            <span class="ident">path</span>,
+        <span class="prelude-val">Ok</span>(TemplateInput {
+            ast,
+            config,
+            syntax,
+            source,
+            print,
+            escaper,
+            ext,
+            mime_type,
+            parent,
+            path,
         })
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">extension</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span> {
-        <span class="ident">ext_default_to_path</span>(<span class="self">self</span>.<span class="ident">ext</span>.<span class="ident">as_deref</span>(), <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">path</span>)
+    <span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>extension(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>str&gt; {
+        ext_default_to_path(<span class="self">self</span>.ext.as_deref(), <span class="kw-2">&amp;</span><span class="self">self</span>.path)
     }
 }
 
-<span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ext_default_to_path</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>(<span class="ident">ext</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span><span class="op">&gt;</span>, <span class="ident">path</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">Path</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span><span class="op">&gt;</span> {
-    <span class="ident">ext</span>.<span class="ident">or_else</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">extension</span>(<span class="ident">path</span>))
+<span class="attribute">#[inline]
+</span><span class="kw">pub fn </span>ext_default_to_path&lt;<span class="lifetime">&#39;a</span>&gt;(ext: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str&gt;, path: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>Path) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str&gt; {
+    ext.or_else(|| extension(path))
 }
 
-<span class="kw">fn</span> <span class="ident">extension</span>(<span class="ident">path</span>: <span class="kw-2">&amp;</span><span class="ident">Path</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span> {
-    <span class="kw">let</span> <span class="ident">ext</span> <span class="op">=</span> <span class="ident">path</span>.<span class="ident">extension</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">s</span><span class="op">|</span> <span class="ident">s</span>.<span class="ident">to_str</span>().<span class="ident">unwrap</span>())<span class="question-mark">?</span>;
+<span class="kw">fn </span>extension(path: <span class="kw-2">&amp;</span>Path) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>str&gt; {
+    <span class="kw">let </span>ext = path.extension().map(|s| s.to_str().unwrap())<span class="question-mark">?</span>;
 
-    <span class="kw">const</span> <span class="ident">JINJA_EXTENSIONS</span>: [<span class="kw-2">&amp;</span><span class="ident">str</span>; <span class="number">3</span>] <span class="op">=</span> [<span class="string">&quot;j2&quot;</span>, <span class="string">&quot;jinja&quot;</span>, <span class="string">&quot;jinja2&quot;</span>];
-    <span class="kw">if</span> <span class="ident">JINJA_EXTENSIONS</span>.<span class="ident">contains</span>(<span class="kw-2">&amp;</span><span class="ident">ext</span>) {
-        <span class="ident">Path::new</span>(<span class="ident">path</span>.<span class="ident">file_stem</span>().<span class="ident">unwrap</span>())
-            .<span class="ident">extension</span>()
-            .<span class="ident">map</span>(<span class="op">|</span><span class="ident">s</span><span class="op">|</span> <span class="ident">s</span>.<span class="ident">to_str</span>().<span class="ident">unwrap</span>())
-            .<span class="ident">or</span>(<span class="prelude-val">Some</span>(<span class="ident">ext</span>))
-    } <span class="kw">else</span> {
-        <span class="prelude-val">Some</span>(<span class="ident">ext</span>)
+    <span class="kw">const </span>JINJA_EXTENSIONS: [<span class="kw-2">&amp;</span>str; <span class="number">3</span>] = [<span class="string">&quot;j2&quot;</span>, <span class="string">&quot;jinja&quot;</span>, <span class="string">&quot;jinja2&quot;</span>];
+    <span class="kw">if </span>JINJA_EXTENSIONS.contains(<span class="kw-2">&amp;</span>ext) {
+        Path::new(path.file_stem().unwrap())
+            .extension()
+            .map(|s| s.to_str().unwrap())
+            .or(<span class="prelude-val">Some</span>(ext))
+    } <span class="kw">else </span>{
+        <span class="prelude-val">Some</span>(ext)
     }
 }
 
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Source</span> {
-    <span class="ident">Path</span>(<span class="ident">String</span>),
-    <span class="ident">Source</span>(<span class="ident">String</span>),
+<span class="kw">pub enum </span>Source {
+    Path(String),
+    Source(String),
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">PartialEq</span>)]</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Print</span> {
-    <span class="ident">All</span>,
-    <span class="ident">Ast</span>,
-    <span class="ident">Code</span>,
+<span class="attribute">#[derive(PartialEq)]
+</span><span class="kw">pub enum </span>Print {
+    All,
+    Ast,
+    Code,
     <span class="prelude-val">None</span>,
 }
 
-<span class="kw">impl</span> <span class="ident">FromStr</span> <span class="kw">for</span> <span class="ident">Print</span> {
-    <span class="kw">type</span> <span class="prelude-val">Err</span> <span class="op">=</span> <span class="ident">CompileError</span>;
+<span class="kw">impl </span>FromStr <span class="kw">for </span>Print {
+    <span class="kw">type </span><span class="prelude-val">Err </span>= CompileError;
 
-    <span class="kw">fn</span> <span class="ident">from_str</span>(<span class="ident">s</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Print</span>, <span class="ident"><span class="self">Self</span>::Err</span><span class="op">&gt;</span> {
-        <span class="kw">use</span> <span class="ident"><span class="self">self</span>::Print</span>::<span class="kw-2">*</span>;
-        <span class="prelude-val">Ok</span>(<span class="kw">match</span> <span class="ident">s</span> {
-            <span class="string">&quot;all&quot;</span> =&gt; <span class="ident">All</span>,
-            <span class="string">&quot;ast&quot;</span> =&gt; <span class="ident">Ast</span>,
-            <span class="string">&quot;code&quot;</span> =&gt; <span class="ident">Code</span>,
-            <span class="string">&quot;none&quot;</span> =&gt; <span class="prelude-val">None</span>,
-            <span class="ident">v</span> =&gt; <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="macro">format!</span>(<span class="string">&quot;invalid value for print option: {}&quot;</span>, <span class="ident">v</span>,).<span class="ident">into</span>()),
+    <span class="kw">fn </span>from_str(s: <span class="kw-2">&amp;</span>str) -&gt; <span class="prelude-ty">Result</span>&lt;Print, <span class="self">Self</span>::Err&gt; {
+        <span class="kw">use </span><span class="self">self</span>::Print::<span class="kw-2">*</span>;
+        <span class="prelude-val">Ok</span>(<span class="kw">match </span>s {
+            <span class="string">&quot;all&quot; </span>=&gt; All,
+            <span class="string">&quot;ast&quot; </span>=&gt; Ast,
+            <span class="string">&quot;code&quot; </span>=&gt; Code,
+            <span class="string">&quot;none&quot; </span>=&gt; <span class="prelude-val">None</span>,
+            v =&gt; <span class="kw">return </span><span class="prelude-val">Err</span>(<span class="macro">format!</span>(<span class="string">&quot;invalid value for print option: {}&quot;</span>, v,).into()),
         })
     }
 }
 
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">extension_to_mime_type</span>(<span class="ident">ext</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="ident">Mime</span> {
-    <span class="kw">let</span> <span class="ident">basic_type</span> <span class="op">=</span> <span class="ident">mime_guess::from_ext</span>(<span class="ident">ext</span>).<span class="ident">first_or_octet_stream</span>();
-    <span class="kw">for</span> (<span class="ident">simple</span>, <span class="ident">utf_8</span>) <span class="kw">in</span> <span class="kw-2">&amp;</span><span class="ident">TEXT_TYPES</span> {
-        <span class="kw">if</span> <span class="kw-2">&amp;</span><span class="ident">basic_type</span> <span class="op">==</span> <span class="ident">simple</span> {
-            <span class="kw">return</span> <span class="ident">utf_8</span>.<span class="ident">clone</span>();
+<span class="attribute">#[doc(hidden)]
+</span><span class="kw">pub fn </span>extension_to_mime_type(ext: <span class="kw-2">&amp;</span>str) -&gt; Mime {
+    <span class="kw">let </span>basic_type = mime_guess::from_ext(ext).first_or_octet_stream();
+    <span class="kw">for </span>(simple, utf_8) <span class="kw">in </span><span class="kw-2">&amp;</span>TEXT_TYPES {
+        <span class="kw">if </span><span class="kw-2">&amp;</span>basic_type == simple {
+            <span class="kw">return </span>utf_8.clone();
         }
     }
-    <span class="ident">basic_type</span>
+    basic_type
 }
 
-<span class="kw">const</span> <span class="ident">TEXT_TYPES</span>: [(<span class="ident">Mime</span>, <span class="ident">Mime</span>); <span class="number">6</span>] <span class="op">=</span> [
-    (<span class="ident">mime::TEXT_PLAIN</span>, <span class="ident">mime::TEXT_PLAIN_UTF_8</span>),
-    (<span class="ident">mime::TEXT_HTML</span>, <span class="ident">mime::TEXT_HTML_UTF_8</span>),
-    (<span class="ident">mime::TEXT_CSS</span>, <span class="ident">mime::TEXT_CSS_UTF_8</span>),
-    (<span class="ident">mime::TEXT_CSV</span>, <span class="ident">mime::TEXT_CSV_UTF_8</span>),
+<span class="kw">const </span>TEXT_TYPES: [(Mime, Mime); <span class="number">6</span>] = [
+    (mime::TEXT_PLAIN, mime::TEXT_PLAIN_UTF_8),
+    (mime::TEXT_HTML, mime::TEXT_HTML_UTF_8),
+    (mime::TEXT_CSS, mime::TEXT_CSS_UTF_8),
+    (mime::TEXT_CSV, mime::TEXT_CSV_UTF_8),
     (
-        <span class="ident">mime::TEXT_TAB_SEPARATED_VALUES</span>,
-        <span class="ident">mime::TEXT_TAB_SEPARATED_VALUES_UTF_8</span>,
+        mime::TEXT_TAB_SEPARATED_VALUES,
+        mime::TEXT_TAB_SEPARATED_VALUES_UTF_8,
     ),
     (
-        <span class="ident">mime::APPLICATION_JAVASCRIPT</span>,
-        <span class="ident">mime::APPLICATION_JAVASCRIPT_UTF_8</span>,
+        mime::APPLICATION_JAVASCRIPT,
+        mime::APPLICATION_JAVASCRIPT_UTF_8,
     ),
 ];
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
-<span class="kw">mod</span> <span class="ident">tests</span> {
-    <span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
+<span class="attribute">#[cfg(test)]
+</span><span class="kw">mod </span>tests {
+    <span class="kw">use super</span>::<span class="kw-2">*</span>;
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">test_ext</span>() {
-        <span class="macro">assert_eq!</span>(<span class="ident">extension</span>(<span class="ident">Path::new</span>(<span class="string">&quot;foo-bar.txt&quot;</span>)), <span class="prelude-val">Some</span>(<span class="string">&quot;txt&quot;</span>));
-        <span class="macro">assert_eq!</span>(<span class="ident">extension</span>(<span class="ident">Path::new</span>(<span class="string">&quot;foo-bar.html&quot;</span>)), <span class="prelude-val">Some</span>(<span class="string">&quot;html&quot;</span>));
-        <span class="macro">assert_eq!</span>(<span class="ident">extension</span>(<span class="ident">Path::new</span>(<span class="string">&quot;foo-bar.unknown&quot;</span>)), <span class="prelude-val">Some</span>(<span class="string">&quot;unknown&quot;</span>));
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>test_ext() {
+        <span class="macro">assert_eq!</span>(extension(Path::new(<span class="string">&quot;foo-bar.txt&quot;</span>)), <span class="prelude-val">Some</span>(<span class="string">&quot;txt&quot;</span>));
+        <span class="macro">assert_eq!</span>(extension(Path::new(<span class="string">&quot;foo-bar.html&quot;</span>)), <span class="prelude-val">Some</span>(<span class="string">&quot;html&quot;</span>));
+        <span class="macro">assert_eq!</span>(extension(Path::new(<span class="string">&quot;foo-bar.unknown&quot;</span>)), <span class="prelude-val">Some</span>(<span class="string">&quot;unknown&quot;</span>));
 
-        <span class="macro">assert_eq!</span>(<span class="ident">extension</span>(<span class="ident">Path::new</span>(<span class="string">&quot;foo/bar/baz.txt&quot;</span>)), <span class="prelude-val">Some</span>(<span class="string">&quot;txt&quot;</span>));
-        <span class="macro">assert_eq!</span>(<span class="ident">extension</span>(<span class="ident">Path::new</span>(<span class="string">&quot;foo/bar/baz.html&quot;</span>)), <span class="prelude-val">Some</span>(<span class="string">&quot;html&quot;</span>));
-        <span class="macro">assert_eq!</span>(<span class="ident">extension</span>(<span class="ident">Path::new</span>(<span class="string">&quot;foo/bar/baz.unknown&quot;</span>)), <span class="prelude-val">Some</span>(<span class="string">&quot;unknown&quot;</span>));
+        <span class="macro">assert_eq!</span>(extension(Path::new(<span class="string">&quot;foo/bar/baz.txt&quot;</span>)), <span class="prelude-val">Some</span>(<span class="string">&quot;txt&quot;</span>));
+        <span class="macro">assert_eq!</span>(extension(Path::new(<span class="string">&quot;foo/bar/baz.html&quot;</span>)), <span class="prelude-val">Some</span>(<span class="string">&quot;html&quot;</span>));
+        <span class="macro">assert_eq!</span>(extension(Path::new(<span class="string">&quot;foo/bar/baz.unknown&quot;</span>)), <span class="prelude-val">Some</span>(<span class="string">&quot;unknown&quot;</span>));
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">test_double_ext</span>() {
-        <span class="macro">assert_eq!</span>(<span class="ident">extension</span>(<span class="ident">Path::new</span>(<span class="string">&quot;foo-bar.html.txt&quot;</span>)), <span class="prelude-val">Some</span>(<span class="string">&quot;txt&quot;</span>));
-        <span class="macro">assert_eq!</span>(<span class="ident">extension</span>(<span class="ident">Path::new</span>(<span class="string">&quot;foo-bar.txt.html&quot;</span>)), <span class="prelude-val">Some</span>(<span class="string">&quot;html&quot;</span>));
-        <span class="macro">assert_eq!</span>(<span class="ident">extension</span>(<span class="ident">Path::new</span>(<span class="string">&quot;foo-bar.txt.unknown&quot;</span>)), <span class="prelude-val">Some</span>(<span class="string">&quot;unknown&quot;</span>));
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>test_double_ext() {
+        <span class="macro">assert_eq!</span>(extension(Path::new(<span class="string">&quot;foo-bar.html.txt&quot;</span>)), <span class="prelude-val">Some</span>(<span class="string">&quot;txt&quot;</span>));
+        <span class="macro">assert_eq!</span>(extension(Path::new(<span class="string">&quot;foo-bar.txt.html&quot;</span>)), <span class="prelude-val">Some</span>(<span class="string">&quot;html&quot;</span>));
+        <span class="macro">assert_eq!</span>(extension(Path::new(<span class="string">&quot;foo-bar.txt.unknown&quot;</span>)), <span class="prelude-val">Some</span>(<span class="string">&quot;unknown&quot;</span>));
 
-        <span class="macro">assert_eq!</span>(<span class="ident">extension</span>(<span class="ident">Path::new</span>(<span class="string">&quot;foo/bar/baz.html.txt&quot;</span>)), <span class="prelude-val">Some</span>(<span class="string">&quot;txt&quot;</span>));
-        <span class="macro">assert_eq!</span>(<span class="ident">extension</span>(<span class="ident">Path::new</span>(<span class="string">&quot;foo/bar/baz.txt.html&quot;</span>)), <span class="prelude-val">Some</span>(<span class="string">&quot;html&quot;</span>));
+        <span class="macro">assert_eq!</span>(extension(Path::new(<span class="string">&quot;foo/bar/baz.html.txt&quot;</span>)), <span class="prelude-val">Some</span>(<span class="string">&quot;txt&quot;</span>));
+        <span class="macro">assert_eq!</span>(extension(Path::new(<span class="string">&quot;foo/bar/baz.txt.html&quot;</span>)), <span class="prelude-val">Some</span>(<span class="string">&quot;html&quot;</span>));
         <span class="macro">assert_eq!</span>(
-            <span class="ident">extension</span>(<span class="ident">Path::new</span>(<span class="string">&quot;foo/bar/baz.txt.unknown&quot;</span>)),
+            extension(Path::new(<span class="string">&quot;foo/bar/baz.txt.unknown&quot;</span>)),
             <span class="prelude-val">Some</span>(<span class="string">&quot;unknown&quot;</span>)
         );
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">test_skip_jinja_ext</span>() {
-        <span class="macro">assert_eq!</span>(<span class="ident">extension</span>(<span class="ident">Path::new</span>(<span class="string">&quot;foo-bar.html.j2&quot;</span>)), <span class="prelude-val">Some</span>(<span class="string">&quot;html&quot;</span>));
-        <span class="macro">assert_eq!</span>(<span class="ident">extension</span>(<span class="ident">Path::new</span>(<span class="string">&quot;foo-bar.html.jinja&quot;</span>)), <span class="prelude-val">Some</span>(<span class="string">&quot;html&quot;</span>));
-        <span class="macro">assert_eq!</span>(<span class="ident">extension</span>(<span class="ident">Path::new</span>(<span class="string">&quot;foo-bar.html.jinja2&quot;</span>)), <span class="prelude-val">Some</span>(<span class="string">&quot;html&quot;</span>));
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>test_skip_jinja_ext() {
+        <span class="macro">assert_eq!</span>(extension(Path::new(<span class="string">&quot;foo-bar.html.j2&quot;</span>)), <span class="prelude-val">Some</span>(<span class="string">&quot;html&quot;</span>));
+        <span class="macro">assert_eq!</span>(extension(Path::new(<span class="string">&quot;foo-bar.html.jinja&quot;</span>)), <span class="prelude-val">Some</span>(<span class="string">&quot;html&quot;</span>));
+        <span class="macro">assert_eq!</span>(extension(Path::new(<span class="string">&quot;foo-bar.html.jinja2&quot;</span>)), <span class="prelude-val">Some</span>(<span class="string">&quot;html&quot;</span>));
 
-        <span class="macro">assert_eq!</span>(<span class="ident">extension</span>(<span class="ident">Path::new</span>(<span class="string">&quot;foo/bar/baz.txt.j2&quot;</span>)), <span class="prelude-val">Some</span>(<span class="string">&quot;txt&quot;</span>));
-        <span class="macro">assert_eq!</span>(<span class="ident">extension</span>(<span class="ident">Path::new</span>(<span class="string">&quot;foo/bar/baz.txt.jinja&quot;</span>)), <span class="prelude-val">Some</span>(<span class="string">&quot;txt&quot;</span>));
-        <span class="macro">assert_eq!</span>(<span class="ident">extension</span>(<span class="ident">Path::new</span>(<span class="string">&quot;foo/bar/baz.txt.jinja2&quot;</span>)), <span class="prelude-val">Some</span>(<span class="string">&quot;txt&quot;</span>));
+        <span class="macro">assert_eq!</span>(extension(Path::new(<span class="string">&quot;foo/bar/baz.txt.j2&quot;</span>)), <span class="prelude-val">Some</span>(<span class="string">&quot;txt&quot;</span>));
+        <span class="macro">assert_eq!</span>(extension(Path::new(<span class="string">&quot;foo/bar/baz.txt.jinja&quot;</span>)), <span class="prelude-val">Some</span>(<span class="string">&quot;txt&quot;</span>));
+        <span class="macro">assert_eq!</span>(extension(Path::new(<span class="string">&quot;foo/bar/baz.txt.jinja2&quot;</span>)), <span class="prelude-val">Some</span>(<span class="string">&quot;txt&quot;</span>));
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">test_only_jinja_ext</span>() {
-        <span class="macro">assert_eq!</span>(<span class="ident">extension</span>(<span class="ident">Path::new</span>(<span class="string">&quot;foo-bar.j2&quot;</span>)), <span class="prelude-val">Some</span>(<span class="string">&quot;j2&quot;</span>));
-        <span class="macro">assert_eq!</span>(<span class="ident">extension</span>(<span class="ident">Path::new</span>(<span class="string">&quot;foo-bar.jinja&quot;</span>)), <span class="prelude-val">Some</span>(<span class="string">&quot;jinja&quot;</span>));
-        <span class="macro">assert_eq!</span>(<span class="ident">extension</span>(<span class="ident">Path::new</span>(<span class="string">&quot;foo-bar.jinja2&quot;</span>)), <span class="prelude-val">Some</span>(<span class="string">&quot;jinja2&quot;</span>));
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>test_only_jinja_ext() {
+        <span class="macro">assert_eq!</span>(extension(Path::new(<span class="string">&quot;foo-bar.j2&quot;</span>)), <span class="prelude-val">Some</span>(<span class="string">&quot;j2&quot;</span>));
+        <span class="macro">assert_eq!</span>(extension(Path::new(<span class="string">&quot;foo-bar.jinja&quot;</span>)), <span class="prelude-val">Some</span>(<span class="string">&quot;jinja&quot;</span>));
+        <span class="macro">assert_eq!</span>(extension(Path::new(<span class="string">&quot;foo-bar.jinja2&quot;</span>)), <span class="prelude-val">Some</span>(<span class="string">&quot;jinja2&quot;</span>));
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="askama_shared" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="askama_shared" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (77e57db38 2022-10-30)" ></div></body></html>

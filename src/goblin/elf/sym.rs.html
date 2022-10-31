@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/goblin-0.5.4/src/elf/sym.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>sym.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../goblin/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../goblin/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../goblin/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/goblin-0.5.4/src/elf/sym.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>sym.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../normalize.css"><link rel="stylesheet" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../ayu.css" disabled><link rel="stylesheet" href="../../../dark.css" disabled><link rel="stylesheet" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../goblin/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -605,612 +605,612 @@
 <span id="605">605</span>
 <span id="606">606</span>
 <span id="607">607</span>
-</pre><pre class="rust"><code><span class="doccomment">/// === Sym bindings ===</span>
-<span class="doccomment">/// Local symbol.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STB_LOCAL</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">0</span>;
-<span class="doccomment">/// Global symbol.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STB_GLOBAL</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">1</span>;
-<span class="doccomment">/// Weak symbol.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STB_WEAK</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">2</span>;
-<span class="doccomment">/// Number of defined types..</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STB_NUM</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">3</span>;
-<span class="doccomment">/// Start of OS-specific.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STB_LOOS</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">10</span>;
-<span class="doccomment">/// Unique symbol..</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STB_GNU_UNIQUE</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">10</span>;
-<span class="doccomment">/// End of OS-specific.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STB_HIOS</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">12</span>;
-<span class="doccomment">/// Start of processor-specific.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STB_LOPROC</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">13</span>;
-<span class="doccomment">/// End of processor-specific.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STB_HIPROC</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">15</span>;
+</pre><pre class="rust"><code><span class="doccomment">/// === Sym bindings ===
+/// Local symbol.
+</span><span class="kw">pub const </span>STB_LOCAL: u8 = <span class="number">0</span>;
+<span class="doccomment">/// Global symbol.
+</span><span class="kw">pub const </span>STB_GLOBAL: u8 = <span class="number">1</span>;
+<span class="doccomment">/// Weak symbol.
+</span><span class="kw">pub const </span>STB_WEAK: u8 = <span class="number">2</span>;
+<span class="doccomment">/// Number of defined types..
+</span><span class="kw">pub const </span>STB_NUM: u8 = <span class="number">3</span>;
+<span class="doccomment">/// Start of OS-specific.
+</span><span class="kw">pub const </span>STB_LOOS: u8 = <span class="number">10</span>;
+<span class="doccomment">/// Unique symbol..
+</span><span class="kw">pub const </span>STB_GNU_UNIQUE: u8 = <span class="number">10</span>;
+<span class="doccomment">/// End of OS-specific.
+</span><span class="kw">pub const </span>STB_HIOS: u8 = <span class="number">12</span>;
+<span class="doccomment">/// Start of processor-specific.
+</span><span class="kw">pub const </span>STB_LOPROC: u8 = <span class="number">13</span>;
+<span class="doccomment">/// End of processor-specific.
+</span><span class="kw">pub const </span>STB_HIPROC: u8 = <span class="number">15</span>;
 
-<span class="doccomment">/// === Sym types ===</span>
-<span class="doccomment">/// Symbol type is unspecified.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STT_NOTYPE</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">0</span>;
-<span class="doccomment">/// Symbol is a data object.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STT_OBJECT</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">1</span>;
-<span class="doccomment">/// Symbol is a code object.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STT_FUNC</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">2</span>;
-<span class="doccomment">/// Symbol associated with a section.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STT_SECTION</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">3</span>;
-<span class="doccomment">/// Symbol&#39;s name is file name.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STT_FILE</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">4</span>;
-<span class="doccomment">/// Symbol is a common data object.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STT_COMMON</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">5</span>;
-<span class="doccomment">/// Symbol is thread-local data object.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STT_TLS</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">6</span>;
-<span class="doccomment">/// Number of defined types.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STT_NUM</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">7</span>;
-<span class="doccomment">/// Start of OS-specific.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STT_LOOS</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">10</span>;
-<span class="doccomment">/// Symbol is indirect code object.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STT_GNU_IFUNC</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">10</span>;
-<span class="doccomment">/// End of OS-specific.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STT_HIOS</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">12</span>;
-<span class="doccomment">/// Start of processor-specific.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STT_LOPROC</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">13</span>;
-<span class="doccomment">/// End of processor-specific.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STT_HIPROC</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">15</span>;
+<span class="doccomment">/// === Sym types ===
+/// Symbol type is unspecified.
+</span><span class="kw">pub const </span>STT_NOTYPE: u8 = <span class="number">0</span>;
+<span class="doccomment">/// Symbol is a data object.
+</span><span class="kw">pub const </span>STT_OBJECT: u8 = <span class="number">1</span>;
+<span class="doccomment">/// Symbol is a code object.
+</span><span class="kw">pub const </span>STT_FUNC: u8 = <span class="number">2</span>;
+<span class="doccomment">/// Symbol associated with a section.
+</span><span class="kw">pub const </span>STT_SECTION: u8 = <span class="number">3</span>;
+<span class="doccomment">/// Symbol&#39;s name is file name.
+</span><span class="kw">pub const </span>STT_FILE: u8 = <span class="number">4</span>;
+<span class="doccomment">/// Symbol is a common data object.
+</span><span class="kw">pub const </span>STT_COMMON: u8 = <span class="number">5</span>;
+<span class="doccomment">/// Symbol is thread-local data object.
+</span><span class="kw">pub const </span>STT_TLS: u8 = <span class="number">6</span>;
+<span class="doccomment">/// Number of defined types.
+</span><span class="kw">pub const </span>STT_NUM: u8 = <span class="number">7</span>;
+<span class="doccomment">/// Start of OS-specific.
+</span><span class="kw">pub const </span>STT_LOOS: u8 = <span class="number">10</span>;
+<span class="doccomment">/// Symbol is indirect code object.
+</span><span class="kw">pub const </span>STT_GNU_IFUNC: u8 = <span class="number">10</span>;
+<span class="doccomment">/// End of OS-specific.
+</span><span class="kw">pub const </span>STT_HIOS: u8 = <span class="number">12</span>;
+<span class="doccomment">/// Start of processor-specific.
+</span><span class="kw">pub const </span>STT_LOPROC: u8 = <span class="number">13</span>;
+<span class="doccomment">/// End of processor-specific.
+</span><span class="kw">pub const </span>STT_HIPROC: u8 = <span class="number">15</span>;
 
-<span class="doccomment">/// === Sym visibility ===</span>
-<span class="doccomment">/// Default: Visibility is specified by the symbol&#39;s binding type</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STV_DEFAULT</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">0</span>;
-<span class="doccomment">/// Internal: use of this attribute is currently reserved.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STV_INTERNAL</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">1</span>;
-<span class="doccomment">/// Hidden: Not visible to other components, necessarily protected. Binding scope becomes local</span>
-<span class="doccomment">/// when the object is included in an executable or shared object.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STV_HIDDEN</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">2</span>;
-<span class="doccomment">/// Protected: Symbol defined in current component is visible in other components, but cannot be preempted.</span>
-<span class="doccomment">/// Any reference from within the defining component must be resolved to the definition in that</span>
-<span class="doccomment">/// component.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STV_PROTECTED</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">3</span>;
-<span class="doccomment">/// Exported: ensures a symbol remains global, cannot be demoted or eliminated by any other symbol</span>
-<span class="doccomment">/// visibility technique.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STV_EXPORTED</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">4</span>;
-<span class="doccomment">/// Singleton: ensures a symbol remains global, and that a single instance of the definition is</span>
-<span class="doccomment">/// bound to by all references within a process. Cannot be demoted or eliminated.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STV_SINGLETON</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">5</span>;
-<span class="doccomment">/// Eliminate: extends the hidden attribute. Not written in any symbol table of a dynamic</span>
-<span class="doccomment">/// executable or shared object.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STV_ELIMINATE</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">6</span>;
+<span class="doccomment">/// === Sym visibility ===
+/// Default: Visibility is specified by the symbol&#39;s binding type
+</span><span class="kw">pub const </span>STV_DEFAULT: u8 = <span class="number">0</span>;
+<span class="doccomment">/// Internal: use of this attribute is currently reserved.
+</span><span class="kw">pub const </span>STV_INTERNAL: u8 = <span class="number">1</span>;
+<span class="doccomment">/// Hidden: Not visible to other components, necessarily protected. Binding scope becomes local
+/// when the object is included in an executable or shared object.
+</span><span class="kw">pub const </span>STV_HIDDEN: u8 = <span class="number">2</span>;
+<span class="doccomment">/// Protected: Symbol defined in current component is visible in other components, but cannot be preempted.
+/// Any reference from within the defining component must be resolved to the definition in that
+/// component.
+</span><span class="kw">pub const </span>STV_PROTECTED: u8 = <span class="number">3</span>;
+<span class="doccomment">/// Exported: ensures a symbol remains global, cannot be demoted or eliminated by any other symbol
+/// visibility technique.
+</span><span class="kw">pub const </span>STV_EXPORTED: u8 = <span class="number">4</span>;
+<span class="doccomment">/// Singleton: ensures a symbol remains global, and that a single instance of the definition is
+/// bound to by all references within a process. Cannot be demoted or eliminated.
+</span><span class="kw">pub const </span>STV_SINGLETON: u8 = <span class="number">5</span>;
+<span class="doccomment">/// Eliminate: extends the hidden attribute. Not written in any symbol table of a dynamic
+/// executable or shared object.
+</span><span class="kw">pub const </span>STV_ELIMINATE: u8 = <span class="number">6</span>;
 
-<span class="doccomment">/// Get the ST bind.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// This is the first four bits of the &quot;info&quot; byte.</span>
-<span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">st_bind</span>(<span class="ident">info</span>: <span class="ident">u8</span>) -&gt; <span class="ident">u8</span> {
-    <span class="ident">info</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">4</span>
+<span class="doccomment">/// Get the ST bind.
+///
+/// This is the first four bits of the &quot;info&quot; byte.
+</span><span class="attribute">#[inline]
+</span><span class="kw">pub fn </span>st_bind(info: u8) -&gt; u8 {
+    info &gt;&gt; <span class="number">4
+</span>}
+
+<span class="doccomment">/// Get the ST type.
+///
+/// This is the last four bits of the &quot;info&quot; byte.
+</span><span class="attribute">#[inline]
+</span><span class="kw">pub fn </span>st_type(info: u8) -&gt; u8 {
+    info &amp; <span class="number">0xf
+</span>}
+
+<span class="doccomment">/// Get the ST visibility.
+///
+/// This is the last three bits of the &quot;other&quot; byte.
+</span><span class="attribute">#[inline]
+</span><span class="kw">pub fn </span>st_visibility(other: u8) -&gt; u8 {
+    other &amp; <span class="number">0x7
+</span>}
+
+<span class="doccomment">/// Is this information defining an import?
+</span><span class="attribute">#[inline]
+</span><span class="kw">pub fn </span>is_import(info: u8, value: u64) -&gt; bool {
+    <span class="kw">let </span>bind = st_bind(info);
+    bind == STB_GLOBAL &amp;&amp; value == <span class="number">0
+</span>}
+
+<span class="doccomment">/// Convenience function to get the &amp;&#39;static str type from the symbols `st_info`.
+</span><span class="attribute">#[inline]
+</span><span class="kw">pub fn </span>get_type(info: u8) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str {
+    type_to_str(st_type(info))
 }
 
-<span class="doccomment">/// Get the ST type.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// This is the last four bits of the &quot;info&quot; byte.</span>
-<span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">st_type</span>(<span class="ident">info</span>: <span class="ident">u8</span>) -&gt; <span class="ident">u8</span> {
-    <span class="ident">info</span> <span class="op">&amp;</span> <span class="number">0xf</span>
-}
-
-<span class="doccomment">/// Get the ST visibility.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// This is the last three bits of the &quot;other&quot; byte.</span>
-<span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">st_visibility</span>(<span class="ident">other</span>: <span class="ident">u8</span>) -&gt; <span class="ident">u8</span> {
-    <span class="ident">other</span> <span class="op">&amp;</span> <span class="number">0x7</span>
-}
-
-<span class="doccomment">/// Is this information defining an import?</span>
-<span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_import</span>(<span class="ident">info</span>: <span class="ident">u8</span>, <span class="ident">value</span>: <span class="ident">u64</span>) -&gt; <span class="ident">bool</span> {
-    <span class="kw">let</span> <span class="ident">bind</span> <span class="op">=</span> <span class="ident">st_bind</span>(<span class="ident">info</span>);
-    <span class="ident">bind</span> <span class="op">==</span> <span class="ident">STB_GLOBAL</span> <span class="op">&amp;&amp;</span> <span class="ident">value</span> <span class="op">==</span> <span class="number">0</span>
-}
-
-<span class="doccomment">/// Convenience function to get the &amp;&#39;static str type from the symbols `st_info`.</span>
-<span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_type</span>(<span class="ident">info</span>: <span class="ident">u8</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> {
-    <span class="ident">type_to_str</span>(<span class="ident">st_type</span>(<span class="ident">info</span>))
-}
-
-<span class="doccomment">/// Get the string for some bind.</span>
-<span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">bind_to_str</span>(<span class="ident">typ</span>: <span class="ident">u8</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> {
-    <span class="kw">match</span> <span class="ident">typ</span> {
-        <span class="ident">STB_LOCAL</span> =&gt; <span class="string">&quot;LOCAL&quot;</span>,
-        <span class="ident">STB_GLOBAL</span> =&gt; <span class="string">&quot;GLOBAL&quot;</span>,
-        <span class="ident">STB_WEAK</span> =&gt; <span class="string">&quot;WEAK&quot;</span>,
-        <span class="ident">STB_NUM</span> =&gt; <span class="string">&quot;NUM&quot;</span>,
-        <span class="ident">STB_GNU_UNIQUE</span> =&gt; <span class="string">&quot;GNU_UNIQUE&quot;</span>,
-        <span class="kw">_</span> =&gt; <span class="string">&quot;UNKNOWN_STB&quot;</span>,
+<span class="doccomment">/// Get the string for some bind.
+</span><span class="attribute">#[inline]
+</span><span class="kw">pub fn </span>bind_to_str(typ: u8) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str {
+    <span class="kw">match </span>typ {
+        STB_LOCAL =&gt; <span class="string">&quot;LOCAL&quot;</span>,
+        STB_GLOBAL =&gt; <span class="string">&quot;GLOBAL&quot;</span>,
+        STB_WEAK =&gt; <span class="string">&quot;WEAK&quot;</span>,
+        STB_NUM =&gt; <span class="string">&quot;NUM&quot;</span>,
+        STB_GNU_UNIQUE =&gt; <span class="string">&quot;GNU_UNIQUE&quot;</span>,
+        <span class="kw">_ </span>=&gt; <span class="string">&quot;UNKNOWN_STB&quot;</span>,
     }
 }
 
-<span class="doccomment">/// Get the string for some type.</span>
-<span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">type_to_str</span>(<span class="ident">typ</span>: <span class="ident">u8</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> {
-    <span class="kw">match</span> <span class="ident">typ</span> {
-        <span class="ident">STT_NOTYPE</span> =&gt; <span class="string">&quot;NOTYPE&quot;</span>,
-        <span class="ident">STT_OBJECT</span> =&gt; <span class="string">&quot;OBJECT&quot;</span>,
-        <span class="ident">STT_FUNC</span> =&gt; <span class="string">&quot;FUNC&quot;</span>,
-        <span class="ident">STT_SECTION</span> =&gt; <span class="string">&quot;SECTION&quot;</span>,
-        <span class="ident">STT_FILE</span> =&gt; <span class="string">&quot;FILE&quot;</span>,
-        <span class="ident">STT_COMMON</span> =&gt; <span class="string">&quot;COMMON&quot;</span>,
-        <span class="ident">STT_TLS</span> =&gt; <span class="string">&quot;TLS&quot;</span>,
-        <span class="ident">STT_NUM</span> =&gt; <span class="string">&quot;NUM&quot;</span>,
-        <span class="ident">STT_GNU_IFUNC</span> =&gt; <span class="string">&quot;GNU_IFUNC&quot;</span>,
-        <span class="kw">_</span> =&gt; <span class="string">&quot;UNKNOWN_STT&quot;</span>,
+<span class="doccomment">/// Get the string for some type.
+</span><span class="attribute">#[inline]
+</span><span class="kw">pub fn </span>type_to_str(typ: u8) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str {
+    <span class="kw">match </span>typ {
+        STT_NOTYPE =&gt; <span class="string">&quot;NOTYPE&quot;</span>,
+        STT_OBJECT =&gt; <span class="string">&quot;OBJECT&quot;</span>,
+        STT_FUNC =&gt; <span class="string">&quot;FUNC&quot;</span>,
+        STT_SECTION =&gt; <span class="string">&quot;SECTION&quot;</span>,
+        STT_FILE =&gt; <span class="string">&quot;FILE&quot;</span>,
+        STT_COMMON =&gt; <span class="string">&quot;COMMON&quot;</span>,
+        STT_TLS =&gt; <span class="string">&quot;TLS&quot;</span>,
+        STT_NUM =&gt; <span class="string">&quot;NUM&quot;</span>,
+        STT_GNU_IFUNC =&gt; <span class="string">&quot;GNU_IFUNC&quot;</span>,
+        <span class="kw">_ </span>=&gt; <span class="string">&quot;UNKNOWN_STT&quot;</span>,
     }
 }
 
-<span class="doccomment">/// Get the string for some visibility</span>
-<span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">visibility_to_str</span>(<span class="ident">typ</span>: <span class="ident">u8</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> {
-    <span class="kw">match</span> <span class="ident">typ</span> {
-        <span class="ident">STV_DEFAULT</span> =&gt; <span class="string">&quot;DEFAULT&quot;</span>,
-        <span class="ident">STV_INTERNAL</span> =&gt; <span class="string">&quot;INTERNAL&quot;</span>,
-        <span class="ident">STV_HIDDEN</span> =&gt; <span class="string">&quot;HIDDEN&quot;</span>,
-        <span class="ident">STV_PROTECTED</span> =&gt; <span class="string">&quot;PROTECTED&quot;</span>,
-        <span class="ident">STV_EXPORTED</span> =&gt; <span class="string">&quot;EXPORTED&quot;</span>,
-        <span class="ident">STV_SINGLETON</span> =&gt; <span class="string">&quot;SINGLETON&quot;</span>,
-        <span class="ident">STV_ELIMINATE</span> =&gt; <span class="string">&quot;ELIMINATE&quot;</span>,
-        <span class="kw">_</span> =&gt; <span class="string">&quot;UNKNOWN_STV&quot;</span>,
+<span class="doccomment">/// Get the string for some visibility
+</span><span class="attribute">#[inline]
+</span><span class="kw">pub fn </span>visibility_to_str(typ: u8) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str {
+    <span class="kw">match </span>typ {
+        STV_DEFAULT =&gt; <span class="string">&quot;DEFAULT&quot;</span>,
+        STV_INTERNAL =&gt; <span class="string">&quot;INTERNAL&quot;</span>,
+        STV_HIDDEN =&gt; <span class="string">&quot;HIDDEN&quot;</span>,
+        STV_PROTECTED =&gt; <span class="string">&quot;PROTECTED&quot;</span>,
+        STV_EXPORTED =&gt; <span class="string">&quot;EXPORTED&quot;</span>,
+        STV_SINGLETON =&gt; <span class="string">&quot;SINGLETON&quot;</span>,
+        STV_ELIMINATE =&gt; <span class="string">&quot;ELIMINATE&quot;</span>,
+        <span class="kw">_ </span>=&gt; <span class="string">&quot;UNKNOWN_STV&quot;</span>,
     }
 }
 
-<span class="macro">macro_rules!</span> <span class="ident">elf_sym_std_impl</span> {
-    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">size</span>:<span class="ident">ty</span>) =&gt; {
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
-        <span class="kw">mod</span> <span class="ident">tests</span> {
-            <span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
-            <span class="attribute">#[<span class="ident">test</span>]</span>
-            <span class="kw">fn</span> <span class="ident">size_of</span>() {
-                <span class="macro">assert_eq!</span>(<span class="ident">::std::mem::size_of</span>::<span class="op">&lt;</span><span class="ident">Sym</span><span class="op">&gt;</span>(), <span class="ident">SIZEOF_SYM</span>);
+<span class="macro">macro_rules! </span>elf_sym_std_impl {
+    (<span class="macro-nonterminal">$size</span>:ty) =&gt; {
+        <span class="attribute">#[cfg(test)]
+        </span><span class="kw">mod </span>tests {
+            <span class="kw">use super</span>::<span class="kw-2">*</span>;
+            <span class="attribute">#[test]
+            </span><span class="kw">fn </span>size_of() {
+                <span class="macro">assert_eq!</span>(::std::mem::size_of::&lt;Sym&gt;(), SIZEOF_SYM);
             }
         }
 
-        <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::elf::sym::Sym</span> <span class="kw">as</span> <span class="ident">ElfSym</span>;
+        <span class="kw">use </span><span class="kw">crate</span>::elf::sym::Sym <span class="kw">as </span>ElfSym;
 
-        <span class="kw">use</span> <span class="ident">core::fmt</span>;
-        <span class="kw">use</span> <span class="ident">core::slice</span>;
+        <span class="kw">use </span>core::fmt;
+        <span class="kw">use </span>core::slice;
 
-        <span class="kw">impl</span> <span class="ident">Sym</span> {
-            <span class="doccomment">/// Checks whether this `Sym` has `STB_GLOBAL`/`STB_WEAK` bind and a `st_value` of 0</span>
-            <span class="attribute">#[<span class="ident">inline</span>]</span>
-            <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_import</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-                <span class="kw">let</span> <span class="ident">bind</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">st_info</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">4</span>;
-                (<span class="ident">bind</span> <span class="op">==</span> <span class="ident">STB_GLOBAL</span> <span class="op">|</span><span class="op">|</span> <span class="ident">bind</span> <span class="op">==</span> <span class="ident">STB_WEAK</span>) <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">st_value</span> <span class="op">==</span> <span class="number">0</span>
-            }
-            <span class="doccomment">/// Checks whether this `Sym` has type `STT_FUNC`</span>
-            <span class="attribute">#[<span class="ident">inline</span>]</span>
-            <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_function</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-                <span class="ident">st_type</span>(<span class="self">self</span>.<span class="ident">st_info</span>) <span class="op">==</span> <span class="ident">STT_FUNC</span>
+        <span class="kw">impl </span>Sym {
+            <span class="doccomment">/// Checks whether this `Sym` has `STB_GLOBAL`/`STB_WEAK` bind and a `st_value` of 0
+            </span><span class="attribute">#[inline]
+            </span><span class="kw">pub fn </span>is_import(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+                <span class="kw">let </span>bind = <span class="self">self</span>.st_info &gt;&gt; <span class="number">4</span>;
+                (bind == STB_GLOBAL || bind == STB_WEAK) &amp;&amp; <span class="self">self</span>.st_value == <span class="number">0
+            </span>}
+            <span class="doccomment">/// Checks whether this `Sym` has type `STT_FUNC`
+            </span><span class="attribute">#[inline]
+            </span><span class="kw">pub fn </span>is_function(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+                st_type(<span class="self">self</span>.st_info) == STT_FUNC
             }
         }
 
-        <span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">Sym</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">ElfSym</span> {
-            <span class="attribute">#[<span class="ident">inline</span>]</span>
-            <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">sym</span>: <span class="ident">Sym</span>) -&gt; <span class="self">Self</span> {
-                <span class="ident">ElfSym</span> {
-                    <span class="ident">st_name</span>: <span class="ident">sym</span>.<span class="ident">st_name</span> <span class="kw">as</span> <span class="ident">usize</span>,
-                    <span class="ident">st_info</span>: <span class="ident">sym</span>.<span class="ident">st_info</span>,
-                    <span class="ident">st_other</span>: <span class="ident">sym</span>.<span class="ident">st_other</span>,
-                    <span class="ident">st_shndx</span>: <span class="ident">sym</span>.<span class="ident">st_shndx</span> <span class="kw">as</span> <span class="ident">usize</span>,
-                    <span class="ident">st_value</span>: <span class="ident">u64::from</span>(<span class="ident">sym</span>.<span class="ident">st_value</span>),
-                    <span class="ident">st_size</span>: <span class="ident">u64::from</span>(<span class="ident">sym</span>.<span class="ident">st_size</span>),
+        <span class="kw">impl </span>From&lt;Sym&gt; <span class="kw">for </span>ElfSym {
+            <span class="attribute">#[inline]
+            </span><span class="kw">fn </span>from(sym: Sym) -&gt; <span class="self">Self </span>{
+                ElfSym {
+                    st_name: sym.st_name <span class="kw">as </span>usize,
+                    st_info: sym.st_info,
+                    st_other: sym.st_other,
+                    st_shndx: sym.st_shndx <span class="kw">as </span>usize,
+                    st_value: u64::from(sym.st_value),
+                    st_size: u64::from(sym.st_size),
                 }
             }
         }
 
-        <span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">ElfSym</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Sym</span> {
-            <span class="attribute">#[<span class="ident">inline</span>]</span>
-            <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">sym</span>: <span class="ident">ElfSym</span>) -&gt; <span class="self">Self</span> {
-                <span class="ident">Sym</span> {
-                    <span class="ident">st_name</span>: <span class="ident">sym</span>.<span class="ident">st_name</span> <span class="kw">as</span> <span class="ident">u32</span>,
-                    <span class="ident">st_info</span>: <span class="ident">sym</span>.<span class="ident">st_info</span>,
-                    <span class="ident">st_other</span>: <span class="ident">sym</span>.<span class="ident">st_other</span>,
-                    <span class="ident">st_shndx</span>: <span class="ident">sym</span>.<span class="ident">st_shndx</span> <span class="kw">as</span> <span class="ident">u16</span>,
-                    <span class="ident">st_value</span>: <span class="ident">sym</span>.<span class="ident">st_value</span> <span class="kw">as</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">size</span>,
-                    <span class="ident">st_size</span>: <span class="ident">sym</span>.<span class="ident">st_size</span> <span class="kw">as</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">size</span>,
+        <span class="kw">impl </span>From&lt;ElfSym&gt; <span class="kw">for </span>Sym {
+            <span class="attribute">#[inline]
+            </span><span class="kw">fn </span>from(sym: ElfSym) -&gt; <span class="self">Self </span>{
+                Sym {
+                    st_name: sym.st_name <span class="kw">as </span>u32,
+                    st_info: sym.st_info,
+                    st_other: sym.st_other,
+                    st_shndx: sym.st_shndx <span class="kw">as </span>u16,
+                    st_value: sym.st_value <span class="kw">as </span><span class="macro-nonterminal">$size</span>,
+                    st_size: sym.st_size <span class="kw">as </span><span class="macro-nonterminal">$size</span>,
                 }
             }
         }
 
-        <span class="kw">impl</span> <span class="ident">fmt::Debug</span> <span class="kw">for</span> <span class="ident">Sym</span> {
-            <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">fmt::Formatter</span>) -&gt; <span class="ident">fmt::Result</span> {
-                <span class="kw">let</span> <span class="ident">bind</span> <span class="op">=</span> <span class="ident">st_bind</span>(<span class="self">self</span>.<span class="ident">st_info</span>);
-                <span class="kw">let</span> <span class="ident">typ</span> <span class="op">=</span> <span class="ident">st_type</span>(<span class="self">self</span>.<span class="ident">st_info</span>);
-                <span class="kw">let</span> <span class="ident">vis</span> <span class="op">=</span> <span class="ident">st_visibility</span>(<span class="self">self</span>.<span class="ident">st_other</span>);
-                <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;Sym&quot;</span>)
-                    .<span class="ident">field</span>(<span class="string">&quot;st_name&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">st_name</span>)
-                    .<span class="ident">field</span>(<span class="string">&quot;st_value&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{:x}&quot;</span>, <span class="self">self</span>.<span class="ident">st_value</span>))
-                    .<span class="ident">field</span>(<span class="string">&quot;st_size&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">st_size</span>)
-                    .<span class="ident">field</span>(
+        <span class="kw">impl </span>fmt::Debug <span class="kw">for </span>Sym {
+            <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>fmt::Formatter) -&gt; fmt::Result {
+                <span class="kw">let </span>bind = st_bind(<span class="self">self</span>.st_info);
+                <span class="kw">let </span>typ = st_type(<span class="self">self</span>.st_info);
+                <span class="kw">let </span>vis = st_visibility(<span class="self">self</span>.st_other);
+                f.debug_struct(<span class="string">&quot;Sym&quot;</span>)
+                    .field(<span class="string">&quot;st_name&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.st_name)
+                    .field(<span class="string">&quot;st_value&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{:x}&quot;</span>, <span class="self">self</span>.st_value))
+                    .field(<span class="string">&quot;st_size&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.st_size)
+                    .field(
                         <span class="string">&quot;st_info&quot;</span>,
                         <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(
                             <span class="string">&quot;{:x} {} {}&quot;</span>,
-                            <span class="self">self</span>.<span class="ident">st_info</span>,
-                            <span class="ident">bind_to_str</span>(<span class="ident">bind</span>),
-                            <span class="ident">type_to_str</span>(<span class="ident">typ</span>)
+                            <span class="self">self</span>.st_info,
+                            bind_to_str(bind),
+                            type_to_str(typ)
                         ),
                     )
-                    .<span class="ident">field</span>(
+                    .field(
                         <span class="string">&quot;st_other&quot;</span>,
-                        <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{} {}&quot;</span>, <span class="self">self</span>.<span class="ident">st_other</span>, <span class="ident">visibility_to_str</span>(<span class="ident">vis</span>)),
+                        <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{} {}&quot;</span>, <span class="self">self</span>.st_other, visibility_to_str(vis)),
                     )
-                    .<span class="ident">field</span>(<span class="string">&quot;st_shndx&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">st_shndx</span>)
-                    .<span class="ident">finish</span>()
+                    .field(<span class="string">&quot;st_shndx&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.st_shndx)
+                    .finish()
             }
         }
 
-        <span class="doccomment">/// # Safety</span>
-        <span class="doccomment">///</span>
-        <span class="doccomment">/// This function creates a `Sym` slice directly from a raw pointer</span>
-        <span class="attribute">#[<span class="ident">inline</span>]</span>
-        <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_raw</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>(<span class="ident">symp</span>: <span class="kw-2">*const</span> <span class="ident">Sym</span>, <span class="ident">count</span>: <span class="ident">usize</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">Sym</span>] {
-            <span class="ident">slice::from_raw_parts</span>(<span class="ident">symp</span>, <span class="ident">count</span>)
+        <span class="doccomment">/// # Safety
+        ///
+        /// This function creates a `Sym` slice directly from a raw pointer
+        </span><span class="attribute">#[inline]
+        </span><span class="kw">pub unsafe fn </span>from_raw&lt;<span class="lifetime">&#39;a</span>&gt;(symp: <span class="kw-2">*const </span>Sym, count: usize) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[Sym] {
+            slice::from_raw_parts(symp, count)
         }
 
-        <span class="macro">if_std!</span> {
-            <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::error::Result</span>;
+        <span class="macro">if_std! </span>{
+            <span class="kw">use </span><span class="kw">crate</span>::error::Result;
 
-            <span class="kw">use</span> <span class="ident">std::fs::File</span>;
-            <span class="kw">use</span> <span class="ident">std::io</span>::{<span class="ident">Read</span>, <span class="ident">Seek</span>};
-            <span class="kw">use</span> <span class="ident">std::io::SeekFrom::Start</span>;
+            <span class="kw">use </span>std::fs::File;
+            <span class="kw">use </span>std::io::{Read, Seek};
+            <span class="kw">use </span>std::io::SeekFrom::Start;
 
-            <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_fd</span>(<span class="ident">fd</span>: <span class="kw-2">&amp;mut</span> <span class="ident">File</span>, <span class="ident">offset</span>: <span class="ident">usize</span>, <span class="ident">count</span>: <span class="ident">usize</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Sym</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-                <span class="comment">// TODO: AFAIK this shouldn&#39;t work, since i pass in a byte size...</span>
-                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">syms</span> <span class="op">=</span> <span class="macro">vec!</span>[<span class="ident">Sym::default</span>(); <span class="ident">count</span>];
-                <span class="ident">fd</span>.<span class="ident">seek</span>(<span class="ident">Start</span>(<span class="ident">offset</span> <span class="kw">as</span> <span class="ident">u64</span>))<span class="question-mark">?</span>;
-                <span class="kw">unsafe</span> {
-                    <span class="ident">fd</span>.<span class="ident">read_exact</span>(<span class="ident">plain::as_mut_bytes</span>(<span class="kw-2">&amp;mut</span> <span class="kw-2">*</span><span class="ident">syms</span>))<span class="question-mark">?</span>;
+            <span class="kw">pub fn </span>from_fd(fd: <span class="kw-2">&amp;mut </span>File, offset: usize, count: usize) -&gt; <span class="prelude-ty">Result</span>&lt;Vec&lt;Sym&gt;&gt; {
+                <span class="comment">// TODO: AFAIK this shouldn&#39;t work, since i pass in a byte size...
+                </span><span class="kw">let </span><span class="kw-2">mut </span>syms = <span class="macro">vec!</span>[Sym::default(); count];
+                fd.seek(Start(offset <span class="kw">as </span>u64))<span class="question-mark">?</span>;
+                <span class="kw">unsafe </span>{
+                    fd.read_exact(plain::as_mut_bytes(<span class="kw-2">&amp;mut *</span>syms))<span class="question-mark">?</span>;
                 }
-                <span class="ident">syms</span>.<span class="ident">dedup</span>();
-                <span class="prelude-val">Ok</span>(<span class="ident">syms</span>)
+                syms.dedup();
+                <span class="prelude-val">Ok</span>(syms)
             }
         }
     };
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;alloc&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">scroll</span>::{<span class="ident">Pread</span>, <span class="ident">Pwrite</span>, <span class="ident">SizeWith</span>};
+<span class="attribute">#[cfg(feature = <span class="string">&quot;alloc&quot;</span>)]
+</span><span class="kw">use </span>scroll::{Pread, Pwrite, SizeWith};
 
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">sym32</span> {
-    <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::elf::sym</span>::<span class="kw-2">*</span>;
+<span class="kw">pub mod </span>sym32 {
+    <span class="kw">pub use </span><span class="kw">crate</span>::elf::sym::<span class="kw-2">*</span>;
 
-    <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-    <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>, <span class="ident">Default</span>)]</span>
-    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;alloc&quot;</span>, <span class="ident">derive</span>(<span class="ident">Pread</span>, <span class="ident">Pwrite</span>, <span class="ident">SizeWith</span>))]</span>
-    <span class="doccomment">/// 32-bit Sym - used for both static and dynamic symbol information in a binary</span>
-    <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Sym</span> {
-        <span class="doccomment">/// Symbol name (string tbl index)</span>
-        <span class="kw">pub</span> <span class="ident">st_name</span>: <span class="ident">u32</span>,
-        <span class="doccomment">/// Symbol value</span>
-        <span class="kw">pub</span> <span class="ident">st_value</span>: <span class="ident">u32</span>,
-        <span class="doccomment">/// Symbol size</span>
-        <span class="kw">pub</span> <span class="ident">st_size</span>: <span class="ident">u32</span>,
-        <span class="doccomment">/// Symbol type and binding</span>
-        <span class="kw">pub</span> <span class="ident">st_info</span>: <span class="ident">u8</span>,
-        <span class="doccomment">/// Symbol visibility</span>
-        <span class="kw">pub</span> <span class="ident">st_other</span>: <span class="ident">u8</span>,
-        <span class="doccomment">/// Section index</span>
-        <span class="kw">pub</span> <span class="ident">st_shndx</span>: <span class="ident">u16</span>,
+    <span class="attribute">#[repr(C)]
+    #[derive(Clone, Copy, PartialEq, Default)]
+    #[cfg_attr(feature = <span class="string">&quot;alloc&quot;</span>, derive(Pread, Pwrite, SizeWith))]
+    </span><span class="doccomment">/// 32-bit Sym - used for both static and dynamic symbol information in a binary
+    </span><span class="kw">pub struct </span>Sym {
+        <span class="doccomment">/// Symbol name (string tbl index)
+        </span><span class="kw">pub </span>st_name: u32,
+        <span class="doccomment">/// Symbol value
+        </span><span class="kw">pub </span>st_value: u32,
+        <span class="doccomment">/// Symbol size
+        </span><span class="kw">pub </span>st_size: u32,
+        <span class="doccomment">/// Symbol type and binding
+        </span><span class="kw">pub </span>st_info: u8,
+        <span class="doccomment">/// Symbol visibility
+        </span><span class="kw">pub </span>st_other: u8,
+        <span class="doccomment">/// Section index
+        </span><span class="kw">pub </span>st_shndx: u16,
     }
 
-    <span class="comment">// Declare that the type is plain.</span>
-    <span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">plain::Plain</span> <span class="kw">for</span> <span class="ident">Sym</span> {}
+    <span class="comment">// Declare that the type is plain.
+    </span><span class="kw">unsafe impl </span>plain::Plain <span class="kw">for </span>Sym {}
 
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIZEOF_SYM</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">4</span> <span class="op">+</span> <span class="number">1</span> <span class="op">+</span> <span class="number">1</span> <span class="op">+</span> <span class="number">2</span> <span class="op">+</span> <span class="number">4</span> <span class="op">+</span> <span class="number">4</span>;
+    <span class="kw">pub const </span>SIZEOF_SYM: usize = <span class="number">4 </span>+ <span class="number">1 </span>+ <span class="number">1 </span>+ <span class="number">2 </span>+ <span class="number">4 </span>+ <span class="number">4</span>;
 
-    <span class="macro">elf_sym_std_impl!</span>(<span class="ident">u32</span>);
+    <span class="macro">elf_sym_std_impl!</span>(u32);
 }
 
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">sym64</span> {
-    <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::elf::sym</span>::<span class="kw-2">*</span>;
+<span class="kw">pub mod </span>sym64 {
+    <span class="kw">pub use </span><span class="kw">crate</span>::elf::sym::<span class="kw-2">*</span>;
 
-    <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-    <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>, <span class="ident">Default</span>)]</span>
-    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;alloc&quot;</span>, <span class="ident">derive</span>(<span class="ident">Pread</span>, <span class="ident">Pwrite</span>, <span class="ident">SizeWith</span>))]</span>
-    <span class="doccomment">/// 64-bit Sym - used for both static and dynamic symbol information in a binary</span>
-    <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Sym</span> {
-        <span class="doccomment">/// Symbol name (string tbl index)</span>
-        <span class="kw">pub</span> <span class="ident">st_name</span>: <span class="ident">u32</span>,
-        <span class="doccomment">/// Symbol type and binding</span>
-        <span class="kw">pub</span> <span class="ident">st_info</span>: <span class="ident">u8</span>,
-        <span class="doccomment">/// Symbol visibility</span>
-        <span class="kw">pub</span> <span class="ident">st_other</span>: <span class="ident">u8</span>,
-        <span class="doccomment">/// Section index</span>
-        <span class="kw">pub</span> <span class="ident">st_shndx</span>: <span class="ident">u16</span>,
-        <span class="doccomment">/// Symbol value</span>
-        <span class="kw">pub</span> <span class="ident">st_value</span>: <span class="ident">u64</span>,
-        <span class="doccomment">/// Symbol size</span>
-        <span class="kw">pub</span> <span class="ident">st_size</span>: <span class="ident">u64</span>,
+    <span class="attribute">#[repr(C)]
+    #[derive(Clone, Copy, PartialEq, Default)]
+    #[cfg_attr(feature = <span class="string">&quot;alloc&quot;</span>, derive(Pread, Pwrite, SizeWith))]
+    </span><span class="doccomment">/// 64-bit Sym - used for both static and dynamic symbol information in a binary
+    </span><span class="kw">pub struct </span>Sym {
+        <span class="doccomment">/// Symbol name (string tbl index)
+        </span><span class="kw">pub </span>st_name: u32,
+        <span class="doccomment">/// Symbol type and binding
+        </span><span class="kw">pub </span>st_info: u8,
+        <span class="doccomment">/// Symbol visibility
+        </span><span class="kw">pub </span>st_other: u8,
+        <span class="doccomment">/// Section index
+        </span><span class="kw">pub </span>st_shndx: u16,
+        <span class="doccomment">/// Symbol value
+        </span><span class="kw">pub </span>st_value: u64,
+        <span class="doccomment">/// Symbol size
+        </span><span class="kw">pub </span>st_size: u64,
     }
 
-    <span class="comment">// Declare that the type is plain.</span>
-    <span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">plain::Plain</span> <span class="kw">for</span> <span class="ident">Sym</span> {}
+    <span class="comment">// Declare that the type is plain.
+    </span><span class="kw">unsafe impl </span>plain::Plain <span class="kw">for </span>Sym {}
 
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIZEOF_SYM</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">4</span> <span class="op">+</span> <span class="number">1</span> <span class="op">+</span> <span class="number">1</span> <span class="op">+</span> <span class="number">2</span> <span class="op">+</span> <span class="number">8</span> <span class="op">+</span> <span class="number">8</span>;
+    <span class="kw">pub const </span>SIZEOF_SYM: usize = <span class="number">4 </span>+ <span class="number">1 </span>+ <span class="number">1 </span>+ <span class="number">2 </span>+ <span class="number">8 </span>+ <span class="number">8</span>;
 
-    <span class="macro">elf_sym_std_impl!</span>(<span class="ident">u64</span>);
+    <span class="macro">elf_sym_std_impl!</span>(u64);
 }
 
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::container</span>::{<span class="ident">Container</span>, <span class="ident">Ctx</span>};
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;alloc&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::error::Result</span>;
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;alloc&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">alloc::vec::Vec</span>;
-<span class="kw">use</span> <span class="ident">core::fmt</span>;
-<span class="kw">use</span> <span class="ident">scroll::ctx</span>;
-<span class="kw">use</span> <span class="ident">scroll::ctx::SizeWith</span>;
+<span class="kw">use </span><span class="kw">crate</span>::container::{Container, Ctx};
+<span class="attribute">#[cfg(feature = <span class="string">&quot;alloc&quot;</span>)]
+</span><span class="kw">use </span><span class="kw">crate</span>::error::Result;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;alloc&quot;</span>)]
+</span><span class="kw">use </span>alloc::vec::Vec;
+<span class="kw">use </span>core::fmt;
+<span class="kw">use </span>scroll::ctx;
+<span class="kw">use </span>scroll::ctx::SizeWith;
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>, <span class="ident">Default</span>)]</span>
-<span class="doccomment">/// A unified Sym definition - convertible to and from 32-bit and 64-bit variants</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Sym</span> {
-    <span class="kw">pub</span> <span class="ident">st_name</span>: <span class="ident">usize</span>,
-    <span class="kw">pub</span> <span class="ident">st_info</span>: <span class="ident">u8</span>,
-    <span class="kw">pub</span> <span class="ident">st_other</span>: <span class="ident">u8</span>,
-    <span class="kw">pub</span> <span class="ident">st_shndx</span>: <span class="ident">usize</span>,
-    <span class="kw">pub</span> <span class="ident">st_value</span>: <span class="ident">u64</span>,
-    <span class="kw">pub</span> <span class="ident">st_size</span>: <span class="ident">u64</span>,
+<span class="attribute">#[derive(Clone, Copy, PartialEq, Default)]
+</span><span class="doccomment">/// A unified Sym definition - convertible to and from 32-bit and 64-bit variants
+</span><span class="kw">pub struct </span>Sym {
+    <span class="kw">pub </span>st_name: usize,
+    <span class="kw">pub </span>st_info: u8,
+    <span class="kw">pub </span>st_other: u8,
+    <span class="kw">pub </span>st_shndx: usize,
+    <span class="kw">pub </span>st_value: u64,
+    <span class="kw">pub </span>st_size: u64,
 }
 
-<span class="kw">impl</span> <span class="ident">Sym</span> {
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">size</span>(<span class="ident">container</span>: <span class="ident">Container</span>) -&gt; <span class="ident">usize</span> {
-        <span class="ident"><span class="self">Self</span>::size_with</span>(<span class="kw-2">&amp;</span><span class="ident">Ctx::from</span>(<span class="ident">container</span>))
+<span class="kw">impl </span>Sym {
+    <span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>size(container: Container) -&gt; usize {
+        <span class="self">Self</span>::size_with(<span class="kw-2">&amp;</span>Ctx::from(container))
     }
-    <span class="doccomment">/// Checks whether this `Sym` has `STB_GLOBAL`/`STB_WEAK` bind and a `st_value` of 0</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_import</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="kw">let</span> <span class="ident">bind</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">st_bind</span>();
-        (<span class="ident">bind</span> <span class="op">==</span> <span class="ident">STB_GLOBAL</span> <span class="op">|</span><span class="op">|</span> <span class="ident">bind</span> <span class="op">==</span> <span class="ident">STB_WEAK</span>) <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">st_value</span> <span class="op">==</span> <span class="number">0</span>
+    <span class="doccomment">/// Checks whether this `Sym` has `STB_GLOBAL`/`STB_WEAK` bind and a `st_value` of 0
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>is_import(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="kw">let </span>bind = <span class="self">self</span>.st_bind();
+        (bind == STB_GLOBAL || bind == STB_WEAK) &amp;&amp; <span class="self">self</span>.st_value == <span class="number">0
+    </span>}
+    <span class="doccomment">/// Checks whether this `Sym` has type `STT_FUNC`
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>is_function(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        st_type(<span class="self">self</span>.st_info) == STT_FUNC
     }
-    <span class="doccomment">/// Checks whether this `Sym` has type `STT_FUNC`</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_function</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="ident">st_type</span>(<span class="self">self</span>.<span class="ident">st_info</span>) <span class="op">==</span> <span class="ident">STT_FUNC</span>
+    <span class="doccomment">/// Get the ST bind.
+    ///
+    /// This is the first four bits of the &quot;info&quot; byte.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>st_bind(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; u8 {
+        <span class="self">self</span>.st_info &gt;&gt; <span class="number">4
+    </span>}
+    <span class="doccomment">/// Get the ST type.
+    ///
+    /// This is the last four bits of the &quot;info&quot; byte.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>st_type(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; u8 {
+        st_type(<span class="self">self</span>.st_info)
     }
-    <span class="doccomment">/// Get the ST bind.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// This is the first four bits of the &quot;info&quot; byte.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">st_bind</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">u8</span> {
-        <span class="self">self</span>.<span class="ident">st_info</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">4</span>
+    <span class="doccomment">/// Get the ST visibility.
+    ///
+    /// This is the last three bits of the &quot;other&quot; byte.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>st_visibility(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; u8 {
+        st_visibility(<span class="self">self</span>.st_other)
     }
-    <span class="doccomment">/// Get the ST type.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// This is the last four bits of the &quot;info&quot; byte.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">st_type</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">u8</span> {
-        <span class="ident">st_type</span>(<span class="self">self</span>.<span class="ident">st_info</span>)
-    }
-    <span class="doccomment">/// Get the ST visibility.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// This is the last three bits of the &quot;other&quot; byte.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">st_visibility</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">u8</span> {
-        <span class="ident">st_visibility</span>(<span class="self">self</span>.<span class="ident">st_other</span>)
-    }
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;endian_fd&quot;</span>)]</span>
-    <span class="doccomment">/// Parse `count` vector of ELF symbols from `offset`</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">bytes</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>], <span class="kw-2">mut</span> <span class="ident">offset</span>: <span class="ident">usize</span>, <span class="ident">count</span>: <span class="ident">usize</span>, <span class="ident">ctx</span>: <span class="ident">Ctx</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Sym</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-        <span class="kw">if</span> <span class="ident">count</span> <span class="op">&gt;</span> <span class="ident">bytes</span>.<span class="ident">len</span>() <span class="op">/</span> <span class="ident">Sym::size_with</span>(<span class="kw-2">&amp;</span><span class="ident">ctx</span>) {
-            <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident"><span class="kw">crate</span>::error::Error::BufferTooShort</span>(<span class="ident">count</span>, <span class="string">&quot;symbols&quot;</span>));
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;endian_fd&quot;</span>)]
+    </span><span class="doccomment">/// Parse `count` vector of ELF symbols from `offset`
+    </span><span class="kw">pub fn </span>parse(bytes: <span class="kw-2">&amp;</span>[u8], <span class="kw-2">mut </span>offset: usize, count: usize, ctx: Ctx) -&gt; <span class="prelude-ty">Result</span>&lt;Vec&lt;Sym&gt;&gt; {
+        <span class="kw">if </span>count &gt; bytes.len() / Sym::size_with(<span class="kw-2">&amp;</span>ctx) {
+            <span class="kw">return </span><span class="prelude-val">Err</span>(<span class="kw">crate</span>::error::Error::BufferTooShort(count, <span class="string">&quot;symbols&quot;</span>));
         }
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">syms</span> <span class="op">=</span> <span class="ident">Vec::with_capacity</span>(<span class="ident">count</span>);
-        <span class="kw">for</span> <span class="kw">_</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">count</span> {
-            <span class="kw">let</span> <span class="ident">sym</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">gread_with</span>(<span class="kw-2">&amp;mut</span> <span class="ident">offset</span>, <span class="ident">ctx</span>)<span class="question-mark">?</span>;
-            <span class="ident">syms</span>.<span class="ident">push</span>(<span class="ident">sym</span>);
+        <span class="kw">let </span><span class="kw-2">mut </span>syms = Vec::with_capacity(count);
+        <span class="kw">for _ in </span><span class="number">0</span>..count {
+            <span class="kw">let </span>sym = bytes.gread_with(<span class="kw-2">&amp;mut </span>offset, ctx)<span class="question-mark">?</span>;
+            syms.push(sym);
         }
-        <span class="prelude-val">Ok</span>(<span class="ident">syms</span>)
+        <span class="prelude-val">Ok</span>(syms)
     }
 }
 
-<span class="kw">impl</span> <span class="ident">fmt::Debug</span> <span class="kw">for</span> <span class="ident">Sym</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">fmt::Formatter</span>) -&gt; <span class="ident">fmt::Result</span> {
-        <span class="kw">let</span> <span class="ident">bind</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">st_bind</span>();
-        <span class="kw">let</span> <span class="ident">typ</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">st_type</span>();
-        <span class="kw">let</span> <span class="ident">vis</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">st_visibility</span>();
-        <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;Sym&quot;</span>)
-            .<span class="ident">field</span>(<span class="string">&quot;st_name&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">st_name</span>)
-            .<span class="ident">field</span>(
+<span class="kw">impl </span>fmt::Debug <span class="kw">for </span>Sym {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>fmt::Formatter) -&gt; fmt::Result {
+        <span class="kw">let </span>bind = <span class="self">self</span>.st_bind();
+        <span class="kw">let </span>typ = <span class="self">self</span>.st_type();
+        <span class="kw">let </span>vis = <span class="self">self</span>.st_visibility();
+        f.debug_struct(<span class="string">&quot;Sym&quot;</span>)
+            .field(<span class="string">&quot;st_name&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.st_name)
+            .field(
                 <span class="string">&quot;st_info&quot;</span>,
                 <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(
                     <span class="string">&quot;0x{:x} {} {}&quot;</span>,
-                    <span class="self">self</span>.<span class="ident">st_info</span>,
-                    <span class="ident">bind_to_str</span>(<span class="ident">bind</span>),
-                    <span class="ident">type_to_str</span>(<span class="ident">typ</span>)
+                    <span class="self">self</span>.st_info,
+                    bind_to_str(bind),
+                    type_to_str(typ)
                 ),
             )
-            .<span class="ident">field</span>(
+            .field(
                 <span class="string">&quot;st_other&quot;</span>,
-                <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{} {}&quot;</span>, <span class="self">self</span>.<span class="ident">st_other</span>, <span class="ident">visibility_to_str</span>(<span class="ident">vis</span>)),
+                <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{} {}&quot;</span>, <span class="self">self</span>.st_other, visibility_to_str(vis)),
             )
-            .<span class="ident">field</span>(<span class="string">&quot;st_shndx&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">st_shndx</span>)
-            .<span class="ident">field</span>(<span class="string">&quot;st_value&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;0x{:x}&quot;</span>, <span class="self">self</span>.<span class="ident">st_value</span>))
-            .<span class="ident">field</span>(<span class="string">&quot;st_size&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">st_size</span>)
-            .<span class="ident">finish</span>()
+            .field(<span class="string">&quot;st_shndx&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.st_shndx)
+            .field(<span class="string">&quot;st_value&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;0x{:x}&quot;</span>, <span class="self">self</span>.st_value))
+            .field(<span class="string">&quot;st_size&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.st_size)
+            .finish()
     }
 }
 
-<span class="kw">impl</span> <span class="ident">ctx::SizeWith</span><span class="op">&lt;</span><span class="ident">Ctx</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Sym</span> {
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">size_with</span>(<span class="kw-2">&amp;</span><span class="ident">Ctx</span> { <span class="ident">container</span>, .. }: <span class="kw-2">&amp;</span><span class="ident">Ctx</span>) -&gt; <span class="ident">usize</span> {
-        <span class="kw">match</span> <span class="ident">container</span> {
-            <span class="ident">Container::Little</span> =&gt; <span class="ident">sym32::SIZEOF_SYM</span>,
-            <span class="ident">Container::Big</span> =&gt; <span class="ident">sym64::SIZEOF_SYM</span>,
+<span class="kw">impl </span>ctx::SizeWith&lt;Ctx&gt; <span class="kw">for </span>Sym {
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>size_with(<span class="kw-2">&amp;</span>Ctx { container, .. }: <span class="kw-2">&amp;</span>Ctx) -&gt; usize {
+        <span class="kw">match </span>container {
+            Container::Little =&gt; sym32::SIZEOF_SYM,
+            Container::Big =&gt; sym64::SIZEOF_SYM,
         }
     }
 }
 
-<span class="macro">if_alloc!</span> {
-    <span class="kw">use</span> <span class="ident">core::result</span>;
+<span class="macro">if_alloc! </span>{
+    <span class="kw">use </span>core::result;
 
-    <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">ctx::TryFromCtx</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">Ctx</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Sym</span> {
-        <span class="kw">type</span> <span class="ident">Error</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::error::Error</span>;
-        <span class="attribute">#[<span class="ident">inline</span>]</span>
-        <span class="kw">fn</span> <span class="ident">try_from_ctx</span>(<span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>], <span class="ident">Ctx</span> { <span class="ident">container</span>, <span class="ident">le</span>}: <span class="ident">Ctx</span>) -&gt; <span class="ident">result::Result</span><span class="op">&lt;</span>(<span class="self">Self</span>, <span class="ident">usize</span>), <span class="ident"><span class="self">Self</span>::Error</span><span class="op">&gt;</span> {
-            <span class="kw">let</span> <span class="ident">sym</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">container</span> {
-                <span class="ident">Container::Little</span> =&gt; {
-                    (<span class="ident">bytes</span>.<span class="ident">pread_with</span>::<span class="op">&lt;</span><span class="ident">sym32::Sym</span><span class="op">&gt;</span>(<span class="number">0</span>, <span class="ident">le</span>)<span class="question-mark">?</span>.<span class="ident">into</span>(), <span class="ident">sym32::SIZEOF_SYM</span>)
+    <span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; ctx::TryFromCtx&lt;<span class="lifetime">&#39;a</span>, Ctx&gt; <span class="kw">for </span>Sym {
+        <span class="kw">type </span>Error = <span class="kw">crate</span>::error::Error;
+        <span class="attribute">#[inline]
+        </span><span class="kw">fn </span>try_from_ctx(bytes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8], Ctx { container, le}: Ctx) -&gt; result::Result&lt;(<span class="self">Self</span>, usize), <span class="self">Self</span>::Error&gt; {
+            <span class="kw">let </span>sym = <span class="kw">match </span>container {
+                Container::Little =&gt; {
+                    (bytes.pread_with::&lt;sym32::Sym&gt;(<span class="number">0</span>, le)<span class="question-mark">?</span>.into(), sym32::SIZEOF_SYM)
                 },
-                <span class="ident">Container::Big</span> =&gt; {
-                    (<span class="ident">bytes</span>.<span class="ident">pread_with</span>::<span class="op">&lt;</span><span class="ident">sym64::Sym</span><span class="op">&gt;</span>(<span class="number">0</span>, <span class="ident">le</span>)<span class="question-mark">?</span>.<span class="ident">into</span>(), <span class="ident">sym64::SIZEOF_SYM</span>)
+                Container::Big =&gt; {
+                    (bytes.pread_with::&lt;sym64::Sym&gt;(<span class="number">0</span>, le)<span class="question-mark">?</span>.into(), sym64::SIZEOF_SYM)
                 }
             };
-            <span class="prelude-val">Ok</span>(<span class="ident">sym</span>)
+            <span class="prelude-val">Ok</span>(sym)
         }
     }
 
-    <span class="kw">impl</span> <span class="ident">ctx::TryIntoCtx</span><span class="op">&lt;</span><span class="ident">Ctx</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Sym</span> {
-        <span class="kw">type</span> <span class="ident">Error</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::error::Error</span>;
-        <span class="attribute">#[<span class="ident">inline</span>]</span>
-        <span class="kw">fn</span> <span class="ident">try_into_ctx</span>(<span class="self">self</span>, <span class="ident">bytes</span>: <span class="kw-2">&amp;mut</span> [<span class="ident">u8</span>], <span class="ident">Ctx</span> {<span class="ident">container</span>, <span class="ident">le</span>}: <span class="ident">Ctx</span>) -&gt; <span class="ident">result::Result</span><span class="op">&lt;</span><span class="ident">usize</span>, <span class="ident"><span class="self">Self</span>::Error</span><span class="op">&gt;</span> {
-            <span class="kw">match</span> <span class="ident">container</span> {
-                <span class="ident">Container::Little</span> =&gt; {
-                    <span class="kw">let</span> <span class="ident">sym</span>: <span class="ident">sym32::Sym</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">into</span>();
-                    <span class="prelude-val">Ok</span>(<span class="ident">bytes</span>.<span class="ident">pwrite_with</span>(<span class="ident">sym</span>, <span class="number">0</span>, <span class="ident">le</span>)<span class="question-mark">?</span>)
+    <span class="kw">impl </span>ctx::TryIntoCtx&lt;Ctx&gt; <span class="kw">for </span>Sym {
+        <span class="kw">type </span>Error = <span class="kw">crate</span>::error::Error;
+        <span class="attribute">#[inline]
+        </span><span class="kw">fn </span>try_into_ctx(<span class="self">self</span>, bytes: <span class="kw-2">&amp;mut </span>[u8], Ctx {container, le}: Ctx) -&gt; result::Result&lt;usize, <span class="self">Self</span>::Error&gt; {
+            <span class="kw">match </span>container {
+                Container::Little =&gt; {
+                    <span class="kw">let </span>sym: sym32::Sym = <span class="self">self</span>.into();
+                    <span class="prelude-val">Ok</span>(bytes.pwrite_with(sym, <span class="number">0</span>, le)<span class="question-mark">?</span>)
                 },
-                <span class="ident">Container::Big</span> =&gt; {
-                    <span class="kw">let</span> <span class="ident">sym</span>: <span class="ident">sym64::Sym</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">into</span>();
-                    <span class="prelude-val">Ok</span>(<span class="ident">bytes</span>.<span class="ident">pwrite_with</span>(<span class="ident">sym</span>, <span class="number">0</span>, <span class="ident">le</span>)<span class="question-mark">?</span>)
+                Container::Big =&gt; {
+                    <span class="kw">let </span>sym: sym64::Sym = <span class="self">self</span>.into();
+                    <span class="prelude-val">Ok</span>(bytes.pwrite_with(sym, <span class="number">0</span>, le)<span class="question-mark">?</span>)
                 }
             }
         }
     }
 
-    <span class="kw">impl</span> <span class="ident">ctx::IntoCtx</span><span class="op">&lt;</span><span class="ident">Ctx</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Sym</span> {
-        <span class="attribute">#[<span class="ident">inline</span>]</span>
-        <span class="kw">fn</span> <span class="ident">into_ctx</span>(<span class="self">self</span>, <span class="ident">bytes</span>: <span class="kw-2">&amp;mut</span> [<span class="ident">u8</span>], <span class="ident">Ctx</span> {<span class="ident">container</span>, <span class="ident">le</span>}: <span class="ident">Ctx</span>) {
-            <span class="kw">match</span> <span class="ident">container</span> {
-                <span class="ident">Container::Little</span> =&gt; {
-                    <span class="kw">let</span> <span class="ident">sym</span>: <span class="ident">sym32::Sym</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">into</span>();
-                    <span class="ident">bytes</span>.<span class="ident">pwrite_with</span>(<span class="ident">sym</span>, <span class="number">0</span>, <span class="ident">le</span>).<span class="ident">unwrap</span>();
+    <span class="kw">impl </span>ctx::IntoCtx&lt;Ctx&gt; <span class="kw">for </span>Sym {
+        <span class="attribute">#[inline]
+        </span><span class="kw">fn </span>into_ctx(<span class="self">self</span>, bytes: <span class="kw-2">&amp;mut </span>[u8], Ctx {container, le}: Ctx) {
+            <span class="kw">match </span>container {
+                Container::Little =&gt; {
+                    <span class="kw">let </span>sym: sym32::Sym = <span class="self">self</span>.into();
+                    bytes.pwrite_with(sym, <span class="number">0</span>, le).unwrap();
                 },
-                <span class="ident">Container::Big</span> =&gt; {
-                    <span class="kw">let</span> <span class="ident">sym</span>: <span class="ident">sym64::Sym</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">into</span>();
-                    <span class="ident">bytes</span>.<span class="ident">pwrite_with</span>(<span class="ident">sym</span>, <span class="number">0</span>, <span class="ident">le</span>).<span class="ident">unwrap</span>();
+                Container::Big =&gt; {
+                    <span class="kw">let </span>sym: sym64::Sym = <span class="self">self</span>.into();
+                    bytes.pwrite_with(sym, <span class="number">0</span>, le).unwrap();
                 }
             }
         }
     }
 }
 
-<span class="macro">if_alloc!</span> {
-    <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Default</span>)]</span>
-    <span class="doccomment">/// An ELF symbol table, allowing lazy iteration over symbols</span>
-    <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Symtab</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-        <span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
-        <span class="ident">count</span>: <span class="ident">usize</span>,
-        <span class="ident">ctx</span>: <span class="ident">Ctx</span>,
-        <span class="ident">start</span>: <span class="ident">usize</span>,
-        <span class="ident">end</span>: <span class="ident">usize</span>,
+<span class="macro">if_alloc! </span>{
+    <span class="attribute">#[derive(Default)]
+    </span><span class="doccomment">/// An ELF symbol table, allowing lazy iteration over symbols
+    </span><span class="kw">pub struct </span>Symtab&lt;<span class="lifetime">&#39;a</span>&gt; {
+        bytes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8],
+        count: usize,
+        ctx: Ctx,
+        start: usize,
+        end: usize,
     }
 
-    <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">fmt::Debug</span> <span class="kw">for</span> <span class="ident">Symtab</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-        <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">fmt</span>: <span class="kw-2">&amp;mut</span> <span class="ident">fmt::Formatter</span>) -&gt; <span class="ident">fmt::Result</span> {
-            <span class="kw">let</span> <span class="ident">len</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">bytes</span>.<span class="ident">len</span>();
-            <span class="ident">fmt</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;Symtab&quot;</span>)
-                .<span class="ident">field</span>(<span class="string">&quot;bytes&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">len</span>)
-                .<span class="ident">field</span>(<span class="string">&quot;range&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{:#x}..{:#x}&quot;</span>, <span class="self">self</span>.<span class="ident">start</span>, <span class="self">self</span>.<span class="ident">end</span>))
-                .<span class="ident">field</span>(<span class="string">&quot;count&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">count</span>)
-                .<span class="ident">field</span>(<span class="string">&quot;Symbols&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">to_vec</span>())
-                .<span class="ident">finish</span>()
+    <span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; fmt::Debug <span class="kw">for </span>Symtab&lt;<span class="lifetime">&#39;a</span>&gt; {
+        <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, fmt: <span class="kw-2">&amp;mut </span>fmt::Formatter) -&gt; fmt::Result {
+            <span class="kw">let </span>len = <span class="self">self</span>.bytes.len();
+            fmt.debug_struct(<span class="string">&quot;Symtab&quot;</span>)
+                .field(<span class="string">&quot;bytes&quot;</span>, <span class="kw-2">&amp;</span>len)
+                .field(<span class="string">&quot;range&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{:#x}..{:#x}&quot;</span>, <span class="self">self</span>.start, <span class="self">self</span>.end))
+                .field(<span class="string">&quot;count&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.count)
+                .field(<span class="string">&quot;Symbols&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.to_vec())
+                .finish()
         }
     }
 
-    <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Symtab</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-        <span class="doccomment">/// Parse a table of `count` ELF symbols from `offset`.</span>
-        <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>], <span class="ident">offset</span>: <span class="ident">usize</span>, <span class="ident">count</span>: <span class="ident">usize</span>, <span class="ident">ctx</span>: <span class="ident">Ctx</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Symtab</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-            <span class="kw">let</span> <span class="ident">size</span> <span class="op">=</span> <span class="ident">count</span>
-                .<span class="ident">checked_mul</span>(<span class="ident">Sym::size_with</span>(<span class="kw-2">&amp;</span><span class="ident">ctx</span>))
-                .<span class="ident">ok_or_else</span>(<span class="op">|</span><span class="op">|</span> <span class="ident"><span class="kw">crate</span>::error::Error::Malformed</span>(
-                    <span class="macro">format!</span>(<span class="string">&quot;Too many ELF symbols (offset {:#x}, count {})&quot;</span>, <span class="ident">offset</span>, <span class="ident">count</span>)
+    <span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Symtab&lt;<span class="lifetime">&#39;a</span>&gt; {
+        <span class="doccomment">/// Parse a table of `count` ELF symbols from `offset`.
+        </span><span class="kw">pub fn </span>parse(bytes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8], offset: usize, count: usize, ctx: Ctx) -&gt; <span class="prelude-ty">Result</span>&lt;Symtab&lt;<span class="lifetime">&#39;a</span>&gt;&gt; {
+            <span class="kw">let </span>size = count
+                .checked_mul(Sym::size_with(<span class="kw-2">&amp;</span>ctx))
+                .ok_or_else(|| <span class="kw">crate</span>::error::Error::Malformed(
+                    <span class="macro">format!</span>(<span class="string">&quot;Too many ELF symbols (offset {:#x}, count {})&quot;</span>, offset, count)
                 ))<span class="question-mark">?</span>;
-            <span class="comment">// TODO: make this a better error message when too large</span>
-            <span class="kw">let</span> <span class="ident">bytes</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">pread_with</span>(<span class="ident">offset</span>, <span class="ident">size</span>)<span class="question-mark">?</span>;
-            <span class="prelude-val">Ok</span>(<span class="ident">Symtab</span> { <span class="ident">bytes</span>, <span class="ident">count</span>, <span class="ident">ctx</span>, <span class="ident">start</span>: <span class="ident">offset</span>, <span class="ident">end</span>: <span class="ident">offset</span><span class="op">+</span><span class="ident">size</span> })
+            <span class="comment">// TODO: make this a better error message when too large
+            </span><span class="kw">let </span>bytes = bytes.pread_with(offset, size)<span class="question-mark">?</span>;
+            <span class="prelude-val">Ok</span>(Symtab { bytes, count, ctx, start: offset, end: offset+size })
         }
 
-        <span class="doccomment">/// Try to parse a single symbol from the binary, at `index`.</span>
-        <span class="attribute">#[<span class="ident">inline</span>]</span>
-        <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">index</span>: <span class="ident">usize</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Sym</span><span class="op">&gt;</span> {
-            <span class="kw">if</span> <span class="ident">index</span> <span class="op">&gt;</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">count</span> {
-                <span class="prelude-val">None</span>
-            } <span class="kw">else</span> {
-                <span class="prelude-val">Some</span>(<span class="self">self</span>.<span class="ident">bytes</span>.<span class="ident">pread_with</span>(<span class="ident">index</span> <span class="op">*</span> <span class="ident">Sym::size_with</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">ctx</span>), <span class="self">self</span>.<span class="ident">ctx</span>).<span class="ident">unwrap</span>())
+        <span class="doccomment">/// Try to parse a single symbol from the binary, at `index`.
+        </span><span class="attribute">#[inline]
+        </span><span class="kw">pub fn </span>get(<span class="kw-2">&amp;</span><span class="self">self</span>, index: usize) -&gt; <span class="prelude-ty">Option</span>&lt;Sym&gt; {
+            <span class="kw">if </span>index &gt;= <span class="self">self</span>.count {
+                <span class="prelude-val">None
+            </span>} <span class="kw">else </span>{
+                <span class="prelude-val">Some</span>(<span class="self">self</span>.bytes.pread_with(index * Sym::size_with(<span class="kw-2">&amp;</span><span class="self">self</span>.ctx), <span class="self">self</span>.ctx).unwrap())
             }
         }
 
-        <span class="doccomment">/// The number of symbols in the table.</span>
-        <span class="attribute">#[<span class="ident">inline</span>]</span>
-        <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">len</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">usize</span> {
-            <span class="self">self</span>.<span class="ident">count</span>
+        <span class="doccomment">/// The number of symbols in the table.
+        </span><span class="attribute">#[inline]
+        </span><span class="kw">pub fn </span>len(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; usize {
+            <span class="self">self</span>.count
         }
 
-        <span class="doccomment">/// Returns true if table has no symbols.</span>
-        <span class="attribute">#[<span class="ident">inline</span>]</span>
-        <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_empty</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-            <span class="self">self</span>.<span class="ident">count</span> <span class="op">==</span> <span class="number">0</span>
+        <span class="doccomment">/// Returns true if table has no symbols.
+        </span><span class="attribute">#[inline]
+        </span><span class="kw">pub fn </span>is_empty(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+            <span class="self">self</span>.count == <span class="number">0
+        </span>}
+
+        <span class="doccomment">/// Iterate over all symbols.
+        </span><span class="attribute">#[inline]
+        </span><span class="kw">pub fn </span>iter(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; SymIterator&lt;<span class="lifetime">&#39;a</span>&gt; {
+            <span class="self">self</span>.into_iter()
         }
 
-        <span class="doccomment">/// Iterate over all symbols.</span>
-        <span class="attribute">#[<span class="ident">inline</span>]</span>
-        <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">iter</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">SymIterator</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-            <span class="self">self</span>.<span class="ident">into_iter</span>()
-        }
-
-        <span class="doccomment">/// Parse all symbols into a vector.</span>
-        <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">to_vec</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Sym</span><span class="op">&gt;</span> {
-            <span class="self">self</span>.<span class="ident">iter</span>().<span class="ident">collect</span>()
-        }
-    }
-
-    <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="lifetime">&#39;b</span><span class="op">&gt;</span> <span class="ident">IntoIterator</span> <span class="kw">for</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;b</span> <span class="ident">Symtab</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-        <span class="kw">type</span> <span class="ident">Item</span> <span class="op">=</span> <span class="op">&lt;</span><span class="ident">SymIterator</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="kw">as</span> <span class="ident">Iterator</span><span class="op">&gt;</span><span class="ident">::Item</span>;
-        <span class="kw">type</span> <span class="ident">IntoIter</span> <span class="op">=</span> <span class="ident">SymIterator</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>;
-
-        <span class="attribute">#[<span class="ident">inline</span>]</span>
-        <span class="kw">fn</span> <span class="ident">into_iter</span>(<span class="self">self</span>) -&gt; <span class="ident"><span class="self">Self</span>::IntoIter</span> {
-            <span class="ident">SymIterator</span> {
-                <span class="ident">bytes</span>: <span class="self">self</span>.<span class="ident">bytes</span>,
-                <span class="ident">offset</span>: <span class="number">0</span>,
-                <span class="ident">index</span>: <span class="number">0</span>,
-                <span class="ident">count</span>: <span class="self">self</span>.<span class="ident">count</span>,
-                <span class="ident">ctx</span>: <span class="self">self</span>.<span class="ident">ctx</span>,
-            }
+        <span class="doccomment">/// Parse all symbols into a vector.
+        </span><span class="kw">pub fn </span>to_vec(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Vec&lt;Sym&gt; {
+            <span class="self">self</span>.iter().collect()
         }
     }
 
-    <span class="doccomment">/// An iterator over symbols in an ELF symbol table</span>
-    <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">SymIterator</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-        <span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
-        <span class="ident">offset</span>: <span class="ident">usize</span>,
-        <span class="ident">index</span>: <span class="ident">usize</span>,
-        <span class="ident">count</span>: <span class="ident">usize</span>,
-        <span class="ident">ctx</span>: <span class="ident">Ctx</span>,
-    }
+    <span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>, <span class="lifetime">&#39;b</span>&gt; IntoIterator <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;b </span>Symtab&lt;<span class="lifetime">&#39;a</span>&gt; {
+        <span class="kw">type </span>Item = &lt;SymIterator&lt;<span class="lifetime">&#39;a</span>&gt; <span class="kw">as </span>Iterator&gt;::Item;
+        <span class="kw">type </span>IntoIter = SymIterator&lt;<span class="lifetime">&#39;a</span>&gt;;
 
-    <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Iterator</span> <span class="kw">for</span> <span class="ident">SymIterator</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-        <span class="kw">type</span> <span class="ident">Item</span> <span class="op">=</span> <span class="ident">Sym</span>;
-
-        <span class="attribute">#[<span class="ident">inline</span>]</span>
-        <span class="kw">fn</span> <span class="ident">next</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident"><span class="self">Self</span>::Item</span><span class="op">&gt;</span> {
-            <span class="kw">if</span> <span class="self">self</span>.<span class="ident">index</span> <span class="op">&gt;</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">count</span> {
-                <span class="prelude-val">None</span>
-            } <span class="kw">else</span> {
-                <span class="self">self</span>.<span class="ident">index</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
-                <span class="prelude-val">Some</span>(<span class="self">self</span>.<span class="ident">bytes</span>.<span class="ident">gread_with</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="ident">offset</span>, <span class="self">self</span>.<span class="ident">ctx</span>).<span class="ident">unwrap</span>())
+        <span class="attribute">#[inline]
+        </span><span class="kw">fn </span>into_iter(<span class="self">self</span>) -&gt; <span class="self">Self</span>::IntoIter {
+            SymIterator {
+                bytes: <span class="self">self</span>.bytes,
+                offset: <span class="number">0</span>,
+                index: <span class="number">0</span>,
+                count: <span class="self">self</span>.count,
+                ctx: <span class="self">self</span>.ctx,
             }
         }
     }
 
-    <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">ExactSizeIterator</span> <span class="kw">for</span> <span class="ident">SymIterator</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-        <span class="attribute">#[<span class="ident">inline</span>]</span>
-        <span class="kw">fn</span> <span class="ident">len</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">usize</span> {
-            <span class="self">self</span>.<span class="ident">count</span> <span class="op">-</span> <span class="self">self</span>.<span class="ident">index</span>
+    <span class="doccomment">/// An iterator over symbols in an ELF symbol table
+    </span><span class="kw">pub struct </span>SymIterator&lt;<span class="lifetime">&#39;a</span>&gt; {
+        bytes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8],
+        offset: usize,
+        index: usize,
+        count: usize,
+        ctx: Ctx,
+    }
+
+    <span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Iterator <span class="kw">for </span>SymIterator&lt;<span class="lifetime">&#39;a</span>&gt; {
+        <span class="kw">type </span>Item = Sym;
+
+        <span class="attribute">#[inline]
+        </span><span class="kw">fn </span>next(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>::Item&gt; {
+            <span class="kw">if </span><span class="self">self</span>.index &gt;= <span class="self">self</span>.count {
+                <span class="prelude-val">None
+            </span>} <span class="kw">else </span>{
+                <span class="self">self</span>.index += <span class="number">1</span>;
+                <span class="prelude-val">Some</span>(<span class="self">self</span>.bytes.gread_with(<span class="kw-2">&amp;mut </span><span class="self">self</span>.offset, <span class="self">self</span>.ctx).unwrap())
+            }
         }
     }
-} <span class="comment">// end if_alloc</span>
-</code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="goblin" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+
+    <span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; ExactSizeIterator <span class="kw">for </span>SymIterator&lt;<span class="lifetime">&#39;a</span>&gt; {
+        <span class="attribute">#[inline]
+        </span><span class="kw">fn </span>len(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; usize {
+            <span class="self">self</span>.count - <span class="self">self</span>.index
+        }
+    }
+} <span class="comment">// end if_alloc
+</span></code></pre></div>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="goblin" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (77e57db38 2022-10-30)" ></div></body></html>

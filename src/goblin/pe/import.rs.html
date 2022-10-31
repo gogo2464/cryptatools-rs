@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/goblin-0.5.4/src/pe/import.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>import.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../goblin/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../goblin/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../goblin/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/goblin-0.5.4/src/pe/import.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>import.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../normalize.css"><link rel="stylesheet" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../ayu.css" disabled><link rel="stylesheet" href="../../../dark.css" disabled><link rel="stylesheet" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../goblin/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -415,422 +415,422 @@
 <span id="415">415</span>
 <span id="416">416</span>
 <span id="417">417</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">alloc::borrow::Cow</span>;
-<span class="kw">use</span> <span class="ident">alloc::vec::Vec</span>;
-<span class="kw">use</span> <span class="ident">core::fmt</span>::{<span class="ident">Debug</span>, <span class="ident">LowerHex</span>};
+</pre><pre class="rust"><code><span class="kw">use </span>alloc::borrow::Cow;
+<span class="kw">use </span>alloc::vec::Vec;
+<span class="kw">use </span>core::fmt::{Debug, LowerHex};
 
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::error</span>;
-<span class="kw">use</span> <span class="ident">scroll::ctx::TryFromCtx</span>;
-<span class="kw">use</span> <span class="ident">scroll</span>::{<span class="ident">Pread</span>, <span class="ident">Pwrite</span>, <span class="ident">SizeWith</span>};
+<span class="kw">use </span><span class="kw">crate</span>::error;
+<span class="kw">use </span>scroll::ctx::TryFromCtx;
+<span class="kw">use </span>scroll::{Pread, Pwrite, SizeWith};
 
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pe::data_directories</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pe::options</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pe::section_table</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pe::utils</span>;
+<span class="kw">use </span><span class="kw">crate</span>::pe::data_directories;
+<span class="kw">use </span><span class="kw">crate</span>::pe::options;
+<span class="kw">use </span><span class="kw">crate</span>::pe::section_table;
+<span class="kw">use </span><span class="kw">crate</span>::pe::utils;
 
-<span class="kw">use</span> <span class="ident">log</span>::{<span class="ident">debug</span>, <span class="ident">warn</span>};
+<span class="kw">use </span>log::{debug, warn};
 
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMPORT_BY_ORDINAL_32</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">0x8000_0000</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMPORT_BY_ORDINAL_64</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">0x8000_0000_0000_0000</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMPORT_RVA_MASK_32</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">0x7fff_ffff</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMPORT_RVA_MASK_64</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">0x0000_0000_7fff_ffff</span>;
+<span class="kw">pub const </span>IMPORT_BY_ORDINAL_32: u32 = <span class="number">0x8000_0000</span>;
+<span class="kw">pub const </span>IMPORT_BY_ORDINAL_64: u64 = <span class="number">0x8000_0000_0000_0000</span>;
+<span class="kw">pub const </span>IMPORT_RVA_MASK_32: u32 = <span class="number">0x7fff_ffff</span>;
+<span class="kw">pub const </span>IMPORT_RVA_MASK_64: u64 = <span class="number">0x0000_0000_7fff_ffff</span>;
 
-<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">Bitfield</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>:
-    <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">u64</span><span class="op">&gt;</span>
-    <span class="op">+</span> <span class="ident">PartialEq</span>
-    <span class="op">+</span> <span class="ident">Eq</span>
-    <span class="op">+</span> <span class="ident">LowerHex</span>
-    <span class="op">+</span> <span class="ident">Debug</span>
-    <span class="op">+</span> <span class="ident">TryFromCtx</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">scroll::Endian</span>, <span class="ident">Error</span> <span class="op">=</span> <span class="ident">scroll::Error</span><span class="op">&gt;</span>
+<span class="kw">pub trait </span>Bitfield&lt;<span class="lifetime">&#39;a</span>&gt;:
+    Into&lt;u64&gt;
+    + PartialEq
+    + Eq
+    + LowerHex
+    + Debug
+    + TryFromCtx&lt;<span class="lifetime">&#39;a</span>, scroll::Endian, Error = scroll::Error&gt;
 {
-    <span class="kw">fn</span> <span class="ident">is_ordinal</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span>;
-    <span class="kw">fn</span> <span class="ident">to_ordinal</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">u16</span>;
-    <span class="kw">fn</span> <span class="ident">to_rva</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">u32</span>;
-    <span class="kw">fn</span> <span class="ident">size_of</span>() -&gt; <span class="ident">usize</span>;
-    <span class="kw">fn</span> <span class="ident">is_zero</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span>;
+    <span class="kw">fn </span>is_ordinal(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool;
+    <span class="kw">fn </span>to_ordinal(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; u16;
+    <span class="kw">fn </span>to_rva(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; u32;
+    <span class="kw">fn </span>size_of() -&gt; usize;
+    <span class="kw">fn </span>is_zero(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool;
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Bitfield</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">u64</span> {
-    <span class="kw">fn</span> <span class="ident">is_ordinal</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span> <span class="op">&amp;</span> <span class="ident">IMPORT_BY_ORDINAL_64</span> <span class="op">==</span> <span class="ident">IMPORT_BY_ORDINAL_64</span>
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Bitfield&lt;<span class="lifetime">&#39;a</span>&gt; <span class="kw">for </span>u64 {
+    <span class="kw">fn </span>is_ordinal(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self </span>&amp; IMPORT_BY_ORDINAL_64 == IMPORT_BY_ORDINAL_64
     }
-    <span class="kw">fn</span> <span class="ident">to_ordinal</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">u16</span> {
-        (<span class="number">0xffff</span> <span class="op">&amp;</span> <span class="self">self</span>) <span class="kw">as</span> <span class="ident">u16</span>
+    <span class="kw">fn </span>to_ordinal(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; u16 {
+        (<span class="number">0xffff </span>&amp; <span class="self">self</span>) <span class="kw">as </span>u16
     }
-    <span class="kw">fn</span> <span class="ident">to_rva</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">u32</span> {
-        (<span class="self">self</span> <span class="op">&amp;</span> <span class="ident">IMPORT_RVA_MASK_64</span>) <span class="kw">as</span> <span class="ident">u32</span>
+    <span class="kw">fn </span>to_rva(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; u32 {
+        (<span class="self">self </span>&amp; IMPORT_RVA_MASK_64) <span class="kw">as </span>u32
     }
-    <span class="kw">fn</span> <span class="ident">size_of</span>() -&gt; <span class="ident">usize</span> {
-        <span class="number">8</span>
+    <span class="kw">fn </span>size_of() -&gt; usize {
+        <span class="number">8
+    </span>}
+    <span class="kw">fn </span>is_zero(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="kw-2">*</span><span class="self">self </span>== <span class="number">0
+    </span>}
+}
+
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Bitfield&lt;<span class="lifetime">&#39;a</span>&gt; <span class="kw">for </span>u32 {
+    <span class="kw">fn </span>is_ordinal(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self </span>&amp; IMPORT_BY_ORDINAL_32 == IMPORT_BY_ORDINAL_32
     }
-    <span class="kw">fn</span> <span class="ident">is_zero</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="kw-2">*</span><span class="self">self</span> <span class="op">==</span> <span class="number">0</span>
+    <span class="kw">fn </span>to_ordinal(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; u16 {
+        (<span class="number">0xffff </span>&amp; <span class="self">self</span>) <span class="kw">as </span>u16
+    }
+    <span class="kw">fn </span>to_rva(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; u32 {
+        (<span class="self">self </span>&amp; IMPORT_RVA_MASK_32) <span class="kw">as </span>u32
+    }
+    <span class="kw">fn </span>size_of() -&gt; usize {
+        <span class="number">4
+    </span>}
+    <span class="kw">fn </span>is_zero(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="kw-2">*</span><span class="self">self </span>== <span class="number">0
+    </span>}
+}
+
+<span class="attribute">#[derive(Debug, Clone)]
+</span><span class="kw">pub struct </span>HintNameTableEntry&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">pub </span>hint: u16,
+    <span class="kw">pub </span>name: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str,
+}
+
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; HintNameTableEntry&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">fn </span>parse(bytes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8], <span class="kw-2">mut </span>offset: usize) -&gt; error::Result&lt;<span class="self">Self</span>&gt; {
+        <span class="kw">let </span>offset = <span class="kw-2">&amp;mut </span>offset;
+        <span class="kw">let </span>hint = bytes.gread_with(offset, scroll::LE)<span class="question-mark">?</span>;
+        <span class="kw">let </span>name = bytes.pread::&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str&gt;(<span class="kw-2">*</span>offset)<span class="question-mark">?</span>;
+        <span class="prelude-val">Ok</span>(HintNameTableEntry { hint, name })
     }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Bitfield</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">u32</span> {
-    <span class="kw">fn</span> <span class="ident">is_ordinal</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span> <span class="op">&amp;</span> <span class="ident">IMPORT_BY_ORDINAL_32</span> <span class="op">==</span> <span class="ident">IMPORT_BY_ORDINAL_32</span>
-    }
-    <span class="kw">fn</span> <span class="ident">to_ordinal</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">u16</span> {
-        (<span class="number">0xffff</span> <span class="op">&amp;</span> <span class="self">self</span>) <span class="kw">as</span> <span class="ident">u16</span>
-    }
-    <span class="kw">fn</span> <span class="ident">to_rva</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">u32</span> {
-        (<span class="self">self</span> <span class="op">&amp;</span> <span class="ident">IMPORT_RVA_MASK_32</span>) <span class="kw">as</span> <span class="ident">u32</span>
-    }
-    <span class="kw">fn</span> <span class="ident">size_of</span>() -&gt; <span class="ident">usize</span> {
-        <span class="number">4</span>
-    }
-    <span class="kw">fn</span> <span class="ident">is_zero</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="kw-2">*</span><span class="self">self</span> <span class="op">==</span> <span class="number">0</span>
-    }
-}
+<span class="attribute">#[derive(Debug, Clone)]
+</span><span class="kw">pub enum </span>SyntheticImportLookupTableEntry&lt;<span class="lifetime">&#39;a</span>&gt; {
+    OrdinalNumber(u16),
+    HintNameTableRVA((u32, HintNameTableEntry&lt;<span class="lifetime">&#39;a</span>&gt;)), <span class="comment">// [u8; 31] bitfield :/
+</span>}
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">HintNameTableEntry</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">pub</span> <span class="ident">hint</span>: <span class="ident">u16</span>,
-    <span class="kw">pub</span> <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>,
-}
+<span class="kw">pub type </span>ImportLookupTable&lt;<span class="lifetime">&#39;a</span>&gt; = Vec&lt;SyntheticImportLookupTableEntry&lt;<span class="lifetime">&#39;a</span>&gt;&gt;;
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">HintNameTableEntry</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>], <span class="kw-2">mut</span> <span class="ident">offset</span>: <span class="ident">usize</span>) -&gt; <span class="ident">error::Result</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> <span class="kw-2">&amp;mut</span> <span class="ident">offset</span>;
-        <span class="kw">let</span> <span class="ident">hint</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">gread_with</span>(<span class="ident">offset</span>, <span class="ident">scroll::LE</span>)<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">name</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">pread</span>::<span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span><span class="op">&gt;</span>(<span class="kw-2">*</span><span class="ident">offset</span>)<span class="question-mark">?</span>;
-        <span class="prelude-val">Ok</span>(<span class="ident">HintNameTableEntry</span> { <span class="ident">hint</span>, <span class="ident">name</span> })
-    }
-}
-
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">SyntheticImportLookupTableEntry</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="ident">OrdinalNumber</span>(<span class="ident">u16</span>),
-    <span class="ident">HintNameTableRVA</span>((<span class="ident">u32</span>, <span class="ident">HintNameTableEntry</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>)), <span class="comment">// [u8; 31] bitfield :/</span>
-}
-
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">ImportLookupTable</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">SyntheticImportLookupTableEntry</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span>;
-
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">SyntheticImportLookupTableEntry</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">parse</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Bitfield</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span>(
-        <span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
-        <span class="ident">offset</span>: <span class="ident">usize</span>,
-        <span class="ident">sections</span>: <span class="kw-2">&amp;</span>[<span class="ident">section_table::SectionTable</span>],
-        <span class="ident">file_alignment</span>: <span class="ident">u32</span>,
-    ) -&gt; <span class="ident">error::Result</span><span class="op">&lt;</span><span class="ident">ImportLookupTable</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-        <span class="ident"><span class="self">Self</span>::parse_with_opts</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>(
-            <span class="ident">bytes</span>,
-            <span class="ident">offset</span>,
-            <span class="ident">sections</span>,
-            <span class="ident">file_alignment</span>,
-            <span class="kw-2">&amp;</span><span class="ident">options::ParseOptions::default</span>(),
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; SyntheticImportLookupTableEntry&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">pub fn </span>parse&lt;T: Bitfield&lt;<span class="lifetime">&#39;a</span>&gt;&gt;(
+        bytes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8],
+        offset: usize,
+        sections: <span class="kw-2">&amp;</span>[section_table::SectionTable],
+        file_alignment: u32,
+    ) -&gt; error::Result&lt;ImportLookupTable&lt;<span class="lifetime">&#39;a</span>&gt;&gt; {
+        <span class="self">Self</span>::parse_with_opts::&lt;T&gt;(
+            bytes,
+            offset,
+            sections,
+            file_alignment,
+            <span class="kw-2">&amp;</span>options::ParseOptions::default(),
         )
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">parse_with_opts</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Bitfield</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span>(
-        <span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
-        <span class="kw-2">mut</span> <span class="ident">offset</span>: <span class="ident">usize</span>,
-        <span class="ident">sections</span>: <span class="kw-2">&amp;</span>[<span class="ident">section_table::SectionTable</span>],
-        <span class="ident">file_alignment</span>: <span class="ident">u32</span>,
-        <span class="ident">opts</span>: <span class="kw-2">&amp;</span><span class="ident">options::ParseOptions</span>,
-    ) -&gt; <span class="ident">error::Result</span><span class="op">&lt;</span><span class="ident">ImportLookupTable</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">le</span> <span class="op">=</span> <span class="ident">scroll::LE</span>;
-        <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> <span class="kw-2">&amp;mut</span> <span class="ident">offset</span>;
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">table</span> <span class="op">=</span> <span class="ident">Vec::new</span>();
-        <span class="kw">loop</span> {
-            <span class="kw">let</span> <span class="ident">bitfield</span>: <span class="ident">T</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">gread_with</span>(<span class="ident">offset</span>, <span class="ident">le</span>)<span class="question-mark">?</span>;
-            <span class="kw">if</span> <span class="ident">bitfield</span>.<span class="ident">is_zero</span>() {
+    <span class="kw">pub fn </span>parse_with_opts&lt;T: Bitfield&lt;<span class="lifetime">&#39;a</span>&gt;&gt;(
+        bytes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8],
+        <span class="kw-2">mut </span>offset: usize,
+        sections: <span class="kw-2">&amp;</span>[section_table::SectionTable],
+        file_alignment: u32,
+        opts: <span class="kw-2">&amp;</span>options::ParseOptions,
+    ) -&gt; error::Result&lt;ImportLookupTable&lt;<span class="lifetime">&#39;a</span>&gt;&gt; {
+        <span class="kw">let </span>le = scroll::LE;
+        <span class="kw">let </span>offset = <span class="kw-2">&amp;mut </span>offset;
+        <span class="kw">let </span><span class="kw-2">mut </span>table = Vec::new();
+        <span class="kw">loop </span>{
+            <span class="kw">let </span>bitfield: T = bytes.gread_with(offset, le)<span class="question-mark">?</span>;
+            <span class="kw">if </span>bitfield.is_zero() {
                 <span class="macro">debug!</span>(<span class="string">&quot;imports done&quot;</span>);
                 <span class="kw">break</span>;
-            } <span class="kw">else</span> {
-                <span class="kw">let</span> <span class="ident">entry</span> <span class="op">=</span> {
-                    <span class="macro">debug!</span>(<span class="string">&quot;bitfield {:#x}&quot;</span>, <span class="ident">bitfield</span>);
-                    <span class="kw">use</span> <span class="ident"><span class="self">self</span>::SyntheticImportLookupTableEntry</span>::<span class="kw-2">*</span>;
-                    <span class="kw">if</span> <span class="ident">bitfield</span>.<span class="ident">is_ordinal</span>() {
-                        <span class="kw">let</span> <span class="ident">ordinal</span> <span class="op">=</span> <span class="ident">bitfield</span>.<span class="ident">to_ordinal</span>();
-                        <span class="macro">debug!</span>(<span class="string">&quot;importing by ordinal {:#x}&quot;</span>, <span class="ident">ordinal</span>);
-                        <span class="ident">OrdinalNumber</span>(<span class="ident">ordinal</span>)
-                    } <span class="kw">else</span> {
-                        <span class="kw">let</span> <span class="ident">rva</span> <span class="op">=</span> <span class="ident">bitfield</span>.<span class="ident">to_rva</span>();
-                        <span class="kw">let</span> <span class="ident">hentry</span> <span class="op">=</span> {
-                            <span class="macro">debug!</span>(<span class="string">&quot;searching for RVA {:#x}&quot;</span>, <span class="ident">rva</span>);
-                            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">offset</span>) <span class="op">=</span>
-                                <span class="ident">utils::find_offset</span>(<span class="ident">rva</span> <span class="kw">as</span> <span class="ident">usize</span>, <span class="ident">sections</span>, <span class="ident">file_alignment</span>, <span class="ident">opts</span>)
+            } <span class="kw">else </span>{
+                <span class="kw">let </span>entry = {
+                    <span class="macro">debug!</span>(<span class="string">&quot;bitfield {:#x}&quot;</span>, bitfield);
+                    <span class="kw">use </span><span class="self">self</span>::SyntheticImportLookupTableEntry::<span class="kw-2">*</span>;
+                    <span class="kw">if </span>bitfield.is_ordinal() {
+                        <span class="kw">let </span>ordinal = bitfield.to_ordinal();
+                        <span class="macro">debug!</span>(<span class="string">&quot;importing by ordinal {:#x}&quot;</span>, ordinal);
+                        OrdinalNumber(ordinal)
+                    } <span class="kw">else </span>{
+                        <span class="kw">let </span>rva = bitfield.to_rva();
+                        <span class="kw">let </span>hentry = {
+                            <span class="macro">debug!</span>(<span class="string">&quot;searching for RVA {:#x}&quot;</span>, rva);
+                            <span class="kw">if let </span><span class="prelude-val">Some</span>(offset) =
+                                utils::find_offset(rva <span class="kw">as </span>usize, sections, file_alignment, opts)
                             {
-                                <span class="macro">debug!</span>(<span class="string">&quot;offset {:#x}&quot;</span>, <span class="ident">offset</span>);
-                                <span class="ident">HintNameTableEntry::parse</span>(<span class="ident">bytes</span>, <span class="ident">offset</span>)<span class="question-mark">?</span>
-                            } <span class="kw">else</span> {
-                                <span class="macro">warn!</span>(<span class="string">&quot;Entry {} has bad RVA: {:#x}&quot;</span>, <span class="ident">table</span>.<span class="ident">len</span>(), <span class="ident">rva</span>);
+                                <span class="macro">debug!</span>(<span class="string">&quot;offset {:#x}&quot;</span>, offset);
+                                HintNameTableEntry::parse(bytes, offset)<span class="question-mark">?
+                            </span>} <span class="kw">else </span>{
+                                <span class="macro">warn!</span>(<span class="string">&quot;Entry {} has bad RVA: {:#x}&quot;</span>, table.len(), rva);
                                 <span class="kw">continue</span>;
                             }
                         };
-                        <span class="ident">HintNameTableRVA</span>((<span class="ident">rva</span>, <span class="ident">hentry</span>))
+                        HintNameTableRVA((rva, hentry))
                     }
                 };
-                <span class="ident">table</span>.<span class="ident">push</span>(<span class="ident">entry</span>);
+                table.push(entry);
             }
         }
-        <span class="prelude-val">Ok</span>(<span class="ident">table</span>)
+        <span class="prelude-val">Ok</span>(table)
     }
 }
 
-<span class="comment">// get until entry is 0</span>
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">ImportAddressTable</span> <span class="op">=</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u64</span><span class="op">&gt;</span>;
+<span class="comment">// get until entry is 0
+</span><span class="kw">pub type </span>ImportAddressTable = Vec&lt;u64&gt;;
 
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Pread</span>, <span class="ident">Pwrite</span>, <span class="ident">SizeWith</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ImportDirectoryEntry</span> {
-    <span class="kw">pub</span> <span class="ident">import_lookup_table_rva</span>: <span class="ident">u32</span>,
-    <span class="kw">pub</span> <span class="ident">time_date_stamp</span>: <span class="ident">u32</span>,
-    <span class="kw">pub</span> <span class="ident">forwarder_chain</span>: <span class="ident">u32</span>,
-    <span class="kw">pub</span> <span class="ident">name_rva</span>: <span class="ident">u32</span>,
-    <span class="kw">pub</span> <span class="ident">import_address_table_rva</span>: <span class="ident">u32</span>,
+<span class="attribute">#[repr(C)]
+#[derive(Debug, Pread, Pwrite, SizeWith)]
+</span><span class="kw">pub struct </span>ImportDirectoryEntry {
+    <span class="kw">pub </span>import_lookup_table_rva: u32,
+    <span class="kw">pub </span>time_date_stamp: u32,
+    <span class="kw">pub </span>forwarder_chain: u32,
+    <span class="kw">pub </span>name_rva: u32,
+    <span class="kw">pub </span>import_address_table_rva: u32,
 }
 
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SIZEOF_IMPORT_DIRECTORY_ENTRY</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">20</span>;
+<span class="kw">pub const </span>SIZEOF_IMPORT_DIRECTORY_ENTRY: usize = <span class="number">20</span>;
 
-<span class="kw">impl</span> <span class="ident">ImportDirectoryEntry</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_null</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        (<span class="self">self</span>.<span class="ident">import_lookup_table_rva</span> <span class="op">==</span> <span class="number">0</span>)
-            <span class="op">&amp;&amp;</span> (<span class="self">self</span>.<span class="ident">time_date_stamp</span> <span class="op">==</span> <span class="number">0</span>)
-            <span class="op">&amp;&amp;</span> (<span class="self">self</span>.<span class="ident">forwarder_chain</span> <span class="op">==</span> <span class="number">0</span>)
-            <span class="op">&amp;&amp;</span> (<span class="self">self</span>.<span class="ident">name_rva</span> <span class="op">==</span> <span class="number">0</span>)
-            <span class="op">&amp;&amp;</span> (<span class="self">self</span>.<span class="ident">import_address_table_rva</span> <span class="op">==</span> <span class="number">0</span>)
+<span class="kw">impl </span>ImportDirectoryEntry {
+    <span class="kw">pub fn </span>is_null(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        (<span class="self">self</span>.import_lookup_table_rva == <span class="number">0</span>)
+            &amp;&amp; (<span class="self">self</span>.time_date_stamp == <span class="number">0</span>)
+            &amp;&amp; (<span class="self">self</span>.forwarder_chain == <span class="number">0</span>)
+            &amp;&amp; (<span class="self">self</span>.name_rva == <span class="number">0</span>)
+            &amp;&amp; (<span class="self">self</span>.import_address_table_rva == <span class="number">0</span>)
     }
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">SyntheticImportDirectoryEntry</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">pub</span> <span class="ident">import_directory_entry</span>: <span class="ident">ImportDirectoryEntry</span>,
-    <span class="doccomment">/// Computed</span>
-    <span class="kw">pub</span> <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>,
-    <span class="doccomment">/// The import lookup table is a vector of either ordinals, or RVAs + import names</span>
-    <span class="kw">pub</span> <span class="ident">import_lookup_table</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ImportLookupTable</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-    <span class="doccomment">/// Computed</span>
-    <span class="kw">pub</span> <span class="ident">import_address_table</span>: <span class="ident">ImportAddressTable</span>,
+<span class="attribute">#[derive(Debug)]
+</span><span class="kw">pub struct </span>SyntheticImportDirectoryEntry&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">pub </span>import_directory_entry: ImportDirectoryEntry,
+    <span class="doccomment">/// Computed
+    </span><span class="kw">pub </span>name: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str,
+    <span class="doccomment">/// The import lookup table is a vector of either ordinals, or RVAs + import names
+    </span><span class="kw">pub </span>import_lookup_table: <span class="prelude-ty">Option</span>&lt;ImportLookupTable&lt;<span class="lifetime">&#39;a</span>&gt;&gt;,
+    <span class="doccomment">/// Computed
+    </span><span class="kw">pub </span>import_address_table: ImportAddressTable,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">SyntheticImportDirectoryEntry</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">parse</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Bitfield</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span>(
-        <span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
-        <span class="ident">import_directory_entry</span>: <span class="ident">ImportDirectoryEntry</span>,
-        <span class="ident">sections</span>: <span class="kw-2">&amp;</span>[<span class="ident">section_table::SectionTable</span>],
-        <span class="ident">file_alignment</span>: <span class="ident">u32</span>,
-    ) -&gt; <span class="ident">error::Result</span><span class="op">&lt;</span><span class="ident">SyntheticImportDirectoryEntry</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-        <span class="ident"><span class="self">Self</span>::parse_with_opts</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>(
-            <span class="ident">bytes</span>,
-            <span class="ident">import_directory_entry</span>,
-            <span class="ident">sections</span>,
-            <span class="ident">file_alignment</span>,
-            <span class="kw-2">&amp;</span><span class="ident">options::ParseOptions::default</span>(),
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; SyntheticImportDirectoryEntry&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">pub fn </span>parse&lt;T: Bitfield&lt;<span class="lifetime">&#39;a</span>&gt;&gt;(
+        bytes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8],
+        import_directory_entry: ImportDirectoryEntry,
+        sections: <span class="kw-2">&amp;</span>[section_table::SectionTable],
+        file_alignment: u32,
+    ) -&gt; error::Result&lt;SyntheticImportDirectoryEntry&lt;<span class="lifetime">&#39;a</span>&gt;&gt; {
+        <span class="self">Self</span>::parse_with_opts::&lt;T&gt;(
+            bytes,
+            import_directory_entry,
+            sections,
+            file_alignment,
+            <span class="kw-2">&amp;</span>options::ParseOptions::default(),
         )
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">parse_with_opts</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Bitfield</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span>(
-        <span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
-        <span class="ident">import_directory_entry</span>: <span class="ident">ImportDirectoryEntry</span>,
-        <span class="ident">sections</span>: <span class="kw-2">&amp;</span>[<span class="ident">section_table::SectionTable</span>],
-        <span class="ident">file_alignment</span>: <span class="ident">u32</span>,
-        <span class="ident">opts</span>: <span class="kw-2">&amp;</span><span class="ident">options::ParseOptions</span>,
-    ) -&gt; <span class="ident">error::Result</span><span class="op">&lt;</span><span class="ident">SyntheticImportDirectoryEntry</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-        <span class="kw">const</span> <span class="ident">LE</span>: <span class="ident">scroll::Endian</span> <span class="op">=</span> <span class="ident">scroll::LE</span>;
-        <span class="kw">let</span> <span class="ident">name_rva</span> <span class="op">=</span> <span class="ident">import_directory_entry</span>.<span class="ident">name_rva</span>;
-        <span class="kw">let</span> <span class="ident">name</span> <span class="op">=</span> <span class="ident">utils::try_name</span>(<span class="ident">bytes</span>, <span class="ident">name_rva</span> <span class="kw">as</span> <span class="ident">usize</span>, <span class="ident">sections</span>, <span class="ident">file_alignment</span>, <span class="ident">opts</span>)<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">import_lookup_table</span> <span class="op">=</span> {
-            <span class="kw">let</span> <span class="ident">import_lookup_table_rva</span> <span class="op">=</span> <span class="ident">import_directory_entry</span>.<span class="ident">import_lookup_table_rva</span>;
-            <span class="kw">let</span> <span class="ident">import_address_table_rva</span> <span class="op">=</span> <span class="ident">import_directory_entry</span>.<span class="ident">import_address_table_rva</span>;
-            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">import_lookup_table_offset</span>) <span class="op">=</span> <span class="ident">utils::find_offset</span>(
-                <span class="ident">import_lookup_table_rva</span> <span class="kw">as</span> <span class="ident">usize</span>,
-                <span class="ident">sections</span>,
-                <span class="ident">file_alignment</span>,
-                <span class="ident">opts</span>,
+    <span class="kw">pub fn </span>parse_with_opts&lt;T: Bitfield&lt;<span class="lifetime">&#39;a</span>&gt;&gt;(
+        bytes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8],
+        import_directory_entry: ImportDirectoryEntry,
+        sections: <span class="kw-2">&amp;</span>[section_table::SectionTable],
+        file_alignment: u32,
+        opts: <span class="kw-2">&amp;</span>options::ParseOptions,
+    ) -&gt; error::Result&lt;SyntheticImportDirectoryEntry&lt;<span class="lifetime">&#39;a</span>&gt;&gt; {
+        <span class="kw">const </span>LE: scroll::Endian = scroll::LE;
+        <span class="kw">let </span>name_rva = import_directory_entry.name_rva;
+        <span class="kw">let </span>name = utils::try_name(bytes, name_rva <span class="kw">as </span>usize, sections, file_alignment, opts)<span class="question-mark">?</span>;
+        <span class="kw">let </span>import_lookup_table = {
+            <span class="kw">let </span>import_lookup_table_rva = import_directory_entry.import_lookup_table_rva;
+            <span class="kw">let </span>import_address_table_rva = import_directory_entry.import_address_table_rva;
+            <span class="kw">if let </span><span class="prelude-val">Some</span>(import_lookup_table_offset) = utils::find_offset(
+                import_lookup_table_rva <span class="kw">as </span>usize,
+                sections,
+                file_alignment,
+                opts,
             ) {
-                <span class="macro">debug!</span>(<span class="string">&quot;Synthesizing lookup table imports for {} lib, with import lookup table rva: {:#x}&quot;</span>, <span class="ident">name</span>, <span class="ident">import_lookup_table_rva</span>);
-                <span class="kw">let</span> <span class="ident">import_lookup_table</span> <span class="op">=</span> <span class="ident">SyntheticImportLookupTableEntry::parse_with_opts</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>(
-                    <span class="ident">bytes</span>,
-                    <span class="ident">import_lookup_table_offset</span>,
-                    <span class="ident">sections</span>,
-                    <span class="ident">file_alignment</span>,
-                    <span class="ident">opts</span>,
+                <span class="macro">debug!</span>(<span class="string">&quot;Synthesizing lookup table imports for {} lib, with import lookup table rva: {:#x}&quot;</span>, name, import_lookup_table_rva);
+                <span class="kw">let </span>import_lookup_table = SyntheticImportLookupTableEntry::parse_with_opts::&lt;T&gt;(
+                    bytes,
+                    import_lookup_table_offset,
+                    sections,
+                    file_alignment,
+                    opts,
                 )<span class="question-mark">?</span>;
                 <span class="macro">debug!</span>(
                     <span class="string">&quot;Successfully synthesized import lookup table entry from lookup table: {:#?}&quot;</span>,
-                    <span class="ident">import_lookup_table</span>
+                    import_lookup_table
                 );
-                <span class="prelude-val">Some</span>(<span class="ident">import_lookup_table</span>)
-            } <span class="kw">else</span> <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">import_address_table_offset</span>) <span class="op">=</span> <span class="ident">utils::find_offset</span>(
-                <span class="ident">import_address_table_rva</span> <span class="kw">as</span> <span class="ident">usize</span>,
-                <span class="ident">sections</span>,
-                <span class="ident">file_alignment</span>,
-                <span class="ident">opts</span>,
+                <span class="prelude-val">Some</span>(import_lookup_table)
+            } <span class="kw">else if let </span><span class="prelude-val">Some</span>(import_address_table_offset) = utils::find_offset(
+                import_address_table_rva <span class="kw">as </span>usize,
+                sections,
+                file_alignment,
+                opts,
             ) {
-                <span class="macro">debug!</span>(<span class="string">&quot;Synthesizing lookup table imports for {} lib, with import address table rva: {:#x}&quot;</span>, <span class="ident">name</span>, <span class="ident">import_lookup_table_rva</span>);
-                <span class="kw">let</span> <span class="ident">import_address_table</span> <span class="op">=</span> <span class="ident">SyntheticImportLookupTableEntry::parse_with_opts</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>(
-                    <span class="ident">bytes</span>,
-                    <span class="ident">import_address_table_offset</span>,
-                    <span class="ident">sections</span>,
-                    <span class="ident">file_alignment</span>,
-                    <span class="ident">opts</span>,
+                <span class="macro">debug!</span>(<span class="string">&quot;Synthesizing lookup table imports for {} lib, with import address table rva: {:#x}&quot;</span>, name, import_lookup_table_rva);
+                <span class="kw">let </span>import_address_table = SyntheticImportLookupTableEntry::parse_with_opts::&lt;T&gt;(
+                    bytes,
+                    import_address_table_offset,
+                    sections,
+                    file_alignment,
+                    opts,
                 )<span class="question-mark">?</span>;
                 <span class="macro">debug!</span>(
                     <span class="string">&quot;Successfully synthesized import lookup table entry from IAT: {:#?}&quot;</span>,
-                    <span class="ident">import_address_table</span>
+                    import_address_table
                 );
-                <span class="prelude-val">Some</span>(<span class="ident">import_address_table</span>)
-            } <span class="kw">else</span> {
-                <span class="prelude-val">None</span>
-            }
+                <span class="prelude-val">Some</span>(import_address_table)
+            } <span class="kw">else </span>{
+                <span class="prelude-val">None
+            </span>}
         };
 
-        <span class="kw">let</span> <span class="ident">import_address_table_offset</span> <span class="op">=</span> <span class="kw-2">&amp;mut</span> <span class="ident">utils::find_offset</span>(
-            <span class="ident">import_directory_entry</span>.<span class="ident">import_address_table_rva</span> <span class="kw">as</span> <span class="ident">usize</span>,
-            <span class="ident">sections</span>,
-            <span class="ident">file_alignment</span>,
-            <span class="ident">opts</span>,
+        <span class="kw">let </span>import_address_table_offset = <span class="kw-2">&amp;mut </span>utils::find_offset(
+            import_directory_entry.import_address_table_rva <span class="kw">as </span>usize,
+            sections,
+            file_alignment,
+            opts,
         )
-        .<span class="ident">ok_or_else</span>(<span class="op">|</span><span class="op">|</span> {
-            <span class="ident">error::Error::Malformed</span>(<span class="macro">format!</span>(
+        .ok_or_else(|| {
+            error::Error::Malformed(<span class="macro">format!</span>(
                 <span class="string">&quot;Cannot map import_address_table_rva {:#x} into offset for {}&quot;</span>,
-                <span class="ident">import_directory_entry</span>.<span class="ident">import_address_table_rva</span>, <span class="ident">name</span>
+                import_directory_entry.import_address_table_rva, name
             ))
         })<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">import_address_table</span> <span class="op">=</span> <span class="ident">Vec::new</span>();
-        <span class="kw">loop</span> {
-            <span class="kw">let</span> <span class="ident">import_address</span> <span class="op">=</span> <span class="ident">bytes</span>
-                .<span class="ident">gread_with</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>(<span class="ident">import_address_table_offset</span>, <span class="ident">LE</span>)<span class="question-mark">?</span>
-                .<span class="ident">into</span>();
-            <span class="kw">if</span> <span class="ident">import_address</span> <span class="op">==</span> <span class="number">0</span> {
+        <span class="kw">let </span><span class="kw-2">mut </span>import_address_table = Vec::new();
+        <span class="kw">loop </span>{
+            <span class="kw">let </span>import_address = bytes
+                .gread_with::&lt;T&gt;(import_address_table_offset, LE)<span class="question-mark">?
+                </span>.into();
+            <span class="kw">if </span>import_address == <span class="number">0 </span>{
                 <span class="kw">break</span>;
-            } <span class="kw">else</span> {
-                <span class="ident">import_address_table</span>.<span class="ident">push</span>(<span class="ident">import_address</span>);
+            } <span class="kw">else </span>{
+                import_address_table.push(import_address);
             }
         }
-        <span class="prelude-val">Ok</span>(<span class="ident">SyntheticImportDirectoryEntry</span> {
-            <span class="ident">import_directory_entry</span>,
-            <span class="ident">name</span>,
-            <span class="ident">import_lookup_table</span>,
-            <span class="ident">import_address_table</span>,
+        <span class="prelude-val">Ok</span>(SyntheticImportDirectoryEntry {
+            import_directory_entry,
+            name,
+            import_lookup_table,
+            import_address_table,
         })
     }
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
-<span class="doccomment">/// Contains a list of synthesized import data for this binary, e.g., which symbols from which libraries it is importing from</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ImportData</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">pub</span> <span class="ident">import_data</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">SyntheticImportDirectoryEntry</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+<span class="attribute">#[derive(Debug)]
+</span><span class="doccomment">/// Contains a list of synthesized import data for this binary, e.g., which symbols from which libraries it is importing from
+</span><span class="kw">pub struct </span>ImportData&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">pub </span>import_data: Vec&lt;SyntheticImportDirectoryEntry&lt;<span class="lifetime">&#39;a</span>&gt;&gt;,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">ImportData</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">parse</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Bitfield</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span>(
-        <span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
-        <span class="ident">dd</span>: <span class="ident">data_directories::DataDirectory</span>,
-        <span class="ident">sections</span>: <span class="kw-2">&amp;</span>[<span class="ident">section_table::SectionTable</span>],
-        <span class="ident">file_alignment</span>: <span class="ident">u32</span>,
-    ) -&gt; <span class="ident">error::Result</span><span class="op">&lt;</span><span class="ident">ImportData</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-        <span class="ident"><span class="self">Self</span>::parse_with_opts</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>(
-            <span class="ident">bytes</span>,
-            <span class="ident">dd</span>,
-            <span class="ident">sections</span>,
-            <span class="ident">file_alignment</span>,
-            <span class="kw-2">&amp;</span><span class="ident">options::ParseOptions::default</span>(),
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; ImportData&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">pub fn </span>parse&lt;T: Bitfield&lt;<span class="lifetime">&#39;a</span>&gt;&gt;(
+        bytes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8],
+        dd: data_directories::DataDirectory,
+        sections: <span class="kw-2">&amp;</span>[section_table::SectionTable],
+        file_alignment: u32,
+    ) -&gt; error::Result&lt;ImportData&lt;<span class="lifetime">&#39;a</span>&gt;&gt; {
+        <span class="self">Self</span>::parse_with_opts::&lt;T&gt;(
+            bytes,
+            dd,
+            sections,
+            file_alignment,
+            <span class="kw-2">&amp;</span>options::ParseOptions::default(),
         )
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">parse_with_opts</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Bitfield</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span>(
-        <span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
-        <span class="ident">dd</span>: <span class="ident">data_directories::DataDirectory</span>,
-        <span class="ident">sections</span>: <span class="kw-2">&amp;</span>[<span class="ident">section_table::SectionTable</span>],
-        <span class="ident">file_alignment</span>: <span class="ident">u32</span>,
-        <span class="ident">opts</span>: <span class="kw-2">&amp;</span><span class="ident">options::ParseOptions</span>,
-    ) -&gt; <span class="ident">error::Result</span><span class="op">&lt;</span><span class="ident">ImportData</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">import_directory_table_rva</span> <span class="op">=</span> <span class="ident">dd</span>.<span class="ident">virtual_address</span> <span class="kw">as</span> <span class="ident">usize</span>;
+    <span class="kw">pub fn </span>parse_with_opts&lt;T: Bitfield&lt;<span class="lifetime">&#39;a</span>&gt;&gt;(
+        bytes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8],
+        dd: data_directories::DataDirectory,
+        sections: <span class="kw-2">&amp;</span>[section_table::SectionTable],
+        file_alignment: u32,
+        opts: <span class="kw-2">&amp;</span>options::ParseOptions,
+    ) -&gt; error::Result&lt;ImportData&lt;<span class="lifetime">&#39;a</span>&gt;&gt; {
+        <span class="kw">let </span>import_directory_table_rva = dd.virtual_address <span class="kw">as </span>usize;
         <span class="macro">debug!</span>(
             <span class="string">&quot;import_directory_table_rva {:#x}&quot;</span>,
-            <span class="ident">import_directory_table_rva</span>
+            import_directory_table_rva
         );
-        <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span>
-            <span class="kw-2">&amp;mut</span> <span class="ident">utils::find_offset</span>(<span class="ident">import_directory_table_rva</span>, <span class="ident">sections</span>, <span class="ident">file_alignment</span>, <span class="ident">opts</span>)
-                .<span class="ident">ok_or_else</span>(<span class="op">|</span><span class="op">|</span> {
-                    <span class="ident">error::Error::Malformed</span>(<span class="macro">format!</span>(
+        <span class="kw">let </span>offset =
+            <span class="kw-2">&amp;mut </span>utils::find_offset(import_directory_table_rva, sections, file_alignment, opts)
+                .ok_or_else(|| {
+                    error::Error::Malformed(<span class="macro">format!</span>(
                 <span class="string">&quot;Cannot create ImportData; cannot map import_directory_table_rva {:#x} into offset&quot;</span>,
-                <span class="ident">import_directory_table_rva</span>
+                import_directory_table_rva
             ))
                 })<span class="question-mark">?</span>;
-        <span class="macro">debug!</span>(<span class="string">&quot;import data offset {:#x}&quot;</span>, <span class="ident">offset</span>);
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">import_data</span> <span class="op">=</span> <span class="ident">Vec::new</span>();
-        <span class="kw">loop</span> {
-            <span class="kw">let</span> <span class="ident">import_directory_entry</span>: <span class="ident">ImportDirectoryEntry</span> <span class="op">=</span>
-                <span class="ident">bytes</span>.<span class="ident">gread_with</span>(<span class="ident">offset</span>, <span class="ident">scroll::LE</span>)<span class="question-mark">?</span>;
-            <span class="macro">debug!</span>(<span class="string">&quot;{:#?}&quot;</span>, <span class="ident">import_directory_entry</span>);
-            <span class="kw">if</span> <span class="ident">import_directory_entry</span>.<span class="ident">is_null</span>() {
+        <span class="macro">debug!</span>(<span class="string">&quot;import data offset {:#x}&quot;</span>, offset);
+        <span class="kw">let </span><span class="kw-2">mut </span>import_data = Vec::new();
+        <span class="kw">loop </span>{
+            <span class="kw">let </span>import_directory_entry: ImportDirectoryEntry =
+                bytes.gread_with(offset, scroll::LE)<span class="question-mark">?</span>;
+            <span class="macro">debug!</span>(<span class="string">&quot;{:#?}&quot;</span>, import_directory_entry);
+            <span class="kw">if </span>import_directory_entry.is_null() {
                 <span class="kw">break</span>;
-            } <span class="kw">else</span> {
-                <span class="kw">let</span> <span class="ident">entry</span> <span class="op">=</span> <span class="ident">SyntheticImportDirectoryEntry::parse_with_opts</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>(
-                    <span class="ident">bytes</span>,
-                    <span class="ident">import_directory_entry</span>,
-                    <span class="ident">sections</span>,
-                    <span class="ident">file_alignment</span>,
-                    <span class="ident">opts</span>,
+            } <span class="kw">else </span>{
+                <span class="kw">let </span>entry = SyntheticImportDirectoryEntry::parse_with_opts::&lt;T&gt;(
+                    bytes,
+                    import_directory_entry,
+                    sections,
+                    file_alignment,
+                    opts,
                 )<span class="question-mark">?</span>;
-                <span class="macro">debug!</span>(<span class="string">&quot;entry {:#?}&quot;</span>, <span class="ident">entry</span>);
-                <span class="ident">import_data</span>.<span class="ident">push</span>(<span class="ident">entry</span>);
+                <span class="macro">debug!</span>(<span class="string">&quot;entry {:#?}&quot;</span>, entry);
+                import_data.push(entry);
             }
         }
         <span class="macro">debug!</span>(<span class="string">&quot;finished ImportData&quot;</span>);
-        <span class="prelude-val">Ok</span>(<span class="ident">ImportData</span> { <span class="ident">import_data</span> })
+        <span class="prelude-val">Ok</span>(ImportData { import_data })
     }
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
-<span class="doccomment">/// A synthesized symbol import, the name is pre-indexed, and the binary offset is computed, as well as which dll it belongs to</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Import</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">pub</span> <span class="ident">name</span>: <span class="ident">Cow</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">str</span><span class="op">&gt;</span>,
-    <span class="kw">pub</span> <span class="ident">dll</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>,
-    <span class="kw">pub</span> <span class="ident">ordinal</span>: <span class="ident">u16</span>,
-    <span class="kw">pub</span> <span class="ident">offset</span>: <span class="ident">usize</span>,
-    <span class="kw">pub</span> <span class="ident">rva</span>: <span class="ident">usize</span>,
-    <span class="kw">pub</span> <span class="ident">size</span>: <span class="ident">usize</span>,
+<span class="attribute">#[derive(Debug)]
+</span><span class="doccomment">/// A synthesized symbol import, the name is pre-indexed, and the binary offset is computed, as well as which dll it belongs to
+</span><span class="kw">pub struct </span>Import&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">pub </span>name: Cow&lt;<span class="lifetime">&#39;a</span>, str&gt;,
+    <span class="kw">pub </span>dll: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str,
+    <span class="kw">pub </span>ordinal: u16,
+    <span class="kw">pub </span>offset: usize,
+    <span class="kw">pub </span>rva: usize,
+    <span class="kw">pub </span>size: usize,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Import</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">parse</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Bitfield</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span>(
-        <span class="ident">_bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
-        <span class="ident">import_data</span>: <span class="kw-2">&amp;</span><span class="ident">ImportData</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>,
-        <span class="ident">_sections</span>: <span class="kw-2">&amp;</span>[<span class="ident">section_table::SectionTable</span>],
-    ) -&gt; <span class="ident">error::Result</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Import</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">imports</span> <span class="op">=</span> <span class="ident">Vec::new</span>();
-        <span class="kw">for</span> <span class="ident">data</span> <span class="kw">in</span> <span class="kw-2">&amp;</span><span class="ident">import_data</span>.<span class="ident">import_data</span> {
-            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="kw-2">ref</span> <span class="ident">import_lookup_table</span>) <span class="op">=</span> <span class="ident">data</span>.<span class="ident">import_lookup_table</span> {
-                <span class="kw">let</span> <span class="ident">dll</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">name</span>;
-                <span class="kw">let</span> <span class="ident">import_base</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">import_directory_entry</span>.<span class="ident">import_address_table_rva</span> <span class="kw">as</span> <span class="ident">usize</span>;
-                <span class="macro">debug!</span>(<span class="string">&quot;Getting imports from {}&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">dll</span>);
-                <span class="kw">for</span> (<span class="ident">i</span>, <span class="ident">entry</span>) <span class="kw">in</span> <span class="ident">import_lookup_table</span>.<span class="ident">iter</span>().<span class="ident">enumerate</span>() {
-                    <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> <span class="ident">import_base</span> <span class="op">+</span> (<span class="ident">i</span> <span class="op">*</span> <span class="ident">T::size_of</span>());
-                    <span class="kw">use</span> <span class="ident"><span class="self">self</span>::SyntheticImportLookupTableEntry</span>::<span class="kw-2">*</span>;
-                    <span class="kw">let</span> (<span class="ident">rva</span>, <span class="ident">name</span>, <span class="ident">ordinal</span>) <span class="op">=</span> <span class="kw">match</span> <span class="kw-2">*</span><span class="ident">entry</span> {
-                        <span class="ident">HintNameTableRVA</span>((<span class="ident">rva</span>, <span class="kw-2">ref</span> <span class="ident">hint_entry</span>)) =&gt; {
-                            <span class="comment">// if hint_entry.name = &quot;&quot; &amp;&amp; hint_entry.hint = 0 {</span>
-                            <span class="comment">//     println!(&quot;&lt;PE.Import&gt; warning hint/name table rva from {} without hint {:#x}&quot;, dll, rva);</span>
-                            <span class="comment">// }</span>
-                            (<span class="ident">rva</span>, <span class="ident">Cow::Borrowed</span>(<span class="ident">hint_entry</span>.<span class="ident">name</span>), <span class="ident">hint_entry</span>.<span class="ident">hint</span>)
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Import&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">pub fn </span>parse&lt;T: Bitfield&lt;<span class="lifetime">&#39;a</span>&gt;&gt;(
+        _bytes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8],
+        import_data: <span class="kw-2">&amp;</span>ImportData&lt;<span class="lifetime">&#39;a</span>&gt;,
+        _sections: <span class="kw-2">&amp;</span>[section_table::SectionTable],
+    ) -&gt; error::Result&lt;Vec&lt;Import&lt;<span class="lifetime">&#39;a</span>&gt;&gt;&gt; {
+        <span class="kw">let </span><span class="kw-2">mut </span>imports = Vec::new();
+        <span class="kw">for </span>data <span class="kw">in </span><span class="kw-2">&amp;</span>import_data.import_data {
+            <span class="kw">if let </span><span class="prelude-val">Some</span>(<span class="kw-2">ref </span>import_lookup_table) = data.import_lookup_table {
+                <span class="kw">let </span>dll = data.name;
+                <span class="kw">let </span>import_base = data.import_directory_entry.import_address_table_rva <span class="kw">as </span>usize;
+                <span class="macro">debug!</span>(<span class="string">&quot;Getting imports from {}&quot;</span>, <span class="kw-2">&amp;</span>dll);
+                <span class="kw">for </span>(i, entry) <span class="kw">in </span>import_lookup_table.iter().enumerate() {
+                    <span class="kw">let </span>offset = import_base + (i * T::size_of());
+                    <span class="kw">use </span><span class="self">self</span>::SyntheticImportLookupTableEntry::<span class="kw-2">*</span>;
+                    <span class="kw">let </span>(rva, name, ordinal) = <span class="kw">match </span><span class="kw-2">*</span>entry {
+                        HintNameTableRVA((rva, <span class="kw-2">ref </span>hint_entry)) =&gt; {
+                            <span class="comment">// if hint_entry.name = &quot;&quot; &amp;&amp; hint_entry.hint = 0 {
+                            //     println!(&quot;&lt;PE.Import&gt; warning hint/name table rva from {} without hint {:#x}&quot;, dll, rva);
+                            // }
+                            </span>(rva, Cow::Borrowed(hint_entry.name), hint_entry.hint)
                         }
-                        <span class="ident">OrdinalNumber</span>(<span class="ident">ordinal</span>) =&gt; {
-                            <span class="kw">let</span> <span class="ident">name</span> <span class="op">=</span> <span class="macro">format!</span>(<span class="string">&quot;ORDINAL {}&quot;</span>, <span class="ident">ordinal</span>);
-                            (<span class="number">0x0</span>, <span class="ident">Cow::Owned</span>(<span class="ident">name</span>), <span class="ident">ordinal</span>)
+                        OrdinalNumber(ordinal) =&gt; {
+                            <span class="kw">let </span>name = <span class="macro">format!</span>(<span class="string">&quot;ORDINAL {}&quot;</span>, ordinal);
+                            (<span class="number">0x0</span>, Cow::Owned(name), ordinal)
                         }
                     };
-                    <span class="kw">let</span> <span class="ident">import</span> <span class="op">=</span> <span class="ident">Import</span> {
-                        <span class="ident">name</span>,
-                        <span class="ident">ordinal</span>,
-                        <span class="ident">dll</span>,
-                        <span class="ident">size</span>: <span class="ident">T::size_of</span>(),
-                        <span class="ident">offset</span>,
-                        <span class="ident">rva</span>: <span class="ident">rva</span> <span class="kw">as</span> <span class="ident">usize</span>,
+                    <span class="kw">let </span>import = Import {
+                        name,
+                        ordinal,
+                        dll,
+                        size: T::size_of(),
+                        offset,
+                        rva: rva <span class="kw">as </span>usize,
                     };
-                    <span class="ident">imports</span>.<span class="ident">push</span>(<span class="ident">import</span>);
+                    imports.push(import);
                 }
             }
         }
-        <span class="prelude-val">Ok</span>(<span class="ident">imports</span>)
+        <span class="prelude-val">Ok</span>(imports)
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="goblin" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="goblin" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (77e57db38 2022-10-30)" ></div></body></html>

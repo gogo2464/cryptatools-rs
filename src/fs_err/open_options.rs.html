@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/fs-err-2.8.1/src/open_options.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>open_options.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../fs_err/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../fs_err/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../fs_err/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/fs-err-2.9.0/src/open_options.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>open_options.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../fs_err/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -132,139 +132,139 @@
 <span id="132">132</span>
 <span id="133">133</span>
 <span id="134">134</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">std</span>::{<span class="ident">fs</span>, <span class="ident">io</span>, <span class="ident">path::PathBuf</span>};
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
-<span class="doccomment">/// Wrapper around [`std::fs::OptionOptions`](https://doc.rust-lang.org/std/fs/struct.OpenOptions.html)</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">OpenOptions</span>(<span class="ident">fs::OpenOptions</span>);
+</pre><pre class="rust"><code><span class="kw">use </span>std::{fs, io, path::PathBuf};
+<span class="attribute">#[derive(Clone, Debug)]
+</span><span class="doccomment">/// Wrapper around [`std::fs::OptionOptions`](https://doc.rust-lang.org/std/fs/struct.OpenOptions.html)
+</span><span class="kw">pub struct </span>OpenOptions(fs::OpenOptions);
 
-<span class="kw">impl</span> <span class="ident">OpenOptions</span> {
-    <span class="doccomment">/// Wrapper for [`std::fs::OpenOptions::new`](https://doc.rust-lang.org/std/fs/struct.OpenOptions.html#method.new)</span>
-    <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::new_without_default</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() -&gt; <span class="self">Self</span> {
-        <span class="ident">OpenOptions</span>(<span class="ident">fs::OpenOptions::new</span>())
+<span class="kw">impl </span>OpenOptions {
+    <span class="doccomment">/// Wrapper for [`std::fs::OpenOptions::new`](https://doc.rust-lang.org/std/fs/struct.OpenOptions.html#method.new)
+    </span><span class="attribute">#[allow(clippy::new_without_default)]
+    </span><span class="kw">pub fn </span>new() -&gt; <span class="self">Self </span>{
+        OpenOptions(fs::OpenOptions::new())
     }
 
-    <span class="doccomment">/// Wrapper for [`std::fs::OpenOptions::read`](https://doc.rust-lang.org/std/fs/struct.OpenOptions.html#method.read)</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">read</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">read</span>: <span class="ident">bool</span>) -&gt; <span class="kw-2">&amp;mut</span> <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="number">0</span>.<span class="ident">read</span>(<span class="ident">read</span>);
-        <span class="self">self</span>
-    }
+    <span class="doccomment">/// Wrapper for [`std::fs::OpenOptions::read`](https://doc.rust-lang.org/std/fs/struct.OpenOptions.html#method.read)
+    </span><span class="kw">pub fn </span>read(<span class="kw-2">&amp;mut </span><span class="self">self</span>, read: bool) -&gt; <span class="kw-2">&amp;mut </span><span class="self">Self </span>{
+        <span class="self">self</span>.<span class="number">0</span>.read(read);
+        <span class="self">self
+    </span>}
 
-    <span class="doccomment">/// Wrapper for [`std::fs::OpenOptions::write`](https://doc.rust-lang.org/std/fs/struct.OpenOptions.html#method.write)</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">write</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">write</span>: <span class="ident">bool</span>) -&gt; <span class="kw-2">&amp;mut</span> <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="number">0</span>.<span class="ident">write</span>(<span class="ident">write</span>);
-        <span class="self">self</span>
-    }
+    <span class="doccomment">/// Wrapper for [`std::fs::OpenOptions::write`](https://doc.rust-lang.org/std/fs/struct.OpenOptions.html#method.write)
+    </span><span class="kw">pub fn </span>write(<span class="kw-2">&amp;mut </span><span class="self">self</span>, write: bool) -&gt; <span class="kw-2">&amp;mut </span><span class="self">Self </span>{
+        <span class="self">self</span>.<span class="number">0</span>.write(write);
+        <span class="self">self
+    </span>}
 
-    <span class="doccomment">/// Wrapper for [`std::fs::OpenOptions::append`](https://doc.rust-lang.org/std/fs/struct.OpenOptions.html#method.append)</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">append</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">append</span>: <span class="ident">bool</span>) -&gt; <span class="kw-2">&amp;mut</span> <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="number">0</span>.<span class="ident">append</span>(<span class="ident">append</span>);
-        <span class="self">self</span>
-    }
+    <span class="doccomment">/// Wrapper for [`std::fs::OpenOptions::append`](https://doc.rust-lang.org/std/fs/struct.OpenOptions.html#method.append)
+    </span><span class="kw">pub fn </span>append(<span class="kw-2">&amp;mut </span><span class="self">self</span>, append: bool) -&gt; <span class="kw-2">&amp;mut </span><span class="self">Self </span>{
+        <span class="self">self</span>.<span class="number">0</span>.append(append);
+        <span class="self">self
+    </span>}
 
-    <span class="doccomment">/// Wrapper for [`std::fs::OpenOptions::truncate`](https://doc.rust-lang.org/std/fs/struct.OpenOptions.html#method.truncate)</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">truncate</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">truncate</span>: <span class="ident">bool</span>) -&gt; <span class="kw-2">&amp;mut</span> <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="number">0</span>.<span class="ident">truncate</span>(<span class="ident">truncate</span>);
-        <span class="self">self</span>
-    }
+    <span class="doccomment">/// Wrapper for [`std::fs::OpenOptions::truncate`](https://doc.rust-lang.org/std/fs/struct.OpenOptions.html#method.truncate)
+    </span><span class="kw">pub fn </span>truncate(<span class="kw-2">&amp;mut </span><span class="self">self</span>, truncate: bool) -&gt; <span class="kw-2">&amp;mut </span><span class="self">Self </span>{
+        <span class="self">self</span>.<span class="number">0</span>.truncate(truncate);
+        <span class="self">self
+    </span>}
 
-    <span class="doccomment">/// Wrapper for [`std::fs::OpenOptions::create`](https://doc.rust-lang.org/std/fs/struct.OpenOptions.html#method.create)</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">create</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">create</span>: <span class="ident">bool</span>) -&gt; <span class="kw-2">&amp;mut</span> <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="number">0</span>.<span class="ident">create</span>(<span class="ident">create</span>);
-        <span class="self">self</span>
-    }
+    <span class="doccomment">/// Wrapper for [`std::fs::OpenOptions::create`](https://doc.rust-lang.org/std/fs/struct.OpenOptions.html#method.create)
+    </span><span class="kw">pub fn </span>create(<span class="kw-2">&amp;mut </span><span class="self">self</span>, create: bool) -&gt; <span class="kw-2">&amp;mut </span><span class="self">Self </span>{
+        <span class="self">self</span>.<span class="number">0</span>.create(create);
+        <span class="self">self
+    </span>}
 
-    <span class="doccomment">/// Wrapper for [`std::fs::OpenOptions::create_new`](https://doc.rust-lang.org/std/fs/struct.OpenOptions.html#method.create_new)</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">create_new</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">create_new</span>: <span class="ident">bool</span>) -&gt; <span class="kw-2">&amp;mut</span> <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="number">0</span>.<span class="ident">create_new</span>(<span class="ident">create_new</span>);
-        <span class="self">self</span>
-    }
+    <span class="doccomment">/// Wrapper for [`std::fs::OpenOptions::create_new`](https://doc.rust-lang.org/std/fs/struct.OpenOptions.html#method.create_new)
+    </span><span class="kw">pub fn </span>create_new(<span class="kw-2">&amp;mut </span><span class="self">self</span>, create_new: bool) -&gt; <span class="kw-2">&amp;mut </span><span class="self">Self </span>{
+        <span class="self">self</span>.<span class="number">0</span>.create_new(create_new);
+        <span class="self">self
+    </span>}
 
-    <span class="doccomment">/// Wrapper for [`std::fs::OpenOptions::open`](https://doc.rust-lang.org/std/fs/struct.OpenOptions.html#method.open)</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">open</span><span class="op">&lt;</span><span class="ident">P</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">path</span>: <span class="ident">P</span>) -&gt; <span class="ident">io::Result</span><span class="op">&lt;</span><span class="ident"><span class="kw">crate</span>::File</span><span class="op">&gt;</span>
-    <span class="kw">where</span>
-        <span class="ident">P</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">PathBuf</span><span class="op">&gt;</span>,
+    <span class="doccomment">/// Wrapper for [`std::fs::OpenOptions::open`](https://doc.rust-lang.org/std/fs/struct.OpenOptions.html#method.open)
+    </span><span class="kw">pub fn </span>open&lt;P&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, path: P) -&gt; io::Result&lt;<span class="kw">crate</span>::File&gt;
+    <span class="kw">where
+        </span>P: Into&lt;PathBuf&gt;,
     {
-        <span class="comment">// We have to either duplicate the logic or call the deprecated method here.</span>
-        <span class="comment">// We can&#39;t let the deprecated function call this method, because we can&#39;t construct</span>
-        <span class="comment">// `&amp;fs_err::OpenOptions` from `&amp;fs::OpenOptions` without cloning</span>
-        <span class="comment">// (although cloning would probably be cheap).</span>
-        <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">deprecated</span>)]</span>
-        <span class="ident"><span class="kw">crate</span>::File::from_options</span>(<span class="ident">path</span>.<span class="ident">into</span>(), <span class="self">self</span>.<span class="ident">options</span>())
+        <span class="comment">// We have to either duplicate the logic or call the deprecated method here.
+        // We can&#39;t let the deprecated function call this method, because we can&#39;t construct
+        // `&amp;fs_err::OpenOptions` from `&amp;fs::OpenOptions` without cloning
+        // (although cloning would probably be cheap).
+        </span><span class="attribute">#[allow(deprecated)]
+        </span><span class="kw">crate</span>::File::from_options(path.into(), <span class="self">self</span>.options())
     }
 }
 
-<span class="doccomment">/// Methods added by fs-err that are not available on</span>
-<span class="doccomment">/// [`std::fs::OpenOptions`](https://doc.rust-lang.org/stable/std/fs/struct.OpenOptions.html).</span>
-<span class="kw">impl</span> <span class="ident">OpenOptions</span> {
-    <span class="doccomment">/// Constructs `Self` from [`std::fs::OpenOptions`](https://doc.rust-lang.org/stable/std/fs/struct.OpenOptions.html)</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_options</span>(<span class="ident">options</span>: <span class="ident">fs::OpenOptions</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span>(<span class="ident">options</span>)
+<span class="doccomment">/// Methods added by fs-err that are not available on
+/// [`std::fs::OpenOptions`](https://doc.rust-lang.org/stable/std/fs/struct.OpenOptions.html).
+</span><span class="kw">impl </span>OpenOptions {
+    <span class="doccomment">/// Constructs `Self` from [`std::fs::OpenOptions`](https://doc.rust-lang.org/stable/std/fs/struct.OpenOptions.html)
+    </span><span class="kw">pub fn </span>from_options(options: fs::OpenOptions) -&gt; <span class="self">Self </span>{
+        <span class="self">Self</span>(options)
     }
 
-    <span class="doccomment">/// Returns a reference to the underlying [`std::fs::OpenOptions`](https://doc.rust-lang.org/stable/std/fs/struct.OpenOptions.html).</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Note that calling `open()` on this reference will NOT give you the improved errors from fs-err.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">options</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident">fs::OpenOptions</span> {
-        <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="number">0</span>
-    }
+    <span class="doccomment">/// Returns a reference to the underlying [`std::fs::OpenOptions`](https://doc.rust-lang.org/stable/std/fs/struct.OpenOptions.html).
+    ///
+    /// Note that calling `open()` on this reference will NOT give you the improved errors from fs-err.
+    </span><span class="kw">pub fn </span>options(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>fs::OpenOptions {
+        <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="number">0
+    </span>}
 
-    <span class="doccomment">/// Returns a mutable reference to the underlying [`std::fs::OpenOptions`](https://doc.rust-lang.org/stable/std/fs/struct.OpenOptions.html).</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// This allows you to change settings that don&#39;t yet have wrappers in fs-err.</span>
-    <span class="doccomment">/// Note that calling `open()` on this reference will NOT give you the improved errors from fs-err.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">options_mut</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="kw-2">&amp;mut</span> <span class="ident">fs::OpenOptions</span> {
-        <span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="number">0</span>
+    <span class="doccomment">/// Returns a mutable reference to the underlying [`std::fs::OpenOptions`](https://doc.rust-lang.org/stable/std/fs/struct.OpenOptions.html).
+    ///
+    /// This allows you to change settings that don&#39;t yet have wrappers in fs-err.
+    /// Note that calling `open()` on this reference will NOT give you the improved errors from fs-err.
+    </span><span class="kw">pub fn </span>options_mut(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;mut </span>fs::OpenOptions {
+        <span class="kw-2">&amp;mut </span><span class="self">self</span>.<span class="number">0
+    </span>}
+}
+
+<span class="attribute">#[cfg(unix)]
+</span><span class="kw">mod </span>unix {
+    <span class="kw">use </span><span class="kw">crate</span>::os::unix::fs::OpenOptionsExt;
+    <span class="kw">use </span>std::os::unix::fs::OpenOptionsExt <span class="kw">as _</span>;
+    <span class="kw">impl </span>OpenOptionsExt <span class="kw">for </span><span class="kw">crate</span>::OpenOptions {
+        <span class="kw">fn </span>mode(<span class="kw-2">&amp;mut </span><span class="self">self</span>, mode: u32) -&gt; <span class="kw-2">&amp;mut </span><span class="self">Self </span>{
+            <span class="self">self</span>.options_mut().mode(mode);
+            <span class="self">self
+        </span>}
+
+        <span class="kw">fn </span>custom_flags(<span class="kw-2">&amp;mut </span><span class="self">self</span>, flags: i32) -&gt; <span class="kw-2">&amp;mut </span><span class="self">Self </span>{
+            <span class="self">self</span>.options_mut().custom_flags(flags);
+            <span class="self">self
+        </span>}
     }
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">unix</span>)]</span>
-<span class="kw">mod</span> <span class="ident">unix</span> {
-    <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::os::unix::fs::OpenOptionsExt</span>;
-    <span class="kw">use</span> <span class="ident">std::os::unix::fs::OpenOptionsExt</span> <span class="kw">as</span> <span class="kw">_</span>;
-    <span class="kw">impl</span> <span class="ident">OpenOptionsExt</span> <span class="kw">for</span> <span class="ident"><span class="kw">crate</span>::OpenOptions</span> {
-        <span class="kw">fn</span> <span class="ident">mode</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">mode</span>: <span class="ident">u32</span>) -&gt; <span class="kw-2">&amp;mut</span> <span class="self">Self</span> {
-            <span class="self">self</span>.<span class="ident">options_mut</span>().<span class="ident">mode</span>(<span class="ident">mode</span>);
-            <span class="self">self</span>
-        }
+<span class="attribute">#[cfg(windows)]
+</span><span class="kw">mod </span>windows {
+    <span class="kw">use </span><span class="kw">crate</span>::os::windows::fs::OpenOptionsExt;
+    <span class="kw">use </span>std::os::windows::fs::OpenOptionsExt <span class="kw">as _</span>;
 
-        <span class="kw">fn</span> <span class="ident">custom_flags</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">flags</span>: <span class="ident">i32</span>) -&gt; <span class="kw-2">&amp;mut</span> <span class="self">Self</span> {
-            <span class="self">self</span>.<span class="ident">options_mut</span>().<span class="ident">custom_flags</span>(<span class="ident">flags</span>);
-            <span class="self">self</span>
-        }
-    }
-}
+    <span class="kw">impl </span>OpenOptionsExt <span class="kw">for </span><span class="kw">crate</span>::OpenOptions {
+        <span class="kw">fn </span>access_mode(<span class="kw-2">&amp;mut </span><span class="self">self</span>, access: u32) -&gt; <span class="kw-2">&amp;mut </span><span class="self">Self </span>{
+            <span class="self">self</span>.options_mut().access_mode(access);
+            <span class="self">self
+        </span>}
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">windows</span>)]</span>
-<span class="kw">mod</span> <span class="ident">windows</span> {
-    <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::os::windows::fs::OpenOptionsExt</span>;
-    <span class="kw">use</span> <span class="ident">std::os::windows::fs::OpenOptionsExt</span> <span class="kw">as</span> <span class="kw">_</span>;
+        <span class="kw">fn </span>share_mode(<span class="kw-2">&amp;mut </span><span class="self">self</span>, val: u32) -&gt; <span class="kw-2">&amp;mut </span><span class="self">Self </span>{
+            <span class="self">self</span>.options_mut().share_mode(val);
+            <span class="self">self
+        </span>}
+        <span class="kw">fn </span>custom_flags(<span class="kw-2">&amp;mut </span><span class="self">self</span>, flags: u32) -&gt; <span class="kw-2">&amp;mut </span><span class="self">Self </span>{
+            <span class="self">self</span>.options_mut().custom_flags(flags);
+            <span class="self">self
+        </span>}
 
-    <span class="kw">impl</span> <span class="ident">OpenOptionsExt</span> <span class="kw">for</span> <span class="ident"><span class="kw">crate</span>::OpenOptions</span> {
-        <span class="kw">fn</span> <span class="ident">access_mode</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">access</span>: <span class="ident">u32</span>) -&gt; <span class="kw-2">&amp;mut</span> <span class="self">Self</span> {
-            <span class="self">self</span>.<span class="ident">options_mut</span>().<span class="ident">access_mode</span>(<span class="ident">access</span>);
-            <span class="self">self</span>
-        }
+        <span class="kw">fn </span>attributes(<span class="kw-2">&amp;mut </span><span class="self">self</span>, val: u32) -&gt; <span class="kw-2">&amp;mut </span><span class="self">Self </span>{
+            <span class="self">self</span>.options_mut().attributes(val);
+            <span class="self">self
+        </span>}
 
-        <span class="kw">fn</span> <span class="ident">share_mode</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">val</span>: <span class="ident">u32</span>) -&gt; <span class="kw-2">&amp;mut</span> <span class="self">Self</span> {
-            <span class="self">self</span>.<span class="ident">options_mut</span>().<span class="ident">share_mode</span>(<span class="ident">val</span>);
-            <span class="self">self</span>
-        }
-        <span class="kw">fn</span> <span class="ident">custom_flags</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">flags</span>: <span class="ident">u32</span>) -&gt; <span class="kw-2">&amp;mut</span> <span class="self">Self</span> {
-            <span class="self">self</span>.<span class="ident">options_mut</span>().<span class="ident">custom_flags</span>(<span class="ident">flags</span>);
-            <span class="self">self</span>
-        }
-
-        <span class="kw">fn</span> <span class="ident">attributes</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">val</span>: <span class="ident">u32</span>) -&gt; <span class="kw-2">&amp;mut</span> <span class="self">Self</span> {
-            <span class="self">self</span>.<span class="ident">options_mut</span>().<span class="ident">attributes</span>(<span class="ident">val</span>);
-            <span class="self">self</span>
-        }
-
-        <span class="kw">fn</span> <span class="ident">security_qos_flags</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">flags</span>: <span class="ident">u32</span>) -&gt; <span class="kw-2">&amp;mut</span> <span class="self">Self</span> {
-            <span class="self">self</span>.<span class="ident">options_mut</span>().<span class="ident">security_qos_flags</span>(<span class="ident">flags</span>);
-            <span class="self">self</span>
-        }
+        <span class="kw">fn </span>security_qos_flags(<span class="kw-2">&amp;mut </span><span class="self">self</span>, flags: u32) -&gt; <span class="kw-2">&amp;mut </span><span class="self">Self </span>{
+            <span class="self">self</span>.options_mut().security_qos_flags(flags);
+            <span class="self">self
+        </span>}
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="fs_err" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="fs_err" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (77e57db38 2022-10-30)" ></div></body></html>

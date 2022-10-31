@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/zip-0.6.3/src/compression.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>compression.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../zip/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../zip/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../zip/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/zip-0.6.3/src/compression.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>compression.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../zip/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -205,212 +205,212 @@
 <span id="205">205</span>
 <span id="206">206</span>
 <span id="207">207</span>
-</pre><pre class="rust"><code><span class="doccomment">//! Possible ZIP compression methods.</span>
+</pre><pre class="rust"><code><span class="doccomment">//! Possible ZIP compression methods.
 
-<span class="kw">use</span> <span class="ident">std::fmt</span>;
+</span><span class="kw">use </span>std::fmt;
 
-<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">deprecated</span>)]</span>
-<span class="doccomment">/// Identifies the storage format used to compress a file within a ZIP archive.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Each file&#39;s compression method is stored alongside it, allowing the</span>
-<span class="doccomment">/// contents to be read without context.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// When creating ZIP files, you may choose the method to use with</span>
-<span class="doccomment">/// [`crate::write::FileOptions::compression_method`]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">Debug</span>)]</span>
-<span class="attribute">#[<span class="ident">non_exhaustive</span>]</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">CompressionMethod</span> {
-    <span class="doccomment">/// Store the file as is</span>
-    <span class="ident">Stored</span>,
-    <span class="doccomment">/// Compress the file using Deflate</span>
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(
-        <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;deflate&quot;</span>,
-        <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;deflate-miniz&quot;</span>,
-        <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;deflate-zlib&quot;</span>
-    ))]</span>
-    <span class="ident">Deflated</span>,
-    <span class="doccomment">/// Compress the file using BZIP2</span>
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;bzip2&quot;</span>)]</span>
-    <span class="ident">Bzip2</span>,
-    <span class="doccomment">/// Encrypted using AES.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// The actual compression method has to be taken from the AES extra data field</span>
-    <span class="doccomment">/// or from `ZipFileData`.</span>
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;aes-crypto&quot;</span>)]</span>
-    <span class="ident">Aes</span>,
-    <span class="doccomment">/// Compress the file using ZStandard</span>
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;zstd&quot;</span>)]</span>
-    <span class="ident">Zstd</span>,
-    <span class="doccomment">/// Unsupported compression method</span>
-    <span class="attribute">#[<span class="ident">deprecated</span>(<span class="ident">since</span> <span class="op">=</span> <span class="string">&quot;0.5.7&quot;</span>, <span class="ident">note</span> <span class="op">=</span> <span class="string">&quot;use the constants instead&quot;</span>)]</span>
-    <span class="ident">Unsupported</span>(<span class="ident">u16</span>),
+<span class="attribute">#[allow(deprecated)]
+</span><span class="doccomment">/// Identifies the storage format used to compress a file within a ZIP archive.
+///
+/// Each file&#39;s compression method is stored alongside it, allowing the
+/// contents to be read without context.
+///
+/// When creating ZIP files, you may choose the method to use with
+/// [`crate::write::FileOptions::compression_method`]
+</span><span class="attribute">#[derive(Copy, Clone, PartialEq, Eq, Debug)]
+#[non_exhaustive]
+</span><span class="kw">pub enum </span>CompressionMethod {
+    <span class="doccomment">/// Store the file as is
+    </span>Stored,
+    <span class="doccomment">/// Compress the file using Deflate
+    </span><span class="attribute">#[cfg(any(
+        feature = <span class="string">&quot;deflate&quot;</span>,
+        feature = <span class="string">&quot;deflate-miniz&quot;</span>,
+        feature = <span class="string">&quot;deflate-zlib&quot;
+    </span>))]
+    </span>Deflated,
+    <span class="doccomment">/// Compress the file using BZIP2
+    </span><span class="attribute">#[cfg(feature = <span class="string">&quot;bzip2&quot;</span>)]
+    </span>Bzip2,
+    <span class="doccomment">/// Encrypted using AES.
+    ///
+    /// The actual compression method has to be taken from the AES extra data field
+    /// or from `ZipFileData`.
+    </span><span class="attribute">#[cfg(feature = <span class="string">&quot;aes-crypto&quot;</span>)]
+    </span>Aes,
+    <span class="doccomment">/// Compress the file using ZStandard
+    </span><span class="attribute">#[cfg(feature = <span class="string">&quot;zstd&quot;</span>)]
+    </span>Zstd,
+    <span class="doccomment">/// Unsupported compression method
+    </span><span class="attribute">#[deprecated(since = <span class="string">&quot;0.5.7&quot;</span>, note = <span class="string">&quot;use the constants instead&quot;</span>)]
+    </span>Unsupported(u16),
 }
-<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">deprecated</span>, <span class="ident">missing_docs</span>)]</span>
-<span class="doccomment">/// All compression methods defined for the ZIP format</span>
-<span class="kw">impl</span> <span class="ident">CompressionMethod</span> {
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STORE</span>: <span class="self">Self</span> <span class="op">=</span> <span class="ident">CompressionMethod::Stored</span>;
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SHRINK</span>: <span class="self">Self</span> <span class="op">=</span> <span class="ident">CompressionMethod::Unsupported</span>(<span class="number">1</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">REDUCE_1</span>: <span class="self">Self</span> <span class="op">=</span> <span class="ident">CompressionMethod::Unsupported</span>(<span class="number">2</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">REDUCE_2</span>: <span class="self">Self</span> <span class="op">=</span> <span class="ident">CompressionMethod::Unsupported</span>(<span class="number">3</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">REDUCE_3</span>: <span class="self">Self</span> <span class="op">=</span> <span class="ident">CompressionMethod::Unsupported</span>(<span class="number">4</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">REDUCE_4</span>: <span class="self">Self</span> <span class="op">=</span> <span class="ident">CompressionMethod::Unsupported</span>(<span class="number">5</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMPLODE</span>: <span class="self">Self</span> <span class="op">=</span> <span class="ident">CompressionMethod::Unsupported</span>(<span class="number">6</span>);
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(
-        <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;deflate&quot;</span>,
-        <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;deflate-miniz&quot;</span>,
-        <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;deflate-zlib&quot;</span>
-    ))]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DEFLATE</span>: <span class="self">Self</span> <span class="op">=</span> <span class="ident">CompressionMethod::Deflated</span>;
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">any</span>(
-        <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;deflate&quot;</span>,
-        <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;deflate-miniz&quot;</span>,
-        <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;deflate-zlib&quot;</span>
-    )))]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DEFLATE</span>: <span class="self">Self</span> <span class="op">=</span> <span class="ident">CompressionMethod::Unsupported</span>(<span class="number">8</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DEFLATE64</span>: <span class="self">Self</span> <span class="op">=</span> <span class="ident">CompressionMethod::Unsupported</span>(<span class="number">9</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PKWARE_IMPLODE</span>: <span class="self">Self</span> <span class="op">=</span> <span class="ident">CompressionMethod::Unsupported</span>(<span class="number">10</span>);
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;bzip2&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">BZIP2</span>: <span class="self">Self</span> <span class="op">=</span> <span class="ident">CompressionMethod::Bzip2</span>;
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;bzip2&quot;</span>))]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">BZIP2</span>: <span class="self">Self</span> <span class="op">=</span> <span class="ident">CompressionMethod::Unsupported</span>(<span class="number">12</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">LZMA</span>: <span class="self">Self</span> <span class="op">=</span> <span class="ident">CompressionMethod::Unsupported</span>(<span class="number">14</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IBM_ZOS_CMPSC</span>: <span class="self">Self</span> <span class="op">=</span> <span class="ident">CompressionMethod::Unsupported</span>(<span class="number">16</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IBM_TERSE</span>: <span class="self">Self</span> <span class="op">=</span> <span class="ident">CompressionMethod::Unsupported</span>(<span class="number">18</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ZSTD_DEPRECATED</span>: <span class="self">Self</span> <span class="op">=</span> <span class="ident">CompressionMethod::Unsupported</span>(<span class="number">20</span>);
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;zstd&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ZSTD</span>: <span class="self">Self</span> <span class="op">=</span> <span class="ident">CompressionMethod::Zstd</span>;
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;zstd&quot;</span>))]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ZSTD</span>: <span class="self">Self</span> <span class="op">=</span> <span class="ident">CompressionMethod::Unsupported</span>(<span class="number">93</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">MP3</span>: <span class="self">Self</span> <span class="op">=</span> <span class="ident">CompressionMethod::Unsupported</span>(<span class="number">94</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XZ</span>: <span class="self">Self</span> <span class="op">=</span> <span class="ident">CompressionMethod::Unsupported</span>(<span class="number">95</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">JPEG</span>: <span class="self">Self</span> <span class="op">=</span> <span class="ident">CompressionMethod::Unsupported</span>(<span class="number">96</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">WAVPACK</span>: <span class="self">Self</span> <span class="op">=</span> <span class="ident">CompressionMethod::Unsupported</span>(<span class="number">97</span>);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PPMD</span>: <span class="self">Self</span> <span class="op">=</span> <span class="ident">CompressionMethod::Unsupported</span>(<span class="number">98</span>);
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;aes-crypto&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">AES</span>: <span class="self">Self</span> <span class="op">=</span> <span class="ident">CompressionMethod::Aes</span>;
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;aes-crypto&quot;</span>))]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">AES</span>: <span class="self">Self</span> <span class="op">=</span> <span class="ident">CompressionMethod::Unsupported</span>(<span class="number">99</span>);
+<span class="attribute">#[allow(deprecated, missing_docs)]
+</span><span class="doccomment">/// All compression methods defined for the ZIP format
+</span><span class="kw">impl </span>CompressionMethod {
+    <span class="kw">pub const </span>STORE: <span class="self">Self </span>= CompressionMethod::Stored;
+    <span class="kw">pub const </span>SHRINK: <span class="self">Self </span>= CompressionMethod::Unsupported(<span class="number">1</span>);
+    <span class="kw">pub const </span>REDUCE_1: <span class="self">Self </span>= CompressionMethod::Unsupported(<span class="number">2</span>);
+    <span class="kw">pub const </span>REDUCE_2: <span class="self">Self </span>= CompressionMethod::Unsupported(<span class="number">3</span>);
+    <span class="kw">pub const </span>REDUCE_3: <span class="self">Self </span>= CompressionMethod::Unsupported(<span class="number">4</span>);
+    <span class="kw">pub const </span>REDUCE_4: <span class="self">Self </span>= CompressionMethod::Unsupported(<span class="number">5</span>);
+    <span class="kw">pub const </span>IMPLODE: <span class="self">Self </span>= CompressionMethod::Unsupported(<span class="number">6</span>);
+    <span class="attribute">#[cfg(any(
+        feature = <span class="string">&quot;deflate&quot;</span>,
+        feature = <span class="string">&quot;deflate-miniz&quot;</span>,
+        feature = <span class="string">&quot;deflate-zlib&quot;
+    </span>))]
+    </span><span class="kw">pub const </span>DEFLATE: <span class="self">Self </span>= CompressionMethod::Deflated;
+    <span class="attribute">#[cfg(not(any(
+        feature = <span class="string">&quot;deflate&quot;</span>,
+        feature = <span class="string">&quot;deflate-miniz&quot;</span>,
+        feature = <span class="string">&quot;deflate-zlib&quot;
+    </span>)))]
+    </span><span class="kw">pub const </span>DEFLATE: <span class="self">Self </span>= CompressionMethod::Unsupported(<span class="number">8</span>);
+    <span class="kw">pub const </span>DEFLATE64: <span class="self">Self </span>= CompressionMethod::Unsupported(<span class="number">9</span>);
+    <span class="kw">pub const </span>PKWARE_IMPLODE: <span class="self">Self </span>= CompressionMethod::Unsupported(<span class="number">10</span>);
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;bzip2&quot;</span>)]
+    </span><span class="kw">pub const </span>BZIP2: <span class="self">Self </span>= CompressionMethod::Bzip2;
+    <span class="attribute">#[cfg(not(feature = <span class="string">&quot;bzip2&quot;</span>))]
+    </span><span class="kw">pub const </span>BZIP2: <span class="self">Self </span>= CompressionMethod::Unsupported(<span class="number">12</span>);
+    <span class="kw">pub const </span>LZMA: <span class="self">Self </span>= CompressionMethod::Unsupported(<span class="number">14</span>);
+    <span class="kw">pub const </span>IBM_ZOS_CMPSC: <span class="self">Self </span>= CompressionMethod::Unsupported(<span class="number">16</span>);
+    <span class="kw">pub const </span>IBM_TERSE: <span class="self">Self </span>= CompressionMethod::Unsupported(<span class="number">18</span>);
+    <span class="kw">pub const </span>ZSTD_DEPRECATED: <span class="self">Self </span>= CompressionMethod::Unsupported(<span class="number">20</span>);
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;zstd&quot;</span>)]
+    </span><span class="kw">pub const </span>ZSTD: <span class="self">Self </span>= CompressionMethod::Zstd;
+    <span class="attribute">#[cfg(not(feature = <span class="string">&quot;zstd&quot;</span>))]
+    </span><span class="kw">pub const </span>ZSTD: <span class="self">Self </span>= CompressionMethod::Unsupported(<span class="number">93</span>);
+    <span class="kw">pub const </span>MP3: <span class="self">Self </span>= CompressionMethod::Unsupported(<span class="number">94</span>);
+    <span class="kw">pub const </span>XZ: <span class="self">Self </span>= CompressionMethod::Unsupported(<span class="number">95</span>);
+    <span class="kw">pub const </span>JPEG: <span class="self">Self </span>= CompressionMethod::Unsupported(<span class="number">96</span>);
+    <span class="kw">pub const </span>WAVPACK: <span class="self">Self </span>= CompressionMethod::Unsupported(<span class="number">97</span>);
+    <span class="kw">pub const </span>PPMD: <span class="self">Self </span>= CompressionMethod::Unsupported(<span class="number">98</span>);
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;aes-crypto&quot;</span>)]
+    </span><span class="kw">pub const </span>AES: <span class="self">Self </span>= CompressionMethod::Aes;
+    <span class="attribute">#[cfg(not(feature = <span class="string">&quot;aes-crypto&quot;</span>))]
+    </span><span class="kw">pub const </span>AES: <span class="self">Self </span>= CompressionMethod::Unsupported(<span class="number">99</span>);
 }
-<span class="kw">impl</span> <span class="ident">CompressionMethod</span> {
-    <span class="doccomment">/// Converts an u16 to its corresponding CompressionMethod</span>
-    <span class="attribute">#[<span class="ident">deprecated</span>(
-        <span class="ident">since</span> <span class="op">=</span> <span class="string">&quot;0.5.7&quot;</span>,
-        <span class="ident">note</span> <span class="op">=</span> <span class="string">&quot;use a constant to construct a compression method&quot;</span>
-    )]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_u16</span>(<span class="ident">val</span>: <span class="ident">u16</span>) -&gt; <span class="ident">CompressionMethod</span> {
-        <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">deprecated</span>)]</span>
-        <span class="kw">match</span> <span class="ident">val</span> {
-            <span class="number">0</span> =&gt; <span class="ident">CompressionMethod::Stored</span>,
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(
-                <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;deflate&quot;</span>,
-                <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;deflate-miniz&quot;</span>,
-                <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;deflate-zlib&quot;</span>
-            ))]</span>
-            <span class="number">8</span> =&gt; <span class="ident">CompressionMethod::Deflated</span>,
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;bzip2&quot;</span>)]</span>
-            <span class="number">12</span> =&gt; <span class="ident">CompressionMethod::Bzip2</span>,
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;zstd&quot;</span>)]</span>
-            <span class="number">93</span> =&gt; <span class="ident">CompressionMethod::Zstd</span>,
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;aes-crypto&quot;</span>)]</span>
-            <span class="number">99</span> =&gt; <span class="ident">CompressionMethod::Aes</span>,
+<span class="kw">impl </span>CompressionMethod {
+    <span class="doccomment">/// Converts an u16 to its corresponding CompressionMethod
+    </span><span class="attribute">#[deprecated(
+        since = <span class="string">&quot;0.5.7&quot;</span>,
+        note = <span class="string">&quot;use a constant to construct a compression method&quot;
+    </span>)]
+    </span><span class="kw">pub fn </span>from_u16(val: u16) -&gt; CompressionMethod {
+        <span class="attribute">#[allow(deprecated)]
+        </span><span class="kw">match </span>val {
+            <span class="number">0 </span>=&gt; CompressionMethod::Stored,
+            <span class="attribute">#[cfg(any(
+                feature = <span class="string">&quot;deflate&quot;</span>,
+                feature = <span class="string">&quot;deflate-miniz&quot;</span>,
+                feature = <span class="string">&quot;deflate-zlib&quot;
+            </span>))]
+            </span><span class="number">8 </span>=&gt; CompressionMethod::Deflated,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;bzip2&quot;</span>)]
+            </span><span class="number">12 </span>=&gt; CompressionMethod::Bzip2,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;zstd&quot;</span>)]
+            </span><span class="number">93 </span>=&gt; CompressionMethod::Zstd,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;aes-crypto&quot;</span>)]
+            </span><span class="number">99 </span>=&gt; CompressionMethod::Aes,
 
-            <span class="ident">v</span> =&gt; <span class="ident">CompressionMethod::Unsupported</span>(<span class="ident">v</span>),
+            v =&gt; CompressionMethod::Unsupported(v),
         }
     }
 
-    <span class="doccomment">/// Converts a CompressionMethod to a u16</span>
-    <span class="attribute">#[<span class="ident">deprecated</span>(
-        <span class="ident">since</span> <span class="op">=</span> <span class="string">&quot;0.5.7&quot;</span>,
-        <span class="ident">note</span> <span class="op">=</span> <span class="string">&quot;to match on other compression methods, use a constant&quot;</span>
-    )]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">to_u16</span>(<span class="self">self</span>) -&gt; <span class="ident">u16</span> {
-        <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">deprecated</span>)]</span>
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident">CompressionMethod::Stored</span> =&gt; <span class="number">0</span>,
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(
-                <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;deflate&quot;</span>,
-                <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;deflate-miniz&quot;</span>,
-                <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;deflate-zlib&quot;</span>
-            ))]</span>
-            <span class="ident">CompressionMethod::Deflated</span> =&gt; <span class="number">8</span>,
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;bzip2&quot;</span>)]</span>
-            <span class="ident">CompressionMethod::Bzip2</span> =&gt; <span class="number">12</span>,
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;aes-crypto&quot;</span>)]</span>
-            <span class="ident">CompressionMethod::Aes</span> =&gt; <span class="number">99</span>,
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;zstd&quot;</span>)]</span>
-            <span class="ident">CompressionMethod::Zstd</span> =&gt; <span class="number">93</span>,
+    <span class="doccomment">/// Converts a CompressionMethod to a u16
+    </span><span class="attribute">#[deprecated(
+        since = <span class="string">&quot;0.5.7&quot;</span>,
+        note = <span class="string">&quot;to match on other compression methods, use a constant&quot;
+    </span>)]
+    </span><span class="kw">pub fn </span>to_u16(<span class="self">self</span>) -&gt; u16 {
+        <span class="attribute">#[allow(deprecated)]
+        </span><span class="kw">match </span><span class="self">self </span>{
+            CompressionMethod::Stored =&gt; <span class="number">0</span>,
+            <span class="attribute">#[cfg(any(
+                feature = <span class="string">&quot;deflate&quot;</span>,
+                feature = <span class="string">&quot;deflate-miniz&quot;</span>,
+                feature = <span class="string">&quot;deflate-zlib&quot;
+            </span>))]
+            </span>CompressionMethod::Deflated =&gt; <span class="number">8</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;bzip2&quot;</span>)]
+            </span>CompressionMethod::Bzip2 =&gt; <span class="number">12</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;aes-crypto&quot;</span>)]
+            </span>CompressionMethod::Aes =&gt; <span class="number">99</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;zstd&quot;</span>)]
+            </span>CompressionMethod::Zstd =&gt; <span class="number">93</span>,
 
-            <span class="ident">CompressionMethod::Unsupported</span>(<span class="ident">v</span>) =&gt; <span class="ident">v</span>,
+            CompressionMethod::Unsupported(v) =&gt; v,
         }
     }
 }
 
-<span class="kw">impl</span> <span class="ident">fmt::Display</span> <span class="kw">for</span> <span class="ident">CompressionMethod</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">fmt::Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="ident">fmt::Result</span> {
-        <span class="comment">// Just duplicate what the Debug format looks like, i.e, the enum key:</span>
-        <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;{:?}&quot;</span>, <span class="self">self</span>)
+<span class="kw">impl </span>fmt::Display <span class="kw">for </span>CompressionMethod {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>fmt::Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; fmt::Result {
+        <span class="comment">// Just duplicate what the Debug format looks like, i.e, the enum key:
+        </span><span class="macro">write!</span>(f, <span class="string">&quot;{:?}&quot;</span>, <span class="self">self</span>)
     }
 }
 
-<span class="doccomment">/// The compression methods which have been implemented.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SUPPORTED_COMPRESSION_METHODS</span>: <span class="kw-2">&amp;</span>[<span class="ident">CompressionMethod</span>] <span class="op">=</span> <span class="kw-2">&amp;</span>[
-    <span class="ident">CompressionMethod::Stored</span>,
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(
-        <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;deflate&quot;</span>,
-        <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;deflate-miniz&quot;</span>,
-        <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;deflate-zlib&quot;</span>
-    ))]</span>
-    <span class="ident">CompressionMethod::Deflated</span>,
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;bzip2&quot;</span>)]</span>
-    <span class="ident">CompressionMethod::Bzip2</span>,
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;zstd&quot;</span>)]</span>
-    <span class="ident">CompressionMethod::Zstd</span>,
+<span class="doccomment">/// The compression methods which have been implemented.
+</span><span class="kw">pub const </span>SUPPORTED_COMPRESSION_METHODS: <span class="kw-2">&amp;</span>[CompressionMethod] = <span class="kw-2">&amp;</span>[
+    CompressionMethod::Stored,
+    <span class="attribute">#[cfg(any(
+        feature = <span class="string">&quot;deflate&quot;</span>,
+        feature = <span class="string">&quot;deflate-miniz&quot;</span>,
+        feature = <span class="string">&quot;deflate-zlib&quot;
+    </span>))]
+    </span>CompressionMethod::Deflated,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;bzip2&quot;</span>)]
+    </span>CompressionMethod::Bzip2,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;zstd&quot;</span>)]
+    </span>CompressionMethod::Zstd,
 ];
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
-<span class="kw">mod</span> <span class="ident">test</span> {
-    <span class="kw">use</span> <span class="kw">super</span>::{<span class="ident">CompressionMethod</span>, <span class="ident">SUPPORTED_COMPRESSION_METHODS</span>};
+<span class="attribute">#[cfg(test)]
+</span><span class="kw">mod </span>test {
+    <span class="kw">use super</span>::{CompressionMethod, SUPPORTED_COMPRESSION_METHODS};
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">from_eq_to</span>() {
-        <span class="kw">for</span> <span class="ident">v</span> <span class="kw">in</span> <span class="number">0</span>..(<span class="ident">u16::MAX</span> <span class="kw">as</span> <span class="ident">u32</span> <span class="op">+</span> <span class="number">1</span>) {
-            <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">deprecated</span>)]</span>
-            <span class="kw">let</span> <span class="ident">from</span> <span class="op">=</span> <span class="ident">CompressionMethod::from_u16</span>(<span class="ident">v</span> <span class="kw">as</span> <span class="ident">u16</span>);
-            <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">deprecated</span>)]</span>
-            <span class="kw">let</span> <span class="ident">to</span> <span class="op">=</span> <span class="ident">from</span>.<span class="ident">to_u16</span>() <span class="kw">as</span> <span class="ident">u32</span>;
-            <span class="macro">assert_eq!</span>(<span class="ident">v</span>, <span class="ident">to</span>);
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>from_eq_to() {
+        <span class="kw">for </span>v <span class="kw">in </span><span class="number">0</span>..(u16::MAX <span class="kw">as </span>u32 + <span class="number">1</span>) {
+            <span class="attribute">#[allow(deprecated)]
+            </span><span class="kw">let </span>from = CompressionMethod::from_u16(v <span class="kw">as </span>u16);
+            <span class="attribute">#[allow(deprecated)]
+            </span><span class="kw">let </span>to = from.to_u16() <span class="kw">as </span>u32;
+            <span class="macro">assert_eq!</span>(v, to);
         }
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">to_eq_from</span>() {
-        <span class="kw">fn</span> <span class="ident">check_match</span>(<span class="ident">method</span>: <span class="ident">CompressionMethod</span>) {
-            <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">deprecated</span>)]</span>
-            <span class="kw">let</span> <span class="ident">to</span> <span class="op">=</span> <span class="ident">method</span>.<span class="ident">to_u16</span>();
-            <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">deprecated</span>)]</span>
-            <span class="kw">let</span> <span class="ident">from</span> <span class="op">=</span> <span class="ident">CompressionMethod::from_u16</span>(<span class="ident">to</span>);
-            <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">deprecated</span>)]</span>
-            <span class="kw">let</span> <span class="ident">back</span> <span class="op">=</span> <span class="ident">from</span>.<span class="ident">to_u16</span>();
-            <span class="macro">assert_eq!</span>(<span class="ident">to</span>, <span class="ident">back</span>);
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>to_eq_from() {
+        <span class="kw">fn </span>check_match(method: CompressionMethod) {
+            <span class="attribute">#[allow(deprecated)]
+            </span><span class="kw">let </span>to = method.to_u16();
+            <span class="attribute">#[allow(deprecated)]
+            </span><span class="kw">let </span>from = CompressionMethod::from_u16(to);
+            <span class="attribute">#[allow(deprecated)]
+            </span><span class="kw">let </span>back = from.to_u16();
+            <span class="macro">assert_eq!</span>(to, back);
         }
 
-        <span class="kw">for</span> <span class="kw-2">&amp;</span><span class="ident">method</span> <span class="kw">in</span> <span class="ident">SUPPORTED_COMPRESSION_METHODS</span> {
-            <span class="ident">check_match</span>(<span class="ident">method</span>);
+        <span class="kw">for </span><span class="kw-2">&amp;</span>method <span class="kw">in </span>SUPPORTED_COMPRESSION_METHODS {
+            check_match(method);
         }
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">to_display_fmt</span>() {
-        <span class="kw">fn</span> <span class="ident">check_match</span>(<span class="ident">method</span>: <span class="ident">CompressionMethod</span>) {
-            <span class="kw">let</span> <span class="ident">debug_str</span> <span class="op">=</span> <span class="macro">format!</span>(<span class="string">&quot;{:?}&quot;</span>, <span class="ident">method</span>);
-            <span class="kw">let</span> <span class="ident">display_str</span> <span class="op">=</span> <span class="macro">format!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">method</span>);
-            <span class="macro">assert_eq!</span>(<span class="ident">debug_str</span>, <span class="ident">display_str</span>);
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>to_display_fmt() {
+        <span class="kw">fn </span>check_match(method: CompressionMethod) {
+            <span class="kw">let </span>debug_str = <span class="macro">format!</span>(<span class="string">&quot;{:?}&quot;</span>, method);
+            <span class="kw">let </span>display_str = <span class="macro">format!</span>(<span class="string">&quot;{}&quot;</span>, method);
+            <span class="macro">assert_eq!</span>(debug_str, display_str);
         }
 
-        <span class="kw">for</span> <span class="kw-2">&amp;</span><span class="ident">method</span> <span class="kw">in</span> <span class="ident">SUPPORTED_COMPRESSION_METHODS</span> {
-            <span class="ident">check_match</span>(<span class="ident">method</span>);
+        <span class="kw">for </span><span class="kw-2">&amp;</span>method <span class="kw">in </span>SUPPORTED_COMPRESSION_METHODS {
+            check_match(method);
         }
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="zip" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="zip" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (77e57db38 2022-10-30)" ></div></body></html>

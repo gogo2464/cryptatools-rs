@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/goblin-0.5.4/src/pe/symbol.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>symbol.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../goblin/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../goblin/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../goblin/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/goblin-0.5.4/src/pe/symbol.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>symbol.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../normalize.css"><link rel="stylesheet" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../ayu.css" disabled><link rel="stylesheet" href="../../../dark.css" disabled><link rel="stylesheet" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../goblin/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -514,521 +514,521 @@
 <span id="514">514</span>
 <span id="515">515</span>
 <span id="516">516</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::error</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::strtab</span>;
-<span class="kw">use</span> <span class="ident">alloc::vec::Vec</span>;
-<span class="kw">use</span> <span class="ident">core::fmt</span>::{<span class="self">self</span>, <span class="ident">Debug</span>};
-<span class="kw">use</span> <span class="ident">scroll</span>::{<span class="ident">ctx</span>, <span class="ident">IOread</span>, <span class="ident">IOwrite</span>, <span class="ident">Pread</span>, <span class="ident">Pwrite</span>, <span class="ident">SizeWith</span>};
+</pre><pre class="rust"><code><span class="kw">use </span><span class="kw">crate</span>::error;
+<span class="kw">use </span><span class="kw">crate</span>::strtab;
+<span class="kw">use </span>alloc::vec::Vec;
+<span class="kw">use </span>core::fmt::{<span class="self">self</span>, Debug};
+<span class="kw">use </span>scroll::{ctx, IOread, IOwrite, Pread, Pwrite, SizeWith};
 
-<span class="doccomment">/// Size of a single symbol in the COFF Symbol Table.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">COFF_SYMBOL_SIZE</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">18</span>;
+<span class="doccomment">/// Size of a single symbol in the COFF Symbol Table.
+</span><span class="kw">pub const </span>COFF_SYMBOL_SIZE: usize = <span class="number">18</span>;
 
-<span class="comment">// Values for `Symbol::section_number`.</span>
+<span class="comment">// Values for `Symbol::section_number`.
 
-<span class="doccomment">/// The symbol record is not yet assigned a section. A `value` of zero</span>
-<span class="doccomment">/// indicates that a reference to an external symbol is defined elsewhere.</span>
-<span class="doccomment">/// A `value` of non-zero is a common symbol with a size that is specified by the `value`.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_SYM_UNDEFINED</span>: <span class="ident">i16</span> <span class="op">=</span> <span class="number">0</span>;
-<span class="doccomment">/// The symbol has an absolute (non-relocatable) `value` and is not an address.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_SYM_ABSOLUTE</span>: <span class="ident">i16</span> <span class="op">=</span> <span class="op">-</span><span class="number">1</span>;
-<span class="doccomment">/// The symbol provides general type or debugging information but does not</span>
-<span class="doccomment">/// correspond to a section.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_SYM_DEBUG</span>: <span class="ident">i16</span> <span class="op">=</span> <span class="op">-</span><span class="number">2</span>;
+</span><span class="doccomment">/// The symbol record is not yet assigned a section. A `value` of zero
+/// indicates that a reference to an external symbol is defined elsewhere.
+/// A `value` of non-zero is a common symbol with a size that is specified by the `value`.
+</span><span class="kw">pub const </span>IMAGE_SYM_UNDEFINED: i16 = <span class="number">0</span>;
+<span class="doccomment">/// The symbol has an absolute (non-relocatable) `value` and is not an address.
+</span><span class="kw">pub const </span>IMAGE_SYM_ABSOLUTE: i16 = -<span class="number">1</span>;
+<span class="doccomment">/// The symbol provides general type or debugging information but does not
+/// correspond to a section.
+</span><span class="kw">pub const </span>IMAGE_SYM_DEBUG: i16 = -<span class="number">2</span>;
 
-<span class="comment">// Base types for `Symbol::typ`.</span>
+<span class="comment">// Base types for `Symbol::typ`.
 
-<span class="doccomment">/// No type information or unknown base type. Microsoft tools use this setting</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_SYM_TYPE_NULL</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0</span>;
-<span class="doccomment">/// No valid type; used with void pointers and functions</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_SYM_TYPE_VOID</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">1</span>;
-<span class="doccomment">/// A character (signed byte)</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_SYM_TYPE_CHAR</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">2</span>;
-<span class="doccomment">/// A 2-byte signed integer</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_SYM_TYPE_SHORT</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">3</span>;
-<span class="doccomment">/// A natural integer type (normally 4 bytes in Windows)</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_SYM_TYPE_INT</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">4</span>;
-<span class="doccomment">/// A 4-byte signed integer</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_SYM_TYPE_LONG</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">5</span>;
-<span class="doccomment">/// A 4-byte floating-point number</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_SYM_TYPE_FLOAT</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">6</span>;
-<span class="doccomment">/// An 8-byte floating-point number</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_SYM_TYPE_DOUBLE</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">7</span>;
-<span class="doccomment">/// A structure</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_SYM_TYPE_STRUCT</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">8</span>;
-<span class="doccomment">/// A union</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_SYM_TYPE_UNION</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">9</span>;
-<span class="doccomment">/// An enumerated type</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_SYM_TYPE_ENUM</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">10</span>;
-<span class="doccomment">/// A member of enumeration (a specific value)</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_SYM_TYPE_MOE</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">11</span>;
-<span class="doccomment">/// A byte; unsigned 1-byte integer</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_SYM_TYPE_BYTE</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">12</span>;
-<span class="doccomment">/// A word; unsigned 2-byte integer</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_SYM_TYPE_WORD</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">13</span>;
-<span class="doccomment">/// An unsigned integer of natural size (normally, 4 bytes)</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_SYM_TYPE_UINT</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">14</span>;
-<span class="doccomment">/// An unsigned 4-byte integer</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_SYM_TYPE_DWORD</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">15</span>;
+</span><span class="doccomment">/// No type information or unknown base type. Microsoft tools use this setting
+</span><span class="kw">pub const </span>IMAGE_SYM_TYPE_NULL: u16 = <span class="number">0</span>;
+<span class="doccomment">/// No valid type; used with void pointers and functions
+</span><span class="kw">pub const </span>IMAGE_SYM_TYPE_VOID: u16 = <span class="number">1</span>;
+<span class="doccomment">/// A character (signed byte)
+</span><span class="kw">pub const </span>IMAGE_SYM_TYPE_CHAR: u16 = <span class="number">2</span>;
+<span class="doccomment">/// A 2-byte signed integer
+</span><span class="kw">pub const </span>IMAGE_SYM_TYPE_SHORT: u16 = <span class="number">3</span>;
+<span class="doccomment">/// A natural integer type (normally 4 bytes in Windows)
+</span><span class="kw">pub const </span>IMAGE_SYM_TYPE_INT: u16 = <span class="number">4</span>;
+<span class="doccomment">/// A 4-byte signed integer
+</span><span class="kw">pub const </span>IMAGE_SYM_TYPE_LONG: u16 = <span class="number">5</span>;
+<span class="doccomment">/// A 4-byte floating-point number
+</span><span class="kw">pub const </span>IMAGE_SYM_TYPE_FLOAT: u16 = <span class="number">6</span>;
+<span class="doccomment">/// An 8-byte floating-point number
+</span><span class="kw">pub const </span>IMAGE_SYM_TYPE_DOUBLE: u16 = <span class="number">7</span>;
+<span class="doccomment">/// A structure
+</span><span class="kw">pub const </span>IMAGE_SYM_TYPE_STRUCT: u16 = <span class="number">8</span>;
+<span class="doccomment">/// A union
+</span><span class="kw">pub const </span>IMAGE_SYM_TYPE_UNION: u16 = <span class="number">9</span>;
+<span class="doccomment">/// An enumerated type
+</span><span class="kw">pub const </span>IMAGE_SYM_TYPE_ENUM: u16 = <span class="number">10</span>;
+<span class="doccomment">/// A member of enumeration (a specific value)
+</span><span class="kw">pub const </span>IMAGE_SYM_TYPE_MOE: u16 = <span class="number">11</span>;
+<span class="doccomment">/// A byte; unsigned 1-byte integer
+</span><span class="kw">pub const </span>IMAGE_SYM_TYPE_BYTE: u16 = <span class="number">12</span>;
+<span class="doccomment">/// A word; unsigned 2-byte integer
+</span><span class="kw">pub const </span>IMAGE_SYM_TYPE_WORD: u16 = <span class="number">13</span>;
+<span class="doccomment">/// An unsigned integer of natural size (normally, 4 bytes)
+</span><span class="kw">pub const </span>IMAGE_SYM_TYPE_UINT: u16 = <span class="number">14</span>;
+<span class="doccomment">/// An unsigned 4-byte integer
+</span><span class="kw">pub const </span>IMAGE_SYM_TYPE_DWORD: u16 = <span class="number">15</span>;
 
-<span class="comment">// Derived types for `Symbol::typ`.</span>
+<span class="comment">// Derived types for `Symbol::typ`.
 
-<span class="doccomment">/// No derived type; the symbol is a simple scalar variable.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_SYM_DTYPE_NULL</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0</span>;
-<span class="doccomment">/// The symbol is a pointer to base type.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_SYM_DTYPE_POINTER</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">1</span>;
-<span class="doccomment">/// The symbol is a function that returns a base type.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_SYM_DTYPE_FUNCTION</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">2</span>;
-<span class="doccomment">/// The symbol is an array of base type.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_SYM_DTYPE_ARRAY</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">3</span>;
+</span><span class="doccomment">/// No derived type; the symbol is a simple scalar variable.
+</span><span class="kw">pub const </span>IMAGE_SYM_DTYPE_NULL: u16 = <span class="number">0</span>;
+<span class="doccomment">/// The symbol is a pointer to base type.
+</span><span class="kw">pub const </span>IMAGE_SYM_DTYPE_POINTER: u16 = <span class="number">1</span>;
+<span class="doccomment">/// The symbol is a function that returns a base type.
+</span><span class="kw">pub const </span>IMAGE_SYM_DTYPE_FUNCTION: u16 = <span class="number">2</span>;
+<span class="doccomment">/// The symbol is an array of base type.
+</span><span class="kw">pub const </span>IMAGE_SYM_DTYPE_ARRAY: u16 = <span class="number">3</span>;
 
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_SYM_TYPE_MASK</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0xf</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_SYM_DTYPE_SHIFT</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">4</span>;
+<span class="kw">pub const </span>IMAGE_SYM_TYPE_MASK: u16 = <span class="number">0xf</span>;
+<span class="kw">pub const </span>IMAGE_SYM_DTYPE_SHIFT: usize = <span class="number">4</span>;
 
-<span class="comment">// Values for `Symbol::storage_class`.</span>
+<span class="comment">// Values for `Symbol::storage_class`.
 
-<span class="doccomment">/// A special symbol that represents the end of function, for debugging purposes.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_SYM_CLASS_END_OF_FUNCTION</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">0xff</span>;
-<span class="doccomment">/// No assigned storage class.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_SYM_CLASS_NULL</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">0</span>;
-<span class="doccomment">/// The automatic (stack) variable.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// The `value` field specifies the stack frame offset.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_SYM_CLASS_AUTOMATIC</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">1</span>;
-<span class="doccomment">/// A value that Microsoft tools use for external symbols.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// The `value` field indicates the size if the section number is</span>
-<span class="doccomment">/// `IMAGE_SYM_UNDEFINED` (0).  If the section number is not zero,</span>
-<span class="doccomment">/// then the `value` field specifies the offset within the section.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_SYM_CLASS_EXTERNAL</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">2</span>;
-<span class="doccomment">/// A static symbol.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// The &#39;value&#39; field specifies the offset of the symbol within the section.</span>
-<span class="doccomment">/// If the `value` field is zero, then the symbol represents a section name.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_SYM_CLASS_STATIC</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">3</span>;
-<span class="doccomment">/// A register variable.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// The `value` field specifies the register number.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_SYM_CLASS_REGISTER</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">4</span>;
-<span class="doccomment">/// A symbol that is defined externally.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_SYM_CLASS_EXTERNAL_DEF</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">5</span>;
-<span class="doccomment">/// A code label that is defined within the module.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// The `value` field specifies the offset of the symbol within the section.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_SYM_CLASS_LABEL</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">6</span>;
-<span class="doccomment">/// A reference to a code label that is not defined.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_SYM_CLASS_UNDEFINED_LABEL</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">7</span>;
-<span class="doccomment">/// The structure member.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// The `value` field specifies the n th member.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_SYM_CLASS_MEMBER_OF_STRUCT</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">8</span>;
-<span class="doccomment">/// A formal argument (parameter) of a function.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// The `value` field specifies the n th argument.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_SYM_CLASS_ARGUMENT</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">9</span>;
-<span class="doccomment">/// The structure tag-name entry.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_SYM_CLASS_STRUCT_TAG</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">10</span>;
-<span class="doccomment">/// A union member.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// The `value` field specifies the n th member.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_SYM_CLASS_MEMBER_OF_UNION</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">11</span>;
-<span class="doccomment">/// The Union tag-name entry.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_SYM_CLASS_UNION_TAG</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">12</span>;
-<span class="doccomment">/// A Typedef entry.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_SYM_CLASS_TYPE_DEFINITION</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">13</span>;
-<span class="doccomment">/// A static data declaration.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_SYM_CLASS_UNDEFINED_STATIC</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">14</span>;
-<span class="doccomment">/// An enumerated type tagname entry.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_SYM_CLASS_ENUM_TAG</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">15</span>;
-<span class="doccomment">/// A member of an enumeration.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// The `value` field specifies the n th member.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_SYM_CLASS_MEMBER_OF_ENUM</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">16</span>;
-<span class="doccomment">/// A register parameter.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_SYM_CLASS_REGISTER_PARAM</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">17</span>;
-<span class="doccomment">/// A bit-field reference.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// The `value` field specifies the n th bit in the bit field.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_SYM_CLASS_BIT_FIELD</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">18</span>;
-<span class="doccomment">/// A .bb (beginning of block) or .eb (end of block) record.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// The `value` field is the relocatable address of the code location.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_SYM_CLASS_BLOCK</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">100</span>;
-<span class="doccomment">/// A value that Microsoft tools use for symbol records that define the extent of a function.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Records may be begin function (.bf ), end function ( .ef ), and lines in function ( .lf ).</span>
-<span class="doccomment">/// For .lf records, the `value` field gives the number of source lines in the function.</span>
-<span class="doccomment">/// For .ef records, the `value` field gives the size of the function code.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_SYM_CLASS_FUNCTION</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">101</span>;
-<span class="doccomment">/// An end-of-structure entry.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_SYM_CLASS_END_OF_STRUCT</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">102</span>;
-<span class="doccomment">/// The source-file symbol record.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// The symbol is followed by auxiliary records that name the file.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_SYM_CLASS_FILE</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">103</span>;
-<span class="doccomment">/// A definition of a section (Microsoft tools use STATIC storage class instead).</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_SYM_CLASS_SECTION</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">104</span>;
-<span class="doccomment">/// A weak external.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_SYM_CLASS_WEAK_EXTERNAL</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">105</span>;
-<span class="doccomment">/// A CLR token symbol.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// The name is an ASCII string that consists of the hexadecimal value of the token.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_SYM_CLASS_CLR_TOKEN</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">107</span>;
+</span><span class="doccomment">/// A special symbol that represents the end of function, for debugging purposes.
+</span><span class="kw">pub const </span>IMAGE_SYM_CLASS_END_OF_FUNCTION: u8 = <span class="number">0xff</span>;
+<span class="doccomment">/// No assigned storage class.
+</span><span class="kw">pub const </span>IMAGE_SYM_CLASS_NULL: u8 = <span class="number">0</span>;
+<span class="doccomment">/// The automatic (stack) variable.
+///
+/// The `value` field specifies the stack frame offset.
+</span><span class="kw">pub const </span>IMAGE_SYM_CLASS_AUTOMATIC: u8 = <span class="number">1</span>;
+<span class="doccomment">/// A value that Microsoft tools use for external symbols.
+///
+/// The `value` field indicates the size if the section number is
+/// `IMAGE_SYM_UNDEFINED` (0).  If the section number is not zero,
+/// then the `value` field specifies the offset within the section.
+</span><span class="kw">pub const </span>IMAGE_SYM_CLASS_EXTERNAL: u8 = <span class="number">2</span>;
+<span class="doccomment">/// A static symbol.
+///
+/// The &#39;value&#39; field specifies the offset of the symbol within the section.
+/// If the `value` field is zero, then the symbol represents a section name.
+</span><span class="kw">pub const </span>IMAGE_SYM_CLASS_STATIC: u8 = <span class="number">3</span>;
+<span class="doccomment">/// A register variable.
+///
+/// The `value` field specifies the register number.
+</span><span class="kw">pub const </span>IMAGE_SYM_CLASS_REGISTER: u8 = <span class="number">4</span>;
+<span class="doccomment">/// A symbol that is defined externally.
+</span><span class="kw">pub const </span>IMAGE_SYM_CLASS_EXTERNAL_DEF: u8 = <span class="number">5</span>;
+<span class="doccomment">/// A code label that is defined within the module.
+///
+/// The `value` field specifies the offset of the symbol within the section.
+</span><span class="kw">pub const </span>IMAGE_SYM_CLASS_LABEL: u8 = <span class="number">6</span>;
+<span class="doccomment">/// A reference to a code label that is not defined.
+</span><span class="kw">pub const </span>IMAGE_SYM_CLASS_UNDEFINED_LABEL: u8 = <span class="number">7</span>;
+<span class="doccomment">/// The structure member.
+///
+/// The `value` field specifies the n th member.
+</span><span class="kw">pub const </span>IMAGE_SYM_CLASS_MEMBER_OF_STRUCT: u8 = <span class="number">8</span>;
+<span class="doccomment">/// A formal argument (parameter) of a function.
+///
+/// The `value` field specifies the n th argument.
+</span><span class="kw">pub const </span>IMAGE_SYM_CLASS_ARGUMENT: u8 = <span class="number">9</span>;
+<span class="doccomment">/// The structure tag-name entry.
+</span><span class="kw">pub const </span>IMAGE_SYM_CLASS_STRUCT_TAG: u8 = <span class="number">10</span>;
+<span class="doccomment">/// A union member.
+///
+/// The `value` field specifies the n th member.
+</span><span class="kw">pub const </span>IMAGE_SYM_CLASS_MEMBER_OF_UNION: u8 = <span class="number">11</span>;
+<span class="doccomment">/// The Union tag-name entry.
+</span><span class="kw">pub const </span>IMAGE_SYM_CLASS_UNION_TAG: u8 = <span class="number">12</span>;
+<span class="doccomment">/// A Typedef entry.
+</span><span class="kw">pub const </span>IMAGE_SYM_CLASS_TYPE_DEFINITION: u8 = <span class="number">13</span>;
+<span class="doccomment">/// A static data declaration.
+</span><span class="kw">pub const </span>IMAGE_SYM_CLASS_UNDEFINED_STATIC: u8 = <span class="number">14</span>;
+<span class="doccomment">/// An enumerated type tagname entry.
+</span><span class="kw">pub const </span>IMAGE_SYM_CLASS_ENUM_TAG: u8 = <span class="number">15</span>;
+<span class="doccomment">/// A member of an enumeration.
+///
+/// The `value` field specifies the n th member.
+</span><span class="kw">pub const </span>IMAGE_SYM_CLASS_MEMBER_OF_ENUM: u8 = <span class="number">16</span>;
+<span class="doccomment">/// A register parameter.
+</span><span class="kw">pub const </span>IMAGE_SYM_CLASS_REGISTER_PARAM: u8 = <span class="number">17</span>;
+<span class="doccomment">/// A bit-field reference.
+///
+/// The `value` field specifies the n th bit in the bit field.
+</span><span class="kw">pub const </span>IMAGE_SYM_CLASS_BIT_FIELD: u8 = <span class="number">18</span>;
+<span class="doccomment">/// A .bb (beginning of block) or .eb (end of block) record.
+///
+/// The `value` field is the relocatable address of the code location.
+</span><span class="kw">pub const </span>IMAGE_SYM_CLASS_BLOCK: u8 = <span class="number">100</span>;
+<span class="doccomment">/// A value that Microsoft tools use for symbol records that define the extent of a function.
+///
+/// Records may be begin function (.bf ), end function ( .ef ), and lines in function ( .lf ).
+/// For .lf records, the `value` field gives the number of source lines in the function.
+/// For .ef records, the `value` field gives the size of the function code.
+</span><span class="kw">pub const </span>IMAGE_SYM_CLASS_FUNCTION: u8 = <span class="number">101</span>;
+<span class="doccomment">/// An end-of-structure entry.
+</span><span class="kw">pub const </span>IMAGE_SYM_CLASS_END_OF_STRUCT: u8 = <span class="number">102</span>;
+<span class="doccomment">/// The source-file symbol record.
+///
+/// The symbol is followed by auxiliary records that name the file.
+</span><span class="kw">pub const </span>IMAGE_SYM_CLASS_FILE: u8 = <span class="number">103</span>;
+<span class="doccomment">/// A definition of a section (Microsoft tools use STATIC storage class instead).
+</span><span class="kw">pub const </span>IMAGE_SYM_CLASS_SECTION: u8 = <span class="number">104</span>;
+<span class="doccomment">/// A weak external.
+</span><span class="kw">pub const </span>IMAGE_SYM_CLASS_WEAK_EXTERNAL: u8 = <span class="number">105</span>;
+<span class="doccomment">/// A CLR token symbol.
+///
+/// The name is an ASCII string that consists of the hexadecimal value of the token.
+</span><span class="kw">pub const </span>IMAGE_SYM_CLASS_CLR_TOKEN: u8 = <span class="number">107</span>;
 
-<span class="doccomment">/// A COFF symbol.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Unwind information for this function can be loaded with [`ExceptionData::get_unwind_info`].</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// [`ExceptionData::get_unwind_info`]: struct.ExceptionData.html#method.get_unwind_info</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">PartialEq</span>, <span class="ident">Default</span>, <span class="ident">Pread</span>, <span class="ident">Pwrite</span>, <span class="ident">IOread</span>, <span class="ident">IOwrite</span>, <span class="ident">SizeWith</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Symbol</span> {
-    <span class="doccomment">/// The name of the symbol.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// An array of 8 bytes is used if the name is not more than 8 bytes long.</span>
-    <span class="doccomment">/// This array is padded with nulls on the right if the name is less than 8 bytes long.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// For longer names, the first 4 bytes are all zeros, and the second 4 bytes</span>
-    <span class="doccomment">/// are an offset into the string table.</span>
-    <span class="kw">pub</span> <span class="ident">name</span>: [<span class="ident">u8</span>; <span class="number">8</span>],
-    <span class="doccomment">/// The value that is associated with the symbol.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// The interpretation of this field depends on `section_number` and</span>
-    <span class="doccomment">/// `storage_class`. A typical meaning is the relocatable address.</span>
-    <span class="kw">pub</span> <span class="ident">value</span>: <span class="ident">u32</span>,
-    <span class="doccomment">/// A one-based index into the section table. Zero and negative values have special meanings.</span>
-    <span class="kw">pub</span> <span class="ident">section_number</span>: <span class="ident">i16</span>,
-    <span class="doccomment">/// A number that represents type.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Microsoft tools set this field to 0x20 (function) or 0x0 (not a function).</span>
-    <span class="kw">pub</span> <span class="ident">typ</span>: <span class="ident">u16</span>,
-    <span class="doccomment">/// An enumerated value that represents storage class.</span>
-    <span class="kw">pub</span> <span class="ident">storage_class</span>: <span class="ident">u8</span>,
-    <span class="doccomment">/// The number of auxiliary symbol table entries that follow this record.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Each auxiliary record is the same size as a standard symbol-table record (18 bytes),</span>
-    <span class="doccomment">/// but rather than define a new symbol, the auxiliary record gives additional information</span>
-    <span class="doccomment">/// on the last symbol defined.</span>
-    <span class="kw">pub</span> <span class="ident">number_of_aux_symbols</span>: <span class="ident">u8</span>,
+<span class="doccomment">/// A COFF symbol.
+///
+/// Unwind information for this function can be loaded with [`ExceptionData::get_unwind_info`].
+///
+/// [`ExceptionData::get_unwind_info`]: struct.ExceptionData.html#method.get_unwind_info
+</span><span class="attribute">#[repr(C)]
+#[derive(Debug, Copy, Clone, PartialEq, Default, Pread, Pwrite, IOread, IOwrite, SizeWith)]
+</span><span class="kw">pub struct </span>Symbol {
+    <span class="doccomment">/// The name of the symbol.
+    ///
+    /// An array of 8 bytes is used if the name is not more than 8 bytes long.
+    /// This array is padded with nulls on the right if the name is less than 8 bytes long.
+    ///
+    /// For longer names, the first 4 bytes are all zeros, and the second 4 bytes
+    /// are an offset into the string table.
+    </span><span class="kw">pub </span>name: [u8; <span class="number">8</span>],
+    <span class="doccomment">/// The value that is associated with the symbol.
+    ///
+    /// The interpretation of this field depends on `section_number` and
+    /// `storage_class`. A typical meaning is the relocatable address.
+    </span><span class="kw">pub </span>value: u32,
+    <span class="doccomment">/// A one-based index into the section table. Zero and negative values have special meanings.
+    </span><span class="kw">pub </span>section_number: i16,
+    <span class="doccomment">/// A number that represents type.
+    ///
+    /// Microsoft tools set this field to 0x20 (function) or 0x0 (not a function).
+    </span><span class="kw">pub </span>typ: u16,
+    <span class="doccomment">/// An enumerated value that represents storage class.
+    </span><span class="kw">pub </span>storage_class: u8,
+    <span class="doccomment">/// The number of auxiliary symbol table entries that follow this record.
+    ///
+    /// Each auxiliary record is the same size as a standard symbol-table record (18 bytes),
+    /// but rather than define a new symbol, the auxiliary record gives additional information
+    /// on the last symbol defined.
+    </span><span class="kw">pub </span>number_of_aux_symbols: u8,
 }
 
-<span class="kw">impl</span> <span class="ident">Symbol</span> {
-    <span class="doccomment">/// Parse the symbol at the given offset.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// If the symbol has an inline name, then also returns a reference to the name&#39;s</span>
-    <span class="doccomment">/// location in `bytes`.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">parse</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>(<span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>], <span class="ident">offset</span>: <span class="ident">usize</span>) -&gt; <span class="ident">error::Result</span><span class="op">&lt;</span>(<span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span><span class="op">&gt;</span>, <span class="ident">Symbol</span>)<span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">symbol</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">pread</span>::<span class="op">&lt;</span><span class="ident">Symbol</span><span class="op">&gt;</span>(<span class="ident">offset</span>)<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">name</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">symbol</span>.<span class="ident">name</span>[<span class="number">0</span>] <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
-            <span class="ident">bytes</span>
-                .<span class="ident">pread_with</span>(<span class="ident">offset</span>, <span class="ident">ctx::StrCtx::DelimiterUntil</span>(<span class="number">0</span>, <span class="number">8</span>))
-                .<span class="ident">ok</span>()
-        } <span class="kw">else</span> {
-            <span class="prelude-val">None</span>
-        };
-        <span class="prelude-val">Ok</span>((<span class="ident">name</span>, <span class="ident">symbol</span>))
+<span class="kw">impl </span>Symbol {
+    <span class="doccomment">/// Parse the symbol at the given offset.
+    ///
+    /// If the symbol has an inline name, then also returns a reference to the name&#39;s
+    /// location in `bytes`.
+    </span><span class="kw">pub fn </span>parse&lt;<span class="lifetime">&#39;a</span>&gt;(bytes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8], offset: usize) -&gt; error::Result&lt;(<span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str&gt;, Symbol)&gt; {
+        <span class="kw">let </span>symbol = bytes.pread::&lt;Symbol&gt;(offset)<span class="question-mark">?</span>;
+        <span class="kw">let </span>name = <span class="kw">if </span>symbol.name[<span class="number">0</span>] != <span class="number">0 </span>{
+            bytes
+                .pread_with(offset, ctx::StrCtx::DelimiterUntil(<span class="number">0</span>, <span class="number">8</span>))
+                .ok()
+        } <span class="kw">else </span>{
+            <span class="prelude-val">None
+        </span>};
+        <span class="prelude-val">Ok</span>((name, symbol))
     }
 
-    <span class="doccomment">/// Returns the symbol name.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// This may be a reference to an inline name in the symbol, or to</span>
-    <span class="doccomment">/// a strtab entry.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">name</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="self">self</span>, <span class="ident">strtab</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">strtab::Strtab</span>) -&gt; <span class="ident">error::Result</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span><span class="op">&gt;</span> {
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">offset</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">name_offset</span>() {
-            <span class="ident">strtab</span>.<span class="ident">get_at</span>(<span class="ident">offset</span> <span class="kw">as</span> <span class="ident">usize</span>).<span class="ident">ok_or_else</span>(<span class="op">|</span><span class="op">|</span> {
-                <span class="ident">error::Error::Malformed</span>(<span class="macro">format!</span>(<span class="string">&quot;Invalid Symbol name offset {:#x}&quot;</span>, <span class="ident">offset</span>))
+    <span class="doccomment">/// Returns the symbol name.
+    ///
+    /// This may be a reference to an inline name in the symbol, or to
+    /// a strtab entry.
+    </span><span class="kw">pub fn </span>name&lt;<span class="lifetime">&#39;a</span>&gt;(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="self">self</span>, strtab: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>strtab::Strtab) -&gt; error::Result&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str&gt; {
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(offset) = <span class="self">self</span>.name_offset() {
+            strtab.get_at(offset <span class="kw">as </span>usize).ok_or_else(|| {
+                error::Error::Malformed(<span class="macro">format!</span>(<span class="string">&quot;Invalid Symbol name offset {:#x}&quot;</span>, offset))
             })
-        } <span class="kw">else</span> {
-            <span class="prelude-val">Ok</span>(<span class="self">self</span>.<span class="ident">name</span>.<span class="ident">pread</span>(<span class="number">0</span>)<span class="question-mark">?</span>)
+        } <span class="kw">else </span>{
+            <span class="prelude-val">Ok</span>(<span class="self">self</span>.name.pread(<span class="number">0</span>)<span class="question-mark">?</span>)
         }
     }
 
-    <span class="doccomment">/// Return the strtab offset of the symbol name.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Returns `None` if the name is inline.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">name_offset</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span> {
-        <span class="comment">// Symbol offset starts at the strtable&#39;s length, so let&#39;s adjust it</span>
-        <span class="kw">let</span> <span class="ident">length_field_size</span> <span class="op">=</span> <span class="ident">core::mem::size_of</span>::<span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>() <span class="kw">as</span> <span class="ident">u32</span>;
+    <span class="doccomment">/// Return the strtab offset of the symbol name.
+    ///
+    /// Returns `None` if the name is inline.
+    </span><span class="kw">pub fn </span>name_offset(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;u32&gt; {
+        <span class="comment">// Symbol offset starts at the strtable&#39;s length, so let&#39;s adjust it
+        </span><span class="kw">let </span>length_field_size = core::mem::size_of::&lt;u32&gt;() <span class="kw">as </span>u32;
 
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">name</span>[<span class="number">0</span>] <span class="op">==</span> <span class="number">0</span> {
-            <span class="self">self</span>.<span class="ident">name</span>
-                .<span class="ident">pread_with</span>(<span class="number">4</span>, <span class="ident">scroll::LE</span>)
-                .<span class="ident">ok</span>()
-                .<span class="ident">map</span>(<span class="op">|</span><span class="ident">offset</span>: <span class="ident">u32</span><span class="op">|</span> <span class="ident">offset</span> <span class="op">-</span> <span class="ident">length_field_size</span>)
-        } <span class="kw">else</span> {
-            <span class="prelude-val">None</span>
+        <span class="kw">if </span><span class="self">self</span>.name[<span class="number">0</span>] == <span class="number">0 </span>{
+            <span class="self">self</span>.name
+                .pread_with(<span class="number">4</span>, scroll::LE)
+                .ok()
+                .map(|offset: u32| offset - length_field_size)
+        } <span class="kw">else </span>{
+            <span class="prelude-val">None
+        </span>}
+    }
+
+    <span class="doccomment">/// Set the strtab offset of the symbol name.
+    </span><span class="kw">pub fn </span>set_name_offset(<span class="kw-2">&amp;mut </span><span class="self">self</span>, offset: u32) {
+        <span class="self">self</span>.name[..<span class="number">4</span>].copy_from_slice(<span class="kw-2">&amp;</span>[<span class="number">0</span>; <span class="number">4</span>]);
+        <span class="self">self</span>.name.pwrite_with(offset, <span class="number">4</span>, scroll::LE).unwrap();
+    }
+
+    <span class="doccomment">/// Return the base type of the symbol.
+    ///
+    /// This type uses the `IMAGE_SYM_TYPE_*` definitions.
+    </span><span class="kw">pub fn </span>base_type(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; u16 {
+        <span class="self">self</span>.typ &amp; IMAGE_SYM_TYPE_MASK
+    }
+
+    <span class="doccomment">/// Return the derived type of the symbol.
+    ///
+    /// This type uses the `IMAGE_SYM_DTYPE_*` definitions.
+    </span><span class="kw">pub fn </span>derived_type(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; u16 {
+        <span class="self">self</span>.typ &gt;&gt; IMAGE_SYM_DTYPE_SHIFT
+    }
+
+    <span class="doccomment">/// Return true for function definitions.
+    ///
+    /// These symbols use `AuxFunctionDefinition` for auxiliary symbol records.
+    </span><span class="kw">pub fn </span>is_function_definition(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.storage_class == IMAGE_SYM_CLASS_EXTERNAL
+            &amp;&amp; <span class="self">self</span>.derived_type() == IMAGE_SYM_DTYPE_FUNCTION
+            &amp;&amp; <span class="self">self</span>.section_number &gt; <span class="number">0
+    </span>}
+
+    <span class="doccomment">/// Return true for weak external symbols.
+    ///
+    /// These symbols use `AuxWeakExternal` for auxiliary symbol records.
+    </span><span class="kw">pub fn </span>is_weak_external(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.storage_class == IMAGE_SYM_CLASS_WEAK_EXTERNAL
+    }
+
+    <span class="doccomment">/// Return true for file symbol records.
+    ///
+    /// The auxiliary records contain the name of the source code file.
+    </span><span class="kw">pub fn </span>is_file(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.storage_class == IMAGE_SYM_CLASS_FILE
+    }
+
+    <span class="doccomment">/// Return true for section definitions.
+    ///
+    /// These symbols use `AuxSectionDefinition` for auxiliary symbol records.
+    </span><span class="kw">pub fn </span>is_section_definition(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.storage_class == IMAGE_SYM_CLASS_STATIC &amp;&amp; <span class="self">self</span>.number_of_aux_symbols &gt; <span class="number">0
+    </span>}
+}
+
+<span class="doccomment">/// Auxiliary symbol record for function definitions.
+</span><span class="attribute">#[repr(C)]
+#[derive(Debug, Copy, Clone, PartialEq, Default, Pread, Pwrite, IOread, IOwrite, SizeWith)]
+</span><span class="kw">pub struct </span>AuxFunctionDefinition {
+    <span class="doccomment">/// The symbol-table index of the corresponding `.bf` (begin function) symbol record.
+    </span><span class="kw">pub </span>tag_index: u32,
+    <span class="doccomment">/// The size of the executable code for the function itself.
+    ///
+    /// If the function is in its own section, the `size_of_raw_data` in the section header
+    /// is greater or equal to this field, depending on alignment considerations.
+    </span><span class="kw">pub </span>total_size: u32,
+    <span class="doccomment">/// The file offset of the first COFF line-number entry for the function,
+    /// or zero if none exists.
+    </span><span class="kw">pub </span>pointer_to_line_number: u32,
+    <span class="doccomment">/// The symbol-table index of the record for the next function.
+    ///
+    /// If the function is the last in the symbol table, this field is set to zero.
+    </span><span class="kw">pub </span>pointer_to_next_function: u32,
+    <span class="doccomment">/// Unused padding.
+    </span><span class="kw">pub </span>unused: [u8; <span class="number">2</span>],
+}
+
+<span class="doccomment">/// Auxiliary symbol record for symbols with storage class `IMAGE_SYM_CLASS_FUNCTION`.
+</span><span class="attribute">#[repr(C)]
+#[derive(Debug, Copy, Clone, PartialEq, Default, Pread, Pwrite, IOread, IOwrite, SizeWith)]
+</span><span class="kw">pub struct </span>AuxBeginAndEndFunction {
+    <span class="doccomment">/// Unused padding.
+    </span><span class="kw">pub </span>unused1: [u8; <span class="number">4</span>],
+    <span class="doccomment">/// The actual ordinal line number within the source file, corresponding
+    /// to the `.bf` or `.ef` record.
+    </span><span class="kw">pub </span>line_number: u16,
+    <span class="doccomment">/// Unused padding.
+    </span><span class="kw">pub </span>unused2: [u8; <span class="number">6</span>],
+    <span class="doccomment">/// The symbol-table index of the next `.bf` symbol record.
+    ///
+    /// If the function is the last in the symbol table, this field is set to zero.
+    /// It is not used for `.ef` records.
+    </span><span class="kw">pub </span>pointer_to_next_function: u32,
+    <span class="doccomment">/// Unused padding.
+    </span><span class="kw">pub </span>unused3: [u8; <span class="number">2</span>],
+}
+
+<span class="comment">// Values for the `characteristics` field of `AuxWeakExternal`.
+
+</span><span class="doccomment">/// Indicates that no library search for the symbol should be performed.
+</span><span class="kw">pub const </span>IMAGE_WEAK_EXTERN_SEARCH_NOLIBRARY: u32 = <span class="number">1</span>;
+<span class="doccomment">/// Indicates that a library search for the symbol should be performed.
+</span><span class="kw">pub const </span>IMAGE_WEAK_EXTERN_SEARCH_LIBRARY: u32 = <span class="number">2</span>;
+<span class="doccomment">/// Indicates that the symbol is an alias for the symbol given by the `tag_index` field.
+</span><span class="kw">pub const </span>IMAGE_WEAK_EXTERN_SEARCH_ALIAS: u32 = <span class="number">3</span>;
+
+<span class="doccomment">/// Auxiliary symbol record for weak external symbols.
+</span><span class="attribute">#[repr(C)]
+#[derive(Debug, Copy, Clone, PartialEq, Default, Pread, Pwrite, IOread, IOwrite, SizeWith)]
+</span><span class="kw">pub struct </span>AuxWeakExternal {
+    <span class="doccomment">/// The symbol-table index of the symbol to be linked if an external definition is not found.
+    </span><span class="kw">pub </span>tag_index: u32,
+    <span class="doccomment">/// Flags that control how the symbol should be linked.
+    </span><span class="kw">pub </span>characteristics: u32,
+    <span class="doccomment">/// Unused padding.
+    </span><span class="kw">pub </span>unused: [u8; <span class="number">10</span>],
+}
+
+<span class="comment">// Values for the `selection` field of `AuxSectionDefinition`.
+
+</span><span class="doccomment">/// If this symbol is already defined, the linker issues a &quot;multiply defined symbol&quot; error.
+</span><span class="kw">pub const </span>IMAGE_COMDAT_SELECT_NODUPLICATES: u8 = <span class="number">1</span>;
+<span class="doccomment">/// Any section that defines the same COMDAT symbol can be linked; the rest are removed.
+</span><span class="kw">pub const </span>IMAGE_COMDAT_SELECT_ANY: u8 = <span class="number">2</span>;
+<span class="doccomment">/// The linker chooses an arbitrary section among the definitions for this symbol.
+///
+/// If all definitions are not the same size, a &quot;multiply defined symbol&quot; error is issued.
+</span><span class="kw">pub const </span>IMAGE_COMDAT_SELECT_SAME_SIZE: u8 = <span class="number">3</span>;
+<span class="doccomment">/// The linker chooses an arbitrary section among the definitions for this symbol.
+///
+/// If all definitions do not match exactly, a &quot;multiply defined symbol&quot; error is issued.
+</span><span class="kw">pub const </span>IMAGE_COMDAT_SELECT_EXACT_MATCH: u8 = <span class="number">4</span>;
+<span class="doccomment">/// The section is linked if a certain other COMDAT section is linked.
+///
+/// This other section is indicated by the `number` field of the auxiliary symbol record
+/// for the section definition. This setting is useful for definitions that have components
+/// in multiple sections (for example, code in one and data in another), but where all must
+/// be linked or discarded as a set. The other section with which this section is associated
+/// must be a COMDAT section; it cannot be another associative COMDAT section (that is, the
+/// other section cannot have `IMAGE_COMDAT_SELECT_ASSOCIATIVE` set).
+</span><span class="kw">pub const </span>IMAGE_COMDAT_SELECT_ASSOCIATIVE: u8 = <span class="number">5</span>;
+<span class="doccomment">/// The linker chooses the largest definition from among all of the definitions for this symbol.
+///
+/// If multiple definitions have this size, the choice between them is arbitrary.
+</span><span class="kw">pub const </span>IMAGE_COMDAT_SELECT_LARGEST: u8 = <span class="number">6</span>;
+
+<span class="doccomment">/// Auxiliary symbol record for section definitions.
+</span><span class="attribute">#[repr(C)]
+#[derive(Debug, Copy, Clone, PartialEq, Default, Pread, Pwrite, IOread, IOwrite, SizeWith)]
+</span><span class="kw">pub struct </span>AuxSectionDefinition {
+    <span class="doccomment">/// The size of section data; the same as `size_of_raw_data` in the section header.
+    </span><span class="kw">pub </span>length: u32,
+    <span class="doccomment">/// The number of relocation entries for the section.
+    </span><span class="kw">pub </span>number_of_relocations: u16,
+    <span class="doccomment">/// The number of line-number entries for the section.
+    </span><span class="kw">pub </span>number_of_line_numbers: u16,
+    <span class="doccomment">/// The checksum for communal data.
+    ///
+    /// It is applicable if the `IMAGE_SCN_LNK_COMDAT` flag is set in the section header.
+    </span><span class="kw">pub </span>checksum: u32,
+    <span class="doccomment">/// One-based index into the section table for the associated section.
+    ///
+    /// This is used when the `selection` field is `IMAGE_COMDAT_SELECT_ASSOCIATIVE`.
+    </span><span class="kw">pub </span>number: u16,
+    <span class="doccomment">/// The COMDAT selection number.
+    ///
+    /// This is applicable if the section is a COMDAT section.
+    </span><span class="kw">pub </span>selection: u8,
+    <span class="doccomment">/// Unused padding.
+    </span><span class="kw">pub </span>unused: [u8; <span class="number">3</span>],
+}
+
+<span class="doccomment">/// A COFF symbol table.
+</span><span class="kw">pub struct </span>SymbolTable&lt;<span class="lifetime">&#39;a</span>&gt; {
+    symbols: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8],
+}
+
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; SymbolTable&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="doccomment">/// Parse a COFF symbol table at the given offset.
+    ///
+    /// The offset and number of symbols should be from the COFF header.
+    </span><span class="kw">pub fn </span>parse(bytes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8], offset: usize, number: usize) -&gt; error::Result&lt;SymbolTable&lt;<span class="lifetime">&#39;a</span>&gt;&gt; {
+        <span class="kw">let </span>symbols = bytes.pread_with(offset, <span class="self">Self</span>::size(number))<span class="question-mark">?</span>;
+        <span class="prelude-val">Ok</span>(SymbolTable { symbols })
+    }
+
+    <span class="doccomment">/// Get the size in bytes of the symbol table.
+    </span><span class="kw">pub fn </span>size(number: usize) -&gt; usize {
+        number * COFF_SYMBOL_SIZE
+    }
+
+    <span class="doccomment">/// Get the symbol at the given index.
+    ///
+    /// If the symbol has an inline name, then also returns a reference to the name&#39;s
+    /// location in `bytes`.
+    </span><span class="kw">pub fn </span>get(<span class="kw-2">&amp;</span><span class="self">self</span>, index: usize) -&gt; <span class="prelude-ty">Option</span>&lt;(<span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str&gt;, Symbol)&gt; {
+        <span class="kw">let </span>offset = index * COFF_SYMBOL_SIZE;
+        Symbol::parse(<span class="self">self</span>.symbols, offset).ok()
+    }
+
+    <span class="doccomment">/// Get the auxiliary symbol record for a function definition.
+    </span><span class="kw">pub fn </span>aux_function_definition(<span class="kw-2">&amp;</span><span class="self">self</span>, index: usize) -&gt; <span class="prelude-ty">Option</span>&lt;AuxFunctionDefinition&gt; {
+        <span class="kw">let </span>offset = index * COFF_SYMBOL_SIZE;
+        <span class="self">self</span>.symbols.pread(offset).ok()
+    }
+
+    <span class="doccomment">/// Get the auxiliary symbol record for a `.bf` or `.ef` symbol record.
+    </span><span class="kw">pub fn </span>aux_begin_and_end_function(<span class="kw-2">&amp;</span><span class="self">self</span>, index: usize) -&gt; <span class="prelude-ty">Option</span>&lt;AuxBeginAndEndFunction&gt; {
+        <span class="kw">let </span>offset = index * COFF_SYMBOL_SIZE;
+        <span class="self">self</span>.symbols.pread(offset).ok()
+    }
+
+    <span class="doccomment">/// Get the auxiliary symbol record for a weak external.
+    </span><span class="kw">pub fn </span>aux_weak_external(<span class="kw-2">&amp;</span><span class="self">self</span>, index: usize) -&gt; <span class="prelude-ty">Option</span>&lt;AuxWeakExternal&gt; {
+        <span class="kw">let </span>offset = index * COFF_SYMBOL_SIZE;
+        <span class="self">self</span>.symbols.pread(offset).ok()
+    }
+
+    <span class="doccomment">/// Get the file name from the auxiliary symbol record for a file symbol record.
+    </span><span class="kw">pub fn </span>aux_file(<span class="kw-2">&amp;</span><span class="self">self</span>, index: usize, number: usize) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str&gt; {
+        <span class="kw">let </span>offset = index * COFF_SYMBOL_SIZE;
+        <span class="kw">let </span>length = number * COFF_SYMBOL_SIZE;
+        <span class="self">self</span>.symbols
+            .pread_with(offset, ctx::StrCtx::DelimiterUntil(<span class="number">0</span>, length))
+            .ok()
+    }
+
+    <span class="doccomment">/// Get the auxiliary symbol record for a section definition.
+    </span><span class="kw">pub fn </span>aux_section_definition(<span class="kw-2">&amp;</span><span class="self">self</span>, index: usize) -&gt; <span class="prelude-ty">Option</span>&lt;AuxSectionDefinition&gt; {
+        <span class="kw">let </span>offset = index * COFF_SYMBOL_SIZE;
+        <span class="self">self</span>.symbols.pread(offset).ok()
+    }
+
+    <span class="doccomment">/// Return an iterator for the COFF symbols.
+    ///
+    /// This iterator skips over auxiliary symbol records.
+    </span><span class="kw">pub fn </span>iter(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; SymbolIterator&lt;<span class="lifetime">&#39;a</span>&gt; {
+        SymbolIterator {
+            index: <span class="number">0</span>,
+            symbols: <span class="self">self</span>.symbols,
         }
     }
+}
 
-    <span class="doccomment">/// Set the strtab offset of the symbol name.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_name_offset</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">offset</span>: <span class="ident">u32</span>) {
-        <span class="self">self</span>.<span class="ident">name</span>[..<span class="number">4</span>].<span class="ident">copy_from_slice</span>(<span class="kw-2">&amp;</span>[<span class="number">0</span>; <span class="number">4</span>]);
-        <span class="self">self</span>.<span class="ident">name</span>.<span class="ident">pwrite_with</span>(<span class="ident">offset</span>, <span class="number">4</span>, <span class="ident">scroll::LE</span>).<span class="ident">unwrap</span>();
-    }
-
-    <span class="doccomment">/// Return the base type of the symbol.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// This type uses the `IMAGE_SYM_TYPE_*` definitions.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">base_type</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">u16</span> {
-        <span class="self">self</span>.<span class="ident">typ</span> <span class="op">&amp;</span> <span class="ident">IMAGE_SYM_TYPE_MASK</span>
-    }
-
-    <span class="doccomment">/// Return the derived type of the symbol.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// This type uses the `IMAGE_SYM_DTYPE_*` definitions.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">derived_type</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">u16</span> {
-        <span class="self">self</span>.<span class="ident">typ</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="ident">IMAGE_SYM_DTYPE_SHIFT</span>
-    }
-
-    <span class="doccomment">/// Return true for function definitions.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// These symbols use `AuxFunctionDefinition` for auxiliary symbol records.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_function_definition</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">storage_class</span> <span class="op">==</span> <span class="ident">IMAGE_SYM_CLASS_EXTERNAL</span>
-            <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">derived_type</span>() <span class="op">==</span> <span class="ident">IMAGE_SYM_DTYPE_FUNCTION</span>
-            <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">section_number</span> <span class="op">&gt;</span> <span class="number">0</span>
-    }
-
-    <span class="doccomment">/// Return true for weak external symbols.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// These symbols use `AuxWeakExternal` for auxiliary symbol records.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_weak_external</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">storage_class</span> <span class="op">==</span> <span class="ident">IMAGE_SYM_CLASS_WEAK_EXTERNAL</span>
-    }
-
-    <span class="doccomment">/// Return true for file symbol records.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// The auxiliary records contain the name of the source code file.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_file</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">storage_class</span> <span class="op">==</span> <span class="ident">IMAGE_SYM_CLASS_FILE</span>
-    }
-
-    <span class="doccomment">/// Return true for section definitions.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// These symbols use `AuxSectionDefinition` for auxiliary symbol records.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_section_definition</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">storage_class</span> <span class="op">==</span> <span class="ident">IMAGE_SYM_CLASS_STATIC</span> <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">number_of_aux_symbols</span> <span class="op">&gt;</span> <span class="number">0</span>
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Debug <span class="kw">for </span>SymbolTable&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, fmt: <span class="kw-2">&amp;mut </span>fmt::Formatter) -&gt; fmt::Result {
+        fmt.debug_struct(<span class="string">&quot;SymbolTable&quot;</span>)
+            .field(<span class="string">&quot;symbols&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.iter().collect::&lt;Vec&lt;<span class="kw">_</span>&gt;&gt;())
+            .finish()
     }
 }
 
-<span class="doccomment">/// Auxiliary symbol record for function definitions.</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">PartialEq</span>, <span class="ident">Default</span>, <span class="ident">Pread</span>, <span class="ident">Pwrite</span>, <span class="ident">IOread</span>, <span class="ident">IOwrite</span>, <span class="ident">SizeWith</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">AuxFunctionDefinition</span> {
-    <span class="doccomment">/// The symbol-table index of the corresponding `.bf` (begin function) symbol record.</span>
-    <span class="kw">pub</span> <span class="ident">tag_index</span>: <span class="ident">u32</span>,
-    <span class="doccomment">/// The size of the executable code for the function itself.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// If the function is in its own section, the `size_of_raw_data` in the section header</span>
-    <span class="doccomment">/// is greater or equal to this field, depending on alignment considerations.</span>
-    <span class="kw">pub</span> <span class="ident">total_size</span>: <span class="ident">u32</span>,
-    <span class="doccomment">/// The file offset of the first COFF line-number entry for the function,</span>
-    <span class="doccomment">/// or zero if none exists.</span>
-    <span class="kw">pub</span> <span class="ident">pointer_to_line_number</span>: <span class="ident">u32</span>,
-    <span class="doccomment">/// The symbol-table index of the record for the next function.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// If the function is the last in the symbol table, this field is set to zero.</span>
-    <span class="kw">pub</span> <span class="ident">pointer_to_next_function</span>: <span class="ident">u32</span>,
-    <span class="doccomment">/// Unused padding.</span>
-    <span class="kw">pub</span> <span class="ident">unused</span>: [<span class="ident">u8</span>; <span class="number">2</span>],
+<span class="doccomment">/// An iterator for COFF symbols.
+///
+/// This iterator skips over auxiliary symbol records.
+</span><span class="attribute">#[derive(Default)]
+</span><span class="kw">pub struct </span>SymbolIterator&lt;<span class="lifetime">&#39;a</span>&gt; {
+    index: usize,
+    symbols: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8],
 }
 
-<span class="doccomment">/// Auxiliary symbol record for symbols with storage class `IMAGE_SYM_CLASS_FUNCTION`.</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">PartialEq</span>, <span class="ident">Default</span>, <span class="ident">Pread</span>, <span class="ident">Pwrite</span>, <span class="ident">IOread</span>, <span class="ident">IOwrite</span>, <span class="ident">SizeWith</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">AuxBeginAndEndFunction</span> {
-    <span class="doccomment">/// Unused padding.</span>
-    <span class="kw">pub</span> <span class="ident">unused1</span>: [<span class="ident">u8</span>; <span class="number">4</span>],
-    <span class="doccomment">/// The actual ordinal line number within the source file, corresponding</span>
-    <span class="doccomment">/// to the `.bf` or `.ef` record.</span>
-    <span class="kw">pub</span> <span class="ident">line_number</span>: <span class="ident">u16</span>,
-    <span class="doccomment">/// Unused padding.</span>
-    <span class="kw">pub</span> <span class="ident">unused2</span>: [<span class="ident">u8</span>; <span class="number">6</span>],
-    <span class="doccomment">/// The symbol-table index of the next `.bf` symbol record.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// If the function is the last in the symbol table, this field is set to zero.</span>
-    <span class="doccomment">/// It is not used for `.ef` records.</span>
-    <span class="kw">pub</span> <span class="ident">pointer_to_next_function</span>: <span class="ident">u32</span>,
-    <span class="doccomment">/// Unused padding.</span>
-    <span class="kw">pub</span> <span class="ident">unused3</span>: [<span class="ident">u8</span>; <span class="number">2</span>],
-}
-
-<span class="comment">// Values for the `characteristics` field of `AuxWeakExternal`.</span>
-
-<span class="doccomment">/// Indicates that no library search for the symbol should be performed.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_WEAK_EXTERN_SEARCH_NOLIBRARY</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">1</span>;
-<span class="doccomment">/// Indicates that a library search for the symbol should be performed.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_WEAK_EXTERN_SEARCH_LIBRARY</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">2</span>;
-<span class="doccomment">/// Indicates that the symbol is an alias for the symbol given by the `tag_index` field.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_WEAK_EXTERN_SEARCH_ALIAS</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">3</span>;
-
-<span class="doccomment">/// Auxiliary symbol record for weak external symbols.</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">PartialEq</span>, <span class="ident">Default</span>, <span class="ident">Pread</span>, <span class="ident">Pwrite</span>, <span class="ident">IOread</span>, <span class="ident">IOwrite</span>, <span class="ident">SizeWith</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">AuxWeakExternal</span> {
-    <span class="doccomment">/// The symbol-table index of the symbol to be linked if an external definition is not found.</span>
-    <span class="kw">pub</span> <span class="ident">tag_index</span>: <span class="ident">u32</span>,
-    <span class="doccomment">/// Flags that control how the symbol should be linked.</span>
-    <span class="kw">pub</span> <span class="ident">characteristics</span>: <span class="ident">u32</span>,
-    <span class="doccomment">/// Unused padding.</span>
-    <span class="kw">pub</span> <span class="ident">unused</span>: [<span class="ident">u8</span>; <span class="number">10</span>],
-}
-
-<span class="comment">// Values for the `selection` field of `AuxSectionDefinition`.</span>
-
-<span class="doccomment">/// If this symbol is already defined, the linker issues a &quot;multiply defined symbol&quot; error.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_COMDAT_SELECT_NODUPLICATES</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">1</span>;
-<span class="doccomment">/// Any section that defines the same COMDAT symbol can be linked; the rest are removed.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_COMDAT_SELECT_ANY</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">2</span>;
-<span class="doccomment">/// The linker chooses an arbitrary section among the definitions for this symbol.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// If all definitions are not the same size, a &quot;multiply defined symbol&quot; error is issued.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_COMDAT_SELECT_SAME_SIZE</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">3</span>;
-<span class="doccomment">/// The linker chooses an arbitrary section among the definitions for this symbol.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// If all definitions do not match exactly, a &quot;multiply defined symbol&quot; error is issued.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_COMDAT_SELECT_EXACT_MATCH</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">4</span>;
-<span class="doccomment">/// The section is linked if a certain other COMDAT section is linked.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// This other section is indicated by the `number` field of the auxiliary symbol record</span>
-<span class="doccomment">/// for the section definition. This setting is useful for definitions that have components</span>
-<span class="doccomment">/// in multiple sections (for example, code in one and data in another), but where all must</span>
-<span class="doccomment">/// be linked or discarded as a set. The other section with which this section is associated</span>
-<span class="doccomment">/// must be a COMDAT section; it cannot be another associative COMDAT section (that is, the</span>
-<span class="doccomment">/// other section cannot have `IMAGE_COMDAT_SELECT_ASSOCIATIVE` set).</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_COMDAT_SELECT_ASSOCIATIVE</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">5</span>;
-<span class="doccomment">/// The linker chooses the largest definition from among all of the definitions for this symbol.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// If multiple definitions have this size, the choice between them is arbitrary.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IMAGE_COMDAT_SELECT_LARGEST</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">6</span>;
-
-<span class="doccomment">/// Auxiliary symbol record for section definitions.</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">PartialEq</span>, <span class="ident">Default</span>, <span class="ident">Pread</span>, <span class="ident">Pwrite</span>, <span class="ident">IOread</span>, <span class="ident">IOwrite</span>, <span class="ident">SizeWith</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">AuxSectionDefinition</span> {
-    <span class="doccomment">/// The size of section data; the same as `size_of_raw_data` in the section header.</span>
-    <span class="kw">pub</span> <span class="ident">length</span>: <span class="ident">u32</span>,
-    <span class="doccomment">/// The number of relocation entries for the section.</span>
-    <span class="kw">pub</span> <span class="ident">number_of_relocations</span>: <span class="ident">u16</span>,
-    <span class="doccomment">/// The number of line-number entries for the section.</span>
-    <span class="kw">pub</span> <span class="ident">number_of_line_numbers</span>: <span class="ident">u16</span>,
-    <span class="doccomment">/// The checksum for communal data.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// It is applicable if the `IMAGE_SCN_LNK_COMDAT` flag is set in the section header.</span>
-    <span class="kw">pub</span> <span class="ident">checksum</span>: <span class="ident">u32</span>,
-    <span class="doccomment">/// One-based index into the section table for the associated section.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// This is used when the `selection` field is `IMAGE_COMDAT_SELECT_ASSOCIATIVE`.</span>
-    <span class="kw">pub</span> <span class="ident">number</span>: <span class="ident">u16</span>,
-    <span class="doccomment">/// The COMDAT selection number.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// This is applicable if the section is a COMDAT section.</span>
-    <span class="kw">pub</span> <span class="ident">selection</span>: <span class="ident">u8</span>,
-    <span class="doccomment">/// Unused padding.</span>
-    <span class="kw">pub</span> <span class="ident">unused</span>: [<span class="ident">u8</span>; <span class="number">3</span>],
-}
-
-<span class="doccomment">/// A COFF symbol table.</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">SymbolTable</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="ident">symbols</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
-}
-
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">SymbolTable</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// Parse a COFF symbol table at the given offset.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// The offset and number of symbols should be from the COFF header.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>], <span class="ident">offset</span>: <span class="ident">usize</span>, <span class="ident">number</span>: <span class="ident">usize</span>) -&gt; <span class="ident">error::Result</span><span class="op">&lt;</span><span class="ident">SymbolTable</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">symbols</span> <span class="op">=</span> <span class="ident">bytes</span>.<span class="ident">pread_with</span>(<span class="ident">offset</span>, <span class="ident"><span class="self">Self</span>::size</span>(<span class="ident">number</span>))<span class="question-mark">?</span>;
-        <span class="prelude-val">Ok</span>(<span class="ident">SymbolTable</span> { <span class="ident">symbols</span> })
-    }
-
-    <span class="doccomment">/// Get the size in bytes of the symbol table.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">size</span>(<span class="ident">number</span>: <span class="ident">usize</span>) -&gt; <span class="ident">usize</span> {
-        <span class="ident">number</span> <span class="op">*</span> <span class="ident">COFF_SYMBOL_SIZE</span>
-    }
-
-    <span class="doccomment">/// Get the symbol at the given index.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// If the symbol has an inline name, then also returns a reference to the name&#39;s</span>
-    <span class="doccomment">/// location in `bytes`.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">index</span>: <span class="ident">usize</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span><span class="op">&gt;</span>, <span class="ident">Symbol</span>)<span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> <span class="ident">index</span> <span class="op">*</span> <span class="ident">COFF_SYMBOL_SIZE</span>;
-        <span class="ident">Symbol::parse</span>(<span class="self">self</span>.<span class="ident">symbols</span>, <span class="ident">offset</span>).<span class="ident">ok</span>()
-    }
-
-    <span class="doccomment">/// Get the auxiliary symbol record for a function definition.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">aux_function_definition</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">index</span>: <span class="ident">usize</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">AuxFunctionDefinition</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> <span class="ident">index</span> <span class="op">*</span> <span class="ident">COFF_SYMBOL_SIZE</span>;
-        <span class="self">self</span>.<span class="ident">symbols</span>.<span class="ident">pread</span>(<span class="ident">offset</span>).<span class="ident">ok</span>()
-    }
-
-    <span class="doccomment">/// Get the auxiliary symbol record for a `.bf` or `.ef` symbol record.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">aux_begin_and_end_function</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">index</span>: <span class="ident">usize</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">AuxBeginAndEndFunction</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> <span class="ident">index</span> <span class="op">*</span> <span class="ident">COFF_SYMBOL_SIZE</span>;
-        <span class="self">self</span>.<span class="ident">symbols</span>.<span class="ident">pread</span>(<span class="ident">offset</span>).<span class="ident">ok</span>()
-    }
-
-    <span class="doccomment">/// Get the auxiliary symbol record for a weak external.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">aux_weak_external</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">index</span>: <span class="ident">usize</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">AuxWeakExternal</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> <span class="ident">index</span> <span class="op">*</span> <span class="ident">COFF_SYMBOL_SIZE</span>;
-        <span class="self">self</span>.<span class="ident">symbols</span>.<span class="ident">pread</span>(<span class="ident">offset</span>).<span class="ident">ok</span>()
-    }
-
-    <span class="doccomment">/// Get the file name from the auxiliary symbol record for a file symbol record.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">aux_file</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">index</span>: <span class="ident">usize</span>, <span class="ident">number</span>: <span class="ident">usize</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> <span class="ident">index</span> <span class="op">*</span> <span class="ident">COFF_SYMBOL_SIZE</span>;
-        <span class="kw">let</span> <span class="ident">length</span> <span class="op">=</span> <span class="ident">number</span> <span class="op">*</span> <span class="ident">COFF_SYMBOL_SIZE</span>;
-        <span class="self">self</span>.<span class="ident">symbols</span>
-            .<span class="ident">pread_with</span>(<span class="ident">offset</span>, <span class="ident">ctx::StrCtx::DelimiterUntil</span>(<span class="number">0</span>, <span class="ident">length</span>))
-            .<span class="ident">ok</span>()
-    }
-
-    <span class="doccomment">/// Get the auxiliary symbol record for a section definition.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">aux_section_definition</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">index</span>: <span class="ident">usize</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">AuxSectionDefinition</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> <span class="ident">index</span> <span class="op">*</span> <span class="ident">COFF_SYMBOL_SIZE</span>;
-        <span class="self">self</span>.<span class="ident">symbols</span>.<span class="ident">pread</span>(<span class="ident">offset</span>).<span class="ident">ok</span>()
-    }
-
-    <span class="doccomment">/// Return an iterator for the COFF symbols.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// This iterator skips over auxiliary symbol records.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">iter</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">SymbolIterator</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-        <span class="ident">SymbolIterator</span> {
-            <span class="ident">index</span>: <span class="number">0</span>,
-            <span class="ident">symbols</span>: <span class="self">self</span>.<span class="ident">symbols</span>,
-        }
-    }
-}
-
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Debug</span> <span class="kw">for</span> <span class="ident">SymbolTable</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">fmt</span>: <span class="kw-2">&amp;mut</span> <span class="ident">fmt::Formatter</span>) -&gt; <span class="ident">fmt::Result</span> {
-        <span class="ident">fmt</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;SymbolTable&quot;</span>)
-            .<span class="ident">field</span>(<span class="string">&quot;symbols&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">iter</span>().<span class="ident">collect</span>::<span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="kw">_</span><span class="op">&gt;</span><span class="op">&gt;</span>())
-            .<span class="ident">finish</span>()
-    }
-}
-
-<span class="doccomment">/// An iterator for COFF symbols.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// This iterator skips over auxiliary symbol records.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Default</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">SymbolIterator</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="ident">index</span>: <span class="ident">usize</span>,
-    <span class="ident">symbols</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
-}
-
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Iterator</span> <span class="kw">for</span> <span class="ident">SymbolIterator</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">type</span> <span class="ident">Item</span> <span class="op">=</span> (<span class="ident">usize</span>, <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span><span class="op">&gt;</span>, <span class="ident">Symbol</span>);
-    <span class="kw">fn</span> <span class="ident">next</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident"><span class="self">Self</span>::Item</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">index</span> <span class="op">*</span> <span class="ident">COFF_SYMBOL_SIZE</span>;
-        <span class="kw">if</span> <span class="ident">offset</span> <span class="op">&gt;</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">symbols</span>.<span class="ident">len</span>() {
-            <span class="prelude-val">None</span>
-        } <span class="kw">else</span> {
-            <span class="kw">let</span> <span class="ident">index</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">index</span>;
-            <span class="kw">let</span> (<span class="ident">name</span>, <span class="ident">symbol</span>) <span class="op">=</span> <span class="ident">Symbol::parse</span>(<span class="self">self</span>.<span class="ident">symbols</span>, <span class="ident">offset</span>).<span class="ident">ok</span>()<span class="question-mark">?</span>;
-            <span class="self">self</span>.<span class="ident">index</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span> <span class="op">+</span> <span class="ident">symbol</span>.<span class="ident">number_of_aux_symbols</span> <span class="kw">as</span> <span class="ident">usize</span>;
-            <span class="prelude-val">Some</span>((<span class="ident">index</span>, <span class="ident">name</span>, <span class="ident">symbol</span>))
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Iterator <span class="kw">for </span>SymbolIterator&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">type </span>Item = (usize, <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str&gt;, Symbol);
+    <span class="kw">fn </span>next(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>::Item&gt; {
+        <span class="kw">let </span>offset = <span class="self">self</span>.index * COFF_SYMBOL_SIZE;
+        <span class="kw">if </span>offset &gt;= <span class="self">self</span>.symbols.len() {
+            <span class="prelude-val">None
+        </span>} <span class="kw">else </span>{
+            <span class="kw">let </span>index = <span class="self">self</span>.index;
+            <span class="kw">let </span>(name, symbol) = Symbol::parse(<span class="self">self</span>.symbols, offset).ok()<span class="question-mark">?</span>;
+            <span class="self">self</span>.index += <span class="number">1 </span>+ symbol.number_of_aux_symbols <span class="kw">as </span>usize;
+            <span class="prelude-val">Some</span>((index, name, symbol))
         }
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="goblin" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="goblin" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (77e57db38 2022-10-30)" ></div></body></html>
