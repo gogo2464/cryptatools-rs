@@ -1,5 +1,4 @@
 use std::collections::HashMap;
-use bimap::BiMap;
 use once_cell::sync::Lazy;
 
 ///```
@@ -39,11 +38,11 @@ pub const PRINTABLE: &'static str = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFG
 pub const UU_ENCODING_ALPHABET: &'static str = " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`";
 
 
-pub static POKERED_ALPHABET: Lazy<BiMap<&'static str, Vec<u8>>> = Lazy::new(|| {
-    let mut alphabet = BiMap::new();
-    alphabet.insert("<NULL>", vec![0x00]);
-    alphabet.insert("<PAGE>", vec![0x49]);
-    alphabet.insert("<PKMN>", vec![0x4a]);
+pub static POKERED_ALPHABET: Lazy<HashMap<String, Vec<u8>>> = Lazy::new(|| {
+    let mut alphabet = HashMap::new();
+    alphabet.insert(String::from("<NULL>"), vec![0x00]);
+    alphabet.insert(String::from("<PAGE>"), vec![0x49]);
+    alphabet.insert(String::from("<PKMN>"), vec![0x4a]);
 
     alphabet
   }
@@ -315,7 +314,6 @@ pub static PRINTABLE_ASCII_ALPHABET: Lazy<HashMap<String, Vec<u8>>> = Lazy::new(
     alphabet.insert(String::from("|"), vec![0x7c]);
     alphabet.insert(String::from("}"), vec![0x7d]);
     alphabet.insert(String::from("~"), vec![0x7e]);
-    alphabet.insert(String::from("\x7f"), vec![0x7f]);
 
     alphabet
   }

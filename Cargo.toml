@@ -7,9 +7,18 @@ edition = "2021"
 
 [dependencies]
 cryptatools-core = { path = "cryptatools-core", version = "0.1.0" }
+once_cell = "*"
+
+[dev-dependencies]
+criterion = "*"
+
+[[bench]]
+name = "cryptatools_benchmark"
+harness = false
 
 [workspace]
 members = [
     "cryptatools-core",
-    "cryptatools-cli"
+    "cryptatools-cli",
+    "cryptatools-gui"
 ]

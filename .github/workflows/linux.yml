@@ -16,7 +16,8 @@ jobs:
 
     - uses: actions-rs/toolchain@v1
       with:
-        toolchain: stable
+        toolchain: nightly
+        override: true
 
     - uses: actions-rs/cargo@v1
       with:
@@ -30,6 +31,9 @@ jobs:
 
     - name: Build cryptatools
       run: cargo build
+
+    - name: Install cryptatools clis
+      run: cargo install --path ./cryptatools-cli
 
     - name: Run tests
       run: |
