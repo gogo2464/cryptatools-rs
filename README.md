@@ -13,7 +13,7 @@ This tool aims to be professionnal. Not only a learning tool. It is for realisti
 
 You can "plug-in" your script to any protocol. Man in the midle as well as blockchain core as well as anything. Example:
 
-  -You are able to use `pypcap` python library to read packets and then `dpkt` python library to parse these and then you can use cryptatools to break encryption on these packets. This is why this library is avaible in many bindings such as python.
+  -You are able to use `pypcap` python library to read packets and then `dpkt` python library to parse these and then you can use `cryptatools` to break encryption on these packets. This is why this library is avaible in many bindings such as python.
 
   -You are able to use rust-web3 to parse a vulnerable cryptocurrency (shitcoin) address to lead to a double spend attack.
 
@@ -35,7 +35,12 @@ To install the python Bindings,
 
 If you are on windows, with powershell do:
 ```powershell
+python -m venv myenv
+.\myenv\Script\activate
+cargo install uniffi_bindgen
+pip install setuptools wheel
 git clone https://github.com/gogo2464/cryptatools-rs ;
+cd cryptatools-rs
 python .\cryptatools-core\setup.py bdist_wheel --verbose ;
 $wheelFile = Get-ChildItem -Path .\dist\ -Recurse -Include * ;
 pip3 install $wheelFile --force-reinstall ;
@@ -43,12 +48,24 @@ pip3 install $wheelFile --force-reinstall ;
 
 If you are on Linux, do:
 ```shell
+virtualenv -p python3 myenv
+source myenv/bin/activate
+cargo install uniffi_bindgen
+pip install setuptools wheel
+git clone https://github.com/gogo2464/cryptatools-rs ;
+cd cryptatools-rs
 python3 ./cryptatools-core/setup.py bdist_wheel --verbose ;
 pip3 install ./dist/* --force-reinstall ;
 ```
 
 If you are on MacOs, do:
 ```shell
+virtualenv -p python3 myenv
+source myenv/bin/activate
+cargo install uniffi_bindgen
+pip install setuptools wheel
+git clone https://github.com/gogo2464/cryptatools-rs ;
+cd cryptatools-rs
 python3 ./cryptatools-core/setup.py bdist_wheel --verbose ;
 pip3 install ./dist/* --force-reinstall ;
 ```
