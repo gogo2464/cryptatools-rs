@@ -27,7 +27,6 @@ var sourcesIndex = JSON.parse('{\
 "crossbeam_epoch":["",[["sync",[],["list.rs","mod.rs","once_lock.rs","queue.rs"]]],["atomic.rs","collector.rs","default.rs","deferred.rs","epoch.rs","guard.rs","internal.rs","lib.rs"]],\
 "crossbeam_utils":["",[["atomic",[],["atomic_cell.rs","consume.rs","mod.rs","seq_lock.rs"]],["sync",[],["mod.rs","once_lock.rs","parker.rs","sharded_lock.rs","wait_group.rs"]]],["backoff.rs","cache_padded.rs","lib.rs","thread.rs"]],\
 "cryptatools_core":["",[["cryptanalysis",[["general_cryptanalysis_methods",[["brute_force",[],["caesar_number.rs","mod.rs"]],["frequency_analysis",[["distribution_algorithms",[],["mod.rs","statistical.rs"]]],["coincidence_index.rs","mod.rs"]]],["mod.rs"]]],["mod.rs","plain_text_detector.rs"]],["cryptography",[["encoding",[],["mod.rs"]],["encryption",[["monoalphabetic_ciphers",[],["caesar_number.rs","mod.rs"]],["polyalphabetic_ciphers",[],["mod.rs","vigenere.rs"]]],["mod.rs"]]],["mod.rs"]],["utils",[],["alphabets.rs","convert.rs","mod.rs"]]],["lib.rs"]],\
-"cryptatools_rs":["",[],["main.rs"]],\
 "either":["",[],["lib.rs"]],\
 "flate2":["",[["deflate",[],["bufread.rs","mod.rs","read.rs","write.rs"]],["ffi",[],["mod.rs","rust.rs"]],["gz",[],["bufread.rs","mod.rs","read.rs","write.rs"]],["zlib",[],["bufread.rs","mod.rs","read.rs","write.rs"]]],["bufreader.rs","crc.rs","lib.rs","mem.rs","zio.rs"]],\
 "fraction":["",[["decimal",[],["mod.rs"]],["fraction",[],["display.rs","mod.rs"]]],["convert.rs","division.rs","dynaint.rs","error.rs","generic.rs","lib.rs","prelude.rs"]],\
@@ -142,7 +141,7 @@ var sourcesIndex = JSON.parse('{\
 "plain":["",[],["error.rs","lib.rs","methods.rs","plain.rs"]],\
 "ppv_lite86":["",[["x86_64",[],["mod.rs","sse2.rs"]]],["lib.rs","soft.rs","types.rs"]],\
 "proc_macro2":["",[],["detection.rs","fallback.rs","lib.rs","marker.rs","parse.rs","rcvec.rs","wrapper.rs"]],\
-"proc_macro_error":["",[["imp",[],["delegate.rs"]]],["diagnostic.rs","dummy.rs","lib.rs","macros.rs","sealed.rs"]],\
+"proc_macro_error":["",[["imp",[],["fallback.rs"]]],["diagnostic.rs","dummy.rs","lib.rs","macros.rs","sealed.rs"]],\
 "proc_macro_error_attr":["",[],["lib.rs","parse.rs","settings.rs"]],\
 "quote":["",[],["ext.rs","format.rs","ident_fragment.rs","lib.rs","runtime.rs","spanned.rs","to_tokens.rs"]],\
 "rand":["",[["distributions",[],["bernoulli.rs","distribution.rs","float.rs","integer.rs","mod.rs","other.rs","slice.rs","uniform.rs","utils.rs","weighted.rs","weighted_index.rs"]],["rngs",[["adapter",[],["mod.rs","read.rs","reseeding.rs"]]],["mock.rs","mod.rs","std.rs","thread.rs"]],["seq",[],["index.rs","mod.rs"]]],["lib.rs","prelude.rs","rng.rs"]],\

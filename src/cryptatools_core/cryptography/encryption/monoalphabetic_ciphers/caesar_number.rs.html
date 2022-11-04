@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `cryptatools-core/src/cryptography/encryption/monoalphabetic_ciphers/caesar_number.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>caesar_number.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../../../normalize.css"><link rel="stylesheet" href="../../../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../../../ayu.css" disabled><link rel="stylesheet" href="../../../../../dark.css" disabled><link rel="stylesheet" href="../../../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../../../storage.js"></script><script defer src="../../../../../source-script.js"></script><script defer src="../../../../../source-files.js"></script><script defer src="../../../../../main.js"></script><noscript><link rel="stylesheet" href="../../../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../../../cryptatools_core/index.html"><img class="rust-logo" src="../../../../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `cryptatools-core/src/cryptography/encryption/monoalphabetic_ciphers/caesar_number.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>caesar_number.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../../../normalize.css"><link rel="stylesheet" href="../../../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../../../ayu.css" disabled><link rel="stylesheet" href="../../../../../dark.css" disabled><link rel="stylesheet" href="../../../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../../../storage.js"></script><script defer src="../../../../../source-script.js"></script><script defer src="../../../../../source-files.js"></script><script defer src="../../../../../main.js"></script><noscript><link rel="stylesheet" href="../../../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../../../cryptatools_core/index.html"><div class="logo-container"><img class="rust-logo" src="../../../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../../../cryptatools_core/index.html"><div class="logo-container"><img class="rust-logo" src="../../../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../../../cryptatools_core/index.html"><img class="rust-logo" src="../../../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -83,8 +83,35 @@
 <span id="83">83</span>
 <span id="84">84</span>
 <span id="85">85</span>
+<span id="86">86</span>
+<span id="87">87</span>
+<span id="88">88</span>
+<span id="89">89</span>
+<span id="90">90</span>
+<span id="91">91</span>
+<span id="92">92</span>
+<span id="93">93</span>
+<span id="94">94</span>
+<span id="95">95</span>
+<span id="96">96</span>
+<span id="97">97</span>
+<span id="98">98</span>
+<span id="99">99</span>
+<span id="100">100</span>
+<span id="101">101</span>
+<span id="102">102</span>
+<span id="103">103</span>
+<span id="104">104</span>
+<span id="105">105</span>
+<span id="106">106</span>
+<span id="107">107</span>
+<span id="108">108</span>
+<span id="109">109</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Encrypt with Caesar shifting encryption algorithm.
 </span><span class="kw">use </span>std::collections::HashMap;
+<span class="kw">use </span>itertools::Itertools;
+
+<span class="kw">use </span><span class="kw">crate</span>::utils::alphabets;
 
 <span class="kw">pub struct </span>CaesarNumberAlgorithm {
     <span class="doccomment">/// Alphabet used by the caesar number encryption Algotithm.
@@ -100,7 +127,7 @@
 
      <span class="doccomment">///  Encrypt the plain text with the caesar number encryption algorithm.
      ///
-     ///  The plain text is passed as argument. Each character in the plain text is shifted of `key` ranges in the alphabet.
+     ///  The `plain_text` is passed as argument. Each character in the `plain_text` is shifted of `key` ranges in his opcode representation.
      ///  If the alphabet overflows, then the cipher text continues from the start of the alphabet.
      ///  The custom alphabet has been put in the constructor of the struct CaesarNumberAlgorithm.
      /// 
@@ -109,7 +136,7 @@
      ///  use cryptatools_core::utils::alphabets::ASCII_ALPHABET;
      ///  use once_cell::sync::Lazy;
      ///  let mut c: CaesarNumberAlgorithm = CaesarNumberAlgorithm::new(Lazy::force(&amp;ASCII_ALPHABET).to_owned());
-     ///  let encrypted = c.encrypt(vec![0x41, 0x41, 0x41], 1);
+     ///  let encrypted = c.encrypt_by_opcode_shift(vec![0x41, 0x41, 0x41], 1);
      ///  assert_eq!(vec![0x42, 0x42, 0x42], encrypted);
      ///  ```
      /// 
@@ -119,8 +146,8 @@
      ///  use once_cell::sync::Lazy;
      ///  use std::char;
      ///  let mut c: CaesarNumberAlgorithm = CaesarNumberAlgorithm::new(Lazy::force(&amp;ASCII_ALPHABET).to_owned());
-     ///  let plain_text: Vec&lt;u8&gt; = vec!(0x41, 0x41, 0x41);
-     ///  let encrypted = c.encrypt(plain_text, 1);
+     ///  let plain_text: Vec&lt;u8&gt; = vec![0x41, 0x41, 0x41];
+     ///  let encrypted = c.encrypt_by_opcode_shift(plain_text, 1);
      ///  let mut re_encrypted = String::new();
      ///  for character_int in encrypted {
      ///      re_encrypted.push(character_int.into());
@@ -134,8 +161,8 @@
      ///  use once_cell::sync::Lazy;
      ///  use std::char;
      ///  let mut c: CaesarNumberAlgorithm = CaesarNumberAlgorithm::new(Lazy::force(&amp;ASCII_ALPHABET).to_owned());
-     ///  let plain_text: Vec&lt;u8&gt; = vec!(0x41, 0x41, 0x41);
-     ///  let encrypted = c.encrypt(plain_text, 10);
+     ///  let plain_text: Vec&lt;u8&gt; = vec![0x41, 0x41, 0x41];
+     ///  let encrypted = c.encrypt_by_opcode_shift(plain_text, 10);
      ///  let mut re_encrypted = String::new();
      ///  for character_int in encrypted {
      ///      re_encrypted.push(character_int.into());
@@ -143,15 +170,36 @@
      ///  assert_eq!(re_encrypted, &quot;KKK&quot;);
      ///  ```
 
-     </span><span class="kw">pub fn </span>encrypt(<span class="kw-2">&amp;</span><span class="self">self</span>, plain_text: Vec&lt;u8&gt;, key: u32) -&gt; Vec&lt;u8&gt; {
+     </span><span class="kw">pub fn </span>encrypt_by_opcode_shift(<span class="kw-2">&amp;</span><span class="self">self</span>, plain_text: Vec&lt;u8&gt;, key: u32) -&gt; Vec&lt;u8&gt; {
         <span class="kw">let </span><span class="kw-2">mut </span>result: Vec&lt;u8&gt; = Vec::new();
 
         <span class="kw">for </span>element <span class="kw">in </span>plain_text {
-            <span class="kw">let </span>character: u8 = ((element <span class="kw">as </span>u32 + key) % <span class="self">self</span>.alphabet.len() <span class="kw">as </span>u32) <span class="kw">as </span>u8;
+            <span class="kw">let </span>character: u8 = ((element <span class="kw">as </span>u32 + key) % <span class="number">255 </span><span class="kw">as </span>u32) <span class="kw">as </span>u8;
             result.push(character);
         }
 
         <span class="kw">return </span>result;
+    }
+
+     <span class="doccomment">///  Encrypt the plain text with the caesar number encryption algorithm.
+     ///
+     ///  The `plain_text` is passed as argument. Each character in the `plain_text` is shifted of `key` ranges in the alphabet.
+     ///  If the alphabet overflows, then the cipher text continues from the start of the alphabet.
+     ///  The custom alphabet has been put in the constructor of the struct CaesarNumberAlgorithm.
+     /// 
+    </span><span class="kw">pub fn </span>encrypt_by_alphabet_shift(<span class="kw-2">&amp;</span><span class="self">self</span>, plain_text: Vec&lt;u8&gt;, key: u32) -&gt; Vec&lt;u8&gt; {
+        <span class="kw">let </span>plain_unified_opcodes = alphabets::split_bytes_by_characters_representation(<span class="self">self</span>.alphabet.clone(), plain_text.clone());
+        <span class="kw">let </span><span class="kw-2">mut </span>cipher_unified_opcodes = <span class="macro">vec!</span>[];
+        <span class="kw">let </span>ordered_alphabet = <span class="self">self</span>.alphabet.iter().sorted().collect::&lt;Vec&lt;(<span class="kw-2">&amp;</span>String, <span class="kw-2">&amp;</span>Vec&lt;u8&gt;)&gt;&gt;();
+
+        <span class="kw">for </span>opcode <span class="kw">in </span>plain_unified_opcodes {
+            <span class="kw">let </span>plain_text_position: u32 = ordered_alphabet.iter().position(|opcodes_key| opcodes_key.<span class="number">1 </span>== <span class="kw-2">&amp;</span>opcode ).unwrap() <span class="kw">as </span>u32;
+            <span class="kw">let </span>cipher_text_position: u32 = (plain_text_position + key) % (<span class="self">self</span>.alphabet.len() <span class="kw">as </span>u32);
+
+            cipher_unified_opcodes.push(ordered_alphabet[cipher_text_position <span class="kw">as </span>usize].clone().<span class="number">1</span>.clone());
+        }
+
+        alphabets::uniffy_opcode_group(cipher_unified_opcodes)
     }
 }
 
@@ -164,8 +212,8 @@
     <span class="attribute">#[test]
     </span><span class="kw">fn </span>encrypt_with_caesar_number_encryption_algorithm() {
         <span class="kw">let </span>c = CaesarNumberAlgorithm::new(Lazy::force(<span class="kw-2">&amp;</span>ASCII_ALPHABET).to_owned());
-        <span class="kw">let </span>encrypted = c.encrypt(<span class="macro">vec!</span>[<span class="number">0x42</span>, <span class="number">0x42</span>, <span class="number">0x42</span>], <span class="number">1</span>);
+        <span class="kw">let </span>encrypted = c.encrypt_by_opcode_shift(<span class="macro">vec!</span>[<span class="number">0x42</span>, <span class="number">0x42</span>, <span class="number">0x42</span>], <span class="number">1</span>);
         <span class="macro">assert_eq!</span>(<span class="macro">vec!</span>[<span class="number">0x43</span>, <span class="number">0x43</span>, <span class="number">0x43</span>], encrypted);
     }
 }</code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../../../" data-current-crate="cryptatools_core" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (95a3a7277 2022-10-31)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../../../" data-current-crate="cryptatools_core" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.65.0 (897e37553 2022-11-02)" ></div></body></html>
