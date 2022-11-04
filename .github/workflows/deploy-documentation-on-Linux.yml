@@ -20,7 +20,7 @@ jobs:
 
     - uses: actions-rs/toolchain@v1
       with:
-        toolchain: nightly
+        toolchain: stable
         override: true
 
     - uses: actions-rs/cargo@v1
@@ -28,21 +28,12 @@ jobs:
         command: build
         args: --release --all-features
 
-    - name: install dependencies
-      run: |
-        cargo install uniffi_bindgen ;
-    
-    - name: build cryptatools
-      run: cargo build
-
-    - name: run tests
-      run: |
-        cargo test --all
-
     - name: generate documentation
       run: |
+        cd cryptatools-core &&
         cargo doc --target-dir ./out &&
-        cp --force -r ./out/doc ./docs ;
+        cp --force -r ./out/doc ../docs ;
+        cd .. ;
         #echo "<meta http-equiv=refresh content=0;url=`echo gogo2464/cryptatools-rs | cut -d '/' -f 2`/index.html>" > docs/index.html
 
     - name: publish documentation
