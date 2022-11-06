@@ -1,4 +1,7 @@
-use std::collections::HashMap;
+use itertools::Itertools;
+
+use crate::utils::alphabets::Alphabet;
+use crate::utils::alphabets::uniffy_opcode_group;
 
 pub struct Decode {
 
@@ -59,20 +62,20 @@ impl Encode {
     /// let pokered_encoded = convert::Encode::encode(Lazy::force(&POKERED_ALPHABET).to_owned(), String::from("<NULL><PAGE><PKMN>"));
     /// assert_eq!(pokered_encoded, vec![0, 73, 74]);
     /// ```
-    pub fn encode(alphabet: HashMap<String, Vec<u8>>, unecoded: String) -> Vec<u8> {
+    pub fn encode(alphabet: Alphabet, unecoded: String) -> Vec<u8> {
         let mut encoded = vec![];
         let mut stack = String::from("");
 
         for c in unecoded.chars() {
-            if alphabet.contains_key(&String::from(c)) {
-                for encoded_byte in alphabet[&String::from(c)].clone() {
+            if alphabet.encoding.contains_left(String::from(c).as_str()) {
+                for encoded_byte in alphabet.encoding.get_by_left(String::from(c).as_str()).clone() {
                     encoded.push(encoded_byte);
                 }
                 stack = String::from("");
             } else {
                 stack.push_str(&String::from(c));
-                if alphabet.contains_key(&stack) {
-                    for encoded_byte in alphabet[&stack].clone() {
+                if alphabet.encoding.contains_left(&stack.as_str()) {
+                    for encoded_byte in alphabet.encoding.get_by_left(stack.as_str()).clone() {
                         encoded.push(encoded_byte);
                     }
                     stack = String::from("");
@@ -80,6 +83,6 @@ impl Encode {
             }
         }
 
-        encoded
+        uniffy_opcode_group(encoded)
     }
 }

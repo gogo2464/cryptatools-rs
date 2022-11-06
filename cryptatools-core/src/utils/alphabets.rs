@@ -1,5 +1,7 @@
 use std::collections::HashMap;
+use itertools::Itertools;
 use once_cell::sync::Lazy;
+use bimap::btree::BiBTreeMap;
 
 ///```
 /// use cryptatools_core::utils::{convert::Encode, alphabets::split_bytes_by_characters_representation, alphabets::ASCII_ALPHABET};
@@ -9,24 +11,17 @@ use once_cell::sync::Lazy;
 /// assert_eq!(plaintext.len(), String::from("the quick brown roman fox jumped over the lazy ostrogoth dog").len());
 /// ```
 
-pub fn split_bytes_by_characters_representation(alphabet: HashMap<String, Vec<u8>>, text: Vec<u8>) -> Vec<Vec<u8>> {
+pub fn split_bytes_by_characters_representation(alphabet: Alphabet, text: Vec<u8>) -> Vec<Vec<u8>> {
     let mut set_of_chars: Vec<Vec<u8>> = vec![];
     let mut character_byte_representation_size: usize = 0;
-    for byte in text {
-        for alphabet_character in alphabet.keys() {
-            if character_byte_representation_size > 0 {
-                character_byte_representation_size = character_byte_representation_size-1;
-                continue;
-            }
 
-            if alphabet.get(alphabet_character).unwrap().len() > 1 {
-                set_of_chars.push(alphabet.get(alphabet_character).unwrap().to_vec());
-                character_byte_representation_size = alphabet.get(alphabet_character).unwrap().len() - 1;
-                continue;
-            } else if alphabet.get(alphabet_character).unwrap().len() == 1 {
-                set_of_chars.push(vec![byte]);
-                break;
-            }
+    let mut stack_of_chars = vec![];
+    for opcode in text {
+        if alphabet.encoding.contains_right(&stack_of_chars) {
+            set_of_chars.push(stack_of_chars);
+            stack_of_chars = vec![];
+        } else {
+            stack_of_chars.push(opcode);
         }
     }
 
@@ -322,3 +317,137 @@ pub static PRINTABLE_ASCII_ALPHABET: Lazy<HashMap<String, Vec<u8>>> = Lazy::new(
     alphabet
   }
 );
+
+pub struct Alphabet {
+    /// Alphabet encoding.
+    pub encoding: BiBTreeMap<&'static str, Vec<u8>>,
+}
+
+impl Alphabet {
+    pub fn new(encoding: Vec<(&'static str, Vec<u8>)>) -> Self {
+        match encoding {
+            encoding => {
+                Alphabet {
+                    encoding: BiBTreeMap::from_iter(encoding)
+                }
+            }
+        }
+    }
+
+    /// Builder to add encoding to the alphabet.
+    pub fn encoding(encoding: Vec<(&'static str, Vec<u8>)>) -> Self {
+        Alphabet {
+            encoding: BiBTreeMap::from_iter(encoding)
+        }
+    }
+
+    /// Builder to add encoding to the alphabet.
+    pub fn ascii_printable_only_encoding(&mut self) -> Self {
+        self.encoding = BiBTreeMap::from_iter(vec![
+        (" ", vec![0x20]),
+        ("!", vec![0x21]),
+        ("\"", vec![0x22]),
+        ("#", vec![0x23]),
+        ("$", vec![0x24]),
+        ("%", vec![0x25]),
+        ("&", vec![0x26]),
+        ("'", vec![0x27]),
+        ("(", vec![0x28]),
+        (")", vec![0x29]),
+        ("*", vec![0x2a]),
+        ("+", vec![0x2b]),
+        (",", vec![0x2c]),
+        ("-", vec![0x2d]),
+        (".", vec![0x2e]),
+        ("/", vec![0x2f]),
+        ("0", vec![0x30]),
+        ("1", vec![0x31]),
+        ("2", vec![0x32]),
+        ("3", vec![0x33]),
+        ("4", vec![0x34]),
+        ("5", vec![0x35]),
+        ("6", vec![0x36]),
+        ("7", vec![0x37]),
+        ("8", vec![0x38]),
+        ("9", vec![0x39]),
+        (":", vec![0x3a]),
+        (";", vec![0x3b]),
+        ("<", vec![0x3c]),
+        ("=", vec![0x3d]),
+        (">", vec![0x3e]),
+        ("?", vec![0x3f]),
+        ("@", vec![0x40]),
+        ("A", vec![0x41]),
+        ("B", vec![0x42]),
+        ("C", vec![0x43]),
+        ("D", vec![0x44]),
+        ("E", vec![0x45]),
+        ("F", vec![0x46]),
+        ("G", vec![0x47]),
+        ("H", vec![0x48]),
+        ("I", vec![0x49]),
+        ("J", vec![0x4a]),
+        ("K", vec![0x4b]),
+        ("L", vec![0x4c]),
+        ("M", vec![0x4d]),
+        ("N", vec![0x4e]),
+        ("O", vec![0x4f]),
+        ("P", vec![0x50]),
+        ("Q", vec![0x51]),
+        ("R", vec![0x52]),
+        ("S", vec![0x53]),
+        ("T", vec![0x54]),
+        ("U", vec![0x55]),
+        ("V", vec![0x56]),
+        ("W", vec![0x57]),
+        ("X", vec![0x58]),
+        ("Y", vec![0x59]),
+        ("Z", vec![0x5a]),
+        ("[", vec![0x5b]),
+        ("\\", vec![0x5c]),
+        ("]", vec![0x5d]),
+        ("^", vec![0x5e]),
+        ("_", vec![0x5f]),
+        ("`", vec![0x60]),
+        ("a", vec![0x61]),
+        ("b", vec![0x62]),
+        ("c", vec![0x63]),
+        ("d", vec![0x64]),
+        ("e", vec![0x65]),
+        ("f", vec![0x66]),
+        ("g", vec![0x67]),
+        ("h", vec![0x68]),
+        ("i", vec![0x69]),
+        ("j", vec![0x6a]),
+        ("k", vec![0x6b]),
+        ("l", vec![0x6c]),
+        ("m", vec![0x6d]),
+        ("n", vec![0x6e]),
+        ("o", vec![0x6f]),
+        ("p", vec![0x70]),
+        ("q", vec![0x71]),
+        ("r", vec![0x72]),
+        ("s", vec![0x73]),
+        ("t", vec![0x74]),
+        ("u", vec![0x75]),
+        ("v", vec![0x76]),
+        ("w", vec![0x77]),
+        ("x", vec![0x78]),
+        ("y", vec![0x79]),
+        ("z", vec![0x7a]),
+        ("{", vec![0x7b]),
+        ("|", vec![0x7c]),
+        ("}", vec![0x7d]),
+        ("~", vec![0x7e])]);
+
+        let encoding = self.encoding.clone();
+
+        Alphabet {
+            encoding: encoding
+        }
+    }
+
+    pub fn get_encoding(&self) -> Vec<(&str, Vec<u8>)> {
+        self.encoding.into_iter().collect_vec()
+    }
+}

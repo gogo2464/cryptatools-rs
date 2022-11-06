@@ -1,16 +1,17 @@
 use std::{collections::HashMap, fs, path::Path};
 use once_cell::sync::Lazy;
 use crate::cryptography::encryption::polyalphabetic_ciphers::vigenere::VigenereNoTable;
+use crate::utils::alphabets::Alphabet;
 use crate::utils::convert::{Encode};
 
 use rand::Rng;
 
 pub struct CoincidenceIndexGuesser {
-    alphabet: HashMap<String, Vec<u8>>,
+    alphabet: Alphabet,
 }
 
 impl CoincidenceIndexGuesser {
-    pub fn new(alphabet: HashMap<String, Vec<u8>>) -> Self {
+    pub fn new(alphabet: Alphabet) -> Self {
         CoincidenceIndexGuesser {
             alphabet: alphabet,
         }
@@ -39,7 +40,7 @@ impl CoincidenceIndexGuesser {
         }
 
         let mut coincidence_index: f64 = 0.0;
-        for u8_byte_alphabet in self.alphabet.values() {//TODO: convert to f64
+        for u8_byte_alphabet in self.alphabet.encoding.right_values() {//TODO: convert to f64
             let apparition_count: f64 = cipher_text_input.iter().filter(|&n| *n == u8_byte_alphabet[0]).count() as f64;// the [0] is a quick hack to avoid to find an algorithm to compare a set of bytes with some bytes of different size.
             let sum_apparition_alphabet: f64 = apparition_count * (apparition_count - 1.0);
             let divide_characters: f64 = cipher_text_size * (cipher_text_size - 1.0);
@@ -71,7 +72,7 @@ impl CoincidenceIndexGuesser {
             Err(error) => panic!("{0}", error),
         };
 
-        let bytes_file_content = Encode::encode(self.alphabet.clone(), file_content);
+        let bytes_file_content = Encode::encode(self.alphabet, file_content);
         let coincidence_index = self.guess_coincidence_index(bytes_file_content);
         
         coincidence_index
@@ -79,11 +80,11 @@ impl CoincidenceIndexGuesser {
 }
 
 pub struct CoincidenceIndexGenerator {
-    alphabet: HashMap<String, Vec<u8>>,
+    alphabet: Alphabet,
 }
 
 impl CoincidenceIndexGenerator {
-    pub fn new(alphabet: HashMap<String, Vec<u8>>) -> Self {
+    pub fn new(alphabet: Alphabet) -> Self {
         CoincidenceIndexGenerator {
             alphabet: alphabet,
         }
@@ -115,13 +116,13 @@ impl CoincidenceIndexGenerator {
         let mut rng = rand::thread_rng();
         let mut key = vec![];
         for _i in 0..key_size {
-            let random_value = rng.gen_range(0..self.alphabet.len());
-            let random_byte = self.alphabet.values().nth(random_value).unwrap()[0];// TODO get multichars // .sorted() ?
+            let random_value = rng.gen_range(0..self.alphabet.encoding.len());
+            let random_byte = self.alphabet.encoding.right_values().nth(random_value).unwrap()[0];// TODO get multichars // .sorted() ?
             key.push(vec![random_byte]);
         }
 
-        let vig: VigenereNoTable = VigenereNoTable::new(self.alphabet.to_owned());
-        let vigenere_coincidence_index_guesser = CoincidenceIndexGuesser::new(self.alphabet.to_owned());
+        let vig: VigenereNoTable = VigenereNoTable::new(self.alphabet);
+        let vigenere_coincidence_index_guesser = CoincidenceIndexGuesser::new(self.alphabet);
         let cipher_text = vig.encrypt(input, key);
         let coincidence_index = vigenere_coincidence_index_guesser.guess_coincidence_index(cipher_text);
 
@@ -153,7 +154,7 @@ impl CoincidenceIndexGenerator {
             Err(error) => panic!("{0}", error),
         };
 
-        let encoded_file_content = Encode::encode(self.alphabet.clone(), file_content);
+        let encoded_file_content = Encode::encode(self.alphabet, file_content);
         let coincidence_index_found = self.generate_coincidence_index_for_key(key_size, encoded_file_content);
         coincidence_index_found
     }

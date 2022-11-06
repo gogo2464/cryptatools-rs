@@ -2,8 +2,18 @@ namespace cryptatools {
 
 };
 
+dictionary Alphabet {
+};
+
+interface Alphabet {
+    constructor(sequence<([ByRef]String, sequence<u8>)> encoding);
+    constructor encoding(sequence<([ByRef]String, sequence<u8>)> encoding);
+    constructor ascii_printable_only_encoding();
+    sequence<([ByRef]String, sequence<u8>)> get_encoding();
+};
+
 interface CaesarNumberAlgorithm {
-    constructor(record<DOMString, sequence<u8>> alphabet);
+    constructor(Alphabet alphabet);
     sequence<u8> encrypt_by_opcode_shift(sequence<u8> plain_text, u32 key);
     sequence<u8> encrypt_by_alphabet_shift(sequence<u8> plain_text, u32 key);
 };
