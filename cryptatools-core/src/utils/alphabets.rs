@@ -11,7 +11,7 @@ use bimap::btree::BiBTreeMap;
 /// assert_eq!(plaintext.len(), String::from("the quick brown roman fox jumped over the lazy ostrogoth dog").len());
 /// ```
 
-pub fn split_bytes_by_characters_representation(alphabet: Alphabet, text: Vec<u8>) -> Vec<Vec<u8>> {
+pub fn split_bytes_by_characters_representation(alphabet: &Alphabet, text: Vec<u8>) -> Vec<Vec<u8>> {
     let mut set_of_chars: Vec<Vec<u8>> = vec![];
     let mut character_byte_representation_size: usize = 0;
 
@@ -318,127 +318,130 @@ pub static PRINTABLE_ASCII_ALPHABET: Lazy<HashMap<String, Vec<u8>>> = Lazy::new(
   }
 );
 
+#[derive(Clone)]
+pub struct Encoding {
+    pub str: String,
+    pub bytes: Vec<u8>,
+}
+
 pub struct Alphabet {
     /// Alphabet encoding.
-    pub encoding: BiBTreeMap<&'static str, Vec<u8>>,
+    pub encoding: BiBTreeMap<String, Vec<u8>>,
 }
 
 impl Alphabet {
-    pub fn new(encoding: Vec<(&'static str, Vec<u8>)>) -> Self {
-        match encoding {
-            encoding => {
-                Alphabet {
-                    encoding: BiBTreeMap::from_iter(encoding)
-                }
-            }
+    pub fn new(encoding: Vec<Encoding>) -> Self {
+        let encoding = encoding.into_iter().map(|e| (e.str, e.bytes))
+            .collect::<BiBTreeMap<_, _>>();
+        Alphabet {
+            encoding,
         }
     }
 
-    /// Builder to add encoding to the alphabet.
-    pub fn encoding(encoding: Vec<(&'static str, Vec<u8>)>) -> Self {
+    pub fn new_empty() -> Self {
         Alphabet {
-            encoding: BiBTreeMap::from_iter(encoding)
+            encoding: BiBTreeMap::new(),
         }
     }
 
     /// Builder to add encoding to the alphabet.
     pub fn ascii_printable_only_encoding(&mut self) -> Self {
         self.encoding = BiBTreeMap::from_iter(vec![
-        (" ", vec![0x20]),
-        ("!", vec![0x21]),
-        ("\"", vec![0x22]),
-        ("#", vec![0x23]),
-        ("$", vec![0x24]),
-        ("%", vec![0x25]),
-        ("&", vec![0x26]),
-        ("'", vec![0x27]),
-        ("(", vec![0x28]),
-        (")", vec![0x29]),
-        ("*", vec![0x2a]),
-        ("+", vec![0x2b]),
-        (",", vec![0x2c]),
-        ("-", vec![0x2d]),
-        (".", vec![0x2e]),
-        ("/", vec![0x2f]),
-        ("0", vec![0x30]),
-        ("1", vec![0x31]),
-        ("2", vec![0x32]),
-        ("3", vec![0x33]),
-        ("4", vec![0x34]),
-        ("5", vec![0x35]),
-        ("6", vec![0x36]),
-        ("7", vec![0x37]),
-        ("8", vec![0x38]),
-        ("9", vec![0x39]),
-        (":", vec![0x3a]),
-        (";", vec![0x3b]),
-        ("<", vec![0x3c]),
-        ("=", vec![0x3d]),
-        (">", vec![0x3e]),
-        ("?", vec![0x3f]),
-        ("@", vec![0x40]),
-        ("A", vec![0x41]),
-        ("B", vec![0x42]),
-        ("C", vec![0x43]),
-        ("D", vec![0x44]),
-        ("E", vec![0x45]),
-        ("F", vec![0x46]),
-        ("G", vec![0x47]),
-        ("H", vec![0x48]),
-        ("I", vec![0x49]),
-        ("J", vec![0x4a]),
-        ("K", vec![0x4b]),
-        ("L", vec![0x4c]),
-        ("M", vec![0x4d]),
-        ("N", vec![0x4e]),
-        ("O", vec![0x4f]),
-        ("P", vec![0x50]),
-        ("Q", vec![0x51]),
-        ("R", vec![0x52]),
-        ("S", vec![0x53]),
-        ("T", vec![0x54]),
-        ("U", vec![0x55]),
-        ("V", vec![0x56]),
-        ("W", vec![0x57]),
-        ("X", vec![0x58]),
-        ("Y", vec![0x59]),
-        ("Z", vec![0x5a]),
-        ("[", vec![0x5b]),
-        ("\\", vec![0x5c]),
-        ("]", vec![0x5d]),
-        ("^", vec![0x5e]),
-        ("_", vec![0x5f]),
-        ("`", vec![0x60]),
-        ("a", vec![0x61]),
-        ("b", vec![0x62]),
-        ("c", vec![0x63]),
-        ("d", vec![0x64]),
-        ("e", vec![0x65]),
-        ("f", vec![0x66]),
-        ("g", vec![0x67]),
-        ("h", vec![0x68]),
-        ("i", vec![0x69]),
-        ("j", vec![0x6a]),
-        ("k", vec![0x6b]),
-        ("l", vec![0x6c]),
-        ("m", vec![0x6d]),
-        ("n", vec![0x6e]),
-        ("o", vec![0x6f]),
-        ("p", vec![0x70]),
-        ("q", vec![0x71]),
-        ("r", vec![0x72]),
-        ("s", vec![0x73]),
-        ("t", vec![0x74]),
-        ("u", vec![0x75]),
-        ("v", vec![0x76]),
-        ("w", vec![0x77]),
-        ("x", vec![0x78]),
-        ("y", vec![0x79]),
-        ("z", vec![0x7a]),
-        ("{", vec![0x7b]),
-        ("|", vec![0x7c]),
-        ("}", vec![0x7d]),
-        ("~", vec![0x7e])]);
+        (String::from(" "), vec![0x20]),
+        (String::from("!"), vec![0x21]),
+        (String::from("\""), vec![0x22]),
+        (String::from("#"), vec![0x23]),
+        (String::from("$"), vec![0x24]),
+        (String::from("%"), vec![0x25]),
+        (String::from("&"), vec![0x26]),
+        (String::from("'"), vec![0x27]),
+        (String::from("("), vec![0x28]),
+        (String::from(")"), vec![0x29]),
+        (String::from("*"), vec![0x2a]),
+        (String::from("+"), vec![0x2b]),
+        (String::from(","), vec![0x2c]),
+        (String::from("-"), vec![0x2d]),
+        (String::from("."), vec![0x2e]),
+        (String::from("/"), vec![0x2f]),
+        (String::from("0"), vec![0x30]),
+        (String::from("1"), vec![0x31]),
+        (String::from("2"), vec![0x32]),
+        (String::from("3"), vec![0x33]),
+        (String::from("4"), vec![0x34]),
+        (String::from("5"), vec![0x35]),
+        (String::from("6"), vec![0x36]),
+        (String::from("7"), vec![0x37]),
+        (String::from("8"), vec![0x38]),
+        (String::from("9"), vec![0x39]),
+        (String::from(":"), vec![0x3a]),
+        (String::from(";"), vec![0x3b]),
+        (String::from("<"), vec![0x3c]),
+        (String::from("="), vec![0x3d]),
+        (String::from(">"), vec![0x3e]),
+        (String::from("?"), vec![0x3f]),
+        (String::from("@"), vec![0x40]),
+        (String::from("A"), vec![0x41]),
+        (String::from("B"), vec![0x42]),
+        (String::from("C"), vec![0x43]),
+        (String::from("D"), vec![0x44]),
+        (String::from("E"), vec![0x45]),
+        (String::from("F"), vec![0x46]),
+        (String::from("G"), vec![0x47]),
+        (String::from("H"), vec![0x48]),
+        (String::from("I"), vec![0x49]),
+        (String::from("J"), vec![0x4a]),
+        (String::from("K"), vec![0x4b]),
+        (String::from("L"), vec![0x4c]),
+        (String::from("M"), vec![0x4d]),
+        (String::from("N"), vec![0x4e]),
+        (String::from("O"), vec![0x4f]),
+        (String::from("P"), vec![0x50]),
+        (String::from("Q"), vec![0x51]),
+        (String::from("R"), vec![0x52]),
+        (String::from("S"), vec![0x53]),
+        (String::from("T"), vec![0x54]),
+        (String::from("U"), vec![0x55]),
+        (String::from("V"), vec![0x56]),
+        (String::from("W"), vec![0x57]),
+        (String::from("X"), vec![0x58]),
+        (String::from("Y"), vec![0x59]),
+        (String::from("Z"), vec![0x5a]),
+        (String::from("["), vec![0x5b]),
+        (String::from("\\"), vec![0x5c]),
+        (String::from("]"), vec![0x5d]),
+        (String::from("^"), vec![0x5e]),
+        (String::from("_"), vec![0x5f]),
+        (String::from("`"), vec![0x60]),
+        (String::from("a"), vec![0x61]),
+        (String::from("b"), vec![0x62]),
+        (String::from("c"), vec![0x63]),
+        (String::from("d"), vec![0x64]),
+        (String::from("e"), vec![0x65]),
+        (String::from("f"), vec![0x66]),
+        (String::from("g"), vec![0x67]),
+        (String::from("h"), vec![0x68]),
+        (String::from("i"), vec![0x69]),
+        (String::from("j"), vec![0x6a]),
+        (String::from("k"), vec![0x6b]),
+        (String::from("l"), vec![0x6c]),
+        (String::from("m"), vec![0x6d]),
+        (String::from("n"), vec![0x6e]),
+        (String::from("o"), vec![0x6f]),
+        (String::from("p"), vec![0x70]),
+        (String::from("q"), vec![0x71]),
+        (String::from("r"), vec![0x72]),
+        (String::from("s"), vec![0x73]),
+        (String::from("t"), vec![0x74]),
+        (String::from("u"), vec![0x75]),
+        (String::from("v"), vec![0x76]),
+        (String::from("w"), vec![0x77]),
+        (String::from("x"), vec![0x78]),
+        (String::from("y"), vec![0x79]),
+        (String::from("z"), vec![0x7a]),
+        (String::from("{"), vec![0x7b]),
+        (String::from("|"), vec![0x7c]),
+        (String::from("}"), vec![0x7d]),
+        (String::from("~"), vec![0x7e])]);
 
         let encoding = self.encoding.clone();
 
@@ -447,7 +450,9 @@ impl Alphabet {
         }
     }
 
-    pub fn get_encoding(&self) -> Vec<(&str, Vec<u8>)> {
-        self.encoding.into_iter().collect_vec()
+    pub fn get_encoding(&self) -> Vec<Encoding> {
+        self.encoding.iter()
+            .map(|(str, bytes)| Encoding { str: str.clone(), bytes: bytes.clone() })
+            .collect_vec()
     }
 }

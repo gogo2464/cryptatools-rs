@@ -1,3 +1,4 @@
+use std::sync::Arc;
 use std::{collections::HashMap, fs, path::Path};
 use once_cell::sync::Lazy;
 use crate::cryptography::encryption::polyalphabetic_ciphers::vigenere::VigenereNoTable;
@@ -7,11 +8,11 @@ use crate::utils::convert::{Encode};
 use rand::Rng;
 
 pub struct CoincidenceIndexGuesser {
-    alphabet: Alphabet,
+    alphabet: Arc<Alphabet>,
 }
 
 impl CoincidenceIndexGuesser {
-    pub fn new(alphabet: Alphabet) -> Self {
+    pub fn new(alphabet: Arc<Alphabet>) -> Self {
         CoincidenceIndexGuesser {
             alphabet: alphabet,
         }
@@ -72,7 +73,7 @@ impl CoincidenceIndexGuesser {
             Err(error) => panic!("{0}", error),
         };
 
-        let bytes_file_content = Encode::encode(self.alphabet, file_content);
+        let bytes_file_content = Encode::encode(&self.alphabet, file_content);
         let coincidence_index = self.guess_coincidence_index(bytes_file_content);
         
         coincidence_index
@@ -80,11 +81,11 @@ impl CoincidenceIndexGuesser {
 }
 
 pub struct CoincidenceIndexGenerator {
-    alphabet: Alphabet,
+    alphabet: Arc<Alphabet>,
 }
 
 impl CoincidenceIndexGenerator {
-    pub fn new(alphabet: Alphabet) -> Self {
+    pub fn new(alphabet: Arc<Alphabet>) -> Self {
         CoincidenceIndexGenerator {
             alphabet: alphabet,
         }
@@ -121,8 +122,8 @@ impl CoincidenceIndexGenerator {
             key.push(vec![random_byte]);
         }
 
-        let vig: VigenereNoTable = VigenereNoTable::new(self.alphabet);
-        let vigenere_coincidence_index_guesser = CoincidenceIndexGuesser::new(self.alphabet);
+        let vig: VigenereNoTable = VigenereNoTable::new(self.alphabet.clone());
+        let vigenere_coincidence_index_guesser = CoincidenceIndexGuesser::new(self.alphabet.clone());
         let cipher_text = vig.encrypt(input, key);
         let coincidence_index = vigenere_coincidence_index_guesser.guess_coincidence_index(cipher_text);
 
@@ -154,7 +155,7 @@ impl CoincidenceIndexGenerator {
             Err(error) => panic!("{0}", error),
         };
 
-        let encoded_file_content = Encode::encode(self.alphabet, file_content);
+        let encoded_file_content = Encode::encode(&self.alphabet, file_content);
         let coincidence_index_found = self.generate_coincidence_index_for_key(key_size, encoded_file_content);
         coincidence_index_found
     }

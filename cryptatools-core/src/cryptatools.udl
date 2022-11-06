@@ -2,14 +2,16 @@ namespace cryptatools {
 
 };
 
-dictionary Alphabet {
+dictionary Encoding {
+    string str;
+    sequence<u8> bytes;
 };
 
 interface Alphabet {
-    constructor(sequence<([ByRef]String, sequence<u8>)> encoding);
-    constructor encoding(sequence<([ByRef]String, sequence<u8>)> encoding);
-    constructor ascii_printable_only_encoding();
-    sequence<([ByRef]String, sequence<u8>)> get_encoding();
+    constructor(sequence<Encoding> encoding);
+    [Name=new_empty]
+    constructor();
+    sequence<Encoding> get_encoding();
 };
 
 interface CaesarNumberAlgorithm {

@@ -62,21 +62,22 @@ impl Encode {
     /// let pokered_encoded = convert::Encode::encode(Lazy::force(&POKERED_ALPHABET).to_owned(), String::from("<NULL><PAGE><PKMN>"));
     /// assert_eq!(pokered_encoded, vec![0, 73, 74]);
     /// ```
-    pub fn encode(alphabet: Alphabet, unecoded: String) -> Vec<u8> {
-        let mut encoded = vec![];
+    pub fn encode(alphabet: &Alphabet, unecoded: String) -> Vec<u8> {
+        let mut encoded: Vec<Vec<u8>> = vec![];
         let mut stack = String::from("");
 
         for c in unecoded.chars() {
-            if alphabet.encoding.contains_left(String::from(c).as_str()) {
-                for encoded_byte in alphabet.encoding.get_by_left(String::from(c).as_str()).clone() {
-                    encoded.push(encoded_byte);
+            let char_str = String::from(c);
+            if alphabet.encoding.contains_left(&char_str) {
+                for encoded_byte in alphabet.encoding.get_by_left(&char_str) {
+                    encoded.push(encoded_byte.clone());
                 }
                 stack = String::from("");
             } else {
-                stack.push_str(&String::from(c));
-                if alphabet.encoding.contains_left(&stack.as_str()) {
+                stack.push_str(&char_str);
+                if alphabet.encoding.contains_left(&stack) {
                     for encoded_byte in alphabet.encoding.get_by_left(stack.as_str()).clone() {
-                        encoded.push(encoded_byte);
+                        encoded.push(encoded_byte.clone());
                     }
                     stack = String::from("");
                 }

@@ -1,4 +1,3 @@
-use std::collections::HashMap;
 use itertools::Itertools;
 use crate::utils::alphabets;
 use crate::utils::alphabets::Alphabet;
@@ -83,7 +82,7 @@ impl Vigenere {
             return plain_text;
         }
 
-        let characters_set: Vec<Vec<u8>> = alphabets::split_bytes_by_characters_representation(self.alphabet, plain_text);
+        let characters_set: Vec<Vec<u8>> = alphabets::split_bytes_by_characters_representation(&self.alphabet, plain_text);
 
         let mut encrypted_character_sets: Vec<Vec<u8>> = vec![];
         for character_shift in 0..characters_set.clone().len() {
@@ -105,12 +104,12 @@ impl Vigenere {
 
 
 pub struct VigenereNoTable {
-    pub alphabet : Alphabet,
+    pub alphabet: Arc<Alphabet>,
     pub sorted_alphabet: Vec<Vec<u8>>,
 }
 
 impl VigenereNoTable {
-    pub fn new(alphabet: Alphabet) -> Self {
+    pub fn new(alphabet: Arc<Alphabet>) -> Self {
         let sorted_alphabet = alphabet.encoding.right_values().cloned().sorted().collect_vec();
         VigenereNoTable { 
             alphabet,
@@ -163,7 +162,7 @@ impl VigenereNoTable {
             return plain_text;
         }
 
-        let characters_set: Vec<Vec<u8>> = alphabets::split_bytes_by_characters_representation(self.alphabet, plain_text);
+        let characters_set: Vec<Vec<u8>> = alphabets::split_bytes_by_characters_representation(&self.alphabet, plain_text);
 
         let mut encrypted_character_sets: Vec<Vec<u8>> = vec![];
         for character_shift in 0..characters_set.len() {
