@@ -192,7 +192,9 @@ Once this is done, edit the task `Test python bindings` on the pipeline of the f
 <!-- LICENSE -->
 ## License
 
-I did not choose the license type yet... Fell free to ask me if you absolutely want top get a license name then I could choose.
+This software has a free software (libre) license. The license is GPL3. 
+
+Fell free to ask me if you absolutely want to get a double licensing name. Then I could choose.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
