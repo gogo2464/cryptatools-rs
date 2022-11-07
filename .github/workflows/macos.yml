@@ -36,13 +36,13 @@ jobs:
     - name: Install cryptatools clis
       run: cargo install --path ./cryptatools-cli
 
-    - name: Run tests
+    - name: Run tests --all
       run: |
         cargo test --all
 
     - name: Generate documentation
       run: |
-        cargo doc
+        cargo doc --package cryptatools-core
     
     - name: Build and install Python Bindings
       run: |

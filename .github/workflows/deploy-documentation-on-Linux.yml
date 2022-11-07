@@ -30,10 +30,8 @@ jobs:
 
     - name: generate documentation
       run: |
-        cd cryptatools-core &&
-        cargo doc --target-dir ./out &&
-        cp --force -r ./out/doc ../docs ;
-        cd .. ;
+        cargo doc --package cryptatools-core --target-dir ./out &&
+        cp --force -r ./out/doc ./docs ;
         #echo "<meta http-equiv=refresh content=0;url=`echo gogo2464/cryptatools-rs | cut -d '/' -f 2`/index.html>" > docs/index.html
 
     - name: publish documentation
