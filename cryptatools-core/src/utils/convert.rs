@@ -1,4 +1,7 @@
-use std::collections::HashMap;
+use std::clone;
+
+use crate::utils::alphabets::Alphabet;
+use crate::utils::alphabets::uniffy_opcode_group;
 
 pub struct Decode {
 
@@ -46,40 +49,43 @@ impl Encode {
         bytes
     }
 
-
     /// Encode the input argument `unencoded` to a byte according the `alphabet`.
     /// 
     /// ```
-    /// use once_cell::sync::Lazy;
     /// use cryptatools_core::utils::convert;
-    /// use cryptatools_core::utils::alphabets::{ASCII_ALPHABET, POKERED_ALPHABET};
-    /// let encoded: Vec<u8> = convert::Encode::encode(Lazy::force(&ASCII_ALPHABET).to_owned(), String::from("ABCDEFGH"));
+    /// use cryptatools_core::utils::alphabets::{Alphabet};
+    /// 
+    /// let ascii_alphabet = Alphabet::new_empty().ascii_encoding();
+    /// let encoded: Vec<u8> = convert::Encode::encode(&ascii_alphabet, String::from("ABCDEFGH"));
     /// assert_eq!(encoded, vec![65, 66, 67, 68, 69, 70, 71, 72]);
     /// 
-    /// let pokered_encoded = convert::Encode::encode(Lazy::force(&POKERED_ALPHABET).to_owned(), String::from("<NULL><PAGE><PKMN>"));
+    /// let pokered_alphabet = Alphabet::new_empty().pokered_charset_encoding();
+    /// let pokered_encoded = convert::Encode::encode(&pokered_alphabet, String::from("<NULL><PAGE><PKMN>"));
     /// assert_eq!(pokered_encoded, vec![0, 73, 74]);
     /// ```
-    pub fn encode(alphabet: HashMap<String, Vec<u8>>, unecoded: String) -> Vec<u8> {
-        let mut encoded = vec![];
+    pub fn encode(alphabet: &Alphabet, unecoded: String) -> Vec<u8> {
+        let mut encoded: Vec<Vec<u8>> = vec![];
         let mut stack = String::from("");
 
         for c in unecoded.chars() {
-            if alphabet.contains_key(&String::from(c)) {
-                for encoded_byte in alphabet[&String::from(c)].clone() {
-                    encoded.push(encoded_byte);
+            let char_str = String::from(c);
+
+            if alphabet.encoding.contains_left(&char_str) {
+                if let Some(encoded_byte) = alphabet.encoding.get_by_left(&char_str) {
+                    encoded.push(encoded_byte.to_vec());
                 }
                 stack = String::from("");
             } else {
-                stack.push_str(&String::from(c));
-                if alphabet.contains_key(&stack) {
-                    for encoded_byte in alphabet[&stack].clone() {
-                        encoded.push(encoded_byte);
+                stack.push_str(&char_str);
+                if alphabet.encoding.contains_left(&stack) {
+                    if let Some(encoded_byte) = alphabet.encoding.get_by_left(stack.as_str()).clone() {
+                        encoded.push(encoded_byte.clone());
                     }
                     stack = String::from("");
                 }
             }
         }
 
-        encoded
+        uniffy_opcode_group(encoded)
     }
 }

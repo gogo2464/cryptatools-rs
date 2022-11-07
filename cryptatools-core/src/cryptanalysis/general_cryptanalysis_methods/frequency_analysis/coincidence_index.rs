@@ -1,16 +1,18 @@
+use std::sync::Arc;
 use std::{collections::HashMap, fs, path::Path};
 use once_cell::sync::Lazy;
 use crate::cryptography::encryption::polyalphabetic_ciphers::vigenere::VigenereNoTable;
+use crate::utils::alphabets::Alphabet;
 use crate::utils::convert::{Encode};
 
 use rand::Rng;
 
 pub struct CoincidenceIndexGuesser {
-    alphabet: HashMap<String, Vec<u8>>,
+    alphabet: Arc<Alphabet>,
 }
 
 impl CoincidenceIndexGuesser {
-    pub fn new(alphabet: HashMap<String, Vec<u8>>) -> Self {
+    pub fn new(alphabet: Arc<Alphabet>) -> Self {
         CoincidenceIndexGuesser {
             alphabet: alphabet,
         }
@@ -20,15 +22,16 @@ impl CoincidenceIndexGuesser {
     /// 
     /// ```
     /// use cryptatools_core::cryptanalysis::general_cryptanalysis_methods::frequency_analysis::coincidence_index::CoincidenceIndexGuesser;
-    /// use cryptatools_core::utils::{alphabets::ASCII_ALPHABET, alphabets::PRINTABLE_ASCII_ALPHABET};
+    /// use cryptatools_core::utils::alphabets::Alphabet;
     /// use cryptatools_core::utils::convert::Encode;
-    /// use once_cell::sync::Lazy;
     /// 
     /// use approx::assert_abs_diff_eq;
     /// 
+    /// let alphabet = Alphabet::new_empty().ascii_printable_only_encoding();
+    /// 
     /// let plain_text = String::from("Hello! How are you? I am fine and you?");
     /// let pseudo_cipher_text = Encode::from_ascii_to_u8(plain_text);
-    /// let c = CoincidenceIndexGuesser::new(Lazy::force(&PRINTABLE_ASCII_ALPHABET).to_owned());
+    /// let c = CoincidenceIndexGuesser::new(alphabet.into());
     /// let coincidence_index: f64 = c.guess_coincidence_index(pseudo_cipher_text);
     /// assert_abs_diff_eq!(coincidence_index, 0.06543385490753911, epsilon = 1e-16);
     /// ```
@@ -39,7 +42,7 @@ impl CoincidenceIndexGuesser {
         }
 
         let mut coincidence_index: f64 = 0.0;
-        for u8_byte_alphabet in self.alphabet.values() {//TODO: convert to f64
+        for u8_byte_alphabet in self.alphabet.encoding.right_values() {//TODO: convert to f64
             let apparition_count: f64 = cipher_text_input.iter().filter(|&n| *n == u8_byte_alphabet[0]).count() as f64;// the [0] is a quick hack to avoid to find an algorithm to compare a set of bytes with some bytes of different size.
             let sum_apparition_alphabet: f64 = apparition_count * (apparition_count - 1.0);
             let divide_characters: f64 = cipher_text_size * (cipher_text_size - 1.0);
@@ -56,12 +59,14 @@ impl CoincidenceIndexGuesser {
     /// The goal of this function is also to provide statistics about plain text coincidence index in order to decipher another encrypted text.
     /// ```
     /// use once_cell::sync::Lazy;
-    /// use cryptatools_core::utils::alphabets::PRINTABLE_ASCII_ALPHABET;
+    /// use cryptatools_core::utils::alphabets::Alphabet;
     /// use cryptatools_core::cryptanalysis::general_cryptanalysis_methods::frequency_analysis::coincidence_index::CoincidenceIndexGuesser;
     /// use approx::assert_abs_diff_eq;
     /// 
+    /// let alphabet = Alphabet::new_empty().ascii_printable_only_encoding();
+    /// 
     /// let path = String::from("./data/text-corpus-for-statistics/gutenberg/austen-emma.txt");
-    /// let mut c = CoincidenceIndexGuesser::new(Lazy::force(&PRINTABLE_ASCII_ALPHABET).to_owned());
+    /// let mut c = CoincidenceIndexGuesser::new(alphabet.into());
     /// assert_abs_diff_eq!(c.guess_coincidence_index_statistics_from_file(path.clone()), 0.06742905478018858, epsilon = 1e-15);
     /// ```
     pub fn guess_coincidence_index_statistics_from_file(&self, file_name: String) -> f64 {
@@ -71,7 +76,7 @@ impl CoincidenceIndexGuesser {
             Err(error) => panic!("{0}", error),
         };
 
-        let bytes_file_content = Encode::encode(self.alphabet.clone(), file_content);
+        let bytes_file_content = Encode::encode(&self.alphabet, file_content);
         let coincidence_index = self.guess_coincidence_index(bytes_file_content);
         
         coincidence_index
@@ -79,11 +84,11 @@ impl CoincidenceIndexGuesser {
 }
 
 pub struct CoincidenceIndexGenerator {
-    alphabet: HashMap<String, Vec<u8>>,
+    alphabet: Arc<Alphabet>,
 }
 
 impl CoincidenceIndexGenerator {
-    pub fn new(alphabet: HashMap<String, Vec<u8>>) -> Self {
+    pub fn new(alphabet: Arc<Alphabet>) -> Self {
         CoincidenceIndexGenerator {
             alphabet: alphabet,
         }
@@ -94,13 +99,14 @@ impl CoincidenceIndexGenerator {
     /// The goal of this function is also to provide statistics about plain text coincidence index in order to decipher another encrypted text.
     /// 
     /// ```
-    /// use once_cell::sync::Lazy;
-    /// use cryptatools_core::utils::{convert::Encode, alphabets::ASCII_ALPHABET, alphabets::PRINTABLE_ASCII_ALPHABET};
+    /// use cryptatools_core::utils::{convert::Encode, alphabets::Alphabet};
     /// use cryptatools_core::cryptanalysis::general_cryptanalysis_methods::frequency_analysis::coincidence_index::CoincidenceIndexGenerator;
     /// 
     /// use approx::assert_abs_diff_eq;
     /// 
-    /// let mut vcig = CoincidenceIndexGenerator::new(Lazy::force(&PRINTABLE_ASCII_ALPHABET).to_owned());
+    /// let alphabet = Alphabet::new_empty().ascii_printable_only_encoding();
+    /// 
+    /// let mut vcig = CoincidenceIndexGenerator::new(alphabet.into());
     /// let mut ci = vcig.generate_coincidence_index_for_key(0, Encode::from_ascii_to_u8(String::from("The ennemy will never attack!")));
     /// assert_abs_diff_eq!(ci, 0.0541871921182266, epsilon = 1e-16);
     /// ci = vcig.generate_coincidence_index_for_key(5, Encode::from_ascii_to_u8(String::from("The ennemy will never attack! I think the ennemy is simply too coward in order to lead an attack. He will hesistate too much. Prepare your troops for a very very long defense of this siege.")));
@@ -115,13 +121,13 @@ impl CoincidenceIndexGenerator {
         let mut rng = rand::thread_rng();
         let mut key = vec![];
         for _i in 0..key_size {
-            let random_value = rng.gen_range(0..self.alphabet.len());
-            let random_byte = self.alphabet.values().nth(random_value).unwrap()[0];// TODO get multichars // .sorted() ?
+            let random_value = rng.gen_range(0..self.alphabet.encoding.len());
+            let random_byte = self.alphabet.encoding.right_values().nth(random_value).unwrap()[0];// TODO get multichars // .sorted() ?
             key.push(vec![random_byte]);
         }
 
-        let vig: VigenereNoTable = VigenereNoTable::new(self.alphabet.to_owned());
-        let vigenere_coincidence_index_guesser = CoincidenceIndexGuesser::new(self.alphabet.to_owned());
+        let vig: VigenereNoTable = VigenereNoTable::new(self.alphabet.clone());
+        let vigenere_coincidence_index_guesser = CoincidenceIndexGuesser::new(self.alphabet.clone());
         let cipher_text = vig.encrypt(input, key);
         let coincidence_index = vigenere_coincidence_index_guesser.guess_coincidence_index(cipher_text);
 
@@ -134,14 +140,13 @@ impl CoincidenceIndexGenerator {
     /// The coincidence index depends of the alphabet.
     /// ```
     /// use once_cell::sync::Lazy;
-    /// use cryptatools_core::utils::{convert::Encode,  alphabets::PRINTABLE_ASCII_ALPHABET};
+    /// use cryptatools_core::utils::{convert::Encode,  alphabets::Alphabet};
     /// use cryptatools_core::cryptanalysis::general_cryptanalysis_methods::frequency_analysis::coincidence_index::CoincidenceIndexGenerator;
     /// use approx::assert_abs_diff_eq;
     /// 
-    /// use std::path::Path;
-    /// use std::fs;
     /// 
-    /// let mut vcig = CoincidenceIndexGenerator::new(Lazy::force(&PRINTABLE_ASCII_ALPHABET).to_owned());
+    /// let alphabet = Alphabet::new_empty().ascii_printable_only_encoding();
+    /// let mut vcig = CoincidenceIndexGenerator::new(alphabet.into());
     /// let mut ci = vcig.generate_coincidence_index_for_key_from_file(5, String::from("./data/text-corpus-for-statistics/gutenberg/austen-emma.txt"));
     /// 
     /// assert_abs_diff_eq!(ci, 0.01, epsilon = 1e-1);
@@ -153,7 +158,7 @@ impl CoincidenceIndexGenerator {
             Err(error) => panic!("{0}", error),
         };
 
-        let encoded_file_content = Encode::encode(self.alphabet.clone(), file_content);
+        let encoded_file_content = Encode::encode(&self.alphabet, file_content);
         let coincidence_index_found = self.generate_coincidence_index_for_key(key_size, encoded_file_content);
         coincidence_index_found
     }

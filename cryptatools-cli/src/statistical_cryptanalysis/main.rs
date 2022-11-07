@@ -1,13 +1,15 @@
 #![feature(array_windows)]
 mod cli_structure;
 use cli_structure::{Cli, Commands};
+use cryptatools_core::utils::alphabets::{Alphabet, Encoding};
 
 use std::collections::HashMap;
 use clap::Parser;
 use serde::Deserialize;
 use serde_with::{serde_as, DisplayFromStr};
-use cryptatools_core::cryptanalysis::general_cryptanalysis_methods::frequency_analysis::coincidence_index::CoincidenceIndexGuesser;
+//use cryptatools_core::cryptanalysis::general_cryptanalysis_methods::frequency_analysis::coincidence_index::CoincidenceIndexGuesser;
 use cryptatools_core::cryptanalysis::general_cryptanalysis_methods::frequency_analysis::distribution_algorithms::statistical::Statistical;
+
 
 #[serde_as]
 #[derive(Deserialize, Debug)]
@@ -46,7 +48,17 @@ fn main() {
                 opcodes_u8.push(my_int);
             }
 
-            let stat = Statistical::new(alphabet_object);
+            let mut encoding_map_object: Vec<Encoding> = vec![];
+            for i in alphabet_object {
+                encoding_map_object.push(Encoding {
+                    str: i.0,
+                    bytes: i.1,
+                })
+            }
+
+            let alphabet = Alphabet::new(encoding_map_object);
+
+            let stat = Statistical::new(alphabet);
             let result = stat.guess_statistical_distribution(opcodes_u8);
 
             let mut val = result.iter().collect::<Vec<_>>();
