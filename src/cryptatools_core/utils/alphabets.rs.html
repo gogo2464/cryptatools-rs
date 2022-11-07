@@ -322,35 +322,68 @@
 <span id="322">322</span>
 <span id="323">323</span>
 <span id="324">324</span>
-</pre><pre class="rust"><code><span class="kw">use </span>std::collections::HashMap;
-<span class="kw">use </span>once_cell::sync::Lazy;
+<span id="325">325</span>
+<span id="326">326</span>
+<span id="327">327</span>
+<span id="328">328</span>
+<span id="329">329</span>
+<span id="330">330</span>
+<span id="331">331</span>
+<span id="332">332</span>
+<span id="333">333</span>
+<span id="334">334</span>
+<span id="335">335</span>
+<span id="336">336</span>
+<span id="337">337</span>
+<span id="338">338</span>
+<span id="339">339</span>
+<span id="340">340</span>
+<span id="341">341</span>
+<span id="342">342</span>
+<span id="343">343</span>
+<span id="344">344</span>
+<span id="345">345</span>
+<span id="346">346</span>
+<span id="347">347</span>
+<span id="348">348</span>
+<span id="349">349</span>
+<span id="350">350</span>
+<span id="351">351</span>
+<span id="352">352</span>
+<span id="353">353</span>
+<span id="354">354</span>
+<span id="355">355</span>
+<span id="356">356</span>
+<span id="357">357</span>
+<span id="358">358</span>
+<span id="359">359</span>
+<span id="360">360</span>
+<span id="361">361</span>
+<span id="362">362</span>
+<span id="363">363</span>
+<span id="364">364</span>
+</pre><pre class="rust"><code><span class="kw">use </span>itertools::Itertools;
+<span class="kw">use </span>bimap::btree::BiBTreeMap;
 
 <span class="doccomment">///```
-/// use cryptatools_core::utils::{convert::Encode, alphabets::split_bytes_by_characters_representation, alphabets::ASCII_ALPHABET};
-/// use once_cell::sync::Lazy;
-/// let plaintext = split_bytes_by_characters_representation(Lazy::force(&amp;ASCII_ALPHABET).to_owned(), Encode::from_ascii_to_u8(String::from(&quot;the quick brown roman fox jumped over the lazy ostrogoth dog&quot;)));
+/// use cryptatools_core::utils::{convert::Encode, alphabets::split_bytes_by_characters_representation, alphabets::Alphabet};
+/// 
+/// let ascii_alphabet = Alphabet::new_empty().ascii_encoding();
+/// let plaintext = split_bytes_by_characters_representation(&amp;ascii_alphabet, Encode::from_ascii_to_u8(String::from(&quot;the quick brown roman fox jumped over the lazy ostrogoth dog&quot;)));
 /// assert_eq!(plaintext, [[116], [104], [101], [32], [113], [117], [105], [99], [107], [32], [98], [114], [111], [119], [110], [32], [114], [111], [109], [97], [110], [32], [102], [111], [120], [32], [106], [117], [109], [112], [101], [100], [32], [111], [118], [101], [114], [32], [116], [104], [101], [32], [108], [97], [122], [121], [32], [111], [115], [116], [114], [111], [103], [111], [116], [104], [32], [100], [111], [103]]);
 /// assert_eq!(plaintext.len(), String::from(&quot;the quick brown roman fox jumped over the lazy ostrogoth dog&quot;).len());
 /// ```
-
-</span><span class="kw">pub fn </span>split_bytes_by_characters_representation(alphabet: HashMap&lt;String, Vec&lt;u8&gt;&gt;, text: Vec&lt;u8&gt;) -&gt; Vec&lt;Vec&lt;u8&gt;&gt; {
+</span><span class="kw">pub fn </span>split_bytes_by_characters_representation(encoding: <span class="kw-2">&amp;</span>Alphabet, text: Vec&lt;u8&gt;) -&gt; Vec&lt;Vec&lt;u8&gt;&gt; {
     <span class="kw">let </span><span class="kw-2">mut </span>set_of_chars: Vec&lt;Vec&lt;u8&gt;&gt; = <span class="macro">vec!</span>[];
-    <span class="kw">let </span><span class="kw-2">mut </span>character_byte_representation_size: usize = <span class="number">0</span>;
-    <span class="kw">for </span>byte <span class="kw">in </span>text {
-        <span class="kw">for </span>alphabet_character <span class="kw">in </span>alphabet.keys() {
-            <span class="kw">if </span>character_byte_representation_size &gt; <span class="number">0 </span>{
-                character_byte_representation_size = character_byte_representation_size-<span class="number">1</span>;
-                <span class="kw">continue</span>;
-            }
 
-            <span class="kw">if </span>alphabet.get(alphabet_character).unwrap().len() &gt; <span class="number">1 </span>{
-                set_of_chars.push(alphabet.get(alphabet_character).unwrap().to_vec());
-                character_byte_representation_size = alphabet.get(alphabet_character).unwrap().len() - <span class="number">1</span>;
-                <span class="kw">continue</span>;
-            } <span class="kw">else if </span>alphabet.get(alphabet_character).unwrap().len() == <span class="number">1 </span>{
-                set_of_chars.push(<span class="macro">vec!</span>[byte]);
-                <span class="kw">break</span>;
-            }
+    <span class="kw">let </span><span class="kw-2">mut </span>stack_of_chars = <span class="macro">vec!</span>[];
+    <span class="kw">for </span>opcode <span class="kw">in </span>text {
+        stack_of_chars.push(opcode);
+        <span class="kw">if </span>encoding.encoding.contains_right(<span class="kw-2">&amp;</span>stack_of_chars) {
+            set_of_chars.push(stack_of_chars);
+            stack_of_chars = <span class="macro">vec!</span>[];
+        } <span class="kw">else </span>{
+            stack_of_chars.push(opcode);
         }
     }
 
@@ -365,285 +398,332 @@
 <span class="comment">//pub const ASCII_ALPHABET: &amp;&#39;static str = &quot;\x00\x01\x02\x03\x04\x05\x06\x07\x08\t\n\x0b\x0c\r\x0e\x0f\x10\x11\x12\x13\x14\x15\x16\x17\x18\x19\x1a\x1b\x1c\x1d\x1e\x1f !\&quot;#$%&amp;\&#39;()*+,-./0123456789:;&lt;=&gt;?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~\x7f\\u128&quot;;
 </span><span class="kw">pub const </span>UU_ENCODING_ALPHABET: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str = <span class="string">&quot; !\&quot;#$%&amp;&#39;()*+,-./0123456789:;&lt;=&gt;?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`&quot;</span>;
 
+<span class="attribute">#[derive(Clone)]
+</span><span class="kw">pub struct </span>Encoding {
+    <span class="kw">pub </span>str: String,
+    <span class="kw">pub </span>bytes: Vec&lt;u8&gt;,
+}
 
-<span class="kw">pub static </span>POKERED_ALPHABET: Lazy&lt;HashMap&lt;String, Vec&lt;u8&gt;&gt;&gt; = Lazy::new(|| {
-    <span class="kw">let </span><span class="kw-2">mut </span>alphabet = HashMap::new();
-    alphabet.insert(String::from(<span class="string">&quot;&lt;NULL&gt;&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x00</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;&lt;PAGE&gt;&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x49</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;&lt;PKMN&gt;&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x4a</span>]);
+<span class="attribute">#[derive(Clone)]
+</span><span class="kw">pub struct </span>Alphabet {
+    <span class="doccomment">/// Alphabet encoding.
+    </span><span class="kw">pub </span>encoding: BiBTreeMap&lt;String, Vec&lt;u8&gt;&gt;,
+}
 
-    alphabet
-  }
-);
+<span class="kw">impl </span>Alphabet {
+    <span class="kw">pub fn </span>new(encoding: Vec&lt;Encoding&gt;) -&gt; <span class="self">Self </span>{
+        <span class="kw">let </span>encoding = encoding.into_iter().map(|e| (e.str, e.bytes))
+            .collect::&lt;BiBTreeMap&lt;<span class="kw">_</span>, <span class="kw">_</span>&gt;&gt;();
+        Alphabet {
+            encoding,
+        }
+    }
 
-<span class="kw">pub static </span>ASCII_ALPHABET: Lazy&lt;HashMap&lt;String, Vec&lt;u8&gt;&gt;&gt; = Lazy::new(|| {
-    <span class="kw">let </span><span class="kw-2">mut </span>alphabet = HashMap::new();
-    alphabet.insert(String::from(<span class="string">&quot;\x00&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x00</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;\x01&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x01</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;\x02&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x02</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;\x03&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x03</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;\x04&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x04</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;\x05&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x05</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;\x06&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x06</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;\x07&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x07</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;\x08&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x08</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;\x09&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x09</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;\x0a&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x0a</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;\x0b&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x0b</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;\x0c&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x0c</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;\x0d&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x0d</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;\x0e&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x0e</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;\x0f&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x0f</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;\x10&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x10</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;\x11&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x11</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;\x12&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x12</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;\x13&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x13</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;\x14&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x14</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;\x15&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x15</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;\x16&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x16</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;\x17&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x17</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;\x18&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x18</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;\x19&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x19</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;\x1a&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x1a</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;\x1b&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x1b</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;\x1c&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x1c</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;\x1d&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x1d</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;\x1e&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x1e</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;\x1f&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x1f</span>]);
-    alphabet.insert(String::from(<span class="string">&quot; &quot;</span>), <span class="macro">vec!</span>[<span class="number">0x20</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;!&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x21</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;\&quot;&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x22</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;#&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x23</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;$&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x24</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;%&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x25</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;&amp;&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x26</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;&#39;&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x27</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;(&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x28</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;)&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x29</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;*&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x2a</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;+&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x2b</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;,&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x2c</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;-&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x2d</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;.&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x2e</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;/&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x2f</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;0&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x30</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;1&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x31</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;2&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x32</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;3&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x33</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;4&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x34</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;5&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x35</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;6&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x36</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;7&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x37</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;8&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x38</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;9&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x39</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;:&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x3a</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;;&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x3b</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;&lt;&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x3c</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;=&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x3d</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;&gt;&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x3e</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;?&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x3f</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;@&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x40</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;A&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x41</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;B&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x42</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;C&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x43</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;D&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x44</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;E&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x45</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;F&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x46</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;G&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x47</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;H&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x48</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;I&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x49</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;J&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x4a</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;K&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x4b</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;L&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x4c</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;M&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x4d</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;N&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x4e</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;O&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x4f</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;P&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x50</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;Q&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x51</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;R&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x52</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;S&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x53</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;T&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x54</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;U&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x55</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;V&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x56</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;W&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x57</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;X&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x58</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;Y&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x59</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;Z&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x5a</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;[&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x5b</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;\\&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x5c</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;]&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x5d</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;^&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x5e</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;_&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x5f</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;`&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x60</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;a&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x61</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;b&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x62</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;c&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x63</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;d&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x64</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;e&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x65</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;f&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x66</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;g&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x67</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;h&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x68</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;i&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x69</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;j&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x6a</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;k&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x6b</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;l&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x6c</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;m&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x6d</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;n&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x6e</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;o&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x6f</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;p&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x70</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;q&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x71</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;r&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x72</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;s&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x73</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;t&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x74</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;u&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x75</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;v&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x76</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;w&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x77</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;x&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x78</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;y&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x79</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;z&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x7a</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;{&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x7b</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;|&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x7c</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;}&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x7d</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;~&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x7e</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;\x7f&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x7f</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;\\u128&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x80</span>]);
+    <span class="kw">pub fn </span>new_empty() -&gt; <span class="self">Self </span>{
+        Alphabet {
+            encoding: BiBTreeMap::new(),
+        }
+    }
 
-    alphabet
-  }
-);
+    <span class="doccomment">/// Builder to add encoding to the encoding.
+    </span><span class="kw">pub fn </span>ascii_printable_only_encoding(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.encoding = BiBTreeMap::from_iter(<span class="macro">vec!</span>[
+        (String::from(<span class="string">&quot; &quot;</span>), <span class="macro">vec!</span>[<span class="number">0x20</span>]),
+        (String::from(<span class="string">&quot;!&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x21</span>]),
+        (String::from(<span class="string">&quot;\&quot;&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x22</span>]),
+        (String::from(<span class="string">&quot;#&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x23</span>]),
+        (String::from(<span class="string">&quot;$&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x24</span>]),
+        (String::from(<span class="string">&quot;%&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x25</span>]),
+        (String::from(<span class="string">&quot;&amp;&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x26</span>]),
+        (String::from(<span class="string">&quot;&#39;&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x27</span>]),
+        (String::from(<span class="string">&quot;(&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x28</span>]),
+        (String::from(<span class="string">&quot;)&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x29</span>]),
+        (String::from(<span class="string">&quot;*&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x2a</span>]),
+        (String::from(<span class="string">&quot;+&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x2b</span>]),
+        (String::from(<span class="string">&quot;,&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x2c</span>]),
+        (String::from(<span class="string">&quot;-&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x2d</span>]),
+        (String::from(<span class="string">&quot;.&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x2e</span>]),
+        (String::from(<span class="string">&quot;/&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x2f</span>]),
+        (String::from(<span class="string">&quot;0&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x30</span>]),
+        (String::from(<span class="string">&quot;1&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x31</span>]),
+        (String::from(<span class="string">&quot;2&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x32</span>]),
+        (String::from(<span class="string">&quot;3&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x33</span>]),
+        (String::from(<span class="string">&quot;4&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x34</span>]),
+        (String::from(<span class="string">&quot;5&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x35</span>]),
+        (String::from(<span class="string">&quot;6&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x36</span>]),
+        (String::from(<span class="string">&quot;7&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x37</span>]),
+        (String::from(<span class="string">&quot;8&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x38</span>]),
+        (String::from(<span class="string">&quot;9&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x39</span>]),
+        (String::from(<span class="string">&quot;:&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x3a</span>]),
+        (String::from(<span class="string">&quot;;&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x3b</span>]),
+        (String::from(<span class="string">&quot;&lt;&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x3c</span>]),
+        (String::from(<span class="string">&quot;=&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x3d</span>]),
+        (String::from(<span class="string">&quot;&gt;&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x3e</span>]),
+        (String::from(<span class="string">&quot;?&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x3f</span>]),
+        (String::from(<span class="string">&quot;@&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x40</span>]),
+        (String::from(<span class="string">&quot;A&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x41</span>]),
+        (String::from(<span class="string">&quot;B&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x42</span>]),
+        (String::from(<span class="string">&quot;C&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x43</span>]),
+        (String::from(<span class="string">&quot;D&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x44</span>]),
+        (String::from(<span class="string">&quot;E&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x45</span>]),
+        (String::from(<span class="string">&quot;F&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x46</span>]),
+        (String::from(<span class="string">&quot;G&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x47</span>]),
+        (String::from(<span class="string">&quot;H&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x48</span>]),
+        (String::from(<span class="string">&quot;I&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x49</span>]),
+        (String::from(<span class="string">&quot;J&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x4a</span>]),
+        (String::from(<span class="string">&quot;K&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x4b</span>]),
+        (String::from(<span class="string">&quot;L&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x4c</span>]),
+        (String::from(<span class="string">&quot;M&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x4d</span>]),
+        (String::from(<span class="string">&quot;N&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x4e</span>]),
+        (String::from(<span class="string">&quot;O&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x4f</span>]),
+        (String::from(<span class="string">&quot;P&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x50</span>]),
+        (String::from(<span class="string">&quot;Q&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x51</span>]),
+        (String::from(<span class="string">&quot;R&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x52</span>]),
+        (String::from(<span class="string">&quot;S&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x53</span>]),
+        (String::from(<span class="string">&quot;T&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x54</span>]),
+        (String::from(<span class="string">&quot;U&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x55</span>]),
+        (String::from(<span class="string">&quot;V&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x56</span>]),
+        (String::from(<span class="string">&quot;W&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x57</span>]),
+        (String::from(<span class="string">&quot;X&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x58</span>]),
+        (String::from(<span class="string">&quot;Y&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x59</span>]),
+        (String::from(<span class="string">&quot;Z&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x5a</span>]),
+        (String::from(<span class="string">&quot;[&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x5b</span>]),
+        (String::from(<span class="string">&quot;\\&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x5c</span>]),
+        (String::from(<span class="string">&quot;]&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x5d</span>]),
+        (String::from(<span class="string">&quot;^&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x5e</span>]),
+        (String::from(<span class="string">&quot;_&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x5f</span>]),
+        (String::from(<span class="string">&quot;`&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x60</span>]),
+        (String::from(<span class="string">&quot;a&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x61</span>]),
+        (String::from(<span class="string">&quot;b&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x62</span>]),
+        (String::from(<span class="string">&quot;c&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x63</span>]),
+        (String::from(<span class="string">&quot;d&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x64</span>]),
+        (String::from(<span class="string">&quot;e&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x65</span>]),
+        (String::from(<span class="string">&quot;f&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x66</span>]),
+        (String::from(<span class="string">&quot;g&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x67</span>]),
+        (String::from(<span class="string">&quot;h&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x68</span>]),
+        (String::from(<span class="string">&quot;i&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x69</span>]),
+        (String::from(<span class="string">&quot;j&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x6a</span>]),
+        (String::from(<span class="string">&quot;k&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x6b</span>]),
+        (String::from(<span class="string">&quot;l&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x6c</span>]),
+        (String::from(<span class="string">&quot;m&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x6d</span>]),
+        (String::from(<span class="string">&quot;n&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x6e</span>]),
+        (String::from(<span class="string">&quot;o&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x6f</span>]),
+        (String::from(<span class="string">&quot;p&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x70</span>]),
+        (String::from(<span class="string">&quot;q&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x71</span>]),
+        (String::from(<span class="string">&quot;r&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x72</span>]),
+        (String::from(<span class="string">&quot;s&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x73</span>]),
+        (String::from(<span class="string">&quot;t&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x74</span>]),
+        (String::from(<span class="string">&quot;u&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x75</span>]),
+        (String::from(<span class="string">&quot;v&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x76</span>]),
+        (String::from(<span class="string">&quot;w&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x77</span>]),
+        (String::from(<span class="string">&quot;x&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x78</span>]),
+        (String::from(<span class="string">&quot;y&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x79</span>]),
+        (String::from(<span class="string">&quot;z&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x7a</span>]),
+        (String::from(<span class="string">&quot;{&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x7b</span>]),
+        (String::from(<span class="string">&quot;|&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x7c</span>]),
+        (String::from(<span class="string">&quot;}&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x7d</span>]),
+        (String::from(<span class="string">&quot;~&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x7e</span>])]);
 
-<span class="kw">pub static </span>MAJ_NO_SPACE_ASCII_ALPHABET: Lazy&lt;HashMap&lt;String, Vec&lt;u8&gt;&gt;&gt; = Lazy::new(|| {
-    <span class="kw">let </span><span class="kw-2">mut </span>alphabet = HashMap::new();
-    alphabet.insert(String::from(<span class="string">&quot;A&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x41</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;B&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x42</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;C&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x43</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;D&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x44</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;E&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x45</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;F&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x46</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;G&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x47</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;H&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x48</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;I&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x49</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;J&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x4a</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;K&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x4b</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;L&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x4c</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;M&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x4d</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;N&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x4e</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;O&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x4f</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;P&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x50</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;Q&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x51</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;R&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x52</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;S&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x53</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;T&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x54</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;U&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x55</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;V&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x56</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;W&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x57</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;X&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x58</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;Y&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x59</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;Z&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x5a</span>]);
+        <span class="kw">let </span>encoding = <span class="self">self</span>.encoding.clone();
 
-    alphabet
-  }
-);
+        Alphabet {
+            encoding: encoding
+        }
+    }
 
-<span class="kw">pub static </span>PRINTABLE_ASCII_ALPHABET: Lazy&lt;HashMap&lt;String, Vec&lt;u8&gt;&gt;&gt; = Lazy::new(|| {
-    <span class="kw">let </span><span class="kw-2">mut </span>alphabet = HashMap::new();
-    alphabet.insert(String::from(<span class="string">&quot; &quot;</span>), <span class="macro">vec!</span>[<span class="number">0x20</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;!&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x21</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;\&quot;&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x22</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;#&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x23</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;$&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x24</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;%&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x25</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;&amp;&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x26</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;&#39;&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x27</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;(&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x28</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;)&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x29</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;*&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x2a</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;+&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x2b</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;,&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x2c</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;-&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x2d</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;.&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x2e</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;/&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x2f</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;0&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x30</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;1&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x31</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;2&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x32</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;3&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x33</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;4&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x34</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;5&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x35</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;6&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x36</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;7&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x37</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;8&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x38</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;9&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x39</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;:&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x3a</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;;&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x3b</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;&lt;&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x3c</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;=&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x3d</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;&gt;&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x3e</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;?&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x3f</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;@&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x40</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;A&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x41</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;B&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x42</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;C&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x43</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;D&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x44</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;E&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x45</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;F&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x46</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;G&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x47</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;H&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x48</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;I&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x49</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;J&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x4a</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;K&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x4b</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;L&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x4c</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;M&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x4d</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;N&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x4e</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;O&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x4f</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;P&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x50</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;Q&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x51</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;R&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x52</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;S&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x53</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;T&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x54</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;U&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x55</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;V&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x56</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;W&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x57</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;X&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x58</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;Y&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x59</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;Z&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x5a</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;[&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x5b</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;\\&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x5c</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;]&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x5d</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;^&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x5e</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;_&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x5f</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;`&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x60</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;a&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x61</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;b&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x62</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;c&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x63</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;d&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x64</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;e&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x65</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;f&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x66</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;g&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x67</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;h&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x68</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;i&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x69</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;j&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x6a</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;k&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x6b</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;l&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x6c</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;m&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x6d</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;n&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x6e</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;o&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x6f</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;p&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x70</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;q&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x71</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;r&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x72</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;s&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x73</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;t&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x74</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;u&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x75</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;v&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x76</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;w&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x77</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;x&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x78</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;y&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x79</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;z&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x7a</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;{&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x7b</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;|&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x7c</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;}&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x7d</span>]);
-    alphabet.insert(String::from(<span class="string">&quot;~&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x7e</span>]);
+    <span class="kw">pub fn </span>ascii_encoding(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="self">Self </span>{
+        <span class="kw">let </span><span class="kw-2">mut </span>encoding = BiBTreeMap::new();
+        encoding.insert(String::from(<span class="string">&quot;\x00&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x00</span>]);
+        encoding.insert(String::from(<span class="string">&quot;\x01&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x01</span>]);
+        encoding.insert(String::from(<span class="string">&quot;\x02&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x02</span>]);
+        encoding.insert(String::from(<span class="string">&quot;\x03&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x03</span>]);
+        encoding.insert(String::from(<span class="string">&quot;\x04&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x04</span>]);
+        encoding.insert(String::from(<span class="string">&quot;\x05&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x05</span>]);
+        encoding.insert(String::from(<span class="string">&quot;\x06&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x06</span>]);
+        encoding.insert(String::from(<span class="string">&quot;\x07&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x07</span>]);
+        encoding.insert(String::from(<span class="string">&quot;\x08&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x08</span>]);
+        encoding.insert(String::from(<span class="string">&quot;\x09&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x09</span>]);
+        encoding.insert(String::from(<span class="string">&quot;\x0a&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x0a</span>]);
+        encoding.insert(String::from(<span class="string">&quot;\x0b&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x0b</span>]);
+        encoding.insert(String::from(<span class="string">&quot;\x0c&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x0c</span>]);
+        encoding.insert(String::from(<span class="string">&quot;\x0d&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x0d</span>]);
+        encoding.insert(String::from(<span class="string">&quot;\x0e&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x0e</span>]);
+        encoding.insert(String::from(<span class="string">&quot;\x0f&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x0f</span>]);
+        encoding.insert(String::from(<span class="string">&quot;\x10&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x10</span>]);
+        encoding.insert(String::from(<span class="string">&quot;\x11&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x11</span>]);
+        encoding.insert(String::from(<span class="string">&quot;\x12&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x12</span>]);
+        encoding.insert(String::from(<span class="string">&quot;\x13&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x13</span>]);
+        encoding.insert(String::from(<span class="string">&quot;\x14&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x14</span>]);
+        encoding.insert(String::from(<span class="string">&quot;\x15&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x15</span>]);
+        encoding.insert(String::from(<span class="string">&quot;\x16&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x16</span>]);
+        encoding.insert(String::from(<span class="string">&quot;\x17&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x17</span>]);
+        encoding.insert(String::from(<span class="string">&quot;\x18&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x18</span>]);
+        encoding.insert(String::from(<span class="string">&quot;\x19&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x19</span>]);
+        encoding.insert(String::from(<span class="string">&quot;\x1a&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x1a</span>]);
+        encoding.insert(String::from(<span class="string">&quot;\x1b&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x1b</span>]);
+        encoding.insert(String::from(<span class="string">&quot;\x1c&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x1c</span>]);
+        encoding.insert(String::from(<span class="string">&quot;\x1d&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x1d</span>]);
+        encoding.insert(String::from(<span class="string">&quot;\x1e&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x1e</span>]);
+        encoding.insert(String::from(<span class="string">&quot;\x1f&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x1f</span>]);
+        encoding.insert(String::from(<span class="string">&quot; &quot;</span>), <span class="macro">vec!</span>[<span class="number">0x20</span>]);
+        encoding.insert(String::from(<span class="string">&quot;!&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x21</span>]);
+        encoding.insert(String::from(<span class="string">&quot;\&quot;&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x22</span>]);
+        encoding.insert(String::from(<span class="string">&quot;#&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x23</span>]);
+        encoding.insert(String::from(<span class="string">&quot;$&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x24</span>]);
+        encoding.insert(String::from(<span class="string">&quot;%&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x25</span>]);
+        encoding.insert(String::from(<span class="string">&quot;&amp;&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x26</span>]);
+        encoding.insert(String::from(<span class="string">&quot;&#39;&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x27</span>]);
+        encoding.insert(String::from(<span class="string">&quot;(&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x28</span>]);
+        encoding.insert(String::from(<span class="string">&quot;)&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x29</span>]);
+        encoding.insert(String::from(<span class="string">&quot;*&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x2a</span>]);
+        encoding.insert(String::from(<span class="string">&quot;+&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x2b</span>]);
+        encoding.insert(String::from(<span class="string">&quot;,&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x2c</span>]);
+        encoding.insert(String::from(<span class="string">&quot;-&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x2d</span>]);
+        encoding.insert(String::from(<span class="string">&quot;.&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x2e</span>]);
+        encoding.insert(String::from(<span class="string">&quot;/&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x2f</span>]);
+        encoding.insert(String::from(<span class="string">&quot;0&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x30</span>]);
+        encoding.insert(String::from(<span class="string">&quot;1&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x31</span>]);
+        encoding.insert(String::from(<span class="string">&quot;2&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x32</span>]);
+        encoding.insert(String::from(<span class="string">&quot;3&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x33</span>]);
+        encoding.insert(String::from(<span class="string">&quot;4&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x34</span>]);
+        encoding.insert(String::from(<span class="string">&quot;5&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x35</span>]);
+        encoding.insert(String::from(<span class="string">&quot;6&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x36</span>]);
+        encoding.insert(String::from(<span class="string">&quot;7&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x37</span>]);
+        encoding.insert(String::from(<span class="string">&quot;8&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x38</span>]);
+        encoding.insert(String::from(<span class="string">&quot;9&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x39</span>]);
+        encoding.insert(String::from(<span class="string">&quot;:&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x3a</span>]);
+        encoding.insert(String::from(<span class="string">&quot;;&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x3b</span>]);
+        encoding.insert(String::from(<span class="string">&quot;&lt;&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x3c</span>]);
+        encoding.insert(String::from(<span class="string">&quot;=&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x3d</span>]);
+        encoding.insert(String::from(<span class="string">&quot;&gt;&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x3e</span>]);
+        encoding.insert(String::from(<span class="string">&quot;?&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x3f</span>]);
+        encoding.insert(String::from(<span class="string">&quot;@&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x40</span>]);
+        encoding.insert(String::from(<span class="string">&quot;A&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x41</span>]);
+        encoding.insert(String::from(<span class="string">&quot;B&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x42</span>]);
+        encoding.insert(String::from(<span class="string">&quot;C&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x43</span>]);
+        encoding.insert(String::from(<span class="string">&quot;D&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x44</span>]);
+        encoding.insert(String::from(<span class="string">&quot;E&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x45</span>]);
+        encoding.insert(String::from(<span class="string">&quot;F&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x46</span>]);
+        encoding.insert(String::from(<span class="string">&quot;G&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x47</span>]);
+        encoding.insert(String::from(<span class="string">&quot;H&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x48</span>]);
+        encoding.insert(String::from(<span class="string">&quot;I&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x49</span>]);
+        encoding.insert(String::from(<span class="string">&quot;J&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x4a</span>]);
+        encoding.insert(String::from(<span class="string">&quot;K&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x4b</span>]);
+        encoding.insert(String::from(<span class="string">&quot;L&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x4c</span>]);
+        encoding.insert(String::from(<span class="string">&quot;M&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x4d</span>]);
+        encoding.insert(String::from(<span class="string">&quot;N&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x4e</span>]);
+        encoding.insert(String::from(<span class="string">&quot;O&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x4f</span>]);
+        encoding.insert(String::from(<span class="string">&quot;P&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x50</span>]);
+        encoding.insert(String::from(<span class="string">&quot;Q&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x51</span>]);
+        encoding.insert(String::from(<span class="string">&quot;R&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x52</span>]);
+        encoding.insert(String::from(<span class="string">&quot;S&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x53</span>]);
+        encoding.insert(String::from(<span class="string">&quot;T&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x54</span>]);
+        encoding.insert(String::from(<span class="string">&quot;U&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x55</span>]);
+        encoding.insert(String::from(<span class="string">&quot;V&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x56</span>]);
+        encoding.insert(String::from(<span class="string">&quot;W&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x57</span>]);
+        encoding.insert(String::from(<span class="string">&quot;X&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x58</span>]);
+        encoding.insert(String::from(<span class="string">&quot;Y&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x59</span>]);
+        encoding.insert(String::from(<span class="string">&quot;Z&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x5a</span>]);
+        encoding.insert(String::from(<span class="string">&quot;[&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x5b</span>]);
+        encoding.insert(String::from(<span class="string">&quot;\\&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x5c</span>]);
+        encoding.insert(String::from(<span class="string">&quot;]&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x5d</span>]);
+        encoding.insert(String::from(<span class="string">&quot;^&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x5e</span>]);
+        encoding.insert(String::from(<span class="string">&quot;_&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x5f</span>]);
+        encoding.insert(String::from(<span class="string">&quot;`&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x60</span>]);
+        encoding.insert(String::from(<span class="string">&quot;a&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x61</span>]);
+        encoding.insert(String::from(<span class="string">&quot;b&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x62</span>]);
+        encoding.insert(String::from(<span class="string">&quot;c&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x63</span>]);
+        encoding.insert(String::from(<span class="string">&quot;d&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x64</span>]);
+        encoding.insert(String::from(<span class="string">&quot;e&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x65</span>]);
+        encoding.insert(String::from(<span class="string">&quot;f&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x66</span>]);
+        encoding.insert(String::from(<span class="string">&quot;g&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x67</span>]);
+        encoding.insert(String::from(<span class="string">&quot;h&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x68</span>]);
+        encoding.insert(String::from(<span class="string">&quot;i&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x69</span>]);
+        encoding.insert(String::from(<span class="string">&quot;j&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x6a</span>]);
+        encoding.insert(String::from(<span class="string">&quot;k&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x6b</span>]);
+        encoding.insert(String::from(<span class="string">&quot;l&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x6c</span>]);
+        encoding.insert(String::from(<span class="string">&quot;m&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x6d</span>]);
+        encoding.insert(String::from(<span class="string">&quot;n&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x6e</span>]);
+        encoding.insert(String::from(<span class="string">&quot;o&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x6f</span>]);
+        encoding.insert(String::from(<span class="string">&quot;p&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x70</span>]);
+        encoding.insert(String::from(<span class="string">&quot;q&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x71</span>]);
+        encoding.insert(String::from(<span class="string">&quot;r&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x72</span>]);
+        encoding.insert(String::from(<span class="string">&quot;s&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x73</span>]);
+        encoding.insert(String::from(<span class="string">&quot;t&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x74</span>]);
+        encoding.insert(String::from(<span class="string">&quot;u&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x75</span>]);
+        encoding.insert(String::from(<span class="string">&quot;v&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x76</span>]);
+        encoding.insert(String::from(<span class="string">&quot;w&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x77</span>]);
+        encoding.insert(String::from(<span class="string">&quot;x&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x78</span>]);
+        encoding.insert(String::from(<span class="string">&quot;y&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x79</span>]);
+        encoding.insert(String::from(<span class="string">&quot;z&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x7a</span>]);
+        encoding.insert(String::from(<span class="string">&quot;{&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x7b</span>]);
+        encoding.insert(String::from(<span class="string">&quot;|&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x7c</span>]);
+        encoding.insert(String::from(<span class="string">&quot;}&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x7d</span>]);
+        encoding.insert(String::from(<span class="string">&quot;~&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x7e</span>]);
+        encoding.insert(String::from(<span class="string">&quot;\x7f&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x7f</span>]);
+        encoding.insert(String::from(<span class="string">&quot;\\u128&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x80</span>]);
 
-    alphabet
-  }
-);</code></pre></div>
+
+        <span class="self">self</span>.encoding = encoding.clone();
+
+        Alphabet {
+            encoding: encoding
+        }
+    }
+
+    <span class="kw">pub fn </span>pokered_charset_encoding(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="self">Self </span>{
+        <span class="kw">let </span><span class="kw-2">mut </span>encoding = BiBTreeMap::new();
+        encoding.insert(String::from(<span class="string">&quot;&lt;NULL&gt;&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x00</span>]);
+        encoding.insert(String::from(<span class="string">&quot;&lt;PAGE&gt;&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x49</span>]);
+        encoding.insert(String::from(<span class="string">&quot;&lt;PKMN&gt;&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x4a</span>]);
+    
+        <span class="self">self</span>.encoding = encoding.clone();
+
+        Alphabet {
+            encoding: encoding
+        }
+    }
+
+    <span class="kw">pub fn </span>uppercase_no_space_ascii_alphabet_encoding(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="self">Self </span>{
+        <span class="kw">let </span><span class="kw-2">mut </span>encoding = BiBTreeMap::new();
+        encoding.insert(String::from(<span class="string">&quot;A&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x41</span>]);
+        encoding.insert(String::from(<span class="string">&quot;B&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x42</span>]);
+        encoding.insert(String::from(<span class="string">&quot;C&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x43</span>]);
+        encoding.insert(String::from(<span class="string">&quot;D&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x44</span>]);
+        encoding.insert(String::from(<span class="string">&quot;E&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x45</span>]);
+        encoding.insert(String::from(<span class="string">&quot;F&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x46</span>]);
+        encoding.insert(String::from(<span class="string">&quot;G&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x47</span>]);
+        encoding.insert(String::from(<span class="string">&quot;H&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x48</span>]);
+        encoding.insert(String::from(<span class="string">&quot;I&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x49</span>]);
+        encoding.insert(String::from(<span class="string">&quot;J&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x4a</span>]);
+        encoding.insert(String::from(<span class="string">&quot;K&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x4b</span>]);
+        encoding.insert(String::from(<span class="string">&quot;L&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x4c</span>]);
+        encoding.insert(String::from(<span class="string">&quot;M&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x4d</span>]);
+        encoding.insert(String::from(<span class="string">&quot;N&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x4e</span>]);
+        encoding.insert(String::from(<span class="string">&quot;O&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x4f</span>]);
+        encoding.insert(String::from(<span class="string">&quot;P&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x50</span>]);
+        encoding.insert(String::from(<span class="string">&quot;Q&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x51</span>]);
+        encoding.insert(String::from(<span class="string">&quot;R&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x52</span>]);
+        encoding.insert(String::from(<span class="string">&quot;S&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x53</span>]);
+        encoding.insert(String::from(<span class="string">&quot;T&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x54</span>]);
+        encoding.insert(String::from(<span class="string">&quot;U&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x55</span>]);
+        encoding.insert(String::from(<span class="string">&quot;V&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x56</span>]);
+        encoding.insert(String::from(<span class="string">&quot;W&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x57</span>]);
+        encoding.insert(String::from(<span class="string">&quot;X&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x58</span>]);
+        encoding.insert(String::from(<span class="string">&quot;Y&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x59</span>]);
+        encoding.insert(String::from(<span class="string">&quot;Z&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x5a</span>]);
+    
+        <span class="self">self</span>.encoding = encoding.clone();
+
+        Alphabet { 
+            encoding: encoding
+        }
+    }
+
+    <span class="kw">pub fn </span>get_encoding(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Vec&lt;Encoding&gt; {
+        <span class="self">self</span>.encoding.iter()
+            .map(|(str, bytes)| Encoding { str: str.clone(), bytes: bytes.clone() })
+            .collect_vec()
+    }
+}</code></pre></div>
 </section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="cryptatools_core" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.65.0 (897e37553 2022-11-02)" ></div></body></html>

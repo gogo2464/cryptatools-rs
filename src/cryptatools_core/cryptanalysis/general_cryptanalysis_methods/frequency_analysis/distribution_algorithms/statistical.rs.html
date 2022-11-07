@@ -50,14 +50,18 @@
 <span id="50">50</span>
 <span id="51">51</span>
 <span id="52">52</span>
+<span id="53">53</span>
+<span id="54">54</span>
+<span id="55">55</span>
 </pre><pre class="rust"><code><span class="kw">use </span>std::collections::HashMap;
+<span class="kw">use </span><span class="kw">crate</span>::utils::alphabets::Alphabet;
 
 <span class="kw">pub struct </span>Statistical {
-    alphabet: HashMap&lt;String, Vec&lt;u8&gt;&gt;,
+    alphabet: Alphabet,
 }
 
 <span class="kw">impl </span>Statistical {
-    <span class="kw">pub fn </span>new(alphabet: HashMap&lt;String, Vec&lt;u8&gt;&gt;) -&gt; <span class="self">Self </span>{
+    <span class="kw">pub fn </span>new(alphabet: Alphabet) -&gt; <span class="self">Self </span>{
         Statistical {
             alphabet: alphabet,
         }
@@ -68,26 +72,28 @@
     /// Then divide the result by the cipher text size.
     /// ```
     /// use std::collections::HashMap;
-    /// use cryptatools_core::cryptanalysis::general_cryptanalysis_methods::frequency_analysis::distribution_algorithms::statistical::{Statistical};
-    /// use once_cell::sync::Lazy;
-    /// use cryptatools_core::utils::alphabets::ASCII_ALPHABET;
-    /// let stat = Statistical::new(Lazy::force(&amp;ASCII_ALPHABET).to_owned());
+    /// use cryptatools_core::cryptanalysis::general_cryptanalysis_methods::frequency_analysis::distribution_algorithms::statistical::Statistical;
+    /// use cryptatools_core::utils::alphabets::Alphabet;
+    /// 
+    /// let ascii_alphabet = Alphabet::new_empty().ascii_encoding();
+    /// let stat = Statistical::new(ascii_alphabet.clone());
     /// let stat_percentage = stat.guess_statistical_distribution(vec![0x41, 0x41, 0x41, 0x41, 0x41, 0x41]);
     /// assert_eq!(stat_percentage, HashMap::from([(vec![0x41 as u8], 1.0)]));
     /// ```
     /// 
     /// ```
     /// use std::collections::HashMap;
-    /// use cryptatools_core::cryptanalysis::general_cryptanalysis_methods::frequency_analysis::distribution_algorithms::statistical::{Statistical};
-    /// use once_cell::sync::Lazy;
-    /// use cryptatools_core::utils::alphabets::ASCII_ALPHABET;
-    /// let stat = Statistical::new(Lazy::force(&amp;ASCII_ALPHABET).to_owned());
+    /// use cryptatools_core::cryptanalysis::general_cryptanalysis_methods::frequency_analysis::distribution_algorithms::statistical::Statistical;
+    /// use cryptatools_core::utils::alphabets::Alphabet;
+    /// 
+    /// let ascii_alphabet = Alphabet::new_empty().ascii_encoding();
+    /// let stat = Statistical::new(ascii_alphabet);
     /// let stat_percentage = stat.guess_statistical_distribution(vec![0x41, 0x41, 0x41, 0x41, 0x41, 0x42]);
     /// assert_eq!(stat_percentage, HashMap::from([(vec![0x42 as u8], 0.16666666666666666), (vec![0x41 as u8], 0.8333333333333334)]));
     /// ```
     </span><span class="kw">pub fn </span>guess_statistical_distribution(<span class="kw-2">&amp;</span><span class="self">self</span>, encrypted_input: Vec&lt;u8&gt;) -&gt; HashMap&lt;Vec&lt;u8&gt;, f64&gt; {
         <span class="kw">let </span><span class="kw-2">mut </span>distribution: HashMap&lt;Vec&lt;u8&gt;, f64&gt; = HashMap::new();
-        <span class="kw">let </span>u8_alphabet = <span class="self">self</span>.alphabet.values();
+        <span class="kw">let </span>u8_alphabet = <span class="self">self</span>.alphabet.encoding.right_values();
 
         <span class="kw">for </span>u8_encrypted_input <span class="kw">in </span>encrypted_input.iter() {
             <span class="kw-2">*</span>distribution.entry(<span class="macro">vec!</span>[u8_encrypted_input.clone()]).or_insert(<span class="number">0.0</span>) += <span class="number">1.0</span>;<span class="comment">//or_default .or_insert(0.0)

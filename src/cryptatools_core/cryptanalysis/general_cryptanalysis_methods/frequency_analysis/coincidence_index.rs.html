@@ -171,19 +171,26 @@
 <span id="171">171</span>
 <span id="172">172</span>
 <span id="173">173</span>
-</pre><pre class="rust"><code><span class="kw">use </span>std::{collections::HashMap, fs, path::Path};
+<span id="174">174</span>
+<span id="175">175</span>
+<span id="176">176</span>
+<span id="177">177</span>
+<span id="178">178</span>
+</pre><pre class="rust"><code><span class="kw">use </span>std::sync::Arc;
+<span class="kw">use </span>std::{collections::HashMap, fs, path::Path};
 <span class="kw">use </span>once_cell::sync::Lazy;
 <span class="kw">use </span><span class="kw">crate</span>::cryptography::encryption::polyalphabetic_ciphers::vigenere::VigenereNoTable;
+<span class="kw">use </span><span class="kw">crate</span>::utils::alphabets::Alphabet;
 <span class="kw">use </span><span class="kw">crate</span>::utils::convert::{Encode};
 
 <span class="kw">use </span>rand::Rng;
 
 <span class="kw">pub struct </span>CoincidenceIndexGuesser {
-    alphabet: HashMap&lt;String, Vec&lt;u8&gt;&gt;,
+    alphabet: Arc&lt;Alphabet&gt;,
 }
 
 <span class="kw">impl </span>CoincidenceIndexGuesser {
-    <span class="kw">pub fn </span>new(alphabet: HashMap&lt;String, Vec&lt;u8&gt;&gt;) -&gt; <span class="self">Self </span>{
+    <span class="kw">pub fn </span>new(alphabet: Arc&lt;Alphabet&gt;) -&gt; <span class="self">Self </span>{
         CoincidenceIndexGuesser {
             alphabet: alphabet,
         }
@@ -193,15 +200,16 @@
     /// 
     /// ```
     /// use cryptatools_core::cryptanalysis::general_cryptanalysis_methods::frequency_analysis::coincidence_index::CoincidenceIndexGuesser;
-    /// use cryptatools_core::utils::{alphabets::ASCII_ALPHABET, alphabets::PRINTABLE_ASCII_ALPHABET};
+    /// use cryptatools_core::utils::alphabets::Alphabet;
     /// use cryptatools_core::utils::convert::Encode;
-    /// use once_cell::sync::Lazy;
     /// 
     /// use approx::assert_abs_diff_eq;
     /// 
+    /// let alphabet = Alphabet::new_empty().ascii_printable_only_encoding();
+    /// 
     /// let plain_text = String::from(&quot;Hello! How are you? I am fine and you?&quot;);
     /// let pseudo_cipher_text = Encode::from_ascii_to_u8(plain_text);
-    /// let c = CoincidenceIndexGuesser::new(Lazy::force(&amp;PRINTABLE_ASCII_ALPHABET).to_owned());
+    /// let c = CoincidenceIndexGuesser::new(alphabet.into());
     /// let coincidence_index: f64 = c.guess_coincidence_index(pseudo_cipher_text);
     /// assert_abs_diff_eq!(coincidence_index, 0.06543385490753911, epsilon = 1e-16);
     /// ```
@@ -212,7 +220,7 @@
         }
 
         <span class="kw">let </span><span class="kw-2">mut </span>coincidence_index: f64 = <span class="number">0.0</span>;
-        <span class="kw">for </span>u8_byte_alphabet <span class="kw">in </span><span class="self">self</span>.alphabet.values() {<span class="comment">//TODO: convert to f64
+        <span class="kw">for </span>u8_byte_alphabet <span class="kw">in </span><span class="self">self</span>.alphabet.encoding.right_values() {<span class="comment">//TODO: convert to f64
             </span><span class="kw">let </span>apparition_count: f64 = cipher_text_input.iter().filter(|<span class="kw-2">&amp;</span>n| <span class="kw-2">*</span>n == u8_byte_alphabet[<span class="number">0</span>]).count() <span class="kw">as </span>f64;<span class="comment">// the [0] is a quick hack to avoid to find an algorithm to compare a set of bytes with some bytes of different size.
             </span><span class="kw">let </span>sum_apparition_alphabet: f64 = apparition_count * (apparition_count - <span class="number">1.0</span>);
             <span class="kw">let </span>divide_characters: f64 = cipher_text_size * (cipher_text_size - <span class="number">1.0</span>);
@@ -229,12 +237,14 @@
     /// The goal of this function is also to provide statistics about plain text coincidence index in order to decipher another encrypted text.
     /// ```
     /// use once_cell::sync::Lazy;
-    /// use cryptatools_core::utils::alphabets::PRINTABLE_ASCII_ALPHABET;
+    /// use cryptatools_core::utils::alphabets::Alphabet;
     /// use cryptatools_core::cryptanalysis::general_cryptanalysis_methods::frequency_analysis::coincidence_index::CoincidenceIndexGuesser;
     /// use approx::assert_abs_diff_eq;
     /// 
+    /// let alphabet = Alphabet::new_empty().ascii_printable_only_encoding();
+    /// 
     /// let path = String::from(&quot;./data/text-corpus-for-statistics/gutenberg/austen-emma.txt&quot;);
-    /// let mut c = CoincidenceIndexGuesser::new(Lazy::force(&amp;PRINTABLE_ASCII_ALPHABET).to_owned());
+    /// let mut c = CoincidenceIndexGuesser::new(alphabet.into());
     /// assert_abs_diff_eq!(c.guess_coincidence_index_statistics_from_file(path.clone()), 0.06742905478018858, epsilon = 1e-15);
     /// ```
     </span><span class="kw">pub fn </span>guess_coincidence_index_statistics_from_file(<span class="kw-2">&amp;</span><span class="self">self</span>, file_name: String) -&gt; f64 {
@@ -244,7 +254,7 @@
             <span class="prelude-val">Err</span>(error) =&gt; <span class="macro">panic!</span>(<span class="string">&quot;{0}&quot;</span>, error),
         };
 
-        <span class="kw">let </span>bytes_file_content = Encode::encode(<span class="self">self</span>.alphabet.clone(), file_content);
+        <span class="kw">let </span>bytes_file_content = Encode::encode(<span class="kw-2">&amp;</span><span class="self">self</span>.alphabet, file_content);
         <span class="kw">let </span>coincidence_index = <span class="self">self</span>.guess_coincidence_index(bytes_file_content);
         
         coincidence_index
@@ -252,11 +262,11 @@
 }
 
 <span class="kw">pub struct </span>CoincidenceIndexGenerator {
-    alphabet: HashMap&lt;String, Vec&lt;u8&gt;&gt;,
+    alphabet: Arc&lt;Alphabet&gt;,
 }
 
 <span class="kw">impl </span>CoincidenceIndexGenerator {
-    <span class="kw">pub fn </span>new(alphabet: HashMap&lt;String, Vec&lt;u8&gt;&gt;) -&gt; <span class="self">Self </span>{
+    <span class="kw">pub fn </span>new(alphabet: Arc&lt;Alphabet&gt;) -&gt; <span class="self">Self </span>{
         CoincidenceIndexGenerator {
             alphabet: alphabet,
         }
@@ -267,13 +277,14 @@
     /// The goal of this function is also to provide statistics about plain text coincidence index in order to decipher another encrypted text.
     /// 
     /// ```
-    /// use once_cell::sync::Lazy;
-    /// use cryptatools_core::utils::{convert::Encode, alphabets::ASCII_ALPHABET, alphabets::PRINTABLE_ASCII_ALPHABET};
+    /// use cryptatools_core::utils::{convert::Encode, alphabets::Alphabet};
     /// use cryptatools_core::cryptanalysis::general_cryptanalysis_methods::frequency_analysis::coincidence_index::CoincidenceIndexGenerator;
     /// 
     /// use approx::assert_abs_diff_eq;
     /// 
-    /// let mut vcig = CoincidenceIndexGenerator::new(Lazy::force(&amp;PRINTABLE_ASCII_ALPHABET).to_owned());
+    /// let alphabet = Alphabet::new_empty().ascii_printable_only_encoding();
+    /// 
+    /// let mut vcig = CoincidenceIndexGenerator::new(alphabet.into());
     /// let mut ci = vcig.generate_coincidence_index_for_key(0, Encode::from_ascii_to_u8(String::from(&quot;The ennemy will never attack!&quot;)));
     /// assert_abs_diff_eq!(ci, 0.0541871921182266, epsilon = 1e-16);
     /// ci = vcig.generate_coincidence_index_for_key(5, Encode::from_ascii_to_u8(String::from(&quot;The ennemy will never attack! I think the ennemy is simply too coward in order to lead an attack. He will hesistate too much. Prepare your troops for a very very long defense of this siege.&quot;)));
@@ -288,13 +299,13 @@
         <span class="kw">let </span><span class="kw-2">mut </span>rng = rand::thread_rng();
         <span class="kw">let </span><span class="kw-2">mut </span>key = <span class="macro">vec!</span>[];
         <span class="kw">for </span>_i <span class="kw">in </span><span class="number">0</span>..key_size {
-            <span class="kw">let </span>random_value = rng.gen_range(<span class="number">0</span>..<span class="self">self</span>.alphabet.len());
-            <span class="kw">let </span>random_byte = <span class="self">self</span>.alphabet.values().nth(random_value).unwrap()[<span class="number">0</span>];<span class="comment">// TODO get multichars // .sorted() ?
+            <span class="kw">let </span>random_value = rng.gen_range(<span class="number">0</span>..<span class="self">self</span>.alphabet.encoding.len());
+            <span class="kw">let </span>random_byte = <span class="self">self</span>.alphabet.encoding.right_values().nth(random_value).unwrap()[<span class="number">0</span>];<span class="comment">// TODO get multichars // .sorted() ?
             </span>key.push(<span class="macro">vec!</span>[random_byte]);
         }
 
-        <span class="kw">let </span>vig: VigenereNoTable = VigenereNoTable::new(<span class="self">self</span>.alphabet.to_owned());
-        <span class="kw">let </span>vigenere_coincidence_index_guesser = CoincidenceIndexGuesser::new(<span class="self">self</span>.alphabet.to_owned());
+        <span class="kw">let </span>vig: VigenereNoTable = VigenereNoTable::new(<span class="self">self</span>.alphabet.clone());
+        <span class="kw">let </span>vigenere_coincidence_index_guesser = CoincidenceIndexGuesser::new(<span class="self">self</span>.alphabet.clone());
         <span class="kw">let </span>cipher_text = vig.encrypt(input, key);
         <span class="kw">let </span>coincidence_index = vigenere_coincidence_index_guesser.guess_coincidence_index(cipher_text);
 
@@ -307,14 +318,13 @@
     /// The coincidence index depends of the alphabet.
     /// ```
     /// use once_cell::sync::Lazy;
-    /// use cryptatools_core::utils::{convert::Encode,  alphabets::PRINTABLE_ASCII_ALPHABET};
+    /// use cryptatools_core::utils::{convert::Encode,  alphabets::Alphabet};
     /// use cryptatools_core::cryptanalysis::general_cryptanalysis_methods::frequency_analysis::coincidence_index::CoincidenceIndexGenerator;
     /// use approx::assert_abs_diff_eq;
     /// 
-    /// use std::path::Path;
-    /// use std::fs;
     /// 
-    /// let mut vcig = CoincidenceIndexGenerator::new(Lazy::force(&amp;PRINTABLE_ASCII_ALPHABET).to_owned());
+    /// let alphabet = Alphabet::new_empty().ascii_printable_only_encoding();
+    /// let mut vcig = CoincidenceIndexGenerator::new(alphabet.into());
     /// let mut ci = vcig.generate_coincidence_index_for_key_from_file(5, String::from(&quot;./data/text-corpus-for-statistics/gutenberg/austen-emma.txt&quot;));
     /// 
     /// assert_abs_diff_eq!(ci, 0.01, epsilon = 1e-1);
@@ -326,7 +336,7 @@
             <span class="prelude-val">Err</span>(error) =&gt; <span class="macro">panic!</span>(<span class="string">&quot;{0}&quot;</span>, error),
         };
 
-        <span class="kw">let </span>encoded_file_content = Encode::encode(<span class="self">self</span>.alphabet.clone(), file_content);
+        <span class="kw">let </span>encoded_file_content = Encode::encode(<span class="kw-2">&amp;</span><span class="self">self</span>.alphabet, file_content);
         <span class="kw">let </span>coincidence_index_found = <span class="self">self</span>.generate_coincidence_index_for_key(key_size, encoded_file_content);
         coincidence_index_found
     }

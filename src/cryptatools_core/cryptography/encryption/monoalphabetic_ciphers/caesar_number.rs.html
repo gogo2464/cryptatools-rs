@@ -108,18 +108,17 @@
 <span id="108">108</span>
 <span id="109">109</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Encrypt with Caesar shifting encryption algorithm.
-</span><span class="kw">use </span>std::collections::HashMap;
-<span class="kw">use </span>itertools::Itertools;
-
+</span><span class="kw">use </span>std::sync::Arc;
+<span class="kw">use </span><span class="kw">crate</span>::utils::alphabets::Alphabet;
 <span class="kw">use </span><span class="kw">crate</span>::utils::alphabets;
 
 <span class="kw">pub struct </span>CaesarNumberAlgorithm {
     <span class="doccomment">/// Alphabet used by the caesar number encryption Algotithm.
-    </span><span class="kw">pub </span>alphabet : HashMap&lt;String, Vec&lt;u8&gt;&gt;,
+    </span><span class="kw">pub </span>alphabet: Arc&lt;Alphabet&gt;,
 }
 
 <span class="kw">impl </span>CaesarNumberAlgorithm {
-    <span class="kw">pub fn </span>new(alphabet: HashMap&lt;String, Vec&lt;u8&gt;&gt;) -&gt; <span class="self">Self </span>{
+    <span class="kw">pub fn </span>new(alphabet: Arc&lt;Alphabet&gt;) -&gt; <span class="self">Self </span>{
         CaesarNumberAlgorithm {
             alphabet
         }
@@ -133,19 +132,21 @@
      /// 
      ///  ```
      ///  use cryptatools_core::cryptography::encryption::monoalphabetic_ciphers::caesar_number::CaesarNumberAlgorithm;
-     ///  use cryptatools_core::utils::alphabets::ASCII_ALPHABET;
-     ///  use once_cell::sync::Lazy;
-     ///  let mut c: CaesarNumberAlgorithm = CaesarNumberAlgorithm::new(Lazy::force(&amp;ASCII_ALPHABET).to_owned());
+     ///  use cryptatools_core::utils::alphabets::Alphabet;
+     ///  
+     ///  let ascii_alphabet = Alphabet::new_empty().ascii_encoding();
+     ///  let mut c: CaesarNumberAlgorithm = CaesarNumberAlgorithm::new(ascii_alphabet.into());
      ///  let encrypted = c.encrypt_by_opcode_shift(vec![0x41, 0x41, 0x41], 1);
      ///  assert_eq!(vec![0x42, 0x42, 0x42], encrypted);
      ///  ```
      /// 
      ///  ```
      ///  use cryptatools_core::cryptography::encryption::monoalphabetic_ciphers::caesar_number::CaesarNumberAlgorithm;
-     ///  use cryptatools_core::utils::alphabets::ASCII_ALPHABET;
-     ///  use once_cell::sync::Lazy;
+     ///  use cryptatools_core::utils::alphabets::Alphabet;
      ///  use std::char;
-     ///  let mut c: CaesarNumberAlgorithm = CaesarNumberAlgorithm::new(Lazy::force(&amp;ASCII_ALPHABET).to_owned());
+     /// 
+     ///  let ascii_alphabet = Alphabet::new_empty().ascii_encoding();
+     ///  let mut c: CaesarNumberAlgorithm = CaesarNumberAlgorithm::new(ascii_alphabet.into());
      ///  let plain_text: Vec&lt;u8&gt; = vec![0x41, 0x41, 0x41];
      ///  let encrypted = c.encrypt_by_opcode_shift(plain_text, 1);
      ///  let mut re_encrypted = String::new();
@@ -157,10 +158,11 @@
      /// 
      ///  ```
      ///  use cryptatools_core::cryptography::encryption::monoalphabetic_ciphers::caesar_number::CaesarNumberAlgorithm;
-     ///  use cryptatools_core::utils::alphabets::ASCII_ALPHABET;
-     ///  use once_cell::sync::Lazy;
+     ///  use cryptatools_core::utils::alphabets::Alphabet;
      ///  use std::char;
-     ///  let mut c: CaesarNumberAlgorithm = CaesarNumberAlgorithm::new(Lazy::force(&amp;ASCII_ALPHABET).to_owned());
+     /// 
+     ///  let printable_chars_of_ascii_characters = Alphabet::new_empty().ascii_printable_only_encoding();
+     ///  let mut c: CaesarNumberAlgorithm = CaesarNumberAlgorithm::new(printable_chars_of_ascii_characters.into());
      ///  let plain_text: Vec&lt;u8&gt; = vec![0x41, 0x41, 0x41];
      ///  let encrypted = c.encrypt_by_opcode_shift(plain_text, 10);
      ///  let mut re_encrypted = String::new();
@@ -169,7 +171,6 @@
      ///  }
      ///  assert_eq!(re_encrypted, &quot;KKK&quot;);
      ///  ```
-
      </span><span class="kw">pub fn </span>encrypt_by_opcode_shift(<span class="kw-2">&amp;</span><span class="self">self</span>, plain_text: Vec&lt;u8&gt;, key: u32) -&gt; Vec&lt;u8&gt; {
         <span class="kw">let </span><span class="kw-2">mut </span>result: Vec&lt;u8&gt; = Vec::new();
 
@@ -188,15 +189,15 @@
      ///  The custom alphabet has been put in the constructor of the struct CaesarNumberAlgorithm.
      /// 
     </span><span class="kw">pub fn </span>encrypt_by_alphabet_shift(<span class="kw-2">&amp;</span><span class="self">self</span>, plain_text: Vec&lt;u8&gt;, key: u32) -&gt; Vec&lt;u8&gt; {
-        <span class="kw">let </span>plain_unified_opcodes = alphabets::split_bytes_by_characters_representation(<span class="self">self</span>.alphabet.clone(), plain_text.clone());
+        <span class="kw">let </span>plain_unified_opcodes = alphabets::split_bytes_by_characters_representation(<span class="kw-2">&amp;</span><span class="self">self</span>.alphabet, plain_text.clone());
         <span class="kw">let </span><span class="kw-2">mut </span>cipher_unified_opcodes = <span class="macro">vec!</span>[];
-        <span class="kw">let </span>ordered_alphabet = <span class="self">self</span>.alphabet.iter().sorted().collect::&lt;Vec&lt;(<span class="kw-2">&amp;</span>String, <span class="kw-2">&amp;</span>Vec&lt;u8&gt;)&gt;&gt;();
+        <span class="kw">let </span>ordered_alphabet = <span class="self">self</span>.alphabet.get_encoding();
 
         <span class="kw">for </span>opcode <span class="kw">in </span>plain_unified_opcodes {
-            <span class="kw">let </span>plain_text_position: u32 = ordered_alphabet.iter().position(|opcodes_key| opcodes_key.<span class="number">1 </span>== <span class="kw-2">&amp;</span>opcode ).unwrap() <span class="kw">as </span>u32;
-            <span class="kw">let </span>cipher_text_position: u32 = (plain_text_position + key) % (<span class="self">self</span>.alphabet.len() <span class="kw">as </span>u32);
+            <span class="kw">let </span>plain_text_position: u32 = ordered_alphabet.iter().position(|opcodes_key| opcodes_key.bytes == opcode).unwrap() <span class="kw">as </span>u32;
+            <span class="kw">let </span>cipher_text_position: u32 = (plain_text_position + key) % (<span class="self">self</span>.alphabet.get_encoding().len() <span class="kw">as </span>u32);
 
-            cipher_unified_opcodes.push(ordered_alphabet[cipher_text_position <span class="kw">as </span>usize].clone().<span class="number">1</span>.clone());
+            cipher_unified_opcodes.push(ordered_alphabet[cipher_text_position <span class="kw">as </span>usize].bytes.clone());
         }
 
         alphabets::uniffy_opcode_group(cipher_unified_opcodes)
@@ -205,13 +206,12 @@
 
 <span class="attribute">#[cfg(test)]
 </span><span class="kw">mod </span>tests {
-    <span class="kw">use super</span>::* ;
-    <span class="kw">use </span><span class="kw">crate</span>::utils::alphabets::ASCII_ALPHABET;
-    <span class="kw">use </span>once_cell::sync::Lazy;
+    <span class="kw">use super</span>::<span class="kw-2">*</span>;
 
     <span class="attribute">#[test]
     </span><span class="kw">fn </span>encrypt_with_caesar_number_encryption_algorithm() {
-        <span class="kw">let </span>c = CaesarNumberAlgorithm::new(Lazy::force(<span class="kw-2">&amp;</span>ASCII_ALPHABET).to_owned());
+        <span class="kw">let </span>ascii = alphabets::Alphabet::new(<span class="macro">vec!</span>[]).ascii_printable_only_encoding();
+        <span class="kw">let </span>c = CaesarNumberAlgorithm::new(Arc::new(ascii));
         <span class="kw">let </span>encrypted = c.encrypt_by_opcode_shift(<span class="macro">vec!</span>[<span class="number">0x42</span>, <span class="number">0x42</span>, <span class="number">0x42</span>], <span class="number">1</span>);
         <span class="macro">assert_eq!</span>(<span class="macro">vec!</span>[<span class="number">0x43</span>, <span class="number">0x43</span>, <span class="number">0x43</span>], encrypted);
     }
