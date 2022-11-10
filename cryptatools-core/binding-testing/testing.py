@@ -1,5 +1,5 @@
-from cryptatools_core.utils.alphabets import Encoding, Alphabet
 from cryptatools_core.cryptography.encryption.monoalphabetic_cipher.caesar_number import CaesarNumberAlgorithm
+from cryptatools_core.utils.alphabets import Encoding, Alphabet
 
 printable_alphabet_list = [
     Encoding(" ", [0x20]),
