@@ -180,9 +180,15 @@ Then do not forget to edit the file `cryptatools-rs/cryptatools-core/src/lib.rs`
 uniffi_macros::include_scaffolding!("cryptatools");
 ```
 
-import your own crate.
+This step will generate a single python file that you could import directly. Sadly the good pratice you must do to import these is a bit more complicated.
 
-Once this is done, edit the task `Test python bindings` on the pipeline of the file `cryptatools-rs/.github/workflows/windows.yml`. Fell free to import and use your work here.
+`cryptatools-rs\cryptatools-core\setup.py`
+
+In order to import your own crate, create the corresponding python file or folders under `cryptatools-rs\cryptatools-core\bindings\python3\cryptatools-core\cryptanalysis\`. Here you need to import the necessary objects from from `cryptatools_core.python3_bindings`. Example, in the file `cryptatools-rs\cryptatools-core\bindings\python3\cryptatools-core\cryptography\encryption\monoalphabetic_cipher\caesar_number.py` we just have written: `from cryptatools_core.python3_bindings import CaesarNumberAlgorithm`.
+
+Once this is done, fell free to write unit tests. At least one for each method implemented. The tests are writtenh in the file `cryptatools-rs\cryptatools-core\binding-testing\testing.py`.
+
+You are now free to test and compile your code with [the documentation at this link](https://github.com/gogo2464/cryptatools-rs#2-python-binding-installation).
 
 
 <p align="right">(<a href="#top">back to top</a>)</p>

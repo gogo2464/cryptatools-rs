@@ -1,5 +1,5 @@
-from cryptatools_core.python3_bindings import CaesarNumberAlgorithm, Encoding, Alphabet
-
+from cryptatools_core.cryptography.encryption.monoalphabetic_cipher.caesar_number import CaesarNumberAlgorithm
+from cryptatools_core.utils.alphabets import Encoding, Alphabet
 
 printable_alphabet_list = [
     Encoding(" ", [0x20]),
@@ -100,7 +100,6 @@ printable_alphabet_list = [
 ]
 
 printable_alphabet = Alphabet(printable_alphabet_list)
-
 c = CaesarNumberAlgorithm(alphabet=printable_alphabet)
 
 cipher = c.encrypt_by_alphabet_shift([0x61, 0x61], 6)
