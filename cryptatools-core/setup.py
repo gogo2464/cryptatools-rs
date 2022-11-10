@@ -222,9 +222,17 @@ setup(
     version="0.1.0",
     packages=[
          "cryptatools_core",
+         "cryptatools_core.cryptography",
+         "cryptatools_core.cryptography.encryption",
+         "cryptatools_core.cryptography.encryption.monoalphabetic_cipher",
+         "cryptatools_core.utils",
     ],
     package_dir={
-         "cryptatools_core": "cryptatools-core/bindings/python3/cryptatools-core"
+         "cryptatools_core": "cryptatools-core/bindings/python3/cryptatools-core",
+         "cryptography": "cryptatools-core/bindings/python3/cryptatools-core/cryptography",
+         "encryption": "cryptatools_core.cryptography.encryption",
+         "monoalphabetic_cipher": "cryptatools_core.cryptography.encryption.monoalphabetic_cipher",
+         "utils": "cryptatools_core.utils",
     },
     setup_requires=requirements,
     url="https://github.com/gogo2464/cryptatools",
