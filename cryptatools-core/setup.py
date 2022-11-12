@@ -30,7 +30,6 @@ SRC_ROOT = PYTHON_ROOT.parents[1]
 
 requirements = [
     "semver>=2.13.0",
-    "glean_parser~=6.1",
     "wheel",
     "semantic-version==2.9.0",
     "setuptools",
@@ -207,11 +206,7 @@ setup(
     classifiers=[
         "Intended Audience :: Developers",
         "Natural Language :: English",
-        "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.6",
-        "Programming Language :: Python :: 3.7",
-        "Programming Language :: Python :: 3.8",
-        "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3"
     ],
     description="Python Binding of the library and cryptanalysis tool 'cryptatools'.",
     install_requires=requirements,
@@ -225,6 +220,7 @@ setup(
          "cryptatools_core.cryptography",
          "cryptatools_core.cryptography.encryption",
          "cryptatools_core.cryptography.encryption.monoalphabetic_cipher",
+         "cryptatools_core.cryptography.encryption.transpositional_ciphers",
          "cryptatools_core.utils",
     ],
     package_dir={
@@ -232,6 +228,7 @@ setup(
          "cryptography": "cryptatools-core/bindings/python3/cryptatools-core/cryptography",
          "encryption": "cryptatools_core/cryptography/encryption",
          "monoalphabetic_cipher": "cryptatools_core/cryptography/encryption/monoalphabetic_cipher",
+         "transpositional_ciphers": "cryptatools_core/cryptography/encryption/transpositional_ciphers",
          "utils": "cryptatools_core/utils",
     },
     setup_requires=requirements,
