@@ -1,6 +1,8 @@
 from cryptatools_core.cryptography.encryption.monoalphabetic_cipher.caesar_number import CaesarNumberAlgorithm
 from cryptatools_core.utils.alphabets import Encoding, Alphabet
 
+from cryptatools_core.cryptography.encryption.transpositional_ciphers.columnar_transposition import ColumnarTranspositionAlgorithm
+
 printable_alphabet_list = [
     Encoding(" ", [0x20]),
     Encoding("!", [0x21]),
@@ -113,3 +115,8 @@ print("cipher = {0}. OK!".format(cipher))
 cipher = c.encrypt_by_alphabet_shift([0x7e, 0x7e], 3)
 assert cipher == [0x22, 0x22], f"cipher={cipher} (should be [0x23, 0x23])"
 print("cipher = {0}. OK!".format(cipher))
+
+transpositional_cipher = ColumnarTranspositionAlgorithm(alphabet=printable_alphabet)
+plain = transpositional_cipher.encrypt([0x41, 0x42, 0x43, 0x44, 0x45, 0x46], 3)
+assert plain == [0x41, 0x44, 0x42, 0x45, 0x43, 0x46], f"cipher={plain} incorrect transposition cipher encryption."
+print("plain = {0}. OK!".format(plain))

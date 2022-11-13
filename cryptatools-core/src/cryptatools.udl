@@ -20,3 +20,9 @@ interface CaesarNumberAlgorithm {
     sequence<u8> encrypt_by_opcode_shift(sequence<u8> plain_text, u32 key);
     sequence<u8> encrypt_by_alphabet_shift(sequence<u8> plain_text, u32 key);
 };
+
+interface ColumnarTranspositionAlgorithm {
+    constructor(Alphabet alphabet);
+    sequence<u8> encrypt(sequence<u8> plain_text, u32 key);
+    sequence<u8> decrypt(sequence<u8> cipher_text, u32 key);
+};
