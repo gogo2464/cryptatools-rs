@@ -6,7 +6,7 @@ on:
       - master
 
 jobs:
-  test:
+  build:
     strategy:
       matrix:
         os: [ubuntu-latest]
@@ -28,6 +28,8 @@ jobs:
         command: build
         args: --release --all-features
 
+  deploy-documentation:
+    steps:
     - name: generate documentation
       run: |
         cargo doc --package cryptatools-core --target-dir ./out &&
@@ -39,3 +41,24 @@ jobs:
       with:
         folder: docs
         branch: gh-pages
+
+  deploy-python-bindings-to-pypi:
+    steps:
+    - name: Install dependencies
+      run: |
+        cargo install uniffi_bindgen
+        pip install setuptools wheel twine
+    
+    - name: Build and install Python Bindings
+      run: |
+        python3 ./cryptatools-core/setup.py bdist_wheel --verbose ;
+        #pip3 install ./dist/* --force-reinstall ;
+
+    #- name: Publish
+    #  run: |
+    #    python3 -m twine upload --repository testpypi ./dist/*
+
+    - name: Publish a Python distribution to PyPI
+      uses: pypa/gh-action-pypi-publish@release/v1
+      with:
+        password: ${{ secrets.PYPI_API_TOKEN }}
