@@ -1,4 +1,4 @@
-name: Publish Documentation Online from Ubuntu
+name: Deploy documentation and python packages on pypi
 
 on:
   push:
@@ -29,7 +29,13 @@ jobs:
         args: --release --all-features
 
   deploy-documentation:
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+    runs-on:
+      - ubuntu-latest
     steps:
+
     - name: generate documentation
       run: |
         cargo doc --package cryptatools-core --target-dir ./out &&
@@ -43,6 +49,11 @@ jobs:
         branch: gh-pages
 
   deploy-python-bindings-to-pypi:
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+    runs-on:
+      - ubuntu-latest
     steps:
     - name: Install dependencies
       run: |
