@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/rayon-1.5.3/src/slice/mergesort.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>mergesort.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../normalize.css"><link rel="stylesheet" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../ayu.css" disabled><link rel="stylesheet" href="../../../dark.css" disabled><link rel="stylesheet" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../rayon/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../rayon/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../rayon/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/rayon-1.6.0/src/slice/mergesort.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>mergesort.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../normalize.css"><link rel="stylesheet" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../ayu.css" disabled><link rel="stylesheet" href="../../../dark.css" disabled><link rel="stylesheet" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../rayon/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../rayon/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../rayon/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -960,10 +960,9 @@
     <span class="kw">impl</span>&lt;T&gt; Drop <span class="kw">for </span>MergeHole&lt;T&gt; {
         <span class="kw">fn </span>drop(<span class="kw-2">&amp;mut </span><span class="self">self</span>) {
             <span class="comment">// `T` is not a zero-sized type, so it&#39;s okay to divide by its size.
-            </span><span class="kw">let </span>len = (<span class="self">self</span>.end <span class="kw">as </span>usize - <span class="self">self</span>.start <span class="kw">as </span>usize) / size_of::&lt;T&gt;();
-            <span class="kw">unsafe </span>{
-                <span class="comment">// TODO 1.47: let len = self.end.offset_from(self.start) as usize;
-                </span>ptr::copy_nonoverlapping(<span class="self">self</span>.start, <span class="self">self</span>.dest, len);
+            </span><span class="kw">unsafe </span>{
+                <span class="kw">let </span>len = <span class="self">self</span>.end.offset_from(<span class="self">self</span>.start) <span class="kw">as </span>usize;
+                ptr::copy_nonoverlapping(<span class="self">self</span>.start, <span class="self">self</span>.dest, len);
             }
         }
     }
@@ -1246,8 +1245,8 @@
         </span><span class="kw">let </span>dest_l = SendPtr(dest);
         <span class="kw">let </span>dest_r = SendPtr(dest.add(left_l.len() + right_l.len()));
         rayon_core::join(
-            || par_merge(left_l, right_l, dest_l.<span class="number">0</span>, is_less),
-            || par_merge(left_r, right_r, dest_r.<span class="number">0</span>, is_less),
+            <span class="kw">move </span>|| par_merge(left_l, right_l, dest_l.get(), is_less),
+            <span class="kw">move </span>|| par_merge(left_r, right_r, dest_r.get(), is_less),
         );
     }
     <span class="comment">// Finally, `s` gets dropped if we used sequential merge, thus copying the remaining elements
@@ -1325,7 +1324,7 @@
 
     <span class="comment">// After recursive calls finish we&#39;ll have to merge chunks `(start, mid)` and `(mid, end)` from
     // `src` into `dest`. If the current invocation has to store the result into `buf`, we&#39;ll
-    // merge chunks from `v` into `buf`, and viceversa.
+    // merge chunks from `v` into `buf`, and vice versa.
     //
     // Recursive calls flip `into_buf` at each level of recursion. More concretely, `par_merge`
     // merges chunks from `buf` into `v` at the first level, from `v` into `buf` at the second
@@ -1348,8 +1347,8 @@
     </span><span class="kw">let </span>v = SendPtr(v);
     <span class="kw">let </span>buf = SendPtr(buf);
     rayon_core::join(
-        || recurse(v.<span class="number">0</span>, buf.<span class="number">0</span>, left, !into_buf, is_less),
-        || recurse(v.<span class="number">0</span>, buf.<span class="number">0</span>, right, !into_buf, is_less),
+        <span class="kw">move </span>|| recurse(v.get(), buf.get(), left, !into_buf, is_less),
+        <span class="kw">move </span>|| recurse(v.get(), buf.get(), right, !into_buf, is_less),
     );
 
     <span class="comment">// Everything went all right - recursive calls didn&#39;t panic.
@@ -1416,16 +1415,17 @@
         <span class="comment">// Wrap pointer in SendPtr so that it can be sent to another thread
         // See the documentation of SendPtr for a full explanation
         </span><span class="kw">let </span>buf = SendPtr(buf);
+        <span class="kw">let </span>is_less = <span class="kw-2">&amp;</span>is_less;
 
         v.par_chunks_mut(CHUNK_LENGTH)
             .with_max_len(<span class="number">1</span>)
             .enumerate()
-            .map(|(i, chunk)| {
+            .map(<span class="kw">move </span>|(i, chunk)| {
                 <span class="kw">let </span>l = CHUNK_LENGTH * i;
                 <span class="kw">let </span>r = l + chunk.len();
                 <span class="kw">unsafe </span>{
-                    <span class="kw">let </span>buf = buf.<span class="number">0</span>.add(l);
-                    (l, r, mergesort(chunk, buf, <span class="kw-2">&amp;</span>is_less))
+                    <span class="kw">let </span>buf = buf.get().add(l);
+                    (l, r, mergesort(chunk, buf, is_less))
                 }
             })
             .collect::&lt;Vec&lt;<span class="kw">_</span>&gt;&gt;()
@@ -1486,7 +1486,7 @@
         check(<span class="kw-2">&amp;</span>[<span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">3</span>], <span class="kw-2">&amp;</span>[]);
         check(<span class="kw-2">&amp;</span>[], <span class="kw-2">&amp;</span>[<span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">3</span>]);
 
-        <span class="kw">let </span><span class="kw-2">ref mut </span>rng = thread_rng();
+        <span class="kw">let </span>rng = <span class="kw-2">&amp;mut </span>thread_rng();
 
         <span class="kw">for _ in </span><span class="number">0</span>..<span class="number">100 </span>{
             <span class="kw">let </span>limit: u32 = rng.gen_range(<span class="number">1</span>..<span class="number">21</span>);

@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/rayon-core-1.9.3/src/registry.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>registry.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../rayon_core/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../rayon_core/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../rayon_core/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/rayon-core-1.10.1/src/registry.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>registry.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../rayon_core/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../rayon_core/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../rayon_core/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -921,6 +921,53 @@
 <span id="921">921</span>
 <span id="922">922</span>
 <span id="923">923</span>
+<span id="924">924</span>
+<span id="925">925</span>
+<span id="926">926</span>
+<span id="927">927</span>
+<span id="928">928</span>
+<span id="929">929</span>
+<span id="930">930</span>
+<span id="931">931</span>
+<span id="932">932</span>
+<span id="933">933</span>
+<span id="934">934</span>
+<span id="935">935</span>
+<span id="936">936</span>
+<span id="937">937</span>
+<span id="938">938</span>
+<span id="939">939</span>
+<span id="940">940</span>
+<span id="941">941</span>
+<span id="942">942</span>
+<span id="943">943</span>
+<span id="944">944</span>
+<span id="945">945</span>
+<span id="946">946</span>
+<span id="947">947</span>
+<span id="948">948</span>
+<span id="949">949</span>
+<span id="950">950</span>
+<span id="951">951</span>
+<span id="952">952</span>
+<span id="953">953</span>
+<span id="954">954</span>
+<span id="955">955</span>
+<span id="956">956</span>
+<span id="957">957</span>
+<span id="958">958</span>
+<span id="959">959</span>
+<span id="960">960</span>
+<span id="961">961</span>
+<span id="962">962</span>
+<span id="963">963</span>
+<span id="964">964</span>
+<span id="965">965</span>
+<span id="966">966</span>
+<span id="967">967</span>
+<span id="968">968</span>
+<span id="969">969</span>
+<span id="970">970</span>
 </pre><pre class="rust"><code><span class="kw">use </span><span class="kw">crate</span>::job::{JobFifo, JobRef, StackJob};
 <span class="kw">use </span><span class="kw">crate</span>::latch::{AsCoreLatch, CoreLatch, CountLatch, Latch, LockLatch, SpinLatch};
 <span class="kw">use </span><span class="kw">crate</span>::log::Event::<span class="kw-2">*</span>;
@@ -931,7 +978,6 @@
     ErrorKind, ExitHandler, PanicHandler, StartHandler, ThreadPoolBuildError, ThreadPoolBuilder,
 };
 <span class="kw">use </span>crossbeam_deque::{Injector, Steal, Stealer, Worker};
-<span class="kw">use </span>std::any::Any;
 <span class="kw">use </span>std::cell::Cell;
 <span class="kw">use </span>std::collections::hash_map::DefaultHasher;
 <span class="kw">use </span>std::fmt;
@@ -939,10 +985,8 @@
 <span class="kw">use </span>std::io;
 <span class="kw">use </span>std::mem;
 <span class="kw">use </span>std::ptr;
-<span class="attribute">#[allow(deprecated)]
-</span><span class="kw">use </span>std::sync::atomic::ATOMIC_USIZE_INIT;
 <span class="kw">use </span>std::sync::atomic::{AtomicUsize, Ordering};
-<span class="kw">use </span>std::sync::{Arc, Once};
+<span class="kw">use </span>std::sync::{Arc, Mutex, Once};
 <span class="kw">use </span>std::thread;
 <span class="kw">use </span>std::usize;
 
@@ -952,6 +996,7 @@
     name: <span class="prelude-ty">Option</span>&lt;String&gt;,
     stack_size: <span class="prelude-ty">Option</span>&lt;usize&gt;,
     worker: Worker&lt;JobRef&gt;,
+    stealer: Stealer&lt;JobRef&gt;,
     registry: Arc&lt;Registry&gt;,
     index: usize,
 }
@@ -964,7 +1009,7 @@
 
     <span class="doccomment">/// Gets the string that was specified by `ThreadPoolBuilder::name()`.
     </span><span class="kw">pub fn </span>name(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>str&gt; {
-        <span class="self">self</span>.name.as_ref().map(String::as_str)
+        <span class="self">self</span>.name.as_deref()
     }
 
     <span class="doccomment">/// Gets the value that was specified by `ThreadPoolBuilder::stack_size()`.
@@ -975,7 +1020,7 @@
     <span class="doccomment">/// Executes the main loop for this thread. This will not return until the
     /// thread pool is dropped.
     </span><span class="kw">pub fn </span>run(<span class="self">self</span>) {
-        <span class="kw">unsafe </span>{ main_loop(<span class="self">self</span>.worker, <span class="self">self</span>.registry, <span class="self">self</span>.index) }
+        <span class="kw">unsafe </span>{ main_loop(<span class="self">self</span>.worker, <span class="self">self</span>.stealer, <span class="self">self</span>.registry, <span class="self">self</span>.index) }
     }
 }
 
@@ -1058,6 +1103,7 @@
     thread_infos: Vec&lt;ThreadInfo&gt;,
     sleep: Sleep,
     injected_jobs: Injector&lt;JobRef&gt;,
+    broadcasts: Mutex&lt;Vec&lt;Worker&lt;JobRef&gt;&gt;&gt;,
     panic_handler: <span class="prelude-ty">Option</span>&lt;Box&lt;PanicHandler&gt;&gt;,
     start_handler: <span class="prelude-ty">Option</span>&lt;Box&lt;StartHandler&gt;&gt;,
     exit_handler: <span class="prelude-ty">Option</span>&lt;Box&lt;ExitHandler&gt;&gt;,
@@ -1155,12 +1201,21 @@
             })
             .unzip();
 
+        <span class="kw">let </span>(broadcasts, broadcast_stealers): (Vec&lt;<span class="kw">_</span>&gt;, Vec&lt;<span class="kw">_</span>&gt;) = (<span class="number">0</span>..n_threads)
+            .map(|<span class="kw">_</span>| {
+                <span class="kw">let </span>worker = Worker::new_fifo();
+                <span class="kw">let </span>stealer = worker.stealer();
+                (worker, stealer)
+            })
+            .unzip();
+
         <span class="kw">let </span>logger = Logger::new(n_threads);
         <span class="kw">let </span>registry = Arc::new(Registry {
             logger: logger.clone(),
             thread_infos: stealers.into_iter().map(ThreadInfo::new).collect(),
             sleep: Sleep::new(logger, n_threads),
             injected_jobs: Injector::new(),
+            broadcasts: Mutex::new(broadcasts),
             terminate_count: AtomicUsize::new(<span class="number">1</span>),
             panic_handler: builder.take_panic_handler(),
             start_handler: builder.take_start_handler(),
@@ -1170,12 +1225,13 @@
         <span class="comment">// If we return early or panic, make sure to terminate existing threads.
         </span><span class="kw">let </span>t1000 = Terminator(<span class="kw-2">&amp;</span>registry);
 
-        <span class="kw">for </span>(index, worker) <span class="kw">in </span>workers.into_iter().enumerate() {
+        <span class="kw">for </span>(index, (worker, stealer)) <span class="kw">in </span>workers.into_iter().zip(broadcast_stealers).enumerate() {
             <span class="kw">let </span>thread = ThreadBuilder {
                 name: builder.get_thread_name(index),
                 stack_size: builder.get_stack_size(),
                 registry: Arc::clone(<span class="kw-2">&amp;</span>registry),
                 worker,
+                stealer,
                 index,
             };
             <span class="kw">if let </span><span class="prelude-val">Err</span>(e) = builder.get_spawn_handler().spawn(thread) {
@@ -1245,19 +1301,14 @@
         <span class="self">self</span>.thread_infos.len()
     }
 
-    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">fn </span>handle_panic(<span class="kw-2">&amp;</span><span class="self">self</span>, err: Box&lt;<span class="kw">dyn </span>Any + Send&gt;) {
-        <span class="kw">match </span><span class="self">self</span>.panic_handler {
-            <span class="prelude-val">Some</span>(<span class="kw-2">ref </span>handler) =&gt; {
-                <span class="comment">// If the customizable panic handler itself panics,
-                // then we abort.
-                </span><span class="kw">let </span>abort_guard = unwind::AbortIfPanic;
+    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">fn </span>catch_unwind(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw">impl </span>FnOnce()) {
+        <span class="kw">if let </span><span class="prelude-val">Err</span>(err) = unwind::halt_unwinding(f) {
+            <span class="comment">// If there is no handler, or if that handler itself panics, then we abort.
+            </span><span class="kw">let </span>abort_guard = unwind::AbortIfPanic;
+            <span class="kw">if let </span><span class="prelude-val">Some</span>(<span class="kw-2">ref </span>handler) = <span class="self">self</span>.panic_handler {
                 handler(err);
                 mem::forget(abort_guard);
             }
-            <span class="prelude-val">None </span>=&gt; {
-                <span class="comment">// Default panic handler aborts.
-                </span><span class="kw">let _ </span>= unwind::AbortIfPanic; <span class="comment">// let this drop.
-            </span>}
         }
     }
 
@@ -1301,7 +1352,7 @@
     }
 
     <span class="doccomment">/// Push a job into the &quot;external jobs&quot; queue; it will be taken by
-    /// whatever worker has nothing to do. Use this is you know that
+    /// whatever worker has nothing to do. Use this if you know that
     /// you are not on a worker of this registry.
     </span><span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">fn </span>inject(<span class="kw-2">&amp;</span><span class="self">self</span>, injected_jobs: <span class="kw-2">&amp;</span>[JobRef]) {
         <span class="self">self</span>.log(|| JobsInjected {
@@ -1345,6 +1396,40 @@
                 Steal::Empty =&gt; <span class="kw">return </span><span class="prelude-val">None</span>,
                 Steal::Retry =&gt; {}
             }
+        }
+    }
+
+    <span class="doccomment">/// Push a job into each thread&#39;s own &quot;external jobs&quot; queue; it will be
+    /// executed only on that thread, when it has nothing else to do locally,
+    /// before it tries to steal other work.
+    ///
+    /// **Panics** if not given exactly as many jobs as there are threads.
+    </span><span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">fn </span>inject_broadcast(<span class="kw-2">&amp;</span><span class="self">self</span>, injected_jobs: <span class="kw">impl </span>ExactSizeIterator&lt;Item = JobRef&gt;) {
+        <span class="macro">assert_eq!</span>(<span class="self">self</span>.num_threads(), injected_jobs.len());
+        <span class="self">self</span>.log(|| JobBroadcast {
+            count: <span class="self">self</span>.num_threads(),
+        });
+        {
+            <span class="kw">let </span>broadcasts = <span class="self">self</span>.broadcasts.lock().unwrap();
+
+            <span class="comment">// It should not be possible for `state.terminate` to be true
+            // here. It is only set to true when the user creates (and
+            // drops) a `ThreadPool`; and, in that case, they cannot be
+            // calling `inject_broadcast()` later, since they dropped their
+            // `ThreadPool`.
+            </span><span class="macro">debug_assert_ne!</span>(
+                <span class="self">self</span>.terminate_count.load(Ordering::Acquire),
+                <span class="number">0</span>,
+                <span class="string">&quot;inject_broadcast() sees state.terminate as true&quot;
+            </span>);
+
+            <span class="macro">assert_eq!</span>(broadcasts.len(), injected_jobs.len());
+            <span class="kw">for </span>(worker, job_ref) <span class="kw">in </span>broadcasts.iter().zip(injected_jobs) {
+                worker.push(job_ref);
+            }
+        }
+        <span class="kw">for </span>i <span class="kw">in </span><span class="number">0</span>..<span class="self">self</span>.num_threads() {
+            <span class="self">self</span>.sleep.notify_worker_latch_is_set(i);
         }
     }
 
@@ -1517,6 +1602,9 @@
     <span class="doccomment">/// the &quot;worker&quot; half of our local deque
     </span>worker: Worker&lt;JobRef&gt;,
 
+    <span class="doccomment">/// the &quot;stealer&quot; half of the worker&#39;s broadcast deque
+    </span>stealer: Stealer&lt;JobRef&gt;,
+
     <span class="doccomment">/// local queue used for `spawn_fifo` indirection
     </span>fifo: JobFifo,
 
@@ -1612,9 +1700,20 @@
 
         <span class="kw">if </span>popped_job.is_some() {
             <span class="self">self</span>.log(|| JobPopped { worker: <span class="self">self</span>.index });
+            <span class="kw">return </span>popped_job;
         }
 
-        popped_job
+        <span class="kw">loop </span>{
+            <span class="kw">match </span><span class="self">self</span>.stealer.steal() {
+                Steal::Success(job) =&gt; <span class="kw">return </span><span class="prelude-val">Some</span>(job),
+                Steal::Empty =&gt; <span class="kw">return </span><span class="prelude-val">None</span>,
+                Steal::Retry =&gt; {}
+            }
+        }
+    }
+
+    <span class="kw">fn </span>has_injected_job(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        !<span class="self">self</span>.stealer.is_empty() || <span class="self">self</span>.registry.has_injected_job()
     }
 
     <span class="doccomment">/// Wait until the latch is set. Try to keep busy by popping and
@@ -1654,7 +1753,7 @@
             } <span class="kw">else </span>{
                 <span class="self">self</span>.registry
                     .sleep
-                    .no_work_found(<span class="kw-2">&amp;mut </span>idle_state, latch, || <span class="self">self</span>.registry.has_injected_job())
+                    .no_work_found(<span class="kw-2">&amp;mut </span>idle_state, latch, || <span class="self">self</span>.has_injected_job())
             }
         }
 
@@ -1722,9 +1821,15 @@
 
 <span class="doccomment">/// ////////////////////////////////////////////////////////////////////////
 
-</span><span class="kw">unsafe fn </span>main_loop(worker: Worker&lt;JobRef&gt;, registry: Arc&lt;Registry&gt;, index: usize) {
+</span><span class="kw">unsafe fn </span>main_loop(
+    worker: Worker&lt;JobRef&gt;,
+    stealer: Stealer&lt;JobRef&gt;,
+    registry: Arc&lt;Registry&gt;,
+    index: usize,
+) {
     <span class="kw">let </span>worker_thread = <span class="kw-2">&amp;</span>WorkerThread {
         worker,
+        stealer,
         fifo: JobFifo::new(),
         index,
         rng: XorShift64Star::new(),
@@ -1743,12 +1848,7 @@
 
     <span class="comment">// Inform a user callback that we started a thread.
     </span><span class="kw">if let </span><span class="prelude-val">Some</span>(<span class="kw-2">ref </span>handler) = registry.start_handler {
-        <span class="kw">match </span>unwind::halt_unwinding(|| handler(index)) {
-            <span class="prelude-val">Ok</span>(()) =&gt; {}
-            <span class="prelude-val">Err</span>(err) =&gt; {
-                registry.handle_panic(err);
-            }
-        }
+        registry.catch_unwind(|| handler(index));
     }
 
     <span class="kw">let </span>my_terminate_latch = <span class="kw-2">&amp;</span>registry.thread_infos[index].terminate;
@@ -1771,12 +1871,7 @@
 
     <span class="comment">// Inform a user callback that we exited a thread.
     </span><span class="kw">if let </span><span class="prelude-val">Some</span>(<span class="kw-2">ref </span>handler) = registry.exit_handler {
-        <span class="kw">match </span>unwind::halt_unwinding(|| handler(index)) {
-            <span class="prelude-val">Ok</span>(()) =&gt; {}
-            <span class="prelude-val">Err</span>(err) =&gt; {
-                registry.handle_panic(err);
-            }
-        }
+        registry.catch_unwind(|| handler(index));
         <span class="comment">// We&#39;re already exiting the thread, there&#39;s nothing else to do.
     </span>}
 }
@@ -1818,8 +1913,7 @@
         </span><span class="kw">let </span><span class="kw-2">mut </span>seed = <span class="number">0</span>;
         <span class="kw">while </span>seed == <span class="number">0 </span>{
             <span class="kw">let </span><span class="kw-2">mut </span>hasher = DefaultHasher::new();
-            <span class="attribute">#[allow(deprecated)]
-            </span><span class="kw">static </span>COUNTER: AtomicUsize = ATOMIC_USIZE_INIT;
+            <span class="kw">static </span>COUNTER: AtomicUsize = AtomicUsize::new(<span class="number">0</span>);
             hasher.write_usize(COUNTER.fetch_add(<span class="number">1</span>, Ordering::Relaxed));
             seed = hasher.finish();
         }

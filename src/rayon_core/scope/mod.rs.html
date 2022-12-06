@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/rayon-core-1.9.3/src/scope/mod.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../normalize.css"><link rel="stylesheet" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../ayu.css" disabled><link rel="stylesheet" href="../../../dark.css" disabled><link rel="stylesheet" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../rayon_core/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../rayon_core/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../rayon_core/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/rayon-core-1.10.1/src/scope/mod.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../normalize.css"><link rel="stylesheet" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../ayu.css" disabled><link rel="stylesheet" href="../../../dark.css" disabled><link rel="stylesheet" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../rayon_core/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../rayon_core/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../rayon_core/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -769,6 +769,94 @@
 <span id="769">769</span>
 <span id="770">770</span>
 <span id="771">771</span>
+<span id="772">772</span>
+<span id="773">773</span>
+<span id="774">774</span>
+<span id="775">775</span>
+<span id="776">776</span>
+<span id="777">777</span>
+<span id="778">778</span>
+<span id="779">779</span>
+<span id="780">780</span>
+<span id="781">781</span>
+<span id="782">782</span>
+<span id="783">783</span>
+<span id="784">784</span>
+<span id="785">785</span>
+<span id="786">786</span>
+<span id="787">787</span>
+<span id="788">788</span>
+<span id="789">789</span>
+<span id="790">790</span>
+<span id="791">791</span>
+<span id="792">792</span>
+<span id="793">793</span>
+<span id="794">794</span>
+<span id="795">795</span>
+<span id="796">796</span>
+<span id="797">797</span>
+<span id="798">798</span>
+<span id="799">799</span>
+<span id="800">800</span>
+<span id="801">801</span>
+<span id="802">802</span>
+<span id="803">803</span>
+<span id="804">804</span>
+<span id="805">805</span>
+<span id="806">806</span>
+<span id="807">807</span>
+<span id="808">808</span>
+<span id="809">809</span>
+<span id="810">810</span>
+<span id="811">811</span>
+<span id="812">812</span>
+<span id="813">813</span>
+<span id="814">814</span>
+<span id="815">815</span>
+<span id="816">816</span>
+<span id="817">817</span>
+<span id="818">818</span>
+<span id="819">819</span>
+<span id="820">820</span>
+<span id="821">821</span>
+<span id="822">822</span>
+<span id="823">823</span>
+<span id="824">824</span>
+<span id="825">825</span>
+<span id="826">826</span>
+<span id="827">827</span>
+<span id="828">828</span>
+<span id="829">829</span>
+<span id="830">830</span>
+<span id="831">831</span>
+<span id="832">832</span>
+<span id="833">833</span>
+<span id="834">834</span>
+<span id="835">835</span>
+<span id="836">836</span>
+<span id="837">837</span>
+<span id="838">838</span>
+<span id="839">839</span>
+<span id="840">840</span>
+<span id="841">841</span>
+<span id="842">842</span>
+<span id="843">843</span>
+<span id="844">844</span>
+<span id="845">845</span>
+<span id="846">846</span>
+<span id="847">847</span>
+<span id="848">848</span>
+<span id="849">849</span>
+<span id="850">850</span>
+<span id="851">851</span>
+<span id="852">852</span>
+<span id="853">853</span>
+<span id="854">854</span>
+<span id="855">855</span>
+<span id="856">856</span>
+<span id="857">857</span>
+<span id="858">858</span>
+<span id="859">859</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Methods for custom fork-join scopes, created by the [`scope()`]
 //! and [`in_place_scope()`] functions. These are a more flexible alternative to [`join()`].
 //!
@@ -776,7 +864,8 @@
 //! [`in_place_scope()`]: fn.in_place_scope.html
 //! [`join()`]: ../join/join.fn.html
 
-</span><span class="kw">use </span><span class="kw">crate</span>::job::{HeapJob, JobFifo};
+</span><span class="kw">use </span><span class="kw">crate</span>::broadcast::BroadcastContext;
+<span class="kw">use </span><span class="kw">crate</span>::job::{ArcJob, HeapJob, JobFifo, JobRef};
 <span class="kw">use </span><span class="kw">crate</span>::latch::{CountLatch, CountLockLatch, Latch};
 <span class="kw">use </span><span class="kw">crate</span>::registry::{global_registry, in_worker, Registry, WorkerThread};
 <span class="kw">use </span><span class="kw">crate</span>::unwind;
@@ -809,7 +898,7 @@
     fifos: Vec&lt;JobFifo&gt;,
 }
 
-<span class="kw">enum </span>ScopeLatch {
+<span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">enum </span>ScopeLatch {
     <span class="doccomment">/// A latch for scopes created on a rayon thread which will participate in work-
     /// stealing while it waits for completion. This thread is not necessarily part
     /// of the same registry as the scope itself!
@@ -898,7 +987,7 @@
 /// Task execution potentially starts as soon as `spawn()` is called.
 /// The task will end sometime before `scope()` returns. Note that the
 /// *closure* given to scope may return much earlier. In general
-/// the lifetime of a scope created like `scope(body) goes something like this:
+/// the lifetime of a scope created like `scope(body)` goes something like this:
 ///
 /// - Scope begins when `scope(body)` is called
 /// - Scope body `body()` is invoked
@@ -1012,7 +1101,7 @@
 ///     });
 ///
 ///     // That closure is fine, but now we can&#39;t use `ok` anywhere else,
-///     // since it is owend by the previous task:
+///     // since it is owned by the previous task:
 ///     // s.spawn(|_| println!(&quot;ok: {:?}&quot;, ok));
 /// });
 /// ```
@@ -1309,18 +1398,37 @@
     <span class="kw">where
         </span>BODY: FnOnce(<span class="kw-2">&amp;</span>Scope&lt;<span class="lifetime">&#39;scope</span>&gt;) + Send + <span class="lifetime">&#39;scope</span>,
     {
-        <span class="self">self</span>.base.increment();
-        <span class="kw">unsafe </span>{
-            <span class="kw">let </span>job_ref = Box::new(HeapJob::new(<span class="kw">move </span>|| {
-                <span class="self">self</span>.base.execute_job(<span class="kw">move </span>|| body(<span class="self">self</span>))
-            }))
-            .as_job_ref();
+        <span class="kw">let </span>scope_ptr = ScopePtr(<span class="self">self</span>);
+        <span class="kw">let </span>job = HeapJob::new(<span class="kw">move </span>|| {
+            <span class="comment">// SAFETY: this job will execute before the scope ends.
+            </span><span class="kw">let </span>scope = <span class="kw">unsafe </span>{ scope_ptr.as_ref() };
+            scope.base.execute_job(<span class="kw">move </span>|| body(scope))
+        });
+        <span class="kw">let </span>job_ref = <span class="self">self</span>.base.heap_job_ref(job);
 
-            <span class="comment">// Since `Scope` implements `Sync`, we can&#39;t be sure that we&#39;re still in a
-            // thread of this pool, so we can&#39;t just push to the local worker thread.
-            // Also, this might be an in-place scope.
-            </span><span class="self">self</span>.base.registry.inject_or_push(job_ref);
-        }
+        <span class="comment">// Since `Scope` implements `Sync`, we can&#39;t be sure that we&#39;re still in a
+        // thread of this pool, so we can&#39;t just push to the local worker thread.
+        // Also, this might be an in-place scope.
+        </span><span class="self">self</span>.base.registry.inject_or_push(job_ref);
+    }
+
+    <span class="doccomment">/// Spawns a job into every thread of the fork-join scope `self`. This job will
+    /// execute on each thread sometime before the fork-join scope completes.  The
+    /// job is specified as a closure, and this closure receives its own reference
+    /// to the scope `self` as argument, as well as a `BroadcastContext`.
+    </span><span class="kw">pub fn </span>spawn_broadcast&lt;BODY&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, body: BODY)
+    <span class="kw">where
+        </span>BODY: Fn(<span class="kw-2">&amp;</span>Scope&lt;<span class="lifetime">&#39;scope</span>&gt;, BroadcastContext&lt;<span class="lifetime">&#39;_</span>&gt;) + Send + Sync + <span class="lifetime">&#39;scope</span>,
+    {
+        <span class="kw">let </span>scope_ptr = ScopePtr(<span class="self">self</span>);
+        <span class="kw">let </span>job = ArcJob::new(<span class="kw">move </span>|| {
+            <span class="comment">// SAFETY: this job will execute before the scope ends.
+            </span><span class="kw">let </span>scope = <span class="kw">unsafe </span>{ scope_ptr.as_ref() };
+            <span class="kw">let </span>body = <span class="kw-2">&amp;</span>body;
+            <span class="kw">let </span>func = <span class="kw">move </span>|| BroadcastContext::with(<span class="kw">move </span>|ctx| body(scope, ctx));
+            scope.base.execute_job(func);
+        });
+        <span class="self">self</span>.base.inject_broadcast(job)
     }
 }
 
@@ -1350,23 +1458,43 @@
     <span class="kw">where
         </span>BODY: FnOnce(<span class="kw-2">&amp;</span>ScopeFifo&lt;<span class="lifetime">&#39;scope</span>&gt;) + Send + <span class="lifetime">&#39;scope</span>,
     {
-        <span class="self">self</span>.base.increment();
-        <span class="kw">unsafe </span>{
-            <span class="kw">let </span>job_ref = Box::new(HeapJob::new(<span class="kw">move </span>|| {
-                <span class="self">self</span>.base.execute_job(<span class="kw">move </span>|| body(<span class="self">self</span>))
-            }))
-            .as_job_ref();
+        <span class="kw">let </span>scope_ptr = ScopePtr(<span class="self">self</span>);
+        <span class="kw">let </span>job = HeapJob::new(<span class="kw">move </span>|| {
+            <span class="comment">// SAFETY: this job will execute before the scope ends.
+            </span><span class="kw">let </span>scope = <span class="kw">unsafe </span>{ scope_ptr.as_ref() };
+            scope.base.execute_job(<span class="kw">move </span>|| body(scope))
+        });
+        <span class="kw">let </span>job_ref = <span class="self">self</span>.base.heap_job_ref(job);
 
-            <span class="comment">// If we&#39;re in the pool, use our scope&#39;s private fifo for this thread to execute
-            // in a locally-FIFO order.  Otherwise, just use the pool&#39;s global injector.
-            </span><span class="kw">match </span><span class="self">self</span>.base.registry.current_thread() {
-                <span class="prelude-val">Some</span>(worker) =&gt; {
-                    <span class="kw">let </span>fifo = <span class="kw-2">&amp;</span><span class="self">self</span>.fifos[worker.index()];
-                    worker.push(fifo.push(job_ref));
-                }
-                <span class="prelude-val">None </span>=&gt; <span class="self">self</span>.base.registry.inject(<span class="kw-2">&amp;</span>[job_ref]),
+        <span class="comment">// If we&#39;re in the pool, use our scope&#39;s private fifo for this thread to execute
+        // in a locally-FIFO order. Otherwise, just use the pool&#39;s global injector.
+        </span><span class="kw">match </span><span class="self">self</span>.base.registry.current_thread() {
+            <span class="prelude-val">Some</span>(worker) =&gt; {
+                <span class="kw">let </span>fifo = <span class="kw-2">&amp;</span><span class="self">self</span>.fifos[worker.index()];
+                <span class="comment">// SAFETY: this job will execute before the scope ends.
+                </span><span class="kw">unsafe </span>{ worker.push(fifo.push(job_ref)) };
             }
+            <span class="prelude-val">None </span>=&gt; <span class="self">self</span>.base.registry.inject(<span class="kw-2">&amp;</span>[job_ref]),
         }
+    }
+
+    <span class="doccomment">/// Spawns a job into every thread of the fork-join scope `self`. This job will
+    /// execute on each thread sometime before the fork-join scope completes.  The
+    /// job is specified as a closure, and this closure receives its own reference
+    /// to the scope `self` as argument, as well as a `BroadcastContext`.
+    </span><span class="kw">pub fn </span>spawn_broadcast&lt;BODY&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, body: BODY)
+    <span class="kw">where
+        </span>BODY: Fn(<span class="kw-2">&amp;</span>ScopeFifo&lt;<span class="lifetime">&#39;scope</span>&gt;, BroadcastContext&lt;<span class="lifetime">&#39;_</span>&gt;) + Send + Sync + <span class="lifetime">&#39;scope</span>,
+    {
+        <span class="kw">let </span>scope_ptr = ScopePtr(<span class="self">self</span>);
+        <span class="kw">let </span>job = ArcJob::new(<span class="kw">move </span>|| {
+            <span class="comment">// SAFETY: this job will execute before the scope ends.
+            </span><span class="kw">let </span>scope = <span class="kw">unsafe </span>{ scope_ptr.as_ref() };
+            <span class="kw">let </span>body = <span class="kw-2">&amp;</span>body;
+            <span class="kw">let </span>func = <span class="kw">move </span>|| BroadcastContext::with(<span class="kw">move </span>|ctx| body(scope, ctx));
+            scope.base.execute_job(func);
+        });
+        <span class="self">self</span>.base.inject_broadcast(job)
     }
 }
 
@@ -1388,6 +1516,29 @@
 
     <span class="kw">fn </span>increment(<span class="kw-2">&amp;</span><span class="self">self</span>) {
         <span class="self">self</span>.job_completed_latch.increment();
+    }
+
+    <span class="kw">fn </span>heap_job_ref&lt;FUNC&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, job: Box&lt;HeapJob&lt;FUNC&gt;&gt;) -&gt; JobRef
+    <span class="kw">where
+        </span>FUNC: FnOnce() + Send + <span class="lifetime">&#39;scope</span>,
+    {
+        <span class="kw">unsafe </span>{
+            <span class="self">self</span>.increment();
+            job.into_job_ref()
+        }
+    }
+
+    <span class="kw">fn </span>inject_broadcast&lt;FUNC&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, job: Arc&lt;ArcJob&lt;FUNC&gt;&gt;)
+    <span class="kw">where
+        </span>FUNC: Fn() + Send + Sync + <span class="lifetime">&#39;scope</span>,
+    {
+        <span class="kw">let </span>n_threads = <span class="self">self</span>.registry.num_threads();
+        <span class="kw">let </span>job_refs = (<span class="number">0</span>..n_threads).map(|<span class="kw">_</span>| <span class="kw">unsafe </span>{
+            <span class="self">self</span>.increment();
+            ArcJob::as_job_ref(<span class="kw-2">&amp;</span>job)
+        });
+
+        <span class="self">self</span>.registry.inject_broadcast(job_refs);
     }
 
     <span class="doccomment">/// Executes `func` as a job, either aborting or executing as
@@ -1458,14 +1609,18 @@
 
 <span class="kw">impl </span>ScopeLatch {
     <span class="kw">fn </span>new(owner: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>WorkerThread&gt;) -&gt; <span class="self">Self </span>{
+        <span class="self">Self</span>::with_count(<span class="number">1</span>, owner)
+    }
+
+    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">fn </span>with_count(count: usize, owner: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>WorkerThread&gt;) -&gt; <span class="self">Self </span>{
         <span class="kw">match </span>owner {
             <span class="prelude-val">Some</span>(owner) =&gt; ScopeLatch::Stealing {
-                latch: CountLatch::new(),
+                latch: CountLatch::with_count(count),
                 registry: Arc::clone(owner.registry()),
                 worker_index: owner.index(),
             },
             <span class="prelude-val">None </span>=&gt; ScopeLatch::Blocking {
-                latch: CountLockLatch::new(),
+                latch: CountLockLatch::with_count(count),
             },
         }
     }
@@ -1477,18 +1632,7 @@
         }
     }
 
-    <span class="kw">fn </span>set(<span class="kw-2">&amp;</span><span class="self">self</span>) {
-        <span class="kw">match </span><span class="self">self </span>{
-            ScopeLatch::Stealing {
-                latch,
-                registry,
-                worker_index,
-            } =&gt; latch.set_and_tickle_one(registry, <span class="kw-2">*</span>worker_index),
-            ScopeLatch::Blocking { latch } =&gt; latch.set(),
-        }
-    }
-
-    <span class="kw">fn </span>wait(<span class="kw-2">&amp;</span><span class="self">self</span>, owner: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>WorkerThread&gt;) {
+    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">fn </span>wait(<span class="kw-2">&amp;</span><span class="self">self</span>, owner: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>WorkerThread&gt;) {
         <span class="kw">match </span><span class="self">self </span>{
             ScopeLatch::Stealing {
                 latch,
@@ -1501,6 +1645,19 @@
                 owner.wait_until(latch);
             },
             ScopeLatch::Blocking { latch } =&gt; latch.wait(),
+        }
+    }
+}
+
+<span class="kw">impl </span>Latch <span class="kw">for </span>ScopeLatch {
+    <span class="kw">fn </span>set(<span class="kw-2">&amp;</span><span class="self">self</span>) {
+        <span class="kw">match </span><span class="self">self </span>{
+            ScopeLatch::Stealing {
+                latch,
+                registry,
+                worker_index,
+            } =&gt; latch.set_and_tickle_one(registry, <span class="kw-2">*</span>worker_index),
+            ScopeLatch::Blocking { latch } =&gt; latch.set(),
         }
     }
 }
@@ -1539,6 +1696,25 @@
                 .finish(),
         }
     }
+}
+
+<span class="doccomment">/// Used to capture a scope `&amp;Self` pointer in jobs, without faking a lifetime.
+///
+/// Unsafe code is still required to dereference the pointer, but that&#39;s fine in
+/// scope jobs that are guaranteed to execute before the scope ends.
+</span><span class="kw">struct </span>ScopePtr&lt;T&gt;(<span class="kw-2">*const </span>T);
+
+<span class="comment">// SAFETY: !Send for raw pointers is not for safety, just as a lint
+</span><span class="kw">unsafe impl</span>&lt;T: Sync&gt; Send <span class="kw">for </span>ScopePtr&lt;T&gt; {}
+
+<span class="comment">// SAFETY: !Sync for raw pointers is not for safety, just as a lint
+</span><span class="kw">unsafe impl</span>&lt;T: Sync&gt; Sync <span class="kw">for </span>ScopePtr&lt;T&gt; {}
+
+<span class="kw">impl</span>&lt;T&gt; ScopePtr&lt;T&gt; {
+    <span class="comment">// Helper to avoid disjoint captures of `scope_ptr.0`
+    </span><span class="kw">unsafe fn </span>as_ref(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>T {
+        <span class="kw-2">&amp;*</span><span class="self">self</span>.<span class="number">0
+    </span>}
 }
 </code></pre></div>
 </section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="rayon_core" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.65.0 (897e37553 2022-11-02)" ></div></body></html>

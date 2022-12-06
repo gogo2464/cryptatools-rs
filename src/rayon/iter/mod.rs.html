@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/rayon-1.5.3/src/iter/mod.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../normalize.css"><link rel="stylesheet" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../ayu.css" disabled><link rel="stylesheet" href="../../../dark.css" disabled><link rel="stylesheet" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../rayon/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../rayon/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../rayon/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/rayon-1.6.0/src/iter/mod.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../normalize.css"><link rel="stylesheet" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../ayu.css" disabled><link rel="stylesheet" href="../../../dark.css" disabled><link rel="stylesheet" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../rayon/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../rayon/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../rayon/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -3308,6 +3308,81 @@
 <span id="3308">3308</span>
 <span id="3309">3309</span>
 <span id="3310">3310</span>
+<span id="3311">3311</span>
+<span id="3312">3312</span>
+<span id="3313">3313</span>
+<span id="3314">3314</span>
+<span id="3315">3315</span>
+<span id="3316">3316</span>
+<span id="3317">3317</span>
+<span id="3318">3318</span>
+<span id="3319">3319</span>
+<span id="3320">3320</span>
+<span id="3321">3321</span>
+<span id="3322">3322</span>
+<span id="3323">3323</span>
+<span id="3324">3324</span>
+<span id="3325">3325</span>
+<span id="3326">3326</span>
+<span id="3327">3327</span>
+<span id="3328">3328</span>
+<span id="3329">3329</span>
+<span id="3330">3330</span>
+<span id="3331">3331</span>
+<span id="3332">3332</span>
+<span id="3333">3333</span>
+<span id="3334">3334</span>
+<span id="3335">3335</span>
+<span id="3336">3336</span>
+<span id="3337">3337</span>
+<span id="3338">3338</span>
+<span id="3339">3339</span>
+<span id="3340">3340</span>
+<span id="3341">3341</span>
+<span id="3342">3342</span>
+<span id="3343">3343</span>
+<span id="3344">3344</span>
+<span id="3345">3345</span>
+<span id="3346">3346</span>
+<span id="3347">3347</span>
+<span id="3348">3348</span>
+<span id="3349">3349</span>
+<span id="3350">3350</span>
+<span id="3351">3351</span>
+<span id="3352">3352</span>
+<span id="3353">3353</span>
+<span id="3354">3354</span>
+<span id="3355">3355</span>
+<span id="3356">3356</span>
+<span id="3357">3357</span>
+<span id="3358">3358</span>
+<span id="3359">3359</span>
+<span id="3360">3360</span>
+<span id="3361">3361</span>
+<span id="3362">3362</span>
+<span id="3363">3363</span>
+<span id="3364">3364</span>
+<span id="3365">3365</span>
+<span id="3366">3366</span>
+<span id="3367">3367</span>
+<span id="3368">3368</span>
+<span id="3369">3369</span>
+<span id="3370">3370</span>
+<span id="3371">3371</span>
+<span id="3372">3372</span>
+<span id="3373">3373</span>
+<span id="3374">3374</span>
+<span id="3375">3375</span>
+<span id="3376">3376</span>
+<span id="3377">3377</span>
+<span id="3378">3378</span>
+<span id="3379">3379</span>
+<span id="3380">3380</span>
+<span id="3381">3381</span>
+<span id="3382">3382</span>
+<span id="3383">3383</span>
+<span id="3384">3384</span>
+<span id="3385">3385</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Traits for writing parallel programs using an iterator-style interface
 //!
 //! You will rarely need to interact with this module directly unless you have
@@ -3429,6 +3504,8 @@
 <span class="kw">mod </span>flatten;
 <span class="kw">mod </span>flatten_iter;
 <span class="kw">mod </span>fold;
+<span class="kw">mod </span>fold_chunks;
+<span class="kw">mod </span>fold_chunks_with;
 <span class="kw">mod </span>for_each;
 <span class="kw">mod </span>from_par_iter;
 <span class="kw">mod </span>inspect;
@@ -3450,6 +3527,7 @@
 <span class="kw">mod </span>rev;
 <span class="kw">mod </span>skip;
 <span class="kw">mod </span>splitter;
+<span class="kw">mod </span>step_by;
 <span class="kw">mod </span>sum;
 <span class="kw">mod </span>take;
 <span class="kw">mod </span>try_fold;
@@ -3475,6 +3553,8 @@
     flatten::Flatten,
     flatten_iter::FlattenIter,
     fold::{Fold, FoldWith},
+    fold_chunks::FoldChunks,
+    fold_chunks_with::FoldChunksWith,
     inspect::Inspect,
     interleave::Interleave,
     interleave_shortest::InterleaveShortest,
@@ -3491,6 +3571,7 @@
     rev::Rev,
     skip::Skip,
     splitter::{split, Split},
+    step_by::StepBy,
     take::Take,
     try_fold::{TryFold, TryFoldWith},
     update::Update,
@@ -3498,10 +3579,6 @@
     zip::Zip,
     zip_eq::ZipEq,
 };
-
-<span class="kw">mod </span>step_by;
-<span class="attribute">#[cfg(has_step_by_rev)]
-</span><span class="kw">pub use </span><span class="self">self</span>::step_by::StepBy;
 
 <span class="doccomment">/// `IntoParallelIterator` implements the conversion to a [`ParallelIterator`].
 ///
@@ -4434,7 +4511,7 @@
     /// multiple sums. The number of results is nondeterministic, as
     /// is the point where the breaks occur.
     ///
-    /// So if did the same parallel fold (`fold(0, |a,b| a+b)`) on
+    /// So if we did the same parallel fold (`fold(0, |a,b| a+b)`) on
     /// our example list, we might wind up with a sequence of two numbers,
     /// like so:
     ///
@@ -5551,6 +5628,8 @@
 /// those points.
 ///
 /// **Note:** Not implemented for `u64`, `i64`, `u128`, or `i128` ranges
+</span><span class="comment">// Waiting for `ExactSizeIterator::is_empty` to be stabilized. See rust-lang/rust#35428
+</span><span class="attribute">#[allow(clippy::len_without_is_empty)]
 </span><span class="kw">pub trait </span>IndexedParallelIterator: ParallelIterator {
     <span class="doccomment">/// Collects the results of the iterator into the specified
     /// vector. The vector is always truncated before execution
@@ -5649,13 +5728,18 @@
     /// // we should never get here
     /// assert_eq!(1, zipped.len());
     /// ```
+    </span><span class="attribute">#[track_caller]
     </span><span class="kw">fn </span>zip_eq&lt;Z&gt;(<span class="self">self</span>, zip_op: Z) -&gt; ZipEq&lt;<span class="self">Self</span>, Z::Iter&gt;
     <span class="kw">where
         </span>Z: IntoParallelIterator,
         Z::Iter: IndexedParallelIterator,
     {
         <span class="kw">let </span>zip_op_iter = zip_op.into_par_iter();
-        <span class="macro">assert_eq!</span>(<span class="self">self</span>.len(), zip_op_iter.len());
+        <span class="macro">assert_eq!</span>(
+            <span class="self">self</span>.len(),
+            zip_op_iter.len(),
+            <span class="string">&quot;iterators must have the same length&quot;
+        </span>);
         ZipEq::new(<span class="self">self</span>, zip_op_iter)
     }
 
@@ -5723,6 +5807,89 @@
     </span><span class="kw">fn </span>chunks(<span class="self">self</span>, chunk_size: usize) -&gt; Chunks&lt;<span class="self">Self</span>&gt; {
         <span class="macro">assert!</span>(chunk_size != <span class="number">0</span>, <span class="string">&quot;chunk_size must not be zero&quot;</span>);
         Chunks::new(<span class="self">self</span>, chunk_size)
+    }
+
+    <span class="doccomment">/// Splits an iterator into fixed-size chunks, performing a sequential [`fold()`] on
+    /// each chunk.
+    ///
+    /// Returns an iterator that produces a folded result for each chunk of items
+    /// produced by this iterator.
+    ///
+    /// This works essentially like:
+    ///
+    /// ```text
+    /// iter.chunks(chunk_size)
+    ///     .map(|chunk|
+    ///         chunk.into_iter()
+    ///             .fold(identity, fold_op)
+    ///     )
+    /// ```
+    ///
+    /// except there is no per-chunk allocation overhead.
+    ///
+    /// [`fold()`]: std::iter::Iterator#method.fold
+    ///
+    /// **Panics** if `chunk_size` is 0.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use rayon::prelude::*;
+    /// let nums = vec![1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    /// let chunk_sums = nums.into_par_iter().fold_chunks(2, || 0, |a, n| a + n).collect::&lt;Vec&lt;_&gt;&gt;();
+    /// assert_eq!(chunk_sums, vec![3, 7, 11, 15, 19]);
+    /// ```
+    </span><span class="attribute">#[track_caller]
+    </span><span class="kw">fn </span>fold_chunks&lt;T, ID, F&gt;(
+        <span class="self">self</span>,
+        chunk_size: usize,
+        identity: ID,
+        fold_op: F,
+    ) -&gt; FoldChunks&lt;<span class="self">Self</span>, ID, F&gt;
+    <span class="kw">where
+        </span>ID: Fn() -&gt; T + Send + Sync,
+        F: Fn(T, <span class="self">Self</span>::Item) -&gt; T + Send + Sync,
+        T: Send,
+    {
+        <span class="macro">assert!</span>(chunk_size != <span class="number">0</span>, <span class="string">&quot;chunk_size must not be zero&quot;</span>);
+        FoldChunks::new(<span class="self">self</span>, chunk_size, identity, fold_op)
+    }
+
+    <span class="doccomment">/// Splits an iterator into fixed-size chunks, performing a sequential [`fold()`] on
+    /// each chunk.
+    ///
+    /// Returns an iterator that produces a folded result for each chunk of items
+    /// produced by this iterator.
+    ///
+    /// This works essentially like `fold_chunks(chunk_size, || init.clone(), fold_op)`,
+    /// except it doesn&#39;t require the `init` type to be `Sync`, nor any other form of
+    /// added synchronization.
+    ///
+    /// [`fold()`]: std::iter::Iterator#method.fold
+    ///
+    /// **Panics** if `chunk_size` is 0.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use rayon::prelude::*;
+    /// let nums = vec![1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    /// let chunk_sums = nums.into_par_iter().fold_chunks_with(2, 0, |a, n| a + n).collect::&lt;Vec&lt;_&gt;&gt;();
+    /// assert_eq!(chunk_sums, vec![3, 7, 11, 15, 19]);
+    /// ```
+    </span><span class="attribute">#[track_caller]
+    </span><span class="kw">fn </span>fold_chunks_with&lt;T, F&gt;(
+        <span class="self">self</span>,
+        chunk_size: usize,
+        init: T,
+        fold_op: F,
+    ) -&gt; FoldChunksWith&lt;<span class="self">Self</span>, T, F&gt;
+    <span class="kw">where
+        </span>T: Send + Clone,
+        F: Fn(T, <span class="self">Self</span>::Item) -&gt; T + Send + Sync,
+    {
+        <span class="macro">assert!</span>(chunk_size != <span class="number">0</span>, <span class="string">&quot;chunk_size must not be zero&quot;</span>);
+        FoldChunksWith::new(<span class="self">self</span>, chunk_size, init, fold_op)
     }
 
     <span class="doccomment">/// Lexicographically compares the elements of this `ParallelIterator` with those of
@@ -5911,11 +6078,6 @@
     ///
     /// assert_eq!(result, [3, 6, 9])
     /// ```
-    ///
-    /// # Compatibility
-    ///
-    /// This method is only available on Rust 1.38 or greater.
-    </span><span class="attribute">#[cfg(has_step_by_rev)]
     </span><span class="kw">fn </span>step_by(<span class="self">self</span>, step: usize) -&gt; StepBy&lt;<span class="self">Self</span>&gt; {
         StepBy::new(<span class="self">self</span>, step)
     }
@@ -6456,19 +6618,8 @@
 /// stable clone of the standard library&#39;s `Try` trait, as yet unstable.
 </span><span class="kw">mod </span>private {
     <span class="kw">use </span>std::convert::Infallible;
+    <span class="kw">use </span>std::ops::ControlFlow::{<span class="self">self</span>, Break, Continue};
     <span class="kw">use </span>std::task::Poll;
-
-    <span class="attribute">#[cfg(has_control_flow)]
-    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">use </span>std::ops::ControlFlow;
-
-    <span class="attribute">#[cfg(not(has_control_flow))]
-    #[allow(missing_debug_implementations)]
-    </span><span class="kw">pub enum </span>ControlFlow&lt;B, C = ()&gt; {
-        Continue(C),
-        Break(B),
-    }
-
-    <span class="kw">use </span><span class="self">self</span>::ControlFlow::{Break, Continue};
 
     <span class="doccomment">/// Clone of `std::ops::Try`.
     ///
@@ -6486,8 +6637,7 @@
         <span class="kw">fn </span>branch(<span class="self">self</span>) -&gt; ControlFlow&lt;<span class="self">Self</span>::Residual, <span class="self">Self</span>::Output&gt;;
     }
 
-    <span class="attribute">#[cfg(has_control_flow)]
-    </span><span class="kw">impl</span>&lt;B, C&gt; Try <span class="kw">for </span>ControlFlow&lt;B, C&gt; {
+    <span class="kw">impl</span>&lt;B, C&gt; Try <span class="kw">for </span>ControlFlow&lt;B, C&gt; {
         <span class="macro">private_impl! </span>{}
 
         <span class="kw">type </span>Output = C;

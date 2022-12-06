@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/rayon-core-1.9.3/src/thread_pool/mod.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../normalize.css"><link rel="stylesheet" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../ayu.css" disabled><link rel="stylesheet" href="../../../dark.css" disabled><link rel="stylesheet" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../rayon_core/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../rayon_core/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../rayon_core/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/rayon-core-1.10.1/src/thread_pool/mod.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../normalize.css"><link rel="stylesheet" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../ayu.css" disabled><link rel="stylesheet" href="../../../dark.css" disabled><link rel="stylesheet" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../rayon_core/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../rayon_core/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../rayon_core/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -338,17 +338,78 @@
 <span id="338">338</span>
 <span id="339">339</span>
 <span id="340">340</span>
+<span id="341">341</span>
+<span id="342">342</span>
+<span id="343">343</span>
+<span id="344">344</span>
+<span id="345">345</span>
+<span id="346">346</span>
+<span id="347">347</span>
+<span id="348">348</span>
+<span id="349">349</span>
+<span id="350">350</span>
+<span id="351">351</span>
+<span id="352">352</span>
+<span id="353">353</span>
+<span id="354">354</span>
+<span id="355">355</span>
+<span id="356">356</span>
+<span id="357">357</span>
+<span id="358">358</span>
+<span id="359">359</span>
+<span id="360">360</span>
+<span id="361">361</span>
+<span id="362">362</span>
+<span id="363">363</span>
+<span id="364">364</span>
+<span id="365">365</span>
+<span id="366">366</span>
+<span id="367">367</span>
+<span id="368">368</span>
+<span id="369">369</span>
+<span id="370">370</span>
+<span id="371">371</span>
+<span id="372">372</span>
+<span id="373">373</span>
+<span id="374">374</span>
+<span id="375">375</span>
+<span id="376">376</span>
+<span id="377">377</span>
+<span id="378">378</span>
+<span id="379">379</span>
+<span id="380">380</span>
+<span id="381">381</span>
+<span id="382">382</span>
+<span id="383">383</span>
+<span id="384">384</span>
+<span id="385">385</span>
+<span id="386">386</span>
+<span id="387">387</span>
+<span id="388">388</span>
+<span id="389">389</span>
+<span id="390">390</span>
+<span id="391">391</span>
+<span id="392">392</span>
+<span id="393">393</span>
+<span id="394">394</span>
+<span id="395">395</span>
+<span id="396">396</span>
+<span id="397">397</span>
+<span id="398">398</span>
+<span id="399">399</span>
+<span id="400">400</span>
+<span id="401">401</span>
+<span id="402">402</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Contains support for user-managed thread pools, represented by the
 //! the [`ThreadPool`] type (see that struct for details).
 //!
 //! [`ThreadPool`]: struct.ThreadPool.html
 
-</span><span class="kw">use </span><span class="kw">crate</span>::join;
+</span><span class="kw">use </span><span class="kw">crate</span>::broadcast::{<span class="self">self</span>, BroadcastContext};
+<span class="kw">use </span><span class="kw">crate</span>::join;
 <span class="kw">use </span><span class="kw">crate</span>::registry::{Registry, ThreadSpawn, WorkerThread};
 <span class="kw">use </span><span class="kw">crate</span>::scope::{do_in_place_scope, do_in_place_scope_fifo};
 <span class="kw">use </span><span class="kw">crate</span>::spawn;
-<span class="attribute">#[allow(deprecated)]
-</span><span class="kw">use </span><span class="kw">crate</span>::Configuration;
 <span class="kw">use crate</span>::{scope, Scope};
 <span class="kw">use crate</span>::{scope_fifo, ScopeFifo};
 <span class="kw">use crate</span>::{ThreadPoolBuildError, ThreadPoolBuilder};
@@ -397,7 +458,7 @@
     <span class="attribute">#[deprecated(note = <span class="string">&quot;Use `ThreadPoolBuilder::build`&quot;</span>)]
     #[allow(deprecated)]
     </span><span class="doccomment">/// Deprecated in favor of `ThreadPoolBuilder::build`.
-    </span><span class="kw">pub fn </span>new(configuration: Configuration) -&gt; <span class="prelude-ty">Result</span>&lt;ThreadPool, Box&lt;<span class="kw">dyn </span>Error&gt;&gt; {
+    </span><span class="kw">pub fn </span>new(configuration: <span class="kw">crate</span>::Configuration) -&gt; <span class="prelude-ty">Result</span>&lt;ThreadPool, Box&lt;<span class="kw">dyn </span>Error&gt;&gt; {
         <span class="self">Self</span>::build(configuration.into_builder()).map_err(Box::from)
     }
 
@@ -449,6 +510,57 @@
         R: Send,
     {
         <span class="self">self</span>.registry.in_worker(|<span class="kw">_</span>, <span class="kw">_</span>| op())
+    }
+
+    <span class="doccomment">/// Executes `op` within every thread in the threadpool. Any attempts to use
+    /// `join`, `scope`, or parallel iterators will then operate within that
+    /// threadpool.
+    ///
+    /// Broadcasts are executed on each thread after they have exhausted their
+    /// local work queue, before they attempt work-stealing from other threads.
+    /// The goal of that strategy is to run everywhere in a timely manner
+    /// *without* being too disruptive to current work. There may be alternative
+    /// broadcast styles added in the future for more or less aggressive
+    /// injection, if the need arises.
+    ///
+    /// # Warning: thread-local data
+    ///
+    /// Because `op` is executing within the Rayon thread-pool,
+    /// thread-local data from the current thread will not be
+    /// accessible.
+    ///
+    /// # Panics
+    ///
+    /// If `op` should panic on one or more threads, exactly one panic
+    /// will be propagated, only after all threads have completed
+    /// (or panicked) their own `op`.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    ///    # use rayon_core as rayon;
+    ///    use std::sync::atomic::{AtomicUsize, Ordering};
+    ///
+    ///    fn main() {
+    ///         let pool = rayon::ThreadPoolBuilder::new().num_threads(5).build().unwrap();
+    ///
+    ///         // The argument gives context, including the index of each thread.
+    ///         let v: Vec&lt;usize&gt; = pool.broadcast(|ctx| ctx.index() * ctx.index());
+    ///         assert_eq!(v, &amp;[0, 1, 4, 9, 16]);
+    ///
+    ///         // The closure can reference the local stack
+    ///         let count = AtomicUsize::new(0);
+    ///         pool.broadcast(|_| count.fetch_add(1, Ordering::Relaxed));
+    ///         assert_eq!(count.into_inner(), 5);
+    ///    }
+    /// ```
+    </span><span class="kw">pub fn </span>broadcast&lt;OP, R&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, op: OP) -&gt; Vec&lt;R&gt;
+    <span class="kw">where
+        </span>OP: Fn(BroadcastContext&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; R + Sync,
+        R: Send,
+    {
+        <span class="comment">// We assert that `self.registry` has not terminated.
+        </span><span class="kw">unsafe </span>{ broadcast::broadcast_in(op, <span class="kw-2">&amp;</span><span class="self">self</span>.registry) }
     }
 
     <span class="doccomment">/// Returns the (current) number of threads in the thread pool.
@@ -616,6 +728,18 @@
     {
         <span class="comment">// We assert that `self.registry` has not terminated.
         </span><span class="kw">unsafe </span>{ spawn::spawn_fifo_in(op, <span class="kw-2">&amp;</span><span class="self">self</span>.registry) }
+    }
+
+    <span class="doccomment">/// Spawns an asynchronous task on every thread in this thread-pool. This task
+    /// will run in the implicit, global scope, which means that it may outlast the
+    /// current stack frame -- therefore, it cannot capture any references onto the
+    /// stack (you will likely need a `move` closure).
+    </span><span class="kw">pub fn </span>spawn_broadcast&lt;OP&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, op: OP)
+    <span class="kw">where
+        </span>OP: Fn(BroadcastContext&lt;<span class="lifetime">&#39;_</span>&gt;) + Send + Sync + <span class="lifetime">&#39;static</span>,
+    {
+        <span class="comment">// We assert that `self.registry` has not terminated.
+        </span><span class="kw">unsafe </span>{ broadcast::spawn_broadcast_in(op, <span class="kw-2">&amp;</span><span class="self">self</span>.registry) }
     }
 }
 

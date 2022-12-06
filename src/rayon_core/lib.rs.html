@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/rayon-core-1.9.3/src/lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../rayon_core/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../rayon_core/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../rayon_core/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/rayon-core-1.10.1/src/lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../rayon_core/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../rayon_core/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../rayon_core/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -791,6 +791,32 @@
 <span id="791">791</span>
 <span id="792">792</span>
 <span id="793">793</span>
+<span id="794">794</span>
+<span id="795">795</span>
+<span id="796">796</span>
+<span id="797">797</span>
+<span id="798">798</span>
+<span id="799">799</span>
+<span id="800">800</span>
+<span id="801">801</span>
+<span id="802">802</span>
+<span id="803">803</span>
+<span id="804">804</span>
+<span id="805">805</span>
+<span id="806">806</span>
+<span id="807">807</span>
+<span id="808">808</span>
+<span id="809">809</span>
+<span id="810">810</span>
+<span id="811">811</span>
+<span id="812">812</span>
+<span id="813">813</span>
+<span id="814">814</span>
+<span id="815">815</span>
+<span id="816">816</span>
+<span id="817">817</span>
+<span id="818">818</span>
+<span id="819">819</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Rayon-core houses the core stable APIs of Rayon.
 //!
 //! These APIs have been mirrored in the Rayon crate and it is recommended to use these from there.
@@ -837,8 +863,7 @@
 //! conflicting requirements will need to be resolved before the build will
 //! succeed.
 
-</span><span class="attribute">#![doc(html_root_url = <span class="string">&quot;https://docs.rs/rayon-core/1.9&quot;</span>)]
-#![deny(missing_debug_implementations)]
+</span><span class="attribute">#![deny(missing_debug_implementations)]
 #![deny(missing_docs)]
 #![deny(unreachable_pub)]
 #![warn(rust_2018_idioms)]
@@ -856,6 +881,7 @@
 <span class="attribute">#[macro_use]
 </span><span class="kw">mod </span>private;
 
+<span class="kw">mod </span>broadcast;
 <span class="kw">mod </span>job;
 <span class="kw">mod </span>join;
 <span class="kw">mod </span>latch;
@@ -869,6 +895,7 @@
 <span class="kw">mod </span>compile_fail;
 <span class="kw">mod </span>test;
 
+<span class="kw">pub use </span><span class="self">self</span>::broadcast::{broadcast, spawn_broadcast, BroadcastContext};
 <span class="kw">pub use </span><span class="self">self</span>::join::{join, join_context};
 <span class="kw">pub use </span><span class="self">self</span>::registry::ThreadBuilder;
 <span class="kw">pub use </span><span class="self">self</span>::scope::{in_place_scope, scope, Scope};
@@ -978,6 +1005,7 @@
 ///
 /// [`ThreadPoolBuilder`]: struct.ThreadPoolBuilder.html
 </span><span class="attribute">#[deprecated(note = <span class="string">&quot;Use `ThreadPoolBuilder`&quot;</span>)]
+#[derive(Default)]
 </span><span class="kw">pub struct </span>Configuration {
     builder: ThreadPoolBuilder,
 }
@@ -1062,7 +1090,7 @@
     /// The threads in this pool will start by calling `wrapper`, which should
     /// do initialization and continue by calling `ThreadBuilder::run()`.
     ///
-    /// [`crossbeam::scope`]: https://docs.rs/crossbeam/0.7/crossbeam/fn.scope.html
+    /// [`crossbeam::scope`]: https://docs.rs/crossbeam/0.8/crossbeam/fn.scope.html
     ///
     /// # Examples
     ///
@@ -1132,7 +1160,7 @@
     /// if the pool is leaked. Furthermore, the global thread pool doesn&#39;t terminate
     /// until the entire process exits!
     ///
-    /// [`crossbeam::scope`]: https://docs.rs/crossbeam/0.7/crossbeam/fn.scope.html
+    /// [`crossbeam::scope`]: https://docs.rs/crossbeam/0.8/crossbeam/fn.scope.html
     ///
     /// # Examples
     ///
@@ -1175,6 +1203,39 @@
     ///
     ///     pool.install(|| println!(&quot;Hello from my fully custom thread!&quot;));
     ///     Ok(())
+    /// }
+    /// ```
+    ///
+    /// This can also be used for a pool of scoped threads like [`crossbeam::scope`],
+    /// or [`std::thread::scope`] introduced in Rust 1.63, which is encapsulated in
+    /// [`build_scoped`](#method.build_scoped).
+    ///
+    /// [`std::thread::scope`]: https://doc.rust-lang.org/std/thread/fn.scope.html
+    ///
+    /// ```
+    /// # use rayon_core as rayon;
+    /// fn main() -&gt; Result&lt;(), rayon::ThreadPoolBuildError&gt; {
+    ///     std::thread::scope(|scope| {
+    ///         let pool = rayon::ThreadPoolBuilder::new()
+    ///             .spawn_handler(|thread| {
+    ///                 let mut builder = std::thread::Builder::new();
+    ///                 if let Some(name) = thread.name() {
+    ///                     builder = builder.name(name.to_string());
+    ///                 }
+    ///                 if let Some(size) = thread.stack_size() {
+    ///                     builder = builder.stack_size(size);
+    ///                 }
+    ///                 builder.spawn_scoped(scope, || {
+    ///                     // Add any scoped initialization here, then run!
+    ///                     thread.run()
+    ///                 })?;
+    ///                 Ok(())
+    ///             })
+    ///             .build()?;
+    ///
+    ///         pool.install(|| println!(&quot;Hello from my custom scoped thread!&quot;));
+    ///         Ok(())
+    ///     })
     /// }
     /// ```
     </span><span class="kw">pub fn </span>spawn_handler&lt;F&gt;(<span class="self">self</span>, spawn: F) -&gt; ThreadPoolBuilder&lt;CustomSpawn&lt;F&gt;&gt;
@@ -1319,7 +1380,7 @@
     /// to true, however, workers will prefer to execute in a
     /// *breadth-first* fashion -- that is, they will search for jobs at
     /// the *bottom* of their local deque. (At present, workers *always*
-    /// steal from the bottom of other worker&#39;s deques, regardless of
+    /// steal from the bottom of other workers&#39; deques, regardless of
     /// the setting of this flag.)
     ///
     /// If you think of the tasks as a tree, where a parent task
@@ -1538,15 +1599,6 @@
             .field(<span class="string">&quot;exit_handler&quot;</span>, <span class="kw-2">&amp;</span>exit_handler)
             .field(<span class="string">&quot;breadth_first&quot;</span>, <span class="kw-2">&amp;</span>breadth_first)
             .finish()
-    }
-}
-
-<span class="attribute">#[allow(deprecated)]
-</span><span class="kw">impl </span>Default <span class="kw">for </span>Configuration {
-    <span class="kw">fn </span>default() -&gt; <span class="self">Self </span>{
-        Configuration {
-            builder: Default::default(),
-        }
     }
 }
 
