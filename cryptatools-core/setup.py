@@ -214,7 +214,7 @@ setup(
     include_package_data=True,
     keywords="cryptatools",
     name="cryptatools-python3",
-    version="0.1.0",
+    version="0.1.0.1",
     packages=[
          "cryptatools_core",
          "cryptatools_core.cryptography",
@@ -232,7 +232,7 @@ setup(
          "utils": "cryptatools_core/utils",
     },
     setup_requires=requirements,
-    url="https://github.com/gogo2464/cryptatools",
+    url="https://github.com/gogo2464/cryptatools-rs",
     zip_safe=False,
     package_data={"cryptatools_core": [new_shared_object_name]},
     distclass=BinaryDistribution,

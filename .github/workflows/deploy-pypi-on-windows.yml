@@ -1,0 +1,43 @@
+name: Deploy bindings wheels on pypi from windows
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy-wheels:
+    strategy:
+      matrix:
+        os: [windows-latest]
+    runs-on:
+      - windows-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+
+    - uses: actions-rs/toolchain@v1
+      with:
+        toolchain: nightly
+        override: true
+
+    - uses: actions-rs/cargo@v1
+      with:
+        command: build
+        args: --release --all-features
+
+    - name: Install dependencies
+      run: |
+        cargo install uniffi_bindgen
+        pip3 install setuptools wheel twine
+
+    - name: Build package
+      run: |
+        python .\cryptatools-core\setup.py bdist_wheel --verbose ;
+    
+    - name: Upload package
+      run: |
+        $wheelFile = Get-ChildItem -Path .\dist\ -Recurse -Include * ;
+        python -m twine upload $wheelFile --username gogo2464 --password ${{ secrets.PYPI_GOGO2464_PASSWORD }} --verbose ;
