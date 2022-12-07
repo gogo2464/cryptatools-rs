@@ -7,6 +7,7 @@ import re
 import shutil
 import subprocess
 import sys
+from pathlib import Path
 
 import wheel.bdist_wheel
 
@@ -199,6 +200,7 @@ class build(_build):
 
         return _build.run(self)
 
+long_description = (Path(__file__).parent.parent / "README.md").read_text()
 
 setup(
     author="gogo2464",
@@ -209,12 +211,13 @@ setup(
         "Programming Language :: Python :: 3"
     ],
     description="Python Binding of the library and cryptanalysis tool 'cryptatools'.",
+    long_description=long_description,
     install_requires=requirements,
     long_description_content_type="text/markdown",
     include_package_data=True,
     keywords="cryptatools",
     name="cryptatools-python3",
-    version="0.1.0.1",
+    version="0.1.12",
     packages=[
          "cryptatools_core",
          "cryptatools_core.cryptography",

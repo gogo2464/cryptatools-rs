@@ -40,7 +40,19 @@ cryptatools-core = { git = "https://github.com/gogo2464/cryptatools-rs", package
 ```
 
 ### 2-Python binding installation.
-To install the python Bindings,
+To install the python Bindings you can use pip or build from source:
+
+### 2.1-Install python Bindings from pip:
+
+The name `cryptatools-python3` is the name of the package used to install cryptatools core python bindings. In order to install it, do:
+
+```
+pip install cryptatools-python3
+```
+
+It is updated of 1 subversion on each Pull Request and is then often update by the previous version.
+
+### 2.2-Build Python Bindings from sources
 
 If you are on windows, with powershell do:
 ```powershell

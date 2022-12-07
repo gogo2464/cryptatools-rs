@@ -12,11 +12,14 @@ jobs:
         os: [windows-latest]
     runs-on:
       - windows-latest
-
+    
+    if: github.event.head_commit.message != 'Change version with bump2version'
     steps:
     - uses: actions/checkout@v2
       with:
         fetch-depth: 0
+        ref: ${{ github.head_ref }}
+        token: ${{ secrets.PAT }}
 
     - uses: actions-rs/toolchain@v1
       with:
@@ -31,7 +34,22 @@ jobs:
     - name: Install dependencies
       run: |
         cargo install uniffi_bindgen
-        pip3 install setuptools wheel twine
+        pip3 install setuptools wheel twine bump2version
+    
+    - name: Update setup.py and Cargo.toml versions
+      run: |
+        cd .\cryptatools-core\
+        bump2version patch .\Cargo.toml .\setup.py
+        cd ..
+
+    - uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        commit_message: Change version with bump2version
+        commit_user_name: gogo2464
+        commit_user_email: gogo246475@gmail.com
+        commit_author: gogo2464 <gogo246475@gmail.com>
+        #commit_options: '--amend'
+        push_options: '--force'
 
     - name: Build package
       run: |

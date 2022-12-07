@@ -12,8 +12,9 @@ jobs:
         os: [ubuntu-latest]
     runs-on:
       - ubuntu-latest
-    steps:
 
+    if: github.event.head_commit.message != 'Change version with bump2version'
+    steps:
     - uses: actions/checkout@v2
       with:
         fetch-depth: 0
