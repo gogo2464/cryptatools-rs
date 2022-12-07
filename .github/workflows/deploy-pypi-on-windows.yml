@@ -31,7 +31,11 @@ jobs:
     - name: Install dependencies
       run: |
         cargo install uniffi_bindgen
-        pip3 install setuptools wheel twine
+        pip3 install setuptools wheel twine tbump
+    
+    - name: Update setup.py and Cargo.toml versions
+      run: |
+        bump2version patch .\Cargo.toml .\setup.py
 
     - name: Build package
       run: |

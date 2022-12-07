@@ -214,7 +214,7 @@ setup(
     include_package_data=True,
     keywords="cryptatools",
     name="cryptatools-python3",
-    version="0.1.0.1",
+    version="0.1.0",
     packages=[
          "cryptatools_core",
          "cryptatools_core.cryptography",
