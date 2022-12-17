@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/uniffi_bindgen-0.21.0/src/bindings/ruby/gen_ruby/mod.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../../../normalize.css"><link rel="stylesheet" href="../../../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../../../ayu.css" disabled><link rel="stylesheet" href="../../../../../dark.css" disabled><link rel="stylesheet" href="../../../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../../../storage.js"></script><script defer src="../../../../../source-script.js"></script><script defer src="../../../../../source-files.js"></script><script defer src="../../../../../main.js"></script><noscript><link rel="stylesheet" href="../../../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../../../uniffi_bindgen/index.html"><div class="logo-container"><img class="rust-logo" src="../../../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../../../uniffi_bindgen/index.html"><div class="logo-container"><img class="rust-logo" src="../../../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../../../uniffi_bindgen/index.html"><img class="rust-logo" src="../../../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/uniffi_bindgen-0.22.0/src/bindings/ruby/gen_ruby/mod.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../../../normalize.css"><link rel="stylesheet" href="../../../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../../../ayu.css" disabled><link rel="stylesheet" href="../../../../../dark.css" disabled><link rel="stylesheet" href="../../../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../../../storage.js"></script><script defer src="../../../../../source-script.js"></script><script defer src="../../../../../source-files.js"></script><script defer src="../../../../../main.js"></script><noscript><link rel="stylesheet" href="../../../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../../../uniffi_bindgen/index.html"><img class="rust-logo" src="../../../../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -353,22 +353,22 @@
 <span class="kw">mod </span>filters {
     <span class="kw">use super</span>::<span class="kw-2">*</span>;
 
-    <span class="kw">pub fn </span>type_ffi(type_: <span class="kw-2">&amp;</span>FFIType) -&gt; <span class="prelude-ty">Result</span>&lt;String, askama::Error&gt; {
+    <span class="kw">pub fn </span>type_ffi(type_: <span class="kw-2">&amp;</span>FfiType) -&gt; <span class="prelude-ty">Result</span>&lt;String, askama::Error&gt; {
         <span class="prelude-val">Ok</span>(<span class="kw">match </span>type_ {
-            FFIType::Int8 =&gt; <span class="string">&quot;:int8&quot;</span>.to_string(),
-            FFIType::UInt8 =&gt; <span class="string">&quot;:uint8&quot;</span>.to_string(),
-            FFIType::Int16 =&gt; <span class="string">&quot;:int16&quot;</span>.to_string(),
-            FFIType::UInt16 =&gt; <span class="string">&quot;:uint16&quot;</span>.to_string(),
-            FFIType::Int32 =&gt; <span class="string">&quot;:int32&quot;</span>.to_string(),
-            FFIType::UInt32 =&gt; <span class="string">&quot;:uint32&quot;</span>.to_string(),
-            FFIType::Int64 =&gt; <span class="string">&quot;:int64&quot;</span>.to_string(),
-            FFIType::UInt64 =&gt; <span class="string">&quot;:uint64&quot;</span>.to_string(),
-            FFIType::Float32 =&gt; <span class="string">&quot;:float&quot;</span>.to_string(),
-            FFIType::Float64 =&gt; <span class="string">&quot;:double&quot;</span>.to_string(),
-            FFIType::RustArcPtr(<span class="kw">_</span>) =&gt; <span class="string">&quot;:pointer&quot;</span>.to_string(),
-            FFIType::RustBuffer =&gt; <span class="string">&quot;RustBuffer.by_value&quot;</span>.to_string(),
-            FFIType::ForeignBytes =&gt; <span class="string">&quot;ForeignBytes&quot;</span>.to_string(),
-            FFIType::ForeignCallback =&gt; <span class="macro">unimplemented!</span>(<span class="string">&quot;Callback interfaces are not implemented&quot;</span>),
+            FfiType::Int8 =&gt; <span class="string">&quot;:int8&quot;</span>.to_string(),
+            FfiType::UInt8 =&gt; <span class="string">&quot;:uint8&quot;</span>.to_string(),
+            FfiType::Int16 =&gt; <span class="string">&quot;:int16&quot;</span>.to_string(),
+            FfiType::UInt16 =&gt; <span class="string">&quot;:uint16&quot;</span>.to_string(),
+            FfiType::Int32 =&gt; <span class="string">&quot;:int32&quot;</span>.to_string(),
+            FfiType::UInt32 =&gt; <span class="string">&quot;:uint32&quot;</span>.to_string(),
+            FfiType::Int64 =&gt; <span class="string">&quot;:int64&quot;</span>.to_string(),
+            FfiType::UInt64 =&gt; <span class="string">&quot;:uint64&quot;</span>.to_string(),
+            FfiType::Float32 =&gt; <span class="string">&quot;:float&quot;</span>.to_string(),
+            FfiType::Float64 =&gt; <span class="string">&quot;:double&quot;</span>.to_string(),
+            FfiType::RustArcPtr(<span class="kw">_</span>) =&gt; <span class="string">&quot;:pointer&quot;</span>.to_string(),
+            FfiType::RustBuffer =&gt; <span class="string">&quot;RustBuffer.by_value&quot;</span>.to_string(),
+            FfiType::ForeignBytes =&gt; <span class="string">&quot;ForeignBytes&quot;</span>.to_string(),
+            FfiType::ForeignCallback =&gt; <span class="macro">unimplemented!</span>(<span class="string">&quot;Callback interfaces are not implemented&quot;</span>),
         })
     }
 
@@ -382,24 +382,24 @@
                 }
             }
             <span class="comment">// use the double-quote form to match with the other languages, and quote escapes.
-            </span>Literal::String(s) =&gt; <span class="macro">format!</span>(<span class="string">&quot;\&quot;{}\&quot;&quot;</span>, s),
+            </span>Literal::String(s) =&gt; <span class="macro">format!</span>(<span class="string">&quot;\&quot;{s}\&quot;&quot;</span>),
             Literal::Null =&gt; <span class="string">&quot;nil&quot;</span>.into(),
             Literal::EmptySequence =&gt; <span class="string">&quot;[]&quot;</span>.into(),
             Literal::EmptyMap =&gt; <span class="string">&quot;{}&quot;</span>.into(),
             Literal::Enum(v, type_) =&gt; <span class="kw">match </span>type_ {
                 Type::Enum(name) =&gt; <span class="macro">format!</span>(<span class="string">&quot;{}::{}&quot;</span>, class_name_rb(name)<span class="question-mark">?</span>, enum_name_rb(v)<span class="question-mark">?</span>),
-                <span class="kw">_ </span>=&gt; <span class="macro">panic!</span>(<span class="string">&quot;Unexpected type in enum literal: {:?}&quot;</span>, type_),
+                <span class="kw">_ </span>=&gt; <span class="macro">panic!</span>(<span class="string">&quot;Unexpected type in enum literal: {type_:?}&quot;</span>),
             },
             <span class="comment">// https://docs.ruby-lang.org/en/2.0.0/syntax/literals_rdoc.html
             </span>Literal::Int(i, radix, <span class="kw">_</span>) =&gt; <span class="kw">match </span>radix {
-                Radix::Octal =&gt; <span class="macro">format!</span>(<span class="string">&quot;0o{:o}&quot;</span>, i),
-                Radix::Decimal =&gt; <span class="macro">format!</span>(<span class="string">&quot;{}&quot;</span>, i),
-                Radix::Hexadecimal =&gt; <span class="macro">format!</span>(<span class="string">&quot;{:#x}&quot;</span>, i),
+                Radix::Octal =&gt; <span class="macro">format!</span>(<span class="string">&quot;0o{i:o}&quot;</span>),
+                Radix::Decimal =&gt; <span class="macro">format!</span>(<span class="string">&quot;{i}&quot;</span>),
+                Radix::Hexadecimal =&gt; <span class="macro">format!</span>(<span class="string">&quot;{i:#x}&quot;</span>),
             },
             Literal::UInt(i, radix, <span class="kw">_</span>) =&gt; <span class="kw">match </span>radix {
-                Radix::Octal =&gt; <span class="macro">format!</span>(<span class="string">&quot;0o{:o}&quot;</span>, i),
-                Radix::Decimal =&gt; <span class="macro">format!</span>(<span class="string">&quot;{}&quot;</span>, i),
-                Radix::Hexadecimal =&gt; <span class="macro">format!</span>(<span class="string">&quot;{:#x}&quot;</span>, i),
+                Radix::Octal =&gt; <span class="macro">format!</span>(<span class="string">&quot;0o{i:o}&quot;</span>),
+                Radix::Decimal =&gt; <span class="macro">format!</span>(<span class="string">&quot;{i}&quot;</span>),
+                Radix::Hexadecimal =&gt; <span class="macro">format!</span>(<span class="string">&quot;{i:#x}&quot;</span>),
             },
             Literal::Float(string, _type_) =&gt; string.clone(),
         })
@@ -417,7 +417,7 @@
         <span class="kw">let </span>nm = nm.to_string();
         <span class="kw">let </span>prefix = <span class="kw">if </span>is_reserved_word(<span class="kw-2">&amp;</span>nm) { <span class="string">&quot;_&quot; </span>} <span class="kw">else </span>{ <span class="string">&quot;&quot; </span>};
 
-        <span class="prelude-val">Ok</span>(<span class="macro">format!</span>(<span class="string">&quot;{}{}&quot;</span>, prefix, nm.to_snake_case()))
+        <span class="prelude-val">Ok</span>(<span class="macro">format!</span>(<span class="string">&quot;{prefix}{}&quot;</span>, nm.to_snake_case()))
     }
 
     <span class="kw">pub fn </span>enum_name_rb(nm: <span class="kw-2">&amp;</span>str) -&gt; <span class="prelude-ty">Result</span>&lt;String, askama::Error&gt; {
@@ -433,20 +433,20 @@
             | Type::Int32
             | Type::UInt32
             | Type::Int64
-            | Type::UInt64 =&gt; <span class="macro">format!</span>(<span class="string">&quot;{}.to_i&quot;</span>, nm), <span class="comment">// TODO: check max/min value
-            </span>Type::Float32 | Type::Float64 =&gt; <span class="macro">format!</span>(<span class="string">&quot;{}.to_f&quot;</span>, nm),
-            Type::Boolean =&gt; <span class="macro">format!</span>(<span class="string">&quot;{} ? true : false&quot;</span>, nm),
+            | Type::UInt64 =&gt; <span class="macro">format!</span>(<span class="string">&quot;{nm}.to_i&quot;</span>), <span class="comment">// TODO: check max/min value
+            </span>Type::Float32 | Type::Float64 =&gt; <span class="macro">format!</span>(<span class="string">&quot;{nm}.to_f&quot;</span>),
+            Type::Boolean =&gt; <span class="macro">format!</span>(<span class="string">&quot;{nm} ? true : false&quot;</span>),
             Type::Object(<span class="kw">_</span>) | Type::Enum(<span class="kw">_</span>) | Type::Error(<span class="kw">_</span>) | Type::Record(<span class="kw">_</span>) =&gt; nm.to_string(),
-            Type::String =&gt; <span class="macro">format!</span>(<span class="string">&quot;{}.to_s&quot;</span>, nm),
+            Type::String =&gt; <span class="macro">format!</span>(<span class="string">&quot;{nm}.to_s&quot;</span>),
             Type::Timestamp | Type::Duration =&gt; nm.to_string(),
             Type::CallbackInterface(<span class="kw">_</span>) =&gt; <span class="macro">panic!</span>(<span class="string">&quot;No support for coercing callback interfaces yet&quot;</span>),
-            Type::Optional(t) =&gt; <span class="macro">format!</span>(<span class="string">&quot;({} ? {} : nil)&quot;</span>, nm, coerce_rb(nm, t)<span class="question-mark">?</span>),
+            Type::Optional(t) =&gt; <span class="macro">format!</span>(<span class="string">&quot;({nm} ? {} : nil)&quot;</span>, coerce_rb(nm, t)<span class="question-mark">?</span>),
             Type::Sequence(t) =&gt; {
                 <span class="kw">let </span>coerce_code = coerce_rb(<span class="string">&quot;v&quot;</span>, t)<span class="question-mark">?</span>;
                 <span class="kw">if </span>coerce_code == <span class="string">&quot;v&quot; </span>{
                     nm.to_string()
                 } <span class="kw">else </span>{
-                    <span class="macro">format!</span>(<span class="string">&quot;{}.map {{ |v| {} }}&quot;</span>, nm, coerce_code)
+                    <span class="macro">format!</span>(<span class="string">&quot;{nm}.map {{ |v| {coerce_code} }}&quot;</span>)
                 }
             }
             Type::Map(_k, t) =&gt; {
@@ -464,8 +464,8 @@
             }
             Type::External { .. } =&gt; <span class="macro">panic!</span>(<span class="string">&quot;No support for external types, yet&quot;</span>),
             Type::Custom { .. } =&gt; <span class="macro">panic!</span>(<span class="string">&quot;No support for custom types, yet&quot;</span>),
-            Type::Unresolved { .. } =&gt; {
-                <span class="macro">unreachable!</span>(<span class="string">&quot;Type must be resolved before calling coerce_rb&quot;</span>)
+            Type::Unresolved { name } =&gt; {
+                <span class="macro">unreachable!</span>(<span class="string">&quot;Type `{name}` must be resolved before calling coerce_rb&quot;</span>)
             }
         })
     }
@@ -482,9 +482,9 @@
             | Type::UInt64
             | Type::Float32
             | Type::Float64 =&gt; nm.to_string(),
-            Type::Boolean =&gt; <span class="macro">format!</span>(<span class="string">&quot;({} ? 1 : 0)&quot;</span>, nm),
-            Type::String =&gt; <span class="macro">format!</span>(<span class="string">&quot;RustBuffer.allocFromString({})&quot;</span>, nm),
-            Type::Object(name) =&gt; <span class="macro">format!</span>(<span class="string">&quot;({}._uniffi_lower {})&quot;</span>, class_name_rb(name)<span class="question-mark">?</span>, nm),
+            Type::Boolean =&gt; <span class="macro">format!</span>(<span class="string">&quot;({nm} ? 1 : 0)&quot;</span>),
+            Type::String =&gt; <span class="macro">format!</span>(<span class="string">&quot;RustBuffer.allocFromString({nm})&quot;</span>),
+            Type::Object(name) =&gt; <span class="macro">format!</span>(<span class="string">&quot;({}._uniffi_lower {nm})&quot;</span>, class_name_rb(name)<span class="question-mark">?</span>),
             Type::CallbackInterface(<span class="kw">_</span>) =&gt; <span class="macro">panic!</span>(<span class="string">&quot;No support for lowering callback interfaces yet&quot;</span>),
             Type::Error(<span class="kw">_</span>) =&gt; <span class="macro">panic!</span>(<span class="string">&quot;No support for lowering errors, yet&quot;</span>),
             Type::Enum(<span class="kw">_</span>)
@@ -500,8 +500,8 @@
             ),
             Type::External { .. } =&gt; <span class="macro">panic!</span>(<span class="string">&quot;No support for lowering external types, yet&quot;</span>),
             Type::Custom { .. } =&gt; <span class="macro">panic!</span>(<span class="string">&quot;No support for lowering custom types, yet&quot;</span>),
-            Type::Unresolved { .. } =&gt; {
-                <span class="macro">unreachable!</span>(<span class="string">&quot;Type must be resolved before calling lower_rb&quot;</span>)
+            Type::Unresolved { name } =&gt; {
+                <span class="macro">unreachable!</span>(<span class="string">&quot;Type `{name}` must be resolved before calling lower_rb&quot;</span>)
             }
         })
     }
@@ -515,11 +515,11 @@
             | Type::Int32
             | Type::UInt32
             | Type::Int64
-            | Type::UInt64 =&gt; <span class="macro">format!</span>(<span class="string">&quot;{}.to_i&quot;</span>, nm),
-            Type::Float32 | Type::Float64 =&gt; <span class="macro">format!</span>(<span class="string">&quot;{}.to_f&quot;</span>, nm),
-            Type::Boolean =&gt; <span class="macro">format!</span>(<span class="string">&quot;1 == {}&quot;</span>, nm),
-            Type::String =&gt; <span class="macro">format!</span>(<span class="string">&quot;{}.consumeIntoString&quot;</span>, nm),
-            Type::Object(name) =&gt; <span class="macro">format!</span>(<span class="string">&quot;{}._uniffi_allocate({})&quot;</span>, class_name_rb(name)<span class="question-mark">?</span>, nm),
+            | Type::UInt64 =&gt; <span class="macro">format!</span>(<span class="string">&quot;{nm}.to_i&quot;</span>),
+            Type::Float32 | Type::Float64 =&gt; <span class="macro">format!</span>(<span class="string">&quot;{nm}.to_f&quot;</span>),
+            Type::Boolean =&gt; <span class="macro">format!</span>(<span class="string">&quot;1 == {nm}&quot;</span>),
+            Type::String =&gt; <span class="macro">format!</span>(<span class="string">&quot;{nm}.consumeIntoString&quot;</span>),
+            Type::Object(name) =&gt; <span class="macro">format!</span>(<span class="string">&quot;{}._uniffi_allocate({nm})&quot;</span>, class_name_rb(name)<span class="question-mark">?</span>),
             Type::CallbackInterface(<span class="kw">_</span>) =&gt; <span class="macro">panic!</span>(<span class="string">&quot;No support for lifting callback interfaces, yet&quot;</span>),
             Type::Error(<span class="kw">_</span>) =&gt; <span class="macro">panic!</span>(<span class="string">&quot;No support for lowering errors, yet&quot;</span>),
             Type::Enum(<span class="kw">_</span>)
@@ -535,8 +535,8 @@
             </span>),
             Type::External { .. } =&gt; <span class="macro">panic!</span>(<span class="string">&quot;No support for lifting external types, yet&quot;</span>),
             Type::Custom { .. } =&gt; <span class="macro">panic!</span>(<span class="string">&quot;No support for lifting custom types, yet&quot;</span>),
-            Type::Unresolved { .. } =&gt; {
-                <span class="macro">unreachable!</span>(<span class="string">&quot;Type must be resolved before calling lift_rb&quot;</span>)
+            Type::Unresolved { name } =&gt; {
+                <span class="macro">unreachable!</span>(<span class="string">&quot;Type `{name}` must be resolved before calling lift_rb&quot;</span>)
             }
         })
     }
@@ -545,4 +545,4 @@
 <span class="attribute">#[cfg(test)]
 </span><span class="kw">mod </span>tests;
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../../../" data-current-crate="uniffi_bindgen" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.65.0 (897e37553 2022-11-02)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../../../" data-current-crate="uniffi_bindgen" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.0 (69f9c33d7 2022-12-12)" ></div></body></html>

@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/cargo_metadata-0.14.2/src/messages.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>messages.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../cargo_metadata/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../cargo_metadata/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../cargo_metadata/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/cargo_metadata-0.15.2/src/messages.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>messages.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../cargo_metadata/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -163,13 +163,23 @@
 <span id="163">163</span>
 <span id="164">164</span>
 <span id="165">165</span>
+<span id="166">166</span>
+<span id="167">167</span>
+<span id="168">168</span>
+<span id="169">169</span>
+<span id="170">170</span>
+<span id="171">171</span>
+<span id="172">172</span>
+<span id="173">173</span>
+<span id="174">174</span>
+<span id="175">175</span>
 </pre><pre class="rust"><code><span class="kw">use super</span>::{Diagnostic, PackageId, Target};
 <span class="kw">use </span>camino::Utf8PathBuf;
 <span class="attribute">#[cfg(feature = <span class="string">&quot;builder&quot;</span>)]
 </span><span class="kw">use </span>derive_builder::Builder;
 <span class="kw">use </span>serde::{Deserialize, Serialize};
 <span class="kw">use </span>std::fmt;
-<span class="kw">use </span>std::io::{<span class="self">self</span>, BufRead, Lines, Read};
+<span class="kw">use </span>std::io::{<span class="self">self</span>, BufRead, Read};
 
 <span class="doccomment">/// Profile settings used to determine which compiler flags to use for a
 /// target.
@@ -199,6 +209,9 @@
 </span><span class="kw">pub struct </span>Artifact {
     <span class="doccomment">/// The package this artifact belongs to
     </span><span class="kw">pub </span>package_id: PackageId,
+    <span class="doccomment">/// Path to the `Cargo.toml` file
+    </span><span class="attribute">#[serde(default)]
+    </span><span class="kw">pub </span>manifest_path: Utf8PathBuf,
     <span class="doccomment">/// The target this artifact was compiled for
     </span><span class="kw">pub </span>target: Target,
     <span class="doccomment">/// The profile this artifact was compiled with
@@ -287,10 +300,8 @@
 <span class="kw">impl </span>Message {
     <span class="doccomment">/// Creates an iterator of Message from a Read outputting a stream of JSON
     /// messages. For usage information, look at the top-level documentation.
-    </span><span class="kw">pub fn </span>parse_stream&lt;R: BufRead&gt;(input: R) -&gt; MessageIter&lt;R&gt; {
-        MessageIter {
-            lines: input.lines(),
-        }
+    </span><span class="kw">pub fn </span>parse_stream&lt;R: Read&gt;(input: R) -&gt; MessageIter&lt;R&gt; {
+        MessageIter { input }
     }
 }
 
@@ -302,19 +313,28 @@
 
 <span class="doccomment">/// An iterator of Messages.
 </span><span class="kw">pub struct </span>MessageIter&lt;R&gt; {
-    lines: Lines&lt;R&gt;,
+    input: R,
 }
 
 <span class="kw">impl</span>&lt;R: BufRead&gt; Iterator <span class="kw">for </span>MessageIter&lt;R&gt; {
     <span class="kw">type </span>Item = io::Result&lt;Message&gt;;
     <span class="kw">fn </span>next(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>::Item&gt; {
-        <span class="kw">let </span>line = <span class="self">self</span>.lines.next()<span class="question-mark">?</span>;
-        <span class="kw">let </span>message = line.map(|it| {
-            <span class="kw">let </span><span class="kw-2">mut </span>deserializer = serde_json::Deserializer::from_str(<span class="kw-2">&amp;</span>it);
-            deserializer.disable_recursion_limit();
-            Message::deserialize(<span class="kw-2">&amp;mut </span>deserializer).unwrap_or(Message::TextLine(it))
-        });
-        <span class="prelude-val">Some</span>(message)
+        <span class="kw">let </span><span class="kw-2">mut </span>line = String::new();
+        <span class="self">self</span>.input
+            .read_line(<span class="kw-2">&amp;mut </span>line)
+            .map(|n| {
+                <span class="kw">if </span>n == <span class="number">0 </span>{
+                    <span class="prelude-val">None
+                </span>} <span class="kw">else </span>{
+                    <span class="kw">if </span>line.ends_with(<span class="string">&#39;\n&#39;</span>) {
+                        line.truncate(line.len() - <span class="number">1</span>);
+                    }
+                    <span class="kw">let </span><span class="kw-2">mut </span>deserializer = serde_json::Deserializer::from_str(<span class="kw-2">&amp;</span>line);
+                    deserializer.disable_recursion_limit();
+                    <span class="prelude-val">Some</span>(Message::deserialize(<span class="kw-2">&amp;mut </span>deserializer).unwrap_or(Message::TextLine(line)))
+                }
+            })
+            .transpose()
     }
 }
 
@@ -329,4 +349,4 @@
     serde_json::Deserializer::from_reader(input).into_iter::&lt;Message&gt;()
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="cargo_metadata" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.65.0 (897e37553 2022-11-02)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="cargo_metadata" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.0 (69f9c33d7 2022-12-12)" ></div></body></html>

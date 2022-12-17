@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/goblin-0.5.4/src/archive/mod.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../normalize.css"><link rel="stylesheet" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../ayu.css" disabled><link rel="stylesheet" href="../../../dark.css" disabled><link rel="stylesheet" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../goblin/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../goblin/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../goblin/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/goblin-0.6.0/src/archive/mod.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../normalize.css"><link rel="stylesheet" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../ayu.css" disabled><link rel="stylesheet" href="../../../dark.css" disabled><link rel="stylesheet" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../goblin/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -625,6 +625,16 @@
 <span id="625">625</span>
 <span id="626">626</span>
 <span id="627">627</span>
+<span id="628">628</span>
+<span id="629">629</span>
+<span id="630">630</span>
+<span id="631">631</span>
+<span id="632">632</span>
+<span id="633">633</span>
+<span id="634">634</span>
+<span id="635">635</span>
+<span id="636">636</span>
+<span id="637">637</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Implements a simple parser and extractor for a Unix Archive.
 //!
 //! There are two &quot;common&quot; formats: BSD and SysV
@@ -759,11 +769,15 @@
             )<span class="question-mark">?</span>;
 
             <span class="comment">// adjust the offset and size accordingly
-            </span><span class="kw-2">*</span>offset = header_offset + SIZEOF_HEADER + len;
-            header.size -= len;
+            </span><span class="kw">if </span>header.size &gt; len {
+                <span class="kw-2">*</span>offset = header_offset + SIZEOF_HEADER + len;
+                header.size -= len;
 
-            <span class="comment">// the name may have trailing NULs which we don&#39;t really want to keep
-            </span><span class="prelude-val">Some</span>(name.trim_end_matches(<span class="string">&#39;\0&#39;</span>))
+                <span class="comment">// the name may have trailing NULs which we don&#39;t really want to keep
+                </span><span class="prelude-val">Some</span>(name.trim_end_matches(<span class="string">&#39;\0&#39;</span>))
+            } <span class="kw">else </span>{
+                <span class="prelude-val">None
+            </span>}
         } <span class="kw">else </span>{
             <span class="prelude-val">None
         </span>};
@@ -787,8 +801,8 @@
     </span><span class="kw">fn </span>bsd_filename_length(name: <span class="kw-2">&amp;</span>str) -&gt; <span class="prelude-ty">Option</span>&lt;usize&gt; {
         <span class="kw">use </span>core::str::FromStr;
 
-        <span class="kw">if </span>name.len() &gt; <span class="number">3 </span>&amp;&amp; <span class="kw-2">&amp;</span>name[<span class="number">0</span>..<span class="number">3</span>] == <span class="string">&quot;#1/&quot; </span>{
-            <span class="kw">let </span>trimmed_name = <span class="kw-2">&amp;</span>name[<span class="number">3</span>..].trim_end_matches(<span class="string">&#39; &#39;</span>);
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(name) = name.strip_prefix(<span class="string">&quot;#1/&quot;</span>) {
+            <span class="kw">let </span>trimmed_name = name.trim_end_matches(<span class="string">&#39; &#39;</span>);
             <span class="kw">if let </span><span class="prelude-val">Ok</span>(len) = usize::from_str(trimmed_name) {
                 <span class="prelude-val">Some</span>(len)
             } <span class="kw">else </span>{
@@ -965,8 +979,13 @@
 
         <span class="kw">let </span><span class="kw-2">mut </span>symbol_offsets = Vec::with_capacity(symbols);
         <span class="kw">for _ in </span><span class="number">0</span>..symbols {
-            symbol_offsets
-                .push(member_offsets[buffer.gread_with::&lt;u16&gt;(offset, scroll::LE)<span class="question-mark">? </span><span class="kw">as </span>usize - <span class="number">1</span>]);
+            <span class="kw">if let </span><span class="prelude-val">Some</span>(symbol_offset) =
+                member_offsets.get(buffer.gread_with::&lt;u16&gt;(offset, scroll::LE)<span class="question-mark">? </span><span class="kw">as </span>usize - <span class="number">1</span>)
+            {
+                symbol_offsets.push(<span class="kw-2">*</span>symbol_offset);
+            } <span class="kw">else </span>{
+                <span class="kw">return </span><span class="prelude-val">Err</span>(Error::BufferTooShort(members, <span class="string">&quot;members&quot;</span>));
+            }
         }
         <span class="kw">let </span>strtab = strtab::Strtab::parse(buffer, <span class="kw-2">*</span>offset, buffer.len() - <span class="kw-2">*</span>offset, <span class="number">0x0</span>)<span class="question-mark">?</span>;
         <span class="prelude-val">Ok</span>(Index {
@@ -1238,6 +1257,7 @@
         <span class="macro">assert_eq!</span>(Member::bsd_filename_length(<span class="string">&quot;#2/1&quot;</span>), <span class="prelude-val">None</span>);
         <span class="macro">assert_eq!</span>(Member::bsd_filename_length(INDEX_NAME), <span class="prelude-val">None</span>);
         <span class="macro">assert_eq!</span>(Member::bsd_filename_length(NAME_INDEX_NAME), <span class="prelude-val">None</span>);
+        <span class="macro">assert_eq!</span>(Member::bsd_filename_length(<span class="string">&quot;👺&quot;</span>), <span class="prelude-val">None</span>);
 
         <span class="comment">// #1/&lt;len&gt; should be parsed as Some(len), with or without whitespace
         </span><span class="macro">assert_eq!</span>(Member::bsd_filename_length(<span class="string">&quot;#1/1&quot;</span>), <span class="prelude-val">Some</span>(<span class="number">1</span>));
@@ -1253,4 +1273,4 @@
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="goblin" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.65.0 (897e37553 2022-11-02)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="goblin" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.0 (69f9c33d7 2022-12-12)" ></div></body></html>

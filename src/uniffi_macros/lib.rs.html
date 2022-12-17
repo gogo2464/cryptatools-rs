@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/uniffi_macros-0.21.0/src/lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../uniffi_macros/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../uniffi_macros/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../uniffi_macros/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/uniffi_macros-0.22.0/src/lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../uniffi_macros/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -177,65 +177,6 @@
 <span id="177">177</span>
 <span id="178">178</span>
 <span id="179">179</span>
-<span id="180">180</span>
-<span id="181">181</span>
-<span id="182">182</span>
-<span id="183">183</span>
-<span id="184">184</span>
-<span id="185">185</span>
-<span id="186">186</span>
-<span id="187">187</span>
-<span id="188">188</span>
-<span id="189">189</span>
-<span id="190">190</span>
-<span id="191">191</span>
-<span id="192">192</span>
-<span id="193">193</span>
-<span id="194">194</span>
-<span id="195">195</span>
-<span id="196">196</span>
-<span id="197">197</span>
-<span id="198">198</span>
-<span id="199">199</span>
-<span id="200">200</span>
-<span id="201">201</span>
-<span id="202">202</span>
-<span id="203">203</span>
-<span id="204">204</span>
-<span id="205">205</span>
-<span id="206">206</span>
-<span id="207">207</span>
-<span id="208">208</span>
-<span id="209">209</span>
-<span id="210">210</span>
-<span id="211">211</span>
-<span id="212">212</span>
-<span id="213">213</span>
-<span id="214">214</span>
-<span id="215">215</span>
-<span id="216">216</span>
-<span id="217">217</span>
-<span id="218">218</span>
-<span id="219">219</span>
-<span id="220">220</span>
-<span id="221">221</span>
-<span id="222">222</span>
-<span id="223">223</span>
-<span id="224">224</span>
-<span id="225">225</span>
-<span id="226">226</span>
-<span id="227">227</span>
-<span id="228">228</span>
-<span id="229">229</span>
-<span id="230">230</span>
-<span id="231">231</span>
-<span id="232">232</span>
-<span id="233">233</span>
-<span id="234">234</span>
-<span id="235">235</span>
-<span id="236">236</span>
-<span id="237">237</span>
-<span id="238">238</span>
 </pre><pre class="rust"><code><span class="comment">/* This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
@@ -246,19 +187,43 @@
 //! Currently this is just for easily generating integration tests, but maybe
 //! we&#39;ll put some other code-annotation helper macros in here at some point.
 
-</span><span class="kw">use </span>camino::{Utf8Path, Utf8PathBuf};
+</span><span class="kw">use </span>camino::Utf8Path;
 <span class="kw">use </span>proc_macro::TokenStream;
-<span class="kw">use </span>quote::{format_ident, quote};
-<span class="kw">use </span>std::env;
-<span class="kw">use </span>syn::{bracketed, parse_macro_input, punctuated::Punctuated, LitStr, Token};
+<span class="kw">use </span>quote::quote;
+<span class="kw">use </span>syn::{parse_macro_input, LitStr};
 <span class="kw">use </span>util::rewrite_self_type;
 
+<span class="kw">mod </span>enum_;
+<span class="kw">mod </span>error;
 <span class="kw">mod </span>export;
 <span class="kw">mod </span>object;
 <span class="kw">mod </span>record;
+<span class="kw">mod </span>test;
 <span class="kw">mod </span>util;
 
-<span class="kw">use </span><span class="self">self</span>::{export::expand_export, object::expand_object, record::expand_record};
+<span class="kw">use </span><span class="self">self</span>::{
+    enum_::expand_enum, error::expand_error, export::expand_export, object::expand_object,
+    record::expand_record,
+};
+
+<span class="doccomment">/// A macro to build testcases for a component&#39;s generated bindings.
+///
+/// This macro provides some plumbing to write automated tests for the generated
+/// foreign language bindings of a component. As a component author, you can write
+/// script files in the target foreign language(s) that exercise you component API,
+/// and then call this macro to produce a `cargo test` testcase from each one.
+/// The generated code will execute your script file with appropriate configuration and
+/// environment to let it load the component bindings, and will pass iff the script
+/// exits successfully.
+///
+/// To use it, invoke the macro with the name of a fixture/example crate as the first argument,
+/// then one or more file paths relative to the crate root directory. It will produce one `#[test]`
+/// function per file, in a manner designed to play nicely with `cargo test` and its test filtering
+/// options.
+</span><span class="attribute">#[proc_macro]
+</span><span class="kw">pub fn </span>build_foreign_language_testcases(tokens: TokenStream) -&gt; TokenStream {
+    test::build_foreign_language_testcases(tokens)
+}
 
 <span class="attribute">#[proc_macro_attribute]
 </span><span class="kw">pub fn </span>export(_attr: TokenStream, input: TokenStream) -&gt; TokenStream {
@@ -297,6 +262,17 @@
     expand_record(input, mod_path).into()
 }
 
+<span class="attribute">#[proc_macro_derive(Enum)]
+</span><span class="kw">pub fn </span>derive_enum(input: TokenStream) -&gt; TokenStream {
+    <span class="kw">let </span>mod_path = <span class="kw">match </span>util::mod_path() {
+        <span class="prelude-val">Ok</span>(p) =&gt; p,
+        <span class="prelude-val">Err</span>(e) =&gt; <span class="kw">return </span>e.into_compile_error().into(),
+    };
+    <span class="kw">let </span>input = <span class="macro">parse_macro_input!</span>(input);
+
+    expand_enum(input, mod_path).into()
+}
+
 <span class="attribute">#[proc_macro_derive(Object)]
 </span><span class="kw">pub fn </span>derive_object(input: TokenStream) -&gt; TokenStream {
     <span class="kw">let </span>mod_path = <span class="kw">match </span>util::mod_path() {
@@ -308,109 +284,15 @@
     expand_object(input, mod_path).into()
 }
 
-<span class="doccomment">/// A macro to build testcases for a component&#39;s generated bindings.
-///
-/// This macro provides some plumbing to write automated tests for the generated
-/// foreign language bindings of a component. As a component author, you can write
-/// script files in the target foreign language(s) that exercise you component API,
-/// and then call this macro to produce a `cargo test` testcase from each one.
-/// The generated code will execute your script file with appropriate configuration and
-/// environment to let it load the component bindings, and will pass iff the script
-/// exits successfully.
-///
-/// To use it, invoke the macro with one or more udl files as the first argument, then
-/// one or more file paths relative to the crate root directory.
-/// It will produce one `#[test]` function per file, in a manner designed to
-/// play nicely with `cargo test` and its test filtering options.
-</span><span class="attribute">#[proc_macro]
-</span><span class="kw">pub fn </span>build_foreign_language_testcases(paths: TokenStream) -&gt; TokenStream {
-    <span class="kw">let </span>paths = <span class="macro">syn::parse_macro_input!</span>(paths <span class="kw">as </span>FilePaths);
-    <span class="comment">// We resolve each path relative to the crate root directory.
-    </span><span class="kw">let </span>pkg_dir = env::var(<span class="string">&quot;CARGO_MANIFEST_DIR&quot;</span>)
-        .expect(<span class="string">&quot;Missing $CARGO_MANIFEST_DIR, cannot build tests for generated bindings&quot;</span>);
-
-    <span class="comment">// Create an array of UDL files.
-    </span><span class="kw">let </span>udl_files = <span class="kw-2">&amp;</span>paths
-        .udl_files
-        .iter()
-        .map(|file_path| {
-            <span class="kw">let </span>pathbuf: Utf8PathBuf = [<span class="kw-2">&amp;</span>pkg_dir, file_path].iter().collect();
-            <span class="kw">let </span>path = pathbuf.to_string();
-            <span class="macro">quote! </span>{ #path }
-        })
-        .collect::&lt;Vec&lt;proc_macro2::TokenStream&gt;&gt;();
-
-    <span class="comment">// For each test file found, generate a matching testcase.
-    </span><span class="kw">let </span>test_functions = paths.test_scripts
-        .iter()
-        .map(|file_path| {
-            <span class="kw">let </span>test_file_pathbuf: Utf8PathBuf = [<span class="kw-2">&amp;</span>pkg_dir, file_path].iter().collect();
-            <span class="kw">let </span>test_file_path = test_file_pathbuf.to_string();
-            <span class="kw">let </span>test_file_name = test_file_pathbuf
-                .file_name()
-                .expect(<span class="string">&quot;Test file has no name, cannot build tests for generated bindings&quot;</span>);
-            <span class="kw">let </span>test_name = <span class="macro">format_ident!</span>(
-                <span class="string">&quot;uniffi_foreign_language_testcase_{}&quot;</span>,
-                test_file_name.replace(|c: char| !c.is_alphanumeric(), <span class="string">&quot;_&quot;</span>)
-            );
-            <span class="kw">let </span>maybe_ignore = <span class="kw">if </span>should_skip_path(<span class="kw-2">&amp;</span>test_file_pathbuf) {
-                <span class="macro">quote! </span>{ <span class="attribute">#[ignore] </span>}
-            } <span class="kw">else </span>{
-                <span class="macro">quote! </span>{ }
-            };
-            <span class="macro">quote! </span>{
-                #maybe_ignore
-                <span class="attribute">#[test]
-                </span><span class="kw">fn </span>#test_name () -&gt; uniffi::deps::anyhow::Result&lt;()&gt; {
-                    uniffi::testing::run_foreign_language_testcase(#pkg_dir, <span class="kw-2">&amp;</span>[ #(#udl_files),* ], #test_file_path)
-                }
-            }
-        })
-        .collect::&lt;Vec&lt;proc_macro2::TokenStream&gt;&gt;();
-    <span class="kw">let </span>test_module = <span class="macro">quote! </span>{
-        #(#test_functions)*
+<span class="attribute">#[proc_macro_derive(Error, attributes(uniffi))]
+</span><span class="kw">pub fn </span>derive_error(input: TokenStream) -&gt; TokenStream {
+    <span class="kw">let </span>mod_path = <span class="kw">match </span>util::mod_path() {
+        <span class="prelude-val">Ok</span>(p) =&gt; p,
+        <span class="prelude-val">Err</span>(e) =&gt; <span class="kw">return </span>e.into_compile_error().into(),
     };
-    TokenStream::from(test_module)
-}
+    <span class="kw">let </span>input = <span class="macro">parse_macro_input!</span>(input);
 
-<span class="comment">// UNIFFI_TESTS_DISABLE_EXTENSIONS contains a comma-sep&#39;d list of extensions (without leading `.`)
-</span><span class="kw">fn </span>should_skip_path(path: <span class="kw-2">&amp;</span>Utf8Path) -&gt; bool {
-    <span class="kw">let </span>ext = path.extension().expect(<span class="string">&quot;File has no extension!&quot;</span>);
-    env::var(<span class="string">&quot;UNIFFI_TESTS_DISABLE_EXTENSIONS&quot;</span>)
-        .map(|v| v.split(<span class="string">&#39;,&#39;</span>).any(|look| look == ext))
-        .unwrap_or(<span class="bool-val">false</span>)
-}
-
-<span class="doccomment">/// Newtype to simplifying parsing a list of file paths from macro input.
-</span><span class="attribute">#[derive(Debug)]
-</span><span class="kw">struct </span>FilePaths {
-    udl_files: Vec&lt;String&gt;,
-    test_scripts: Vec&lt;String&gt;,
-}
-
-<span class="kw">impl </span>syn::parse::Parse <span class="kw">for </span>FilePaths {
-    <span class="kw">fn </span>parse(input: syn::parse::ParseStream) -&gt; syn::Result&lt;<span class="self">Self</span>&gt; {
-        <span class="kw">let </span>udl_array;
-        <span class="macro">bracketed!</span>(udl_array <span class="kw">in </span>input);
-        <span class="kw">let </span>udl_files = Punctuated::&lt;LitStr, <span class="macro">Token!</span>[,]&gt;::parse_terminated(<span class="kw-2">&amp;</span>udl_array)<span class="question-mark">?
-            </span>.iter()
-            .map(|s| s.value())
-            .collect();
-
-        <span class="kw">let </span>_comma: <span class="macro">Token!</span>[,] = input.parse()<span class="question-mark">?</span>;
-
-        <span class="kw">let </span>scripts_array;
-        <span class="macro">bracketed!</span>(scripts_array <span class="kw">in </span>input);
-        <span class="kw">let </span>test_scripts = Punctuated::&lt;LitStr, <span class="macro">Token!</span>[,]&gt;::parse_terminated(<span class="kw-2">&amp;</span>scripts_array)<span class="question-mark">?
-            </span>.iter()
-            .map(|s| s.value())
-            .collect();
-
-        <span class="prelude-val">Ok</span>(FilePaths {
-            udl_files,
-            test_scripts,
-        })
-    }
+    expand_error(input, mod_path).into()
 }
 
 <span class="doccomment">/// A helper macro to include generated component scaffolding.
@@ -475,4 +357,4 @@
     }.into()
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="uniffi_macros" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.65.0 (897e37553 2022-11-02)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="uniffi_macros" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.0 (69f9c33d7 2022-12-12)" ></div></body></html>

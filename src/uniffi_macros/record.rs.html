@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/uniffi_macros-0.21.0/src/record.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>record.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../uniffi_macros/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../uniffi_macros/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../uniffi_macros/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/uniffi_macros-0.22.0/src/record.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>record.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../uniffi_macros/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -98,14 +98,22 @@
 <span id="98">98</span>
 <span id="99">99</span>
 <span id="100">100</span>
-</pre><pre class="rust"><code><span class="kw">use </span>proc_macro2::{Span, TokenStream};
+<span id="101">101</span>
+<span id="102">102</span>
+<span id="103">103</span>
+<span id="104">104</span>
+<span id="105">105</span>
+<span id="106">106</span>
+<span id="107">107</span>
+<span id="108">108</span>
+</pre><pre class="rust"><code><span class="kw">use </span>proc_macro2::{Ident, Span, TokenStream};
 <span class="kw">use </span>quote::quote;
-<span class="kw">use </span>syn::{Data, DeriveInput};
+<span class="kw">use </span>syn::{Data, DeriveInput, Field, Fields};
 <span class="kw">use </span>uniffi_meta::{FieldMetadata, RecordMetadata};
 
 <span class="kw">use crate</span>::{
     export::metadata::convert::convert_type,
-    util::{assert_type_eq, create_metadata_static_var},
+    util::{assert_type_eq, create_metadata_static_var, try_read_field},
 };
 
 <span class="kw">pub fn </span>expand_record(input: DeriveInput, module_path: Vec&lt;String&gt;) -&gt; TokenStream {
@@ -117,72 +125,34 @@
     <span class="kw">let </span>ident = <span class="kw-2">&amp;</span>input.ident;
 
     <span class="kw">let </span>(write_impl, try_read_fields) = <span class="kw">match </span><span class="kw-2">&amp;</span>fields {
-        <span class="prelude-val">Some</span>(fields) =&gt; fields
-            .iter()
-            .map(|f| {
-                <span class="kw">let </span>ident = <span class="kw-2">&amp;</span>f.ident;
-                <span class="kw">let </span>ty = <span class="kw-2">&amp;</span>f.ty;
-
-                <span class="kw">let </span>write_field = <span class="macro">quote! </span>{
-                    &lt;#ty <span class="kw">as </span>::uniffi::FfiConverter&gt;::write(obj.#ident, buf);
-                };
-                <span class="kw">let </span>try_read_field = <span class="macro">quote! </span>{
-                    #ident: &lt;#ty <span class="kw">as </span>::uniffi::FfiConverter&gt;::try_read(buf)<span class="question-mark">?</span>,
-                };
-
-                (write_field, try_read_field)
-            })
-            .unzip(),
+        <span class="prelude-val">Some</span>(fields) =&gt; (
+            fields.iter().map(write_field).collect(),
+            fields.iter().map(try_read_field).collect(),
+        ),
         <span class="prelude-val">None </span>=&gt; {
             <span class="kw">let </span>unimplemented = <span class="macro">quote! </span>{ <span class="macro">::std::unimplemented!</span>() };
             (unimplemented.clone(), unimplemented)
         }
     };
 
-    <span class="kw">let </span>meta_static_var = fields
-        .map(|fields| {
-            <span class="kw">let </span>name = ident.to_string();
-            <span class="kw">let </span>fields_res: syn::Result&lt;<span class="kw">_</span>&gt; = fields
-                .iter()
-                .map(|f| {
-                    <span class="kw">let </span>name = f
-                        .ident
-                        .as_ref()
-                        .expect(<span class="string">&quot;We only allow record structs&quot;</span>)
-                        .to_string();
-
-                    <span class="prelude-val">Ok</span>(FieldMetadata {
-                        name,
-                        ty: convert_type(<span class="kw-2">&amp;</span>f.ty)<span class="question-mark">?</span>,
-                    })
-                })
-                .collect();
-
-            <span class="kw">match </span>fields_res {
-                <span class="prelude-val">Ok</span>(fields) =&gt; {
-                    <span class="kw">let </span>metadata = RecordMetadata {
-                        module_path,
-                        name,
-                        fields,
-                    };
-
-                    create_metadata_static_var(ident, metadata.into())
-                }
-                <span class="prelude-val">Err</span>(e) =&gt; e.into_compile_error(),
-            }
-        })
-        .unwrap_or_else(|| {
-            syn::Error::new(
-                Span::call_site(),
-                <span class="string">&quot;This derive must only be used on structs&quot;</span>,
-            )
-            .into_compile_error()
-        });
+    <span class="kw">let </span>meta_static_var = <span class="kw">if let </span><span class="prelude-val">Some</span>(fields) = fields {
+        <span class="kw">match </span>record_metadata(ident, fields, module_path) {
+            <span class="prelude-val">Ok</span>(metadata) =&gt; create_metadata_static_var(ident, metadata.into()),
+            <span class="prelude-val">Err</span>(e) =&gt; e.into_compile_error(),
+        }
+    } <span class="kw">else </span>{
+        syn::Error::new(
+            Span::call_site(),
+            <span class="string">&quot;This derive must only be used on structs&quot;</span>,
+        )
+        .into_compile_error()
+    };
 
     <span class="kw">let </span>type_assertion = assert_type_eq(ident, <span class="macro">quote! </span>{ <span class="kw">crate</span>::uniffi_types::#ident });
 
     <span class="macro">quote! </span>{
-        <span class="kw">impl </span>::uniffi::RustBufferFfiConverter <span class="kw">for </span>#ident {
+        <span class="attribute">#[automatically_derived]
+        </span><span class="kw">impl </span>::uniffi::RustBufferFfiConverter <span class="kw">for </span>#ident {
             <span class="kw">type </span>RustType = <span class="self">Self</span>;
 
             <span class="kw">fn </span>write(obj: <span class="self">Self</span>, buf: <span class="kw-2">&amp;mut </span>::std::vec::Vec&lt;u8&gt;) {
@@ -198,5 +168,51 @@
         #type_assertion
     }
 }
+
+<span class="kw">fn </span>record_metadata(
+    ident: <span class="kw-2">&amp;</span>Ident,
+    fields: Fields,
+    module_path: Vec&lt;String&gt;,
+) -&gt; syn::Result&lt;RecordMetadata&gt; {
+    <span class="kw">let </span>name = ident.to_string();
+    <span class="kw">let </span>fields = <span class="kw">match </span>fields {
+        Fields::Named(fields) =&gt; fields.named,
+        <span class="kw">_ </span>=&gt; {
+            <span class="kw">return </span><span class="prelude-val">Err</span>(syn::Error::new(
+                Span::call_site(),
+                <span class="string">&quot;UniFFI only supports structs with named fields&quot;</span>,
+            ));
+        }
+    };
+
+    <span class="kw">let </span>fields = fields
+        .iter()
+        .map(field_metadata)
+        .collect::&lt;syn::Result&lt;<span class="kw">_</span>&gt;&gt;()<span class="question-mark">?</span>;
+
+    <span class="prelude-val">Ok</span>(RecordMetadata {
+        module_path,
+        name,
+        fields,
+    })
+}
+
+<span class="kw">fn </span>field_metadata(f: <span class="kw-2">&amp;</span>Field) -&gt; syn::Result&lt;FieldMetadata&gt; {
+    <span class="kw">let </span>name = f.ident.as_ref().unwrap().to_string();
+
+    <span class="prelude-val">Ok</span>(FieldMetadata {
+        name,
+        ty: convert_type(<span class="kw-2">&amp;</span>f.ty)<span class="question-mark">?</span>,
+    })
+}
+
+<span class="kw">fn </span>write_field(f: <span class="kw-2">&amp;</span>Field) -&gt; TokenStream {
+    <span class="kw">let </span>ident = <span class="kw-2">&amp;</span>f.ident;
+    <span class="kw">let </span>ty = <span class="kw-2">&amp;</span>f.ty;
+
+    <span class="macro">quote! </span>{
+        &lt;#ty <span class="kw">as </span>::uniffi::FfiConverter&gt;::write(obj.#ident, buf);
+    }
+}
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="uniffi_macros" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.65.0 (897e37553 2022-11-02)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="uniffi_macros" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.0 (69f9c33d7 2022-12-12)" ></div></body></html>

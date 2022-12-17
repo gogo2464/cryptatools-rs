@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/goblin-0.5.4/src/mach/mod.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../normalize.css"><link rel="stylesheet" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../ayu.css" disabled><link rel="stylesheet" href="../../../dark.css" disabled><link rel="stylesheet" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../goblin/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../goblin/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../goblin/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/goblin-0.6.0/src/mach/mod.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../normalize.css"><link rel="stylesheet" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../ayu.css" disabled><link rel="stylesheet" href="../../../dark.css" disabled><link rel="stylesheet" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../goblin/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -464,6 +464,126 @@
 <span id="464">464</span>
 <span id="465">465</span>
 <span id="466">466</span>
+<span id="467">467</span>
+<span id="468">468</span>
+<span id="469">469</span>
+<span id="470">470</span>
+<span id="471">471</span>
+<span id="472">472</span>
+<span id="473">473</span>
+<span id="474">474</span>
+<span id="475">475</span>
+<span id="476">476</span>
+<span id="477">477</span>
+<span id="478">478</span>
+<span id="479">479</span>
+<span id="480">480</span>
+<span id="481">481</span>
+<span id="482">482</span>
+<span id="483">483</span>
+<span id="484">484</span>
+<span id="485">485</span>
+<span id="486">486</span>
+<span id="487">487</span>
+<span id="488">488</span>
+<span id="489">489</span>
+<span id="490">490</span>
+<span id="491">491</span>
+<span id="492">492</span>
+<span id="493">493</span>
+<span id="494">494</span>
+<span id="495">495</span>
+<span id="496">496</span>
+<span id="497">497</span>
+<span id="498">498</span>
+<span id="499">499</span>
+<span id="500">500</span>
+<span id="501">501</span>
+<span id="502">502</span>
+<span id="503">503</span>
+<span id="504">504</span>
+<span id="505">505</span>
+<span id="506">506</span>
+<span id="507">507</span>
+<span id="508">508</span>
+<span id="509">509</span>
+<span id="510">510</span>
+<span id="511">511</span>
+<span id="512">512</span>
+<span id="513">513</span>
+<span id="514">514</span>
+<span id="515">515</span>
+<span id="516">516</span>
+<span id="517">517</span>
+<span id="518">518</span>
+<span id="519">519</span>
+<span id="520">520</span>
+<span id="521">521</span>
+<span id="522">522</span>
+<span id="523">523</span>
+<span id="524">524</span>
+<span id="525">525</span>
+<span id="526">526</span>
+<span id="527">527</span>
+<span id="528">528</span>
+<span id="529">529</span>
+<span id="530">530</span>
+<span id="531">531</span>
+<span id="532">532</span>
+<span id="533">533</span>
+<span id="534">534</span>
+<span id="535">535</span>
+<span id="536">536</span>
+<span id="537">537</span>
+<span id="538">538</span>
+<span id="539">539</span>
+<span id="540">540</span>
+<span id="541">541</span>
+<span id="542">542</span>
+<span id="543">543</span>
+<span id="544">544</span>
+<span id="545">545</span>
+<span id="546">546</span>
+<span id="547">547</span>
+<span id="548">548</span>
+<span id="549">549</span>
+<span id="550">550</span>
+<span id="551">551</span>
+<span id="552">552</span>
+<span id="553">553</span>
+<span id="554">554</span>
+<span id="555">555</span>
+<span id="556">556</span>
+<span id="557">557</span>
+<span id="558">558</span>
+<span id="559">559</span>
+<span id="560">560</span>
+<span id="561">561</span>
+<span id="562">562</span>
+<span id="563">563</span>
+<span id="564">564</span>
+<span id="565">565</span>
+<span id="566">566</span>
+<span id="567">567</span>
+<span id="568">568</span>
+<span id="569">569</span>
+<span id="570">570</span>
+<span id="571">571</span>
+<span id="572">572</span>
+<span id="573">573</span>
+<span id="574">574</span>
+<span id="575">575</span>
+<span id="576">576</span>
+<span id="577">577</span>
+<span id="578">578</span>
+<span id="579">579</span>
+<span id="580">580</span>
+<span id="581">581</span>
+<span id="582">582</span>
+<span id="583">583</span>
+<span id="584">584</span>
+<span id="585">585</span>
+<span id="586">586</span>
 </pre><pre class="rust"><code><span class="doccomment">//! The Mach-o, mostly zero-copy, binary format parser and raw struct definitions
 </span><span class="kw">use </span>alloc::vec::Vec;
 <span class="kw">use </span>core::fmt;
@@ -473,8 +593,8 @@
 <span class="kw">use </span>scroll::ctx::SizeWith;
 <span class="kw">use </span>scroll::{Pread, BE};
 
-<span class="kw">use </span><span class="kw">crate</span>::container;
-<span class="kw">use </span><span class="kw">crate</span>::error;
+<span class="kw">use crate</span>::{archive, container};
+<span class="kw">use crate</span>::{error, take_hint_bytes};
 
 <span class="kw">pub mod </span>bind_opcodes;
 <span class="kw">pub mod </span>constants;
@@ -762,6 +882,15 @@
     start: usize,
 }
 
+<span class="doccomment">/// A single architecture froma multi architecture binary container
+/// ([MultiArch]).
+</span><span class="attribute">#[derive(Debug)]
+#[allow(clippy::large_enum_variant)]
+</span><span class="kw">pub enum </span>SingleArch&lt;<span class="lifetime">&#39;a</span>&gt; {
+    MachO(MachO&lt;<span class="lifetime">&#39;a</span>&gt;),
+    Archive(archive::Archive&lt;<span class="lifetime">&#39;a</span>&gt;),
+}
+
 <span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Iterator <span class="kw">for </span>FatArchIterator&lt;<span class="lifetime">&#39;a</span>&gt; {
     <span class="kw">type </span>Item = error::Result&lt;fat::FatArch&gt;;
     <span class="kw">fn </span>next(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>::Item&gt; {
@@ -779,16 +908,65 @@
     }
 }
 
-<span class="doccomment">/// Iterator over every `MachO` binary contained in this `MultiArch` container
-</span><span class="kw">pub struct </span>MachOIterator&lt;<span class="lifetime">&#39;a</span>&gt; {
+<span class="doccomment">/// Iterator over every entry contained in this `MultiArch` container
+</span><span class="kw">pub struct </span>SingleArchIterator&lt;<span class="lifetime">&#39;a</span>&gt; {
     index: usize,
     data: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8],
     narches: usize,
     start: usize,
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Iterator <span class="kw">for </span>MachOIterator&lt;<span class="lifetime">&#39;a</span>&gt; {
-    <span class="kw">type </span>Item = error::Result&lt;MachO&lt;<span class="lifetime">&#39;a</span>&gt;&gt;;
+<span class="kw">pub fn </span>peek_bytes(bytes: <span class="kw-2">&amp;</span>[u8; <span class="number">16</span>]) -&gt; error::Result&lt;<span class="kw">crate</span>::Hint&gt; {
+    <span class="kw">if </span><span class="kw-2">&amp;</span>bytes[<span class="number">0</span>..archive::SIZEOF_MAGIC] == archive::MAGIC {
+        <span class="prelude-val">Ok</span>(<span class="kw">crate</span>::Hint::Archive)
+    } <span class="kw">else </span>{
+        <span class="kw">let </span>(magic, maybe_ctx) = parse_magic_and_ctx(bytes, <span class="number">0</span>)<span class="question-mark">?</span>;
+        <span class="kw">match </span>magic {
+            header::MH_CIGAM_64 | header::MH_CIGAM | header::MH_MAGIC_64 | header::MH_MAGIC =&gt; {
+                <span class="kw">if let </span><span class="prelude-val">Some</span>(ctx) = maybe_ctx {
+                    <span class="prelude-val">Ok</span>(<span class="kw">crate</span>::Hint::Mach(<span class="kw">crate</span>::HintData {
+                        is_lsb: ctx.le.is_little(),
+                        is_64: <span class="prelude-val">Some</span>(ctx.container.is_big()),
+                    }))
+                } <span class="kw">else </span>{
+                    <span class="prelude-val">Err</span>(error::Error::Malformed(<span class="macro">format!</span>(
+                        <span class="string">&quot;Correct mach magic {:#x} does not have a matching parsing context!&quot;</span>,
+                        magic
+                    )))
+                }
+            }
+            fat::FAT_MAGIC =&gt; {
+                <span class="comment">// should probably verify this is always Big Endian...
+                </span><span class="kw">let </span>narchitectures = bytes.pread_with::&lt;u32&gt;(<span class="number">4</span>, BE)<span class="question-mark">? </span><span class="kw">as </span>usize;
+                <span class="prelude-val">Ok</span>(<span class="kw">crate</span>::Hint::MachFat(narchitectures))
+            }
+            <span class="kw">_ </span>=&gt; <span class="prelude-val">Ok</span>(<span class="kw">crate</span>::Hint::Unknown(bytes.pread::&lt;u64&gt;(<span class="number">0</span>)<span class="question-mark">?</span>)),
+        }
+    }
+}
+
+<span class="kw">fn </span>extract_multi_entry(bytes: <span class="kw-2">&amp;</span>[u8]) -&gt; error::Result&lt;SingleArch&gt; {
+    <span class="kw">if let </span><span class="prelude-val">Some</span>(hint_bytes) = take_hint_bytes(bytes) {
+        <span class="kw">match </span>peek_bytes(hint_bytes)<span class="question-mark">? </span>{
+            <span class="kw">crate</span>::Hint::Mach(<span class="kw">_</span>) =&gt; {
+                <span class="kw">let </span>binary = MachO::parse(bytes, <span class="number">0</span>)<span class="question-mark">?</span>;
+                <span class="prelude-val">Ok</span>(SingleArch::MachO(binary))
+            }
+            <span class="kw">crate</span>::Hint::Archive =&gt; {
+                <span class="kw">let </span>archive = archive::Archive::parse(bytes)<span class="question-mark">?</span>;
+                <span class="prelude-val">Ok</span>(SingleArch::Archive(archive))
+            }
+            <span class="kw">_ </span>=&gt; <span class="prelude-val">Err</span>(error::Error::Malformed(<span class="macro">format!</span>(
+                <span class="string">&quot;multi-arch entry must be a Mach-O binary or an archive&quot;
+            </span>))),
+        }
+    } <span class="kw">else </span>{
+        <span class="prelude-val">Err</span>(error::Error::Malformed(<span class="macro">format!</span>(<span class="string">&quot;Object is too small&quot;</span>)))
+    }
+}
+
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Iterator <span class="kw">for </span>SingleArchIterator&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">type </span>Item = error::Result&lt;SingleArch&lt;<span class="lifetime">&#39;a</span>&gt;&gt;;
     <span class="kw">fn </span>next(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>::Item&gt; {
         <span class="kw">if </span><span class="self">self</span>.index &gt;= <span class="self">self</span>.narches {
             <span class="prelude-val">None
@@ -799,8 +977,7 @@
             <span class="kw">match </span><span class="self">self</span>.data.pread_with::&lt;fat::FatArch&gt;(offset, scroll::BE) {
                 <span class="prelude-val">Ok</span>(arch) =&gt; {
                     <span class="kw">let </span>bytes = arch.slice(<span class="self">self</span>.data);
-                    <span class="kw">let </span>binary = MachO::parse(bytes, <span class="number">0</span>);
-                    <span class="prelude-val">Some</span>(binary)
+                    <span class="prelude-val">Some</span>(extract_multi_entry(bytes))
                 }
                 <span class="prelude-val">Err</span>(e) =&gt; <span class="prelude-val">Some</span>(<span class="prelude-val">Err</span>(e.into())),
             }
@@ -809,10 +986,10 @@
 }
 
 <span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>, <span class="lifetime">&#39;b</span>&gt; IntoIterator <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;b </span>MultiArch&lt;<span class="lifetime">&#39;a</span>&gt; {
-    <span class="kw">type </span>Item = error::Result&lt;MachO&lt;<span class="lifetime">&#39;a</span>&gt;&gt;;
-    <span class="kw">type </span>IntoIter = MachOIterator&lt;<span class="lifetime">&#39;a</span>&gt;;
+    <span class="kw">type </span>Item = error::Result&lt;SingleArch&lt;<span class="lifetime">&#39;a</span>&gt;&gt;;
+    <span class="kw">type </span>IntoIter = SingleArchIterator&lt;<span class="lifetime">&#39;a</span>&gt;;
     <span class="kw">fn </span>into_iter(<span class="self">self</span>) -&gt; <span class="self">Self</span>::IntoIter {
-        MachOIterator {
+        SingleArchIterator {
             index: <span class="number">0</span>,
             data: <span class="self">self</span>.data,
             narches: <span class="self">self</span>.narches,
@@ -853,7 +1030,7 @@
         <span class="prelude-val">Ok</span>(arches)
     }
     <span class="doccomment">/// Try to get the Mach-o binary at `index`
-    </span><span class="kw">pub fn </span>get(<span class="kw-2">&amp;</span><span class="self">self</span>, index: usize) -&gt; error::Result&lt;MachO&lt;<span class="lifetime">&#39;a</span>&gt;&gt; {
+    </span><span class="kw">pub fn </span>get(<span class="kw-2">&amp;</span><span class="self">self</span>, index: usize) -&gt; error::Result&lt;SingleArch&lt;<span class="lifetime">&#39;a</span>&gt;&gt; {
         <span class="kw">if </span>index &gt;= <span class="self">self</span>.narches {
             <span class="kw">return </span><span class="prelude-val">Err</span>(error::Error::Malformed(<span class="macro">format!</span>(
                 <span class="string">&quot;Requested the {}-th binary, but there are only {} architectures in this container&quot;</span>,
@@ -863,13 +1040,13 @@
         <span class="kw">let </span>offset = (index * fat::SIZEOF_FAT_ARCH) + <span class="self">self</span>.start;
         <span class="kw">let </span>arch = <span class="self">self</span>.data.pread_with::&lt;fat::FatArch&gt;(offset, scroll::BE)<span class="question-mark">?</span>;
         <span class="kw">let </span>bytes = arch.slice(<span class="self">self</span>.data);
-        <span class="prelude-val">Ok</span>(MachO::parse(bytes, <span class="number">0</span>)<span class="question-mark">?</span>)
+        extract_multi_entry(bytes)
     }
 
     <span class="kw">pub fn </span>find&lt;F: Fn(error::Result&lt;fat::FatArch&gt;) -&gt; bool&gt;(
         <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="self">self</span>,
         f: F,
-    ) -&gt; <span class="prelude-ty">Option</span>&lt;error::Result&lt;MachO&lt;<span class="lifetime">&#39;a</span>&gt;&gt;&gt; {
+    ) -&gt; <span class="prelude-ty">Option</span>&lt;error::Result&lt;SingleArch&lt;<span class="lifetime">&#39;a</span>&gt;&gt;&gt; {
         <span class="kw">for </span>(i, arch) <span class="kw">in </span><span class="self">self</span>.iter_arches().enumerate() {
             <span class="kw">if </span>f(arch) {
                 <span class="kw">return </span><span class="prelude-val">Some</span>(<span class="self">self</span>.get(i));
@@ -930,5 +1107,68 @@
         }
     }
 }
+
+<span class="attribute">#[cfg(test)]
+</span><span class="kw">mod </span>test {
+    <span class="kw">use super</span>::{Mach, SingleArch};
+
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>parse_multi_arch_of_macho_binaries() {
+        <span class="comment">// Create via:
+        // clang -arch arm64 -shared -o /tmp/hello_world_arm hello_world.c
+        // clang -arch x86_64 -shared -o /tmp/hello_world_x86_64 hello_world.c
+        // lipo -create -output hello_world_fat_binaries /tmp/hello_world_arm /tmp/hello_world_x86_64
+        // strip hello_world_fat_binaries
+        </span><span class="kw">let </span>bytes = <span class="macro">include_bytes!</span>(<span class="macro">concat!</span>(
+            <span class="macro">env!</span>(<span class="string">&quot;CARGO_MANIFEST_DIR&quot;</span>),
+            <span class="string">&quot;/assets/hello_world_fat_binaries&quot;
+        </span>));
+        <span class="kw">let </span>mach = Mach::parse(bytes).expect(<span class="string">&quot;failed to parse input file&quot;</span>);
+        <span class="kw">match </span>mach {
+            Mach::Fat(fat) =&gt; {
+                <span class="macro">assert!</span>(fat.into_iter().count() &gt; <span class="number">0</span>);
+                <span class="kw">for </span>entry <span class="kw">in </span>fat.into_iter() {
+                    <span class="kw">let </span>entry = entry.expect(<span class="string">&quot;failed to read entry&quot;</span>);
+                    <span class="kw">match </span>entry {
+                        SingleArch::MachO(macho) =&gt; {
+                            <span class="macro">assert!</span>(macho.symbols().count() &gt; <span class="number">0</span>);
+                        }
+                        <span class="kw">_ </span>=&gt; <span class="macro">panic!</span>(<span class="string">&quot;expected MultiArchEntry::MachO, got {:?}&quot;</span>, entry),
+                    }
+                }
+            }
+            Mach::Binary(<span class="kw">_</span>) =&gt; <span class="macro">panic!</span>(<span class="string">&quot;expected Mach::Fat, got Mach::Binary&quot;</span>),
+        }
+    }
+
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>parse_multi_arch_of_archives() {
+        <span class="comment">// Created with:
+        // clang -c -o /tmp/hello_world.o hello_world.c
+        // ar -r /tmp/hello_world.a /tmp/hello_world.o
+        // lipo -create -output hello_world_fat_archives /tmp/hello_world.a
+        // strip hello_world_fat_archives
+        </span><span class="kw">let </span>bytes = <span class="macro">include_bytes!</span>(<span class="macro">concat!</span>(
+            <span class="macro">env!</span>(<span class="string">&quot;CARGO_MANIFEST_DIR&quot;</span>),
+            <span class="string">&quot;/assets/hello_world_fat_archives&quot;
+        </span>));
+        <span class="kw">let </span>mach = Mach::parse(bytes).expect(<span class="string">&quot;failed to parse input file&quot;</span>);
+        <span class="kw">match </span>mach {
+            Mach::Fat(fat) =&gt; {
+                <span class="macro">assert!</span>(fat.into_iter().count() &gt; <span class="number">0</span>);
+                <span class="kw">for </span>entry <span class="kw">in </span>fat.into_iter() {
+                    <span class="kw">let </span>entry = entry.expect(<span class="string">&quot;failed to read entry&quot;</span>);
+                    <span class="kw">match </span>entry {
+                        SingleArch::Archive(archive) =&gt; {
+                            <span class="macro">assert!</span>(!archive.members().is_empty())
+                        }
+                        <span class="kw">_ </span>=&gt; <span class="macro">panic!</span>(<span class="string">&quot;expected MultiArchEntry::Archive, got {:?}&quot;</span>, entry),
+                    }
+                }
+            }
+            Mach::Binary(<span class="kw">_</span>) =&gt; <span class="macro">panic!</span>(<span class="string">&quot;expected Mach::Fat, got Mach::Binary&quot;</span>),
+        }
+    }
+}
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="goblin" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.65.0 (897e37553 2022-11-02)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="goblin" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.0 (69f9c33d7 2022-12-12)" ></div></body></html>

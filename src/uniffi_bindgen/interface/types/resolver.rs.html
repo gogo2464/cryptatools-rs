@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/uniffi_bindgen-0.21.0/src/interface/types/resolver.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>resolver.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../../normalize.css"><link rel="stylesheet" href="../../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../../ayu.css" disabled><link rel="stylesheet" href="../../../../dark.css" disabled><link rel="stylesheet" href="../../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../../storage.js"></script><script defer src="../../../../source-script.js"></script><script defer src="../../../../source-files.js"></script><script defer src="../../../../main.js"></script><noscript><link rel="stylesheet" href="../../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../../uniffi_bindgen/index.html"><div class="logo-container"><img class="rust-logo" src="../../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../../uniffi_bindgen/index.html"><div class="logo-container"><img class="rust-logo" src="../../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../../uniffi_bindgen/index.html"><img class="rust-logo" src="../../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/uniffi_bindgen-0.22.0/src/interface/types/resolver.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>resolver.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../../normalize.css"><link rel="stylesheet" href="../../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../../ayu.css" disabled><link rel="stylesheet" href="../../../../dark.css" disabled><link rel="stylesheet" href="../../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../../storage.js"></script><script defer src="../../../../source-script.js"></script><script defer src="../../../../source-files.js"></script><script defer src="../../../../main.js"></script><noscript><link rel="stylesheet" href="../../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../../uniffi_bindgen/index.html"><img class="rust-logo" src="../../../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -458,7 +458,7 @@
             <span class="prelude-val">None </span>=&gt; <span class="prelude-val">Ok</span>(type_),
             <span class="prelude-val">Some</span>(<span class="kw">_</span>) =&gt; {
                 <span class="kw">let </span>ty = Type::Optional(Box::new(type_));
-                types.add_known_type(<span class="kw-2">&amp;</span>ty);
+                types.add_known_type(<span class="kw-2">&amp;</span>ty)<span class="question-mark">?</span>;
                 <span class="prelude-val">Ok</span>(ty)
             }
         }
@@ -487,7 +487,7 @@
     <span class="kw">fn </span>resolve_type_expression(<span class="kw-2">&amp;</span><span class="self">self</span>, types: <span class="kw-2">&amp;mut </span>TypeUniverse) -&gt; <span class="prelude-ty">Result</span>&lt;Type&gt; {
         <span class="kw">let </span>t = <span class="self">self</span>.generics.body.as_ref().resolve_type_expression(types)<span class="question-mark">?</span>;
         <span class="kw">let </span>ty = Type::Sequence(Box::new(t));
-        types.add_known_type(<span class="kw-2">&amp;</span>ty);
+        types.add_known_type(<span class="kw-2">&amp;</span>ty)<span class="question-mark">?</span>;
         <span class="prelude-val">Ok</span>(ty)
     }
 }
@@ -501,7 +501,7 @@
                  consider using DOMString or string&quot;</span>,
             ),
             DOM(<span class="kw">_</span>) =&gt; {
-                types.add_known_type(<span class="kw-2">&amp;</span>Type::String);
+                types.add_known_type(<span class="kw-2">&amp;</span>Type::String)<span class="question-mark">?</span>;
                 <span class="prelude-val">Ok</span>(Type::String)
             }
             NonAny(t) =&gt; t.resolve_type_expression(types),
@@ -514,7 +514,7 @@
         <span class="kw">let </span>key_type = <span class="self">self</span>.generics.body.<span class="number">0</span>.resolve_type_expression(types)<span class="question-mark">?</span>;
         <span class="kw">let </span>value_type = <span class="self">self</span>.generics.body.<span class="number">2</span>.resolve_type_expression(types)<span class="question-mark">?</span>;
         <span class="kw">let </span>map = Type::Map(Box::new(key_type), Box::new(value_type));
-        types.add_known_type(<span class="kw-2">&amp;</span>map);
+        types.add_known_type(<span class="kw-2">&amp;</span>map)<span class="question-mark">?</span>;
         <span class="prelude-val">Ok</span>(map)
     }
 }
@@ -523,12 +523,12 @@
     <span class="kw">fn </span>resolve_type_expression(<span class="kw-2">&amp;</span><span class="self">self</span>, types: <span class="kw-2">&amp;mut </span>TypeUniverse) -&gt; <span class="prelude-ty">Result</span>&lt;Type&gt; {
         <span class="kw">match </span>resolve_builtin_type(<span class="self">self</span>.<span class="number">0</span>) {
             <span class="prelude-val">Some</span>(type_) =&gt; {
-                types.add_known_type(<span class="kw-2">&amp;</span>type_);
+                types.add_known_type(<span class="kw-2">&amp;</span>type_)<span class="question-mark">?</span>;
                 <span class="prelude-val">Ok</span>(type_)
             }
             <span class="prelude-val">None </span>=&gt; <span class="kw">match </span>types.get_type_definition(<span class="self">self</span>.<span class="number">0</span>) {
                 <span class="prelude-val">Some</span>(type_) =&gt; {
-                    types.add_known_type(<span class="kw-2">&amp;</span>type_);
+                    types.add_known_type(<span class="kw-2">&amp;</span>type_)<span class="question-mark">?</span>;
                     <span class="prelude-val">Ok</span>(type_)
                 }
                 <span class="prelude-val">None </span>=&gt; <span class="macro">bail!</span>(<span class="string">&quot;unknown type reference: {}&quot;</span>, <span class="self">self</span>.<span class="number">0</span>),
@@ -539,7 +539,7 @@
 
 <span class="kw">impl </span>TypeResolver <span class="kw">for </span>weedle::term::Boolean {
     <span class="kw">fn </span>resolve_type_expression(<span class="kw-2">&amp;</span><span class="self">self</span>, types: <span class="kw-2">&amp;mut </span>TypeUniverse) -&gt; <span class="prelude-ty">Result</span>&lt;Type&gt; {
-        types.add_known_type(<span class="kw-2">&amp;</span>Type::Boolean);
+        types.add_known_type(<span class="kw-2">&amp;</span>Type::Boolean)<span class="question-mark">?</span>;
         <span class="prelude-val">Ok</span>(Type::Boolean)
     }
 }
@@ -549,7 +549,7 @@
         <span class="kw">if </span><span class="self">self</span>.unrestricted.is_some() {
             <span class="macro">bail!</span>(<span class="string">&quot;we don&#39;t support `unrestricted float`&quot;</span>);
         }
-        types.add_known_type(<span class="kw-2">&amp;</span>Type::Float32);
+        types.add_known_type(<span class="kw-2">&amp;</span>Type::Float32)<span class="question-mark">?</span>;
         <span class="prelude-val">Ok</span>(Type::Float32)
     }
 }
@@ -559,7 +559,7 @@
         <span class="kw">if </span><span class="self">self</span>.unrestricted.is_some() {
             <span class="macro">bail!</span>(<span class="string">&quot;we don&#39;t support `unrestricted double`&quot;</span>);
         }
-        types.add_known_type(<span class="kw-2">&amp;</span>Type::Float64);
+        types.add_known_type(<span class="kw-2">&amp;</span>Type::Float64)<span class="question-mark">?</span>;
         <span class="prelude-val">Ok</span>(Type::Float64)
     }
 }
@@ -733,4 +733,4 @@
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="uniffi_bindgen" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.65.0 (897e37553 2022-11-02)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="uniffi_bindgen" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.0 (69f9c33d7 2022-12-12)" ></div></body></html>

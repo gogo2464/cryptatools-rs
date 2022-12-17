@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/goblin-0.5.4/src/pe/header.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>header.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../normalize.css"><link rel="stylesheet" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../ayu.css" disabled><link rel="stylesheet" href="../../../dark.css" disabled><link rel="stylesheet" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../goblin/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../goblin/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../goblin/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/goblin-0.6.0/src/pe/header.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>header.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../normalize.css"><link rel="stylesheet" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../ayu.css" disabled><link rel="stylesheet" href="../../../dark.css" disabled><link rel="stylesheet" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../goblin/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -277,6 +277,39 @@
 <span id="277">277</span>
 <span id="278">278</span>
 <span id="279">279</span>
+<span id="280">280</span>
+<span id="281">281</span>
+<span id="282">282</span>
+<span id="283">283</span>
+<span id="284">284</span>
+<span id="285">285</span>
+<span id="286">286</span>
+<span id="287">287</span>
+<span id="288">288</span>
+<span id="289">289</span>
+<span id="290">290</span>
+<span id="291">291</span>
+<span id="292">292</span>
+<span id="293">293</span>
+<span id="294">294</span>
+<span id="295">295</span>
+<span id="296">296</span>
+<span id="297">297</span>
+<span id="298">298</span>
+<span id="299">299</span>
+<span id="300">300</span>
+<span id="301">301</span>
+<span id="302">302</span>
+<span id="303">303</span>
+<span id="304">304</span>
+<span id="305">305</span>
+<span id="306">306</span>
+<span id="307">307</span>
+<span id="308">308</span>
+<span id="309">309</span>
+<span id="310">310</span>
+<span id="311">311</span>
+<span id="312">312</span>
 </pre><pre class="rust"><code><span class="kw">use </span><span class="kw">crate</span>::error;
 <span class="kw">use </span><span class="kw">crate</span>::pe::{optional_header, section_table, symbol};
 <span class="kw">use </span><span class="kw">crate</span>::strtab;
@@ -494,9 +527,41 @@
     }
 }
 
+<span class="doccomment">/// Convert machine to str representation
+</span><span class="kw">pub fn </span>machine_to_str(machine: u16) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str {
+    <span class="kw">match </span>machine {
+        COFF_MACHINE_UNKNOWN =&gt; <span class="string">&quot;UNKNOWN&quot;</span>,
+        COFF_MACHINE_AM33 =&gt; <span class="string">&quot;AM33&quot;</span>,
+        COFF_MACHINE_X86_64 =&gt; <span class="string">&quot;X86_64&quot;</span>,
+        COFF_MACHINE_ARM =&gt; <span class="string">&quot;ARM&quot;</span>,
+        COFF_MACHINE_ARM64 =&gt; <span class="string">&quot;ARM64&quot;</span>,
+        COFF_MACHINE_ARMNT =&gt; <span class="string">&quot;ARM_NT&quot;</span>,
+        COFF_MACHINE_EBC =&gt; <span class="string">&quot;EBC&quot;</span>,
+        COFF_MACHINE_X86 =&gt; <span class="string">&quot;X86&quot;</span>,
+        COFF_MACHINE_IA64 =&gt; <span class="string">&quot;IA64&quot;</span>,
+        COFF_MACHINE_M32R =&gt; <span class="string">&quot;M32R&quot;</span>,
+        COFF_MACHINE_MIPS16 =&gt; <span class="string">&quot;MIPS_16&quot;</span>,
+        COFF_MACHINE_MIPSFPU =&gt; <span class="string">&quot;MIPS_FPU&quot;</span>,
+        COFF_MACHINE_MIPSFPU16 =&gt; <span class="string">&quot;MIPS_FPU_16&quot;</span>,
+        COFF_MACHINE_POWERPC =&gt; <span class="string">&quot;POWERPC&quot;</span>,
+        COFF_MACHINE_POWERPCFP =&gt; <span class="string">&quot;POWERCFP&quot;</span>,
+        COFF_MACHINE_R4000 =&gt; <span class="string">&quot;R4000&quot;</span>,
+        COFF_MACHINE_RISCV32 =&gt; <span class="string">&quot;RISC-V_32&quot;</span>,
+        COFF_MACHINE_RISCV64 =&gt; <span class="string">&quot;RISC-V_64&quot;</span>,
+        COFF_MACHINE_RISCV128 =&gt; <span class="string">&quot;RISC-V_128&quot;</span>,
+        COFF_MACHINE_SH3 =&gt; <span class="string">&quot;SH3&quot;</span>,
+        COFF_MACHINE_SH3DSP =&gt; <span class="string">&quot;SH3DSP&quot;</span>,
+        COFF_MACHINE_SH4 =&gt; <span class="string">&quot;SH4&quot;</span>,
+        COFF_MACHINE_SH5 =&gt; <span class="string">&quot;SH5&quot;</span>,
+        COFF_MACHINE_THUMB =&gt; <span class="string">&quot;THUMB&quot;</span>,
+        COFF_MACHINE_WCEMIPSV2 =&gt; <span class="string">&quot;WCE_MIPS_V2&quot;</span>,
+        <span class="kw">_ </span>=&gt; <span class="string">&quot;COFF_UNKNOWN&quot;</span>,
+    }
+}
+
 <span class="attribute">#[cfg(test)]
 </span><span class="kw">mod </span>tests {
-    <span class="kw">use super</span>::{Header, COFF_MACHINE_X86, DOS_MAGIC, PE_MAGIC};
+    <span class="kw">use super</span>::{machine_to_str, Header, COFF_MACHINE_X86, DOS_MAGIC, PE_MAGIC};
 
     <span class="kw">const </span>CRSS_HEADER: [u8; <span class="number">688</span>] = [
         <span class="number">0x4d</span>, <span class="number">0x5a</span>, <span class="number">0x90</span>, <span class="number">0x00</span>, <span class="number">0x03</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x04</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0xff</span>, <span class="number">0xff</span>, <span class="number">0x00</span>,
@@ -553,8 +618,9 @@
         <span class="macro">assert!</span>(header.dos_header.signature == DOS_MAGIC);
         <span class="macro">assert!</span>(header.signature == PE_MAGIC);
         <span class="macro">assert!</span>(header.coff_header.machine == COFF_MACHINE_X86);
+        <span class="macro">assert!</span>(machine_to_str(header.coff_header.machine) == <span class="string">&quot;X86&quot;</span>);
         <span class="macro">println!</span>(<span class="string">&quot;header: {:?}&quot;</span>, <span class="kw-2">&amp;</span>header);
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="goblin" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.65.0 (897e37553 2022-11-02)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="goblin" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.0 (69f9c33d7 2022-12-12)" ></div></body></html>
