@@ -13,7 +13,7 @@ This tool aims to be professionnal. Not only a learning tool. It is for realisti
 
 You can "plug-in" your script to any protocol. Man in the midle as well as blockchain core as well as anything. Example:
   - You are able to use `pypcap` python library to read packets and then `dpkt` python library to parse these and then you can use `cryptatools` to break encryption on these packets. This is why this library is avaible in many bindings such as python.
-  - You are able to use rust-web3 to parse a vulnerable cryptocurrency (shitcoin) address to lead to a double spend attack.
+  - You are able to use `rust-web3` to parse a vulnerable cryptocurrency (shitcoin) blockchain hash tree to steal money using collision attack to forge a signature. See [this reference](https://github.com/mit-dci/tangled-curl/blob/master/vuln-iota.md#steal-money-attack).
 
 You can also work on programs obfuscated by encryption such as malware. In this case, you can decipher program data (eg: data contained in a dropper) as well as self-encrypyted code. In this way you can plug cryptatools with your favorite reverse engineering framwork. Eg:
   - Install radare2. Then do `radare2 -AA -i <yourscriptname>.rs <yourmalwaretoreverse>`. If you work with python bindings, `radare2 -AA -i <yourscriptname>.py <yourmalwaretoreverse>`
