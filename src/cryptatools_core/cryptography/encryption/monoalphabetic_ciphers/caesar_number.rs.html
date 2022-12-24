@@ -107,6 +107,32 @@
 <span id="107">107</span>
 <span id="108">108</span>
 <span id="109">109</span>
+<span id="110">110</span>
+<span id="111">111</span>
+<span id="112">112</span>
+<span id="113">113</span>
+<span id="114">114</span>
+<span id="115">115</span>
+<span id="116">116</span>
+<span id="117">117</span>
+<span id="118">118</span>
+<span id="119">119</span>
+<span id="120">120</span>
+<span id="121">121</span>
+<span id="122">122</span>
+<span id="123">123</span>
+<span id="124">124</span>
+<span id="125">125</span>
+<span id="126">126</span>
+<span id="127">127</span>
+<span id="128">128</span>
+<span id="129">129</span>
+<span id="130">130</span>
+<span id="131">131</span>
+<span id="132">132</span>
+<span id="133">133</span>
+<span id="134">134</span>
+<span id="135">135</span>
 </pre><pre class="rust"><code><span class="doccomment">//! Encrypt with Caesar shifting encryption algorithm.
 </span><span class="kw">use </span>std::sync::Arc;
 <span class="kw">use </span><span class="kw">crate</span>::utils::alphabets::Alphabet;
@@ -176,6 +202,32 @@
 
         <span class="kw">for </span>element <span class="kw">in </span>plain_text {
             <span class="kw">let </span>character: u8 = ((element <span class="kw">as </span>u32 + key) % <span class="number">255 </span><span class="kw">as </span>u32) <span class="kw">as </span>u8;
+            result.push(character);
+        }
+
+        <span class="kw">return </span>result;
+    }
+
+     <span class="doccomment">///  Decrypt the cipher text with the caesar number encryption algorithm.
+     ///
+     ///  The `cipher_text` is passed as argument. Each character in the `cipher_text` is itself minus `key`.
+     ///  If the alphabet overflows, then the cipher text continues from the end of the alphabet.
+     ///  The custom alphabet has been put in the constructor of the struct CaesarNumberAlgorithm.
+     /// 
+     ///  ```
+     ///  use cryptatools_core::cryptography::encryption::monoalphabetic_ciphers::caesar_number::CaesarNumberAlgorithm;
+     ///  use cryptatools_core::utils::alphabets::Alphabet;
+     ///  
+     ///  let ascii_alphabet = Alphabet::new_empty().ascii_encoding();
+     ///  let mut c: CaesarNumberAlgorithm = CaesarNumberAlgorithm::new(ascii_alphabet.into());
+     ///  let encrypted = c.encrypt_by_opcode_shift(vec![0x41, 0x41, 0x41], 1);
+     ///  assert_eq!(vec![0x42, 0x42, 0x42], encrypted);
+     ///  ```
+    </span><span class="kw">pub fn </span>decrypt_by_opcode_shift(<span class="kw-2">&amp;</span><span class="self">self</span>, cipher_text: Vec&lt;u8&gt;, key: u32) -&gt; Vec&lt;u8&gt; {
+        <span class="kw">let </span><span class="kw-2">mut </span>result: Vec&lt;u8&gt; = Vec::new();
+
+        <span class="kw">for </span>element <span class="kw">in </span>cipher_text {
+            <span class="kw">let </span>character: u8 = ((element <span class="kw">as </span>u32 - key) % <span class="number">255 </span><span class="kw">as </span>u32) <span class="kw">as </span>u8;
             result.push(character);
         }
 
