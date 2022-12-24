@@ -356,6 +356,36 @@ impl Alphabet {
         }
     }
 
+    pub fn intel_x86_32_encoding(&mut self) -> Self {
+        let mut encoding = BiBTreeMap::new();
+        encoding.insert(String::from("mov rax, rax"), vec![0x00]);
+        encoding.insert(String::from("mov rax, rbx"), vec![0x01]);
+    
+        self.encoding = encoding.clone();
+
+        Alphabet {
+            encoding: encoding
+        }
+    }
+
+    /// Unknow opcodes
+    ///
+    /// Use this alphabet to make statistics on stream cipher when you ignore the assembly langauge or natural language.
+    pub fn unknow_opcodes(&mut self) -> Self {
+        let mut encoding = BiBTreeMap::new();
+        for i in 0..255 {
+            let mut invalid_instruction = String::from("invalid");
+            invalid_instruction.push_str(&i.to_string());
+            encoding.insert(invalid_instruction, vec![i]);
+        }
+    
+        self.encoding = encoding.clone();
+
+        Alphabet {
+            encoding: encoding
+        }
+    }
+
     pub fn get_encoding(&self) -> Vec<Encoding> {
         self.encoding.iter()
             .map(|(str, bytes)| Encoding { str: str.clone(), bytes: bytes.clone() })

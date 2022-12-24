@@ -1,7 +1,7 @@
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is a cryptanalysis tool for exploit developers and ctf players.
+This is a cryptanalysis tool for cybersecurity researcher, exploit developers and ctf players.
 
 The name come from pwntools a similar tool to exploit memory corruption vulnerabilities. This software aims to work like pwntools but for cryptanalysis.
 
@@ -26,7 +26,7 @@ pr 12345 > ciphertext.bin
 
 Where 12345 is the size of the encrypted function or code of the malware.
 
-The library is very very flexible.
+The library is very very flexible. One of the main concept is to break custom cryptography. That is why you can meet classic cryptanalysis in `cryptatools`. This flexibility also aim to break obfuscation/encrypted malware. These are often written in assembly language because they deal with the system and then need to reimplement a lot of things and so their encryption method are often poorly written.
 
 You can automatize any task. There is a command line interface.
 

@@ -15,7 +15,7 @@ impl CaesarNumberAlgorithm {
         }
     }
 
-     ///  Encrypt the plain text with the caesar number encryption algorithm.
+     ///  Encrypt the plain text with the caesar number encryption algorithm. Does not care of the alphabet.
      ///
      ///  The `plain_text` is passed as argument. Each character in the `plain_text` is shifted of `key` ranges in his opcode representation.
      ///  If the alphabet overflows, then the cipher text continues from the start of the alphabet.
@@ -73,7 +73,7 @@ impl CaesarNumberAlgorithm {
         return result;
     }
 
-     ///  Decrypt the cipher text with the caesar number encryption algorithm.
+     ///  Decrypt the cipher text with the caesar number encryption algorithm. Does not care of the alphabet.
      ///
      ///  The `cipher_text` is passed as argument. Each character in the `cipher_text` is itself minus `key`.
      ///  If the alphabet overflows, then the cipher text continues from the end of the alphabet.
