@@ -73,6 +73,32 @@ impl CaesarNumberAlgorithm {
         return result;
     }
 
+     ///  Decrypt the cipher text with the caesar number encryption algorithm.
+     ///
+     ///  The `cipher_text` is passed as argument. Each character in the `cipher_text` is itself minus `key`.
+     ///  If the alphabet overflows, then the cipher text continues from the end of the alphabet.
+     ///  The custom alphabet has been put in the constructor of the struct CaesarNumberAlgorithm.
+     /// 
+     ///  ```
+     ///  use cryptatools_core::cryptography::encryption::monoalphabetic_ciphers::caesar_number::CaesarNumberAlgorithm;
+     ///  use cryptatools_core::utils::alphabets::Alphabet;
+     ///  
+     ///  let ascii_alphabet = Alphabet::new_empty().ascii_encoding();
+     ///  let mut c: CaesarNumberAlgorithm = CaesarNumberAlgorithm::new(ascii_alphabet.into());
+     ///  let encrypted = c.encrypt_by_opcode_shift(vec![0x41, 0x41, 0x41], 1);
+     ///  assert_eq!(vec![0x42, 0x42, 0x42], encrypted);
+     ///  ```
+    pub fn decrypt_by_opcode_shift(&self, cipher_text: Vec<u8>, key: u32) -> Vec<u8> {
+        let mut result: Vec<u8> = Vec::new();
+
+        for element in cipher_text {
+            let character: u8 = ((element as u32 - key) % 255 as u32) as u8;
+            result.push(character);
+        }
+
+        return result;
+    }
+
      ///  Encrypt the plain text with the caesar number encryption algorithm.
      ///
      ///  The `plain_text` is passed as argument. Each character in the `plain_text` is shifted of `key` ranges in the alphabet.
