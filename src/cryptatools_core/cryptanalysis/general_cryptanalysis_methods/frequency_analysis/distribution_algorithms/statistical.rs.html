@@ -102,7 +102,7 @@
         </span>}
 
         <span class="kw">for </span>u8_alphabet_charcter <span class="kw">in </span>u8_alphabet {
-            <span class="macro">println!</span>(<span class="string">&quot;test&quot;</span>);
+            <span class="macro">println!</span>(<span class="string">&quot;test {:?}&quot;</span>, u8_alphabet_charcter);
             <span class="kw">if </span>distribution.get_mut(<span class="kw-2">&amp;</span>u8_alphabet_charcter.clone()).is_some() {
                 <span class="macro">println!</span>(<span class="string">&quot;enc: {:?}&quot;</span>, encrypted_input);
                 <span class="kw-2">*</span>distribution.get_mut(<span class="kw-2">&amp;</span>u8_alphabet_charcter.clone()).unwrap() = distribution[u8_alphabet_charcter] / encrypted_input.len() <span class="kw">as </span>f64;
