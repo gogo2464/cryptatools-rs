@@ -390,6 +390,8 @@
 <span id="390">390</span>
 <span id="391">391</span>
 <span id="392">392</span>
+<span id="393">393</span>
+<span id="394">394</span>
 </pre><pre class="rust"><code><span class="kw">use </span>itertools::Itertools;
 <span class="kw">use </span>bimap::btree::BiBTreeMap;
 
@@ -766,7 +768,9 @@
     </span><span class="kw">pub fn </span>unknow_opcodes(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="self">Self </span>{
         <span class="kw">let </span><span class="kw-2">mut </span>encoding = BiBTreeMap::new();
         <span class="kw">for </span>i <span class="kw">in </span><span class="number">0</span>..<span class="number">255 </span>{
-            encoding.insert(String::from(<span class="string">&quot;invalid&quot;</span>), <span class="macro">vec!</span>[i]);
+            <span class="kw">let </span><span class="kw-2">mut </span>invalid_instruction = String::from(<span class="string">&quot;invalid&quot;</span>);
+            invalid_instruction.push_str(<span class="kw-2">&amp;</span>i.to_string());
+            encoding.insert(invalid_instruction, <span class="macro">vec!</span>[i]);
         }
     
         <span class="self">self</span>.encoding = encoding.clone();
