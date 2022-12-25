@@ -362,6 +362,34 @@
 <span id="362">362</span>
 <span id="363">363</span>
 <span id="364">364</span>
+<span id="365">365</span>
+<span id="366">366</span>
+<span id="367">367</span>
+<span id="368">368</span>
+<span id="369">369</span>
+<span id="370">370</span>
+<span id="371">371</span>
+<span id="372">372</span>
+<span id="373">373</span>
+<span id="374">374</span>
+<span id="375">375</span>
+<span id="376">376</span>
+<span id="377">377</span>
+<span id="378">378</span>
+<span id="379">379</span>
+<span id="380">380</span>
+<span id="381">381</span>
+<span id="382">382</span>
+<span id="383">383</span>
+<span id="384">384</span>
+<span id="385">385</span>
+<span id="386">386</span>
+<span id="387">387</span>
+<span id="388">388</span>
+<span id="389">389</span>
+<span id="390">390</span>
+<span id="391">391</span>
+<span id="392">392</span>
 </pre><pre class="rust"><code><span class="kw">use </span>itertools::Itertools;
 <span class="kw">use </span>bimap::btree::BiBTreeMap;
 
@@ -716,6 +744,34 @@
         <span class="self">self</span>.encoding = encoding.clone();
 
         Alphabet { 
+            encoding: encoding
+        }
+    }
+
+    <span class="kw">pub fn </span>intel_x86_32_encoding(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="self">Self </span>{
+        <span class="kw">let </span><span class="kw-2">mut </span>encoding = BiBTreeMap::new();
+        encoding.insert(String::from(<span class="string">&quot;mov rax, rax&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x00</span>]);
+        encoding.insert(String::from(<span class="string">&quot;mov rax, rbx&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x01</span>]);
+    
+        <span class="self">self</span>.encoding = encoding.clone();
+
+        Alphabet {
+            encoding: encoding
+        }
+    }
+
+    <span class="doccomment">/// Unknow opcodes
+    ///
+    /// Use this alphabet to make statistics on stream cipher when you ignore the assembly langauge or natural language.
+    </span><span class="kw">pub fn </span>unknow_opcodes(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="self">Self </span>{
+        <span class="kw">let </span><span class="kw-2">mut </span>encoding = BiBTreeMap::new();
+        <span class="kw">for </span>i <span class="kw">in </span><span class="number">0</span>..<span class="number">255 </span>{
+            encoding.insert(String::from(<span class="string">&quot;invalid&quot;</span>), <span class="macro">vec!</span>[i]);
+        }
+    
+        <span class="self">self</span>.encoding = encoding.clone();
+
+        Alphabet {
             encoding: encoding
         }
     }
