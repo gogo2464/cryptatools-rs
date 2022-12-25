@@ -53,6 +53,7 @@
 <span id="53">53</span>
 <span id="54">54</span>
 <span id="55">55</span>
+<span id="56">56</span>
 </pre><pre class="rust"><code><span class="kw">use </span>std::collections::HashMap;
 <span class="kw">use </span><span class="kw">crate</span>::utils::alphabets::Alphabet;
 
@@ -101,6 +102,7 @@
 
         <span class="kw">for </span>u8_alphabet_charcter <span class="kw">in </span>u8_alphabet {
             <span class="kw">if </span>distribution.get_mut(<span class="kw-2">&amp;</span>u8_alphabet_charcter.clone()).is_some() {
+                <span class="macro">println!</span>(<span class="string">&quot;enc: {:?}&quot;</span>, encrypted_input);
                 <span class="kw-2">*</span>distribution.get_mut(<span class="kw-2">&amp;</span>u8_alphabet_charcter.clone()).unwrap() = distribution[u8_alphabet_charcter] / encrypted_input.len() <span class="kw">as </span>f64;
             }
         }
