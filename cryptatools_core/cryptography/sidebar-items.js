@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"mod":[["encoding",""],["encryption",""]]};
+window.SIDEBAR_ITEMS = {"mod":[["classical",""],["modern",""]]};

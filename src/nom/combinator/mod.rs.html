@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/nom-7.1.1/src/combinator/mod.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../normalize.css"><link rel="stylesheet" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../ayu.css" disabled><link rel="stylesheet" href="../../../dark.css" disabled><link rel="stylesheet" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../nom/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/nom-7.1.2/src/combinator/mod.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../normalize.css"><link rel="stylesheet" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../ayu.css" disabled><link rel="stylesheet" href="../../../dark.css" disabled><link rel="stylesheet" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../nom/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -766,6 +766,47 @@
 <span id="766">766</span>
 <span id="767">767</span>
 <span id="768">768</span>
+<span id="769">769</span>
+<span id="770">770</span>
+<span id="771">771</span>
+<span id="772">772</span>
+<span id="773">773</span>
+<span id="774">774</span>
+<span id="775">775</span>
+<span id="776">776</span>
+<span id="777">777</span>
+<span id="778">778</span>
+<span id="779">779</span>
+<span id="780">780</span>
+<span id="781">781</span>
+<span id="782">782</span>
+<span id="783">783</span>
+<span id="784">784</span>
+<span id="785">785</span>
+<span id="786">786</span>
+<span id="787">787</span>
+<span id="788">788</span>
+<span id="789">789</span>
+<span id="790">790</span>
+<span id="791">791</span>
+<span id="792">792</span>
+<span id="793">793</span>
+<span id="794">794</span>
+<span id="795">795</span>
+<span id="796">796</span>
+<span id="797">797</span>
+<span id="798">798</span>
+<span id="799">799</span>
+<span id="800">800</span>
+<span id="801">801</span>
+<span id="802">802</span>
+<span id="803">803</span>
+<span id="804">804</span>
+<span id="805">805</span>
+<span id="806">806</span>
+<span id="807">807</span>
+<span id="808">808</span>
+<span id="809">809</span>
 </pre><pre class="rust"><code><span class="doccomment">//! General purpose combinators
 
 </span><span class="attribute">#![allow(unused_imports)]
@@ -986,7 +1027,9 @@
   }
 }
 
-<span class="doccomment">/// Optional parser: Will return `None` if not successful.
+<span class="doccomment">/// Optional parser, will return `None` on [`Err::Error`].
+///
+/// To chain an error up, see [`cut`].
 ///
 /// ```rust
 /// # use nom::{Err,error::ErrorKind, IResult};
@@ -1343,18 +1386,55 @@
   }
 }
 
-<span class="doccomment">/// transforms an error to failure
+<span class="doccomment">/// Transforms an [`Err::Error`] (recoverable) to [`Err::Failure`] (unrecoverable)
 ///
+/// This commits the parse result, preventing alternative branch paths like with
+/// [`nom::branch::alt`][crate::branch::alt].
+///
+/// # Example
+///
+/// Without `cut`:
 /// ```rust
 /// # use nom::{Err,error::ErrorKind, IResult};
-/// use nom::combinator::cut;
-/// use nom::character::complete::alpha1;
+/// # use nom::character::complete::{one_of, digit1};
+/// # use nom::combinator::rest;
+/// # use nom::branch::alt;
+/// # use nom::sequence::preceded;
 /// # fn main() {
 ///
-/// let mut parser = cut(alpha1);
+/// fn parser(input: &amp;str) -&gt; IResult&lt;&amp;str, &amp;str&gt; {
+///   alt((
+///     preceded(one_of(&quot;+-&quot;), digit1),
+///     rest
+///   ))(input)
+/// }
 ///
-/// assert_eq!(parser(&quot;abcd;&quot;), Ok((&quot;;&quot;, &quot;abcd&quot;)));
-/// assert_eq!(parser(&quot;123;&quot;), Err(Err::Failure((&quot;123;&quot;, ErrorKind::Alpha))));
+/// assert_eq!(parser(&quot;+10 ab&quot;), Ok((&quot; ab&quot;, &quot;10&quot;)));
+/// assert_eq!(parser(&quot;ab&quot;), Ok((&quot;&quot;, &quot;ab&quot;)));
+/// assert_eq!(parser(&quot;+&quot;), Ok((&quot;&quot;, &quot;+&quot;)));
+/// # }
+/// ```
+///
+/// With `cut`:
+/// ```rust
+/// # use nom::{Err,error::ErrorKind, IResult, error::Error};
+/// # use nom::character::complete::{one_of, digit1};
+/// # use nom::combinator::rest;
+/// # use nom::branch::alt;
+/// # use nom::sequence::preceded;
+/// use nom::combinator::cut;
+/// # fn main() {
+///
+/// fn parser(input: &amp;str) -&gt; IResult&lt;&amp;str, &amp;str&gt; {
+///   alt((
+///     preceded(one_of(&quot;+-&quot;), cut(digit1)),
+///     rest
+///   ))(input)
+/// }
+///
+/// assert_eq!(parser(&quot;+10 ab&quot;), Ok((&quot; ab&quot;, &quot;10&quot;)));
+/// assert_eq!(parser(&quot;ab&quot;), Ok((&quot;&quot;, &quot;ab&quot;)));
+/// assert_eq!(parser(&quot;+&quot;), Err(Err::Failure(Error { input: &quot;&quot;, code: ErrorKind::Digit })));
 /// # }
 /// ```
 </span><span class="kw">pub fn </span>cut&lt;I, O, E: ParseError&lt;I&gt;, F&gt;(<span class="kw-2">mut </span>parser: F) -&gt; <span class="kw">impl </span>FnMut(I) -&gt; IResult&lt;I, O, E&gt;
@@ -1410,6 +1490,8 @@
 ///
 /// Call the iterator&#39;s [ParserIterator::finish] method to get the remaining input if successful,
 /// or the error value if we encountered an error.
+///
+/// On [`Err::Error`], iteration will stop. To instead chain an error up, see [`cut`].
 ///
 /// ```rust
 /// use nom::{combinator::iterator, IResult, bytes::complete::tag, character::complete::alpha1, sequence::terminated};
