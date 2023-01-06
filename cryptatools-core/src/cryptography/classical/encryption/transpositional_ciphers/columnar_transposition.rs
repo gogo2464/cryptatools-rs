@@ -23,7 +23,7 @@ impl ColumnarTranspositionAlgorithm {
     /// ```
     /// use cryptatools_core::utils::alphabets::Alphabet;
     /// use cryptatools_core::utils::convert::{Encode, Decode};
-    /// use cryptatools_core::cryptography::encryption::transpositional_ciphers::columnar_transposition::ColumnarTranspositionAlgorithm;
+    /// use cryptatools_core::cryptography::classical::encryption::transpositional_ciphers::columnar_transposition::ColumnarTranspositionAlgorithm;
     /// 
     /// let printable_ascii_alphabet = Alphabet::new_empty().ascii_printable_only_encoding();
     /// let key = 6;
@@ -53,7 +53,7 @@ impl ColumnarTranspositionAlgorithm {
     /// ```
     /// use cryptatools_core::utils::alphabets::Alphabet;
     /// use cryptatools_core::utils::convert::{Encode, Decode};
-    /// use cryptatools_core::cryptography::encryption::transpositional_ciphers::columnar_transposition::ColumnarTranspositionAlgorithm;
+    /// use cryptatools_core::cryptography::classical::encryption::transpositional_ciphers::columnar_transposition::ColumnarTranspositionAlgorithm;
     ///
     /// let printable_ascii_alphabet = Alphabet::new_empty().ascii_printable_only_encoding();
     /// let mut columnar = ColumnarTranspositionAlgorithm::new(printable_ascii_alphabet.into());
