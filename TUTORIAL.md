@@ -449,7 +449,7 @@ use r2pipe::R2Pipe;
 use r2pipe::open_pipe;
 use cryptatools_core::utils::alphabets::Alphabet;
 use cryptatools_core::cryptanalysis::general_cryptanalysis_methods::frequency_analysis::distribution_algorithms::statistical::Statistical;
-use cryptatools_core::cryptography::encryption::monoalphabetic_ciphers::caesar_number::CaesarNumberAlgorithm;
+use cryptatools_core::cryptography::classical::encryption::monoalphabetic_ciphers::caesar_number::CaesarNumberAlgorithm;
 use std::u8;
 use std::fmt::Write;
 
@@ -598,7 +598,7 @@ Now edit the `main.rs`
 ```rust
 use r2pipe::R2Pipe;
 use r2pipe::open_pipe;
-use cryptatools_core::cryptography::encryption::monoalphabetic_ciphers::caesar_number::CaesarNumberAlgorithm;
+use cryptatools_core::cryptography::classical::encryption::monoalphabetic_ciphers::caesar_number::CaesarNumberAlgorithm;
 use cryptatools_core::utils::alphabets::Alphabet;
 use std::u8;
 use itertools::Itertools;

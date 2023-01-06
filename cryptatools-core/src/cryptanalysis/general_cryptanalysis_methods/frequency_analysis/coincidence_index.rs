@@ -1,7 +1,7 @@
 use std::sync::Arc;
 use std::{collections::HashMap, fs, path::Path};
 use once_cell::sync::Lazy;
-use crate::cryptography::encryption::polyalphabetic_ciphers::vigenere::VigenereNoTable;
+use crate::cryptography::classical::encryption::polyalphabetic_ciphers::vigenere::VigenereNoTable;
 use crate::utils::alphabets::Alphabet;
 use crate::utils::convert::{Encode};
 

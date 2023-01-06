@@ -1,2 +1,2 @@
-pub mod encryption;
-pub mod encoding;
+pub mod classical;
+pub mod modern;
