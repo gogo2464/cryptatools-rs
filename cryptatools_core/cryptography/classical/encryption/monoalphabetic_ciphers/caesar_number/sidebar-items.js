@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"struct":["CaesarNumberAlgorithm"]};
+window.SIDEBAR_ITEMS = {"struct":[["CaesarNumberAlgorithm",""]]};

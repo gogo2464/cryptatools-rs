@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"mod":["monoalphabetic_ciphers","polyalphabetic_ciphers","transpositional_ciphers"]};
+window.SIDEBAR_ITEMS = {"mod":[["monoalphabetic_ciphers",""],["polyalphabetic_ciphers",""],["transpositional_ciphers",""]]};

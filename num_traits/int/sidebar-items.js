@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"trait":["PrimInt"]};
+window.SIDEBAR_ITEMS = {"trait":[["PrimInt","Generic trait for primitive integers."]]};

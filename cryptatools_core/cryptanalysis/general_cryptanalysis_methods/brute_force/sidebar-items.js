@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"mod":["caesar_number"]};
+window.SIDEBAR_ITEMS = {"mod":[["caesar_number",""]]};

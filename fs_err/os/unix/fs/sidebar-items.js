@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"fn":["symlink"],"trait":["FileExt","OpenOptionsExt"]};
+window.SIDEBAR_ITEMS = {"fn":[["symlink","Wrapper for `std::os::unix::fs::symlink`"]],"trait":[["FileExt","Wrapper for `std::os::unix::fs::FileExt`."],["OpenOptionsExt","Wrapper for `std::os::unix::fs::OpenOptionsExt`"]]};

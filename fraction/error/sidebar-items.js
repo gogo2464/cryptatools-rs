@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"enum":["DivisionError","ParseError"]};
+window.SIDEBAR_ITEMS = {"enum":[["DivisionError","Could not perform division, or fill in the resulting buffer"],["ParseError","Happens when we parse stuff from strings"]]};

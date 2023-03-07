@@ -1,5 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/clap-4.1.8/src/output/usage.rs`."><title>usage.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Bold-a2c9cd1067f8b328.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-c4dbdcde0fbd8430.css" id="mainThemeStyle"><link rel="stylesheet" id="themeStyle" href="../../../static.files/light-db279b6232be9c13.css"><link rel="stylesheet" disabled href="../../../static.files/dark-cf923f49f397b216.css"><link rel="stylesheet" disabled href="../../../static.files/ayu-be46fdc453a55015.css"><script src="../../../static.files/storage-3891ce972e3a2bf8.js"></script><script defer src="../../../static.files/source-script-1b95b7cca98b26e5.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../static.files/main-98a684e84ae5b08b.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><a class="sub-logo-container" href="../../../clap/index.html">
-                        <img src="https://raw.githubusercontent.com/clap-rs/clap/master/assets/clap.png" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/clap-3.2.23/src/output/usage.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>usage.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-1f7d512b176f0f72.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Bold-124a1ca42af929b6.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-6827029ac823cab7.css" id="mainThemeStyle"><link rel="stylesheet" id="themeStyle" href="../../../static.files/light-ebce58d0a40c3431.css"><link rel="stylesheet" disabled href="../../../static.files/dark-f23faae4a2daf9a6.css"><link rel="stylesheet" disabled href="../../../static.files/ayu-8af5e100b21cd173.css"><script id="default-settings" ></script><script src="../../../static.files/storage-d43fa987303ecbbb.js"></script><script defer src="../../../static.files/source-script-5cf2e01a42cc9858.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../static.files/main-c55e1eb52e1886b4.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../clap/index.html">
+                        <img src="https://raw.githubusercontent.com/clap-rs/clap/master/assets/clap.png" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-5ec35bf9ca753509.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -440,28 +440,31 @@
 <a href="#439" id="439">439</a>
 <a href="#440" id="440">440</a>
 <a href="#441" id="441">441</a>
-</pre><pre class="rust"><code><span class="attr">#![cfg_attr(not(feature = <span class="string">&quot;usage&quot;</span>), allow(unused_imports))]
-#![cfg_attr(not(feature = <span class="string">&quot;usage&quot;</span>), allow(unused_variables))]
-#![cfg_attr(not(feature = <span class="string">&quot;usage&quot;</span>), allow(clippy::manual_map))]
-#![cfg_attr(not(feature = <span class="string">&quot;usage&quot;</span>), allow(dead_code))]
+<a href="#442" id="442">442</a>
+<a href="#443" id="443">443</a>
+<a href="#444" id="444">444</a>
+<a href="#445" id="445">445</a>
+<a href="#446" id="446">446</a>
+<a href="#447" id="447">447</a>
+<a href="#448" id="448">448</a>
+<a href="#449" id="449">449</a>
+</pre><pre class="rust"><code><span class="kw">use </span>indexmap::IndexSet;
 
-</span><span class="comment">// Internal
-</span><span class="kw">use </span><span class="kw">crate</span>::builder::StyledStr;
-<span class="kw">use </span><span class="kw">crate</span>::builder::{ArgPredicate, Command};
+<span class="comment">// Internal
+</span><span class="kw">use </span><span class="kw">crate</span>::builder::AppSettings <span class="kw">as </span>AS;
+<span class="kw">use </span><span class="kw">crate</span>::builder::{Arg, ArgPredicate, Command};
 <span class="kw">use </span><span class="kw">crate</span>::parser::ArgMatcher;
 <span class="kw">use </span><span class="kw">crate</span>::util::ChildGraph;
-<span class="kw">use </span><span class="kw">crate</span>::util::FlatSet;
 <span class="kw">use </span><span class="kw">crate</span>::util::Id;
+<span class="kw">use </span><span class="kw">crate</span>::INTERNAL_ERROR_MSG;
 
-<span class="kw">static </span>DEFAULT_SUB_VALUE_NAME: <span class="kw-2">&amp;</span>str = <span class="string">&quot;COMMAND&quot;</span>;
-
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct </span>Usage&lt;<span class="lifetime">&#39;cmd</span>&gt; {
-    cmd: <span class="kw-2">&amp;</span><span class="lifetime">&#39;cmd </span>Command,
+<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct </span>Usage&lt;<span class="lifetime">&#39;help</span>, <span class="lifetime">&#39;cmd</span>&gt; {
+    cmd: <span class="kw-2">&amp;</span><span class="lifetime">&#39;cmd </span>Command&lt;<span class="lifetime">&#39;help</span>&gt;,
     required: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;cmd </span>ChildGraph&lt;Id&gt;&gt;,
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;cmd</span>&gt; Usage&lt;<span class="lifetime">&#39;cmd</span>&gt; {
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>new(cmd: <span class="kw-2">&amp;</span><span class="lifetime">&#39;cmd </span>Command) -&gt; <span class="self">Self </span>{
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;help</span>, <span class="lifetime">&#39;cmd</span>&gt; Usage&lt;<span class="lifetime">&#39;help</span>, <span class="lifetime">&#39;cmd</span>&gt; {
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>new(cmd: <span class="kw-2">&amp;</span><span class="lifetime">&#39;cmd </span>Command&lt;<span class="lifetime">&#39;help</span>&gt;) -&gt; <span class="self">Self </span>{
         Usage {
             cmd,
             required: <span class="prelude-val">None</span>,
@@ -475,131 +478,274 @@
 
     <span class="comment">// Creates a usage string for display. This happens just after all arguments were parsed, but before
     // any subcommands have been parsed (so as to give subcommands their own usage recursively)
-    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>create_usage_with_title(<span class="kw-2">&amp;</span><span class="self">self</span>, used: <span class="kw-2">&amp;</span>[Id]) -&gt; <span class="prelude-ty">Option</span>&lt;StyledStr&gt; {
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>create_usage_with_title(<span class="kw-2">&amp;</span><span class="self">self</span>, used: <span class="kw-2">&amp;</span>[Id]) -&gt; String {
         <span class="macro">debug!</span>(<span class="string">&quot;Usage::create_usage_with_title&quot;</span>);
-        <span class="kw">let </span>usage = <span class="macro">some!</span>(<span class="self">self</span>.create_usage_no_title(used));
-
-        <span class="kw">let </span><span class="kw-2">mut </span>styled = StyledStr::new();
-        styled.header(<span class="string">&quot;Usage:&quot;</span>);
-        styled.none(<span class="string">&quot; &quot;</span>);
-        styled.extend(usage.into_iter());
-        <span class="prelude-val">Some</span>(styled)
+        <span class="kw">let </span><span class="kw-2">mut </span>usage = String::with_capacity(<span class="number">75</span>);
+        usage.push_str(<span class="string">&quot;USAGE:\n    &quot;</span>);
+        usage.push_str(<span class="kw-2">&amp;*</span><span class="self">self</span>.create_usage_no_title(used));
+        usage
     }
 
     <span class="comment">// Creates a usage string (*without title*) if one was not provided by the user manually.
-    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>create_usage_no_title(<span class="kw-2">&amp;</span><span class="self">self</span>, used: <span class="kw-2">&amp;</span>[Id]) -&gt; <span class="prelude-ty">Option</span>&lt;StyledStr&gt; {
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>create_usage_no_title(<span class="kw-2">&amp;</span><span class="self">self</span>, used: <span class="kw-2">&amp;</span>[Id]) -&gt; String {
         <span class="macro">debug!</span>(<span class="string">&quot;Usage::create_usage_no_title&quot;</span>);
         <span class="kw">if let </span><span class="prelude-val">Some</span>(u) = <span class="self">self</span>.cmd.get_override_usage() {
-            <span class="prelude-val">Some</span>(u.clone())
+            String::from(<span class="kw-2">&amp;*</span>u)
+        } <span class="kw">else if </span>used.is_empty() {
+            <span class="self">self</span>.create_help_usage(<span class="bool-val">true</span>)
         } <span class="kw">else </span>{
-            <span class="attr">#[cfg(feature = <span class="string">&quot;usage&quot;</span>)]
-            </span>{
-                <span class="kw">if </span>used.is_empty() {
-                    <span class="prelude-val">Some</span>(<span class="self">self</span>.create_help_usage(<span class="bool-val">true</span>))
-                } <span class="kw">else </span>{
-                    <span class="prelude-val">Some</span>(<span class="self">self</span>.create_smart_usage(used))
-                }
-            }
-
-            <span class="attr">#[cfg(not(feature = <span class="string">&quot;usage&quot;</span>))]
-            </span>{
-                <span class="prelude-val">None
-            </span>}
+            <span class="self">self</span>.create_smart_usage(used)
         }
     }
-}
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;usage&quot;</span>)]
-</span><span class="kw">impl</span>&lt;<span class="lifetime">&#39;cmd</span>&gt; Usage&lt;<span class="lifetime">&#39;cmd</span>&gt; {
     <span class="comment">// Creates a usage string for display in help messages (i.e. not for errors)
-    </span><span class="kw">fn </span>create_help_usage(<span class="kw-2">&amp;</span><span class="self">self</span>, incl_reqs: bool) -&gt; StyledStr {
+    </span><span class="kw">fn </span>create_help_usage(<span class="kw-2">&amp;</span><span class="self">self</span>, incl_reqs: bool) -&gt; String {
         <span class="macro">debug!</span>(<span class="string">&quot;Usage::create_help_usage; incl_reqs={:?}&quot;</span>, incl_reqs);
-        <span class="kw">let </span><span class="kw-2">mut </span>styled = StyledStr::new();
+        <span class="kw">let </span><span class="kw-2">mut </span>usage = String::with_capacity(<span class="number">75</span>);
         <span class="kw">let </span>name = <span class="self">self
             </span>.cmd
             .get_usage_name()
             .or_else(|| <span class="self">self</span>.cmd.get_bin_name())
             .unwrap_or_else(|| <span class="self">self</span>.cmd.get_name());
-        styled.literal(name);
+        usage.push_str(name);
+        <span class="kw">let </span>req_string = <span class="kw">if </span>incl_reqs {
+            <span class="self">self</span>.get_required_usage_from(<span class="kw-2">&amp;</span>[], <span class="prelude-val">None</span>, <span class="bool-val">false</span>)
+                .iter()
+                .fold(String::new(), |a, s| a + <span class="string">&quot; &quot; </span>+ s)
+        } <span class="kw">else </span>{
+            String::new()
+        };
 
         <span class="kw">if </span><span class="self">self</span>.needs_options_tag() {
-            styled.placeholder(<span class="string">&quot; [OPTIONS]&quot;</span>);
+            usage.push_str(<span class="string">&quot; [OPTIONS]&quot;</span>);
         }
 
-        <span class="self">self</span>.write_args(<span class="kw-2">&amp;</span>[], !incl_reqs, <span class="kw-2">&amp;mut </span>styled);
+        <span class="kw">let </span>allow_missing_positional = <span class="self">self</span>.cmd.is_allow_missing_positional_set();
+        <span class="kw">if </span>!allow_missing_positional {
+            usage.push_str(<span class="kw-2">&amp;</span>req_string);
+        }
+
+        <span class="kw">let </span>has_last = <span class="self">self</span>.cmd.get_positionals().any(|p| p.is_last_set());
+        <span class="comment">// places a &#39;--&#39; in the usage string if there are args and options
+        // supporting multiple values
+        </span><span class="kw">if </span><span class="self">self
+            </span>.cmd
+            .get_non_positionals()
+            .any(|o| o.is_multiple_values_set())
+            &amp;&amp; <span class="self">self</span>.cmd.get_positionals().any(|p| !p.is_required_set())
+            &amp;&amp; !(<span class="self">self</span>.cmd.has_visible_subcommands() || <span class="self">self</span>.cmd.is_allow_external_subcommands_set())
+            &amp;&amp; !has_last
+        {
+            usage.push_str(<span class="string">&quot; [--]&quot;</span>);
+        }
+        <span class="kw">let </span>not_req_or_hidden =
+            |p: <span class="kw-2">&amp;</span>Arg| (!p.is_required_set() || p.is_last_set()) &amp;&amp; !p.is_hide_set();
+        <span class="kw">if </span><span class="self">self</span>.cmd.get_positionals().any(not_req_or_hidden) {
+            <span class="kw">if let </span><span class="prelude-val">Some</span>(args_tag) = <span class="self">self</span>.get_args_tag(incl_reqs) {
+                usage.push_str(<span class="kw-2">&amp;*</span>args_tag);
+            } <span class="kw">else </span>{
+                usage.push_str(<span class="string">&quot; [ARGS]&quot;</span>);
+            }
+            <span class="kw">if </span>has_last &amp;&amp; incl_reqs {
+                <span class="kw">let </span>pos = <span class="self">self
+                    </span>.cmd
+                    .get_positionals()
+                    .find(|p| p.is_last_set())
+                    .expect(INTERNAL_ERROR_MSG);
+                <span class="macro">debug!</span>(<span class="string">&quot;Usage::create_help_usage: &#39;{}&#39; has .last(true)&quot;</span>, pos.name);
+                <span class="kw">let </span>req = pos.is_required_set();
+                <span class="kw">if </span>req &amp;&amp; <span class="self">self</span>.cmd.get_positionals().any(|p| !p.is_required_set()) {
+                    usage.push_str(<span class="string">&quot; -- &lt;&quot;</span>);
+                } <span class="kw">else if </span>req {
+                    usage.push_str(<span class="string">&quot; [--] &lt;&quot;</span>);
+                } <span class="kw">else </span>{
+                    usage.push_str(<span class="string">&quot; [-- &lt;&quot;</span>);
+                }
+                usage.push_str(<span class="kw-2">&amp;*</span>pos.name_no_brackets());
+                usage.push(<span class="string">&#39;&gt;&#39;</span>);
+                usage.push_str(pos.multiple_str());
+                <span class="kw">if </span>!req {
+                    usage.push(<span class="string">&#39;]&#39;</span>);
+                }
+            }
+        }
+
+        <span class="kw">if </span>allow_missing_positional {
+            usage.push_str(<span class="kw-2">&amp;</span>req_string);
+        }
 
         <span class="comment">// incl_reqs is only false when this function is called recursively
         </span><span class="kw">if </span><span class="self">self</span>.cmd.has_visible_subcommands() &amp;&amp; incl_reqs
             || <span class="self">self</span>.cmd.is_allow_external_subcommands_set()
         {
-            <span class="kw">let </span>placeholder = <span class="self">self
-                </span>.cmd
-                .get_subcommand_value_name()
-                .unwrap_or(DEFAULT_SUB_VALUE_NAME);
-            <span class="kw">if </span><span class="self">self</span>.cmd.is_subcommand_negates_reqs_set()
+            <span class="kw">let </span>placeholder = <span class="self">self</span>.cmd.get_subcommand_value_name().unwrap_or(<span class="string">&quot;SUBCOMMAND&quot;</span>);
+            <span class="attr">#[allow(deprecated)]
+            </span><span class="kw">if </span><span class="self">self</span>.cmd.is_subcommand_negates_reqs_set()
                 || <span class="self">self</span>.cmd.is_args_conflicts_with_subcommands_set()
             {
-                styled.none(<span class="string">&quot;\n&quot;</span>);
-                styled.none(<span class="string">&quot;       &quot;</span>);
-                <span class="kw">if </span><span class="self">self</span>.cmd.is_args_conflicts_with_subcommands_set() {
-                    <span class="comment">// Short-circuit full usage creation since no args will be relevant
-                    </span>styled.literal(name);
+                usage.push_str(<span class="string">&quot;\n    &quot;</span>);
+                <span class="kw">if </span>!<span class="self">self</span>.cmd.is_args_conflicts_with_subcommands_set() {
+                    usage.push_str(<span class="kw-2">&amp;*</span><span class="self">self</span>.create_help_usage(<span class="bool-val">false</span>));
                 } <span class="kw">else </span>{
-                    styled.extend(<span class="self">self</span>.create_help_usage(<span class="bool-val">false</span>).into_iter());
+                    usage.push_str(<span class="kw-2">&amp;*</span>name);
                 }
-                styled.placeholder(<span class="string">&quot; &lt;&quot;</span>);
-                styled.placeholder(placeholder);
-                styled.placeholder(<span class="string">&quot;&gt;&quot;</span>);
-            } <span class="kw">else if </span><span class="self">self</span>.cmd.is_subcommand_required_set() {
-                styled.placeholder(<span class="string">&quot; &lt;&quot;</span>);
-                styled.placeholder(placeholder);
-                styled.placeholder(<span class="string">&quot;&gt;&quot;</span>);
+                usage.push_str(<span class="string">&quot; &lt;&quot;</span>);
+                usage.push_str(placeholder);
+                usage.push(<span class="string">&#39;&gt;&#39;</span>);
+            } <span class="kw">else if </span><span class="self">self</span>.cmd.is_subcommand_required_set()
+                || <span class="self">self</span>.cmd.is_set(AS::SubcommandRequiredElseHelp)
+            {
+                usage.push_str(<span class="string">&quot; &lt;&quot;</span>);
+                usage.push_str(placeholder);
+                usage.push(<span class="string">&#39;&gt;&#39;</span>);
             } <span class="kw">else </span>{
-                styled.placeholder(<span class="string">&quot; [&quot;</span>);
-                styled.placeholder(placeholder);
-                styled.placeholder(<span class="string">&quot;]&quot;</span>);
+                usage.push_str(<span class="string">&quot; [&quot;</span>);
+                usage.push_str(placeholder);
+                usage.push(<span class="string">&#39;]&#39;</span>);
             }
         }
-        styled.trim();
-        <span class="macro">debug!</span>(<span class="string">&quot;Usage::create_help_usage: usage={}&quot;</span>, styled);
-        styled
+        <span class="kw">let </span>usage = usage.trim().to_owned();
+        <span class="macro">debug!</span>(<span class="string">&quot;Usage::create_help_usage: usage={}&quot;</span>, usage);
+        usage
     }
 
     <span class="comment">// Creates a context aware usage string, or &quot;smart usage&quot; from currently used
     // args, and requirements
-    </span><span class="kw">fn </span>create_smart_usage(<span class="kw-2">&amp;</span><span class="self">self</span>, used: <span class="kw-2">&amp;</span>[Id]) -&gt; StyledStr {
+    </span><span class="kw">fn </span>create_smart_usage(<span class="kw-2">&amp;</span><span class="self">self</span>, used: <span class="kw-2">&amp;</span>[Id]) -&gt; String {
         <span class="macro">debug!</span>(<span class="string">&quot;Usage::create_smart_usage&quot;</span>);
-        <span class="kw">let </span><span class="kw-2">mut </span>styled = StyledStr::new();
+        <span class="kw">let </span><span class="kw-2">mut </span>usage = String::with_capacity(<span class="number">75</span>);
 
-        styled.literal(
+        <span class="kw">let </span>r_string = <span class="self">self
+            </span>.get_required_usage_from(used, <span class="prelude-val">None</span>, <span class="bool-val">true</span>)
+            .iter()
+            .fold(String::new(), |acc, s| acc + <span class="string">&quot; &quot; </span>+ s);
+
+        usage.push_str(
             <span class="self">self</span>.cmd
                 .get_usage_name()
                 .or_else(|| <span class="self">self</span>.cmd.get_bin_name())
                 .unwrap_or_else(|| <span class="self">self</span>.cmd.get_name()),
         );
-
-        <span class="self">self</span>.write_args(used, <span class="bool-val">false</span>, <span class="kw-2">&amp;mut </span>styled);
-
+        usage.push_str(<span class="kw-2">&amp;*</span>r_string);
         <span class="kw">if </span><span class="self">self</span>.cmd.is_subcommand_required_set() {
-            styled.placeholder(<span class="string">&quot; &lt;&quot;</span>);
-            styled.placeholder(
-                <span class="self">self</span>.cmd
-                    .get_subcommand_value_name()
-                    .unwrap_or(DEFAULT_SUB_VALUE_NAME),
-            );
-            styled.placeholder(<span class="string">&quot;&gt;&quot;</span>);
+            usage.push_str(<span class="string">&quot; &lt;&quot;</span>);
+            usage.push_str(<span class="self">self</span>.cmd.get_subcommand_value_name().unwrap_or(<span class="string">&quot;SUBCOMMAND&quot;</span>));
+            usage.push(<span class="string">&#39;&gt;&#39;</span>);
         }
-        styled
+        usage.shrink_to_fit();
+        usage
+    }
+
+    <span class="comment">// Gets the `[ARGS]` tag for the usage string
+    </span><span class="kw">fn </span>get_args_tag(<span class="kw-2">&amp;</span><span class="self">self</span>, incl_reqs: bool) -&gt; <span class="prelude-ty">Option</span>&lt;String&gt; {
+        <span class="macro">debug!</span>(<span class="string">&quot;Usage::get_args_tag; incl_reqs = {:?}&quot;</span>, incl_reqs);
+        <span class="kw">let </span><span class="kw-2">mut </span>count = <span class="number">0</span>;
+        <span class="kw">for </span>pos <span class="kw">in </span><span class="self">self
+            </span>.cmd
+            .get_positionals()
+            .filter(|pos| !pos.is_required_set())
+            .filter(|pos| !pos.is_hide_set())
+            .filter(|pos| !pos.is_last_set())
+        {
+            <span class="macro">debug!</span>(<span class="string">&quot;Usage::get_args_tag:iter:{}&quot;</span>, pos.name);
+            <span class="kw">let </span>required = <span class="self">self</span>.cmd.groups_for_arg(<span class="kw-2">&amp;</span>pos.id).any(|grp_s| {
+                <span class="macro">debug!</span>(<span class="string">&quot;Usage::get_args_tag:iter:{:?}:iter:{:?}&quot;</span>, pos.name, grp_s);
+                <span class="comment">// if it&#39;s part of a required group we don&#39;t want to count it
+                </span><span class="self">self</span>.cmd.get_groups().any(|g| g.required &amp;&amp; (g.id == grp_s))
+            });
+            <span class="kw">if </span>!required {
+                count += <span class="number">1</span>;
+                <span class="macro">debug!</span>(
+                    <span class="string">&quot;Usage::get_args_tag:iter: {} Args not required or hidden&quot;</span>,
+                    count
+                );
+            }
+        }
+
+        <span class="kw">if </span>!<span class="self">self</span>.cmd.is_dont_collapse_args_in_usage_set() &amp;&amp; count &gt; <span class="number">1 </span>{
+            <span class="macro">debug!</span>(<span class="string">&quot;Usage::get_args_tag:iter: More than one, returning [ARGS]&quot;</span>);
+
+            <span class="comment">// [ARGS]
+            </span><span class="prelude-val">None
+        </span>} <span class="kw">else if </span>count == <span class="number">1 </span>&amp;&amp; incl_reqs {
+            <span class="kw">let </span>pos = <span class="self">self
+                </span>.cmd
+                .get_positionals()
+                .find(|pos| {
+                    !pos.is_required_set()
+                        &amp;&amp; !pos.is_hide_set()
+                        &amp;&amp; !pos.is_last_set()
+                        &amp;&amp; !<span class="self">self</span>.cmd.groups_for_arg(<span class="kw-2">&amp;</span>pos.id).any(|grp_s| {
+                            <span class="macro">debug!</span>(<span class="string">&quot;Usage::get_args_tag:iter:{:?}:iter:{:?}&quot;</span>, pos.name, grp_s);
+                            <span class="comment">// if it&#39;s part of a required group we don&#39;t want to count it
+                            </span><span class="self">self</span>.cmd.get_groups().any(|g| g.required &amp;&amp; (g.id == grp_s))
+                        })
+                })
+                .expect(INTERNAL_ERROR_MSG);
+
+            <span class="macro">debug!</span>(
+                <span class="string">&quot;Usage::get_args_tag:iter: Exactly one, returning &#39;{}&#39;&quot;</span>,
+                pos.name
+            );
+
+            <span class="prelude-val">Some</span>(<span class="macro">format!</span>(
+                <span class="string">&quot; [{}]{}&quot;</span>,
+                pos.name_no_brackets(),
+                pos.multiple_str()
+            ))
+        } <span class="kw">else if </span><span class="self">self</span>.cmd.is_dont_collapse_args_in_usage_set()
+            &amp;&amp; <span class="self">self</span>.cmd.has_positionals()
+            &amp;&amp; incl_reqs
+        {
+            <span class="macro">debug!</span>(<span class="string">&quot;Usage::get_args_tag:iter: Don&#39;t collapse returning all&quot;</span>);
+            <span class="prelude-val">Some</span>(
+                <span class="self">self</span>.cmd
+                    .get_positionals()
+                    .filter(|pos| !pos.is_required_set())
+                    .filter(|pos| !pos.is_hide_set())
+                    .filter(|pos| !pos.is_last_set())
+                    .map(|pos| <span class="macro">format!</span>(<span class="string">&quot; [{}]{}&quot;</span>, pos.name_no_brackets(), pos.multiple_str()))
+                    .collect::&lt;Vec&lt;<span class="kw">_</span>&gt;&gt;()
+                    .join(<span class="string">&quot;&quot;</span>),
+            )
+        } <span class="kw">else if </span>!incl_reqs {
+            <span class="macro">debug!</span>(<span class="string">&quot;Usage::get_args_tag:iter: incl_reqs=false, building secondary usage string&quot;</span>);
+            <span class="kw">let </span>highest_req_pos = <span class="self">self
+                </span>.cmd
+                .get_positionals()
+                .filter_map(|pos| {
+                    <span class="kw">if </span>pos.is_required_set() &amp;&amp; !pos.is_last_set() {
+                        <span class="prelude-val">Some</span>(pos.index)
+                    } <span class="kw">else </span>{
+                        <span class="prelude-val">None
+                    </span>}
+                })
+                .max()
+                .unwrap_or_else(|| <span class="prelude-val">Some</span>(<span class="self">self</span>.cmd.get_positionals().count()));
+            <span class="prelude-val">Some</span>(
+                <span class="self">self</span>.cmd
+                    .get_positionals()
+                    .filter(|pos| pos.index &lt;= highest_req_pos)
+                    .filter(|pos| !pos.is_required_set())
+                    .filter(|pos| !pos.is_hide_set())
+                    .filter(|pos| !pos.is_last_set())
+                    .map(|pos| <span class="macro">format!</span>(<span class="string">&quot; [{}]{}&quot;</span>, pos.name_no_brackets(), pos.multiple_str()))
+                    .collect::&lt;Vec&lt;<span class="kw">_</span>&gt;&gt;()
+                    .join(<span class="string">&quot;&quot;</span>),
+            )
+        } <span class="kw">else </span>{
+            <span class="prelude-val">Some</span>(<span class="string">&quot;&quot;</span>.into())
+        }
     }
 
     <span class="comment">// Determines if we need the `[OPTIONS]` tag in the usage string
     </span><span class="kw">fn </span>needs_options_tag(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
         <span class="macro">debug!</span>(<span class="string">&quot;Usage::needs_options_tag&quot;</span>);
         <span class="lifetime">&#39;outer</span>: <span class="kw">for </span>f <span class="kw">in </span><span class="self">self</span>.cmd.get_non_positionals() {
-            <span class="macro">debug!</span>(<span class="string">&quot;Usage::needs_options_tag:iter: f={}&quot;</span>, f.get_id());
+            <span class="macro">debug!</span>(<span class="string">&quot;Usage::needs_options_tag:iter: f={}&quot;</span>, f.name);
 
             <span class="comment">// Don&#39;t print `[OPTIONS]` just for help or version
-            </span><span class="kw">if </span>f.get_long() == <span class="prelude-val">Some</span>(<span class="string">&quot;help&quot;</span>) || f.get_long() == <span class="prelude-val">Some</span>(<span class="string">&quot;version&quot;</span>) {
+            </span><span class="kw">if </span>f.long == <span class="prelude-val">Some</span>(<span class="string">&quot;help&quot;</span>) || f.long == <span class="prelude-val">Some</span>(<span class="string">&quot;version&quot;</span>) {
                 <span class="macro">debug!</span>(<span class="string">&quot;Usage::needs_options_tag:iter Option is built-in&quot;</span>);
                 <span class="kw">continue</span>;
             }
@@ -612,7 +758,7 @@
                 <span class="macro">debug!</span>(<span class="string">&quot;Usage::needs_options_tag:iter Option is required&quot;</span>);
                 <span class="kw">continue</span>;
             }
-            <span class="kw">for </span>grp_s <span class="kw">in </span><span class="self">self</span>.cmd.groups_for_arg(f.get_id()) {
+            <span class="kw">for </span>grp_s <span class="kw">in </span><span class="self">self</span>.cmd.groups_for_arg(<span class="kw-2">&amp;</span>f.id) {
                 <span class="macro">debug!</span>(<span class="string">&quot;Usage::needs_options_tag:iter:iter: grp_s={:?}&quot;</span>, grp_s);
                 <span class="kw">if </span><span class="self">self</span>.cmd.get_groups().any(|g| g.id == grp_s &amp;&amp; g.required) {
                     <span class="macro">debug!</span>(<span class="string">&quot;Usage::needs_options_tag:iter:iter: Group is required&quot;</span>);
@@ -629,144 +775,24 @@
     </span>}
 
     <span class="comment">// Returns the required args in usage string form by fully unrolling all groups
-    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>write_args(<span class="kw-2">&amp;</span><span class="self">self</span>, incls: <span class="kw-2">&amp;</span>[Id], force_optional: bool, styled: <span class="kw-2">&amp;mut </span>StyledStr) {
-        <span class="kw">for </span>required <span class="kw">in </span><span class="self">self</span>.get_args(incls, force_optional) {
-            styled.none(<span class="string">&quot; &quot;</span>);
-            styled.extend(required.into_iter());
-        }
-    }
-
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>get_args(<span class="kw-2">&amp;</span><span class="self">self</span>, incls: <span class="kw-2">&amp;</span>[Id], force_optional: bool) -&gt; Vec&lt;StyledStr&gt; {
-        <span class="macro">debug!</span>(<span class="string">&quot;Usage::get_args: incls={:?}&quot;</span>, incls,);
-
-        <span class="kw">let </span>required_owned;
-        <span class="kw">let </span>required = <span class="kw">if let </span><span class="prelude-val">Some</span>(required) = <span class="self">self</span>.required {
-            required
-        } <span class="kw">else </span>{
-            required_owned = <span class="self">self</span>.cmd.required_graph();
-            <span class="kw-2">&amp;</span>required_owned
-        };
-
-        <span class="kw">let </span><span class="kw-2">mut </span>unrolled_reqs = Vec::new();
-        <span class="kw">for </span>a <span class="kw">in </span>required.iter() {
-            <span class="kw">let </span>is_relevant = |(val, req_arg): <span class="kw-2">&amp;</span>(ArgPredicate, Id)| -&gt; <span class="prelude-ty">Option</span>&lt;Id&gt; {
-                <span class="kw">let </span>required = <span class="kw">match </span>val {
-                    ArgPredicate::Equals(<span class="kw">_</span>) =&gt; <span class="bool-val">false</span>,
-                    ArgPredicate::IsPresent =&gt; <span class="bool-val">true</span>,
-                };
-                required.then(|| req_arg.clone())
-            };
-
-            <span class="kw">for </span>aa <span class="kw">in </span><span class="self">self</span>.cmd.unroll_arg_requires(is_relevant, a) {
-                <span class="comment">// if we don&#39;t check for duplicates here this causes duplicate error messages
-                // see https://github.com/clap-rs/clap/issues/2770
-                </span>unrolled_reqs.push(aa);
-            }
-            <span class="comment">// always include the required arg itself. it will not be enumerated
-            // by unroll_requirements_for_arg.
-            </span>unrolled_reqs.push(a.clone());
-        }
-        <span class="macro">debug!</span>(<span class="string">&quot;Usage::get_args: unrolled_reqs={:?}&quot;</span>, unrolled_reqs);
-
-        <span class="kw">let </span><span class="kw-2">mut </span>required_groups_members = FlatSet::new();
-        <span class="kw">let </span><span class="kw-2">mut </span>required_groups = FlatSet::new();
-        <span class="kw">for </span>req <span class="kw">in </span>unrolled_reqs.iter().chain(incls.iter()) {
-            <span class="kw">if </span><span class="self">self</span>.cmd.find_group(req).is_some() {
-                <span class="kw">let </span>group_members = <span class="self">self</span>.cmd.unroll_args_in_group(req);
-                <span class="kw">let </span>elem = <span class="self">self</span>.cmd.format_group(req);
-                required_groups.insert(elem);
-                required_groups_members.extend(group_members);
-            } <span class="kw">else </span>{
-                <span class="macro">debug_assert!</span>(<span class="self">self</span>.cmd.find(req).is_some());
-            }
-        }
-
-        <span class="kw">let </span><span class="kw-2">mut </span>required_opts = FlatSet::new();
-        <span class="kw">let </span><span class="kw-2">mut </span>required_positionals = Vec::new();
-        <span class="kw">for </span>req <span class="kw">in </span>unrolled_reqs.iter().chain(incls.iter()) {
-            <span class="kw">if let </span><span class="prelude-val">Some</span>(arg) = <span class="self">self</span>.cmd.find(req) {
-                <span class="kw">if </span>required_groups_members.contains(arg.get_id()) {
-                    <span class="kw">continue</span>;
-                }
-
-                <span class="kw">let </span>stylized = arg.stylized(<span class="prelude-val">Some</span>(!force_optional));
-                <span class="kw">if let </span><span class="prelude-val">Some</span>(index) = arg.get_index() {
-                    <span class="kw">let </span>new_len = index + <span class="number">1</span>;
-                    <span class="kw">if </span>required_positionals.len() &lt; new_len {
-                        required_positionals.resize(new_len, <span class="prelude-val">None</span>);
-                    }
-                    required_positionals[index] = <span class="prelude-val">Some</span>(stylized);
-                } <span class="kw">else </span>{
-                    required_opts.insert(stylized);
-                }
-            } <span class="kw">else </span>{
-                <span class="macro">debug_assert!</span>(<span class="self">self</span>.cmd.find_group(req).is_some());
-            }
-        }
-
-        <span class="kw">for </span>pos <span class="kw">in </span><span class="self">self</span>.cmd.get_positionals() {
-            <span class="kw">if </span>pos.is_hide_set() {
-                <span class="kw">continue</span>;
-            }
-            <span class="kw">if </span>required_groups_members.contains(pos.get_id()) {
-                <span class="kw">continue</span>;
-            }
-
-            <span class="kw">let </span>index = pos.get_index().unwrap();
-            <span class="kw">let </span>new_len = index + <span class="number">1</span>;
-            <span class="kw">if </span>required_positionals.len() &lt; new_len {
-                required_positionals.resize(new_len, <span class="prelude-val">None</span>);
-            }
-            <span class="kw">if </span>required_positionals[index].is_some() {
-                <span class="kw">if </span>pos.is_last_set() {
-                    <span class="kw">let </span>styled = required_positionals[index].take().unwrap();
-                    <span class="kw">let </span><span class="kw-2">mut </span>new = StyledStr::new();
-                    new.literal(<span class="string">&quot;-- &quot;</span>);
-                    new.extend(styled.into_iter());
-                    required_positionals[index] = <span class="prelude-val">Some</span>(new);
-                }
-            } <span class="kw">else </span>{
-                <span class="kw">let </span><span class="kw-2">mut </span>styled;
-                <span class="kw">if </span>pos.is_last_set() {
-                    styled = StyledStr::new();
-                    styled.literal(<span class="string">&quot;[-- &quot;</span>);
-                    styled.extend(pos.stylized(<span class="prelude-val">Some</span>(<span class="bool-val">true</span>)).into_iter());
-                    styled.literal(<span class="string">&quot;]&quot;</span>);
-                } <span class="kw">else </span>{
-                    styled = pos.stylized(<span class="prelude-val">Some</span>(<span class="bool-val">false</span>));
-                }
-                required_positionals[index] = <span class="prelude-val">Some</span>(styled);
-            }
-            <span class="kw">if </span>pos.is_last_set() &amp;&amp; force_optional {
-                required_positionals[index] = <span class="prelude-val">None</span>;
-            }
-        }
-
-        <span class="kw">let </span><span class="kw-2">mut </span>ret_val = Vec::new();
-        <span class="kw">if </span>!force_optional {
-            ret_val.extend(required_opts);
-            ret_val.extend(required_groups);
-        }
-        <span class="kw">for </span>pos <span class="kw">in </span>required_positionals.into_iter().flatten() {
-            ret_val.push(pos);
-        }
-
-        <span class="macro">debug!</span>(<span class="string">&quot;Usage::get_args: ret_val={:?}&quot;</span>, ret_val);
-        ret_val
-    }
-
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>get_required_usage_from(
+    // `incl_last`: should we include args that are Arg::Last? (i.e. `prog [foo] -- [last]). We
+    // can&#39;t do that for required usages being built for subcommands because it would look like:
+    // `prog [foo] -- [last] &lt;subcommand&gt;` which is totally wrong.
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>get_required_usage_from(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         incls: <span class="kw-2">&amp;</span>[Id],
         matcher: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>ArgMatcher&gt;,
         incl_last: bool,
-    ) -&gt; Vec&lt;StyledStr&gt; {
+    ) -&gt; IndexSet&lt;String&gt; {
         <span class="macro">debug!</span>(
             <span class="string">&quot;Usage::get_required_usage_from: incls={:?}, matcher={:?}, incl_last={:?}&quot;</span>,
             incls,
             matcher.is_some(),
             incl_last
         );
+        <span class="kw">let </span><span class="kw-2">mut </span>ret_val = IndexSet::new();
+
+        <span class="kw">let </span><span class="kw-2">mut </span>unrolled_reqs = IndexSet::new();
 
         <span class="kw">let </span>required_owned;
         <span class="kw">let </span>required = <span class="kw">if let </span><span class="prelude-val">Some</span>(required) = <span class="self">self</span>.required {
@@ -776,13 +802,12 @@
             <span class="kw-2">&amp;</span>required_owned
         };
 
-        <span class="kw">let </span><span class="kw-2">mut </span>unrolled_reqs = Vec::new();
         <span class="kw">for </span>a <span class="kw">in </span>required.iter() {
-            <span class="kw">let </span>is_relevant = |(val, req_arg): <span class="kw-2">&amp;</span>(ArgPredicate, Id)| -&gt; <span class="prelude-ty">Option</span>&lt;Id&gt; {
+            <span class="kw">let </span>is_relevant = |(val, req_arg): <span class="kw-2">&amp;</span>(ArgPredicate&lt;<span class="lifetime">&#39;_</span>&gt;, Id)| -&gt; <span class="prelude-ty">Option</span>&lt;Id&gt; {
                 <span class="kw">let </span>required = <span class="kw">match </span>val {
                     ArgPredicate::Equals(<span class="kw">_</span>) =&gt; {
                         <span class="kw">if let </span><span class="prelude-val">Some</span>(matcher) = matcher {
-                            matcher.check_explicit(a, val)
+                            matcher.check_explicit(a, <span class="kw-2">*</span>val)
                         } <span class="kw">else </span>{
                             <span class="bool-val">false
                         </span>}
@@ -795,86 +820,77 @@
             <span class="kw">for </span>aa <span class="kw">in </span><span class="self">self</span>.cmd.unroll_arg_requires(is_relevant, a) {
                 <span class="comment">// if we don&#39;t check for duplicates here this causes duplicate error messages
                 // see https://github.com/clap-rs/clap/issues/2770
-                </span>unrolled_reqs.push(aa);
+                </span>unrolled_reqs.insert(aa);
             }
             <span class="comment">// always include the required arg itself. it will not be enumerated
             // by unroll_requirements_for_arg.
-            </span>unrolled_reqs.push(a.clone());
+            </span>unrolled_reqs.insert(a.clone());
         }
+
         <span class="macro">debug!</span>(
             <span class="string">&quot;Usage::get_required_usage_from: unrolled_reqs={:?}&quot;</span>,
             unrolled_reqs
         );
 
-        <span class="kw">let </span><span class="kw-2">mut </span>required_groups_members = FlatSet::new();
-        <span class="kw">let </span><span class="kw-2">mut </span>required_groups = FlatSet::new();
+        <span class="kw">let </span><span class="kw-2">mut </span>required_groups_members = IndexSet::new();
+        <span class="kw">let </span><span class="kw-2">mut </span>required_opts = IndexSet::new();
+        <span class="kw">let </span><span class="kw-2">mut </span>required_groups = IndexSet::new();
+        <span class="kw">let </span><span class="kw-2">mut </span>required_positionals = Vec::new();
         <span class="kw">for </span>req <span class="kw">in </span>unrolled_reqs.iter().chain(incls.iter()) {
-            <span class="kw">if </span><span class="self">self</span>.cmd.find_group(req).is_some() {
+            <span class="kw">if let </span><span class="prelude-val">Some</span>(arg) = <span class="self">self</span>.cmd.find(req) {
+                <span class="kw">let </span>is_present = matcher
+                    .map(|m| m.check_explicit(req, ArgPredicate::IsPresent))
+                    .unwrap_or(<span class="bool-val">false</span>);
+                <span class="macro">debug!</span>(
+                    <span class="string">&quot;Usage::get_required_usage_from:iter:{:?} arg is_present={}&quot;</span>,
+                    req, is_present
+                );
+                <span class="kw">if </span>!is_present {
+                    <span class="kw">if </span>arg.is_positional() {
+                        <span class="kw">if </span>incl_last || !arg.is_last_set() {
+                            required_positionals.push((arg.index.unwrap(), arg.to_string()));
+                        }
+                    } <span class="kw">else </span>{
+                        required_opts.insert(arg.to_string());
+                    }
+                }
+            } <span class="kw">else </span>{
+                <span class="macro">debug_assert!</span>(<span class="self">self</span>.cmd.find_group(req).is_some());
                 <span class="kw">let </span>group_members = <span class="self">self</span>.cmd.unroll_args_in_group(req);
                 <span class="kw">let </span>is_present = matcher
                     .map(|m| {
                         group_members
                             .iter()
-                            .any(|arg| m.check_explicit(arg, <span class="kw-2">&amp;</span>ArgPredicate::IsPresent))
+                            .any(|arg| m.check_explicit(arg, ArgPredicate::IsPresent))
                     })
                     .unwrap_or(<span class="bool-val">false</span>);
                 <span class="macro">debug!</span>(
                     <span class="string">&quot;Usage::get_required_usage_from:iter:{:?} group is_present={}&quot;</span>,
                     req, is_present
                 );
-                <span class="kw">if </span>is_present {
-                    <span class="kw">continue</span>;
+                <span class="kw">if </span>!is_present {
+                    <span class="kw">let </span>elem = <span class="self">self</span>.cmd.format_group(req);
+                    required_groups.insert(elem);
+                    required_groups_members.extend(
+                        group_members
+                            .iter()
+                            .flat_map(|id| <span class="self">self</span>.cmd.find(id))
+                            .map(|arg| arg.to_string()),
+                    );
                 }
-
-                <span class="kw">let </span>elem = <span class="self">self</span>.cmd.format_group(req);
-                required_groups.insert(elem);
-                required_groups_members.extend(group_members);
-            } <span class="kw">else </span>{
-                <span class="macro">debug_assert!</span>(<span class="self">self</span>.cmd.find(req).is_some());
             }
         }
 
-        <span class="kw">let </span><span class="kw-2">mut </span>required_opts = FlatSet::new();
-        <span class="kw">let </span><span class="kw-2">mut </span>required_positionals = Vec::new();
-        <span class="kw">for </span>req <span class="kw">in </span>unrolled_reqs.iter().chain(incls.iter()) {
-            <span class="kw">if let </span><span class="prelude-val">Some</span>(arg) = <span class="self">self</span>.cmd.find(req) {
-                <span class="kw">if </span>required_groups_members.contains(arg.get_id()) {
-                    <span class="kw">continue</span>;
-                }
-
-                <span class="kw">let </span>is_present = matcher
-                    .map(|m| m.check_explicit(req, <span class="kw-2">&amp;</span>ArgPredicate::IsPresent))
-                    .unwrap_or(<span class="bool-val">false</span>);
-                <span class="macro">debug!</span>(
-                    <span class="string">&quot;Usage::get_required_usage_from:iter:{:?} arg is_present={}&quot;</span>,
-                    req, is_present
-                );
-                <span class="kw">if </span>is_present {
-                    <span class="kw">continue</span>;
-                }
-
-                <span class="kw">let </span>stylized = arg.stylized(<span class="prelude-val">Some</span>(<span class="bool-val">true</span>));
-                <span class="kw">if let </span><span class="prelude-val">Some</span>(index) = arg.get_index() {
-                    <span class="kw">if </span>!arg.is_last_set() || incl_last {
-                        <span class="kw">let </span>new_len = index + <span class="number">1</span>;
-                        <span class="kw">if </span>required_positionals.len() &lt; new_len {
-                            required_positionals.resize(new_len, <span class="prelude-val">None</span>);
-                        }
-                        required_positionals[index] = <span class="prelude-val">Some</span>(stylized);
-                    }
-                } <span class="kw">else </span>{
-                    required_opts.insert(stylized);
-                }
-            } <span class="kw">else </span>{
-                <span class="macro">debug_assert!</span>(<span class="self">self</span>.cmd.find_group(req).is_some());
-            }
-        }
-
-        <span class="kw">let </span><span class="kw-2">mut </span>ret_val = Vec::new();
+        required_opts.retain(|arg| !required_groups_members.contains(arg));
         ret_val.extend(required_opts);
+
         ret_val.extend(required_groups);
-        <span class="kw">for </span>pos <span class="kw">in </span>required_positionals.into_iter().flatten() {
-            ret_val.push(pos);
+
+        required_positionals.sort_by_key(|(ind, <span class="kw">_</span>)| <span class="kw-2">*</span>ind); <span class="comment">// sort by index
+        </span><span class="kw">for </span>(<span class="kw">_</span>, p) <span class="kw">in </span>required_positionals {
+            <span class="kw">if </span>!required_groups_members.contains(<span class="kw-2">&amp;</span>p) {
+                ret_val.insert(p);
+            }
         }
 
         <span class="macro">debug!</span>(<span class="string">&quot;Usage::get_required_usage_from: ret_val={:?}&quot;</span>, ret_val);
@@ -882,4 +898,4 @@
     }
 }
 </code></pre></div>
-</section></main><div id="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="clap" data-themes="" data-resource-suffix="" data-rustdoc-version="1.70.0-nightly (f63ccaf25 2023-03-06)" data-search-js="search-8a59a8356673ec1f.js" data-settings-js="settings-f0c5c39777a9a2f6.js" data-settings-css="settings-0bcba95ff279c1db.css" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="clap" data-themes="" data-resource-suffix="" data-rustdoc-version="1.67.1 (d5a82bbd2 2023-02-07)" data-search-js="search-444266647c4dba98.js" data-settings-js="settings-bebeae96e00e4617.js" data-settings-css="settings-af96d9e2fc13e081.css" ></div></body></html>

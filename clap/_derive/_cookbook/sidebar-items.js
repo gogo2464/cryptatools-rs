@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"mod":["cargo_example","cargo_example_derive","escaped_positional","escaped_positional_derive","find","git","git_derive","multicall_busybox","multicall_hostname","pacman","repl","typed_derive"]};

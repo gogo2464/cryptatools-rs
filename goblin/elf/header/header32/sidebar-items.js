@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"constant":["ELFCLASS","SIZEOF_EHDR"],"struct":["Header"]};
+window.SIDEBAR_ITEMS = {"constant":[["ELFCLASS",""],["SIZEOF_EHDR",""]],"struct":[["Header",""]]};

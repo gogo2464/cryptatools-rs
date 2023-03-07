@@ -1,5 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/clap-4.1.8/src/util/id.rs`."><title>id.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Bold-a2c9cd1067f8b328.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-c4dbdcde0fbd8430.css" id="mainThemeStyle"><link rel="stylesheet" id="themeStyle" href="../../../static.files/light-db279b6232be9c13.css"><link rel="stylesheet" disabled href="../../../static.files/dark-cf923f49f397b216.css"><link rel="stylesheet" disabled href="../../../static.files/ayu-be46fdc453a55015.css"><script src="../../../static.files/storage-3891ce972e3a2bf8.js"></script><script defer src="../../../static.files/source-script-1b95b7cca98b26e5.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../static.files/main-98a684e84ae5b08b.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><a class="sub-logo-container" href="../../../clap/index.html">
-                        <img src="https://raw.githubusercontent.com/clap-rs/clap/master/assets/clap.png" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/clap-3.2.23/src/util/id.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>id.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-1f7d512b176f0f72.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Bold-124a1ca42af929b6.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-6827029ac823cab7.css" id="mainThemeStyle"><link rel="stylesheet" id="themeStyle" href="../../../static.files/light-ebce58d0a40c3431.css"><link rel="stylesheet" disabled href="../../../static.files/dark-f23faae4a2daf9a6.css"><link rel="stylesheet" disabled href="../../../static.files/ayu-8af5e100b21cd173.css"><script id="default-settings" ></script><script src="../../../static.files/storage-d43fa987303ecbbb.js"></script><script defer src="../../../static.files/source-script-5cf2e01a42cc9858.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../static.files/main-c55e1eb52e1886b4.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../clap/index.html">
+                        <img src="https://raw.githubusercontent.com/clap-rs/clap/master/assets/clap.png" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-5ec35bf9ca753509.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -91,241 +91,97 @@
 <a href="#90" id="90">90</a>
 <a href="#91" id="91">91</a>
 <a href="#92" id="92">92</a>
-<a href="#93" id="93">93</a>
-<a href="#94" id="94">94</a>
-<a href="#95" id="95">95</a>
-<a href="#96" id="96">96</a>
-<a href="#97" id="97">97</a>
-<a href="#98" id="98">98</a>
-<a href="#99" id="99">99</a>
-<a href="#100" id="100">100</a>
-<a href="#101" id="101">101</a>
-<a href="#102" id="102">102</a>
-<a href="#103" id="103">103</a>
-<a href="#104" id="104">104</a>
-<a href="#105" id="105">105</a>
-<a href="#106" id="106">106</a>
-<a href="#107" id="107">107</a>
-<a href="#108" id="108">108</a>
-<a href="#109" id="109">109</a>
-<a href="#110" id="110">110</a>
-<a href="#111" id="111">111</a>
-<a href="#112" id="112">112</a>
-<a href="#113" id="113">113</a>
-<a href="#114" id="114">114</a>
-<a href="#115" id="115">115</a>
-<a href="#116" id="116">116</a>
-<a href="#117" id="117">117</a>
-<a href="#118" id="118">118</a>
-<a href="#119" id="119">119</a>
-<a href="#120" id="120">120</a>
-<a href="#121" id="121">121</a>
-<a href="#122" id="122">122</a>
-<a href="#123" id="123">123</a>
-<a href="#124" id="124">124</a>
-<a href="#125" id="125">125</a>
-<a href="#126" id="126">126</a>
-<a href="#127" id="127">127</a>
-<a href="#128" id="128">128</a>
-<a href="#129" id="129">129</a>
-<a href="#130" id="130">130</a>
-<a href="#131" id="131">131</a>
-<a href="#132" id="132">132</a>
-<a href="#133" id="133">133</a>
-<a href="#134" id="134">134</a>
-<a href="#135" id="135">135</a>
-<a href="#136" id="136">136</a>
-<a href="#137" id="137">137</a>
-<a href="#138" id="138">138</a>
-<a href="#139" id="139">139</a>
-<a href="#140" id="140">140</a>
-<a href="#141" id="141">141</a>
-<a href="#142" id="142">142</a>
-<a href="#143" id="143">143</a>
-<a href="#144" id="144">144</a>
-<a href="#145" id="145">145</a>
-<a href="#146" id="146">146</a>
-<a href="#147" id="147">147</a>
-<a href="#148" id="148">148</a>
-<a href="#149" id="149">149</a>
-<a href="#150" id="150">150</a>
-<a href="#151" id="151">151</a>
-<a href="#152" id="152">152</a>
-<a href="#153" id="153">153</a>
-<a href="#154" id="154">154</a>
-<a href="#155" id="155">155</a>
-<a href="#156" id="156">156</a>
-<a href="#157" id="157">157</a>
-<a href="#158" id="158">158</a>
-<a href="#159" id="159">159</a>
-<a href="#160" id="160">160</a>
-<a href="#161" id="161">161</a>
-<a href="#162" id="162">162</a>
-<a href="#163" id="163">163</a>
-<a href="#164" id="164">164</a>
-</pre><pre class="rust"><code><span class="kw">use </span><span class="kw">crate</span>::builder::Str;
+</pre><pre class="rust"><code><span class="kw">use </span><span class="kw">crate</span>::util::fnv::Key;
 
-<span class="doccomment">/// [`Arg`][crate::Arg] or [`ArgGroup`][crate::ArgGroup] identifier
-///
-/// This is used for accessing the value in [`ArgMatches`][crate::ArgMatches] or defining
-/// relationships between `Arg`s and `ArgGroup`s with functions like
-/// [`Arg::conflicts_with`][crate::Arg::conflicts_with].
-</span><span class="attr">#[derive(Default, Clone, Eq, PartialEq, PartialOrd, Ord, Hash)]
-</span><span class="kw">pub struct </span>Id(Str);
+<span class="kw">use </span>std::{
+    fmt::{Debug, Formatter, <span class="prelude-ty">Result</span>},
+    hash::{Hash, Hasher},
+    ops::Deref,
+};
+
+<span class="attr">#[derive(Clone, Eq, Default)]
+#[cfg_attr(not(debug_assertions), repr(transparent))]
+</span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct </span>Id {
+    <span class="attr">#[cfg(debug_assertions)]
+    </span>name: String,
+    id: u64,
+}
+
+<span class="macro">macro_rules! </span>precomputed_hashes {
+    ($(<span class="macro-nonterminal">$fn_name</span>:ident, <span class="macro-nonterminal">$</span><span class="kw">const</span>:<span class="macro-nonterminal">expr</span>, <span class="macro-nonterminal">$name</span>:expr;)<span class="kw-2">*</span>) =&gt; {
+        <span class="kw">impl </span>Id {
+            $(
+                <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span><span class="macro-nonterminal">$fn_name</span>() -&gt; <span class="self">Self </span>{
+                    Id {
+                        <span class="attr">#[cfg(debug_assertions)]
+                        </span>name: <span class="macro-nonterminal">$name</span>.into(),
+                        id: <span class="macro-nonterminal">$</span><span class="kw">const</span>,
+                    }
+                }
+            )*
+        }
+    };
+}
+
+<span class="comment">// precompute some common values
+</span><span class="macro">precomputed_hashes! </span>{
+    <span class="macro-nonterminal">empty_hash</span>,   <span class="number">0x1C9D_3ADB_639F_298E</span>, <span class="string">&quot;&quot;</span>;
+    help_hash,    <span class="number">0x5963_6393_CFFB_FE5F</span>, <span class="string">&quot;help&quot;</span>;
+    version_hash, <span class="number">0x30FF_0B7C_4D07_9478</span>, <span class="string">&quot;version&quot;</span>;
+}
 
 <span class="kw">impl </span>Id {
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">const </span>HELP: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str = <span class="string">&quot;help&quot;</span>;
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">const </span>VERSION: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str = <span class="string">&quot;version&quot;</span>;
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">const </span>EXTERNAL: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str = <span class="string">&quot;&quot;</span>;
-
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>from_static_ref(name: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str) -&gt; <span class="self">Self </span>{
-        <span class="self">Self</span>(Str::from_static_ref(name))
-    }
-
-    <span class="doccomment">/// Get the raw string of the `Id`
-    </span><span class="kw">pub fn </span>as_str(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>str {
-        <span class="self">self</span>.<span class="number">0</span>.as_str()
-    }
-
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>as_internal_str(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>Str {
-        <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="number">0
-    </span>}
-}
-
-<span class="kw">impl </span>From&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;_ </span>Id&gt; <span class="kw">for </span>Id {
-    <span class="kw">fn </span>from(id: <span class="kw-2">&amp;</span><span class="lifetime">&#39;_ </span>Id) -&gt; <span class="self">Self </span>{
-        id.clone()
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>from_ref&lt;T: Key&gt;(val: T) -&gt; <span class="self">Self </span>{
+        Id {
+            <span class="attr">#[cfg(debug_assertions)]
+            </span>name: val.to_string(),
+            id: val.key(),
+        }
     }
 }
 
-<span class="kw">impl </span>From&lt;Str&gt; <span class="kw">for </span>Id {
-    <span class="kw">fn </span>from(name: Str) -&gt; <span class="self">Self </span>{
-        <span class="self">Self</span>(name)
+<span class="kw">impl </span>Debug <span class="kw">for </span>Id {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter) -&gt; <span class="prelude-ty">Result </span>{
+        <span class="attr">#[cfg(debug_assertions)]
+        </span><span class="macro">write!</span>(f, <span class="string">&quot;{}&quot;</span>, <span class="self">self</span>.name)<span class="question-mark">?</span>;
+        <span class="attr">#[cfg(not(debug_assertions))]
+        </span><span class="macro">write!</span>(f, <span class="string">&quot;[hash: {:X}]&quot;</span>, <span class="self">self</span>.id)<span class="question-mark">?</span>;
+
+        <span class="prelude-val">Ok</span>(())
     }
 }
 
-<span class="kw">impl </span>From&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;_ </span>Str&gt; <span class="kw">for </span>Id {
-    <span class="kw">fn </span>from(name: <span class="kw-2">&amp;</span><span class="lifetime">&#39;_ </span>Str) -&gt; <span class="self">Self </span>{
-        <span class="self">Self</span>(name.into())
+<span class="kw">impl </span>Deref <span class="kw">for </span>Id {
+    <span class="kw">type </span>Target = u64;
+
+    <span class="kw">fn </span>deref(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="self">Self</span>::Target {
+        <span class="kw-2">&amp;</span><span class="self">self</span>.id
     }
 }
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;string&quot;</span>)]
-</span><span class="kw">impl </span>From&lt;std::string::String&gt; <span class="kw">for </span>Id {
-    <span class="kw">fn </span>from(name: std::string::String) -&gt; <span class="self">Self </span>{
-        <span class="self">Self</span>(name.into())
+<span class="kw">impl</span>&lt;T: Key&gt; From&lt;T&gt; <span class="kw">for </span>Id {
+    <span class="kw">fn </span>from(val: T) -&gt; <span class="self">Self </span>{
+        Id {
+            <span class="attr">#[cfg(debug_assertions)]
+            </span>name: val.to_string(),
+            id: val.key(),
+        }
     }
 }
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;string&quot;</span>)]
-</span><span class="kw">impl </span>From&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;_ </span>std::string::String&gt; <span class="kw">for </span>Id {
-    <span class="kw">fn </span>from(name: <span class="kw-2">&amp;</span><span class="lifetime">&#39;_ </span>std::string::String) -&gt; <span class="self">Self </span>{
-        <span class="self">Self</span>(name.into())
+<span class="kw">impl </span>Hash <span class="kw">for </span>Id {
+    <span class="kw">fn </span>hash&lt;H&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, state: <span class="kw-2">&amp;mut </span>H)
+    <span class="kw">where
+        </span>H: Hasher,
+    {
+        <span class="self">self</span>.id.hash(state)
     }
 }
 
-<span class="kw">impl </span>From&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str&gt; <span class="kw">for </span>Id {
-    <span class="kw">fn </span>from(name: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str) -&gt; <span class="self">Self </span>{
-        <span class="self">Self</span>(name.into())
-    }
-}
-
-<span class="kw">impl </span>From&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;_ </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str&gt; <span class="kw">for </span>Id {
-    <span class="kw">fn </span>from(name: <span class="kw-2">&amp;</span><span class="lifetime">&#39;_ </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str) -&gt; <span class="self">Self </span>{
-        <span class="self">Self</span>(name.into())
-    }
-}
-
-<span class="kw">impl </span>From&lt;Id&gt; <span class="kw">for </span>Str {
-    <span class="kw">fn </span>from(name: Id) -&gt; <span class="self">Self </span>{
-        name.<span class="number">0
-    </span>}
-}
-
-<span class="kw">impl </span>From&lt;Id&gt; <span class="kw">for </span>String {
-    <span class="kw">fn </span>from(name: Id) -&gt; <span class="self">Self </span>{
-        Str::from(name).into()
-    }
-}
-
-<span class="kw">impl </span>std::fmt::Display <span class="kw">for </span>Id {
-    <span class="attr">#[inline]
-    </span><span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>std::fmt::Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; std::fmt::Result {
-        std::fmt::Display::fmt(<span class="self">self</span>.as_str(), f)
-    }
-}
-
-<span class="kw">impl </span>std::fmt::Debug <span class="kw">for </span>Id {
-    <span class="attr">#[inline]
-    </span><span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>std::fmt::Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; std::fmt::Result {
-        std::fmt::Debug::fmt(<span class="self">self</span>.as_str(), f)
-    }
-}
-
-<span class="kw">impl </span>AsRef&lt;str&gt; <span class="kw">for </span>Id {
-    <span class="attr">#[inline]
-    </span><span class="kw">fn </span>as_ref(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>str {
-        <span class="self">self</span>.as_str()
-    }
-}
-
-<span class="kw">impl </span>std::borrow::Borrow&lt;str&gt; <span class="kw">for </span>Id {
-    <span class="attr">#[inline]
-    </span><span class="kw">fn </span>borrow(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>str {
-        <span class="self">self</span>.as_str()
-    }
-}
-
-<span class="kw">impl </span>PartialEq&lt;str&gt; <span class="kw">for </span>Id {
-    <span class="attr">#[inline]
-    </span><span class="kw">fn </span>eq(<span class="kw-2">&amp;</span><span class="self">self</span>, other: <span class="kw-2">&amp;</span>str) -&gt; bool {
-        PartialEq::eq(<span class="self">self</span>.as_str(), other)
-    }
-}
-<span class="kw">impl </span>PartialEq&lt;Id&gt; <span class="kw">for </span>str {
-    <span class="attr">#[inline]
-    </span><span class="kw">fn </span>eq(<span class="kw-2">&amp;</span><span class="self">self</span>, other: <span class="kw-2">&amp;</span>Id) -&gt; bool {
-        PartialEq::eq(<span class="self">self</span>, other.as_str())
-    }
-}
-
-<span class="kw">impl </span>PartialEq&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;_ </span>str&gt; <span class="kw">for </span>Id {
-    <span class="attr">#[inline]
-    </span><span class="kw">fn </span>eq(<span class="kw-2">&amp;</span><span class="self">self</span>, other: &amp;&amp;str) -&gt; bool {
-        PartialEq::eq(<span class="self">self</span>.as_str(), <span class="kw-2">*</span>other)
-    }
-}
-<span class="kw">impl </span>PartialEq&lt;Id&gt; <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;_ </span>str {
-    <span class="attr">#[inline]
-    </span><span class="kw">fn </span>eq(<span class="kw-2">&amp;</span><span class="self">self</span>, other: <span class="kw-2">&amp;</span>Id) -&gt; bool {
-        PartialEq::eq(<span class="kw-2">*</span><span class="self">self</span>, other.as_str())
-    }
-}
-
-<span class="kw">impl </span>PartialEq&lt;Str&gt; <span class="kw">for </span>Id {
-    <span class="attr">#[inline]
-    </span><span class="kw">fn </span>eq(<span class="kw-2">&amp;</span><span class="self">self</span>, other: <span class="kw-2">&amp;</span>Str) -&gt; bool {
-        PartialEq::eq(<span class="self">self</span>.as_str(), other.as_str())
-    }
-}
-<span class="kw">impl </span>PartialEq&lt;Id&gt; <span class="kw">for </span>Str {
-    <span class="attr">#[inline]
-    </span><span class="kw">fn </span>eq(<span class="kw-2">&amp;</span><span class="self">self</span>, other: <span class="kw-2">&amp;</span>Id) -&gt; bool {
-        PartialEq::eq(<span class="self">self</span>.as_str(), other.as_str())
-    }
-}
-
-<span class="kw">impl </span>PartialEq&lt;std::string::String&gt; <span class="kw">for </span>Id {
-    <span class="attr">#[inline]
-    </span><span class="kw">fn </span>eq(<span class="kw-2">&amp;</span><span class="self">self</span>, other: <span class="kw-2">&amp;</span>std::string::String) -&gt; bool {
-        PartialEq::eq(<span class="self">self</span>.as_str(), other.as_str())
-    }
-}
-<span class="kw">impl </span>PartialEq&lt;Id&gt; <span class="kw">for </span>std::string::String {
-    <span class="attr">#[inline]
-    </span><span class="kw">fn </span>eq(<span class="kw-2">&amp;</span><span class="self">self</span>, other: <span class="kw-2">&amp;</span>Id) -&gt; bool {
-        PartialEq::eq(other, <span class="self">self</span>)
+<span class="kw">impl </span>PartialEq <span class="kw">for </span>Id {
+    <span class="kw">fn </span>eq(<span class="kw-2">&amp;</span><span class="self">self</span>, other: <span class="kw-2">&amp;</span>Id) -&gt; bool {
+        <span class="self">self</span>.id == other.id
     }
 }
 </code></pre></div>
-</section></main><div id="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="clap" data-themes="" data-resource-suffix="" data-rustdoc-version="1.70.0-nightly (f63ccaf25 2023-03-06)" data-search-js="search-8a59a8356673ec1f.js" data-settings-js="settings-f0c5c39777a9a2f6.js" data-settings-css="settings-0bcba95ff279c1db.css" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="clap" data-themes="" data-resource-suffix="" data-rustdoc-version="1.67.1 (d5a82bbd2 2023-02-07)" data-search-js="search-444266647c4dba98.js" data-settings-js="settings-bebeae96e00e4617.js" data-settings-css="settings-af96d9e2fc13e081.css" ></div></body></html>

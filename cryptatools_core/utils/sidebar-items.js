@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"mod":["alphabets","convert"]};
+window.SIDEBAR_ITEMS = {"mod":[["alphabets",""],["convert",""]]};

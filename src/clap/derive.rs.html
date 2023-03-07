@@ -1,5 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/clap-4.1.8/src/derive.rs`."><title>derive.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Bold-a2c9cd1067f8b328.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-c4dbdcde0fbd8430.css" id="mainThemeStyle"><link rel="stylesheet" id="themeStyle" href="../../static.files/light-db279b6232be9c13.css"><link rel="stylesheet" disabled href="../../static.files/dark-cf923f49f397b216.css"><link rel="stylesheet" disabled href="../../static.files/ayu-be46fdc453a55015.css"><script src="../../static.files/storage-3891ce972e3a2bf8.js"></script><script defer src="../../static.files/source-script-1b95b7cca98b26e5.js"></script><script defer src="../../source-files.js"></script><script defer src="../../static.files/main-98a684e84ae5b08b.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><a class="sub-logo-container" href="../../clap/index.html">
-                        <img src="https://raw.githubusercontent.com/clap-rs/clap/master/assets/clap.png" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/clap-3.2.23/src/derive.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>derive.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-1f7d512b176f0f72.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Bold-124a1ca42af929b6.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-6827029ac823cab7.css" id="mainThemeStyle"><link rel="stylesheet" id="themeStyle" href="../../static.files/light-ebce58d0a40c3431.css"><link rel="stylesheet" disabled href="../../static.files/dark-f23faae4a2daf9a6.css"><link rel="stylesheet" disabled href="../../static.files/ayu-8af5e100b21cd173.css"><script id="default-settings" ></script><script src="../../static.files/storage-d43fa987303ecbbb.js"></script><script defer src="../../static.files/source-script-5cf2e01a42cc9858.js"></script><script defer src="../../source-files.js"></script><script defer src="../../static.files/main-c55e1eb52e1886b4.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../clap/index.html">
+                        <img src="https://raw.githubusercontent.com/clap-rs/clap/master/assets/clap.png" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-5ec35bf9ca753509.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -470,11 +470,116 @@
 <a href="#469" id="469">469</a>
 <a href="#470" id="470">470</a>
 <a href="#471" id="471">471</a>
+<a href="#472" id="472">472</a>
+<a href="#473" id="473">473</a>
+<a href="#474" id="474">474</a>
+<a href="#475" id="475">475</a>
+<a href="#476" id="476">476</a>
+<a href="#477" id="477">477</a>
+<a href="#478" id="478">478</a>
+<a href="#479" id="479">479</a>
+<a href="#480" id="480">480</a>
+<a href="#481" id="481">481</a>
+<a href="#482" id="482">482</a>
+<a href="#483" id="483">483</a>
+<a href="#484" id="484">484</a>
+<a href="#485" id="485">485</a>
+<a href="#486" id="486">486</a>
+<a href="#487" id="487">487</a>
+<a href="#488" id="488">488</a>
+<a href="#489" id="489">489</a>
+<a href="#490" id="490">490</a>
+<a href="#491" id="491">491</a>
+<a href="#492" id="492">492</a>
+<a href="#493" id="493">493</a>
+<a href="#494" id="494">494</a>
+<a href="#495" id="495">495</a>
+<a href="#496" id="496">496</a>
+<a href="#497" id="497">497</a>
+<a href="#498" id="498">498</a>
+<a href="#499" id="499">499</a>
+<a href="#500" id="500">500</a>
+<a href="#501" id="501">501</a>
+<a href="#502" id="502">502</a>
+<a href="#503" id="503">503</a>
+<a href="#504" id="504">504</a>
+<a href="#505" id="505">505</a>
+<a href="#506" id="506">506</a>
+<a href="#507" id="507">507</a>
+<a href="#508" id="508">508</a>
+<a href="#509" id="509">509</a>
+<a href="#510" id="510">510</a>
+<a href="#511" id="511">511</a>
+<a href="#512" id="512">512</a>
+<a href="#513" id="513">513</a>
+<a href="#514" id="514">514</a>
+<a href="#515" id="515">515</a>
+<a href="#516" id="516">516</a>
+<a href="#517" id="517">517</a>
+<a href="#518" id="518">518</a>
+<a href="#519" id="519">519</a>
+<a href="#520" id="520">520</a>
+<a href="#521" id="521">521</a>
+<a href="#522" id="522">522</a>
+<a href="#523" id="523">523</a>
+<a href="#524" id="524">524</a>
+<a href="#525" id="525">525</a>
+<a href="#526" id="526">526</a>
+<a href="#527" id="527">527</a>
+<a href="#528" id="528">528</a>
+<a href="#529" id="529">529</a>
+<a href="#530" id="530">530</a>
+<a href="#531" id="531">531</a>
+<a href="#532" id="532">532</a>
+<a href="#533" id="533">533</a>
+<a href="#534" id="534">534</a>
+<a href="#535" id="535">535</a>
+<a href="#536" id="536">536</a>
+<a href="#537" id="537">537</a>
+<a href="#538" id="538">538</a>
+<a href="#539" id="539">539</a>
+<a href="#540" id="540">540</a>
+<a href="#541" id="541">541</a>
+<a href="#542" id="542">542</a>
+<a href="#543" id="543">543</a>
+<a href="#544" id="544">544</a>
+<a href="#545" id="545">545</a>
+<a href="#546" id="546">546</a>
+<a href="#547" id="547">547</a>
+<a href="#548" id="548">548</a>
+<a href="#549" id="549">549</a>
+<a href="#550" id="550">550</a>
+<a href="#551" id="551">551</a>
+<a href="#552" id="552">552</a>
+<a href="#553" id="553">553</a>
+<a href="#554" id="554">554</a>
+<a href="#555" id="555">555</a>
+<a href="#556" id="556">556</a>
+<a href="#557" id="557">557</a>
+<a href="#558" id="558">558</a>
+<a href="#559" id="559">559</a>
+<a href="#560" id="560">560</a>
+<a href="#561" id="561">561</a>
+<a href="#562" id="562">562</a>
+<a href="#563" id="563">563</a>
+<a href="#564" id="564">564</a>
+<a href="#565" id="565">565</a>
+<a href="#566" id="566">566</a>
+<a href="#567" id="567">567</a>
+<a href="#568" id="568">568</a>
+<a href="#569" id="569">569</a>
+<a href="#570" id="570">570</a>
+<a href="#571" id="571">571</a>
+<a href="#572" id="572">572</a>
+<a href="#573" id="573">573</a>
+<a href="#574" id="574">574</a>
+<a href="#575" id="575">575</a>
+<a href="#576" id="576">576</a>
+<a href="#577" id="577">577</a>
 </pre><pre class="rust"><code><span class="doccomment">//! This module contains traits that are usable with the `#[derive(...)].`
 //! macros in [`clap_derive`].
 
-</span><span class="kw">use </span><span class="kw">crate</span>::builder::PossibleValue;
-<span class="kw">use crate</span>::{ArgMatches, Command, Error};
+</span><span class="kw">use crate</span>::{ArgMatches, Command, Error, PossibleValue};
 
 <span class="kw">use </span>std::ffi::OsString;
 
@@ -506,13 +611,13 @@
 #[cfg_attr(feature = <span class="string">&quot;derive&quot;</span>, doc = <span class="string">&quot; ```&quot;</span>)]
 </span><span class="doccomment">/// /// My super CLI
 /// #[derive(clap::Parser)]
-/// #[command(name = &quot;demo&quot;)]
+/// #[clap(name = &quot;demo&quot;)]
 /// struct Context {
 ///     /// More verbose output
-///     #[arg(long)]
+///     #[clap(long)]
 ///     verbose: bool,
 ///     /// An optional name
-///     #[arg(short, long)]
+///     #[clap(short, long)]
 ///     name: Option&lt;String&gt;,
 /// }
 /// ```
@@ -531,7 +636,7 @@
 ///         .long(&quot;name&quot;)
 ///         .short(&#39;n&#39;)
 ///         .help(&quot;An optional name&quot;)
-///         .action(ArgAction::Set));
+///         .takes_value(true));
 ///
 /// struct Context {
 ///     verbose: bool,
@@ -541,7 +646,7 @@
 /// impl From&lt;ArgMatches&gt; for Context {
 ///     fn from(m: ArgMatches) -&gt; Self {
 ///         Context {
-///             verbose: m.get_flag(&quot;verbose&quot;),
+///             verbose: *m.get_one::&lt;bool&gt;(&quot;verbose&quot;).expect(&quot;defaulted_by_clap&quot;),
 ///             name: m.get_one::&lt;String&gt;(&quot;name&quot;).cloned(),
 ///         }
 ///     }
@@ -566,7 +671,7 @@
 
     <span class="doccomment">/// Parse from `std::env::args_os()`, return Err on error.
     </span><span class="kw">fn </span>try_parse() -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, Error&gt; {
-        <span class="kw">let </span><span class="kw-2">mut </span>matches = <span class="macro">ok!</span>(&lt;<span class="self">Self </span><span class="kw">as </span>CommandFactory&gt;::command().try_get_matches());
+        <span class="kw">let </span><span class="kw-2">mut </span>matches = &lt;<span class="self">Self </span><span class="kw">as </span>CommandFactory&gt;::command().try_get_matches()<span class="question-mark">?</span>;
         &lt;<span class="self">Self </span><span class="kw">as </span>FromArgMatches&gt;::from_arg_matches_mut(<span class="kw-2">&amp;mut </span>matches).map_err(format_error::&lt;<span class="self">Self</span>&gt;)
     }
 
@@ -595,7 +700,7 @@
         </span>I: IntoIterator&lt;Item = T&gt;,
         T: Into&lt;OsString&gt; + Clone,
     {
-        <span class="kw">let </span><span class="kw-2">mut </span>matches = <span class="macro">ok!</span>(&lt;<span class="self">Self </span><span class="kw">as </span>CommandFactory&gt;::command().try_get_matches_from(itr));
+        <span class="kw">let </span><span class="kw-2">mut </span>matches = &lt;<span class="self">Self </span><span class="kw">as </span>CommandFactory&gt;::command().try_get_matches_from(itr)<span class="question-mark">?</span>;
         &lt;<span class="self">Self </span><span class="kw">as </span>FromArgMatches&gt;::from_arg_matches_mut(<span class="kw-2">&amp;mut </span>matches).map_err(format_error::&lt;<span class="self">Self</span>&gt;)
     }
 
@@ -622,9 +727,98 @@
         T: Into&lt;OsString&gt; + Clone,
     {
         <span class="kw">let </span><span class="kw-2">mut </span>matches =
-            <span class="macro">ok!</span>(&lt;<span class="self">Self </span><span class="kw">as </span>CommandFactory&gt;::command_for_update().try_get_matches_from(itr));
+            &lt;<span class="self">Self </span><span class="kw">as </span>CommandFactory&gt;::command_for_update().try_get_matches_from(itr)<span class="question-mark">?</span>;
         &lt;<span class="self">Self </span><span class="kw">as </span>FromArgMatches&gt;::update_from_arg_matches_mut(<span class="self">self</span>, <span class="kw-2">&amp;mut </span>matches)
             .map_err(format_error::&lt;<span class="self">Self</span>&gt;)
+    }
+
+    <span class="doccomment">/// Deprecated, `StructOpt::clap` replaced with [`CommandFactory::command`] (derive as part of
+    /// [`Parser`])
+    </span><span class="attr">#[cfg_attr(
+        feature = <span class="string">&quot;deprecated&quot;</span>,
+        deprecated(
+            since = <span class="string">&quot;3.0.0&quot;</span>,
+            note = <span class="string">&quot;`StructOpt::clap` is replaced with `CommandFactory::command` (derived as part of `Parser`)&quot;
+        </span>)
+    )]
+    #[doc(hidden)]
+    </span><span class="kw">fn </span>clap&lt;<span class="lifetime">&#39;help</span>&gt;() -&gt; Command&lt;<span class="lifetime">&#39;help</span>&gt; {
+        &lt;<span class="self">Self </span><span class="kw">as </span>CommandFactory&gt;::command()
+    }
+
+    <span class="doccomment">/// Deprecated, `StructOpt::from_clap` replaced with [`FromArgMatches::from_arg_matches_mut`] (derive as part of
+    /// [`Parser`])
+    </span><span class="attr">#[cfg_attr(
+        feature = <span class="string">&quot;deprecated&quot;</span>,
+        deprecated(
+            since = <span class="string">&quot;3.0.0&quot;</span>,
+            note = <span class="string">&quot;`StructOpt::from_clap` is replaced with `FromArgMatches::from_arg_matches_mut` (derived as part of `Parser`)&quot;
+        </span>)
+    )]
+    #[doc(hidden)]
+    </span><span class="kw">fn </span>from_clap(matches: <span class="kw-2">&amp;</span>ArgMatches) -&gt; <span class="self">Self </span>{
+        &lt;<span class="self">Self </span><span class="kw">as </span>FromArgMatches&gt;::from_arg_matches(matches).unwrap()
+    }
+
+    <span class="doccomment">/// Deprecated, `StructOpt::from_args` replaced with `Parser::parse` (note the change in derives)
+    </span><span class="attr">#[cfg_attr(
+        feature = <span class="string">&quot;deprecated&quot;</span>,
+        deprecated(
+            since = <span class="string">&quot;3.0.0&quot;</span>,
+            note = <span class="string">&quot;`StructOpt::from_args` is replaced with `Parser::parse` (note the change in derives)&quot;
+        </span>)
+    )]
+    #[doc(hidden)]
+    </span><span class="kw">fn </span>from_args() -&gt; <span class="self">Self </span>{
+        <span class="self">Self</span>::parse()
+    }
+
+    <span class="doccomment">/// Deprecated, `StructOpt::from_args_safe` replaced with `Parser::try_parse` (note the change in derives)
+    </span><span class="attr">#[cfg_attr(
+        feature = <span class="string">&quot;deprecated&quot;</span>,
+        deprecated(
+            since = <span class="string">&quot;3.0.0&quot;</span>,
+            note = <span class="string">&quot;`StructOpt::from_args_safe` is replaced with `Parser::try_parse` (note the change in derives)&quot;
+        </span>)
+    )]
+    #[doc(hidden)]
+    </span><span class="kw">fn </span>from_args_safe() -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, Error&gt; {
+        <span class="self">Self</span>::try_parse()
+    }
+
+    <span class="doccomment">/// Deprecated, `StructOpt::from_iter` replaced with `Parser::parse_from` (note the change in derives)
+    </span><span class="attr">#[cfg_attr(
+        feature = <span class="string">&quot;deprecated&quot;</span>,
+        deprecated(
+            since = <span class="string">&quot;3.0.0&quot;</span>,
+            note = <span class="string">&quot;`StructOpt::from_iter` is replaced with `Parser::parse_from` (note the change in derives)&quot;
+        </span>)
+    )]
+    #[doc(hidden)]
+    </span><span class="kw">fn </span>from_iter&lt;I, T&gt;(itr: I) -&gt; <span class="self">Self
+    </span><span class="kw">where
+        </span>I: IntoIterator&lt;Item = T&gt;,
+        T: Into&lt;OsString&gt; + Clone,
+    {
+        <span class="self">Self</span>::parse_from(itr)
+    }
+
+    <span class="doccomment">/// Deprecated, `StructOpt::from_iter_safe` replaced with `Parser::try_parse_from` (note the
+    /// change in derives)
+    </span><span class="attr">#[cfg_attr(
+        feature = <span class="string">&quot;deprecated&quot;</span>,
+        deprecated(
+            since = <span class="string">&quot;3.0.0&quot;</span>,
+            note = <span class="string">&quot;`StructOpt::from_iter_safe` is replaced with `Parser::try_parse_from` (note the change in derives)&quot;
+        </span>)
+    )]
+    #[doc(hidden)]
+    </span><span class="kw">fn </span>from_iter_safe&lt;I, T&gt;(itr: I) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, Error&gt;
+    <span class="kw">where
+        </span>I: IntoIterator&lt;Item = T&gt;,
+        T: Into&lt;OsString&gt; + Clone,
+    {
+        <span class="self">Self</span>::try_parse_from(itr)
     }
 }
 
@@ -635,11 +829,32 @@
     <span class="doccomment">/// Build a [`Command`] that can instantiate `Self`.
     ///
     /// See [`FromArgMatches::from_arg_matches_mut`] for instantiating `Self`.
-    </span><span class="kw">fn </span>command() -&gt; Command;
+    </span><span class="kw">fn </span>command&lt;<span class="lifetime">&#39;help</span>&gt;() -&gt; Command&lt;<span class="lifetime">&#39;help</span>&gt; {
+        <span class="attr">#[allow(deprecated)]
+        </span><span class="self">Self</span>::into_app()
+    }
+    <span class="doccomment">/// Deprecated, replaced with `CommandFactory::command`
+    </span><span class="attr">#[cfg_attr(
+        feature = <span class="string">&quot;deprecated&quot;</span>,
+        deprecated(since = <span class="string">&quot;3.1.0&quot;</span>, note = <span class="string">&quot;Replaced with `CommandFactory::command&quot;</span>)
+    )]
+    </span><span class="kw">fn </span>into_app&lt;<span class="lifetime">&#39;help</span>&gt;() -&gt; Command&lt;<span class="lifetime">&#39;help</span>&gt;;
     <span class="doccomment">/// Build a [`Command`] that can update `self`.
     ///
     /// See [`FromArgMatches::update_from_arg_matches_mut`] for updating `self`.
-    </span><span class="kw">fn </span>command_for_update() -&gt; Command;
+    </span><span class="kw">fn </span>command_for_update&lt;<span class="lifetime">&#39;help</span>&gt;() -&gt; Command&lt;<span class="lifetime">&#39;help</span>&gt; {
+        <span class="attr">#[allow(deprecated)]
+        </span><span class="self">Self</span>::into_app_for_update()
+    }
+    <span class="doccomment">/// Deprecated, replaced with `CommandFactory::command_for_update`
+    </span><span class="attr">#[cfg_attr(
+        feature = <span class="string">&quot;deprecated&quot;</span>,
+        deprecated(
+            since = <span class="string">&quot;3.1.0&quot;</span>,
+            note = <span class="string">&quot;Replaced with `CommandFactory::command_for_update&quot;
+        </span>)
+    )]
+    </span><span class="kw">fn </span>into_app_for_update&lt;<span class="lifetime">&#39;help</span>&gt;() -&gt; Command&lt;<span class="lifetime">&#39;help</span>&gt;;
 }
 
 <span class="doccomment">/// Converts an instance of [`ArgMatches`] to a user-defined container.
@@ -673,7 +888,7 @@
     ///    fn from(m: ArgMatches) -&gt; Self {
     ///        Context {
     ///            name: m.get_one::&lt;String&gt;(&quot;name&quot;).unwrap().clone(),
-    ///            debug: m.get_flag(&quot;debug&quot;),
+    ///            debug: *m.get_one::&lt;bool&gt;(&quot;debug&quot;).expect(&quot;defaulted by clap&quot;),
     ///        }
     ///    }
     /// }
@@ -707,7 +922,7 @@
     ///    fn from(m: ArgMatches) -&gt; Self {
     ///        Context {
     ///            name: m.get_one::&lt;String&gt;(&quot;name&quot;).unwrap().to_string(),
-    ///            debug: m.get_flag(&quot;debug&quot;),
+    ///            debug: *m.get_one::&lt;bool&gt;(&quot;debug&quot;).expect(&quot;defaulted by clap&quot;),
     ///        }
     ///    }
     /// }
@@ -729,7 +944,7 @@
 ///
 /// Implementing this trait lets a parent container delegate argument parsing behavior to `Self`.
 /// with:
-/// - `#[command(flatten)] args: ChildArgs`: Attribute can only be used with struct fields that impl
+/// - `#[clap(flatten)] args: ChildArgs`: Attribute can only be used with struct fields that impl
 ///   `Args`.
 /// - `Variant(ChildArgs)`: No attribute is used with enum variants that impl `Args`.
 ///
@@ -743,40 +958,36 @@
 #[cfg_attr(feature = <span class="string">&quot;derive&quot;</span>, doc = <span class="string">&quot; ```&quot;</span>)]
 </span><span class="doccomment">/// #[derive(clap::Parser)]
 /// struct Args {
-///     #[command(flatten)]
+///     #[clap(flatten)]
 ///     logging: LogArgs,
 /// }
 ///
 /// #[derive(clap::Args)]
 /// struct LogArgs {
-///     #[arg(long, short = &#39;v&#39;, action = clap::ArgAction::Count)]
-///     verbose: u8,
+///     #[clap(long, short = &#39;v&#39;, parse(from_occurrences))]
+///     verbose: i8,
 /// }
 /// ```
 </span><span class="kw">pub trait </span>Args: FromArgMatches + Sized {
-    <span class="doccomment">/// Report the [`ArgGroup::id`][crate::ArgGroup::id] for this set of arguments
-    </span><span class="kw">fn </span>group_id() -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw">crate</span>::Id&gt; {
-        <span class="prelude-val">None
-    </span>}
     <span class="doccomment">/// Append to [`Command`] so it can instantiate `Self`.
     ///
     /// See also [`CommandFactory`].
-    </span><span class="kw">fn </span>augment_args(cmd: Command) -&gt; Command;
+    </span><span class="kw">fn </span>augment_args(cmd: Command&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; Command&lt;<span class="lifetime">&#39;_</span>&gt;;
     <span class="doccomment">/// Append to [`Command`] so it can update `self`.
     ///
-    /// This is used to implement `#[command(flatten)]`
+    /// This is used to implement `#[clap(flatten)]`
     ///
     /// See also [`CommandFactory`].
-    </span><span class="kw">fn </span>augment_args_for_update(cmd: Command) -&gt; Command;
+    </span><span class="kw">fn </span>augment_args_for_update(cmd: Command&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; Command&lt;<span class="lifetime">&#39;_</span>&gt;;
 }
 
 <span class="doccomment">/// Parse a sub-command into a user-defined enum.
 ///
 /// Implementing this trait lets a parent container delegate subcommand behavior to `Self`.
 /// with:
-/// - `#[command(subcommand)] field: SubCmd`: Attribute can be used with either struct fields or enum
+/// - `#[clap(subcommand)] field: SubCmd`: Attribute can be used with either struct fields or enum
 ///   variants that impl `Subcommand`.
-/// - `#[command(flatten)] Variant(SubCmd)`: Attribute can only be used with enum variants that impl
+/// - `#[clap(flatten)] Variant(SubCmd)`: Attribute can only be used with enum variants that impl
 ///   `Subcommand`.
 ///
 /// See the [derive reference](crate::_derive) for attributes and best practices.
@@ -789,7 +1000,7 @@
 #[cfg_attr(feature = <span class="string">&quot;derive&quot;</span>, doc = <span class="string">&quot; ```&quot;</span>)]
 </span><span class="doccomment">/// #[derive(clap::Parser)]
 /// struct Args {
-///     #[command(subcommand)]
+///     #[clap(subcommand)]
 ///     action: Action,
 /// }
 ///
@@ -803,13 +1014,13 @@
     <span class="doccomment">/// Append to [`Command`] so it can instantiate `Self`.
     ///
     /// See also [`CommandFactory`].
-    </span><span class="kw">fn </span>augment_subcommands(cmd: Command) -&gt; Command;
+    </span><span class="kw">fn </span>augment_subcommands(cmd: Command&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; Command&lt;<span class="lifetime">&#39;_</span>&gt;;
     <span class="doccomment">/// Append to [`Command`] so it can update `self`.
     ///
-    /// This is used to implement `#[command(flatten)]`
+    /// This is used to implement `#[clap(flatten)]`
     ///
     /// See also [`CommandFactory`].
-    </span><span class="kw">fn </span>augment_subcommands_for_update(cmd: Command) -&gt; Command;
+    </span><span class="kw">fn </span>augment_subcommands_for_update(cmd: Command&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; Command&lt;<span class="lifetime">&#39;_</span>&gt;;
     <span class="doccomment">/// Test whether `Self` can parse a specific subcommand
     </span><span class="kw">fn </span>has_subcommand(name: <span class="kw-2">&amp;</span>str) -&gt; bool;
 }
@@ -817,9 +1028,9 @@
 <span class="doccomment">/// Parse arguments into enums.
 ///
 /// When deriving [`Parser`], a field whose type implements `ValueEnum` can have the attribute
-/// `#[arg(value_enum)]` which will
-/// - Call [`EnumValueParser`][crate::builder::EnumValueParser]
-/// - Allowing using the `#[arg(default_value_t)]` attribute without implementing `Display`.
+/// `#[clap(value_enum)]` which will
+/// - Call [`Arg::possible_values`][crate::Arg::possible_values]
+/// - Allowing using the `#[clap(default_value_t)]` attribute without implementing `Display`.
 ///
 /// See the [derive reference](crate::_derive) for attributes and best practices.
 ///
@@ -831,7 +1042,7 @@
 #[cfg_attr(feature = <span class="string">&quot;derive&quot;</span>, doc = <span class="string">&quot; ```&quot;</span>)]
 </span><span class="doccomment">/// #[derive(clap::Parser)]
 /// struct Args {
-///     #[arg(value_enum)]
+///     #[clap(value_enum)]
 ///     level: Level,
 /// }
 ///
@@ -857,13 +1068,13 @@
                     .matches(input, ignore_case)
             })
             .cloned()
-            .ok_or_else(|| <span class="macro">format!</span>(<span class="string">&quot;invalid variant: {input}&quot;</span>))
+            .ok_or_else(|| <span class="macro">format!</span>(<span class="string">&quot;Invalid variant: {}&quot;</span>, input))
     }
 
     <span class="doccomment">/// The canonical argument value.
     ///
     /// The value is `None` for skipped variants.
-    </span><span class="kw">fn </span>to_possible_value(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;PossibleValue&gt;;
+    </span><span class="kw">fn </span>to_possible_value&lt;<span class="lifetime">&#39;a</span>&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;PossibleValue&lt;<span class="lifetime">&#39;a</span>&gt;&gt;;
 }
 
 <span class="kw">impl</span>&lt;T: Parser&gt; Parser <span class="kw">for </span>Box&lt;T&gt; {
@@ -892,12 +1103,13 @@
     }
 }
 
-<span class="kw">impl</span>&lt;T: CommandFactory&gt; CommandFactory <span class="kw">for </span>Box&lt;T&gt; {
-    <span class="kw">fn </span>command&lt;<span class="lifetime">&#39;help</span>&gt;() -&gt; Command {
-        &lt;T <span class="kw">as </span>CommandFactory&gt;::command()
+<span class="attr">#[allow(deprecated)]
+</span><span class="kw">impl</span>&lt;T: CommandFactory&gt; CommandFactory <span class="kw">for </span>Box&lt;T&gt; {
+    <span class="kw">fn </span>into_app&lt;<span class="lifetime">&#39;help</span>&gt;() -&gt; Command&lt;<span class="lifetime">&#39;help</span>&gt; {
+        &lt;T <span class="kw">as </span>CommandFactory&gt;::into_app()
     }
-    <span class="kw">fn </span>command_for_update&lt;<span class="lifetime">&#39;help</span>&gt;() -&gt; Command {
-        &lt;T <span class="kw">as </span>CommandFactory&gt;::command_for_update()
+    <span class="kw">fn </span>into_app_for_update&lt;<span class="lifetime">&#39;help</span>&gt;() -&gt; Command&lt;<span class="lifetime">&#39;help</span>&gt; {
+        &lt;T <span class="kw">as </span>CommandFactory&gt;::into_app_for_update()
     }
 }
 
@@ -917,19 +1129,19 @@
 }
 
 <span class="kw">impl</span>&lt;T: Args&gt; Args <span class="kw">for </span>Box&lt;T&gt; {
-    <span class="kw">fn </span>augment_args(cmd: Command) -&gt; Command {
+    <span class="kw">fn </span>augment_args(cmd: Command&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; Command&lt;<span class="lifetime">&#39;_</span>&gt; {
         &lt;T <span class="kw">as </span>Args&gt;::augment_args(cmd)
     }
-    <span class="kw">fn </span>augment_args_for_update(cmd: Command) -&gt; Command {
+    <span class="kw">fn </span>augment_args_for_update(cmd: Command&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; Command&lt;<span class="lifetime">&#39;_</span>&gt; {
         &lt;T <span class="kw">as </span>Args&gt;::augment_args_for_update(cmd)
     }
 }
 
 <span class="kw">impl</span>&lt;T: Subcommand&gt; Subcommand <span class="kw">for </span>Box&lt;T&gt; {
-    <span class="kw">fn </span>augment_subcommands(cmd: Command) -&gt; Command {
+    <span class="kw">fn </span>augment_subcommands(cmd: Command&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; Command&lt;<span class="lifetime">&#39;_</span>&gt; {
         &lt;T <span class="kw">as </span>Subcommand&gt;::augment_subcommands(cmd)
     }
-    <span class="kw">fn </span>augment_subcommands_for_update(cmd: Command) -&gt; Command {
+    <span class="kw">fn </span>augment_subcommands_for_update(cmd: Command&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; Command&lt;<span class="lifetime">&#39;_</span>&gt; {
         &lt;T <span class="kw">as </span>Subcommand&gt;::augment_subcommands_for_update(cmd)
     }
     <span class="kw">fn </span>has_subcommand(name: <span class="kw-2">&amp;</span>str) -&gt; bool {
@@ -942,4 +1154,4 @@
     err.format(<span class="kw-2">&amp;mut </span>cmd)
 }
 </code></pre></div>
-</section></main><div id="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="clap" data-themes="" data-resource-suffix="" data-rustdoc-version="1.70.0-nightly (f63ccaf25 2023-03-06)" data-search-js="search-8a59a8356673ec1f.js" data-settings-js="settings-f0c5c39777a9a2f6.js" data-settings-css="settings-0bcba95ff279c1db.css" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="clap" data-themes="" data-resource-suffix="" data-rustdoc-version="1.67.1 (d5a82bbd2 2023-02-07)" data-search-js="search-444266647c4dba98.js" data-settings-js="settings-bebeae96e00e4617.js" data-settings-css="settings-af96d9e2fc13e081.css" ></div></body></html>
