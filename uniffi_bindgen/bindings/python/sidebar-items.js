@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"fn":[["run_test","Run Python tests for a UniFFI test fixture"],["write_bindings",""]],"mod":[["gen_python",""]]};

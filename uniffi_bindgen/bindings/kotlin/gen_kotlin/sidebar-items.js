@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"enum":[["ImportRequirement","A struct to record a Kotlin import statement."]],"fn":[["generate_bindings",""]],"mod":[["filters",""]],"struct":[["Config",""],["CustomTypeConfig",""],["KotlinCodeOracle",""],["KotlinWrapper",""],["TypeRenderer","Renders Kotlin helper code for all types"]]};

@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"enum":[["ImportRequirement","A struct to record a Python import statement."]],"fn":[["generate_python_bindings",""]],"mod":[["filters",""]],"struct":[["Config",""],["CustomTypeConfig",""],["PythonCodeOracle",""],["PythonWrapper",""],["TypeRenderer","Renders Python helper code for all types"]]};
