@@ -39,6 +39,8 @@ Installation of `cryptatools-core` for rust is same for any OS. In `Cargo.toml`,
 cryptatools-core = { git = "https://github.com/gogo2464/cryptatools-rs", package = 'cryptatools-core' }
 ```
 
+Works on rust stable, unstable as well as nightly toolchains.
+
 ### 2-Python binding installation.
 To install the python Bindings you can use pip or build from source:
 
@@ -110,10 +112,16 @@ cargo install --path .\cryptatools-rs\cryptatools-cli\ ;
 
 crypytatools-cli also offers a way to script the library in command line. Do not forget to install each program. See how to install these [here](https://github.com/gogo2464/cryptatools#installation) for more informations.
 
-`cryptatools-cli-stats` does cryptanalysis statistical attacks.
+`cryptatools-cli-stats` does cryptanalysis statistical attacks. It takes as first argument the statistical attack algorithm (example coincidence index, frequency analysis, etc...), as second argument the source encrypted opcodes to make attack on, at last but not least, it takes a json value of the corresponding alphabet corresponding to each set of opcodes.
 
-```shell
+On windows:
+```powershell
 cryptatools-cli-stats frequency-analysis "123234" '{\"a\": [\"12\"], \"b\": [\"32\"], \"c\": [\"34\"]}'
+```
+
+On Linux:
+```
+cryptatools-cli-stats frequency-analysis "123234" '{"a": ["12"], "b": ["32"], "c": ["34"]}'
 ```
 
 `cryptatools-cli-encrypt` uses cryptography algorithm to encrypt data. Obviously you can use it for brute force cryptanalysis attack. But it is not the main philosophy of `cryptatools-rs`.

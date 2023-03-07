@@ -1,4 +1,3 @@
-#![feature(array_windows)]
 mod cli_structure;
 use cli_structure::{Cli, Commands};
 use cryptatools_core::utils::alphabets::{Alphabet, Encoding};
@@ -41,11 +40,17 @@ fn main() {
             };
 
             let mut opcodes_u8: Vec<u8> = vec![];
-            for [a, b] in opcodes.split("").collect::<Vec<&str>>().array_windows().skip(1).step_by(2) {
-                let mut str = String::from(a.clone());
-                str.push_str(b.clone());
-                let my_int = str.parse::<u8>().unwrap();
-                opcodes_u8.push(my_int);
+            let mut current_opcode: String = String::from("");
+            for o in 0..opcodes.len() {
+                if current_opcode.len() < 2 {
+                    current_opcode.push_str(&String::from(opcodes.clone().chars().nth(o).unwrap()).clone());
+                }
+
+                if current_opcode.len() == 2 {
+                    let my_int = current_opcode.parse::<u8>().unwrap();
+                    opcodes_u8.push(my_int);
+                    current_opcode = String::from("");
+                }
             }
 
             let mut encoding_map_object: Vec<Encoding> = vec![];
