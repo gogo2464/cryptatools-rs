@@ -27,7 +27,6 @@ jobs:
 
     - name: Install dependencies
       run: |
-        # cargo install uniffi_bindgen
         pip3 install setuptools wheel
 
     - name: Build cryptatools
@@ -42,7 +41,7 @@ jobs:
 
     - name: Generate documentation
       run: |
-        cargo doc --package cryptatools-core
+        cargo doc --package cryptatools-core --workspace --exclude clap
     
     - name: Build and install Python Bindings
       run: |

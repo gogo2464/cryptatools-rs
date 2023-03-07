@@ -1,4 +1,4 @@
-name: Deploy documentation from Linux
+name: Test documentation on Linux nightly
 
 on:
   push:
@@ -20,7 +20,7 @@ jobs:
 
     - uses: actions-rs/toolchain@v1
       with:
-        toolchain: stable
+        toolchain: nightly
         override: true
 
     - uses: actions-rs/cargo@v1
@@ -30,12 +30,4 @@ jobs:
 
     - name: Generate documentation
       run: |
-        cargo doc --package cryptatools-core --target-dir ./out &&
-        cp --force -r ./out/doc ./docs ;
-        #echo "<meta http-equiv=refresh content=0;url=`echo gogo2464/cryptatools-rs | cut -d '/' -f 2`/index.html>" > docs/index.html
-
-    - name: Publish documentation
-      uses: JamesIves/github-pages-deploy-action@v4
-      with:
-        folder: docs
-        branch: gh-pages
+        cargo doc --package cryptatools-core --workspace --exclude clap

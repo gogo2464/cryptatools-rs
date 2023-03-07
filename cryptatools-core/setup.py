@@ -176,7 +176,7 @@ class build(_build):
         if "-darwin" in target:
             env["MACOSX_DEPLOYMENT_TARGET"] = macos_compat(target)
         
-        subprocess.check_call(command, cwd=SRC_ROOT / "cryptatools-rs", env=env)
+        subprocess.check_call(command, env=env)#subprocess.check_call(command, cwd=SRC_ROOT / "cryptatools-rs", env=env)
 
         shutil.copyfile(
             SRC_ROOT / "cryptatools-rs" / "target" / target / buildvariant / "deps" / shared_object,
@@ -184,15 +184,19 @@ class build(_build):
         )
         
         command = [
+            "cargo",
+            "run",
+            "--features=uniffi/cli",
+            "--bin",
             "uniffi-bindgen",
             "generate",
-            "cryptatools-rs/cryptatools-core/src/cryptatools.udl",
+            "src/cryptatools.udl",
             "--language",
             "python",
             "--out-dir",
             SRC_ROOT / "cryptatools-rs" / "target",
         ]
-        subprocess.check_call(command, cwd=SRC_ROOT, env=env)
+        subprocess.check_call(command, cwd=Path("cryptatools-core"), env=env)#, cwd=FROM_TOP
 
         shutil.copyfile(
             SRC_ROOT / "cryptatools-rs" / "target" / "cryptatools.py", SRC_ROOT / "cryptatools-rs" / "cryptatools-core" / "bindings" / "python3" / "cryptatools-core" / "python3_bindings.py"

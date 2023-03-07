@@ -6,7 +6,7 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-uniffi = "*"
+uniffi = {version = "*", features = [ "build", "cli" ]}
 uniffi_macros = "*"
 lingua = { version = "1.4.0", default-features = true }
 assert_float_eq = "1.1.3"
@@ -15,9 +15,10 @@ bimap = "*"
 once_cell = "*"
 itertools = "*"
 rand = "0.8.5"
+uniffi_bindgen = "0.23.0"
 
 [build-dependencies]
-uniffi_build = {version = "*", features = [ "builtin-bindgen" ]}
+uniffi = {version = "*", features = [ "build", "cli" ]}
 
 [lib]
 name = "cryptatools_core"
