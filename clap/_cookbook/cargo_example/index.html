@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Example: cargo subcommand (Builder API)"><title>clap::_cookbook::cargo_example - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Bold-a2c9cd1067f8b328.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-c4dbdcde0fbd8430.css" id="mainThemeStyle"><link rel="stylesheet" id="themeStyle" href="../../../static.files/light-db279b6232be9c13.css"><link rel="stylesheet" disabled href="../../../static.files/dark-cf923f49f397b216.css"><link rel="stylesheet" disabled href="../../../static.files/ayu-be46fdc453a55015.css"><script src="../../../static.files/storage-3891ce972e3a2bf8.js"></script><script defer src="../../../static.files/main-98a684e84ae5b08b.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc mod"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="logo-container" href="../../../clap/index.html"><img src="https://raw.githubusercontent.com/clap-rs/clap/master/assets/clap.png" alt="logo"></a><h2></h2></nav><nav class="sidebar"><a class="logo-container" href="../../../clap/index.html">
+                <img src="https://raw.githubusercontent.com/clap-rs/clap/master/assets/clap.png" alt="logo"></a><h2 class="location"><a href="#">Module cargo_example</a></h2><div class="sidebar-elems"></div></nav><main><div class="width-limiter"><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="main-heading"><h1>Module <a href="../../index.html">clap</a>::<wbr><a href="../index.html">_cookbook</a>::<wbr><a class="mod" href="#">cargo_example</a><button id="copy-path" title="Copy item path to clipboard"><img src="../../../static.files/clipboard-7571035ce49a181d.svg" width="19" height="18" alt="Copy item path"></button></h1><span class="out-of-band"><a class="srclink" href="../../../src/clap/_cookbook/cargo_example.rs.html#1-7">source</a> · <button id="toggle-all-docs" title="collapse all docs">[<span>&#x2212;</span>]</button></span></div><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><h2 id="example-cargo-subcommand-builder-api"><a href="#example-cargo-subcommand-builder-api">Example: cargo subcommand (Builder API)</a></h2>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">fn </span>main() {
+    <span class="kw">let </span>cmd = clap::Command::new(<span class="string">&quot;cargo&quot;</span>)
+        .bin_name(<span class="string">&quot;cargo&quot;</span>)
+        .subcommand_required(<span class="bool-val">true</span>)
+        .subcommand(
+            <span class="macro">clap::command!</span>(<span class="string">&quot;example&quot;</span>).arg(
+                <span class="macro">clap::arg!</span>(--<span class="string">&quot;manifest-path&quot; </span>&lt;PATH&gt;)
+                    .value_parser(<span class="macro">clap::value_parser!</span>(std::path::PathBuf)),
+            ),
+        );
+    <span class="kw">let </span>matches = cmd.get_matches();
+    <span class="kw">let </span>matches = <span class="kw">match </span>matches.subcommand() {
+        <span class="prelude-val">Some</span>((<span class="string">&quot;example&quot;</span>, matches)) =&gt; matches,
+        <span class="kw">_ </span>=&gt; <span class="macro">unreachable!</span>(<span class="string">&quot;clap should ensure we don&#39;t get here&quot;</span>),
+    };
+    <span class="kw">let </span>manifest_path = matches.get_one::&lt;std::path::PathBuf&gt;(<span class="string">&quot;manifest-path&quot;</span>);
+    <span class="macro">println!</span>(<span class="string">&quot;{:?}&quot;</span>, manifest_path);
+}</code></pre></div>
+<p>For more on creating a custom subcommand, see <a href="https://doc.rust-lang.org/cargo/reference/external-tools.html#custom-subcommands">the cargo
+book</a>.
+The crate <a href="https://github.com/crate-ci/clap-cargo"><code>clap-cargo</code></a> can help in
+mimicking cargo’s interface.</p>
+<p>The help looks like:</p>
+<div class="example-wrap"><pre class="language-console"><code>$ cargo-example --help
+Usage: cargo &lt;COMMAND&gt;
+
+Commands:
+  example  A simple to use, efficient, and full-featured Command Line Argument Parser
+  help     Print this message or the help of the given subcommand(s)
+
+Options:
+  -h, --help  Print help
+
+$ cargo-example example --help
+A simple to use, efficient, and full-featured Command Line Argument Parser
+
+Usage: cargo example [OPTIONS]
+
+Options:
+      --manifest-path &lt;PATH&gt;  
+  -h, --help                  Print help
+  -V, --version               Print version
+
+</code></pre></div>
+<p>Then to directly invoke the command, run:</p>
+<div class="example-wrap"><pre class="language-console"><code>$ cargo-example example
+None
+
+$ cargo-example example --manifest-path Cargo.toml
+Some(&quot;Cargo.toml&quot;)
+
+</code></pre></div></div></details></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="clap" data-themes="" data-resource-suffix="" data-rustdoc-version="1.70.0-nightly (f63ccaf25 2023-03-06)" data-search-js="search-8a59a8356673ec1f.js" data-settings-js="settings-f0c5c39777a9a2f6.js" data-settings-css="settings-0bcba95ff279c1db.css" ></div></body></html>

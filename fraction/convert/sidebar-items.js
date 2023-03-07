@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"trait":[["TryToConvertFrom",""]]};
+window.SIDEBAR_ITEMS = {"trait":["TryToConvertFrom"]};

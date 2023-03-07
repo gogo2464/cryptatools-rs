@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"mod":[["encryption",""]]};
+window.SIDEBAR_ITEMS = {"mod":["encryption"]};

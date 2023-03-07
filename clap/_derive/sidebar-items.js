@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"mod":["_cookbook","_tutorial"]};

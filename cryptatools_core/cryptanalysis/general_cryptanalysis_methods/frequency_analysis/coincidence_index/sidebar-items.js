@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"static":[["ENGLISH_DEFAULT_COINCIDENCE_INDEX",""]],"struct":[["CoincidenceIndexGenerator",""],["CoincidenceIndexGuesser",""]]};
+window.SIDEBAR_ITEMS = {"static":["ENGLISH_DEFAULT_COINCIDENCE_INDEX"],"struct":["CoincidenceIndexGenerator","CoincidenceIndexGuesser"]};

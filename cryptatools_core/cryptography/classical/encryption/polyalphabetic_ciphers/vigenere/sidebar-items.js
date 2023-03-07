@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"struct":[["Vigenere",""],["VigenereNoTable",""]]};
+window.SIDEBAR_ITEMS = {"struct":["Vigenere","VigenereNoTable"]};

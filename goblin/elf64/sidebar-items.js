@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"mod":[["gnu_hash",""]]};
+window.SIDEBAR_ITEMS = {"mod":["gnu_hash"]};

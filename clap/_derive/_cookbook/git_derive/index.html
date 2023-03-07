@@ -1,0 +1,314 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Example: git-like CLI (Derive API)"><title>clap::_derive::_cookbook::git_derive - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceSerif4-Bold-a2c9cd1067f8b328.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-c4dbdcde0fbd8430.css" id="mainThemeStyle"><link rel="stylesheet" id="themeStyle" href="../../../../static.files/light-db279b6232be9c13.css"><link rel="stylesheet" disabled href="../../../../static.files/dark-cf923f49f397b216.css"><link rel="stylesheet" disabled href="../../../../static.files/ayu-be46fdc453a55015.css"><script src="../../../../static.files/storage-3891ce972e3a2bf8.js"></script><script defer src="../../../../static.files/main-98a684e84ae5b08b.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc mod"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="logo-container" href="../../../../clap/index.html"><img src="https://raw.githubusercontent.com/clap-rs/clap/master/assets/clap.png" alt="logo"></a><h2></h2></nav><nav class="sidebar"><a class="logo-container" href="../../../../clap/index.html">
+                <img src="https://raw.githubusercontent.com/clap-rs/clap/master/assets/clap.png" alt="logo"></a><h2 class="location"><a href="#">Module git_derive</a></h2><div class="sidebar-elems"></div></nav><main><div class="width-limiter"><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="main-heading"><h1>Module <a href="../../../index.html">clap</a>::<wbr><a href="../../index.html">_derive</a>::<wbr><a href="../index.html">_cookbook</a>::<wbr><a class="mod" href="#">git_derive</a><button id="copy-path" title="Copy item path to clipboard"><img src="../../../../static.files/clipboard-7571035ce49a181d.svg" width="19" height="18" alt="Copy item path"></button></h1><span class="out-of-band"><a class="srclink" href="../../../../src/clap/_cookbook/git_derive.rs.html#1-7">source</a> · <button id="toggle-all-docs" title="collapse all docs">[<span>&#x2212;</span>]</button></span></div><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><h2 id="example-git-like-cli-derive-api"><a href="#example-git-like-cli-derive-api">Example: git-like CLI (Derive API)</a></h2>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>std::ffi::OsStr;
+<span class="kw">use </span>std::ffi::OsString;
+<span class="kw">use </span>std::path::PathBuf;
+
+<span class="kw">use </span>clap::{Args, Parser, Subcommand, ValueEnum};
+
+<span class="doccomment">/// A fictional versioning CLI
+</span><span class="attr">#[derive(Debug, Parser)] </span><span class="comment">// requires `derive` feature
+</span><span class="attr">#[command(name = <span class="string">&quot;git&quot;</span>)]
+#[command(about = <span class="string">&quot;A fictional versioning CLI&quot;</span>, long_about = <span class="prelude-val">None</span>)]
+</span><span class="kw">struct </span>Cli {
+    <span class="attr">#[command(subcommand)]
+    </span>command: Commands,
+}
+
+<span class="attr">#[derive(Debug, Subcommand)]
+</span><span class="kw">enum </span>Commands {
+    <span class="doccomment">/// Clones repos
+    </span><span class="attr">#[command(arg_required_else_help = <span class="bool-val">true</span>)]
+    </span>Clone {
+        <span class="doccomment">/// The remote to clone
+        </span>remote: String,
+    },
+    <span class="doccomment">/// Compare two commits
+    </span>Diff {
+        <span class="attr">#[arg(value_name = <span class="string">&quot;COMMIT&quot;</span>)]
+        </span>base: <span class="prelude-ty">Option</span>&lt;OsString&gt;,
+        <span class="attr">#[arg(value_name = <span class="string">&quot;COMMIT&quot;</span>)]
+        </span>head: <span class="prelude-ty">Option</span>&lt;OsString&gt;,
+        <span class="attr">#[arg(last = <span class="bool-val">true</span>)]
+        </span>path: <span class="prelude-ty">Option</span>&lt;OsString&gt;,
+        <span class="attr">#[arg(
+            long,
+            require_equals = <span class="bool-val">true</span>,
+            value_name = <span class="string">&quot;WHEN&quot;</span>,
+            num_args = <span class="number">0</span>..=<span class="number">1</span>,
+            default_value_t = ColorWhen::Auto,
+            default_missing_value = <span class="string">&quot;always&quot;</span>,
+            value_enum
+        )]
+        </span>color: ColorWhen,
+    },
+    <span class="doccomment">/// pushes things
+    </span><span class="attr">#[command(arg_required_else_help = <span class="bool-val">true</span>)]
+    </span>Push {
+        <span class="doccomment">/// The remote to target
+        </span>remote: String,
+    },
+    <span class="doccomment">/// adds things
+    </span><span class="attr">#[command(arg_required_else_help = <span class="bool-val">true</span>)]
+    </span>Add {
+        <span class="doccomment">/// Stuff to add
+        </span><span class="attr">#[arg(required = <span class="bool-val">true</span>)]
+        </span>path: Vec&lt;PathBuf&gt;,
+    },
+    Stash(StashArgs),
+    <span class="attr">#[command(external_subcommand)]
+    </span>External(Vec&lt;OsString&gt;),
+}
+
+<span class="attr">#[derive(ValueEnum, Copy, Clone, Debug, PartialEq, Eq)]
+</span><span class="kw">enum </span>ColorWhen {
+    Always,
+    Auto,
+    Never,
+}
+
+<span class="kw">impl </span>std::fmt::Display <span class="kw">for </span>ColorWhen {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>std::fmt::Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; std::fmt::Result {
+        <span class="self">self</span>.to_possible_value()
+            .expect(<span class="string">&quot;no values are skipped&quot;</span>)
+            .get_name()
+            .fmt(f)
+    }
+}
+
+<span class="attr">#[derive(Debug, Args)]
+#[command(args_conflicts_with_subcommands = <span class="bool-val">true</span>)]
+</span><span class="kw">struct </span>StashArgs {
+    <span class="attr">#[command(subcommand)]
+    </span>command: <span class="prelude-ty">Option</span>&lt;StashCommands&gt;,
+
+    <span class="attr">#[command(flatten)]
+    </span>push: StashPushArgs,
+}
+
+<span class="attr">#[derive(Debug, Subcommand)]
+</span><span class="kw">enum </span>StashCommands {
+    Push(StashPushArgs),
+    Pop { stash: <span class="prelude-ty">Option</span>&lt;String&gt; },
+    Apply { stash: <span class="prelude-ty">Option</span>&lt;String&gt; },
+}
+
+<span class="attr">#[derive(Debug, Args)]
+</span><span class="kw">struct </span>StashPushArgs {
+    <span class="attr">#[arg(short, long)]
+    </span>message: <span class="prelude-ty">Option</span>&lt;String&gt;,
+}
+
+<span class="kw">fn </span>main() {
+    <span class="kw">let </span>args = Cli::parse();
+
+    <span class="kw">match </span>args.command {
+        Commands::Clone { remote } =&gt; {
+            <span class="macro">println!</span>(<span class="string">&quot;Cloning {remote}&quot;</span>);
+        }
+        Commands::Diff {
+            <span class="kw-2">mut </span>base,
+            <span class="kw-2">mut </span>head,
+            <span class="kw-2">mut </span>path,
+            color,
+        } =&gt; {
+            <span class="kw">if </span>path.is_none() {
+                path = head;
+                head = <span class="prelude-val">None</span>;
+                <span class="kw">if </span>path.is_none() {
+                    path = base;
+                    base = <span class="prelude-val">None</span>;
+                }
+            }
+            <span class="kw">let </span>base = base
+                .as_deref()
+                .map(|s| s.to_str().unwrap())
+                .unwrap_or(<span class="string">&quot;stage&quot;</span>);
+            <span class="kw">let </span>head = head
+                .as_deref()
+                .map(|s| s.to_str().unwrap())
+                .unwrap_or(<span class="string">&quot;worktree&quot;</span>);
+            <span class="kw">let </span>path = path.as_deref().unwrap_or_else(|| OsStr::new(<span class="string">&quot;&quot;</span>));
+            <span class="macro">println!</span>(
+                <span class="string">&quot;Diffing {}..{} {} (color={})&quot;</span>,
+                base,
+                head,
+                path.to_string_lossy(),
+                color
+            );
+        }
+        Commands::Push { remote } =&gt; {
+            <span class="macro">println!</span>(<span class="string">&quot;Pushing to {remote}&quot;</span>);
+        }
+        Commands::Add { path } =&gt; {
+            <span class="macro">println!</span>(<span class="string">&quot;Adding {path:?}&quot;</span>);
+        }
+        Commands::Stash(stash) =&gt; {
+            <span class="kw">let </span>stash_cmd = stash.command.unwrap_or(StashCommands::Push(stash.push));
+            <span class="kw">match </span>stash_cmd {
+                StashCommands::Push(push) =&gt; {
+                    <span class="macro">println!</span>(<span class="string">&quot;Pushing {push:?}&quot;</span>);
+                }
+                StashCommands::Pop { stash } =&gt; {
+                    <span class="macro">println!</span>(<span class="string">&quot;Popping {stash:?}&quot;</span>);
+                }
+                StashCommands::Apply { stash } =&gt; {
+                    <span class="macro">println!</span>(<span class="string">&quot;Applying {stash:?}&quot;</span>);
+                }
+            }
+        }
+        Commands::External(args) =&gt; {
+            <span class="macro">println!</span>(<span class="string">&quot;Calling out to {:?} with {:?}&quot;</span>, <span class="kw-2">&amp;</span>args[<span class="number">0</span>], <span class="kw-2">&amp;</span>args[<span class="number">1</span>..]);
+        }
+    }
+
+    <span class="comment">// Continued program logic goes here...
+</span>}</code></pre></div>
+<p><strong>This requires enabling the <a href="../../../_features/index.html" title="mod clap::_features"><code>derive</code> feature flag</a>.</strong></p>
+<p>Git is an example of several common subcommand patterns.</p>
+<p>Help:</p>
+<div class="example-wrap"><pre class="language-console"><code>$ git-derive
+? failed
+A fictional versioning CLI
+
+Usage: git-derive[EXE] &lt;COMMAND&gt;
+
+Commands:
+  clone  Clones repos
+  diff   Compare two commits
+  push   pushes things
+  add    adds things
+  stash  
+  help   Print this message or the help of the given subcommand(s)
+
+Options:
+  -h, --help  Print help
+
+$ git-derive help
+A fictional versioning CLI
+
+Usage: git-derive[EXE] &lt;COMMAND&gt;
+
+Commands:
+  clone  Clones repos
+  diff   Compare two commits
+  push   pushes things
+  add    adds things
+  stash  
+  help   Print this message or the help of the given subcommand(s)
+
+Options:
+  -h, --help  Print help
+
+$ git-derive help add
+adds things
+
+Usage: git-derive[EXE] add &lt;PATH&gt;...
+
+Arguments:
+  &lt;PATH&gt;...  Stuff to add
+
+Options:
+  -h, --help  Print help
+
+</code></pre></div>
+<p>A basic argument:</p>
+<div class="example-wrap"><pre class="language-console"><code>$ git-derive add
+? failed
+adds things
+
+Usage: git-derive[EXE] add &lt;PATH&gt;...
+
+Arguments:
+  &lt;PATH&gt;...  Stuff to add
+
+Options:
+  -h, --help  Print help
+
+$ git-derive add Cargo.toml Cargo.lock
+Adding [&quot;Cargo.toml&quot;, &quot;Cargo.lock&quot;]
+
+</code></pre></div>
+<p>Default subcommand:</p>
+<div class="example-wrap"><pre class="language-console"><code>$ git-derive stash -h
+Usage: git-derive[EXE] stash [OPTIONS]
+       git-derive[EXE] stash &lt;COMMAND&gt;
+
+Commands:
+  push   
+  pop    
+  apply  
+  help   Print this message or the help of the given subcommand(s)
+
+Options:
+  -m, --message &lt;MESSAGE&gt;  
+  -h, --help               Print help
+
+$ git-derive stash push -h
+Usage: git-derive[EXE] stash push [OPTIONS]
+
+Options:
+  -m, --message &lt;MESSAGE&gt;  
+  -h, --help               Print help
+
+$ git-derive stash pop -h
+Usage: git-derive[EXE] stash pop [STASH]
+
+Arguments:
+  [STASH]  
+
+Options:
+  -h, --help  Print help
+
+$ git-derive stash -m &quot;Prototype&quot;
+Pushing StashPushArgs { message: Some(&quot;Prototype&quot;) }
+
+$ git-derive stash pop
+Popping None
+
+$ git-derive stash push -m &quot;Prototype&quot;
+Pushing StashPushArgs { message: Some(&quot;Prototype&quot;) }
+
+$ git-derive stash pop
+Popping None
+
+</code></pre></div>
+<p>External subcommands:</p>
+<div class="example-wrap"><pre class="language-console"><code>$ git-derive custom-tool arg1 --foo bar
+Calling out to &quot;custom-tool&quot; with [&quot;arg1&quot;, &quot;--foo&quot;, &quot;bar&quot;]
+
+</code></pre></div>
+<p>Last argument:</p>
+<div class="example-wrap"><pre class="language-console"><code>$ git-derive diff --help
+Compare two commits
+
+Usage: git-derive[EXE] diff [OPTIONS] [COMMIT] [COMMIT] [-- &lt;PATH&gt;]
+
+Arguments:
+  [COMMIT]  
+  [COMMIT]  
+  [PATH]    
+
+Options:
+      --color[=&lt;WHEN&gt;]  [default: auto] [possible values: always, auto, never]
+  -h, --help            Print help
+
+$ git-derive diff
+Diffing stage..worktree  (color=auto)
+
+$ git-derive diff ./src
+Diffing stage..worktree ./src (color=auto)
+
+$ git-derive diff HEAD ./src
+Diffing HEAD..worktree ./src (color=auto)
+
+$ git-derive diff HEAD~~ -- HEAD
+Diffing HEAD~~..worktree HEAD (color=auto)
+
+$ git-derive diff --color
+Diffing stage..worktree  (color=always)
+
+$ git-derive diff --color=never
+Diffing stage..worktree  (color=never)
+
+</code></pre></div></div></details></section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="clap" data-themes="" data-resource-suffix="" data-rustdoc-version="1.70.0-nightly (f63ccaf25 2023-03-06)" data-search-js="search-8a59a8356673ec1f.js" data-settings-js="settings-f0c5c39777a9a2f6.js" data-settings-css="settings-0bcba95ff279c1db.css" ></div></body></html>

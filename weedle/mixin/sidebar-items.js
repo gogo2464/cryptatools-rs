@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"enum":[["MixinMember","Parses one of the variants of a mixin member"]],"struct":[["AttributeMixinMember","Parses `[attributes]? stringifier? readonly? attribute attributedtype identifier;`"],["OperationMixinMember","Parses `[attributes]? stringifier? returntype identifier? (( args ));`"]],"type":[["MixinMembers","Parses the members declarations of a mixin"]]};
+window.SIDEBAR_ITEMS = {"enum":["MixinMember"],"struct":["AttributeMixinMember","OperationMixinMember"],"type":["MixinMembers"]};

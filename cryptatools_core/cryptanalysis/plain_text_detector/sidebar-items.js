@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"struct":[["PlainTextDetector",""]]};
+window.SIDEBAR_ITEMS = {"struct":["PlainTextDetector"]};

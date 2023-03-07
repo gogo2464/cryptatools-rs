@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"fn":[["hash","GNU hash function: accepts a symbol name and returns a value that may be used to compute a bucket index."]],"struct":[["GnuHash","A better hash table for the ELF used by GNU systems in GNU-compatible software."]]};
+window.SIDEBAR_ITEMS = {"fn":["hash"],"struct":["GnuHash"]};

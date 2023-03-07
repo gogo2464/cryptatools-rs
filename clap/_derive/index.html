@@ -1,0 +1,759 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Documentation: Derive Reference"><title>clap::_derive - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Bold-a2c9cd1067f8b328.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-c4dbdcde0fbd8430.css" id="mainThemeStyle"><link rel="stylesheet" id="themeStyle" href="../../static.files/light-db279b6232be9c13.css"><link rel="stylesheet" disabled href="../../static.files/dark-cf923f49f397b216.css"><link rel="stylesheet" disabled href="../../static.files/ayu-be46fdc453a55015.css"><script src="../../static.files/storage-3891ce972e3a2bf8.js"></script><script defer src="../../static.files/main-98a684e84ae5b08b.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc mod"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="logo-container" href="../../clap/index.html"><img src="https://raw.githubusercontent.com/clap-rs/clap/master/assets/clap.png" alt="logo"></a><h2></h2></nav><nav class="sidebar"><a class="logo-container" href="../../clap/index.html">
+                <img src="https://raw.githubusercontent.com/clap-rs/clap/master/assets/clap.png" alt="logo"></a><h2 class="location"><a href="#">Module _derive</a></h2><div class="sidebar-elems"><section><ul class="block"><li><a href="#modules">Modules</a></li></ul></section></div></nav><main><div class="width-limiter"><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="main-heading"><h1>Module <a href="../index.html">clap</a>::<wbr><a class="mod" href="#">_derive</a><button id="copy-path" title="Copy item path to clipboard"><img src="../../static.files/clipboard-7571035ce49a181d.svg" width="19" height="18" alt="Copy item path"></button></h1><span class="out-of-band"><a class="srclink" href="../../src/clap/_derive/mod.rs.html#1-480">source</a> · <button id="toggle-all-docs" title="collapse all docs">[<span>&#x2212;</span>]</button></span></div><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><h2 id="documentation-derive-reference"><a href="#documentation-derive-reference">Documentation: Derive Reference</a></h2>
+<ol>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#attributes">Attributes</a>
+<ol>
+<li><a href="#terminology">Terminology</a></li>
+<li><a href="#command-attributes">Command Attributes</a></li>
+<li><a href="#arggroup-attributes">ArgGroup Attributes</a></li>
+<li><a href="#arg-attributes">Arg Attributes</a></li>
+<li><a href="#valueenum-attributes">ValueEnum Attributes</a></li>
+<li><a href="#possible-value-attributes">Possible Value Attributes</a></li>
+</ol>
+</li>
+<li><a href="#arg-types">Arg Types</a></li>
+<li><a href="#doc-comments">Doc Comments</a></li>
+<li><a href="#mixing-builder-and-derive-apis">Mixing Builder and Derive APIs</a></li>
+<li><a href="#tips">Tips</a></li>
+</ol>
+<h3 id="overview"><a href="#overview">Overview</a></h3>
+<p>To derive <code>clap</code> types, you need to enable the <a href="../_features/index.html" title="mod clap::_features"><code>derive</code> feature flag</a>.</p>
+<p>Example:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>clap::Parser;
+
+<span class="doccomment">/// Simple program to greet a person
+</span><span class="attr">#[derive(Parser, Debug)]
+#[command(author, version, about, long_about = <span class="prelude-val">None</span>)]
+</span><span class="kw">struct </span>Args {
+    <span class="doccomment">/// Name of the person to greet
+    </span><span class="attr">#[arg(short, long)]
+    </span>name: String,
+
+    <span class="doccomment">/// Number of times to greet
+    </span><span class="attr">#[arg(short, long, default_value_t = <span class="number">1</span>)]
+    </span>count: u8,
+}
+
+<span class="kw">fn </span>main() {
+    <span class="kw">let </span>args = Args::parse();
+
+    <span class="kw">for _ in </span><span class="number">0</span>..args.count {
+        <span class="macro">println!</span>(<span class="string">&quot;Hello {}!&quot;</span>, args.name)
+    }
+}</code></pre></div>
+<p>Let’s start by breaking down the anatomy of the derive attributes:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>clap::{Parser, Args, Subcommand, ValueEnum};
+
+<span class="doccomment">/// Doc comment
+</span><span class="attr">#[derive(Parser)]
+#[command(CMD ATTRIBUTE)]
+#[group(GROUP ATTRIBUTE)]
+</span><span class="kw">struct </span>Cli {
+    <span class="doccomment">/// Doc comment
+    </span><span class="attr">#[arg(ARG ATTRIBUTE)]
+    </span>field: UserType,
+
+    <span class="attr">#[arg(value_enum, ARG ATTRIBUTE...)]
+    </span>field: EnumValues,
+
+    <span class="attr">#[command(flatten)]
+    </span>delegate: Struct,
+
+    <span class="attr">#[command(subcommand)]
+    </span>command: Command,
+}
+
+<span class="doccomment">/// Doc comment
+</span><span class="attr">#[derive(Args)]
+#[command(PARENT CMD ATTRIBUTE)]
+#[group(GROUP ATTRIBUTE)]
+</span><span class="kw">struct </span>Struct {
+    <span class="doccomment">/// Doc comment
+    </span><span class="attr">#[command(ARG ATTRIBUTE)]
+    </span>field: UserType,
+}
+
+<span class="doccomment">/// Doc comment
+</span><span class="attr">#[derive(Subcommand)]
+#[command(PARENT CMD ATTRIBUTE)]
+</span><span class="kw">enum </span>Command {
+    <span class="doccomment">/// Doc comment
+    </span><span class="attr">#[command(CMD ATTRIBUTE)]
+    </span>Variant1(Struct),
+
+    <span class="doccomment">/// Doc comment
+    </span><span class="attr">#[command(CMD ATTRIBUTE)]
+    </span>Variant2 {
+        <span class="doccomment">/// Doc comment
+        </span><span class="attr">#[arg(ARG ATTRIBUTE)]
+        </span>field: UserType,
+    }
+}
+
+<span class="doccomment">/// Doc comment
+</span><span class="attr">#[derive(ValueEnum)]
+#[value(VALUE ENUM ATTRIBUTE)]
+</span><span class="kw">enum </span>EnumValues {
+    <span class="doccomment">/// Doc comment
+    </span><span class="attr">#[value(POSSIBLE VALUE ATTRIBUTE)]
+    </span>Variant1,
+}
+
+<span class="kw">fn </span>main() {
+    <span class="kw">let </span>cli = Cli::parse();
+}</code></pre></div>
+<p>Traits:</p>
+<ul>
+<li><a href="../trait.Parser.html" title="trait clap::Parser"><code>Parser</code></a> parses arguments into a <code>struct</code> (arguments) or <code>enum</code> (subcommands).
+<ul>
+<li><a href="../trait.Args.html" title="trait clap::Args"><code>Args</code></a> allows defining a set of re-usable arguments that get merged into their parent container.</li>
+<li><a href="../trait.Subcommand.html" title="trait clap::Subcommand"><code>Subcommand</code></a> defines available subcommands.</li>
+<li>Subcommand arguments can be defined in a struct-variant or automatically flattened with a tuple-variant.</li>
+</ul>
+</li>
+<li><a href="../trait.ValueEnum.html" title="trait clap::ValueEnum"><code>ValueEnum</code></a> allows parsing a value directly into an <code>enum</code>, erroring on unsupported values.
+<ul>
+<li>The derive doesn’t work on enums that contain non-unit variants, unless they are skipped</li>
+</ul>
+</li>
+</ul>
+<p><em>See also the <a href="_tutorial/index.html" title="mod clap::_derive::_tutorial">derive tutorial</a> and <a href="_cookbook/index.html" title="mod clap::_derive::_cookbook">cookbook</a></em></p>
+<h3 id="attributes"><a href="#attributes">Attributes</a></h3><h4 id="terminology"><a href="#terminology">Terminology</a></h4>
+<p><strong>Raw attributes</strong> are forwarded directly to the underlying <a href="../builder/index.html" title="mod clap::builder"><code>clap</code> builder</a>.  Any
+<a href="../builder/struct.Command.html" title="struct clap::builder::Command"><code>Command</code></a>, <a href="../builder/struct.Arg.html" title="struct clap::builder::Arg"><code>Arg</code></a>, or <a href="../builder/struct.PossibleValue.html" title="struct clap::builder::PossibleValue"><code>PossibleValue</code></a> method can be used as an attribute.</p>
+<p>Raw attributes come in two different syntaxes:</p>
+
+<div class="example-wrap ignore"><a href="#" class="tooltip" title="This example is not tested">ⓘ</a><pre class="rust rust-example-rendered"><code><span class="attr">#[arg(
+    global = <span class="bool-val">true</span>, <span class="comment">// name = arg form, neat for one-arg methods
+    </span>required_if_eq(<span class="string">&quot;out&quot;</span>, <span class="string">&quot;file&quot;</span>) <span class="comment">// name(arg1, arg2, ...) form.
+</span>)]</span></code></pre></div>
+<ul>
+<li><code>method = arg</code> can only be used for methods which take only one argument.</li>
+<li><code>method(arg1, arg2)</code> can be used with any method.</li>
+</ul>
+<p>As long as <code>method_name</code> is not one of the magical methods it will be
+translated into a mere method call.</p>
+<p><strong>Magic attributes</strong> have post-processing done to them, whether that is</p>
+<ul>
+<li>Providing of defaults</li>
+<li>Special behavior is triggered off of it</li>
+</ul>
+<p>Magic attributes are more constrained in the syntax they support, usually just
+<code>&lt;attr&gt; = &lt;value&gt;</code> though some use <code>&lt;attr&gt;(&lt;value&gt;)</code> instead.  See the specific
+magic attributes documentation for details.  This allows users to access the
+raw behavior of an attribute via <code>&lt;attr&gt;(&lt;value&gt;)</code> syntax.</p>
+<p><strong>NOTE:</strong> Some attributes are inferred from <a href="#arg-types">Arg Types</a> and <a href="#doc-comments">Doc
+Comments</a>.  Explicit attributes take precedence over inferred
+attributes.</p>
+<h4 id="command-attributes"><a href="#command-attributes">Command Attributes</a></h4>
+<p>These correspond to a <a href="../builder/struct.Command.html" title="struct clap::builder::Command"><code>Command</code></a> which is used for both top-level parsers and
+when defining subcommands.</p>
+<p><strong>Raw attributes:</strong>  Any <a href="../builder/struct.Command.html" title="struct clap::builder::Command"><code>Command</code> method</a> can also be used as an attribute,
+see <a href="#terminology">Terminology</a> for syntax.</p>
+<ul>
+<li>e.g. <code>#[command(arg_required_else_help(true))]</code> would translate to <code>cmd.arg_required_else_help(true)</code></li>
+</ul>
+<p><strong>Magic attributes:</strong></p>
+<ul>
+<li><code>name  = &lt;expr&gt;</code>: <a href="../builder/struct.Command.html#method.name" title="method clap::builder::Command::name"><code>Command::name</code></a>
+<ul>
+<li>When not present: <a href="https://doc.rust-lang.org/cargo/reference/manifest.html#the-name-field">crate <code>name</code></a> (if on <a href="../trait.Parser.html" title="trait clap::Parser"><code>Parser</code></a> container), variant name (if on <a href="../trait.Subcommand.html" title="trait clap::Subcommand"><code>Subcommand</code></a> variant)</li>
+</ul>
+</li>
+<li><code>version [= &lt;expr&gt;]</code>: <a href="../builder/struct.Command.html#method.version" title="method clap::builder::Command::version"><code>Command::version</code></a>
+<ul>
+<li>When not present: no version set</li>
+<li>Without <code>&lt;expr&gt;</code>: defaults to <a href="https://doc.rust-lang.org/cargo/reference/manifest.html#the-version-field">crate <code>version</code></a></li>
+</ul>
+</li>
+<li><code>author [= &lt;expr&gt;]</code>: <a href="../builder/struct.Command.html#method.author" title="method clap::builder::Command::author"><code>Command::author</code></a>
+<ul>
+<li>When not present: no author set</li>
+<li>Without <code>&lt;expr&gt;</code>: defaults to <a href="https://doc.rust-lang.org/cargo/reference/manifest.html#the-authors-field">crate <code>authors</code></a></li>
+</ul>
+</li>
+<li><code>about [= &lt;expr&gt;]</code>: <a href="../builder/struct.Command.html#method.about" title="method clap::builder::Command::about"><code>Command::about</code></a>
+<ul>
+<li>When not present: <a href="#doc-comments">Doc comment summary</a></li>
+<li>Without <code>&lt;expr&gt;</code>: <a href="https://doc.rust-lang.org/cargo/reference/manifest.html#the-description-field">crate <code>description</code></a> (<a href="../trait.Parser.html" title="trait clap::Parser"><code>Parser</code></a> container)
+<ul>
+<li><strong>TIP:</strong> When a doc comment is also present, you most likely want to add
+<code>#[arg(long_about = None)]</code> to clear the doc comment so only <a href="../builder/struct.Command.html#method.about" title="method clap::builder::Command::about"><code>about</code></a>
+gets shown with both <code>-h</code> and <code>--help</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>long_about[ = &lt;expr&gt;]</code>: <a href="../builder/struct.Command.html#method.long_about" title="method clap::builder::Command::long_about"><code>Command::long_about</code></a>
+<ul>
+<li>When not present: <a href="#doc-comments">Doc comment</a> if there is a blank line, else nothing</li>
+<li>When present without a value: <a href="#doc-comments">Doc comment</a></li>
+</ul>
+</li>
+<li><code>verbatim_doc_comment</code>: Minimizes pre-processing when converting doc comments to <a href="../builder/struct.Command.html#method.about" title="method clap::builder::Command::about"><code>about</code></a> / <a href="../builder/struct.Command.html#method.long_about" title="method clap::builder::Command::long_about"><code>long_about</code></a></li>
+<li><code>next_display_order</code>: <a href="../builder/struct.Command.html#method.next_display_order" title="method clap::builder::Command::next_display_order"><code>Command::next_display_order</code></a></li>
+<li><code>next_help_heading</code>: <a href="../builder/struct.Command.html#method.next_help_heading" title="method clap::builder::Command::next_help_heading"><code>Command::next_help_heading</code></a>
+<ul>
+<li>When <code>flatten</code>ing <a href="../trait.Args.html" title="trait clap::Args"><code>Args</code></a>, this is scoped to just the args in this struct and any struct <code>flatten</code>ed into it</li>
+</ul>
+</li>
+<li><code>rename_all = &lt;string_literal&gt;</code>: Override default field / variant name case conversion for <a href="../builder/struct.Command.html#method.name" title="method clap::builder::Command::name"><code>Command::name</code></a> / <a href="../builder/struct.Arg.html#method.id" title="method clap::builder::Arg::id"><code>Arg::id</code></a>
+<ul>
+<li>When not present: <code>&quot;kebab-case&quot;</code></li>
+<li>Available values: <code>&quot;camelCase&quot;</code>, <code>&quot;kebab-case&quot;</code>, <code>&quot;PascalCase&quot;</code>, <code>&quot;SCREAMING_SNAKE_CASE&quot;</code>, <code>&quot;snake_case&quot;</code>, <code>&quot;lower&quot;</code>, <code>&quot;UPPER&quot;</code>, <code>&quot;verbatim&quot;</code></li>
+</ul>
+</li>
+<li><code>rename_all_env = &lt;string_literal&gt;</code>: Override default field name case conversion for env variables for  <a href="../builder/struct.Arg.html#method.env" title="method clap::builder::Arg::env"><code>Arg::env</code></a>
+<ul>
+<li>When not present: <code>&quot;SCREAMING_SNAKE_CASE&quot;</code></li>
+<li>Available values: <code>&quot;camelCase&quot;</code>, <code>&quot;kebab-case&quot;</code>, <code>&quot;PascalCase&quot;</code>, <code>&quot;SCREAMING_SNAKE_CASE&quot;</code>, <code>&quot;snake_case&quot;</code>, <code>&quot;lower&quot;</code>, <code>&quot;UPPER&quot;</code>, <code>&quot;verbatim&quot;</code></li>
+</ul>
+</li>
+</ul>
+<p>And for <a href="../trait.Subcommand.html" title="trait clap::Subcommand"><code>Subcommand</code></a> variants:</p>
+<ul>
+<li><code>skip</code>: Ignore this variant</li>
+<li><code>flatten</code>: Delegates to the variant for more subcommands (must implement
+<a href="../trait.Subcommand.html" title="trait clap::Subcommand"><code>Subcommand</code></a>)</li>
+<li><code>subcommand</code>: Nest subcommands under the current set of subcommands (must implement
+<a href="../trait.Subcommand.html" title="trait clap::Subcommand"><code>Subcommand</code></a>)</li>
+<li><code>external_subcommand</code>: <a href="../builder/struct.Command.html#method.allow_external_subcommands" title="method clap::builder::Command::allow_external_subcommands"><code>Command::allow_external_subcommand(true)</code></a>
+<ul>
+<li>Variant must be either <code>Variant(Vec&lt;String&gt;)</code> or <code>Variant(Vec&lt;OsString&gt;)</code></li>
+</ul>
+</li>
+</ul>
+<p>And for <a href="../trait.Args.html" title="trait clap::Args"><code>Args</code></a> fields:</p>
+<ul>
+<li><code>flatten</code>: Delegates to the field for more arguments (must implement <a href="../trait.Args.html" title="trait clap::Args"><code>Args</code></a>)
+<ul>
+<li>Only <a href="../builder/struct.Command.html#method.next_help_heading" title="method clap::builder::Command::next_help_heading"><code>next_help_heading</code></a> can be used with <code>flatten</code>.  See
+<a href="https://github.com/clap-rs/clap/issues/3269">clap-rs/clap#3269</a> for why
+arg attributes are not generally supported.</li>
+<li><strong>Tip:</strong> Though we do apply a flattened <a href="../trait.Args.html" title="trait clap::Args"><code>Args</code></a>’s Parent Command Attributes, this
+makes reuse harder. Generally prefer putting the cmd attributes on the
+<a href="../trait.Parser.html" title="trait clap::Parser"><code>Parser</code></a> or on the flattened field.</li>
+</ul>
+</li>
+<li><code>subcommand</code>: Delegates definition of subcommands to the field (must implement
+<a href="../trait.Subcommand.html" title="trait clap::Subcommand"><code>Subcommand</code></a>)
+<ul>
+<li>When <code>Option&lt;T&gt;</code>, the subcommand becomes optional</li>
+</ul>
+</li>
+</ul>
+<h4 id="arggroup-attributes"><a href="#arggroup-attributes">ArgGroup Attributes</a></h4>
+<p>These correspond to the <a href="../builder/struct.ArgGroup.html" title="struct clap::builder::ArgGroup"><code>ArgGroup</code></a> which is implicitly created for each
+<code>Args</code> derive.</p>
+<p>At the moment, only <code>#[group(skip)]</code> is supported</p>
+<h4 id="arg-attributes"><a href="#arg-attributes">Arg Attributes</a></h4>
+<p>These correspond to a <a href="../builder/struct.Arg.html" title="struct clap::builder::Arg"><code>Arg</code></a>.</p>
+<p><strong>Raw attributes:</strong>  Any <a href="../builder/struct.Arg.html" title="struct clap::builder::Arg"><code>Arg</code> method</a> can also be used as an attribute, see <a href="#terminology">Terminology</a> for syntax.</p>
+<ul>
+<li>e.g. <code>#[arg(max_values(3))]</code> would translate to <code>arg.max_values(3)</code></li>
+</ul>
+<p><strong>Magic attributes</strong>:</p>
+<ul>
+<li><code>id = &lt;expr&gt;</code>: <a href="../builder/struct.Arg.html#method.id" title="method clap::builder::Arg::id"><code>Arg::id</code></a>
+<ul>
+<li>When not present: case-converted field name is used</li>
+</ul>
+</li>
+<li><code>value_parser [= &lt;expr&gt;]</code>: <a href="../builder/struct.Arg.html#method.value_parser" title="method clap::builder::Arg::value_parser"><code>Arg::value_parser</code></a>
+<ul>
+<li>When not present: will auto-select an implementation based on the field type using
+<a href="../macro.value_parser.html" title="macro clap::value_parser"><code>value_parser!</code></a></li>
+</ul>
+</li>
+<li><code>action [= &lt;expr&gt;]</code>: <a href="../builder/struct.Arg.html#method.action" title="method clap::builder::Arg::action"><code>Arg::action</code></a>
+<ul>
+<li>When not present: will auto-select an action based on the field type</li>
+</ul>
+</li>
+<li><code>help = &lt;expr&gt;</code>: <a href="../builder/struct.Arg.html#method.help" title="method clap::builder::Arg::help"><code>Arg::help</code></a>
+<ul>
+<li>When not present: <a href="#doc-comments">Doc comment summary</a></li>
+</ul>
+</li>
+<li><code>long_help[ = &lt;expr&gt;]</code>: <a href="../builder/struct.Arg.html#method.long_help" title="method clap::builder::Arg::long_help"><code>Arg::long_help</code></a>
+<ul>
+<li>When not present: <a href="#doc-comments">Doc comment</a> if there is a blank line, else nothing</li>
+<li>When present without a value: <a href="#doc-comments">Doc comment</a></li>
+</ul>
+</li>
+<li><code>verbatim_doc_comment</code>: Minimizes pre-processing when converting doc comments to <a href="../builder/struct.Arg.html#method.help" title="method clap::builder::Arg::help"><code>help</code></a> / <a href="../builder/struct.Arg.html#method.long_help" title="method clap::builder::Arg::long_help"><code>long_help</code></a></li>
+<li><code>short [= &lt;char&gt;]</code>: <a href="../builder/struct.Arg.html#method.short" title="method clap::builder::Arg::short"><code>Arg::short</code></a>
+<ul>
+<li>When not present: no short set</li>
+<li>Without <code>&lt;char&gt;</code>: defaults to first character in the case-converted field name</li>
+</ul>
+</li>
+<li><code>long [= &lt;str&gt;]</code>: <a href="../builder/struct.Arg.html#method.long" title="method clap::builder::Arg::long"><code>Arg::long</code></a>
+<ul>
+<li>When not present: no long set</li>
+<li>Without <code>&lt;str&gt;</code>: defaults to the case-converted field name</li>
+</ul>
+</li>
+<li><code>env [= &lt;str&gt;]</code>: <a href="../builder/struct.Arg.html#method.env" title="method clap::builder::Arg::env"><code>Arg::env</code></a> (needs <a href="../_features/index.html" title="mod clap::_features"><code>env</code> feature</a> enabled)
+<ul>
+<li>When not present: no env set</li>
+<li>Without <code>&lt;str&gt;</code>: defaults to the case-converted field name</li>
+</ul>
+</li>
+<li><code>from_global</code>: Read a <a href="../builder/struct.Arg.html#method.global" title="method clap::builder::Arg::global"><code>Arg::global</code></a> argument (raw attribute), regardless of what subcommand you are in</li>
+<li><code>value_enum</code>: Parse the value using the <a href="../trait.ValueEnum.html" title="trait clap::ValueEnum"><code>ValueEnum</code></a></li>
+<li><code>skip [= &lt;expr&gt;]</code>: Ignore this field, filling in with <code>&lt;expr&gt;</code>
+<ul>
+<li>Without <code>&lt;expr&gt;</code>: fills the field with <code>Default::default()</code></li>
+</ul>
+</li>
+<li><code>default_value = &lt;str&gt;</code>: <a href="../builder/struct.Arg.html#method.default_value" title="method clap::builder::Arg::default_value"><code>Arg::default_value</code></a> and <a href="../builder/struct.Arg.html#method.required" title="method clap::builder::Arg::required"><code>Arg::required(false)</code></a></li>
+<li><code>default_value_t [= &lt;expr&gt;]</code>: <a href="../builder/struct.Arg.html#method.default_value" title="method clap::builder::Arg::default_value"><code>Arg::default_value</code></a> and <a href="../builder/struct.Arg.html#method.required" title="method clap::builder::Arg::required"><code>Arg::required(false)</code></a>
+<ul>
+<li>Requires <code>std::fmt::Display</code> that roundtrips correctly with the
+<a href="../builder/struct.Arg.html#method.value_parser" title="method clap::builder::Arg::value_parser"><code>Arg::value_parser</code></a> or <code>#[arg(value_enum)]</code></li>
+<li>Without <code>&lt;expr&gt;</code>, relies on <code>Default::default()</code></li>
+</ul>
+</li>
+<li><code>default_values_t = &lt;expr&gt;</code>: <a href="../builder/struct.Arg.html#method.default_values" title="method clap::builder::Arg::default_values"><code>Arg::default_values</code></a> and <a href="../builder/struct.Arg.html#method.required" title="method clap::builder::Arg::required"><code>Arg::required(false)</code></a>
+<ul>
+<li>Requires field arg to be of type <code>Vec&lt;T&gt;</code> and <code>T</code> to implement <code>std::fmt::Display</code> or <code>#[arg(value_enum)]</code></li>
+<li><code>&lt;expr&gt;</code> must implement <code>IntoIterator&lt;T&gt;</code></li>
+</ul>
+</li>
+<li><code>default_value_os_t [= &lt;expr&gt;]</code>: <a href="../builder/struct.Arg.html#method.default_value_os" title="method clap::builder::Arg::default_value_os"><code>Arg::default_value_os</code></a> and <a href="../builder/struct.Arg.html#method.required" title="method clap::builder::Arg::required"><code>Arg::required(false)</code></a>
+<ul>
+<li>Requires <code>std::convert::Into&lt;OsString&gt;</code> or <code>#[arg(value_enum)]</code></li>
+<li>Without <code>&lt;expr&gt;</code>, relies on <code>Default::default()</code></li>
+</ul>
+</li>
+<li><code>default_values_os_t = &lt;expr&gt;</code>: <a href="../builder/struct.Arg.html#method.default_values_os" title="method clap::builder::Arg::default_values_os"><code>Arg::default_values_os</code></a> and <a href="../builder/struct.Arg.html#method.required" title="method clap::builder::Arg::required"><code>Arg::required(false)</code></a>
+<ul>
+<li>Requires field arg to be of type <code>Vec&lt;T&gt;</code> and <code>T</code> to implement <code>std::convert::Into&lt;OsString&gt;</code> or <code>#[arg(value_enum)]</code></li>
+<li><code>&lt;expr&gt;</code> must implement <code>IntoIterator&lt;T&gt;</code></li>
+</ul>
+</li>
+</ul>
+<h4 id="valueenum-attributes"><a href="#valueenum-attributes">ValueEnum Attributes</a></h4>
+<ul>
+<li><code>rename_all = &lt;string_literal&gt;</code>: Override default field / variant name case conversion for <a href="../builder/struct.PossibleValue.html" title="struct clap::builder::PossibleValue"><code>PossibleValue::new</code></a>
+<ul>
+<li>When not present: <code>&quot;kebab-case&quot;</code></li>
+<li>Available values: <code>&quot;camelCase&quot;</code>, <code>&quot;kebab-case&quot;</code>, <code>&quot;PascalCase&quot;</code>, <code>&quot;SCREAMING_SNAKE_CASE&quot;</code>, <code>&quot;snake_case&quot;</code>, <code>&quot;lower&quot;</code>, <code>&quot;UPPER&quot;</code>, <code>&quot;verbatim&quot;</code></li>
+</ul>
+</li>
+</ul>
+<h4 id="possible-value-attributes"><a href="#possible-value-attributes">Possible Value Attributes</a></h4>
+<p>These correspond to a <a href="../builder/struct.PossibleValue.html" title="struct clap::builder::PossibleValue"><code>PossibleValue</code></a>.</p>
+<p><strong>Raw attributes:</strong>  Any <a href="../builder/struct.PossibleValue.html" title="struct clap::builder::PossibleValue"><code>PossibleValue</code> method</a> can also be used as an attribute, see <a href="#terminology">Terminology</a> for syntax.</p>
+<ul>
+<li>e.g. <code>#[value(alias(&quot;foo&quot;))]</code> would translate to <code>pv.alias(&quot;foo&quot;)</code></li>
+</ul>
+<p><strong>Magic attributes</strong>:</p>
+<ul>
+<li><code>name = &lt;expr&gt;</code>: <a href="../builder/struct.PossibleValue.html#method.new" title="associated function clap::builder::PossibleValue::new"><code>PossibleValue::new</code></a>
+<ul>
+<li>When not present: case-converted field name is used</li>
+</ul>
+</li>
+<li><code>help = &lt;expr&gt;</code>: <a href="../builder/struct.PossibleValue.html#method.help" title="method clap::builder::PossibleValue::help"><code>PossibleValue::help</code></a>
+<ul>
+<li>When not present: <a href="#doc-comments">Doc comment summary</a></li>
+</ul>
+</li>
+<li><code>skip</code>: Ignore this variant</li>
+</ul>
+<h3 id="arg-types"><a href="#arg-types">Arg Types</a></h3>
+<p><code>clap</code> assumes some intent based on the type used:</p>
+<div><table><thead><tr><th>Type</th><th>Effect</th><th>Implies</th></tr></thead><tbody>
+<tr><td><code>()</code></td><td>user-defined</td><td><code>.action(ArgAction::Set).required(false)</code></td></tr>
+<tr><td><code>bool</code></td><td>flag</td><td><code>.action(ArgAction::SetTrue)</code></td></tr>
+<tr><td><code>Option&lt;T&gt;</code></td><td>optional argument</td><td><code>.action(ArgAction::Set).required(false)</code></td></tr>
+<tr><td><code>Option&lt;Option&lt;T&gt;&gt;</code></td><td>optional value for optional argument</td><td><code>.action(ArgAction::Set).required(false).num_args(0..=1)</code></td></tr>
+<tr><td><code>T</code></td><td>required argument</td><td><code>.action(ArgAction::Set).required(!has_default)</code></td></tr>
+<tr><td><code>Vec&lt;T&gt;</code></td><td><code>0..</code> occurrences of argument</td><td><code>.action(ArgAction::Append).required(false)</code></td></tr>
+<tr><td><code>Option&lt;Vec&lt;T&gt;&gt;</code></td><td><code>0..</code> occurrences of argument</td><td><code>.action(ArgAction::Append).required(false)</code></td></tr>
+</tbody></table>
+</div>
+<p>In addition, <a href="../macro.value_parser.html" title="macro clap::value_parser"><code>.value_parser(value_parser!(T))</code></a> is called for each
+field.</p>
+<p>Notes:</p>
+<ul>
+<li>For custom type behavior, you can override the implied attributes/settings and/or set additional ones</li>
+<li><code>Option&lt;Vec&lt;T&gt;&gt;</code> will be <code>None</code> instead of <code>vec![]</code> if no arguments are provided.
+<ul>
+<li>This gives the user some flexibility in designing their argument, like with <code>num_args(0..)</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="doc-comments"><a href="#doc-comments">Doc Comments</a></h3>
+<p>In clap, help messages for the whole binary can be specified
+via <a href="../builder/struct.Command.html#method.about" title="method clap::builder::Command::about"><code>Command::about</code></a> and <a href="../builder/struct.Command.html#method.long_about" title="method clap::builder::Command::long_about"><code>Command::long_about</code></a> while help messages
+for individual arguments can be specified via <a href="../builder/struct.Arg.html#method.help" title="method clap::builder::Arg::help"><code>Arg::help</code></a> and <a href="../builder/struct.Arg.html#method.long_help" title="method clap::builder::Arg::long_help"><code>Arg::long_help</code></a>.</p>
+<p><code>long_*</code> variants are used when user calls the program with
+<code>--help</code> and “short” variants are used with <code>-h</code> flag.</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code>
+<span class="attr">#[derive(Parser)]
+#[command(about = <span class="string">&quot;I am a program and I work, just pass `-h`&quot;</span>, long_about = <span class="prelude-val">None</span>)]
+</span><span class="kw">struct </span>Foo {
+    <span class="attr">#[arg(short, help = <span class="string">&quot;Pass `-h` and you&#39;ll see me!&quot;</span>)]
+    </span>bar: String,
+}</code></pre></div>
+<p>For convenience, doc comments can be used instead of raw methods
+(this example works exactly like the one above):</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code>
+<span class="attr">#[derive(Parser)]
+</span><span class="doccomment">/// I am a program and I work, just pass `-h`
+</span><span class="kw">struct </span>Foo {
+    <span class="doccomment">/// Pass `-h` and you&#39;ll see me!
+    </span>bar: String,
+}</code></pre></div>
+<p><strong>NOTE:</strong> Attributes have priority over doc comments!</p>
+<p><strong>Top level doc comments always generate <code>Command::about/long_about</code> calls!</strong>
+If you really want to use the <code>Command::about/long_about</code> methods (you likely don’t),
+use the <code>about</code> / <code>long_about</code> attributes to override the calls generated from
+the doc comment.  To clear <code>long_about</code>, you can use
+<code>#[command(long_about = None)]</code>.</p>
+<h4 id="pre-processing"><a href="#pre-processing">Pre-processing</a></h4>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="attr">#[derive(Parser)]
+</span><span class="doccomment">/// Hi there, I&#39;m Robo!
+///
+/// I like beeping, stumbling, eating your electricity,
+/// and making records of you singing in a shower.
+/// Pay up, or I&#39;ll upload it to youtube!
+</span><span class="kw">struct </span>Robo {
+    <span class="doccomment">/// Call my brother SkyNet.
+    ///
+    /// I am artificial superintelligence. I won&#39;t rest
+    /// until I&#39;ll have destroyed humanity. Enjoy your
+    /// pathetic existence, you mere mortals.
+    </span><span class="attr">#[arg(long, action)]
+    </span>kill_all_humans: bool,
+}</code></pre></div>
+<p>A doc comment consists of three parts:</p>
+<ul>
+<li>Short summary</li>
+<li>A blank line (whitespace only)</li>
+<li>Detailed description, all the rest</li>
+</ul>
+<p>The summary corresponds with <code>Command::about</code> / <code>Arg::help</code>.  When a blank line is
+present, the whole doc comment will be passed to <code>Command::long_about</code> /
+<code>Arg::long_help</code>.  Or in other words, a doc may result in just a <code>Command::about</code> /
+<code>Arg::help</code> or <code>Command::about</code> / <code>Arg::help</code> and <code>Command::long_about</code> /
+<code>Arg::long_help</code></p>
+<p>In addition, when <code>verbatim_doc_comment</code> is not present, <code>clap</code> applies some preprocessing, including:</p>
+<ul>
+<li>
+<p>Strip leading and trailing whitespace from every line, if present.</p>
+</li>
+<li>
+<p>Strip leading and trailing blank lines, if present.</p>
+</li>
+<li>
+<p>Interpret each group of non-empty lines as a word-wrapped paragraph.</p>
+<p>We replace newlines within paragraphs with spaces to allow the output
+to be re-wrapped to the terminal width.</p>
+</li>
+<li>
+<p>Strip any excess blank lines so that there is exactly one per paragraph break.</p>
+</li>
+<li>
+<p>If the first paragraph ends in exactly one period,
+remove the trailing period (i.e. strip trailing periods but not trailing ellipses).</p>
+</li>
+</ul>
+<p>Sometimes you don’t want this preprocessing to apply, for example the comment contains
+some ASCII art or markdown tables, you would need to preserve LFs along with
+blank lines and the leading/trailing whitespace. When you pass use the
+<code>verbatim_doc_comment</code> magic attribute, you  preserve
+them.</p>
+<p><strong>Note:</strong> Keep in mind that <code>verbatim_doc_comment</code> will <em>still</em></p>
+<ul>
+<li>Remove one leading space from each line, even if this attribute is present,
+to allow for a space between <code>///</code> and the content.</li>
+<li>Remove leading and trailing blank lines</li>
+</ul>
+<h3 id="mixing-builder-and-derive-apis"><a href="#mixing-builder-and-derive-apis">Mixing Builder and Derive APIs</a></h3>
+<p>The builder and derive APIs do not live in isolation. They can work together, which is
+especially helpful if some arguments can be specified at compile-time while others must be
+specified at runtime.</p>
+<h4 id="using-derived-arguments-in-a-builder-application"><a href="#using-derived-arguments-in-a-builder-application">Using derived arguments in a builder application</a></h4>
+<p>When using the derive API, you can <code>#[command(flatten)]</code> a struct deriving <code>Args</code> into a struct
+deriving <code>Args</code> or <code>Parser</code>. This example shows how you can augment a <code>Command</code> instance
+created using the builder API with <code>Args</code> created using the derive API.</p>
+<p>It uses the <a href="../trait.Args.html#tymethod.augment_args" title="associated function clap::Args::augment_args"><code>Args::augment_args</code></a> method to add the arguments to
+the <code>Command</code> instance.</p>
+<p>Crates such as <a href="https://github.com/rust-cli/clap-verbosity-flag">clap-verbosity-flag</a> provide
+structs that implement <code>Args</code>. Without the technique shown in this example, it would not be
+possible to use such crates with the builder API.</p>
+<p>For example:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>clap::{arg, Args, Command, FromArgMatches <span class="kw">as _</span>};
+
+<span class="attr">#[derive(Args, Debug)]
+</span><span class="kw">struct </span>DerivedArgs {
+    <span class="attr">#[arg(short, long)]
+    </span>derived: bool,
+}
+
+<span class="kw">fn </span>main() {
+    <span class="kw">let </span>cli = Command::new(<span class="string">&quot;CLI&quot;</span>).arg(<span class="macro">arg!</span>(-b - -built).action(clap::ArgAction::SetTrue));
+    <span class="comment">// Augment built args with derived args
+    </span><span class="kw">let </span>cli = DerivedArgs::augment_args(cli);
+
+    <span class="kw">let </span>matches = cli.get_matches();
+    <span class="macro">println!</span>(<span class="string">&quot;Value of built: {:?}&quot;</span>, matches.get_flag(<span class="string">&quot;built&quot;</span>));
+    <span class="macro">println!</span>(
+        <span class="string">&quot;Value of derived via ArgMatches: {:?}&quot;</span>,
+        matches.get_flag(<span class="string">&quot;derived&quot;</span>)
+    );
+
+    <span class="comment">// Since DerivedArgs implements FromArgMatches, we can extract it from the unstructured ArgMatches.
+    // This is the main benefit of using derived arguments.
+    </span><span class="kw">let </span>derived_matches = DerivedArgs::from_arg_matches(<span class="kw-2">&amp;</span>matches)
+        .map_err(|err| err.exit())
+        .unwrap();
+    <span class="macro">println!</span>(<span class="string">&quot;Value of derived: {derived_matches:#?}&quot;</span>);
+}</code></pre></div>
+<h4 id="using-derived-subcommands-in-a-builder-application"><a href="#using-derived-subcommands-in-a-builder-application">Using derived subcommands in a builder application</a></h4>
+<p>When using the derive API, you can use <code>#[command(subcommand)]</code> inside the struct to add
+subcommands. The type of the field is usually an enum that derived <code>Parser</code>. However, you can
+also add the subcommands in that enum to a <code>Command</code> instance created with the builder API.</p>
+<p>It uses the <a href="../trait.Subcommand.html#tymethod.augment_subcommands" title="associated function clap::Subcommand::augment_subcommands"><code>Subcommand::augment_subcommands</code></a> method
+to add the subcommands to the <code>Command</code> instance.</p>
+<p>For example:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>clap::{Command, FromArgMatches <span class="kw">as _</span>, Parser, Subcommand <span class="kw">as _</span>};
+
+<span class="attr">#[derive(Parser, Debug)]
+</span><span class="kw">enum </span>Subcommands {
+    Derived {
+        <span class="attr">#[arg(short, long)]
+        </span>derived_flag: bool,
+    },
+}
+
+<span class="kw">fn </span>main() {
+    <span class="kw">let </span>cli = Command::new(<span class="string">&quot;Built CLI&quot;</span>);
+    <span class="comment">// Augment with derived subcommands
+    </span><span class="kw">let </span>cli = Subcommands::augment_subcommands(cli);
+
+    <span class="kw">let </span>matches = cli.get_matches();
+    <span class="kw">let </span>derived_subcommands = Subcommands::from_arg_matches(<span class="kw-2">&amp;</span>matches)
+        .map_err(|err| err.exit())
+        .unwrap();
+    <span class="macro">println!</span>(<span class="string">&quot;Derived subcommands: {derived_subcommands:#?}&quot;</span>);
+}</code></pre></div>
+<h4 id="adding-hand-implemented-subcommands-to-a-derived-application"><a href="#adding-hand-implemented-subcommands-to-a-derived-application">Adding hand-implemented subcommands to a derived application</a></h4>
+<p>When using the derive API, you can use <code>#[command(subcommand)]</code> inside the struct to add
+subcommands. The type of the field is usually an enum that derived <code>Parser</code>. However, you can
+also implement the <code>Subcommand</code> trait manually on this enum (or any other type) and it can
+still be used inside the struct created with the derive API. The implementation of the
+<code>Subcommand</code> trait will use the builder API to add the subcommands to the <code>Command</code> instance
+created behind the scenes for you by the derive API.</p>
+<p>Notice how in the previous example we used
+<a href="../trait.Subcommand.html#tymethod.augment_subcommands" title="associated function clap::Subcommand::augment_subcommands"><code>augment_subcommands</code></a> on an enum that derived
+<code>Parser</code>, whereas now we implement
+<a href="../trait.Subcommand.html#tymethod.augment_subcommands" title="associated function clap::Subcommand::augment_subcommands"><code>augment_subcommands</code></a> ourselves, but the derive API
+calls it automatically since we used the <code>#[command(subcommand)]</code> attribute.</p>
+<p>For example:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>clap::error::{Error, ErrorKind};
+<span class="kw">use </span>clap::{ArgMatches, Args <span class="kw">as _</span>, Command, FromArgMatches, Parser, Subcommand};
+
+<span class="attr">#[derive(Parser, Debug)]
+</span><span class="kw">struct </span>AddArgs {
+    name: Vec&lt;String&gt;,
+}
+<span class="attr">#[derive(Parser, Debug)]
+</span><span class="kw">struct </span>RemoveArgs {
+    <span class="attr">#[arg(short, long)]
+    </span>force: bool,
+    name: Vec&lt;String&gt;,
+}
+
+<span class="attr">#[derive(Debug)]
+</span><span class="kw">enum </span>CliSub {
+    Add(AddArgs),
+    Remove(RemoveArgs),
+}
+
+<span class="kw">impl </span>FromArgMatches <span class="kw">for </span>CliSub {
+    <span class="kw">fn </span>from_arg_matches(matches: <span class="kw-2">&amp;</span>ArgMatches) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, Error&gt; {
+        <span class="kw">match </span>matches.subcommand() {
+            <span class="prelude-val">Some</span>((<span class="string">&quot;add&quot;</span>, args)) =&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::Add(AddArgs::from_arg_matches(args)<span class="question-mark">?</span>)),
+            <span class="prelude-val">Some</span>((<span class="string">&quot;remove&quot;</span>, args)) =&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::Remove(RemoveArgs::from_arg_matches(args)<span class="question-mark">?</span>)),
+            <span class="prelude-val">Some</span>((<span class="kw">_</span>, <span class="kw">_</span>)) =&gt; <span class="prelude-val">Err</span>(Error::raw(
+                ErrorKind::InvalidSubcommand,
+                <span class="string">&quot;Valid subcommands are `add` and `remove`&quot;</span>,
+            )),
+            <span class="prelude-val">None </span>=&gt; <span class="prelude-val">Err</span>(Error::raw(
+                ErrorKind::MissingSubcommand,
+                <span class="string">&quot;Valid subcommands are `add` and `remove`&quot;</span>,
+            )),
+        }
+    }
+    <span class="kw">fn </span>update_from_arg_matches(<span class="kw-2">&amp;mut </span><span class="self">self</span>, matches: <span class="kw-2">&amp;</span>ArgMatches) -&gt; <span class="prelude-ty">Result</span>&lt;(), Error&gt; {
+        <span class="kw">match </span>matches.subcommand() {
+            <span class="prelude-val">Some</span>((<span class="string">&quot;add&quot;</span>, args)) =&gt; <span class="kw-2">*</span><span class="self">self </span>= <span class="self">Self</span>::Add(AddArgs::from_arg_matches(args)<span class="question-mark">?</span>),
+            <span class="prelude-val">Some</span>((<span class="string">&quot;remove&quot;</span>, args)) =&gt; <span class="kw-2">*</span><span class="self">self </span>= <span class="self">Self</span>::Remove(RemoveArgs::from_arg_matches(args)<span class="question-mark">?</span>),
+            <span class="prelude-val">Some</span>((<span class="kw">_</span>, <span class="kw">_</span>)) =&gt; {
+                <span class="kw">return </span><span class="prelude-val">Err</span>(Error::raw(
+                    ErrorKind::InvalidSubcommand,
+                    <span class="string">&quot;Valid subcommands are `add` and `remove`&quot;</span>,
+                ))
+            }
+            <span class="prelude-val">None </span>=&gt; (),
+        };
+        <span class="prelude-val">Ok</span>(())
+    }
+}
+
+<span class="kw">impl </span>Subcommand <span class="kw">for </span>CliSub {
+    <span class="kw">fn </span>augment_subcommands(cmd: Command) -&gt; Command {
+        cmd.subcommand(AddArgs::augment_args(Command::new(<span class="string">&quot;add&quot;</span>)))
+            .subcommand(RemoveArgs::augment_args(Command::new(<span class="string">&quot;remove&quot;</span>)))
+            .subcommand_required(<span class="bool-val">true</span>)
+    }
+    <span class="kw">fn </span>augment_subcommands_for_update(cmd: Command) -&gt; Command {
+        cmd.subcommand(AddArgs::augment_args(Command::new(<span class="string">&quot;add&quot;</span>)))
+            .subcommand(RemoveArgs::augment_args(Command::new(<span class="string">&quot;remove&quot;</span>)))
+            .subcommand_required(<span class="bool-val">true</span>)
+    }
+    <span class="kw">fn </span>has_subcommand(name: <span class="kw-2">&amp;</span>str) -&gt; bool {
+        <span class="macro">matches!</span>(name, <span class="string">&quot;add&quot; </span>| <span class="string">&quot;remove&quot;</span>)
+    }
+}
+
+<span class="attr">#[derive(Parser, Debug)]
+</span><span class="kw">struct </span>Cli {
+    <span class="attr">#[arg(short, long)]
+    </span>top_level: bool,
+    <span class="attr">#[command(subcommand)]
+    </span>subcommand: CliSub,
+}
+
+<span class="kw">fn </span>main() {
+    <span class="kw">let </span>args = Cli::parse();
+    <span class="macro">println!</span>(<span class="string">&quot;{args:#?}&quot;</span>);
+}</code></pre></div>
+<h4 id="flattening-hand-implemented-args-into-a-derived-application"><a href="#flattening-hand-implemented-args-into-a-derived-application">Flattening hand-implemented args into a derived application</a></h4>
+<p>When using the derive API, you can use <code>#[command(flatten)]</code> inside the struct to add arguments as
+if they were added directly to the containing struct. The type of the field is usually an
+struct that derived <code>Args</code>. However, you can also implement the <code>Args</code> trait manually on this
+struct (or any other type) and it can still be used inside the struct created with the derive
+API. The implementation of the <code>Args</code> trait will use the builder API to add the arguments to
+the <code>Command</code> instance created behind the scenes for you by the derive API.</p>
+<p>Notice how in the previous example we used <a href="../trait.Args.html#tymethod.augment_args" title="associated function clap::Args::augment_args"><code>augment_args</code></a> on the
+struct that derived <code>Parser</code>, whereas now we implement
+<a href="../trait.Args.html#tymethod.augment_args" title="associated function clap::Args::augment_args"><code>augment_args</code></a> ourselves, but the derive API calls it
+automatically since we used the <code>#[command(flatten)]</code> attribute.</p>
+<p>For example:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>clap::error::Error;
+<span class="kw">use </span>clap::{Arg, ArgAction, ArgMatches, Args, Command, FromArgMatches, Parser};
+
+<span class="attr">#[derive(Debug)]
+</span><span class="kw">struct </span>CliArgs {
+    foo: bool,
+    bar: bool,
+    quuz: <span class="prelude-ty">Option</span>&lt;String&gt;,
+}
+
+<span class="kw">impl </span>FromArgMatches <span class="kw">for </span>CliArgs {
+    <span class="kw">fn </span>from_arg_matches(matches: <span class="kw-2">&amp;</span>ArgMatches) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, Error&gt; {
+        <span class="kw">let </span><span class="kw-2">mut </span>matches = matches.clone();
+        <span class="self">Self</span>::from_arg_matches_mut(<span class="kw-2">&amp;mut </span>matches)
+    }
+    <span class="kw">fn </span>from_arg_matches_mut(matches: <span class="kw-2">&amp;mut </span>ArgMatches) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, Error&gt; {
+        <span class="prelude-val">Ok</span>(<span class="self">Self </span>{
+            foo: matches.get_flag(<span class="string">&quot;foo&quot;</span>),
+            bar: matches.get_flag(<span class="string">&quot;bar&quot;</span>),
+            quuz: matches.remove_one::&lt;String&gt;(<span class="string">&quot;quuz&quot;</span>),
+        })
+    }
+    <span class="kw">fn </span>update_from_arg_matches(<span class="kw-2">&amp;mut </span><span class="self">self</span>, matches: <span class="kw-2">&amp;</span>ArgMatches) -&gt; <span class="prelude-ty">Result</span>&lt;(), Error&gt; {
+        <span class="kw">let </span><span class="kw-2">mut </span>matches = matches.clone();
+        <span class="self">self</span>.update_from_arg_matches_mut(<span class="kw-2">&amp;mut </span>matches)
+    }
+    <span class="kw">fn </span>update_from_arg_matches_mut(<span class="kw-2">&amp;mut </span><span class="self">self</span>, matches: <span class="kw-2">&amp;mut </span>ArgMatches) -&gt; <span class="prelude-ty">Result</span>&lt;(), Error&gt; {
+        <span class="self">self</span>.foo |= matches.get_flag(<span class="string">&quot;foo&quot;</span>);
+        <span class="self">self</span>.bar |= matches.get_flag(<span class="string">&quot;bar&quot;</span>);
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(quuz) = matches.remove_one::&lt;String&gt;(<span class="string">&quot;quuz&quot;</span>) {
+            <span class="self">self</span>.quuz = <span class="prelude-val">Some</span>(quuz);
+        }
+        <span class="prelude-val">Ok</span>(())
+    }
+}
+
+<span class="kw">impl </span>Args <span class="kw">for </span>CliArgs {
+    <span class="kw">fn </span>augment_args(cmd: Command) -&gt; Command {
+        cmd.arg(
+            Arg::new(<span class="string">&quot;foo&quot;</span>)
+                .short(<span class="string">&#39;f&#39;</span>)
+                .long(<span class="string">&quot;foo&quot;</span>)
+                .action(ArgAction::SetTrue),
+        )
+        .arg(
+            Arg::new(<span class="string">&quot;bar&quot;</span>)
+                .short(<span class="string">&#39;b&#39;</span>)
+                .long(<span class="string">&quot;bar&quot;</span>)
+                .action(ArgAction::SetTrue),
+        )
+        .arg(
+            Arg::new(<span class="string">&quot;quuz&quot;</span>)
+                .short(<span class="string">&#39;q&#39;</span>)
+                .long(<span class="string">&quot;quuz&quot;</span>)
+                .action(ArgAction::Set),
+        )
+    }
+    <span class="kw">fn </span>augment_args_for_update(cmd: Command) -&gt; Command {
+        cmd.arg(
+            Arg::new(<span class="string">&quot;foo&quot;</span>)
+                .short(<span class="string">&#39;f&#39;</span>)
+                .long(<span class="string">&quot;foo&quot;</span>)
+                .action(ArgAction::SetTrue),
+        )
+        .arg(
+            Arg::new(<span class="string">&quot;bar&quot;</span>)
+                .short(<span class="string">&#39;b&#39;</span>)
+                .long(<span class="string">&quot;bar&quot;</span>)
+                .action(ArgAction::SetTrue),
+        )
+        .arg(
+            Arg::new(<span class="string">&quot;quuz&quot;</span>)
+                .short(<span class="string">&#39;q&#39;</span>)
+                .long(<span class="string">&quot;quuz&quot;</span>)
+                .action(ArgAction::Set),
+        )
+    }
+}
+
+<span class="attr">#[derive(Parser, Debug)]
+</span><span class="kw">struct </span>Cli {
+    <span class="attr">#[arg(short, long)]
+    </span>top_level: bool,
+    <span class="attr">#[command(flatten)]
+    </span>more_args: CliArgs,
+}
+
+<span class="kw">fn </span>main() {
+    <span class="kw">let </span>args = Cli::parse();
+    <span class="macro">println!</span>(<span class="string">&quot;{args:#?}&quot;</span>);
+}</code></pre></div>
+<h3 id="tips"><a href="#tips">Tips</a></h3>
+<ul>
+<li>To get access to a <a href="../builder/struct.Command.html" title="struct clap::builder::Command"><code>Command</code></a> call
+<a href="../trait.CommandFactory.html#tymethod.command" title="associated function clap::CommandFactory::command"><code>CommandFactory::command</code></a> (implemented when deriving
+<a href="../trait.Parser.html" title="trait clap::Parser"><code>Parser</code></a>)</li>
+<li>Proactively check for bad <a href="../builder/struct.Command.html" title="struct clap::builder::Command"><code>Command</code></a> configurations by calling
+<a href="../builder/struct.Command.html#method.debug_assert" title="method clap::builder::Command::debug_assert"><code>Command::debug_assert</code></a> in a test
+(<a href="../tutorial_derive/05_01_assert.rs">example</a>)</li>
+<li>Always remember to <a href="#doc-comments">document</a> args and commands with <code>#![deny(missing_docs)]</code></li>
+</ul>
+</div></details><h2 id="modules" class="small-section-header"><a href="#modules">Modules</a></h2><ul class="item-table"><li><div class="item-name"><a class="mod" href="_cookbook/index.html" title="mod clap::_derive::_cookbook">_cookbook</a></div><div class="desc docblock-short">Documentation: Cookbook</div></li><li><div class="item-name"><a class="mod" href="_tutorial/index.html" title="mod clap::_derive::_tutorial">_tutorial</a></div><div class="desc docblock-short">Documentation: Derive Tutorial</div></li></ul></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="clap" data-themes="" data-resource-suffix="" data-rustdoc-version="1.70.0-nightly (f63ccaf25 2023-03-06)" data-search-js="search-8a59a8356673ec1f.js" data-settings-js="settings-f0c5c39777a9a2f6.js" data-settings-css="settings-0bcba95ff279c1db.css" ></div></body></html>

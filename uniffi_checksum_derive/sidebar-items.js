@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"derive":[["Checksum",""]]};
+window.SIDEBAR_ITEMS = {"derive":["Checksum"]};

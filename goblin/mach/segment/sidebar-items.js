@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"struct":[["RelocationIterator",""],["Section","Generalized 32/64 bit Section"],["SectionIterator",""],["Segment","Generalized 32/64 bit Segment Command"],["Segments","An opaque 32/64-bit container for Mach-o segments"]],"type":[["SectionData",""]]};
+window.SIDEBAR_ITEMS = {"struct":["RelocationIterator","Section","SectionIterator","Segment","Segments"],"type":["SectionData"]};

@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"enum":[["DynaInt","The wrapper implementation"]]};
+window.SIDEBAR_ITEMS = {"enum":["DynaInt"]};

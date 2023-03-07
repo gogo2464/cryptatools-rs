@@ -1,0 +1,1146 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Documentation: Derive Tutorial"><title>clap::_derive::_tutorial - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Bold-a2c9cd1067f8b328.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-c4dbdcde0fbd8430.css" id="mainThemeStyle"><link rel="stylesheet" id="themeStyle" href="../../../static.files/light-db279b6232be9c13.css"><link rel="stylesheet" disabled href="../../../static.files/dark-cf923f49f397b216.css"><link rel="stylesheet" disabled href="../../../static.files/ayu-be46fdc453a55015.css"><script src="../../../static.files/storage-3891ce972e3a2bf8.js"></script><script defer src="../../../static.files/main-98a684e84ae5b08b.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc mod"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="logo-container" href="../../../clap/index.html"><img src="https://raw.githubusercontent.com/clap-rs/clap/master/assets/clap.png" alt="logo"></a><h2></h2></nav><nav class="sidebar"><a class="logo-container" href="../../../clap/index.html">
+                <img src="https://raw.githubusercontent.com/clap-rs/clap/master/assets/clap.png" alt="logo"></a><h2 class="location"><a href="#">Module _tutorial</a></h2><div class="sidebar-elems"></div></nav><main><div class="width-limiter"><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="main-heading"><h1>Module <a href="../../index.html">clap</a>::<wbr><a href="../index.html">_derive</a>::<wbr><a class="mod" href="#">_tutorial</a><button id="copy-path" title="Copy item path to clipboard"><img src="../../../static.files/clipboard-7571035ce49a181d.svg" width="19" height="18" alt="Copy item path"></button></h1><span class="out-of-band"><a class="srclink" href="../../../src/clap/_derive/_tutorial.rs.html#10-226">source</a> · <button id="toggle-all-docs" title="collapse all docs">[<span>&#x2212;</span>]</button></span></div><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><h2 id="documentation-derive-tutorial"><a href="#documentation-derive-tutorial">Documentation: Derive Tutorial</a></h2>
+<ol>
+<li><a href="#quick-start">Quick Start</a></li>
+<li><a href="#configuring-the-parser">Configuring the Parser</a></li>
+<li><a href="#adding-arguments">Adding Arguments</a>
+<ol>
+<li><a href="#positionals">Positionals</a></li>
+<li><a href="#options">Options</a></li>
+<li><a href="#flags">Flags</a></li>
+<li><a href="#subcommands">Subcommands</a></li>
+<li><a href="#defaults">Defaults</a></li>
+</ol>
+</li>
+<li>Validation
+<ol>
+<li><a href="#enumerated-values">Enumerated values</a></li>
+<li><a href="#validated-values">Validated values</a></li>
+<li><a href="#argument-relations">Argument Relations</a></li>
+<li><a href="#custom-validation">Custom Validation</a></li>
+</ol>
+</li>
+<li><a href="#testing">Testing</a></li>
+</ol>
+<p>See also</p>
+<ul>
+<li><a href="../../_faq/index.html#when-should-i-use-the-builder-vs-derive-apis" title="mod clap::_faq">FAQ: When should I use the builder vs derive APIs?</a></li>
+<li>The <a href="../_cookbook/index.html" title="mod clap::_derive::_cookbook">cookbook</a> for more application-focused examples</li>
+</ul>
+<h3 id="quick-start"><a href="#quick-start">Quick Start</a></h3>
+<p>You can create an application declaratively with a <code>struct</code> and some
+attributes.  <strong>This requires enabling the <a href="../../_features/index.html" title="mod clap::_features"><code>derive</code> feature flag</a>.</strong></p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>std::path::PathBuf;
+
+<span class="kw">use </span>clap::{Parser, Subcommand};
+
+<span class="attr">#[derive(Parser)]
+#[command(author, version, about, long_about = <span class="prelude-val">None</span>)]
+</span><span class="kw">struct </span>Cli {
+    <span class="doccomment">/// Optional name to operate on
+    </span>name: <span class="prelude-ty">Option</span>&lt;String&gt;,
+
+    <span class="doccomment">/// Sets a custom config file
+    </span><span class="attr">#[arg(short, long, value_name = <span class="string">&quot;FILE&quot;</span>)]
+    </span>config: <span class="prelude-ty">Option</span>&lt;PathBuf&gt;,
+
+    <span class="doccomment">/// Turn debugging information on
+    </span><span class="attr">#[arg(short, long, action = clap::ArgAction::Count)]
+    </span>debug: u8,
+
+    <span class="attr">#[command(subcommand)]
+    </span>command: <span class="prelude-ty">Option</span>&lt;Commands&gt;,
+}
+
+<span class="attr">#[derive(Subcommand)]
+</span><span class="kw">enum </span>Commands {
+    <span class="doccomment">/// does testing things
+    </span>Test {
+        <span class="doccomment">/// lists test values
+        </span><span class="attr">#[arg(short, long)]
+        </span>list: bool,
+    },
+}
+
+<span class="kw">fn </span>main() {
+    <span class="kw">let </span>cli = Cli::parse();
+
+    <span class="comment">// You can check the value provided by positional arguments, or option arguments
+    </span><span class="kw">if let </span><span class="prelude-val">Some</span>(name) = cli.name.as_deref() {
+        <span class="macro">println!</span>(<span class="string">&quot;Value for name: {name}&quot;</span>);
+    }
+
+    <span class="kw">if let </span><span class="prelude-val">Some</span>(config_path) = cli.config.as_deref() {
+        <span class="macro">println!</span>(<span class="string">&quot;Value for config: {}&quot;</span>, config_path.display());
+    }
+
+    <span class="comment">// You can see how many times a particular flag or argument occurred
+    // Note, only flags can have multiple occurrences
+    </span><span class="kw">match </span>cli.debug {
+        <span class="number">0 </span>=&gt; <span class="macro">println!</span>(<span class="string">&quot;Debug mode is off&quot;</span>),
+        <span class="number">1 </span>=&gt; <span class="macro">println!</span>(<span class="string">&quot;Debug mode is kind of on&quot;</span>),
+        <span class="number">2 </span>=&gt; <span class="macro">println!</span>(<span class="string">&quot;Debug mode is on&quot;</span>),
+        <span class="kw">_ </span>=&gt; <span class="macro">println!</span>(<span class="string">&quot;Don&#39;t be crazy&quot;</span>),
+    }
+
+    <span class="comment">// You can check for the existence of subcommands, and if found use their
+    // matches just as you would the top level cmd
+    </span><span class="kw">match </span><span class="kw-2">&amp;</span>cli.command {
+        <span class="prelude-val">Some</span>(Commands::Test { list }) =&gt; {
+            <span class="kw">if </span><span class="kw-2">*</span>list {
+                <span class="macro">println!</span>(<span class="string">&quot;Printing testing lists...&quot;</span>);
+            } <span class="kw">else </span>{
+                <span class="macro">println!</span>(<span class="string">&quot;Not printing testing lists...&quot;</span>);
+            }
+        }
+        <span class="prelude-val">None </span>=&gt; {}
+    }
+
+    <span class="comment">// Continued program logic goes here...
+</span>}</code></pre></div>
+<div class="example-wrap"><pre class="language-console"><code>$ 01_quick_derive --help
+A simple to use, efficient, and full-featured Command Line Argument Parser
+
+Usage: 01_quick_derive[EXE] [OPTIONS] [NAME] [COMMAND]
+
+Commands:
+  test  does testing things
+  help  Print this message or the help of the given subcommand(s)
+
+Arguments:
+  [NAME]  Optional name to operate on
+
+Options:
+  -c, --config &lt;FILE&gt;  Sets a custom config file
+  -d, --debug...       Turn debugging information on
+  -h, --help           Print help
+  -V, --version        Print version
+
+</code></pre></div>
+<p>By default, the program does nothing:</p>
+<div class="example-wrap"><pre class="language-console"><code>$ 01_quick_derive
+Debug mode is off
+
+</code></pre></div>
+<p>But you can mix and match the various features</p>
+<div class="example-wrap"><pre class="language-console"><code>$ 01_quick_derive -dd test
+Debug mode is on
+Not printing testing lists...
+
+</code></pre></div><h3 id="configuring-the-parser"><a href="#configuring-the-parser">Configuring the Parser</a></h3>
+<p>You use derive <a href="../../trait.Parser.html" title="trait clap::Parser"><code>Parser</code></a> to start building a parser.</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>clap::Parser;
+
+<span class="attr">#[derive(Parser)]
+#[command(name = <span class="string">&quot;MyApp&quot;</span>)]
+#[command(author = <span class="string">&quot;Kevin K. &lt;kbknapp@gmail.com&gt;&quot;</span>)]
+#[command(version = <span class="string">&quot;1.0&quot;</span>)]
+#[command(about = <span class="string">&quot;Does awesome things&quot;</span>, long_about = <span class="prelude-val">None</span>)]
+</span><span class="kw">struct </span>Cli {
+    <span class="attr">#[arg(long)]
+    </span>two: String,
+    <span class="attr">#[arg(long)]
+    </span>one: String,
+}
+
+<span class="kw">fn </span>main() {
+    <span class="kw">let </span>cli = Cli::parse();
+
+    <span class="macro">println!</span>(<span class="string">&quot;two: {:?}&quot;</span>, cli.two);
+    <span class="macro">println!</span>(<span class="string">&quot;one: {:?}&quot;</span>, cli.one);
+}</code></pre></div>
+<div class="example-wrap"><pre class="language-console"><code>$ 02_apps_derive --help
+Does awesome things
+
+Usage: 02_apps_derive[EXE] --two &lt;TWO&gt; --one &lt;ONE&gt;
+
+Options:
+      --two &lt;TWO&gt;  
+      --one &lt;ONE&gt;  
+  -h, --help       Print help
+  -V, --version    Print version
+
+$ 02_apps_derive --version
+MyApp 1.0
+
+</code></pre></div>
+<p>You can use <code>#[command(author, version, about)]</code> attribute defaults to fill these fields in from your <code>Cargo.toml</code> file.</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>clap::Parser;
+
+<span class="attr">#[derive(Parser)]
+#[command(author, version, about, long_about = <span class="prelude-val">None</span>)] </span><span class="comment">// Read from `Cargo.toml`
+</span><span class="kw">struct </span>Cli {
+    <span class="attr">#[arg(long)]
+    </span>two: String,
+    <span class="attr">#[arg(long)]
+    </span>one: String,
+}
+
+<span class="kw">fn </span>main() {
+    <span class="kw">let </span>cli = Cli::parse();
+
+    <span class="macro">println!</span>(<span class="string">&quot;two: {:?}&quot;</span>, cli.two);
+    <span class="macro">println!</span>(<span class="string">&quot;one: {:?}&quot;</span>, cli.one);
+}</code></pre></div>
+<div class="example-wrap"><pre class="language-console"><code>$ 02_crate_derive --help
+A simple to use, efficient, and full-featured Command Line Argument Parser
+
+Usage: 02_crate_derive[EXE] --two &lt;TWO&gt; --one &lt;ONE&gt;
+
+Options:
+      --two &lt;TWO&gt;  
+      --one &lt;ONE&gt;  
+  -h, --help       Print help
+  -V, --version    Print version
+
+$ 02_crate_derive --version
+clap [..]
+
+</code></pre></div>
+<p>You can use attributes to change the application level behavior of clap.  Any <a href="../../builder/struct.Command.html" title="struct clap::builder::Command"><code>Command</code></a> builder function can be used as an attribute.</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>clap::Parser;
+
+<span class="attr">#[derive(Parser)]
+#[command(author, version, about, long_about = <span class="prelude-val">None</span>)]
+#[command(next_line_help = <span class="bool-val">true</span>)]
+</span><span class="kw">struct </span>Cli {
+    <span class="attr">#[arg(long)]
+    </span>two: String,
+    <span class="attr">#[arg(long)]
+    </span>one: String,
+}
+
+<span class="kw">fn </span>main() {
+    <span class="kw">let </span>cli = Cli::parse();
+
+    <span class="macro">println!</span>(<span class="string">&quot;two: {:?}&quot;</span>, cli.two);
+    <span class="macro">println!</span>(<span class="string">&quot;one: {:?}&quot;</span>, cli.one);
+}</code></pre></div>
+<div class="example-wrap"><pre class="language-console"><code>$ 02_app_settings_derive --help
+A simple to use, efficient, and full-featured Command Line Argument Parser
+
+Usage: 02_app_settings_derive[EXE] --two &lt;TWO&gt; --one &lt;ONE&gt;
+
+Options:
+      --two &lt;TWO&gt;
+          
+      --one &lt;ONE&gt;
+          
+  -h, --help
+          Print help
+  -V, --version
+          Print version
+
+</code></pre></div><h3 id="adding-arguments"><a href="#adding-arguments">Adding Arguments</a></h3><h4 id="positionals"><a href="#positionals">Positionals</a></h4>
+<p>You can have users specify values by their position on the command-line:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>clap::Parser;
+
+<span class="attr">#[derive(Parser)]
+#[command(author, version, about, long_about = <span class="prelude-val">None</span>)]
+</span><span class="kw">struct </span>Cli {
+    name: <span class="prelude-ty">Option</span>&lt;String&gt;,
+}
+
+<span class="kw">fn </span>main() {
+    <span class="kw">let </span>cli = Cli::parse();
+
+    <span class="macro">println!</span>(<span class="string">&quot;name: {:?}&quot;</span>, cli.name.as_deref());
+}</code></pre></div>
+<div class="example-wrap"><pre class="language-console"><code>$ 03_03_positional_derive --help
+A simple to use, efficient, and full-featured Command Line Argument Parser
+
+Usage: 03_03_positional_derive[EXE] [NAME]
+
+Arguments:
+  [NAME]  
+
+Options:
+  -h, --help     Print help
+  -V, --version  Print version
+
+$ 03_03_positional_derive
+name: None
+
+$ 03_03_positional_derive bob
+name: Some(&quot;bob&quot;)
+
+</code></pre></div>
+<p>Note that the default <a href="../../builder/enum.ArgAction.html" title="enum clap::builder::ArgAction"><code>ArgAction</code></a> is <a href="../../builder/enum.ArgAction.html#variant.Set" title="variant clap::builder::ArgAction::Set"><code>Set</code></a>.  To
+accept multiple values, use <a href="../../builder/enum.ArgAction.html#variant.Append" title="variant clap::builder::ArgAction::Append"><code>Append</code></a> via <code>Vec</code>:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>clap::Parser;
+
+<span class="attr">#[derive(Parser)]
+#[command(author, version, about, long_about = <span class="prelude-val">None</span>)]
+</span><span class="kw">struct </span>Cli {
+    name: Vec&lt;String&gt;,
+}
+
+<span class="kw">fn </span>main() {
+    <span class="kw">let </span>cli = Cli::parse();
+
+    <span class="macro">println!</span>(<span class="string">&quot;name: {:?}&quot;</span>, cli.name);
+}</code></pre></div>
+<div class="example-wrap"><pre class="language-console"><code>$ 03_03_positional_mult_derive --help
+A simple to use, efficient, and full-featured Command Line Argument Parser
+
+Usage: 03_03_positional_mult_derive[EXE] [NAME]...
+
+Arguments:
+  [NAME]...  
+
+Options:
+  -h, --help     Print help
+  -V, --version  Print version
+
+$ 03_03_positional_mult_derive
+name: []
+
+$ 03_03_positional_mult_derive bob
+name: [&quot;bob&quot;]
+
+$ 03_03_positional_mult_derive bob john
+name: [&quot;bob&quot;, &quot;john&quot;]
+
+</code></pre></div><h4 id="options"><a href="#options">Options</a></h4>
+<p>You can name your arguments with a flag:</p>
+<ul>
+<li>Order doesn’t matter</li>
+<li>They can be optional</li>
+<li>Intent is clearer</li>
+</ul>
+<p>The <code>#[arg(short = 'n')]</code> and <code>#[arg(long = &quot;name&quot;)]</code> attributes that define
+the flags are <a href="../../trait.Args.html" title="trait clap::Args"><code>Arg</code></a> methods that are derived from the field name when no value
+is specified (<code>#[arg(short)]</code> and <code>#[arg(long)]</code>).</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>clap::Parser;
+
+<span class="attr">#[derive(Parser)]
+#[command(author, version, about, long_about = <span class="prelude-val">None</span>)]
+</span><span class="kw">struct </span>Cli {
+    <span class="attr">#[arg(short, long)]
+    </span>name: <span class="prelude-ty">Option</span>&lt;String&gt;,
+}
+
+<span class="kw">fn </span>main() {
+    <span class="kw">let </span>cli = Cli::parse();
+
+    <span class="macro">println!</span>(<span class="string">&quot;name: {:?}&quot;</span>, cli.name.as_deref());
+}</code></pre></div>
+<div class="example-wrap"><pre class="language-console"><code>$ 03_02_option_derive --help
+A simple to use, efficient, and full-featured Command Line Argument Parser
+
+Usage: 03_02_option_derive[EXE] [OPTIONS]
+
+Options:
+  -n, --name &lt;NAME&gt;  
+  -h, --help         Print help
+  -V, --version      Print version
+
+$ 03_02_option_derive
+name: None
+
+$ 03_02_option_derive --name bob
+name: Some(&quot;bob&quot;)
+
+$ 03_02_option_derive --name=bob
+name: Some(&quot;bob&quot;)
+
+$ 03_02_option_derive -n bob
+name: Some(&quot;bob&quot;)
+
+$ 03_02_option_derive -n=bob
+name: Some(&quot;bob&quot;)
+
+$ 03_02_option_derive -nbob
+name: Some(&quot;bob&quot;)
+
+</code></pre></div>
+<p>Note that the default <a href="../../builder/enum.ArgAction.html" title="enum clap::builder::ArgAction"><code>ArgAction</code></a> is <a href="../../builder/enum.ArgAction.html#variant.Set" title="variant clap::builder::ArgAction::Set"><code>Set</code></a>.  To
+accept multiple occurrences, use <a href="../../builder/enum.ArgAction.html#variant.Append" title="variant clap::builder::ArgAction::Append"><code>Append</code></a> via <code>Vec</code>:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>clap::Parser;
+
+<span class="attr">#[derive(Parser)]
+#[command(author, version, about, long_about = <span class="prelude-val">None</span>)]
+</span><span class="kw">struct </span>Cli {
+    <span class="attr">#[arg(short, long)]
+    </span>name: Vec&lt;String&gt;,
+}
+
+<span class="kw">fn </span>main() {
+    <span class="kw">let </span>cli = Cli::parse();
+
+    <span class="macro">println!</span>(<span class="string">&quot;name: {:?}&quot;</span>, cli.name);
+}</code></pre></div>
+<div class="example-wrap"><pre class="language-console"><code>$ 03_02_option_mult_derive --help
+A simple to use, efficient, and full-featured Command Line Argument Parser
+
+Usage: 03_02_option_mult_derive[EXE] [OPTIONS]
+
+Options:
+  -n, --name &lt;NAME&gt;  
+  -h, --help         Print help
+  -V, --version      Print version
+
+$ 03_02_option_mult_derive
+name: []
+
+$ 03_02_option_mult_derive --name bob
+name: [&quot;bob&quot;]
+
+$ 03_02_option_mult_derive --name=bob
+name: [&quot;bob&quot;]
+
+$ 03_02_option_mult_derive -n bob
+name: [&quot;bob&quot;]
+
+$ 03_02_option_mult_derive -n=bob
+name: [&quot;bob&quot;]
+
+$ 03_02_option_mult_derive -nbob
+name: [&quot;bob&quot;]
+
+</code></pre></div><h4 id="flags"><a href="#flags">Flags</a></h4>
+<p>Flags can also be switches that can be on/off.  This is enabled via the
+<code>#[arg(action = ArgAction::SetTrue)]</code> attribute though this is implied when the field is a
+<code>bool</code>.</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>clap::Parser;
+
+<span class="attr">#[derive(Parser)]
+#[command(author, version, about, long_about = <span class="prelude-val">None</span>)]
+</span><span class="kw">struct </span>Cli {
+    <span class="attr">#[arg(short, long)]
+    </span>verbose: bool,
+}
+
+<span class="kw">fn </span>main() {
+    <span class="kw">let </span>cli = Cli::parse();
+
+    <span class="macro">println!</span>(<span class="string">&quot;verbose: {:?}&quot;</span>, cli.verbose);
+}</code></pre></div>
+<div class="example-wrap"><pre class="language-console"><code>$ 03_01_flag_bool_derive --help
+A simple to use, efficient, and full-featured Command Line Argument Parser
+
+Usage: 03_01_flag_bool_derive[EXE] [OPTIONS]
+
+Options:
+  -v, --verbose  
+  -h, --help     Print help
+  -V, --version  Print version
+
+$ 03_01_flag_bool_derive
+verbose: false
+
+$ 03_01_flag_bool_derive --verbose
+verbose: true
+
+$ 03_01_flag_bool_derive --verbose --verbose
+? failed
+error: the argument &#39;--verbose&#39; cannot be used multiple times
+
+Usage: 03_01_flag_bool_derive[EXE] [OPTIONS]
+
+For more information, try &#39;--help&#39;.
+
+</code></pre></div>
+<p>Note that the default <a href="../../builder/enum.ArgAction.html" title="enum clap::builder::ArgAction"><code>ArgAction</code></a> for a <code>bool</code> field is
+<a href="../../builder/enum.ArgAction.html#variant.SetTrue" title="variant clap::builder::ArgAction::SetTrue"><code>SetTrue</code></a>.  To accept multiple flags, use
+<a href="../../builder/enum.ArgAction.html#variant.Count" title="variant clap::builder::ArgAction::Count"><code>Count</code></a>:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>clap::Parser;
+
+<span class="attr">#[derive(Parser)]
+#[command(author, version, about, long_about = <span class="prelude-val">None</span>)]
+</span><span class="kw">struct </span>Cli {
+    <span class="attr">#[arg(short, long, action = clap::ArgAction::Count)]
+    </span>verbose: u8,
+}
+
+<span class="kw">fn </span>main() {
+    <span class="kw">let </span>cli = Cli::parse();
+
+    <span class="macro">println!</span>(<span class="string">&quot;verbose: {:?}&quot;</span>, cli.verbose);
+}</code></pre></div>
+<div class="example-wrap"><pre class="language-console"><code>$ 03_01_flag_count_derive --help
+A simple to use, efficient, and full-featured Command Line Argument Parser
+
+Usage: 03_01_flag_count_derive[EXE] [OPTIONS]
+
+Options:
+  -v, --verbose...  
+  -h, --help        Print help
+  -V, --version     Print version
+
+$ 03_01_flag_count_derive
+verbose: 0
+
+$ 03_01_flag_count_derive --verbose
+verbose: 1
+
+$ 03_01_flag_count_derive --verbose --verbose
+verbose: 2
+
+</code></pre></div><h4 id="subcommands"><a href="#subcommands">Subcommands</a></h4>
+<p>Subcommands are derived with <code>#[derive(Subcommand)]</code> and be added via <code>#[command(subcommand)]</code> attribute. Each
+instance of a <a href="../../trait.Subcommand.html" title="trait clap::Subcommand">Subcommand</a> can have its own version, author(s), Args, and even its own
+subcommands.</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>clap::{Parser, Subcommand};
+
+<span class="attr">#[derive(Parser)]
+#[command(author, version, about, long_about = <span class="prelude-val">None</span>)]
+#[command(propagate_version = <span class="bool-val">true</span>)]
+</span><span class="kw">struct </span>Cli {
+    <span class="attr">#[command(subcommand)]
+    </span>command: Commands,
+}
+
+<span class="attr">#[derive(Subcommand)]
+</span><span class="kw">enum </span>Commands {
+    <span class="doccomment">/// Adds files to myapp
+    </span>Add { name: <span class="prelude-ty">Option</span>&lt;String&gt; },
+}
+
+<span class="kw">fn </span>main() {
+    <span class="kw">let </span>cli = Cli::parse();
+
+    <span class="comment">// You can check for the existence of subcommands, and if found use their
+    // matches just as you would the top level cmd
+    </span><span class="kw">match </span><span class="kw-2">&amp;</span>cli.command {
+        Commands::Add { name } =&gt; {
+            <span class="macro">println!</span>(<span class="string">&quot;&#39;myapp add&#39; was used, name is: {name:?}&quot;</span>)
+        }
+    }
+}</code></pre></div>
+<p>We used a struct-variant to define the <code>add</code> subcommand.
+Alternatively, you can use a struct for your subcommand’s arguments:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>clap::{Args, Parser, Subcommand};
+
+<span class="attr">#[derive(Parser)]
+#[command(author, version, about, long_about = <span class="prelude-val">None</span>)]
+#[command(propagate_version = <span class="bool-val">true</span>)]
+</span><span class="kw">struct </span>Cli {
+    <span class="attr">#[command(subcommand)]
+    </span>command: Commands,
+}
+
+<span class="attr">#[derive(Subcommand)]
+</span><span class="kw">enum </span>Commands {
+    <span class="doccomment">/// Adds files to myapp
+    </span>Add(AddArgs),
+}
+
+<span class="attr">#[derive(Args)]
+</span><span class="kw">struct </span>AddArgs {
+    name: <span class="prelude-ty">Option</span>&lt;String&gt;,
+}
+
+<span class="kw">fn </span>main() {
+    <span class="kw">let </span>cli = Cli::parse();
+
+    <span class="comment">// You can check for the existence of subcommands, and if found use their
+    // matches just as you would the top level cmd
+    </span><span class="kw">match </span><span class="kw-2">&amp;</span>cli.command {
+        Commands::Add(name) =&gt; {
+            <span class="macro">println!</span>(<span class="string">&quot;&#39;myapp add&#39; was used, name is: {:?}&quot;</span>, name.name)
+        }
+    }
+}</code></pre></div>
+<div class="example-wrap"><pre class="language-console"><code>$ 03_04_subcommands_derive help
+A simple to use, efficient, and full-featured Command Line Argument Parser
+
+Usage: 03_04_subcommands_derive[EXE] &lt;COMMAND&gt;
+
+Commands:
+  add   Adds files to myapp
+  help  Print this message or the help of the given subcommand(s)
+
+Options:
+  -h, --help     Print help
+  -V, --version  Print version
+
+$ 03_04_subcommands_derive help add
+Adds files to myapp
+
+Usage: 03_04_subcommands_derive[EXE] add [NAME]
+
+Arguments:
+  [NAME]  
+
+Options:
+  -h, --help     Print help
+  -V, --version  Print version
+
+$ 03_04_subcommands_derive add bob
+&#39;myapp add&#39; was used, name is: Some(&quot;bob&quot;)
+
+</code></pre></div>
+<p>Because we used <code>command: Commands</code> instead of <code>command: Option&lt;Commands&gt;</code>:</p>
+<div class="example-wrap"><pre class="language-console"><code>$ 03_04_subcommands_derive
+? failed
+A simple to use, efficient, and full-featured Command Line Argument Parser
+
+Usage: 03_04_subcommands_derive[EXE] &lt;COMMAND&gt;
+
+Commands:
+  add   Adds files to myapp
+  help  Print this message or the help of the given subcommand(s)
+
+Options:
+  -h, --help     Print help
+  -V, --version  Print version
+
+</code></pre></div>
+<p>Because we added <code>#[command(propagate_version = true)]</code>:</p>
+<div class="example-wrap"><pre class="language-console"><code>$ 03_04_subcommands_derive --version
+clap [..]
+
+$ 03_04_subcommands_derive add --version
+clap-add [..]
+
+</code></pre></div><h4 id="defaults"><a href="#defaults">Defaults</a></h4>
+<p>We’ve previously showed that arguments can be <a href="../../builder/struct.Arg.html#method.required" title="method clap::builder::Arg::required"><code>required</code></a> or optional.
+When optional, you work with a <code>Option</code> and can <code>unwrap_or</code>.  Alternatively, you can
+set <code>#[arg(default_value_t)]</code>.</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>clap::Parser;
+
+<span class="attr">#[derive(Parser)]
+#[command(author, version, about, long_about = <span class="prelude-val">None</span>)]
+</span><span class="kw">struct </span>Cli {
+    <span class="attr">#[arg(default_value_t = <span class="number">2020</span>)]
+    </span>port: u16,
+}
+
+<span class="kw">fn </span>main() {
+    <span class="kw">let </span>cli = Cli::parse();
+
+    <span class="macro">println!</span>(<span class="string">&quot;port: {:?}&quot;</span>, cli.port);
+}</code></pre></div>
+<div class="example-wrap"><pre class="language-console"><code>$ 03_05_default_values_derive --help
+A simple to use, efficient, and full-featured Command Line Argument Parser
+
+Usage: 03_05_default_values_derive[EXE] [PORT]
+
+Arguments:
+  [PORT]  [default: 2020]
+
+Options:
+  -h, --help     Print help
+  -V, --version  Print version
+
+$ 03_05_default_values_derive
+port: 2020
+
+$ 03_05_default_values_derive 22
+port: 22
+
+</code></pre></div><h3 id="validation"><a href="#validation">Validation</a></h3>
+<p>An appropriate default parser/validator will be selected for the field’s type.  See
+<a href="../../macro.value_parser.html" title="macro clap::value_parser"><code>value_parser!</code></a> for more details.</p>
+<h4 id="enumerated-values"><a href="#enumerated-values">Enumerated values</a></h4>
+<p>For example, if you have arguments of specific values you want to test for, you can derive
+<a href="../../trait.ValueEnum.html" title="trait clap::ValueEnum"><code>ValueEnum</code></a>.</p>
+<p>This allows you specify the valid values for that argument. If the user does not use one of
+those specific values, they will receive a graceful exit with error message informing them
+of the mistake, and what the possible valid values are</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>clap::{Parser, ValueEnum};
+
+<span class="attr">#[derive(Parser)]
+#[command(author, version, about, long_about = <span class="prelude-val">None</span>)]
+</span><span class="kw">struct </span>Cli {
+    <span class="doccomment">/// What mode to run the program in
+    </span><span class="attr">#[arg(value_enum)]
+    </span>mode: Mode,
+}
+
+<span class="attr">#[derive(Copy, Clone, PartialEq, Eq, PartialOrd, Ord, ValueEnum)]
+</span><span class="kw">enum </span>Mode {
+    <span class="doccomment">/// Run swiftly
+    </span>Fast,
+    <span class="doccomment">/// Crawl slowly but steadily
+    ///
+    /// This paragraph is ignored because there is no long help text for possible values.
+    </span>Slow,
+}
+
+<span class="kw">fn </span>main() {
+    <span class="kw">let </span>cli = Cli::parse();
+
+    <span class="kw">match </span>cli.mode {
+        Mode::Fast =&gt; {
+            <span class="macro">println!</span>(<span class="string">&quot;Hare&quot;</span>);
+        }
+        Mode::Slow =&gt; {
+            <span class="macro">println!</span>(<span class="string">&quot;Tortoise&quot;</span>);
+        }
+    }
+}</code></pre></div>
+<div class="example-wrap"><pre class="language-console"><code>$ 04_01_enum_derive --help
+A simple to use, efficient, and full-featured Command Line Argument Parser
+
+Usage: 04_01_enum_derive[EXE] &lt;MODE&gt;
+
+Arguments:
+  &lt;MODE&gt;
+          What mode to run the program in
+
+          Possible values:
+          - fast: Run swiftly
+          - slow: Crawl slowly but steadily
+
+Options:
+  -h, --help
+          Print help (see a summary with &#39;-h&#39;)
+
+  -V, --version
+          Print version
+
+$ 04_01_enum_derive -h
+A simple to use, efficient, and full-featured Command Line Argument Parser
+
+Usage: 04_01_enum_derive[EXE] &lt;MODE&gt;
+
+Arguments:
+  &lt;MODE&gt;  What mode to run the program in [possible values: fast, slow]
+
+Options:
+  -h, --help     Print help (see more with &#39;--help&#39;)
+  -V, --version  Print version
+
+$ 04_01_enum_derive fast
+Hare
+
+$ 04_01_enum_derive slow
+Tortoise
+
+$ 04_01_enum_derive medium
+? failed
+error: invalid value &#39;medium&#39; for &#39;&lt;MODE&gt;&#39;
+  [possible values: fast, slow]
+
+For more information, try &#39;--help&#39;.
+
+</code></pre></div><h4 id="validated-values"><a href="#validated-values">Validated values</a></h4>
+<p>More generally, you can validate and parse into any data type.</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>clap::Parser;
+
+<span class="attr">#[derive(Parser)]
+#[command(author, version, about, long_about = <span class="prelude-val">None</span>)]
+</span><span class="kw">struct </span>Cli {
+    <span class="doccomment">/// Network port to use
+    </span><span class="attr">#[arg(value_parser = <span class="macro">clap::value_parser!</span>(u16).range(<span class="number">1</span>..))]
+    </span>port: u16,
+}
+
+<span class="kw">fn </span>main() {
+    <span class="kw">let </span>cli = Cli::parse();
+
+    <span class="macro">println!</span>(<span class="string">&quot;PORT = {}&quot;</span>, cli.port);
+}</code></pre></div>
+<div class="example-wrap"><pre class="language-console"><code>$ 04_02_parse_derive --help
+A simple to use, efficient, and full-featured Command Line Argument Parser
+
+Usage: 04_02_parse_derive[EXE] &lt;PORT&gt;
+
+Arguments:
+  &lt;PORT&gt;  Network port to use
+
+Options:
+  -h, --help     Print help
+  -V, --version  Print version
+
+$ 04_02_parse_derive 22
+PORT = 22
+
+$ 04_02_parse_derive foobar
+? failed
+error: invalid value &#39;foobar&#39; for &#39;&lt;PORT&gt;&#39;: invalid digit found in string
+
+For more information, try &#39;--help&#39;.
+
+$ 04_02_parse_derive 0
+? failed
+error: invalid value &#39;0&#39; for &#39;&lt;PORT&gt;&#39;: 0 is not in 1..=65535
+
+For more information, try &#39;--help&#39;.
+
+</code></pre></div>
+<p>A custom parser can be used to improve the error messages or provide additional validation:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>std::ops::RangeInclusive;
+
+<span class="kw">use </span>clap::Parser;
+
+<span class="attr">#[derive(Parser)]
+#[command(author, version, about, long_about = <span class="prelude-val">None</span>)]
+</span><span class="kw">struct </span>Cli {
+    <span class="doccomment">/// Network port to use
+    </span><span class="attr">#[arg(value_parser = port_in_range)]
+    </span>port: u16,
+}
+
+<span class="kw">fn </span>main() {
+    <span class="kw">let </span>cli = Cli::parse();
+
+    <span class="macro">println!</span>(<span class="string">&quot;PORT = {}&quot;</span>, cli.port);
+}
+
+<span class="kw">const </span>PORT_RANGE: RangeInclusive&lt;usize&gt; = <span class="number">1</span>..=<span class="number">65535</span>;
+
+<span class="kw">fn </span>port_in_range(s: <span class="kw-2">&amp;</span>str) -&gt; <span class="prelude-ty">Result</span>&lt;u16, String&gt; {
+    <span class="kw">let </span>port: usize = s
+        .parse()
+        .map_err(|<span class="kw">_</span>| <span class="macro">format!</span>(<span class="string">&quot;`{s}` isn&#39;t a port number&quot;</span>))<span class="question-mark">?</span>;
+    <span class="kw">if </span>PORT_RANGE.contains(<span class="kw-2">&amp;</span>port) {
+        <span class="prelude-val">Ok</span>(port <span class="kw">as </span>u16)
+    } <span class="kw">else </span>{
+        <span class="prelude-val">Err</span>(<span class="macro">format!</span>(
+            <span class="string">&quot;port not in range {}-{}&quot;</span>,
+            PORT_RANGE.start(),
+            PORT_RANGE.end()
+        ))
+    }
+}</code></pre></div>
+<div class="example-wrap"><pre class="language-console"><code>$ 04_02_validate_derive --help
+A simple to use, efficient, and full-featured Command Line Argument Parser
+
+Usage: 04_02_validate_derive[EXE] &lt;PORT&gt;
+
+Arguments:
+  &lt;PORT&gt;  Network port to use
+
+Options:
+  -h, --help     Print help
+  -V, --version  Print version
+
+$ 04_02_validate_derive 22
+PORT = 22
+
+$ 04_02_validate_derive foobar
+? failed
+error: invalid value &#39;foobar&#39; for &#39;&lt;PORT&gt;&#39;: `foobar` isn&#39;t a port number
+
+For more information, try &#39;--help&#39;.
+
+$ 04_02_validate_derive 0
+? failed
+error: invalid value &#39;0&#39; for &#39;&lt;PORT&gt;&#39;: port not in range 1-65535
+
+For more information, try &#39;--help&#39;.
+
+</code></pre></div>
+<p>See <a href="../../builder/struct.Arg.html#method.value_parser" title="method clap::builder::Arg::value_parser"><code>Arg::value_parser</code></a> for more details.</p>
+<h4 id="argument-relations"><a href="#argument-relations">Argument Relations</a></h4>
+<p>You can declare dependencies or conflicts between <a href="../../builder/struct.Arg.html" title="struct clap::builder::Arg"><code>Arg</code></a>s or even
+<a href="../../builder/struct.ArgGroup.html" title="struct clap::builder::ArgGroup"><code>ArgGroup</code></a>s.</p>
+<p><a href="../../builder/struct.ArgGroup.html" title="struct clap::builder::ArgGroup"><code>ArgGroup</code></a>s  make it easier to declare relations instead of having to list
+each individually, or when you want a rule to apply “any but not all” arguments.</p>
+<p>Perhaps the most common use of <a href="../../builder/struct.ArgGroup.html" title="struct clap::builder::ArgGroup"><code>ArgGroup</code></a>s is to require one and <em>only</em> one
+argument to be present out of a given set. Imagine that you had multiple arguments, and you
+want one of them to be required, but making all of them required isn’t feasible because perhaps
+they conflict with each other.</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>clap::{ArgGroup, Parser};
+
+<span class="attr">#[derive(Parser)]
+#[command(author, version, about, long_about = <span class="prelude-val">None</span>)]
+#[command(group(
+            ArgGroup::new(<span class="string">&quot;vers&quot;</span>)
+                .required(<span class="bool-val">true</span>)
+                .args([<span class="string">&quot;set_ver&quot;</span>, <span class="string">&quot;major&quot;</span>, <span class="string">&quot;minor&quot;</span>, <span class="string">&quot;patch&quot;</span>]</span>),
+        ))]
+<span class="kw">struct </span>Cli {
+    <span class="doccomment">/// set version manually
+    </span><span class="attr">#[arg(long, value_name = <span class="string">&quot;VER&quot;</span>)]
+    </span>set_ver: <span class="prelude-ty">Option</span>&lt;String&gt;,
+
+    <span class="doccomment">/// auto inc major
+    </span><span class="attr">#[arg(long)]
+    </span>major: bool,
+
+    <span class="doccomment">/// auto inc minor
+    </span><span class="attr">#[arg(long)]
+    </span>minor: bool,
+
+    <span class="doccomment">/// auto inc patch
+    </span><span class="attr">#[arg(long)]
+    </span>patch: bool,
+
+    <span class="doccomment">/// some regular input
+    </span><span class="attr">#[arg(group = <span class="string">&quot;input&quot;</span>)]
+    </span>input_file: <span class="prelude-ty">Option</span>&lt;String&gt;,
+
+    <span class="doccomment">/// some special input argument
+    </span><span class="attr">#[arg(long, group = <span class="string">&quot;input&quot;</span>)]
+    </span>spec_in: <span class="prelude-ty">Option</span>&lt;String&gt;,
+
+    <span class="attr">#[arg(short, requires = <span class="string">&quot;input&quot;</span>)]
+    </span>config: <span class="prelude-ty">Option</span>&lt;String&gt;,
+}
+
+<span class="kw">fn </span>main() {
+    <span class="kw">let </span>cli = Cli::parse();
+
+    <span class="comment">// Let&#39;s assume the old version 1.2.3
+    </span><span class="kw">let </span><span class="kw-2">mut </span>major = <span class="number">1</span>;
+    <span class="kw">let </span><span class="kw-2">mut </span>minor = <span class="number">2</span>;
+    <span class="kw">let </span><span class="kw-2">mut </span>patch = <span class="number">3</span>;
+
+    <span class="comment">// See if --set_ver was used to set the version manually
+    </span><span class="kw">let </span>version = <span class="kw">if let </span><span class="prelude-val">Some</span>(ver) = cli.set_ver.as_deref() {
+        ver.to_string()
+    } <span class="kw">else </span>{
+        <span class="comment">// Increment the one requested (in a real program, we&#39;d reset the lower numbers)
+        </span><span class="kw">let </span>(maj, min, pat) = (cli.major, cli.minor, cli.patch);
+        <span class="kw">match </span>(maj, min, pat) {
+            (<span class="bool-val">true</span>, <span class="kw">_</span>, <span class="kw">_</span>) =&gt; major += <span class="number">1</span>,
+            (<span class="kw">_</span>, <span class="bool-val">true</span>, <span class="kw">_</span>) =&gt; minor += <span class="number">1</span>,
+            (<span class="kw">_</span>, <span class="kw">_</span>, <span class="bool-val">true</span>) =&gt; patch += <span class="number">1</span>,
+            <span class="kw">_ </span>=&gt; <span class="macro">unreachable!</span>(),
+        };
+        <span class="macro">format!</span>(<span class="string">&quot;{major}.{minor}.{patch}&quot;</span>)
+    };
+
+    <span class="macro">println!</span>(<span class="string">&quot;Version: {version}&quot;</span>);
+
+    <span class="comment">// Check for usage of -c
+    </span><span class="kw">if let </span><span class="prelude-val">Some</span>(config) = cli.config.as_deref() {
+        <span class="kw">let </span>input = cli
+            .input_file
+            .as_deref()
+            .unwrap_or_else(|| cli.spec_in.as_deref().unwrap());
+        <span class="macro">println!</span>(<span class="string">&quot;Doing work using input {input} and config {config}&quot;</span>);
+    }
+}</code></pre></div>
+<div class="example-wrap"><pre class="language-console"><code>$ 04_03_relations_derive --help
+A simple to use, efficient, and full-featured Command Line Argument Parser
+
+Usage: 04_03_relations_derive[EXE] [OPTIONS] &lt;--set-ver &lt;VER&gt;|--major|--minor|--patch&gt; [INPUT_FILE]
+
+Arguments:
+  [INPUT_FILE]  some regular input
+
+Options:
+      --set-ver &lt;VER&gt;      set version manually
+      --major              auto inc major
+      --minor              auto inc minor
+      --patch              auto inc patch
+      --spec-in &lt;SPEC_IN&gt;  some special input argument
+  -c &lt;CONFIG&gt;              
+  -h, --help               Print help
+  -V, --version            Print version
+
+$ 04_03_relations_derive
+? failed
+error: the following required arguments were not provided:
+  &lt;--set-ver &lt;VER&gt;|--major|--minor|--patch&gt;
+
+Usage: 04_03_relations_derive[EXE] &lt;--set-ver &lt;VER&gt;|--major|--minor|--patch&gt; [INPUT_FILE]
+
+For more information, try &#39;--help&#39;.
+
+$ 04_03_relations_derive --major
+Version: 2.2.3
+
+$ 04_03_relations_derive --major --minor
+? failed
+error: the argument &#39;--major&#39; cannot be used with &#39;--minor&#39;
+
+Usage: 04_03_relations_derive[EXE] &lt;--set-ver &lt;VER&gt;|--major|--minor|--patch&gt; [INPUT_FILE]
+
+For more information, try &#39;--help&#39;.
+
+$ 04_03_relations_derive --major -c config.toml
+? failed
+error: the following required arguments were not provided:
+  &lt;INPUT_FILE|--spec-in &lt;SPEC_IN&gt;&gt;
+
+Usage: 04_03_relations_derive[EXE] -c &lt;CONFIG&gt; &lt;--set-ver &lt;VER&gt;|--major|--minor|--patch&gt; &lt;INPUT_FILE|--spec-in &lt;SPEC_IN&gt;&gt;
+
+For more information, try &#39;--help&#39;.
+
+$ 04_03_relations_derive --major -c config.toml --spec-in input.txt
+Version: 2.2.3
+Doing work using input input.txt and config config.toml
+
+</code></pre></div><h4 id="custom-validation"><a href="#custom-validation">Custom Validation</a></h4>
+<p>As a last resort, you can create custom errors with the basics of clap’s formatting.</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>clap::error::ErrorKind;
+<span class="kw">use </span>clap::{CommandFactory, Parser};
+
+<span class="attr">#[derive(Parser)]
+#[command(author, version, about, long_about = <span class="prelude-val">None</span>)]
+</span><span class="kw">struct </span>Cli {
+    <span class="doccomment">/// set version manually
+    </span><span class="attr">#[arg(long, value_name = <span class="string">&quot;VER&quot;</span>)]
+    </span>set_ver: <span class="prelude-ty">Option</span>&lt;String&gt;,
+
+    <span class="doccomment">/// auto inc major
+    </span><span class="attr">#[arg(long)]
+    </span>major: bool,
+
+    <span class="doccomment">/// auto inc minor
+    </span><span class="attr">#[arg(long)]
+    </span>minor: bool,
+
+    <span class="doccomment">/// auto inc patch
+    </span><span class="attr">#[arg(long)]
+    </span>patch: bool,
+
+    <span class="doccomment">/// some regular input
+    </span>input_file: <span class="prelude-ty">Option</span>&lt;String&gt;,
+
+    <span class="doccomment">/// some special input argument
+    </span><span class="attr">#[arg(long)]
+    </span>spec_in: <span class="prelude-ty">Option</span>&lt;String&gt;,
+
+    <span class="attr">#[arg(short)]
+    </span>config: <span class="prelude-ty">Option</span>&lt;String&gt;,
+}
+
+<span class="kw">fn </span>main() {
+    <span class="kw">let </span>cli = Cli::parse();
+
+    <span class="comment">// Let&#39;s assume the old version 1.2.3
+    </span><span class="kw">let </span><span class="kw-2">mut </span>major = <span class="number">1</span>;
+    <span class="kw">let </span><span class="kw-2">mut </span>minor = <span class="number">2</span>;
+    <span class="kw">let </span><span class="kw-2">mut </span>patch = <span class="number">3</span>;
+
+    <span class="comment">// See if --set-ver was used to set the version manually
+    </span><span class="kw">let </span>version = <span class="kw">if let </span><span class="prelude-val">Some</span>(ver) = cli.set_ver.as_deref() {
+        <span class="kw">if </span>cli.major || cli.minor || cli.patch {
+            <span class="kw">let </span><span class="kw-2">mut </span>cmd = Cli::command();
+            cmd.error(
+                ErrorKind::ArgumentConflict,
+                <span class="string">&quot;Can&#39;t do relative and absolute version change&quot;</span>,
+            )
+            .exit();
+        }
+        ver.to_string()
+    } <span class="kw">else </span>{
+        <span class="comment">// Increment the one requested (in a real program, we&#39;d reset the lower numbers)
+        </span><span class="kw">let </span>(maj, min, pat) = (cli.major, cli.minor, cli.patch);
+        <span class="kw">match </span>(maj, min, pat) {
+            (<span class="bool-val">true</span>, <span class="bool-val">false</span>, <span class="bool-val">false</span>) =&gt; major += <span class="number">1</span>,
+            (<span class="bool-val">false</span>, <span class="bool-val">true</span>, <span class="bool-val">false</span>) =&gt; minor += <span class="number">1</span>,
+            (<span class="bool-val">false</span>, <span class="bool-val">false</span>, <span class="bool-val">true</span>) =&gt; patch += <span class="number">1</span>,
+            <span class="kw">_ </span>=&gt; {
+                <span class="kw">let </span><span class="kw-2">mut </span>cmd = Cli::command();
+                cmd.error(
+                    ErrorKind::ArgumentConflict,
+                    <span class="string">&quot;Can only modify one version field&quot;</span>,
+                )
+                .exit();
+            }
+        };
+        <span class="macro">format!</span>(<span class="string">&quot;{major}.{minor}.{patch}&quot;</span>)
+    };
+
+    <span class="macro">println!</span>(<span class="string">&quot;Version: {version}&quot;</span>);
+
+    <span class="comment">// Check for usage of -c
+    </span><span class="kw">if let </span><span class="prelude-val">Some</span>(config) = cli.config.as_deref() {
+        <span class="kw">let </span>input = cli
+            .input_file
+            .as_deref()
+            <span class="comment">// &#39;or&#39; is preferred to &#39;or_else&#39; here since `Option::as_deref` is &#39;const&#39;
+            </span>.or(cli.spec_in.as_deref())
+            .unwrap_or_else(|| {
+                <span class="kw">let </span><span class="kw-2">mut </span>cmd = Cli::command();
+                cmd.error(
+                    ErrorKind::MissingRequiredArgument,
+                    <span class="string">&quot;INPUT_FILE or --spec-in is required when using --config&quot;</span>,
+                )
+                .exit()
+            });
+        <span class="macro">println!</span>(<span class="string">&quot;Doing work using input {input} and config {config}&quot;</span>);
+    }
+}</code></pre></div>
+<div class="example-wrap"><pre class="language-console"><code>$ 04_04_custom_derive --help
+A simple to use, efficient, and full-featured Command Line Argument Parser
+
+Usage: 04_04_custom_derive[EXE] [OPTIONS] [INPUT_FILE]
+
+Arguments:
+  [INPUT_FILE]  some regular input
+
+Options:
+      --set-ver &lt;VER&gt;      set version manually
+      --major              auto inc major
+      --minor              auto inc minor
+      --patch              auto inc patch
+      --spec-in &lt;SPEC_IN&gt;  some special input argument
+  -c &lt;CONFIG&gt;              
+  -h, --help               Print help
+  -V, --version            Print version
+
+$ 04_04_custom_derive
+? failed
+error: Can only modify one version field
+
+Usage: clap [OPTIONS] [INPUT_FILE]
+
+For more information, try &#39;--help&#39;.
+
+$ 04_04_custom_derive --major
+Version: 2.2.3
+
+$ 04_04_custom_derive --major --minor
+? failed
+error: Can only modify one version field
+
+Usage: clap [OPTIONS] [INPUT_FILE]
+
+For more information, try &#39;--help&#39;.
+
+$ 04_04_custom_derive --major -c config.toml
+? failed
+Version: 2.2.3
+error: INPUT_FILE or --spec-in is required when using --config
+
+Usage: clap [OPTIONS] [INPUT_FILE]
+
+For more information, try &#39;--help&#39;.
+
+$ 04_04_custom_derive --major -c config.toml --spec-in input.txt
+Version: 2.2.3
+Doing work using input input.txt and config config.toml
+
+</code></pre></div><h3 id="testing"><a href="#testing">Testing</a></h3>
+<p>clap reports most development errors as <code>debug_assert!</code>s.  Rather than checking every
+subcommand, you should have a test that calls
+<a href="../../builder/struct.Command.html#method.debug_assert" title="method clap::builder::Command::debug_assert"><code>Command::debug_assert</code></a>:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>clap::Parser;
+
+<span class="attr">#[derive(Parser)]
+#[command(author, version, about, long_about = <span class="prelude-val">None</span>)]
+</span><span class="kw">struct </span>Cli {
+    <span class="doccomment">/// Network port to use
+    </span>port: u16,
+}
+
+<span class="kw">fn </span>main() {
+    <span class="kw">let </span>cli = Cli::parse();
+
+    <span class="macro">println!</span>(<span class="string">&quot;PORT = {}&quot;</span>, cli.port);
+}
+
+<span class="attr">#[test]
+</span><span class="kw">fn </span>verify_cli() {
+    <span class="kw">use </span>clap::CommandFactory;
+    Cli::command().debug_assert()
+}</code></pre></div>
+</div></details></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="clap" data-themes="" data-resource-suffix="" data-rustdoc-version="1.70.0-nightly (f63ccaf25 2023-03-06)" data-search-js="search-8a59a8356673ec1f.js" data-settings-js="settings-f0c5c39777a9a2f6.js" data-settings-css="settings-0bcba95ff279c1db.css" ></div></body></html>

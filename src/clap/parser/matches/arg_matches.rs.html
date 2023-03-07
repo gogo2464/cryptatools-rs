@@ -1,5 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/clap-3.2.23/src/parser/matches/arg_matches.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>arg_matches.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceSerif4-Regular-1f7d512b176f0f72.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceSerif4-Bold-124a1ca42af929b6.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-6827029ac823cab7.css" id="mainThemeStyle"><link rel="stylesheet" id="themeStyle" href="../../../../static.files/light-ebce58d0a40c3431.css"><link rel="stylesheet" disabled href="../../../../static.files/dark-f23faae4a2daf9a6.css"><link rel="stylesheet" disabled href="../../../../static.files/ayu-8af5e100b21cd173.css"><script id="default-settings" ></script><script src="../../../../static.files/storage-d43fa987303ecbbb.js"></script><script defer src="../../../../static.files/source-script-5cf2e01a42cc9858.js"></script><script defer src="../../../../source-files.js"></script><script defer src="../../../../static.files/main-c55e1eb52e1886b4.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../../clap/index.html">
-                        <img src="https://raw.githubusercontent.com/clap-rs/clap/master/assets/clap.png" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../static.files/wheel-5ec35bf9ca753509.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/clap-4.1.8/src/parser/matches/arg_matches.rs`."><title>arg_matches.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceSerif4-Bold-a2c9cd1067f8b328.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-c4dbdcde0fbd8430.css" id="mainThemeStyle"><link rel="stylesheet" id="themeStyle" href="../../../../static.files/light-db279b6232be9c13.css"><link rel="stylesheet" disabled href="../../../../static.files/dark-cf923f49f397b216.css"><link rel="stylesheet" disabled href="../../../../static.files/ayu-be46fdc453a55015.css"><script src="../../../../static.files/storage-3891ce972e3a2bf8.js"></script><script defer src="../../../../static.files/source-script-1b95b7cca98b26e5.js"></script><script defer src="../../../../source-files.js"></script><script defer src="../../../../static.files/main-98a684e84ae5b08b.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><a class="sub-logo-container" href="../../../../clap/index.html">
+                        <img src="https://raw.githubusercontent.com/clap-rs/clap/master/assets/clap.png" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -1966,39 +1966,23 @@
 <a href="#1965" id="1965">1965</a>
 <a href="#1966" id="1966">1966</a>
 <a href="#1967" id="1967">1967</a>
-<a href="#1968" id="1968">1968</a>
-<a href="#1969" id="1969">1969</a>
-<a href="#1970" id="1970">1970</a>
-<a href="#1971" id="1971">1971</a>
-<a href="#1972" id="1972">1972</a>
-<a href="#1973" id="1973">1973</a>
-<a href="#1974" id="1974">1974</a>
-<a href="#1975" id="1975">1975</a>
-<a href="#1976" id="1976">1976</a>
-<a href="#1977" id="1977">1977</a>
-<a href="#1978" id="1978">1978</a>
-<a href="#1979" id="1979">1979</a>
-<a href="#1980" id="1980">1980</a>
 </pre><pre class="rust"><code><span class="comment">// Std
 </span><span class="kw">use </span>std::any::Any;
-<span class="kw">use </span>std::borrow::Cow;
 <span class="kw">use </span>std::ffi::{OsStr, OsString};
-<span class="kw">use </span>std::fmt::{Debug, Display};
+<span class="kw">use </span>std::fmt::Debug;
 <span class="kw">use </span>std::iter::{Cloned, Flatten, Map};
 <span class="kw">use </span>std::slice::Iter;
-<span class="kw">use </span>std::str::FromStr;
-
-<span class="comment">// Third Party
-</span><span class="kw">use </span>indexmap::IndexMap;
 
 <span class="comment">// Internal
-</span><span class="kw">use </span><span class="kw">crate</span>::parser::AnyValue;
+</span><span class="attr">#[cfg(debug_assertions)]
+</span><span class="kw">use </span><span class="kw">crate</span>::builder::Str;
+<span class="kw">use </span><span class="kw">crate</span>::parser::AnyValue;
 <span class="kw">use </span><span class="kw">crate</span>::parser::AnyValueId;
 <span class="kw">use </span><span class="kw">crate</span>::parser::MatchedArg;
 <span class="kw">use </span><span class="kw">crate</span>::parser::MatchesError;
 <span class="kw">use </span><span class="kw">crate</span>::parser::ValueSource;
-<span class="kw">use </span><span class="kw">crate</span>::util::{Id, Key};
-<span class="kw">use </span><span class="kw">crate</span>::Error;
+<span class="kw">use </span><span class="kw">crate</span>::util::FlatMap;
+<span class="kw">use </span><span class="kw">crate</span>::util::Id;
 <span class="kw">use </span><span class="kw">crate</span>::INTERNAL_ERROR_MSG;
 
 <span class="doccomment">/// Container for parse results.
@@ -2010,16 +1994,17 @@
 /// # Examples
 ///
 /// ```no_run
-/// # use clap::{Command, Arg, ValueSource};
+/// # use clap::{Command, Arg, ArgAction};
+/// # use clap::parser::ValueSource;
 /// let matches = Command::new(&quot;MyApp&quot;)
 ///     .arg(Arg::new(&quot;out&quot;)
 ///         .long(&quot;output&quot;)
 ///         .required(true)
-///         .takes_value(true)
+///         .action(ArgAction::Set)
 ///         .default_value(&quot;-&quot;))
 ///     .arg(Arg::new(&quot;cfg&quot;)
 ///         .short(&#39;c&#39;)
-///         .takes_value(true))
+///         .action(ArgAction::Set))
 ///     .get_matches(); // builds the instance of ArgMatches
 ///
 /// // to get information about the &quot;cfg&quot; argument we created, such as the value supplied we use
@@ -2050,10 +2035,8 @@
     <span class="attr">#[cfg(debug_assertions)]
     </span><span class="kw">pub</span>(<span class="kw">crate</span>) valid_args: Vec&lt;Id&gt;,
     <span class="attr">#[cfg(debug_assertions)]
-    </span><span class="kw">pub</span>(<span class="kw">crate</span>) valid_subcommands: Vec&lt;Id&gt;,
-    <span class="attr">#[cfg(debug_assertions)]
-    </span><span class="kw">pub</span>(<span class="kw">crate</span>) disable_asserts: bool,
-    <span class="kw">pub</span>(<span class="kw">crate</span>) args: IndexMap&lt;Id, MatchedArg&gt;,
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) valid_subcommands: Vec&lt;Str&gt;,
+    <span class="kw">pub</span>(<span class="kw">crate</span>) args: FlatMap&lt;Id, MatchedArg&gt;,
     <span class="kw">pub</span>(<span class="kw">crate</span>) subcommand: <span class="prelude-ty">Option</span>&lt;Box&lt;SubCommand&gt;&gt;,
 }
 
@@ -2061,7 +2044,7 @@
 </span><span class="kw">impl </span>ArgMatches {
     <span class="doccomment">/// Gets the value of a specific option or positional argument.
     ///
-    /// i.e. an argument that [takes an additional value][crate::Arg::takes_value] at runtime.
+    /// i.e. an argument that [takes an additional value][crate::Arg::num_args] at runtime.
     ///
     /// Returns an error if the wrong type was used.
     ///
@@ -2078,11 +2061,11 @@
     /// # Examples
     ///
     /// ```rust
-    /// # use clap::{Command, Arg, value_parser};
+    /// # use clap::{Command, Arg, value_parser, ArgAction};
     /// let m = Command::new(&quot;myapp&quot;)
     ///     .arg(Arg::new(&quot;port&quot;)
     ///         .value_parser(value_parser!(usize))
-    ///         .takes_value(true)
+    ///         .action(ArgAction::Set)
     ///         .required(true))
     ///     .get_matches_from(vec![&quot;myapp&quot;, &quot;2020&quot;]);
     ///
@@ -2091,13 +2074,11 @@
     ///     .expect(&quot;`port`is required&quot;);
     /// assert_eq!(port, 2020);
     /// ```
-    /// [option]: crate::Arg::takes_value()
     /// [positional]: crate::Arg::index()
     /// [`default_value`]: crate::Arg::default_value()
-    </span><span class="attr">#[track_caller]
+    </span><span class="attr">#[cfg_attr(debug_assertions, track_caller)]
     </span><span class="kw">pub fn </span>get_one&lt;T: Any + Clone + Send + Sync + <span class="lifetime">&#39;static</span>&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, id: <span class="kw-2">&amp;</span>str) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>T&gt; {
-        <span class="kw">let </span>internal_id = Id::from(id);
-        MatchesError::unwrap(<span class="kw-2">&amp;</span>internal_id, <span class="self">self</span>.try_get_one(id))
+        MatchesError::unwrap(id, <span class="self">self</span>.try_get_one(id))
     }
 
     <span class="doccomment">/// Gets the value of a specific [`ArgAction::Count`][crate::ArgAction::Count] flag
@@ -2124,7 +2105,7 @@
     ///     2
     /// );
     /// ```
-    </span><span class="attr">#[track_caller]
+    </span><span class="attr">#[cfg_attr(debug_assertions, track_caller)]
     </span><span class="kw">pub fn </span>get_count(<span class="kw-2">&amp;</span><span class="self">self</span>, id: <span class="kw-2">&amp;</span>str) -&gt; u8 {
         <span class="kw-2">*</span><span class="self">self
             </span>.get_one::&lt;u8&gt;(id)
@@ -2149,14 +2130,14 @@
     ///             .action(clap::ArgAction::SetTrue)
     ///     );
     ///
-    /// let matches = cmd.clone().try_get_matches_from([&quot;mycmd&quot;, &quot;--flag&quot;, &quot;--flag&quot;]).unwrap();
+    /// let matches = cmd.clone().try_get_matches_from([&quot;mycmd&quot;, &quot;--flag&quot;]).unwrap();
     /// assert!(matches.contains_id(&quot;flag&quot;));
     /// assert_eq!(
     ///     matches.get_flag(&quot;flag&quot;),
     ///     true
     /// );
     /// ```
-    </span><span class="attr">#[track_caller]
+    </span><span class="attr">#[cfg_attr(debug_assertions, track_caller)]
     </span><span class="kw">pub fn </span>get_flag(<span class="kw-2">&amp;</span><span class="self">self</span>, id: <span class="kw-2">&amp;</span>str) -&gt; bool {
         <span class="kw-2">*</span><span class="self">self
             </span>.get_one::&lt;bool&gt;(id)
@@ -2185,7 +2166,6 @@
     ///         .action(ArgAction::Append)
     ///         .value_parser(value_parser!(usize))
     ///         .short(&#39;p&#39;)
-    ///         .takes_value(true)
     ///         .required(true))
     ///     .get_matches_from(vec![
     ///         &quot;myprog&quot;, &quot;-p&quot;, &quot;22&quot;, &quot;-p&quot;, &quot;80&quot;, &quot;-p&quot;, &quot;2020&quot;
@@ -2196,13 +2176,49 @@
     ///     .collect();
     /// assert_eq!(vals, [22, 80, 2020]);
     /// ```
-    </span><span class="attr">#[track_caller]
+    </span><span class="attr">#[cfg_attr(debug_assertions, track_caller)]
     </span><span class="kw">pub fn </span>get_many&lt;T: Any + Clone + Send + Sync + <span class="lifetime">&#39;static</span>&gt;(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         id: <span class="kw-2">&amp;</span>str,
     ) -&gt; <span class="prelude-ty">Option</span>&lt;ValuesRef&lt;T&gt;&gt; {
-        <span class="kw">let </span>internal_id = Id::from(id);
-        MatchesError::unwrap(<span class="kw-2">&amp;</span>internal_id, <span class="self">self</span>.try_get_many(id))
+        MatchesError::unwrap(id, <span class="self">self</span>.try_get_many(id))
+    }
+
+    <span class="doccomment">/// Iterate over the values passed to each occurrence of an option.
+    ///
+    /// Each item is itself an iterator containing the arguments passed to a single occurrence
+    /// of the option.
+    ///
+    /// If the option doesn&#39;t support multiple occurrences, or there was only a single occurrence,
+    /// the iterator will only contain a single item.
+    ///
+    /// Returns `None` if the option wasn&#39;t present.
+    ///
+    /// # Panics
+    ///
+    /// If the argument definition and access mismatch. To handle this case programmatically, see
+    /// [`ArgMatches::try_get_occurrences`].
+    ///
+    /// # Examples
+    /// ```rust
+    /// # use clap::{Command,Arg, ArgAction, value_parser};
+    /// let m = Command::new(&quot;myprog&quot;)
+    ///     .arg(Arg::new(&quot;x&quot;)
+    ///         .short(&#39;x&#39;)
+    ///         .num_args(2)
+    ///         .action(ArgAction::Append)
+    ///         .value_parser(value_parser!(String)))
+    ///     .get_matches_from(vec![
+    ///         &quot;myprog&quot;, &quot;-x&quot;, &quot;a&quot;, &quot;b&quot;, &quot;-x&quot;, &quot;c&quot;, &quot;d&quot;]);
+    /// let vals: Vec&lt;Vec&lt;&amp;String&gt;&gt; = m.get_occurrences(&quot;x&quot;).unwrap().map(Iterator::collect).collect();
+    /// assert_eq!(vals, [[&quot;a&quot;, &quot;b&quot;], [&quot;c&quot;, &quot;d&quot;]]);
+    /// ```
+    </span><span class="attr">#[cfg_attr(debug_assertions, track_caller)]
+    </span><span class="kw">pub fn </span>get_occurrences&lt;T: Any + Clone + Send + Sync + <span class="lifetime">&#39;static</span>&gt;(
+        <span class="kw-2">&amp;</span><span class="self">self</span>,
+        id: <span class="kw-2">&amp;</span>str,
+    ) -&gt; <span class="prelude-ty">Option</span>&lt;OccurrencesRef&lt;T&gt;&gt; {
+        MatchesError::unwrap(id, <span class="self">self</span>.try_get_occurrences(id))
     }
 
     <span class="doccomment">/// Iterate over the original argument values.
@@ -2246,15 +2262,67 @@
     /// [`OsSt`]: std::ffi::OsStr
     /// [values]: OsValues
     /// [`String`]: std::string::String
-    </span><span class="attr">#[track_caller]
+    </span><span class="attr">#[cfg_attr(debug_assertions, track_caller)]
     </span><span class="kw">pub fn </span>get_raw(<span class="kw-2">&amp;</span><span class="self">self</span>, id: <span class="kw-2">&amp;</span>str) -&gt; <span class="prelude-ty">Option</span>&lt;RawValues&lt;<span class="lifetime">&#39;_</span>&gt;&gt; {
-        <span class="kw">let </span>internal_id = Id::from(id);
-        MatchesError::unwrap(<span class="kw-2">&amp;</span>internal_id, <span class="self">self</span>.try_get_raw(id))
+        MatchesError::unwrap(id, <span class="self">self</span>.try_get_raw(id))
+    }
+
+    <span class="doccomment">/// Iterate over the original values for each occurrence of an option.
+    ///
+    /// Similar to [`ArgMatches::get_occurrences`] but returns raw values.
+    ///
+    /// An `OsStr` on Unix-like systems is any series of bytes, regardless of whether or not they
+    /// contain valid UTF-8. Since [`String`]s in Rust are guaranteed to be valid UTF-8, a valid
+    /// filename on a Unix system as an argument value may contain invalid UTF-8.
+    ///
+    /// Returns `None` if the option wasn&#39;t present.
+    ///
+    /// # Panic
+    ///
+    /// If the argument definition and access mismatch.  To handle this case programmatically, see
+    /// [`ArgMatches::try_get_raw_occurrences`].
+    ///
+    /// # Examples
+    ///
+    </span><span class="attr">#[cfg_attr(not(unix), doc = <span class="string">&quot; ```ignore&quot;</span>)]
+    #[cfg_attr(unix, doc = <span class="string">&quot; ```&quot;</span>)]
+    </span><span class="doccomment">/// # use clap::{Command, arg, value_parser, ArgAction, Arg};
+    /// # use std::ffi::{OsStr,OsString};
+    /// # use std::os::unix::ffi::{OsStrExt,OsStringExt};
+    /// use std::path::PathBuf;
+    ///
+    /// let m = Command::new(&quot;myprog&quot;)
+    ///     .arg(Arg::new(&quot;x&quot;)
+    ///         .short(&#39;x&#39;)
+    ///         .num_args(2)
+    ///         .action(ArgAction::Append)
+    ///         .value_parser(value_parser!(PathBuf)))
+    ///     .get_matches_from(vec![OsString::from(&quot;myprog&quot;),
+    ///                             OsString::from(&quot;-x&quot;),
+    ///                             OsString::from(&quot;a&quot;), OsString::from(&quot;b&quot;),
+    ///                             OsString::from(&quot;-x&quot;),
+    ///                             OsString::from(&quot;c&quot;),
+    ///                             // &quot;{0xe9}!&quot;
+    ///                             OsString::from_vec(vec![0xe9, b&#39;!&#39;])]);
+    /// let mut itr = m.get_raw_occurrences(&quot;x&quot;)
+    ///     .expect(&quot;`-x`is required&quot;)
+    ///     .map(Iterator::collect::&lt;Vec&lt;_&gt;&gt;);
+    /// assert_eq!(itr.next(), Some(vec![OsStr::new(&quot;a&quot;), OsStr::new(&quot;b&quot;)]));
+    /// assert_eq!(itr.next(), Some(vec![OsStr::new(&quot;c&quot;), OsStr::from_bytes(&amp;[0xe9, b&#39;!&#39;])]));
+    /// assert_eq!(itr.next(), None);
+    /// ```
+    /// [`Iterator`]: std::iter::Iterator
+    /// [`OsStr`]: std::ffi::OsStr
+    /// [values]: OsValues
+    /// [`String`]: std::string::String
+    </span><span class="attr">#[cfg_attr(debug_assertions, track_caller)]
+    </span><span class="kw">pub fn </span>get_raw_occurrences(<span class="kw-2">&amp;</span><span class="self">self</span>, id: <span class="kw-2">&amp;</span>str) -&gt; <span class="prelude-ty">Option</span>&lt;RawOccurrences&lt;<span class="lifetime">&#39;_</span>&gt;&gt; {
+        MatchesError::unwrap(id, <span class="self">self</span>.try_get_raw_occurrences(id))
     }
 
     <span class="doccomment">/// Returns the value of a specific option or positional argument.
     ///
-    /// i.e. an argument that [takes an additional value][crate::Arg::takes_value] at runtime.
+    /// i.e. an argument that [takes an additional value][crate::Arg::num_args] at runtime.
     ///
     /// Returns an error if the wrong type was used.  No item will have been removed.
     ///
@@ -2271,11 +2339,11 @@
     /// # Examples
     ///
     /// ```rust
-    /// # use clap::{Command, Arg, value_parser};
+    /// # use clap::{Command, Arg, value_parser, ArgAction};
     /// let mut m = Command::new(&quot;myprog&quot;)
     ///     .arg(Arg::new(&quot;file&quot;)
     ///         .required(true)
-    ///         .takes_value(true))
+    ///         .action(ArgAction::Set))
     ///     .get_matches_from(vec![
     ///         &quot;myprog&quot;, &quot;file.txt&quot;,
     ///     ]);
@@ -2283,13 +2351,11 @@
     ///     .expect(&quot;`file`is required&quot;);
     /// assert_eq!(vals, &quot;file.txt&quot;);
     /// ```
-    /// [option]: crate::Arg::takes_value()
     /// [positional]: crate::Arg::index()
     /// [`default_value`]: crate::Arg::default_value()
-    </span><span class="attr">#[track_caller]
+    </span><span class="attr">#[cfg_attr(debug_assertions, track_caller)]
     </span><span class="kw">pub fn </span>remove_one&lt;T: Any + Clone + Send + Sync + <span class="lifetime">&#39;static</span>&gt;(<span class="kw-2">&amp;mut </span><span class="self">self</span>, id: <span class="kw-2">&amp;</span>str) -&gt; <span class="prelude-ty">Option</span>&lt;T&gt; {
-        <span class="kw">let </span>internal_id = Id::from(id);
-        MatchesError::unwrap(<span class="kw-2">&amp;</span>internal_id, <span class="self">self</span>.try_remove_one(id))
+        MatchesError::unwrap(id, <span class="self">self</span>.try_remove_one(id))
     }
 
     <span class="doccomment">/// Return values of a specific option or positional argument.
@@ -2312,9 +2378,8 @@
     /// let mut m = Command::new(&quot;myprog&quot;)
     ///     .arg(Arg::new(&quot;file&quot;)
     ///         .action(ArgAction::Append)
-    ///         .multiple_values(true)
-    ///         .required(true)
-    ///         .takes_value(true))
+    ///         .num_args(1..)
+    ///         .required(true))
     ///     .get_matches_from(vec![
     ///         &quot;myprog&quot;, &quot;file1.txt&quot;, &quot;file2.txt&quot;, &quot;file3.txt&quot;, &quot;file4.txt&quot;,
     ///     ]);
@@ -2323,13 +2388,50 @@
     ///     .collect();
     /// assert_eq!(vals, [&quot;file1.txt&quot;, &quot;file2.txt&quot;, &quot;file3.txt&quot;, &quot;file4.txt&quot;]);
     /// ```
-    </span><span class="attr">#[track_caller]
+    </span><span class="attr">#[cfg_attr(debug_assertions, track_caller)]
     </span><span class="kw">pub fn </span>remove_many&lt;T: Any + Clone + Send + Sync + <span class="lifetime">&#39;static</span>&gt;(
         <span class="kw-2">&amp;mut </span><span class="self">self</span>,
         id: <span class="kw-2">&amp;</span>str,
-    ) -&gt; <span class="prelude-ty">Option</span>&lt;Values2&lt;T&gt;&gt; {
-        <span class="kw">let </span>internal_id = Id::from(id);
-        MatchesError::unwrap(<span class="kw-2">&amp;</span>internal_id, <span class="self">self</span>.try_remove_many(id))
+    ) -&gt; <span class="prelude-ty">Option</span>&lt;Values&lt;T&gt;&gt; {
+        MatchesError::unwrap(id, <span class="self">self</span>.try_remove_many(id))
+    }
+
+    <span class="doccomment">/// Return values for each occurrence of an option.
+    ///
+    /// Each item is itself an iterator containing the arguments passed to a single occurrence of
+    /// the option.
+    ///
+    /// If the option doesn&#39;t support multiple occurrences, or there was only a single occurrence,
+    /// the iterator will only contain a single item.
+    ///
+    /// Returns `None` if the option wasn&#39;t present.
+    ///
+    /// # Panic
+    ///
+    /// If the argument definition and access mismatch.  To handle this case programmatically, see
+    /// [`ArgMatches::try_remove_occurrences`].
+    ///
+    /// # Examples
+    ///
+    /// ```rust
+    /// # use clap::{Command, Arg, value_parser, ArgAction};
+    /// let mut m = Command::new(&quot;myprog&quot;)
+    ///     .arg(Arg::new(&quot;x&quot;)
+    ///         .short(&#39;x&#39;)
+    ///         .num_args(2)
+    ///         .action(ArgAction::Append)
+    ///         .value_parser(value_parser!(String)))
+    ///     .get_matches_from(vec![
+    ///         &quot;myprog&quot;, &quot;-x&quot;, &quot;a&quot;, &quot;b&quot;, &quot;-x&quot;, &quot;c&quot;, &quot;d&quot;]);
+    /// let vals: Vec&lt;Vec&lt;String&gt;&gt; = m.remove_occurrences(&quot;x&quot;).unwrap().map(Iterator::collect).collect();
+    /// assert_eq!(vals, [[&quot;a&quot;, &quot;b&quot;], [&quot;c&quot;, &quot;d&quot;]]);
+    /// ```
+    </span><span class="attr">#[cfg_attr(debug_assertions, track_caller)]
+    </span><span class="kw">pub fn </span>remove_occurrences&lt;T: Any + Clone + Send + Sync + <span class="lifetime">&#39;static</span>&gt;(
+        <span class="kw-2">&amp;mut </span><span class="self">self</span>,
+        id: <span class="kw-2">&amp;</span>str,
+    ) -&gt; <span class="prelude-ty">Option</span>&lt;Occurrences&lt;T&gt;&gt; {
+        MatchesError::unwrap(id, <span class="self">self</span>.try_remove_occurrences(id))
     }
 
     <span class="doccomment">/// Check if values are present for the argument or group id
@@ -2339,16 +2441,17 @@
     ///
     /// # Panics
     ///
-    /// If `id` is is not a valid argument or group name.  To handle this case programmatically, see
+    /// If `id` is not a valid argument or group name.  To handle this case programmatically, see
     /// [`ArgMatches::try_contains_id`].
     ///
     /// # Examples
     ///
     /// ```rust
-    /// # use clap::{Command, Arg};
+    /// # use clap::{Command, Arg, ArgAction};
     /// let m = Command::new(&quot;myprog&quot;)
     ///     .arg(Arg::new(&quot;debug&quot;)
-    ///         .short(&#39;d&#39;))
+    ///         .short(&#39;d&#39;)
+    ///         .action(ArgAction::SetTrue))
     ///     .get_matches_from(vec![
     ///         &quot;myprog&quot;, &quot;-d&quot;
     ///     ]);
@@ -2358,8 +2461,34 @@
     ///
     /// [`default_value`]: crate::Arg::default_value()
     </span><span class="kw">pub fn </span>contains_id(<span class="kw-2">&amp;</span><span class="self">self</span>, id: <span class="kw-2">&amp;</span>str) -&gt; bool {
-        <span class="kw">let </span>internal_id = Id::from(id);
-        MatchesError::unwrap(<span class="kw-2">&amp;</span>internal_id, <span class="self">self</span>.try_contains_id(id))
+        MatchesError::unwrap(id, <span class="self">self</span>.try_contains_id(id))
+    }
+
+    <span class="doccomment">/// Iterate over [`Arg`][crate::Arg] and [`ArgGroup`][crate::ArgGroup] [`Id`][crate::Id]s via [`ArgMatches::ids`].
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// # use clap::{Command, arg, value_parser};
+    ///
+    /// let m = Command::new(&quot;myprog&quot;)
+    ///     .arg(arg!(--color &lt;when&gt;)
+    ///         .value_parser([&quot;auto&quot;, &quot;always&quot;, &quot;never&quot;]))
+    ///     .arg(arg!(--config &lt;path&gt;)
+    ///         .value_parser(value_parser!(std::path::PathBuf)))
+    ///     .get_matches_from([&quot;myprog&quot;, &quot;--config=config.toml&quot;, &quot;--color=auto&quot;]);
+    /// assert_eq!(m.ids().len(), 2);
+    /// assert_eq!(
+    ///     m.ids()
+    ///         .map(|id| id.as_str())
+    ///         .collect::&lt;Vec&lt;_&gt;&gt;(),
+    ///     [&quot;config&quot;, &quot;color&quot;]
+    /// );
+    /// ```
+    </span><span class="kw">pub fn </span>ids(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; IdsRef&lt;<span class="lifetime">&#39;_</span>&gt; {
+        IdsRef {
+            iter: <span class="self">self</span>.args.keys(),
+        }
     }
 
     <span class="doccomment">/// Check if any args were present on the command line
@@ -2367,10 +2496,10 @@
     /// # Examples
     ///
     /// ```rust
-    /// # use clap::{Command, Arg};
+    /// # use clap::{Command, Arg, ArgAction};
     /// let mut cmd = Command::new(&quot;myapp&quot;)
     ///     .arg(Arg::new(&quot;output&quot;)
-    ///         .takes_value(true));
+    ///         .action(ArgAction::Set));
     ///
     /// let m = cmd
     ///     .try_get_matches_from_mut(vec![&quot;myapp&quot;, &quot;something&quot;])
@@ -2383,90 +2512,6 @@
     /// assert!(! m.args_present());
     </span><span class="kw">pub fn </span>args_present(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
         !<span class="self">self</span>.args.is_empty()
-    }
-
-    <span class="doccomment">/// Deprecated, replaced with [`ArgMatches::get_one()`]
-    ///
-    /// Replace `m.value_of(...)` with `m.get_one::&lt;String&gt;(...).map(|s| s.as_str())`
-    </span><span class="attr">#[cfg_attr(
-        feature = <span class="string">&quot;deprecated&quot;</span>,
-        deprecated(
-            since = <span class="string">&quot;3.2.0&quot;</span>,
-            note = <span class="string">&quot;Replaced with `ArgMatches::get_one()`
-
-Replace `m.value_of(...)` with `m.get_one::&lt;String&gt;(...).map(|s| s.as_str())`
-&quot;
-        </span>)
-    )]
-    #[cfg_attr(debug_assertions, track_caller)]
-    </span><span class="kw">pub fn </span>value_of&lt;T: Key&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, id: T) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>str&gt; {
-        <span class="kw">let </span>id = Id::from(id);
-        <span class="kw">let </span>arg = <span class="self">self</span>.get_arg(<span class="kw-2">&amp;</span>id)<span class="question-mark">?</span>;
-        <span class="kw">let </span>v = unwrap_string_arg(<span class="kw-2">&amp;</span>id, arg.first()<span class="question-mark">?</span>);
-        <span class="prelude-val">Some</span>(v)
-    }
-
-    <span class="doccomment">/// Deprecated, replaced with [`ArgMatches::get_one()`]
-    ///
-    /// Replace `m.value_of(...)` with `m.get_one::&lt;String&gt;(...).map(|s| s.as_str())`
-    </span><span class="attr">#[cfg_attr(
-        feature = <span class="string">&quot;deprecated&quot;</span>,
-        deprecated(
-            since = <span class="string">&quot;3.2.0&quot;</span>,
-            note = <span class="string">&quot;Replaced with `ArgMatches::get_one()`
-
-Replace `m.value_of(...)` with `m.get_one::&lt;String&gt;(...).map(|s| s.as_str())`
-&quot;
-        </span>)
-    )]
-    #[cfg_attr(debug_assertions, track_caller)]
-    </span><span class="kw">pub fn </span>value_of_lossy&lt;T: Key&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, id: T) -&gt; <span class="prelude-ty">Option</span>&lt;Cow&lt;<span class="lifetime">&#39;_</span>, str&gt;&gt; {
-        <span class="kw">let </span>id = Id::from(id);
-        <span class="kw">let </span>arg = <span class="self">self</span>.get_arg(<span class="kw-2">&amp;</span>id)<span class="question-mark">?</span>;
-        <span class="kw">let </span>v = unwrap_os_string_arg(<span class="kw-2">&amp;</span>id, arg.first()<span class="question-mark">?</span>);
-        <span class="prelude-val">Some</span>(v.to_string_lossy())
-    }
-
-    <span class="doccomment">/// Deprecated, replaced with [`ArgMatches::get_one()`]
-    ///
-    /// Replace `m.value_of(...)` with `m.get_one::&lt;OsString&gt;(...).map(|s| s.as_os_str())`
-    </span><span class="attr">#[cfg_attr(
-        feature = <span class="string">&quot;deprecated&quot;</span>,
-        deprecated(
-            since = <span class="string">&quot;3.2.0&quot;</span>,
-            note = <span class="string">&quot;Replaced with `ArgMatches::get_one()`
-
-Replace `m.value_of(...)` with `m.get_one::&lt;OsString&gt;(...).map(|s| s.as_os_str())`
-&quot;
-        </span>)
-    )]
-    #[cfg_attr(debug_assertions, track_caller)]
-    </span><span class="kw">pub fn </span>value_of_os&lt;T: Key&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, id: T) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>OsStr&gt; {
-        <span class="kw">let </span>id = Id::from(id);
-        <span class="kw">let </span>arg = <span class="self">self</span>.get_arg(<span class="kw-2">&amp;</span>id)<span class="question-mark">?</span>;
-        <span class="kw">let </span>v = unwrap_os_string_arg(<span class="kw-2">&amp;</span>id, arg.first()<span class="question-mark">?</span>);
-        <span class="prelude-val">Some</span>(v)
-    }
-
-    <span class="doccomment">/// Deprecated, replaced with [`ArgMatches::get_many()`]
-    </span><span class="attr">#[cfg_attr(
-        feature = <span class="string">&quot;deprecated&quot;</span>,
-        deprecated(
-            since = <span class="string">&quot;3.2.0&quot;</span>,
-            note = <span class="string">&quot;Replaced with `ArgMatches::get_many()`
-&quot;
-        </span>)
-    )]
-    #[cfg_attr(debug_assertions, track_caller)]
-    </span><span class="kw">pub fn </span>values_of&lt;T: Key&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, id: T) -&gt; <span class="prelude-ty">Option</span>&lt;Values&gt; {
-        <span class="attr">#![allow(deprecated)]
-        </span><span class="kw">let </span>id = Id::from(id);
-        <span class="kw">let </span>arg = <span class="self">self</span>.get_arg(<span class="kw-2">&amp;</span>id)<span class="question-mark">?</span>;
-        <span class="kw">let </span>v = Values {
-            iter: arg.vals_flatten().map(unwrap_string),
-            len: arg.num_vals(),
-        };
-        <span class="prelude-val">Some</span>(v)
     }
 
     <span class="doccomment">/// Get an [`Iterator`] over groups of values of a specific option.
@@ -2493,7 +2538,7 @@ Replace `m.value_of(...)` with `m.get_one::&lt;OsString&gt;(...).map(|s| s.as_os
     /// let m = Command::new(&quot;myprog&quot;)
     ///     .arg(Arg::new(&quot;exec&quot;)
     ///         .short(&#39;x&#39;)
-    ///         .min_values(1)
+    ///         .num_args(1..)
     ///         .action(ArgAction::Append)
     ///         .value_terminator(&quot;;&quot;))
     ///     .get_matches_from(vec![
@@ -2504,9 +2549,13 @@ Replace `m.value_of(...)` with `m.get_one::&lt;OsString&gt;(...).map(|s| s.as_os
     /// [`Iterator`]: std::iter::Iterator
     </span><span class="attr">#[cfg(feature = <span class="string">&quot;unstable-grouped&quot;</span>)]
     #[cfg_attr(debug_assertions, track_caller)]
-    </span><span class="kw">pub fn </span>grouped_values_of&lt;T: Key&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, id: T) -&gt; <span class="prelude-ty">Option</span>&lt;GroupedValues&gt; {
-        <span class="kw">let </span>id = Id::from(id);
-        <span class="kw">let </span>arg = <span class="self">self</span>.get_arg(<span class="kw-2">&amp;</span>id)<span class="question-mark">?</span>;
+    #[deprecated(
+        since = <span class="string">&quot;4.1.0&quot;</span>,
+        note = <span class="string">&quot;Use get_occurrences or remove_occurrences instead&quot;
+    </span>)]
+    #[allow(deprecated)]
+    </span><span class="kw">pub fn </span>grouped_values_of(<span class="kw-2">&amp;</span><span class="self">self</span>, id: <span class="kw-2">&amp;</span>str) -&gt; <span class="prelude-ty">Option</span>&lt;GroupedValues&gt; {
+        <span class="kw">let </span>arg = <span class="macro">some!</span>(<span class="self">self</span>.get_arg(id));
         <span class="kw">let </span>v = GroupedValues {
             iter: arg.vals().map(|g| g.iter().map(unwrap_string).collect()),
             len: arg.vals().len(),
@@ -2514,170 +2563,21 @@ Replace `m.value_of(...)` with `m.get_one::&lt;OsString&gt;(...).map(|s| s.as_os
         <span class="prelude-val">Some</span>(v)
     }
 
-    <span class="doccomment">/// Deprecated, replaced with [`ArgMatches::get_many()`]
-    </span><span class="attr">#[cfg_attr(
-        feature = <span class="string">&quot;deprecated&quot;</span>,
-        deprecated(since = <span class="string">&quot;3.2.0&quot;</span>, note = <span class="string">&quot;Replaced with `ArgMatches::get_many()`&quot;</span>)
-    )]
-    #[cfg_attr(debug_assertions, track_caller)]
-    </span><span class="kw">pub fn </span>values_of_lossy&lt;T: Key&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, id: T) -&gt; <span class="prelude-ty">Option</span>&lt;Vec&lt;String&gt;&gt; {
-        <span class="kw">let </span>id = Id::from(id);
-        <span class="kw">let </span>arg = <span class="self">self</span>.get_arg(<span class="kw-2">&amp;</span>id)<span class="question-mark">?</span>;
-        <span class="kw">let </span>v = arg
-            .vals_flatten()
-            .map(|v| unwrap_os_string_arg(<span class="kw-2">&amp;</span>id, v).to_string_lossy().into_owned())
-            .collect();
-        <span class="prelude-val">Some</span>(v)
-    }
-
-    <span class="doccomment">/// Deprecated, replaced with [`ArgMatches::get_many()`]
-    </span><span class="attr">#[cfg_attr(
-        feature = <span class="string">&quot;deprecated&quot;</span>,
-        deprecated(since = <span class="string">&quot;3.2.0&quot;</span>, note = <span class="string">&quot;Replaced with `ArgMatches::get_many()`&quot;</span>)
-    )]
-    #[cfg_attr(debug_assertions, track_caller)]
-    </span><span class="kw">pub fn </span>values_of_os&lt;T: Key&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, id: T) -&gt; <span class="prelude-ty">Option</span>&lt;OsValues&gt; {
-        <span class="attr">#![allow(deprecated)]
-        </span><span class="kw">let </span>id = Id::from(id);
-        <span class="kw">let </span>arg = <span class="self">self</span>.get_arg(<span class="kw-2">&amp;</span>id)<span class="question-mark">?</span>;
-        <span class="kw">let </span>v = OsValues {
-            iter: arg.vals_flatten().map(unwrap_os_string),
-            len: arg.num_vals(),
-        };
-        <span class="prelude-val">Some</span>(v)
-    }
-
-    <span class="doccomment">/// Deprecated, replaced with [`ArgMatches::get_one()`]
-    </span><span class="attr">#[cfg_attr(
-        feature = <span class="string">&quot;deprecated&quot;</span>,
-        deprecated(since = <span class="string">&quot;3.2.0&quot;</span>, note = <span class="string">&quot;Replaced with `ArgMatches::get_one()`&quot;</span>)
-    )]
-    #[cfg_attr(debug_assertions, track_caller)]
-    </span><span class="kw">pub fn </span>value_of_t&lt;R&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, name: <span class="kw-2">&amp;</span>str) -&gt; <span class="prelude-ty">Result</span>&lt;R, Error&gt;
-    <span class="kw">where
-        </span>R: FromStr,
-        &lt;R <span class="kw">as </span>FromStr&gt;::Err: Display,
-    {
-        <span class="attr">#![allow(deprecated)]
-        </span><span class="kw">let </span>v = <span class="self">self
-            </span>.value_of(name)
-            .ok_or_else(|| Error::argument_not_found_auto(name.to_string()))<span class="question-mark">?</span>;
-        v.parse::&lt;R&gt;().map_err(|e| {
-            <span class="kw">let </span>message = <span class="macro">format!</span>(
-                <span class="string">&quot;The argument &#39;{}&#39; isn&#39;t a valid value for &#39;{}&#39;: {}&quot;</span>,
-                v, name, e
-            );
-
-            Error::value_validation(name.to_string(), v.to_string(), message.into())
-        })
-    }
-
-    <span class="doccomment">/// Deprecated, replaced with [`ArgMatches::get_one()`]
-    </span><span class="attr">#[cfg_attr(
-        feature = <span class="string">&quot;deprecated&quot;</span>,
-        deprecated(since = <span class="string">&quot;3.2.0&quot;</span>, note = <span class="string">&quot;Replaced with `ArgMatches::get_one()`&quot;</span>)
-    )]
-    #[cfg_attr(debug_assertions, track_caller)]
-    </span><span class="kw">pub fn </span>value_of_t_or_exit&lt;R&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, name: <span class="kw-2">&amp;</span>str) -&gt; R
-    <span class="kw">where
-        </span>R: FromStr,
-        &lt;R <span class="kw">as </span>FromStr&gt;::Err: Display,
-    {
-        <span class="attr">#![allow(deprecated)]
-        </span><span class="self">self</span>.value_of_t(name).unwrap_or_else(|e| e.exit())
-    }
-
-    <span class="doccomment">/// Deprecated, replaced with [`ArgMatches::get_many()`]
-    </span><span class="attr">#[cfg_attr(
-        feature = <span class="string">&quot;deprecated&quot;</span>,
-        deprecated(since = <span class="string">&quot;3.2.0&quot;</span>, note = <span class="string">&quot;Replaced with `ArgMatches::get_many()`&quot;</span>)
-    )]
-    #[cfg_attr(debug_assertions, track_caller)]
-    </span><span class="kw">pub fn </span>values_of_t&lt;R&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, name: <span class="kw-2">&amp;</span>str) -&gt; <span class="prelude-ty">Result</span>&lt;Vec&lt;R&gt;, Error&gt;
-    <span class="kw">where
-        </span>R: FromStr,
-        &lt;R <span class="kw">as </span>FromStr&gt;::Err: Display,
-    {
-        <span class="attr">#![allow(deprecated)]
-        </span><span class="kw">let </span>v = <span class="self">self
-            </span>.values_of(name)
-            .ok_or_else(|| Error::argument_not_found_auto(name.to_string()))<span class="question-mark">?</span>;
-        v.map(|v| {
-            v.parse::&lt;R&gt;().map_err(|e| {
-                <span class="kw">let </span>message = <span class="macro">format!</span>(<span class="string">&quot;The argument &#39;{}&#39; isn&#39;t a valid value: {}&quot;</span>, v, e);
-
-                Error::value_validation(name.to_string(), v.to_string(), message.into())
-            })
-        })
-        .collect()
-    }
-
-    <span class="doccomment">/// Deprecated, replaced with [`ArgMatches::get_many()`]
-    </span><span class="attr">#[cfg_attr(
-        feature = <span class="string">&quot;deprecated&quot;</span>,
-        deprecated(since = <span class="string">&quot;3.2.0&quot;</span>, note = <span class="string">&quot;Replaced with `ArgMatches::get_many()`&quot;</span>)
-    )]
-    #[cfg_attr(debug_assertions, track_caller)]
-    </span><span class="kw">pub fn </span>values_of_t_or_exit&lt;R&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, name: <span class="kw-2">&amp;</span>str) -&gt; Vec&lt;R&gt;
-    <span class="kw">where
-        </span>R: FromStr,
-        &lt;R <span class="kw">as </span>FromStr&gt;::Err: Display,
-    {
-        <span class="attr">#![allow(deprecated)]
-        </span><span class="self">self</span>.values_of_t(name).unwrap_or_else(|e| e.exit())
-    }
-
-    <span class="doccomment">/// Deprecated, replaced with [`ArgAction::SetTrue`][crate::ArgAction] or
-    /// [`ArgMatches::contains_id`].
-    ///
-    /// With `ArgAction::SetTrue` becoming the new flag default in clap v4, flags will always be present.
-    /// To make the migration easier, we&#39;ve renamed this function so people can identify when they actually
-    /// care about an arg being present or if they need to update to the new way to check a flag&#39;s
-    /// presence.
-    ///
-    /// For flags, call `arg.action(ArgAction::SetTrue)` and lookup the value with `matches.get_flag(...)`
-    ///
-    /// For presence, replace `matches.is_present(...)` with `matches.contains_id(...)`
-    </span><span class="attr">#[cfg_attr(
-        feature = <span class="string">&quot;deprecated&quot;</span>,
-        deprecated(
-            since = <span class="string">&quot;3.2.0&quot;</span>,
-            note = <span class="string">&quot;Replaced with either `ArgAction::SetTrue` or `ArgMatches::contains_id(...)` to avoid confusion over new semantics
-
-With `ArgAction::SetTrue` becoming the new flag default in clap v4, flags will always be present.
-To make the migration easier, we&#39;ve renamed this function so people can identify when they actually
-care about an arg being present or if they need to update to the new way to check a flag&#39;s
-presence.
-
-For flags, call `arg.action(ArgAction::SetTrue)` and lookup the value with `matches.get_flag(...)`
-
-For presence, replace `matches.is_present(...)` with `matches.contains_id(...)`
-&quot;
-        </span>)
-    )]
-    #[cfg_attr(debug_assertions, track_caller)]
-    </span><span class="kw">pub fn </span>is_present&lt;T: Key&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, id: T) -&gt; bool {
-        <span class="kw">let </span>id = Id::from(id);
-
-        <span class="attr">#[cfg(debug_assertions)]
-        </span><span class="self">self</span>.get_arg(<span class="kw-2">&amp;</span>id);
-
-        <span class="self">self</span>.args.contains_key(<span class="kw-2">&amp;</span>id)
-    }
-
     <span class="doccomment">/// Report where argument value came from
     ///
     /// # Panics
     ///
-    /// If `id` is is not a valid argument or group id.
+    /// If `id` is not a valid argument or group id.
     ///
     /// # Examples
     ///
     /// ```rust
-    /// # use clap::{Command, Arg, ValueSource};
+    /// # use clap::{Command, Arg, ArgAction};
+    /// # use clap::parser::ValueSource;
     /// let m = Command::new(&quot;myprog&quot;)
     ///     .arg(Arg::new(&quot;debug&quot;)
-    ///         .short(&#39;d&#39;))
+    ///         .short(&#39;d&#39;)
+    ///         .action(ArgAction::SetTrue))
     ///     .get_matches_from(vec![
     ///         &quot;myprog&quot;, &quot;-d&quot;
     ///     ]);
@@ -2687,45 +2587,10 @@ For presence, replace `matches.is_present(...)` with `matches.contains_id(...)`
     ///
     /// [`default_value`]: crate::Arg::default_value()
     </span><span class="attr">#[cfg_attr(debug_assertions, track_caller)]
-    </span><span class="kw">pub fn </span>value_source&lt;T: Key&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, id: T) -&gt; <span class="prelude-ty">Option</span>&lt;ValueSource&gt; {
-        <span class="kw">let </span>id = Id::from(id);
-
-        <span class="kw">let </span>value = <span class="self">self</span>.get_arg(<span class="kw-2">&amp;</span>id);
+    </span><span class="kw">pub fn </span>value_source(<span class="kw-2">&amp;</span><span class="self">self</span>, id: <span class="kw-2">&amp;</span>str) -&gt; <span class="prelude-ty">Option</span>&lt;ValueSource&gt; {
+        <span class="kw">let </span>value = <span class="self">self</span>.get_arg(id);
 
         value.and_then(MatchedArg::source)
-    }
-
-    <span class="doccomment">/// Deprecated, replaced with  [`ArgAction::Count`][crate::ArgAction],
-    /// [`ArgMatches::get_many`]`.len()`, or [`ArgMatches::value_source`].
-    ///
-    /// `occurrences_of`s meaning was overloaded and we are replacing it with more direct approaches.
-    ///
-    /// For counting flags, call `arg.action(ArgAction::Count)` and lookup the value with `matches.get_count(...)`
-    ///
-    /// To check if a user explicitly passed in a value, check the source with `matches.value_source(...)`
-    ///
-    /// To see how many values there are, call `matches.get_many::&lt;T&gt;(...).map(|v| v.len())`
-    </span><span class="attr">#[cfg_attr(
-        feature = <span class="string">&quot;deprecated&quot;</span>,
-        deprecated(
-            since = <span class="string">&quot;3.2.0&quot;</span>,
-            note = <span class="string">&quot;Replaced with either `ArgAction::Count`, `ArgMatches::get_many(...).len()`, or `ArgMatches::value_source`
-
-`occurrences_of`s meaning was overloaded and we are replacing it with more direct approaches.
-
-For counting flags, call `arg.action(ArgAction::Count)` and lookup the value with `matches.get_count(...)`
-
-To check if a user explicitly passed in a value, check the source with `matches.value_source(...)`
-
-To see how many values there are, call `matches.get_many::&lt;T&gt;(...).map(|v| v.len())`
-&quot;
-        </span>)
-    )]
-    #[cfg_attr(debug_assertions, track_caller)]
-    </span><span class="kw">pub fn </span>occurrences_of&lt;T: Key&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, id: T) -&gt; u64 {
-        <span class="attr">#![allow(deprecated)]
-        </span><span class="self">self</span>.get_arg(<span class="kw-2">&amp;</span>Id::from(id))
-            .map_or(<span class="number">0</span>, |a| a.get_occurrences())
     }
 
     <span class="doccomment">/// The first index of that an argument showed up.
@@ -2748,7 +2613,7 @@ To see how many values there are, call `matches.get_many::&lt;T&gt;(...).map(|v|
     ///
     /// # Panics
     ///
-    /// If `id` is is not a valid argument or group id.
+    /// If `id` is not a valid argument or group id.
     ///
     /// # Examples
     ///
@@ -2757,13 +2622,14 @@ To see how many values there are, call `matches.get_many::&lt;T&gt;(...).map(|v|
     /// in an `ArgMatches` struct for querying.
     ///
     /// ```rust
-    /// # use clap::{Command, Arg};
+    /// # use clap::{Command, Arg, ArgAction};
     /// let m = Command::new(&quot;myapp&quot;)
     ///     .arg(Arg::new(&quot;flag&quot;)
-    ///         .short(&#39;f&#39;))
+    ///         .short(&#39;f&#39;)
+    ///         .action(ArgAction::SetTrue))
     ///     .arg(Arg::new(&quot;option&quot;)
     ///         .short(&#39;o&#39;)
-    ///         .takes_value(true))
+    ///         .action(ArgAction::Set))
     ///     .get_matches_from(vec![&quot;myapp&quot;, &quot;-f&quot;, &quot;-o&quot;, &quot;val&quot;]);
     ///            // ARGV indices: ^0       ^1    ^2    ^3
     ///            // clap indices:          ^1          ^3
@@ -2775,13 +2641,14 @@ To see how many values there are, call `matches.get_many::&lt;T&gt;(...).map(|v|
     /// Now notice, if we use one of the other styles of options:
     ///
     /// ```rust
-    /// # use clap::{Command, Arg};
+    /// # use clap::{Command, Arg, ArgAction};
     /// let m = Command::new(&quot;myapp&quot;)
     ///     .arg(Arg::new(&quot;flag&quot;)
-    ///         .short(&#39;f&#39;))
+    ///         .short(&#39;f&#39;)
+    ///         .action(ArgAction::SetTrue))
     ///     .arg(Arg::new(&quot;option&quot;)
     ///         .short(&#39;o&#39;)
-    ///         .takes_value(true))
+    ///         .action(ArgAction::Set))
     ///     .get_matches_from(vec![&quot;myapp&quot;, &quot;-f&quot;, &quot;-o=val&quot;]);
     ///            // ARGV indices: ^0       ^1    ^2
     ///            // clap indices:          ^1       ^3
@@ -2794,17 +2661,20 @@ To see how many values there are, call `matches.get_many::&lt;T&gt;(...).map(|v|
     /// flags. Let&#39;s also throw in the final option style for good measure.
     ///
     /// ```rust
-    /// # use clap::{Command, Arg};
+    /// # use clap::{Command, Arg, ArgAction};
     /// let m = Command::new(&quot;myapp&quot;)
     ///     .arg(Arg::new(&quot;flag&quot;)
-    ///         .short(&#39;f&#39;))
+    ///         .short(&#39;f&#39;)
+    ///         .action(ArgAction::SetTrue))
     ///     .arg(Arg::new(&quot;flag2&quot;)
-    ///         .short(&#39;F&#39;))
+    ///         .short(&#39;F&#39;)
+    ///         .action(ArgAction::SetTrue))
     ///     .arg(Arg::new(&quot;flag3&quot;)
-    ///         .short(&#39;z&#39;))
+    ///         .short(&#39;z&#39;)
+    ///         .action(ArgAction::SetTrue))
     ///     .arg(Arg::new(&quot;option&quot;)
     ///         .short(&#39;o&#39;)
-    ///         .takes_value(true))
+    ///         .action(ArgAction::Set))
     ///     .get_matches_from(vec![&quot;myapp&quot;, &quot;-fzF&quot;, &quot;-oval&quot;]);
     ///            // ARGV indices: ^0      ^1       ^2
     ///            // clap indices:         ^1,2,3    ^5
@@ -2820,17 +2690,20 @@ To see how many values there are, call `matches.get_many::&lt;T&gt;(...).map(|v|
     /// One final combination of flags/options to see how they combine:
     ///
     /// ```rust
-    /// # use clap::{Command, Arg};
+    /// # use clap::{Command, Arg, ArgAction};
     /// let m = Command::new(&quot;myapp&quot;)
     ///     .arg(Arg::new(&quot;flag&quot;)
-    ///         .short(&#39;f&#39;))
+    ///         .short(&#39;f&#39;)
+    ///         .action(ArgAction::SetTrue))
     ///     .arg(Arg::new(&quot;flag2&quot;)
-    ///         .short(&#39;F&#39;))
+    ///         .short(&#39;F&#39;)
+    ///         .action(ArgAction::SetTrue))
     ///     .arg(Arg::new(&quot;flag3&quot;)
-    ///         .short(&#39;z&#39;))
+    ///         .short(&#39;z&#39;)
+    ///         .action(ArgAction::SetTrue))
     ///     .arg(Arg::new(&quot;option&quot;)
     ///         .short(&#39;o&#39;)
-    ///         .takes_value(true))
+    ///         .action(ArgAction::Set))
     ///     .get_matches_from(vec![&quot;myapp&quot;, &quot;-fzFoval&quot;]);
     ///            // ARGV indices: ^0       ^1
     ///            // clap indices:          ^1,2,3^5
@@ -2850,8 +2723,8 @@ To see how many values there are, call `matches.get_many::&lt;T&gt;(...).map(|v|
     /// let m = Command::new(&quot;myapp&quot;)
     ///     .arg(Arg::new(&quot;option&quot;)
     ///         .short(&#39;o&#39;)
-    ///         .use_value_delimiter(true)
-    ///         .multiple_values(true))
+    ///         .value_delimiter(&#39;,&#39;)
+    ///         .num_args(1..))
     ///     .get_matches_from(vec![&quot;myapp&quot;, &quot;-o=val1,val2,val3&quot;]);
     ///            // ARGV indices: ^0       ^1
     ///            // clap indices:             ^2   ^3   ^4
@@ -2863,9 +2736,9 @@ To see how many values there are, call `matches.get_many::&lt;T&gt;(...).map(|v|
     /// ```
     /// [delimiter]: crate::Arg::value_delimiter()
     </span><span class="attr">#[cfg_attr(debug_assertions, track_caller)]
-    </span><span class="kw">pub fn </span>index_of&lt;T: Key&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, id: T) -&gt; <span class="prelude-ty">Option</span>&lt;usize&gt; {
-        <span class="kw">let </span>arg = <span class="self">self</span>.get_arg(<span class="kw-2">&amp;</span>Id::from(id))<span class="question-mark">?</span>;
-        <span class="kw">let </span>i = arg.get_index(<span class="number">0</span>)<span class="question-mark">?</span>;
+    </span><span class="kw">pub fn </span>index_of(<span class="kw-2">&amp;</span><span class="self">self</span>, id: <span class="kw-2">&amp;</span>str) -&gt; <span class="prelude-ty">Option</span>&lt;usize&gt; {
+        <span class="kw">let </span>arg = <span class="macro">some!</span>(<span class="self">self</span>.get_arg(id));
+        <span class="kw">let </span>i = <span class="macro">some!</span>(arg.get_index(<span class="number">0</span>));
         <span class="prelude-val">Some</span>(i)
     }
 
@@ -2883,7 +2756,7 @@ To see how many values there are, call `matches.get_many::&lt;T&gt;(...).map(|v|
     ///
     /// # Panics
     ///
-    /// If `id` is is not a valid argument or group id.
+    /// If `id` is not a valid argument or group id.
     ///
     /// # Examples
     ///
@@ -2892,8 +2765,7 @@ To see how many values there are, call `matches.get_many::&lt;T&gt;(...).map(|v|
     /// let m = Command::new(&quot;myapp&quot;)
     ///     .arg(Arg::new(&quot;option&quot;)
     ///         .short(&#39;o&#39;)
-    ///         .use_value_delimiter(true)
-    ///         .multiple_values(true))
+    ///         .value_delimiter(&#39;,&#39;))
     ///     .get_matches_from(vec![&quot;myapp&quot;, &quot;-o=val1,val2,val3&quot;]);
     ///            // ARGV indices: ^0       ^1
     ///            // clap indices:             ^2   ^3   ^4
@@ -2910,7 +2782,7 @@ To see how many values there are, call `matches.get_many::&lt;T&gt;(...).map(|v|
     /// let m = Command::new(&quot;myapp&quot;)
     ///     .arg(Arg::new(&quot;option&quot;)
     ///         .short(&#39;o&#39;)
-    ///         .takes_value(true)
+    ///         .action(ArgAction::Set)
     ///         .action(ArgAction::Append))
     ///     .arg(Arg::new(&quot;flag&quot;)
     ///         .short(&#39;f&#39;)
@@ -2929,12 +2801,12 @@ To see how many values there are, call `matches.get_many::&lt;T&gt;(...).map(|v|
     /// index.
     ///
     /// ```rust
-    /// # use clap::{Command, Arg};
+    /// # use clap::{Command, Arg, ArgAction};
     /// let m = Command::new(&quot;myapp&quot;)
     ///     .arg(Arg::new(&quot;option&quot;)
     ///         .short(&#39;o&#39;)
-    ///         .takes_value(true)
-    ///         .multiple_values(true))
+    ///         .action(ArgAction::Set)
+    ///         .num_args(1..))
     ///     .get_matches_from(vec![&quot;myapp&quot;, &quot;-o=val1,val2,val3&quot;]);
     ///            // ARGV indices: ^0       ^1
     ///            // clap indices:             ^2
@@ -2946,51 +2818,13 @@ To see how many values there are, call `matches.get_many::&lt;T&gt;(...).map(|v|
     /// [`ArgMatches::index_of`]: ArgMatches::index_of()
     /// [delimiter]: Arg::value_delimiter()
     </span><span class="attr">#[cfg_attr(debug_assertions, track_caller)]
-    </span><span class="kw">pub fn </span>indices_of&lt;T: Key&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, id: T) -&gt; <span class="prelude-ty">Option</span>&lt;Indices&lt;<span class="lifetime">&#39;_</span>&gt;&gt; {
-        <span class="kw">let </span>arg = <span class="self">self</span>.get_arg(<span class="kw-2">&amp;</span>Id::from(id))<span class="question-mark">?</span>;
+    </span><span class="kw">pub fn </span>indices_of(<span class="kw-2">&amp;</span><span class="self">self</span>, id: <span class="kw-2">&amp;</span>str) -&gt; <span class="prelude-ty">Option</span>&lt;Indices&lt;<span class="lifetime">&#39;_</span>&gt;&gt; {
+        <span class="kw">let </span>arg = <span class="macro">some!</span>(<span class="self">self</span>.get_arg(id));
         <span class="kw">let </span>i = Indices {
             iter: arg.indices(),
             len: arg.num_vals(),
         };
         <span class="prelude-val">Some</span>(i)
-    }
-
-    <span class="attr">#[inline]
-    #[doc(hidden)]
-    #[cfg_attr(
-        feature = <span class="string">&quot;deprecated&quot;</span>,
-        deprecated(
-            since = <span class="string">&quot;3.2.0&quot;</span>,
-            note = <span class="string">&quot;Replaced with `ArgMatches::try_get_one()`
-
-When helping to catch mistyped argument IDs, we overlooked the use cases for more dynamic lookups
-of arguments, so we added `is_valid_arg` as a short-term hack.  Since then, we&#39;ve generalized
-`value_of` as `try_get_one` to give callers all the relevant information they need.
-
-So replace
-```
-if matches.is_valid_arg(...) {
-    matches.value_of(...)
-}
-```
-with
-```
-if let Ok(value) = matches.try_get_one::&lt;T&gt;(...) {
-}
-```
-&quot;
-        </span>)
-    )]
-    </span><span class="kw">pub fn </span>is_valid_arg(<span class="kw-2">&amp;</span><span class="self">self</span>, _id: <span class="kw">impl </span>Key) -&gt; bool {
-        <span class="attr">#[cfg(debug_assertions)]
-        </span>{
-            <span class="kw">let </span>id = Id::from(_id);
-            <span class="self">self</span>.disable_asserts || id == Id::empty_hash() || <span class="self">self</span>.valid_args.contains(<span class="kw-2">&amp;</span>id)
-        }
-        <span class="attr">#[cfg(not(debug_assertions))]
-        </span>{
-            <span class="bool-val">true
-        </span>}
     }
 }
 
@@ -3025,6 +2859,8 @@ if let Ok(value) = matches.try_get_one::&lt;T&gt;(...) {
     /// with pattern matching!
     ///
     /// ```rust
+    /// # use std::ffi::OsString;
+    /// # use std::ffi::OsStr;
     /// # use clap::Command;
     /// // Assume there is an external subcommand named &quot;subcmd&quot;
     /// let app_m = Command::new(&quot;myprog&quot;)
@@ -3037,8 +2873,8 @@ if let Ok(value) = matches.try_get_one::&lt;T&gt;(...) {
     /// // string argument name
     /// match app_m.subcommand() {
     ///     Some((external, sub_m)) =&gt; {
-    ///          let ext_args: Vec&lt;&amp;str&gt; = sub_m.get_many::&lt;String&gt;(&quot;&quot;)
-    ///             .unwrap().map(|s| s.as_str()).collect();
+    ///          let ext_args: Vec&lt;&amp;OsStr&gt; = sub_m.get_many::&lt;OsString&gt;(&quot;&quot;)
+    ///             .unwrap().map(|s| s.as_os_str()).collect();
     ///          assert_eq!(external, &quot;subcmd&quot;);
     ///          assert_eq!(ext_args, [&quot;--option&quot;, &quot;value&quot;, &quot;-fff&quot;, &quot;--flag&quot;]);
     ///     },
@@ -3082,6 +2918,7 @@ if let Ok(value) = matches.try_get_one::&lt;T&gt;(...) {
     /// with pattern matching!
     ///
     /// ```rust
+    /// # use std::ffi::OsString;
     /// # use clap::Command;
     /// // Assume there is an external subcommand named &quot;subcmd&quot;
     /// let mut app_m = Command::new(&quot;myprog&quot;)
@@ -3094,7 +2931,7 @@ if let Ok(value) = matches.try_get_one::&lt;T&gt;(...) {
     /// // string argument name
     /// match app_m.remove_subcommand() {
     ///     Some((external, mut sub_m)) =&gt; {
-    ///          let ext_args: Vec&lt;String&gt; = sub_m.remove_many(&quot;&quot;)
+    ///          let ext_args: Vec&lt;OsString&gt; = sub_m.remove_many(&quot;&quot;)
     ///             .expect(&quot;`file`is required&quot;)
     ///             .collect();
     ///          assert_eq!(external, &quot;subcmd&quot;);
@@ -3116,7 +2953,7 @@ if let Ok(value) = matches.try_get_one::&lt;T&gt;(...) {
     ///
     /// # Panics
     ///
-    /// If `id` is is not a valid subcommand.
+    /// If `id` is not a valid subcommand.
     ///
     /// # Examples
     ///
@@ -3130,13 +2967,13 @@ if let Ok(value) = matches.try_get_one::&lt;T&gt;(...) {
     ///     .subcommand(Command::new(&quot;test&quot;)
     ///         .arg(Arg::new(&quot;opt&quot;)
     ///             .long(&quot;option&quot;)
-    ///             .takes_value(true)))
+    ///             .action(ArgAction::Set)))
     ///     .get_matches_from(vec![
     ///         &quot;myprog&quot;, &quot;-d&quot;, &quot;test&quot;, &quot;--option&quot;, &quot;val&quot;
     ///     ]);
     ///
     /// // Both parent commands, and child subcommands can have arguments present at the same times
-    /// assert!(*app_m.get_one::&lt;bool&gt;(&quot;debug&quot;).expect(&quot;defaulted by clap&quot;));
+    /// assert!(app_m.get_flag(&quot;debug&quot;));
     ///
     /// // Get the subcommand&#39;s ArgMatches instance
     /// if let Some(sub_m) = app_m.subcommand_matches(&quot;test&quot;) {
@@ -3147,8 +2984,8 @@ if let Ok(value) = matches.try_get_one::&lt;T&gt;(...) {
     ///
     /// [subcommand]: crate::Command::subcommand
     /// [`Command`]: crate::Command
-    </span><span class="kw">pub fn </span>subcommand_matches&lt;T: Key&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, id: T) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>ArgMatches&gt; {
-        <span class="self">self</span>.get_subcommand(<span class="kw-2">&amp;</span>id.into()).map(|sc| <span class="kw-2">&amp;</span>sc.matches)
+    </span><span class="kw">pub fn </span>subcommand_matches(<span class="kw-2">&amp;</span><span class="self">self</span>, name: <span class="kw-2">&amp;</span>str) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>ArgMatches&gt; {
+        <span class="self">self</span>.get_subcommand(name).map(|sc| <span class="kw-2">&amp;</span>sc.matches)
     }
 
     <span class="doccomment">/// The name of the current [subcommand].
@@ -3186,11 +3023,10 @@ if let Ok(value) = matches.try_get_one::&lt;T&gt;(...) {
     /// before they do a query on `ArgMatches`.
     </span><span class="attr">#[inline]
     #[doc(hidden)]
-    </span><span class="kw">pub fn </span>is_valid_subcommand(<span class="kw-2">&amp;</span><span class="self">self</span>, _id: <span class="kw">impl </span>Key) -&gt; bool {
+    </span><span class="kw">pub fn </span>is_valid_subcommand(<span class="kw-2">&amp;</span><span class="self">self</span>, _name: <span class="kw-2">&amp;</span>str) -&gt; bool {
         <span class="attr">#[cfg(debug_assertions)]
         </span>{
-            <span class="kw">let </span>id = Id::from(_id);
-            <span class="self">self</span>.disable_asserts || id == Id::empty_hash() || <span class="self">self</span>.valid_subcommands.contains(<span class="kw-2">&amp;</span>id)
+            _name.is_empty() || <span class="self">self</span>.valid_subcommands.iter().any(|s| <span class="kw-2">*</span>s == _name)
         }
         <span class="attr">#[cfg(not(debug_assertions))]
         </span>{
@@ -3206,8 +3042,7 @@ if let Ok(value) = matches.try_get_one::&lt;T&gt;(...) {
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         id: <span class="kw-2">&amp;</span>str,
     ) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>T&gt;, MatchesError&gt; {
-        <span class="kw">let </span>id = Id::from(id);
-        <span class="kw">let </span>arg = <span class="self">self</span>.try_get_arg_t::&lt;T&gt;(<span class="kw-2">&amp;</span>id)<span class="question-mark">?</span>;
+        <span class="kw">let </span>arg = <span class="macro">ok!</span>(<span class="self">self</span>.try_get_arg_t::&lt;T&gt;(id));
         <span class="kw">let </span>value = <span class="kw">match </span>arg.and_then(|a| a.first()) {
             <span class="prelude-val">Some</span>(value) =&gt; value,
             <span class="prelude-val">None </span>=&gt; {
@@ -3225,8 +3060,7 @@ if let Ok(value) = matches.try_get_one::&lt;T&gt;(...) {
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         id: <span class="kw-2">&amp;</span>str,
     ) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="prelude-ty">Option</span>&lt;ValuesRef&lt;T&gt;&gt;, MatchesError&gt; {
-        <span class="kw">let </span>id = Id::from(id);
-        <span class="kw">let </span>arg = <span class="kw">match </span><span class="self">self</span>.try_get_arg_t::&lt;T&gt;(<span class="kw-2">&amp;</span>id)<span class="question-mark">? </span>{
+        <span class="kw">let </span>arg = <span class="kw">match </span><span class="macro">ok!</span>(<span class="self">self</span>.try_get_arg_t::&lt;T&gt;(id)) {
             <span class="prelude-val">Some</span>(arg) =&gt; arg,
             <span class="prelude-val">None </span>=&gt; <span class="kw">return </span><span class="prelude-val">Ok</span>(<span class="prelude-val">None</span>),
         };
@@ -3234,16 +3068,32 @@ if let Ok(value) = matches.try_get_one::&lt;T&gt;(...) {
         <span class="kw">let </span>values = arg.vals_flatten();
         <span class="kw">let </span>values = ValuesRef {
             <span class="comment">// enforced by `try_get_arg_t`
-            </span>iter: values.map(|v| v.downcast_ref::&lt;T&gt;().expect(INTERNAL_ERROR_MSG)),
+            </span>iter: values.map(unwrap_downcast_ref),
             len,
         };
         <span class="prelude-val">Ok</span>(<span class="prelude-val">Some</span>(values))
     }
 
+    <span class="doccomment">/// Non-panicking version of [`ArgMatches::get_occurrences`]
+    </span><span class="kw">pub fn </span>try_get_occurrences&lt;T: Any + Clone + Send + Sync + <span class="lifetime">&#39;static</span>&gt;(
+        <span class="kw-2">&amp;</span><span class="self">self</span>,
+        id: <span class="kw-2">&amp;</span>str,
+    ) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="prelude-ty">Option</span>&lt;OccurrencesRef&lt;T&gt;&gt;, MatchesError&gt; {
+        <span class="kw">let </span>arg = <span class="kw">match </span><span class="macro">ok!</span>(<span class="self">self</span>.try_get_arg_t::&lt;T&gt;(id)) {
+            <span class="prelude-val">Some</span>(arg) =&gt; arg,
+            <span class="prelude-val">None </span>=&gt; <span class="kw">return </span><span class="prelude-val">Ok</span>(<span class="prelude-val">None</span>),
+        };
+        <span class="kw">let </span>values = arg.vals();
+        <span class="prelude-val">Ok</span>(<span class="prelude-val">Some</span>(OccurrencesRef {
+            iter: values.map(|g| OccurrenceValuesRef {
+                iter: g.iter().map(unwrap_downcast_ref),
+            }),
+        }))
+    }
+
     <span class="doccomment">/// Non-panicking version of [`ArgMatches::get_raw`]
     </span><span class="kw">pub fn </span>try_get_raw(<span class="kw-2">&amp;</span><span class="self">self</span>, id: <span class="kw-2">&amp;</span>str) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="prelude-ty">Option</span>&lt;RawValues&lt;<span class="lifetime">&#39;_</span>&gt;&gt;, MatchesError&gt; {
-        <span class="kw">let </span>id = Id::from(id);
-        <span class="kw">let </span>arg = <span class="kw">match </span><span class="self">self</span>.try_get_arg(<span class="kw-2">&amp;</span>id)<span class="question-mark">? </span>{
+        <span class="kw">let </span>arg = <span class="kw">match </span><span class="macro">ok!</span>(<span class="self">self</span>.try_get_arg(id)) {
             <span class="prelude-val">Some</span>(arg) =&gt; arg,
             <span class="prelude-val">None </span>=&gt; <span class="kw">return </span><span class="prelude-val">Ok</span>(<span class="prelude-val">None</span>),
         };
@@ -3256,17 +3106,34 @@ if let Ok(value) = matches.try_get_one::&lt;T&gt;(...) {
         <span class="prelude-val">Ok</span>(<span class="prelude-val">Some</span>(values))
     }
 
+    <span class="doccomment">/// Non-panicking version of [`ArgMatches::get_raw_occurrences`]
+    </span><span class="kw">pub fn </span>try_get_raw_occurrences(
+        <span class="kw-2">&amp;</span><span class="self">self</span>,
+        id: <span class="kw-2">&amp;</span>str,
+    ) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="prelude-ty">Option</span>&lt;RawOccurrences&lt;<span class="lifetime">&#39;_</span>&gt;&gt;, MatchesError&gt; {
+        <span class="kw">let </span>arg = <span class="kw">match </span><span class="macro">ok!</span>(<span class="self">self</span>.try_get_arg(id)) {
+            <span class="prelude-val">Some</span>(arg) =&gt; arg,
+            <span class="prelude-val">None </span>=&gt; <span class="kw">return </span><span class="prelude-val">Ok</span>(<span class="prelude-val">None</span>),
+        };
+        <span class="kw">let </span>values = arg.raw_vals();
+        <span class="kw">let </span>occurrences = RawOccurrences {
+            iter: values.map(|g| RawOccurrenceValues {
+                iter: g.iter().map(OsString::as_os_str),
+            }),
+        };
+        <span class="prelude-val">Ok</span>(<span class="prelude-val">Some</span>(occurrences))
+    }
+
     <span class="doccomment">/// Non-panicking version of [`ArgMatches::remove_one`]
     </span><span class="kw">pub fn </span>try_remove_one&lt;T: Any + Clone + Send + Sync + <span class="lifetime">&#39;static</span>&gt;(
         <span class="kw-2">&amp;mut </span><span class="self">self</span>,
         id: <span class="kw-2">&amp;</span>str,
     ) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="prelude-ty">Option</span>&lt;T&gt;, MatchesError&gt; {
-        <span class="kw">let </span>id = Id::from(id);
-        <span class="kw">match </span><span class="self">self</span>.try_remove_arg_t::&lt;T&gt;(<span class="kw-2">&amp;</span>id)<span class="question-mark">? </span>{
+        <span class="kw">match </span><span class="macro">ok!</span>(<span class="self">self</span>.try_remove_arg_t::&lt;T&gt;(id)) {
             <span class="prelude-val">Some</span>(values) =&gt; <span class="prelude-val">Ok</span>(values
                 .into_vals_flatten()
                 <span class="comment">// enforced by `try_get_arg_t`
-                </span>.map(|v| v.downcast_into::&lt;T&gt;().expect(INTERNAL_ERROR_MSG))
+                </span>.map(unwrap_downcast_into)
                 .next()),
             <span class="prelude-val">None </span>=&gt; <span class="prelude-val">Ok</span>(<span class="prelude-val">None</span>),
         }
@@ -3276,29 +3143,44 @@ if let Ok(value) = matches.try_get_one::&lt;T&gt;(...) {
     </span><span class="kw">pub fn </span>try_remove_many&lt;T: Any + Clone + Send + Sync + <span class="lifetime">&#39;static</span>&gt;(
         <span class="kw-2">&amp;mut </span><span class="self">self</span>,
         id: <span class="kw-2">&amp;</span>str,
-    ) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="prelude-ty">Option</span>&lt;Values2&lt;T&gt;&gt;, MatchesError&gt; {
-        <span class="kw">let </span>id = Id::from(id);
-        <span class="kw">let </span>arg = <span class="kw">match </span><span class="self">self</span>.try_remove_arg_t::&lt;T&gt;(<span class="kw-2">&amp;</span>id)<span class="question-mark">? </span>{
+    ) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="prelude-ty">Option</span>&lt;Values&lt;T&gt;&gt;, MatchesError&gt; {
+        <span class="kw">let </span>arg = <span class="kw">match </span><span class="macro">ok!</span>(<span class="self">self</span>.try_remove_arg_t::&lt;T&gt;(id)) {
             <span class="prelude-val">Some</span>(arg) =&gt; arg,
             <span class="prelude-val">None </span>=&gt; <span class="kw">return </span><span class="prelude-val">Ok</span>(<span class="prelude-val">None</span>),
         };
         <span class="kw">let </span>len = arg.num_vals();
         <span class="kw">let </span>values = arg.into_vals_flatten();
-        <span class="kw">let </span>values = Values2 {
+        <span class="kw">let </span>values = Values {
             <span class="comment">// enforced by `try_get_arg_t`
-            </span>iter: values.map(|v| v.downcast_into::&lt;T&gt;().expect(INTERNAL_ERROR_MSG)),
+            </span>iter: values.map(unwrap_downcast_into),
             len,
         };
         <span class="prelude-val">Ok</span>(<span class="prelude-val">Some</span>(values))
     }
 
+    <span class="doccomment">/// Non-panicking version of [`ArgMatches::remove_occurrences`]
+    </span><span class="kw">pub fn </span>try_remove_occurrences&lt;T: Any + Clone + Send + Sync + <span class="lifetime">&#39;static</span>&gt;(
+        <span class="kw-2">&amp;mut </span><span class="self">self</span>,
+        id: <span class="kw-2">&amp;</span>str,
+    ) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="prelude-ty">Option</span>&lt;Occurrences&lt;T&gt;&gt;, MatchesError&gt; {
+        <span class="kw">let </span>arg = <span class="kw">match </span><span class="macro">ok!</span>(<span class="self">self</span>.try_remove_arg_t::&lt;T&gt;(id)) {
+            <span class="prelude-val">Some</span>(arg) =&gt; arg,
+            <span class="prelude-val">None </span>=&gt; <span class="kw">return </span><span class="prelude-val">Ok</span>(<span class="prelude-val">None</span>),
+        };
+        <span class="kw">let </span>values = arg.into_vals();
+        <span class="kw">let </span>occurrences = Occurrences {
+            iter: values.into_iter().map(|g| OccurrenceValues {
+                iter: g.into_iter().map(unwrap_downcast_into),
+            }),
+        };
+        <span class="prelude-val">Ok</span>(<span class="prelude-val">Some</span>(occurrences))
+    }
+
     <span class="doccomment">/// Non-panicking version of [`ArgMatches::contains_id`]
     </span><span class="kw">pub fn </span>try_contains_id(<span class="kw-2">&amp;</span><span class="self">self</span>, id: <span class="kw-2">&amp;</span>str) -&gt; <span class="prelude-ty">Result</span>&lt;bool, MatchesError&gt; {
-        <span class="kw">let </span>id = Id::from(id);
+        <span class="macro">ok!</span>(<span class="self">self</span>.verify_arg(id));
 
-        <span class="self">self</span>.verify_arg(<span class="kw-2">&amp;</span>id)<span class="question-mark">?</span>;
-
-        <span class="kw">let </span>presence = <span class="self">self</span>.args.contains_key(<span class="kw-2">&amp;</span>id);
+        <span class="kw">let </span>presence = <span class="self">self</span>.args.contains_key(id);
         <span class="prelude-val">Ok</span>(presence)
     }
 }
@@ -3306,34 +3188,34 @@ if let Ok(value) = matches.try_get_one::&lt;T&gt;(...) {
 <span class="comment">// Private methods
 </span><span class="kw">impl </span>ArgMatches {
     <span class="attr">#[inline]
-    </span><span class="kw">fn </span>try_get_arg(<span class="kw-2">&amp;</span><span class="self">self</span>, arg: <span class="kw-2">&amp;</span>Id) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>MatchedArg&gt;, MatchesError&gt; {
-        <span class="self">self</span>.verify_arg(arg)<span class="question-mark">?</span>;
+    </span><span class="kw">fn </span>try_get_arg(<span class="kw-2">&amp;</span><span class="self">self</span>, arg: <span class="kw-2">&amp;</span>str) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>MatchedArg&gt;, MatchesError&gt; {
+        <span class="macro">ok!</span>(<span class="self">self</span>.verify_arg(arg));
         <span class="prelude-val">Ok</span>(<span class="self">self</span>.args.get(arg))
     }
 
     <span class="attr">#[inline]
     </span><span class="kw">fn </span>try_get_arg_t&lt;T: Any + Send + Sync + <span class="lifetime">&#39;static</span>&gt;(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        arg: <span class="kw-2">&amp;</span>Id,
+        arg: <span class="kw-2">&amp;</span>str,
     ) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>MatchedArg&gt;, MatchesError&gt; {
-        <span class="kw">let </span>arg = <span class="kw">match </span><span class="self">self</span>.try_get_arg(arg)<span class="question-mark">? </span>{
+        <span class="kw">let </span>arg = <span class="kw">match </span><span class="macro">ok!</span>(<span class="self">self</span>.try_get_arg(arg)) {
             <span class="prelude-val">Some</span>(arg) =&gt; arg,
             <span class="prelude-val">None </span>=&gt; {
                 <span class="kw">return </span><span class="prelude-val">Ok</span>(<span class="prelude-val">None</span>);
             }
         };
-        <span class="self">self</span>.verify_arg_t::&lt;T&gt;(arg)<span class="question-mark">?</span>;
+        <span class="macro">ok!</span>(<span class="self">self</span>.verify_arg_t::&lt;T&gt;(arg));
         <span class="prelude-val">Ok</span>(<span class="prelude-val">Some</span>(arg))
     }
 
     <span class="attr">#[inline]
     </span><span class="kw">fn </span>try_remove_arg_t&lt;T: Any + Send + Sync + <span class="lifetime">&#39;static</span>&gt;(
         <span class="kw-2">&amp;mut </span><span class="self">self</span>,
-        arg: <span class="kw-2">&amp;</span>Id,
+        arg: <span class="kw-2">&amp;</span>str,
     ) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="prelude-ty">Option</span>&lt;MatchedArg&gt;, MatchesError&gt; {
-        <span class="self">self</span>.verify_arg(arg)<span class="question-mark">?</span>;
-        <span class="kw">let </span>matched = <span class="kw">match </span><span class="self">self</span>.args.remove(arg) {
-            <span class="prelude-val">Some</span>(matched) =&gt; matched,
+        <span class="macro">ok!</span>(<span class="self">self</span>.verify_arg(arg));
+        <span class="kw">let </span>(id, matched) = <span class="kw">match </span><span class="self">self</span>.args.remove_entry(arg) {
+            <span class="prelude-val">Some</span>((id, matched)) =&gt; (id, matched),
             <span class="prelude-val">None </span>=&gt; {
                 <span class="kw">return </span><span class="prelude-val">Ok</span>(<span class="prelude-val">None</span>);
             }
@@ -3344,7 +3226,7 @@ if let Ok(value) = matches.try_get_one::&lt;T&gt;(...) {
         <span class="kw">if </span>actual == expected {
             <span class="prelude-val">Ok</span>(<span class="prelude-val">Some</span>(matched))
         } <span class="kw">else </span>{
-            <span class="self">self</span>.args.insert(arg.clone(), matched);
+            <span class="self">self</span>.args.insert(id, matched);
             <span class="prelude-val">Err</span>(MatchesError::Downcast { actual, expected })
         }
     }
@@ -3363,16 +3245,10 @@ if let Ok(value) = matches.try_get_one::&lt;T&gt;(...) {
     }
 
     <span class="attr">#[inline]
-    </span><span class="kw">fn </span>verify_arg(<span class="kw-2">&amp;</span><span class="self">self</span>, _arg: <span class="kw-2">&amp;</span>Id) -&gt; <span class="prelude-ty">Result</span>&lt;(), MatchesError&gt; {
+    </span><span class="kw">fn </span>verify_arg(<span class="kw-2">&amp;</span><span class="self">self</span>, _arg: <span class="kw-2">&amp;</span>str) -&gt; <span class="prelude-ty">Result</span>&lt;(), MatchesError&gt; {
         <span class="attr">#[cfg(debug_assertions)]
         </span>{
-            <span class="kw">if </span><span class="self">self</span>.disable_asserts || <span class="kw-2">*</span>_arg == Id::empty_hash() || <span class="self">self</span>.valid_args.contains(_arg) {
-            } <span class="kw">else if </span><span class="self">self</span>.valid_subcommands.contains(_arg) {
-                <span class="macro">debug!</span>(
-                    <span class="string">&quot;Subcommand `{:?}` used where an argument or group name was expected.&quot;</span>,
-                    _arg
-                );
-                <span class="kw">return </span><span class="prelude-val">Err</span>(MatchesError::UnknownArgument {});
+            <span class="kw">if </span>_arg == Id::EXTERNAL || <span class="self">self</span>.valid_args.iter().any(|s| <span class="kw-2">*</span>s == _arg) {
             } <span class="kw">else </span>{
                 <span class="macro">debug!</span>(
                     <span class="string">&quot;`{:?}` is not an id of an argument or a group.\n\
@@ -3388,22 +3264,16 @@ if let Ok(value) = matches.try_get_one::&lt;T&gt;(...) {
 
     <span class="attr">#[inline]
     #[cfg_attr(debug_assertions, track_caller)]
-    </span><span class="kw">fn </span>get_arg(<span class="kw-2">&amp;</span><span class="self">self</span>, arg: <span class="kw-2">&amp;</span>Id) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>MatchedArg&gt; {
+    </span><span class="kw">fn </span>get_arg&lt;<span class="lifetime">&#39;s</span>&gt;(<span class="kw-2">&amp;</span><span class="lifetime">&#39;s </span><span class="self">self</span>, arg: <span class="kw-2">&amp;</span>str) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;s </span>MatchedArg&gt; {
         <span class="attr">#[cfg(debug_assertions)]
         </span>{
-            <span class="kw">if </span><span class="self">self</span>.disable_asserts || <span class="kw-2">*</span>arg == Id::empty_hash() || <span class="self">self</span>.valid_args.contains(arg) {
-            } <span class="kw">else if </span><span class="self">self</span>.valid_subcommands.contains(arg) {
-                <span class="macro">panic!</span>(
-                    <span class="string">&quot;Subcommand `{:?}` used where an argument or group name was expected.&quot;</span>,
-                    arg
-                );
+            <span class="kw">if </span>arg == Id::EXTERNAL || <span class="self">self</span>.valid_args.iter().any(|s| <span class="kw-2">*</span>s == arg) {
             } <span class="kw">else </span>{
                 <span class="macro">panic!</span>(
-                    <span class="string">&quot;`{:?}` is not an id of an argument or a group.\n\
+                    <span class="string">&quot;`{arg:?}` is not an id of an argument or a group.\n\
                      Make sure you&#39;re using the name of the argument itself \
-                     and not the name of short or long flags.&quot;</span>,
-                    arg
-                );
+                     and not the name of short or long flags.&quot;
+                </span>);
             }
         }
 
@@ -3412,25 +3282,17 @@ if let Ok(value) = matches.try_get_one::&lt;T&gt;(...) {
 
     <span class="attr">#[inline]
     #[cfg_attr(debug_assertions, track_caller)]
-    </span><span class="kw">fn </span>get_subcommand(<span class="kw-2">&amp;</span><span class="self">self</span>, id: <span class="kw-2">&amp;</span>Id) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>SubCommand&gt; {
+    </span><span class="kw">fn </span>get_subcommand(<span class="kw-2">&amp;</span><span class="self">self</span>, name: <span class="kw-2">&amp;</span>str) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>SubCommand&gt; {
         <span class="attr">#[cfg(debug_assertions)]
         </span>{
-            <span class="kw">if </span><span class="self">self</span>.disable_asserts
-                || <span class="kw-2">*</span>id == Id::empty_hash()
-                || <span class="self">self</span>.valid_subcommands.contains(id)
-            {
-            } <span class="kw">else if </span><span class="self">self</span>.valid_args.contains(id) {
-                <span class="macro">panic!</span>(
-                    <span class="string">&quot;Argument or group `{:?}` used where a subcommand name was expected.&quot;</span>,
-                    id
-                );
+            <span class="kw">if </span>name.is_empty() || <span class="self">self</span>.valid_subcommands.iter().any(|s| <span class="kw-2">*</span>s == name) {
             } <span class="kw">else </span>{
-                <span class="macro">panic!</span>(<span class="string">&quot;`{:?}` is not a name of a subcommand.&quot;</span>, id);
+                <span class="macro">panic!</span>(<span class="string">&quot;`{name}` is not a name of a subcommand.&quot;</span>);
             }
         }
 
         <span class="kw">if let </span><span class="prelude-val">Some</span>(<span class="kw-2">ref </span>sc) = <span class="self">self</span>.subcommand {
-            <span class="kw">if </span>sc.id == <span class="kw-2">*</span>id {
+            <span class="kw">if </span>sc.name == name {
                 <span class="kw">return </span><span class="prelude-val">Some</span>(sc);
             }
         }
@@ -3441,10 +3303,53 @@ if let Ok(value) = matches.try_get_one::&lt;T&gt;(...) {
 
 <span class="attr">#[derive(Debug, Clone, PartialEq, Eq)]
 </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct </span>SubCommand {
-    <span class="kw">pub</span>(<span class="kw">crate</span>) id: Id,
     <span class="kw">pub</span>(<span class="kw">crate</span>) name: String,
     <span class="kw">pub</span>(<span class="kw">crate</span>) matches: ArgMatches,
 }
+
+<span class="doccomment">/// Iterate over [`Arg`][crate::Arg] and [`ArgGroup`][crate::ArgGroup] [`Id`][crate::Id]s via [`ArgMatches::ids`].
+///
+/// # Examples
+///
+/// ```
+/// # use clap::{Command, arg, value_parser};
+///
+/// let m = Command::new(&quot;myprog&quot;)
+///     .arg(arg!(--color &lt;when&gt;)
+///         .value_parser([&quot;auto&quot;, &quot;always&quot;, &quot;never&quot;]))
+///     .arg(arg!(--config &lt;path&gt;)
+///         .value_parser(value_parser!(std::path::PathBuf)))
+///     .get_matches_from([&quot;myprog&quot;, &quot;--config=config.toml&quot;, &quot;--color=auto&quot;]);
+/// assert_eq!(
+///     m.ids()
+///         .map(|id| id.as_str())
+///         .collect::&lt;Vec&lt;_&gt;&gt;(),
+///     [&quot;config&quot;, &quot;color&quot;]
+/// );
+/// ```
+</span><span class="attr">#[derive(Clone, Debug)]
+</span><span class="kw">pub struct </span>IdsRef&lt;<span class="lifetime">&#39;a</span>&gt; {
+    iter: std::slice::Iter&lt;<span class="lifetime">&#39;a</span>, Id&gt;,
+}
+
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Iterator <span class="kw">for </span>IdsRef&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">type </span>Item = <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>Id;
+
+    <span class="kw">fn </span>next(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>Id&gt; {
+        <span class="self">self</span>.iter.next()
+    }
+    <span class="kw">fn </span>size_hint(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; (usize, <span class="prelude-ty">Option</span>&lt;usize&gt;) {
+        <span class="self">self</span>.iter.size_hint()
+    }
+}
+
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; DoubleEndedIterator <span class="kw">for </span>IdsRef&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">fn </span>next_back(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>Id&gt; {
+        <span class="self">self</span>.iter.next_back()
+    }
+}
+
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; ExactSizeIterator <span class="kw">for </span>IdsRef&lt;<span class="lifetime">&#39;a</span>&gt; {}
 
 <span class="doccomment">/// Iterate over multiple values for an argument via [`ArgMatches::remove_many`].
 ///
@@ -3455,8 +3360,7 @@ if let Ok(value) = matches.try_get_one::&lt;T&gt;(...) {
 /// let mut m = Command::new(&quot;myapp&quot;)
 ///     .arg(Arg::new(&quot;output&quot;)
 ///         .short(&#39;o&#39;)
-///         .action(ArgAction::Append)
-///         .takes_value(true))
+///         .action(ArgAction::Append))
 ///     .get_matches_from(vec![&quot;myapp&quot;, &quot;-o&quot;, &quot;val1&quot;, &quot;-o&quot;, &quot;val2&quot;]);
 ///
 /// let mut values = m.remove_many::&lt;String&gt;(&quot;output&quot;)
@@ -3467,13 +3371,13 @@ if let Ok(value) = matches.try_get_one::&lt;T&gt;(...) {
 /// assert_eq!(values.next(), None);
 /// ```
 </span><span class="attr">#[derive(Clone, Debug)]
-</span><span class="kw">pub struct </span>Values2&lt;T&gt; {
+</span><span class="kw">pub struct </span>Values&lt;T&gt; {
     <span class="attr">#[allow(clippy::type_complexity)]
     </span>iter: Map&lt;Flatten&lt;std::vec::IntoIter&lt;Vec&lt;AnyValue&gt;&gt;&gt;, <span class="kw">fn</span>(AnyValue) -&gt; T&gt;,
     len: usize,
 }
 
-<span class="kw">impl</span>&lt;T&gt; Iterator <span class="kw">for </span>Values2&lt;T&gt; {
+<span class="kw">impl</span>&lt;T&gt; Iterator <span class="kw">for </span>Values&lt;T&gt; {
     <span class="kw">type </span>Item = T;
 
     <span class="kw">fn </span>next(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>::Item&gt; {
@@ -3484,19 +3388,19 @@ if let Ok(value) = matches.try_get_one::&lt;T&gt;(...) {
     }
 }
 
-<span class="kw">impl</span>&lt;T&gt; DoubleEndedIterator <span class="kw">for </span>Values2&lt;T&gt; {
+<span class="kw">impl</span>&lt;T&gt; DoubleEndedIterator <span class="kw">for </span>Values&lt;T&gt; {
     <span class="kw">fn </span>next_back(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>::Item&gt; {
         <span class="self">self</span>.iter.next_back()
     }
 }
 
-<span class="kw">impl</span>&lt;T&gt; ExactSizeIterator <span class="kw">for </span>Values2&lt;T&gt; {}
+<span class="kw">impl</span>&lt;T&gt; ExactSizeIterator <span class="kw">for </span>Values&lt;T&gt; {}
 
 <span class="doccomment">/// Creates an empty iterator.
-</span><span class="kw">impl</span>&lt;T&gt; Default <span class="kw">for </span>Values2&lt;T&gt; {
+</span><span class="kw">impl</span>&lt;T&gt; Default <span class="kw">for </span>Values&lt;T&gt; {
     <span class="kw">fn </span>default() -&gt; <span class="self">Self </span>{
         <span class="kw">let </span>empty: Vec&lt;Vec&lt;AnyValue&gt;&gt; = Default::default();
-        Values2 {
+        Values {
             iter: empty.into_iter().flatten().map(|<span class="kw">_</span>| <span class="macro">unreachable!</span>()),
             len: <span class="number">0</span>,
         }
@@ -3512,8 +3416,7 @@ if let Ok(value) = matches.try_get_one::&lt;T&gt;(...) {
 /// let m = Command::new(&quot;myapp&quot;)
 ///     .arg(Arg::new(&quot;output&quot;)
 ///         .short(&#39;o&#39;)
-///         .action(ArgAction::Append)
-///         .takes_value(true))
+///         .action(ArgAction::Append))
 ///     .get_matches_from(vec![&quot;myapp&quot;, &quot;-o&quot;, &quot;val1&quot;, &quot;-o&quot;, &quot;val2&quot;]);
 ///
 /// let mut values = m.get_many::&lt;String&gt;(&quot;output&quot;)
@@ -3627,61 +3530,16 @@ if let Ok(value) = matches.try_get_one::&lt;T&gt;(...) {
 // commit: be5e1fa3c26e351761b33010ddbdaf5f05dbcc33
 // license: MIT - Copyright (c) 2015 The Rust Project Developers
 
-</span><span class="doccomment">/// Deprecated, replaced with [`ArgMatches::get_many()`]
-</span><span class="attr">#[cfg_attr(
-    feature = <span class="string">&quot;deprecated&quot;</span>,
-    deprecated(since = <span class="string">&quot;3.2.0&quot;</span>, note = <span class="string">&quot;Replaced with `ArgMatches::get_many()`&quot;</span>)
-)]
-#[derive(Clone, Debug)]
-</span><span class="kw">pub struct </span>Values&lt;<span class="lifetime">&#39;a</span>&gt; {
-    <span class="attr">#[allow(clippy::type_complexity)]
-    </span>iter: Map&lt;Flatten&lt;Iter&lt;<span class="lifetime">&#39;a</span>, Vec&lt;AnyValue&gt;&gt;&gt;, <span class="kw">for</span>&lt;<span class="lifetime">&#39;r</span>&gt; <span class="kw">fn</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;r </span>AnyValue) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;r </span>str&gt;,
-    len: usize,
-}
-
-<span class="attr">#[allow(deprecated)]
-</span><span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Iterator <span class="kw">for </span>Values&lt;<span class="lifetime">&#39;a</span>&gt; {
-    <span class="kw">type </span>Item = <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str;
-
-    <span class="kw">fn </span>next(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str&gt; {
-        <span class="self">self</span>.iter.next()
-    }
-    <span class="kw">fn </span>size_hint(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; (usize, <span class="prelude-ty">Option</span>&lt;usize&gt;) {
-        (<span class="self">self</span>.len, <span class="prelude-val">Some</span>(<span class="self">self</span>.len))
-    }
-}
-
-<span class="attr">#[allow(deprecated)]
-</span><span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; DoubleEndedIterator <span class="kw">for </span>Values&lt;<span class="lifetime">&#39;a</span>&gt; {
-    <span class="kw">fn </span>next_back(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str&gt; {
-        <span class="self">self</span>.iter.next_back()
-    }
-}
-
-<span class="attr">#[allow(deprecated)]
-</span><span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; ExactSizeIterator <span class="kw">for </span>Values&lt;<span class="lifetime">&#39;a</span>&gt; {}
-
-<span class="doccomment">/// Creates an empty iterator.
-</span><span class="attr">#[allow(deprecated)]
-</span><span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Default <span class="kw">for </span>Values&lt;<span class="lifetime">&#39;a</span>&gt; {
-    <span class="kw">fn </span>default() -&gt; <span class="self">Self </span>{
-        <span class="kw">static </span>EMPTY: [Vec&lt;AnyValue&gt;; <span class="number">0</span>] = [];
-        Values {
-            iter: EMPTY[..].iter().flatten().map(|<span class="kw">_</span>| <span class="macro">unreachable!</span>()),
-            len: <span class="number">0</span>,
-        }
-    }
-}
-
-<span class="attr">#[derive(Clone)]
-#[allow(missing_debug_implementations)]
+</span><span class="attr">#[derive(Clone, Debug)]
+#[deprecated(since = <span class="string">&quot;4.1.0&quot;</span>, note = <span class="string">&quot;Use Occurrences instead&quot;</span>)]
 </span><span class="kw">pub struct </span>GroupedValues&lt;<span class="lifetime">&#39;a</span>&gt; {
     <span class="attr">#[allow(clippy::type_complexity)]
     </span>iter: Map&lt;Iter&lt;<span class="lifetime">&#39;a</span>, Vec&lt;AnyValue&gt;&gt;, <span class="kw">fn</span>(<span class="kw-2">&amp;</span>Vec&lt;AnyValue&gt;) -&gt; Vec&lt;<span class="kw-2">&amp;</span>str&gt;&gt;,
     len: usize,
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Iterator <span class="kw">for </span>GroupedValues&lt;<span class="lifetime">&#39;a</span>&gt; {
+<span class="attr">#[allow(deprecated)]
+</span><span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Iterator <span class="kw">for </span>GroupedValues&lt;<span class="lifetime">&#39;a</span>&gt; {
     <span class="kw">type </span>Item = Vec&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str&gt;;
 
     <span class="kw">fn </span>next(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>::Item&gt; {
@@ -3692,19 +3550,21 @@ if let Ok(value) = matches.try_get_one::&lt;T&gt;(...) {
     }
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; DoubleEndedIterator <span class="kw">for </span>GroupedValues&lt;<span class="lifetime">&#39;a</span>&gt; {
+<span class="attr">#[allow(deprecated)]
+</span><span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; DoubleEndedIterator <span class="kw">for </span>GroupedValues&lt;<span class="lifetime">&#39;a</span>&gt; {
     <span class="kw">fn </span>next_back(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>::Item&gt; {
         <span class="self">self</span>.iter.next_back()
     }
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; ExactSizeIterator <span class="kw">for </span>GroupedValues&lt;<span class="lifetime">&#39;a</span>&gt; {}
+<span class="attr">#[allow(deprecated)]
+</span><span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; ExactSizeIterator <span class="kw">for </span>GroupedValues&lt;<span class="lifetime">&#39;a</span>&gt; {}
 
 <span class="doccomment">/// Creates an empty iterator. Used for `unwrap_or_default()`.
+</span><span class="attr">#[allow(deprecated)]
 </span><span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Default <span class="kw">for </span>GroupedValues&lt;<span class="lifetime">&#39;a</span>&gt; {
     <span class="kw">fn </span>default() -&gt; <span class="self">Self </span>{
-        <span class="attr">#![allow(deprecated)]
-        </span><span class="kw">static </span>EMPTY: [Vec&lt;AnyValue&gt;; <span class="number">0</span>] = [];
+        <span class="kw">static </span>EMPTY: [Vec&lt;AnyValue&gt;; <span class="number">0</span>] = [];
         GroupedValues {
             iter: EMPTY[..].iter().map(|<span class="kw">_</span>| <span class="macro">unreachable!</span>()),
             len: <span class="number">0</span>,
@@ -3712,63 +3572,217 @@ if let Ok(value) = matches.try_get_one::&lt;T&gt;(...) {
     }
 }
 
-<span class="doccomment">/// Deprecated, replaced with [`ArgMatches::get_many()`]
-</span><span class="attr">#[cfg_attr(
-    feature = <span class="string">&quot;deprecated&quot;</span>,
-    deprecated(since = <span class="string">&quot;3.2.0&quot;</span>, note = <span class="string">&quot;Replaced with `ArgMatches::get_many()`&quot;</span>)
-)]
-#[derive(Clone, Debug)]
-</span><span class="kw">pub struct </span>OsValues&lt;<span class="lifetime">&#39;a</span>&gt; {
+<span class="attr">#[derive(Clone, Debug)]
+</span><span class="kw">pub struct </span>Occurrences&lt;T&gt; {
     <span class="attr">#[allow(clippy::type_complexity)]
-    </span>iter: Map&lt;Flatten&lt;Iter&lt;<span class="lifetime">&#39;a</span>, Vec&lt;AnyValue&gt;&gt;&gt;, <span class="kw">fn</span>(<span class="kw-2">&amp;</span>AnyValue) -&gt; <span class="kw-2">&amp;</span>OsStr&gt;,
-    len: usize,
+    </span>iter: Map&lt;std::vec::IntoIter&lt;Vec&lt;AnyValue&gt;&gt;, <span class="kw">fn</span>(Vec&lt;AnyValue&gt;) -&gt; OccurrenceValues&lt;T&gt;&gt;,
 }
 
-<span class="attr">#[allow(deprecated)]
-</span><span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Iterator <span class="kw">for </span>OsValues&lt;<span class="lifetime">&#39;a</span>&gt; {
-    <span class="kw">type </span>Item = <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>OsStr;
+<span class="kw">impl</span>&lt;T&gt; Iterator <span class="kw">for </span>Occurrences&lt;T&gt; {
+    <span class="kw">type </span>Item = OccurrenceValues&lt;T&gt;;
 
-    <span class="kw">fn </span>next(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>OsStr&gt; {
+    <span class="kw">fn </span>next(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>::Item&gt; {
         <span class="self">self</span>.iter.next()
     }
+
     <span class="kw">fn </span>size_hint(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; (usize, <span class="prelude-ty">Option</span>&lt;usize&gt;) {
-        (<span class="self">self</span>.len, <span class="prelude-val">Some</span>(<span class="self">self</span>.len))
+        <span class="self">self</span>.iter.size_hint()
     }
 }
 
-<span class="attr">#[allow(deprecated)]
-</span><span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; DoubleEndedIterator <span class="kw">for </span>OsValues&lt;<span class="lifetime">&#39;a</span>&gt; {
-    <span class="kw">fn </span>next_back(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>OsStr&gt; {
+<span class="kw">impl</span>&lt;T&gt; DoubleEndedIterator <span class="kw">for </span>Occurrences&lt;T&gt; {
+    <span class="kw">fn </span>next_back(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>::Item&gt; {
         <span class="self">self</span>.iter.next_back()
     }
 }
 
-<span class="attr">#[allow(deprecated)]
-</span><span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; ExactSizeIterator <span class="kw">for </span>OsValues&lt;<span class="lifetime">&#39;a</span>&gt; {}
+<span class="kw">impl</span>&lt;T&gt; ExactSizeIterator <span class="kw">for </span>Occurrences&lt;T&gt; {}
 
-<span class="doccomment">/// Creates an empty iterator.
-</span><span class="attr">#[allow(deprecated)]
-</span><span class="kw">impl </span>Default <span class="kw">for </span>OsValues&lt;<span class="lifetime">&#39;_</span>&gt; {
+<span class="kw">impl</span>&lt;T&gt; Default <span class="kw">for </span>Occurrences&lt;T&gt; {
     <span class="kw">fn </span>default() -&gt; <span class="self">Self </span>{
-        <span class="kw">static </span>EMPTY: [Vec&lt;AnyValue&gt;; <span class="number">0</span>] = [];
-        OsValues {
-            iter: EMPTY[..].iter().flatten().map(|<span class="kw">_</span>| <span class="macro">unreachable!</span>()),
-            len: <span class="number">0</span>,
+        <span class="kw">let </span>empty: Vec&lt;Vec&lt;AnyValue&gt;&gt; = Default::default();
+        Occurrences {
+            iter: empty.into_iter().map(|<span class="kw">_</span>| <span class="macro">unreachable!</span>()),
         }
     }
 }
+
+<span class="attr">#[derive(Clone, Debug)]
+</span><span class="kw">pub struct </span>OccurrenceValues&lt;T&gt; {
+    <span class="attr">#[allow(clippy::type_complexity)]
+    </span>iter: Map&lt;std::vec::IntoIter&lt;AnyValue&gt;, <span class="kw">fn</span>(AnyValue) -&gt; T&gt;,
+}
+
+<span class="kw">impl</span>&lt;T&gt; Iterator <span class="kw">for </span>OccurrenceValues&lt;T&gt; {
+    <span class="kw">type </span>Item = T;
+
+    <span class="kw">fn </span>next(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>::Item&gt; {
+        <span class="self">self</span>.iter.next()
+    }
+
+    <span class="kw">fn </span>size_hint(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; (usize, <span class="prelude-ty">Option</span>&lt;usize&gt;) {
+        <span class="self">self</span>.iter.size_hint()
+    }
+}
+
+<span class="kw">impl</span>&lt;T&gt; DoubleEndedIterator <span class="kw">for </span>OccurrenceValues&lt;T&gt; {
+    <span class="kw">fn </span>next_back(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>::Item&gt; {
+        <span class="self">self</span>.iter.next_back()
+    }
+}
+
+<span class="kw">impl</span>&lt;T&gt; ExactSizeIterator <span class="kw">for </span>OccurrenceValues&lt;T&gt; {}
+
+<span class="attr">#[derive(Clone, Debug)]
+</span><span class="kw">pub struct </span>OccurrencesRef&lt;<span class="lifetime">&#39;a</span>, T&gt; {
+    <span class="attr">#[allow(clippy::type_complexity)]
+    </span>iter: Map&lt;Iter&lt;<span class="lifetime">&#39;a</span>, Vec&lt;AnyValue&gt;&gt;, <span class="kw">fn</span>(<span class="kw-2">&amp;</span>Vec&lt;AnyValue&gt;) -&gt; OccurrenceValuesRef&lt;<span class="lifetime">&#39;_</span>, T&gt;&gt;,
+}
+
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>, T&gt; Iterator <span class="kw">for </span>OccurrencesRef&lt;<span class="lifetime">&#39;a</span>, T&gt;
+<span class="kw">where
+    </span><span class="self">Self</span>: <span class="lifetime">&#39;a</span>,
+{
+    <span class="kw">type </span>Item = OccurrenceValuesRef&lt;<span class="lifetime">&#39;a</span>, T&gt;;
+
+    <span class="kw">fn </span>next(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>::Item&gt; {
+        <span class="self">self</span>.iter.next()
+    }
+
+    <span class="kw">fn </span>size_hint(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; (usize, <span class="prelude-ty">Option</span>&lt;usize&gt;) {
+        <span class="self">self</span>.iter.size_hint()
+    }
+}
+
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>, T&gt; DoubleEndedIterator <span class="kw">for </span>OccurrencesRef&lt;<span class="lifetime">&#39;a</span>, T&gt;
+<span class="kw">where
+    </span><span class="self">Self</span>: <span class="lifetime">&#39;a</span>,
+{
+    <span class="kw">fn </span>next_back(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>::Item&gt; {
+        <span class="self">self</span>.iter.next_back()
+    }
+}
+
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>, T&gt; ExactSizeIterator <span class="kw">for </span>OccurrencesRef&lt;<span class="lifetime">&#39;a</span>, T&gt; <span class="kw">where </span><span class="self">Self</span>: <span class="lifetime">&#39;a </span>{}
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>, T&gt; Default <span class="kw">for </span>OccurrencesRef&lt;<span class="lifetime">&#39;a</span>, T&gt; {
+    <span class="kw">fn </span>default() -&gt; <span class="self">Self </span>{
+        <span class="kw">static </span>EMPTY: [Vec&lt;AnyValue&gt;; <span class="number">0</span>] = [];
+        OccurrencesRef {
+            iter: EMPTY[..].iter().map(|<span class="kw">_</span>| <span class="macro">unreachable!</span>()),
+        }
+    }
+}
+
+<span class="attr">#[derive(Clone, Debug)]
+</span><span class="kw">pub struct </span>OccurrenceValuesRef&lt;<span class="lifetime">&#39;a</span>, T&gt; {
+    <span class="attr">#[allow(clippy::type_complexity)]
+    </span>iter: Map&lt;Iter&lt;<span class="lifetime">&#39;a</span>, AnyValue&gt;, <span class="kw">fn</span>(<span class="kw-2">&amp;</span>AnyValue) -&gt; <span class="kw-2">&amp;</span>T&gt;,
+}
+
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>, T&gt; Iterator <span class="kw">for </span>OccurrenceValuesRef&lt;<span class="lifetime">&#39;a</span>, T&gt;
+<span class="kw">where
+    </span><span class="self">Self</span>: <span class="lifetime">&#39;a</span>,
+{
+    <span class="kw">type </span>Item = <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>T;
+
+    <span class="kw">fn </span>next(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>::Item&gt; {
+        <span class="self">self</span>.iter.next()
+    }
+
+    <span class="kw">fn </span>size_hint(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; (usize, <span class="prelude-ty">Option</span>&lt;usize&gt;) {
+        <span class="self">self</span>.iter.size_hint()
+    }
+}
+
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>, T&gt; DoubleEndedIterator <span class="kw">for </span>OccurrenceValuesRef&lt;<span class="lifetime">&#39;a</span>, T&gt;
+<span class="kw">where
+    </span><span class="self">Self</span>: <span class="lifetime">&#39;a</span>,
+{
+    <span class="kw">fn </span>next_back(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>::Item&gt; {
+        <span class="self">self</span>.iter.next_back()
+    }
+}
+
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>, T&gt; ExactSizeIterator <span class="kw">for </span>OccurrenceValuesRef&lt;<span class="lifetime">&#39;a</span>, T&gt; <span class="kw">where </span><span class="self">Self</span>: <span class="lifetime">&#39;a </span>{}
+
+<span class="attr">#[derive(Clone, Debug)]
+</span><span class="kw">pub struct </span>RawOccurrences&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="attr">#[allow(clippy::type_complexity)]
+    </span>iter: Map&lt;Iter&lt;<span class="lifetime">&#39;a</span>, Vec&lt;OsString&gt;&gt;, <span class="kw">fn</span>(<span class="kw-2">&amp;</span>Vec&lt;OsString&gt;) -&gt; RawOccurrenceValues&lt;<span class="lifetime">&#39;_</span>&gt;&gt;,
+}
+
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Iterator <span class="kw">for </span>RawOccurrences&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">type </span>Item = RawOccurrenceValues&lt;<span class="lifetime">&#39;a</span>&gt;;
+
+    <span class="kw">fn </span>next(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>::Item&gt; {
+        <span class="self">self</span>.iter.next()
+    }
+
+    <span class="kw">fn </span>size_hint(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; (usize, <span class="prelude-ty">Option</span>&lt;usize&gt;) {
+        <span class="self">self</span>.iter.size_hint()
+    }
+}
+
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; DoubleEndedIterator <span class="kw">for </span>RawOccurrences&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">fn </span>next_back(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>::Item&gt; {
+        <span class="self">self</span>.iter.next_back()
+    }
+}
+
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; ExactSizeIterator <span class="kw">for </span>RawOccurrences&lt;<span class="lifetime">&#39;a</span>&gt; {}
+
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Default <span class="kw">for </span>RawOccurrences&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">fn </span>default() -&gt; <span class="self">Self </span>{
+        <span class="kw">static </span>EMPTY: [Vec&lt;OsString&gt;; <span class="number">0</span>] = [];
+        RawOccurrences {
+            iter: EMPTY[..].iter().map(|<span class="kw">_</span>| <span class="macro">unreachable!</span>()),
+        }
+    }
+}
+
+<span class="attr">#[derive(Clone, Debug)]
+</span><span class="kw">pub struct </span>RawOccurrenceValues&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="attr">#[allow(clippy::type_complexity)]
+    </span>iter: Map&lt;Iter&lt;<span class="lifetime">&#39;a</span>, OsString&gt;, <span class="kw">fn</span>(<span class="kw-2">&amp;</span>OsString) -&gt; <span class="kw-2">&amp;</span>OsStr&gt;,
+}
+
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Iterator <span class="kw">for </span>RawOccurrenceValues&lt;<span class="lifetime">&#39;a</span>&gt;
+<span class="kw">where
+    </span><span class="self">Self</span>: <span class="lifetime">&#39;a</span>,
+{
+    <span class="kw">type </span>Item = <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>OsStr;
+
+    <span class="kw">fn </span>next(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>::Item&gt; {
+        <span class="self">self</span>.iter.next()
+    }
+
+    <span class="kw">fn </span>size_hint(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; (usize, <span class="prelude-ty">Option</span>&lt;usize&gt;) {
+        <span class="self">self</span>.iter.size_hint()
+    }
+}
+
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; DoubleEndedIterator <span class="kw">for </span>RawOccurrenceValues&lt;<span class="lifetime">&#39;a</span>&gt;
+<span class="kw">where
+    </span><span class="self">Self</span>: <span class="lifetime">&#39;a</span>,
+{
+    <span class="kw">fn </span>next_back(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>::Item&gt; {
+        <span class="self">self</span>.iter.next_back()
+    }
+}
+
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; ExactSizeIterator <span class="kw">for </span>RawOccurrenceValues&lt;<span class="lifetime">&#39;a</span>&gt; {}
 
 <span class="doccomment">/// Iterate over indices for where an argument appeared when parsing, via [`ArgMatches::indices_of`]
 ///
 /// # Examples
 ///
 /// ```rust
-/// # use clap::{Command, Arg};
+/// # use clap::{Command, Arg, ArgAction};
 /// let m = Command::new(&quot;myapp&quot;)
 ///     .arg(Arg::new(&quot;output&quot;)
 ///         .short(&#39;o&#39;)
-///         .multiple_values(true)
-///         .takes_value(true))
+///         .num_args(1..)
+///         .action(ArgAction::Set))
 ///     .get_matches_from(vec![&quot;myapp&quot;, &quot;-o&quot;, &quot;val1&quot;, &quot;val2&quot;]);
 ///
 /// let mut indices = m.indices_of(&quot;output&quot;).unwrap();
@@ -3817,6 +3831,7 @@ if let Ok(value) = matches.try_get_one::&lt;T&gt;(...) {
 
 <span class="attr">#[cfg_attr(debug_assertions, track_caller)]
 #[inline]
+#[cfg(feature = <span class="string">&quot;unstable-grouped&quot;</span>)]
 </span><span class="kw">fn </span>unwrap_string(value: <span class="kw-2">&amp;</span>AnyValue) -&gt; <span class="kw-2">&amp;</span>str {
     <span class="kw">match </span>value.downcast_ref::&lt;String&gt;() {
         <span class="prelude-val">Some</span>(value) =&gt; value,
@@ -3826,66 +3841,25 @@ if let Ok(value) = matches.try_get_one::&lt;T&gt;(...) {
     }
 }
 
-<span class="attr">#[cfg_attr(debug_assertions, track_caller)]
-#[inline]
-</span><span class="kw">fn </span>unwrap_string_arg&lt;<span class="lifetime">&#39;v</span>&gt;(id: <span class="kw-2">&amp;</span>Id, value: <span class="kw-2">&amp;</span><span class="lifetime">&#39;v </span>AnyValue) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;v </span>str {
-    <span class="kw">match </span>value.downcast_ref::&lt;String&gt;() {
-        <span class="prelude-val">Some</span>(value) =&gt; value,
-        <span class="prelude-val">None </span>=&gt; {
-            <span class="macro">panic!</span>(
-                <span class="string">&quot;Must use `_os` lookups with `Arg::allow_invalid_utf8` at `{:?}`&quot;</span>,
-                id
-            )
-        }
-    }
+<span class="attr">#[track_caller]
+</span><span class="kw">fn </span>unwrap_downcast_ref&lt;T: Any + Clone + Send + Sync + <span class="lifetime">&#39;static</span>&gt;(value: <span class="kw-2">&amp;</span>AnyValue) -&gt; <span class="kw-2">&amp;</span>T {
+    value.downcast_ref().expect(INTERNAL_ERROR_MSG)
 }
 
-<span class="attr">#[cfg_attr(debug_assertions, track_caller)]
-#[inline]
-</span><span class="kw">fn </span>unwrap_os_string(value: <span class="kw-2">&amp;</span>AnyValue) -&gt; <span class="kw-2">&amp;</span>OsStr {
-    <span class="kw">match </span>value.downcast_ref::&lt;OsString&gt;() {
-        <span class="prelude-val">Some</span>(value) =&gt; value,
-        <span class="prelude-val">None </span>=&gt; {
-            <span class="macro">panic!</span>(<span class="string">&quot;Must use `Arg::allow_invalid_utf8` with `_os` lookups&quot;</span>,)
-        }
-    }
-}
-
-<span class="attr">#[cfg_attr(debug_assertions, track_caller)]
-#[inline]
-</span><span class="kw">fn </span>unwrap_os_string_arg&lt;<span class="lifetime">&#39;v</span>&gt;(id: <span class="kw-2">&amp;</span>Id, value: <span class="kw-2">&amp;</span><span class="lifetime">&#39;v </span>AnyValue) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;v </span>OsStr {
-    <span class="kw">match </span>value.downcast_ref::&lt;OsString&gt;() {
-        <span class="prelude-val">Some</span>(value) =&gt; value,
-        <span class="prelude-val">None </span>=&gt; {
-            <span class="macro">panic!</span>(
-                <span class="string">&quot;Must use `Arg::allow_invalid_utf8` with `_os` lookups at `{:?}`&quot;</span>,
-                id
-            )
-        }
-    }
+<span class="attr">#[track_caller]
+</span><span class="kw">fn </span>unwrap_downcast_into&lt;T: Any + Clone + Send + Sync + <span class="lifetime">&#39;static</span>&gt;(value: AnyValue) -&gt; T {
+    value.downcast_into().expect(INTERNAL_ERROR_MSG)
 }
 
 <span class="attr">#[cfg(test)]
 </span><span class="kw">mod </span>tests {
     <span class="kw">use super</span>::<span class="kw-2">*</span>;
 
+    <span class="kw">use </span><span class="kw">crate</span>::ArgAction;
+
     <span class="attr">#[test]
     </span><span class="kw">fn </span>check_auto_traits() {
         <span class="macro">static_assertions::assert_impl_all!</span>(ArgMatches: Send, Sync, Unpin);
-    }
-
-    <span class="attr">#[test]
-    </span><span class="kw">fn </span>test_default_values() {
-        <span class="attr">#![allow(deprecated)]
-        </span><span class="kw">let </span><span class="kw-2">mut </span>values: Values = Values::default();
-        <span class="macro">assert_eq!</span>(values.next(), <span class="prelude-val">None</span>);
-    }
-
-    <span class="attr">#[test]
-    </span><span class="kw">fn </span>test_default_osvalues() {
-        <span class="attr">#![allow(deprecated)]
-        </span><span class="kw">let </span><span class="kw-2">mut </span>values: OsValues = OsValues::default();
-        <span class="macro">assert_eq!</span>(values.next(), <span class="prelude-val">None</span>);
     }
 
     <span class="attr">#[test]
@@ -3912,8 +3886,8 @@ if let Ok(value) = matches.try_get_one::&lt;T&gt;(...) {
         <span class="kw">let </span>l = <span class="kw">crate</span>::Command::new(<span class="string">&quot;test&quot;</span>)
             .arg(
                 <span class="kw">crate</span>::Arg::new(<span class="string">&quot;POTATO&quot;</span>)
-                    .takes_value(<span class="bool-val">true</span>)
-                    .multiple_values(<span class="bool-val">true</span>)
+                    .action(ArgAction::Set)
+                    .num_args(<span class="number">1</span>..)
                     .required(<span class="bool-val">true</span>),
             )
             .try_get_matches_from([<span class="string">&quot;test&quot;</span>, <span class="string">&quot;one&quot;</span>])
@@ -3929,8 +3903,8 @@ if let Ok(value) = matches.try_get_one::&lt;T&gt;(...) {
         <span class="kw">let </span>l = <span class="kw">crate</span>::Command::new(<span class="string">&quot;test&quot;</span>)
             .arg(
                 <span class="kw">crate</span>::Arg::new(<span class="string">&quot;POTATO&quot;</span>)
-                    .takes_value(<span class="bool-val">true</span>)
-                    .multiple_values(<span class="bool-val">true</span>)
+                    .action(ArgAction::Set)
+                    .num_args(<span class="number">1</span>..)
                     .value_parser(<span class="kw">crate</span>::builder::ValueParser::os_string())
                     .required(<span class="bool-val">true</span>),
             )
@@ -3947,8 +3921,8 @@ if let Ok(value) = matches.try_get_one::&lt;T&gt;(...) {
         <span class="kw">let </span>l = <span class="kw">crate</span>::Command::new(<span class="string">&quot;test&quot;</span>)
             .arg(
                 <span class="kw">crate</span>::Arg::new(<span class="string">&quot;POTATO&quot;</span>)
-                    .takes_value(<span class="bool-val">true</span>)
-                    .multiple_values(<span class="bool-val">true</span>)
+                    .action(ArgAction::Set)
+                    .num_args(<span class="number">1</span>..)
                     .required(<span class="bool-val">true</span>),
             )
             .try_get_matches_from([<span class="string">&quot;test&quot;</span>, <span class="string">&quot;one&quot;</span>])
@@ -3960,4 +3934,4 @@ if let Ok(value) = matches.try_get_one::&lt;T&gt;(...) {
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="clap" data-themes="" data-resource-suffix="" data-rustdoc-version="1.67.1 (d5a82bbd2 2023-02-07)" data-search-js="search-444266647c4dba98.js" data-settings-js="settings-bebeae96e00e4617.js" data-settings-css="settings-af96d9e2fc13e081.css" ></div></body></html>
+</section></main><div id="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="clap" data-themes="" data-resource-suffix="" data-rustdoc-version="1.70.0-nightly (f63ccaf25 2023-03-06)" data-search-js="search-8a59a8356673ec1f.js" data-settings-js="settings-f0c5c39777a9a2f6.js" data-settings-css="settings-0bcba95ff279c1db.css" ></div></body></html>
