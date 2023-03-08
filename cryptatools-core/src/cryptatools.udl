@@ -26,3 +26,9 @@ interface ColumnarTranspositionAlgorithm {
     sequence<u8> encrypt(sequence<u8> plain_text, u32 key);
     sequence<u8> decrypt(sequence<u8> cipher_text, u32 key);
 };
+
+interface CoincidenceIndexGuesser {
+    constructor(Alphabet alphabet);
+    double guess_coincidence_index(sequence<u8> cipher_text_input);
+    double guess_coincidence_index_statistics_from_file(string file_name);
+};
