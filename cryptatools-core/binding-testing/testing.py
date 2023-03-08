@@ -3,6 +3,8 @@ from cryptatools_core.utils.alphabets import Encoding, Alphabet
 
 from cryptatools_core.cryptography.encryption.transpositional_ciphers.columnar_transposition import ColumnarTranspositionAlgorithm
 
+from cryptatools_core.cryptanalysis.general_cryptanalysis_methods.frequency_analysis.coincidence_index import CoincidenceIndexGuesser
+
 printable_alphabet_list = [
     Encoding(" ", [0x20]),
     Encoding("!", [0x21]),
@@ -120,3 +122,19 @@ transpositional_cipher = ColumnarTranspositionAlgorithm(alphabet=printable_alpha
 plain = transpositional_cipher.encrypt([0x41, 0x42, 0x43, 0x44, 0x45, 0x46], 3)
 assert plain == [0x41, 0x44, 0x42, 0x45, 0x43, 0x46], f"cipher={plain} incorrect transposition cipher encryption."
 print("plain = {0}. OK!".format(plain))
+
+cig = CoincidenceIndexGuesser(alphabet=printable_alphabet)
+plain = cig.guess_coincidence_index([0x41, 0x41, 0x42, 0x41, 0x41, 0x42])
+assert plain == 0.4666666666666667, f"cipher={plain} incorrect coincidence index."
+print("plain = {0}. OK!".format(plain))
+
+
+
+
+
+
+
+
+
+
+
