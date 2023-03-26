@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"enum":[["NamespaceMember","Parses namespace member declaration"]],"struct":[["AttributeNamespaceMember","Parses `[attribute]? readonly attributetype type identifier;`"],["OperationNamespaceMember","Parses `[attributes]? returntype identifier? (( args ));`"]],"type":[["NamespaceMembers","Parses namespace members declaration"]]};

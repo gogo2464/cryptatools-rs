@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"constant":[["ZULU_MODELS_DIRECTORY",""],["ZULU_TESTDATA_DIRECTORY",""]]};

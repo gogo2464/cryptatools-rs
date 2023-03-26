@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"struct":[["DictionaryMember","Parses dictionary member `[attributes]? required? type identifier ( = default )?;`"]],"type":[["DictionaryMembers","Parses dictionary members"]]};

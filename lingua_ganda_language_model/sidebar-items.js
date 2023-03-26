@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"constant":[["GANDA_MODELS_DIRECTORY",""],["GANDA_TESTDATA_DIRECTORY",""]]};

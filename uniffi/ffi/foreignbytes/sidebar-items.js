@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"struct":[["ForeignBytes","Support for reading a slice of foreign-language-allocated bytes over the FFI."]]};

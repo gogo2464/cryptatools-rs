@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"constant":[["BOKMAL_MODELS_DIRECTORY",""],["BOKMAL_TESTDATA_DIRECTORY",""]]};

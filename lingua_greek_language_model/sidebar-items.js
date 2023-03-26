@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"constant":[["GREEK_MODELS_DIRECTORY",""],["GREEK_TESTDATA_DIRECTORY",""]]};

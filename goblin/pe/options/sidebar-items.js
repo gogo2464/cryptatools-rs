@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"struct":[["ParseOptions","Parsing Options structure for the PE parser"]]};

@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"struct":[["Strtab","A common string table format which is indexed by byte offsets (and not member index). Constructed using `parse` with your choice of delimiter. Please be careful."]]};

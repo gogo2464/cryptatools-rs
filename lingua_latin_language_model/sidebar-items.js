@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"constant":[["LATIN_MODELS_DIRECTORY",""],["LATIN_TESTDATA_DIRECTORY",""]]};

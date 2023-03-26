@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"constant":[["SIZEOF_PHDR",""]],"struct":[["ProgramHeader","A 64-bit ProgramHeader typically specifies how to map executable and data segments into memory"]]};

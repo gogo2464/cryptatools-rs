@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"constant":[["MAORI_MODELS_DIRECTORY",""],["MAORI_TESTDATA_DIRECTORY",""]]};

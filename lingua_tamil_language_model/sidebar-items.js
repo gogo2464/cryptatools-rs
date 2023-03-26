@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"constant":[["TAMIL_MODELS_DIRECTORY",""],["TAMIL_TESTDATA_DIRECTORY",""]]};

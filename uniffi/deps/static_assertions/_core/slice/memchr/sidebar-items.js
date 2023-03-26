@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"fn":[["memchr","Returns the first index matching the byte `x` in `text`."],["memrchr","Returns the last index matching the byte `x` in `text`."]]};

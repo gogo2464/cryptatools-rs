@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"struct":[["CompileSource",""],["UniFFITestHelper","Struct for running fixture and example tests for bindings generators"]]};

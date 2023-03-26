@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"fn":[["generate_scaffolding","Generate the rust “scaffolding” required to build a uniffi component."]]};

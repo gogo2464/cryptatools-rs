@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"struct":[["FileOptions","Metadata for a file to be written"],["ZipWriter","ZIP archive generator"]]};

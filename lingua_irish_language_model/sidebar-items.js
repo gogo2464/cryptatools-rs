@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"constant":[["IRISH_MODELS_DIRECTORY",""],["IRISH_TESTDATA_DIRECTORY",""]]};

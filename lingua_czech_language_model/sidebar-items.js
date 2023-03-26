@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"constant":[["CZECH_MODELS_DIRECTORY",""],["CZECH_TESTDATA_DIRECTORY",""]]};

@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"constant":[["TSONGA_MODELS_DIRECTORY",""],["TSONGA_TESTDATA_DIRECTORY",""]]};
