@@ -60,7 +60,6 @@ If you are on windows, with powershell do:
 ```powershell
 python -m venv myenv
 .\myenv\Script\activate
-cargo install uniffi_bindgen
 pip install setuptools wheel
 git clone https://github.com/gogo2464/cryptatools-rs ;
 cd cryptatools-rs
@@ -73,7 +72,6 @@ If you are on Linux, do:
 ```shell
 virtualenv -p python3 myenv
 source myenv/bin/activate
-cargo install uniffi_bindgen
 pip install setuptools wheel
 git clone https://github.com/gogo2464/cryptatools-rs ;
 cd cryptatools-rs
@@ -85,7 +83,6 @@ If you are on MacOs, do:
 ```shell
 virtualenv -p python3 myenv
 source myenv/bin/activate
-cargo install uniffi_bindgen
 pip install setuptools wheel
 git clone https://github.com/gogo2464/cryptatools-rs ;
 cd cryptatools-rs
