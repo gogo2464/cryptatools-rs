@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"struct":[["ColumnarTranspositionAlgorithm",""]]};
+window.SIDEBAR_ITEMS = {"struct":["ColumnarTranspositionAlgorithm"]};

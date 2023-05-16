@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"mod":[["vigenere",""]]};
+window.SIDEBAR_ITEMS = {"mod":["vigenere"]};

@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"mod":[["statistical",""]]};
+window.SIDEBAR_ITEMS = {"mod":["statistical"]};
