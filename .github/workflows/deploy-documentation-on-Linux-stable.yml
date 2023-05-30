@@ -28,14 +28,25 @@ jobs:
         command: build
         args: --release --all-features
 
-    - name: Generate documentation
+    - name: Install Documentation Dependencies
       run: |
-        cargo doc --no-deps --package cryptatools-core --target-dir ./out &&
-        cp --force -r ./out/doc ./docs ;
+        cargo install mdbook
+
+    - name: Generate API Documentation
+      run: |
+        cargo doc --no-deps --package cryptatools-core --target-dir ./out
         #echo "<meta http-equiv=refresh content=0;url=`echo gogo2464/cryptatools-rs | cut -d '/' -f 2`/index.html>" > docs/index.html
+
+    - name: Generate Four types Of Documentations
+      run: |
+        mdbook build docs/
+    
+    - name: Merge All Documentation
+      run: |
+        cp --force -r out/doc/* docs/book
 
     - name: Publish documentation
       uses: JamesIves/github-pages-deploy-action@v4
       with:
-        folder: docs
+        folder: docs/book
         branch: gh-pages

@@ -1,6 +1,4 @@
-## Tutorial
-
-### Use cryptanalysis attack method against a caesar encryption shellcode shellcode for Malware analysis with cryptatools and radare2 rust bindings (r2pipe)
+## Use cryptanalysis attack method against a caesar encryption shellcode shellcode for Malware analysis with cryptatools and radare2 rust bindings (r2pipe)
 
 ### 1-Introduction
 
@@ -751,6 +749,3 @@ Once the plain text is found, we could use `radare2` emulation to emulate and ru
 [Shellcode coding tutorial](https://nasmland645.wordpress.com/2015/02/08/assignment-4-custom-shellcode-encoder/)
 
 [Shellstorm shellcode sample](http://shell-storm.org/shellcode/files/shellcode-900.html)
-
-
-### Tutorial II/ Break one time pad encryption when the same key is reused twice for a school project studying cryptology
