@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"mod":["matsui_s_algorithm"]};
