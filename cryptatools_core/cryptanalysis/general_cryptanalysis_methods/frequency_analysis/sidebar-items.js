@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"mod":["coincidence_index","distribution_algorithms"]};
