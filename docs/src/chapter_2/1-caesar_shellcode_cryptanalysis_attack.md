@@ -3,8 +3,8 @@
 ### 1-Introduction
 
 Knowledge required:
--cryptanalysis on caesar cipher
--[x86_32 assembly language programming. Check your language here.](https://pacman128.github.io/pcasm/)
+- cryptanalysis on caesar cipher
+- [x86_32 assembly language programming. Check your language here.](https://pacman128.github.io/pcasm/)
 
 Shellstorm is a pentester ressource. They provide shellcode for cyber security researcher. Sadly their shellcode could be used by hackers in order to create computer trojan. Hackers could include the shellcode in an image or an executable to add trojan during the execution of the file.
 

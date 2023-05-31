@@ -1,18 +1,25 @@
 # Summary
 
-# Tutorials
+- [Licence](./licence.md)
+- [Contacts](./contact.md)
 
-- [Chapter 1: Tutorials](./chapter_1.md)
+# I - Tutorials
 
-# How To
+- [Get Started](./chapter_1/1-get-started.md)
+- [Installation](./chapter_1/2-installation.md)
+- [Contribute](./chapter_1/3-contribute.md)
+- [Usage](./chapter_1/4-usage.md)
 
-- [Chapter 2: How-TOs](./chapter_2.md)
-- [Use cryptanalysis attack method against a caesar encryption shellcode shellcode for Malware analysis with cryptatools and radare2 rust bindings (r2pipe)](./chapter_2/caesar_shellcode_cryptanalysis_attack.md)
+# II - How To
 
-# API Ref
+- [Use cryptanalysis attack method against a caesar encryption shellcode shellcode for Malware analysis with cryptatools and radare2 rust bindings (r2pipe)](./chapter_2/1-caesar_shellcode_cryptanalysis_attack.md)
 
-- [Chapter 3: API-REF](./chapter_3.md)
+# III - API Ref
 
-#  Explanations
+- [API-Reference](./chapter_3/api-ref.md)
 
-- [Chapter 4: EXPLANATIONS](./chapter_4.md)
+# IV - Explanations
+
+- [Why doing Cryptanalysis](./chapter_4/1-goals-of-cryptanalysis.md)
+- [Cryptatools Philosophy](./chapter_4/2-philosophy.md)
+
