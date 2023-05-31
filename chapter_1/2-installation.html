@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Chapter 2: How-TOs - cryptatools-rs</title>
+        <title>Installation - cryptatools-rs</title>
 
 
         <!-- Custom HTML head -->
@@ -12,21 +12,21 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
-        <link rel="icon" href="favicon.svg">
-        <link rel="shortcut icon" href="favicon.png">
-        <link rel="stylesheet" href="css/variables.css">
-        <link rel="stylesheet" href="css/general.css">
-        <link rel="stylesheet" href="css/chrome.css">
-        <link rel="stylesheet" href="css/print.css" media="print">
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
 
         <!-- Fonts -->
-        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
-        <link rel="stylesheet" href="fonts/fonts.css">
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="highlight.css">
-        <link rel="stylesheet" href="tomorrow-night.css">
-        <link rel="stylesheet" href="ayu-highlight.css">
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
 
@@ -35,7 +35,7 @@
     <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
-            var path_to_root = "";
+            var path_to_root = "../";
             var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
         </script>
 
@@ -83,7 +83,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><li class="part-title">Tutorials</li><li class="chapter-item expanded "><a href="chapter_1.html"><strong aria-hidden="true">1.</strong> Chapter 1: Tutorials</a></li><li class="chapter-item expanded affix "><li class="part-title">How To</li><li class="chapter-item expanded "><a href="chapter_2.html" class="active"><strong aria-hidden="true">2.</strong> Chapter 2: How-TOs</a></li><li class="chapter-item expanded "><a href="chapter_2/caesar_shellcode_cryptanalysis_attack.html"><strong aria-hidden="true">3.</strong> Use cryptanalysis attack method against a caesar encryption shellcode shellcode for Malware analysis with cryptatools and radare2 rust bindings (r2pipe)</a></li><li class="chapter-item expanded affix "><li class="part-title">API Ref</li><li class="chapter-item expanded "><a href="chapter_3.html"><strong aria-hidden="true">4.</strong> Chapter 3: API-REF</a></li><li class="chapter-item expanded affix "><li class="part-title">Explanations</li><li class="chapter-item expanded "><a href="chapter_4.html"><strong aria-hidden="true">5.</strong> Chapter 4: EXPLANATIONS</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../licence.html"><strong aria-hidden="true">1.</strong> Licence</a></li><li class="chapter-item expanded "><a href="../contact.html"><strong aria-hidden="true">2.</strong> Contacts</a></li><li class="chapter-item expanded affix "><li class="part-title">I - Tutorials</li><li class="chapter-item expanded "><a href="../chapter_1/1-get-started.html"><strong aria-hidden="true">3.</strong> Get Started</a></li><li class="chapter-item expanded "><a href="../chapter_1/2-installation.html" class="active"><strong aria-hidden="true">4.</strong> Installation</a></li><li class="chapter-item expanded "><a href="../chapter_1/3-contribute.html"><strong aria-hidden="true">5.</strong> Contribute</a></li><li class="chapter-item expanded "><a href="../chapter_1/4-usage.html"><strong aria-hidden="true">6.</strong> Usage</a></li><li class="chapter-item expanded affix "><li class="part-title">II - How To</li><li class="chapter-item expanded "><a href="../chapter_2/1-caesar_shellcode_cryptanalysis_attack.html"><strong aria-hidden="true">7.</strong> Use cryptanalysis attack method against a caesar encryption shellcode shellcode for Malware analysis with cryptatools and radare2 rust bindings (r2pipe)</a></li><li class="chapter-item expanded affix "><li class="part-title">III - API Ref</li><li class="chapter-item expanded "><a href="../chapter_3/api-ref.html"><strong aria-hidden="true">8.</strong> API-Reference</a></li><li class="chapter-item expanded affix "><li class="part-title">IV - Explanations</li><li class="chapter-item expanded "><a href="../chapter_4/1-goals-of-cryptanalysis.html"><strong aria-hidden="true">9.</strong> Why doing Cryptanalysis</a></li><li class="chapter-item expanded "><a href="../chapter_4/2-philosophy.html"><strong aria-hidden="true">10.</strong> Cryptatools Philosophy</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -115,7 +115,7 @@
                     <h1 class="menu-title">cryptatools-rs</h1>
 
                     <div class="right-buttons">
-                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
 
@@ -144,20 +144,64 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="chapter-2-how-to"><a class="header" href="#chapter-2-how-to">Chapter 2: HOW TO</a></h1>
-<ul>
-<li><a href="./chapter_2/caesar_shellcode_cryptanalysis_attack.html">Use cryptanalysis attack method against a caesar encryption shellcode shellcode for Malware analysis with cryptatools and radare2 rust bindings (r2pipe)</a></li>
-</ul>
+                        <h3 id="installation"><a class="header" href="#installation">Installation</a></h3>
+<h3 id="1-rust-library-installation"><a class="header" href="#1-rust-library-installation">1-Rust library installation.</a></h3>
+<p>Installation of <code>cryptatools-core</code> for rust is same for any OS. In <code>Cargo.toml</code>, just write:</p>
+<pre><code class="language-shell">[dependencies]
+cryptatools-core = { git = &quot;https://github.com/gogo2464/cryptatools-rs&quot;, package = 'cryptatools-core' }
+</code></pre>
+<p>Works on rust stable, unstable as well as nightly toolchains.</p>
+<h3 id="2-python-binding-installation"><a class="header" href="#2-python-binding-installation">2-Python binding installation.</a></h3>
+<p>To install the python Bindings you can use pip or build from source:</p>
+<h3 id="21-install-python-bindings-from-pip"><a class="header" href="#21-install-python-bindings-from-pip">2.1-Install python Bindings from pip:</a></h3>
+<p>The name <code>cryptatools-python3</code> is the name of the package used to install cryptatools core python bindings. In order to install it, do:</p>
+<pre><code>pip install cryptatools-python3
+</code></pre>
+<p>It is updated of 1 subversion on each Pull Request and is then often update by the previous version.</p>
+<h3 id="22-build-python-bindings-from-sources"><a class="header" href="#22-build-python-bindings-from-sources">2.2-Build Python Bindings from sources</a></h3>
+<p>If you are on windows, with powershell do:</p>
+<pre><code class="language-powershell">python -m venv myenv
+.\myenv\Script\activate
+pip install setuptools wheel
+git clone https://github.com/gogo2464/cryptatools-rs ;
+cd cryptatools-rs
+python .\cryptatools-core\setup.py bdist_wheel --verbose ;
+$wheelFile = Get-ChildItem -Path .\dist\ -Recurse -Include * ;
+pip3 install $wheelFile --force-reinstall ;
+</code></pre>
+<p>If you are on Linux, do:</p>
+<pre><code class="language-shell">virtualenv -p python3 myenv
+source myenv/bin/activate
+pip install setuptools wheel
+git clone https://github.com/gogo2464/cryptatools-rs ;
+cd cryptatools-rs
+python3 ./cryptatools-core/setup.py bdist_wheel --verbose ;
+pip3 install ./dist/* --force-reinstall ;
+</code></pre>
+<p>If you are on MacOs, do:</p>
+<pre><code class="language-shell">virtualenv -p python3 myenv
+source myenv/bin/activate
+pip install setuptools wheel
+git clone https://github.com/gogo2464/cryptatools-rs ;
+cd cryptatools-rs
+python3 ./cryptatools-core/setup.py bdist_wheel --verbose ;
+pip3 install ./dist/* --force-reinstall ;
+</code></pre>
+<h3 id="3-cryptatools-cli-the-cli-intreface"><a class="header" href="#3-cryptatools-cli-the-cli-intreface">3-cryptatools-cli the cli intreface</a></h3>
+<p>Crytptatools command line interface is split into various program in order to follow the Linux philosophy. To install each one, do:</p>
+<pre><code class="language-shell">git clone https://github.com/gogo2464/cryptatools-rs/ &amp;&amp;
+cargo install --path .\cryptatools-rs\cryptatools-cli\ ;
+</code></pre>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="chapter_1.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../chapter_1/1-get-started.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next" href="chapter_2/caesar_shellcode_cryptanalysis_attack.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="../chapter_1/3-contribute.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -167,11 +211,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="chapter_1.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../chapter_1/1-get-started.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next" href="chapter_2/caesar_shellcode_cryptanalysis_attack.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="../chapter_1/3-contribute.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
@@ -186,13 +230,13 @@
         </script>
 
 
-        <script src="elasticlunr.min.js"></script>
-        <script src="mark.min.js"></script>
-        <script src="searcher.js"></script>
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
 
-        <script src="clipboard.min.js"></script>
-        <script src="highlight.js"></script>
-        <script src="book.js"></script>
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
 
         <!-- Custom JS scripts -->
 

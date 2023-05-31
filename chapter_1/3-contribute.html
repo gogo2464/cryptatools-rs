@@ -1,0 +1,250 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Contribute - cryptatools-rs</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = null;
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../licence.html"><strong aria-hidden="true">1.</strong> Licence</a></li><li class="chapter-item expanded "><a href="../contact.html"><strong aria-hidden="true">2.</strong> Contacts</a></li><li class="chapter-item expanded affix "><li class="part-title">I - Tutorials</li><li class="chapter-item expanded "><a href="../chapter_1/1-get-started.html"><strong aria-hidden="true">3.</strong> Get Started</a></li><li class="chapter-item expanded "><a href="../chapter_1/2-installation.html"><strong aria-hidden="true">4.</strong> Installation</a></li><li class="chapter-item expanded "><a href="../chapter_1/3-contribute.html" class="active"><strong aria-hidden="true">5.</strong> Contribute</a></li><li class="chapter-item expanded "><a href="../chapter_1/4-usage.html"><strong aria-hidden="true">6.</strong> Usage</a></li><li class="chapter-item expanded affix "><li class="part-title">II - How To</li><li class="chapter-item expanded "><a href="../chapter_2/1-caesar_shellcode_cryptanalysis_attack.html"><strong aria-hidden="true">7.</strong> Use cryptanalysis attack method against a caesar encryption shellcode shellcode for Malware analysis with cryptatools and radare2 rust bindings (r2pipe)</a></li><li class="chapter-item expanded affix "><li class="part-title">III - API Ref</li><li class="chapter-item expanded "><a href="../chapter_3/api-ref.html"><strong aria-hidden="true">8.</strong> API-Reference</a></li><li class="chapter-item expanded affix "><li class="part-title">IV - Explanations</li><li class="chapter-item expanded "><a href="../chapter_4/1-goals-of-cryptanalysis.html"><strong aria-hidden="true">9.</strong> Why doing Cryptanalysis</a></li><li class="chapter-item expanded "><a href="../chapter_4/2-philosophy.html"><strong aria-hidden="true">10.</strong> Cryptatools Philosophy</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">cryptatools-rs</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h2 id="contributing"><a class="header" href="#contributing">Contributing</a></h2>
+<p>Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are <strong>greatly appreciated</strong>.</p>
+<p>If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag &quot;enhancement&quot;.
+Don't forget to give the project a star! Thanks again!</p>
+<ol>
+<li>Document your work. See <a href="https://github.com/gogo2464/cryptatools-rs#1-documentation">the how to make good documentation</a> chapter.</li>
+<li>For each method or object implemented, do not forget to make tests with doctest. See <a href="https://github.com/gogo2464/cryptatools-rs#2-testing">here</a>.</li>
+<li>Create Python binding. See <a href="https://github.com/gogo2464/cryptatools-rs#3-create-python-bindings">this link</a>.</li>
+<li>Benchmark your work. See <a href="https://github.com/gogo2464/cryptatools-rs#4-benchmarking">this link</a>.</li>
+<li>Create cli interface. See <a href="https://github.com/gogo2464/cryptatools-rs#5-create-cli">This link</a>.</li>
+<li>Open PR.</li>
+</ol>
+<h2 id="1-documentation"><a class="header" href="#1-documentation">1-Documentation</a></h2>
+<p>The documentation is generated by doctstring with rustdoc. To edit the documentation, go to the code and modify the doctstring after <code>///</code>.</p>
+<p>Then, in order to generate documentation from root folder do:</p>
+<pre><code class="language-shell">cargo doc --all --no-deps
+</code></pre>
+<p>Fell free to view your own doc with</p>
+<pre><code>cargo doc --open --all --no-deps
+</code></pre>
+<p>This project uses <code>cargo doc</code>.</p>
+<p>The documentation is self-generated on each pull request.</p>
+<p>To check if the cryptatools documentation has been updated after a merge request, see: <a href="https://gogo2464.github.io/cryptatools-rs/cryptatools_core/">the API documentation</a>.</p>
+<h2 id="2-testing"><a class="header" href="#2-testing">2-Testing</a></h2>
+<p>In order to run unit tests, you MUST be in the directory cryptatools-rs.
+Run unit tests with doctests with the command:</p>
+<pre><code class="language-shell">cargo test --all
+</code></pre>
+<p>Unit test are made with doctests.</p>
+<p align="right">(<a href="#top">back to top</a>)</p>
+<h2 id="3-create-python-bindings"><a class="header" href="#3-create-python-bindings">3-Create Python bindings.</a></h2>
+<p>Cryptatools relies on uniffi to provide bindings to Python3. Ensure to provide Python3 bindings before making your Pull Request.</p>
+<p>To create Python Bindings, edit the file <code>cryptatools-rs/src/cryptatools.udl</code>. Edit it to add your newly created object as mentionned in the official uniffi documentation at this address: https://mozilla.github.io/uniffi-rs/udl_file_spec.html.</p>
+<p>Then do not forget to edit the file <code>cryptatools-rs/cryptatools-core/src/lib.rs</code> and just before the:</p>
+<pre><code>uniffi_macros::include_scaffolding!(&quot;cryptatools&quot;);
+</code></pre>
+<p>This step will generate a single python file that you could import directly. Sadly the good pratice you must do to import these is a bit more complicated.</p>
+<p><code>cryptatools-rs\cryptatools-core\setup.py</code></p>
+<p>In order to import your own crate, create the corresponding python file or folders under <code>cryptatools-rs\cryptatools-core\bindings\python3\cryptatools-core\cryptanalysis\</code>. Here you need to import the necessary objects from from <code>cryptatools_core.python3_bindings</code>. Example, in the file <code>cryptatools-rs\cryptatools-core\bindings\python3\cryptatools-core\cryptography\encryption\monoalphabetic_cipher\caesar_number.py</code> we just have written: <code>from cryptatools_core.python3_bindings import CaesarNumberAlgorithm</code>.</p>
+<p>Once this is done, fell free to write unit tests. At least one for each method implemented. The tests are writtenh in the file <code>cryptatools-rs\cryptatools-core\binding-testing\testing.py</code>.</p>
+<p>You are now free to test and compile your code with <a href="https://github.com/gogo2464/cryptatools-rs#2-python-binding-installation">the documentation at this link</a>.</p>
+<h2 id="4-benchmarking"><a class="header" href="#4-benchmarking">4-Benchmarking</a></h2>
+<p>Sometimes, a function could sepnd too much time. In this case, you can debug your specific function from the template in the file <code>benches\cryptatools_benchmark\main.rs</code>.</p>
+<p>Then test your function with:</p>
+<pre><code class="language-shell">cargo bench
+</code></pre>
+<p>In the current state of cryptatools, it is not mandatory from a pull request to benchmark all the code. But could be considered as a good improvment.</p>
+<h2 id="5-create-cli"><a class="header" href="#5-create-cli">5-Create cli.</a></h2>
+<p>Each feature from cryptatools-core will be implemented to the cli in the folder <code>cryptatools-cli</code>. When you will have finish to implement your feature in incryptatools-core and when you have finish your feature in Python bindings, fell free to create the cli of your modifications.</p>
+<p>Then test it with:</p>
+<pre><code class="language-shell">cargo install --path .\cryptatools-cli\ ;
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../chapter_1/2-installation.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../chapter_1/4-usage.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../chapter_1/2-installation.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../chapter_1/4-usage.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>
