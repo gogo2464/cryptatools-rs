@@ -276,9 +276,11 @@ Run unit tests with doctests with the command:</p>
 <p>For more examples, please refer to the <a href="https://github.com/gogo2464/cryptatools-rs/blob/master/TUTORIAL.md">Tutorial</a> or to the documentation <a href="https://gogo2464.github.io/cryptatools-rs/cryptatools_core/">Documentation</a>.</p>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="use-cryptanalysis-attack-method-against-a-caesar-encryption-shellcode-shellcode-for-malware-analysis-with-cryptatools-and-radare2-rust-bindings-r2pipe"><a class="header" href="#use-cryptanalysis-attack-method-against-a-caesar-encryption-shellcode-shellcode-for-malware-analysis-with-cryptatools-and-radare2-rust-bindings-r2pipe">Use cryptanalysis attack method against a caesar encryption shellcode shellcode for Malware analysis with cryptatools and radare2 rust bindings (r2pipe)</a></h2>
 <h3 id="1-introduction"><a class="header" href="#1-introduction">1-Introduction</a></h3>
-<p>Knowledge required:
--cryptanalysis on caesar cipher
--<a href="https://pacman128.github.io/pcasm/">x86_32 assembly language programming. Check your language here.</a></p>
+<p>Knowledge required:</p>
+<ul>
+<li>cryptanalysis on caesar cipher</li>
+<li><a href="https://pacman128.github.io/pcasm/">x86_32 assembly language programming. Check your language here.</a></li>
+</ul>
 <p>Shellstorm is a pentester ressource. They provide shellcode for cyber security researcher. Sadly their shellcode could be used by hackers in order to create computer trojan. Hackers could include the shellcode in an image or an executable to add trojan during the execution of the file.</p>
 <p>One of these shellcode uses caesar to obfuscate his signature against anti-virus.</p>
 <p>Today we are going to use cryptatools to break the caesar encryption algorithm to deobfuscate a malware for reverse engineering purpose. We will explore the different way than brute force to break this caesar encryption and we will break ceasar at least.</p>
