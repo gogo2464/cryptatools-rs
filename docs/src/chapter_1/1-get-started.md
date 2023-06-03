@@ -1,6 +1,6 @@
 ## Getting Started
 
-This is a cryptanalysis tool for cybersecurity researcher, exploit developers and ctf players.
+This is a cryptanalysis tool against custom or wrongly implemented algorithm for cybersecurity researcher, exploit developers and ctf players.
 
 The name come from pwntools a similar tool to exploit memory corruption vulnerabilities. This software aims to work like pwntools but for cryptanalysis.
 

@@ -1,5 +1,6 @@
 # Summary
 
+- [Philosophy](./philosophy.md)
 - [Licence](./licence.md)
 - [Contacts](./contact.md)
 
@@ -21,5 +22,5 @@
 # IV - Explanations
 
 - [Why doing Cryptanalysis](./chapter_4/1-goals-of-cryptanalysis.md)
-- [Cryptatools Philosophy](./chapter_4/2-philosophy.md)
+
 

@@ -63,4 +63,4 @@ Each modern gouvernement use hacking as cyberwar method today. They may use elec
 
 Even if you have no contract with compagny, you can sell your exploit to a reseller of your governemental secret agency legally with zerodium.
 
-`Zerodium` is a kind of bug bounty platform for zero day exploit. Zerodium will exploit the vulnerability instead of fix it.
+[zerodium](https://zerodium.com/) is a kind of bug bounty platform for zero day exploit. Zerodium will exploit the vulnerability instead of fix it.

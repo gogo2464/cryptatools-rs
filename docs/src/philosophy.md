@@ -1,5 +1,7 @@
 # Cryptatools-rs Philosophy
 
+`cryptatools-rs` is a cryptanalysis tool against custom or wrongly implemented algorithm.
+
 This tool aims to be professionnal. Not only a learning tool. It is for realistic exploitation and code breaking.
 
 You can "plug-in" your script to any protocol. Man in the midle as well as blockchain core as well as anything. Example:
