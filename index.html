@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Licence - cryptatools-rs</title>
+        <title>Philosophy - cryptatools-rs</title>
 
 
         <!-- Custom HTML head -->
@@ -83,7 +83,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="licence.html" class="active"><strong aria-hidden="true">1.</strong> Licence</a></li><li class="chapter-item expanded "><a href="contact.html"><strong aria-hidden="true">2.</strong> Contacts</a></li><li class="chapter-item expanded affix "><li class="part-title">I - Tutorials</li><li class="chapter-item expanded "><a href="chapter_1/1-get-started.html"><strong aria-hidden="true">3.</strong> Get Started</a></li><li class="chapter-item expanded "><a href="chapter_1/2-installation.html"><strong aria-hidden="true">4.</strong> Installation</a></li><li class="chapter-item expanded "><a href="chapter_1/3-contribute.html"><strong aria-hidden="true">5.</strong> Contribute</a></li><li class="chapter-item expanded "><a href="chapter_1/4-usage.html"><strong aria-hidden="true">6.</strong> Usage</a></li><li class="chapter-item expanded affix "><li class="part-title">II - How To</li><li class="chapter-item expanded "><a href="chapter_2/1-caesar_shellcode_cryptanalysis_attack.html"><strong aria-hidden="true">7.</strong> Use cryptanalysis attack method against a caesar encryption shellcode shellcode for Malware analysis with cryptatools and radare2 rust bindings (r2pipe)</a></li><li class="chapter-item expanded affix "><li class="part-title">III - API Ref</li><li class="chapter-item expanded "><a href="chapter_3/api-ref.html"><strong aria-hidden="true">8.</strong> API-Reference</a></li><li class="chapter-item expanded affix "><li class="part-title">IV - Explanations</li><li class="chapter-item expanded "><a href="chapter_4/1-goals-of-cryptanalysis.html"><strong aria-hidden="true">9.</strong> Why doing Cryptanalysis</a></li><li class="chapter-item expanded "><a href="chapter_4/2-philosophy.html"><strong aria-hidden="true">10.</strong> Cryptatools Philosophy</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="philosophy.html" class="active"><strong aria-hidden="true">1.</strong> Philosophy</a></li><li class="chapter-item expanded "><a href="licence.html"><strong aria-hidden="true">2.</strong> Licence</a></li><li class="chapter-item expanded "><a href="contact.html"><strong aria-hidden="true">3.</strong> Contacts</a></li><li class="chapter-item expanded affix "><li class="part-title">I - Tutorials</li><li class="chapter-item expanded "><a href="chapter_1/1-get-started.html"><strong aria-hidden="true">4.</strong> Get Started</a></li><li class="chapter-item expanded "><a href="chapter_1/2-installation.html"><strong aria-hidden="true">5.</strong> Installation</a></li><li class="chapter-item expanded "><a href="chapter_1/3-contribute.html"><strong aria-hidden="true">6.</strong> Contribute</a></li><li class="chapter-item expanded "><a href="chapter_1/4-usage.html"><strong aria-hidden="true">7.</strong> Usage</a></li><li class="chapter-item expanded affix "><li class="part-title">II - How To</li><li class="chapter-item expanded "><a href="chapter_2/1-caesar_shellcode_cryptanalysis_attack.html"><strong aria-hidden="true">8.</strong> Use cryptanalysis attack method against a caesar encryption shellcode shellcode for Malware analysis with cryptatools and radare2 rust bindings (r2pipe)</a></li><li class="chapter-item expanded affix "><li class="part-title">III - API Ref</li><li class="chapter-item expanded "><a href="chapter_3/api-ref.html"><strong aria-hidden="true">9.</strong> API-Reference</a></li><li class="chapter-item expanded affix "><li class="part-title">IV - Explanations</li><li class="chapter-item expanded "><a href="chapter_4/1-goals-of-cryptanalysis.html"><strong aria-hidden="true">10.</strong> Why doing Cryptanalysis</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -144,16 +144,33 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h2 id="licence"><a class="header" href="#licence">Licence</a></h2>
-<p>This software has a free software (libre) license. The license is GPL3. </p>
-<p>Fell free to ask me if you absolutely want to get a double licensing name. Then I could choose.</p>
+                        <h1 id="cryptatools-rs-philosophy"><a class="header" href="#cryptatools-rs-philosophy">Cryptatools-rs Philosophy</a></h1>
+<p><code>cryptatools-rs</code> is a cryptanalysis tool against custom or wrongly implemented algorithm.</p>
+<p>This tool aims to be professionnal. Not only a learning tool. It is for realistic exploitation and code breaking.</p>
+<p>You can &quot;plug-in&quot; your script to any protocol. Man in the midle as well as blockchain core as well as anything. Example:</p>
+<ul>
+<li>You are able to use <code>pypcap</code> python library to read packets and then <code>dpkt</code> python library to parse these and then you can use <code>cryptatools</code> to break encryption on these packets. This is why this library is avaible in many bindings such as python.</li>
+<li>You are able to use <code>rust-web3</code> to parse a vulnerable cryptocurrency (shitcoin) blockchain hash tree to steal money using collision attack to forge a signature. See <a href="https://github.com/mit-dci/tangled-curl/blob/master/vuln-iota.md#steal-money-attack">this reference</a>.</li>
+</ul>
+<p>You can also work on programs obfuscated by encryption such as malware. In this case, you can decipher program data (eg: data contained in a dropper) as well as self-encrypyted code. In this way you can plug cryptatools with your favorite reverse engineering framwork. Eg:</p>
+<ul>
+<li>Install radare2. Then do <code>radare2 -AA -i &lt;yourscriptname&gt;.rs &lt;yourmalwaretoreverse&gt;</code>. If you work with python bindings, <code>radare2 -AA -i &lt;yourscriptname&gt;.py &lt;yourmalwaretoreverse&gt;</code></li>
+<li>You can also work on extracted code from the malware:</li>
+</ul>
+<pre><code class="language-shell">radare2 &lt;malwaretoreverse&gt;; 
+=&gt; s sym.encrypted;
+pr 12345 &gt; ciphertext.bin
+</code></pre>
+<p>Where 12345 is the size of the encrypted function or code of the malware.</p>
+<p>The library is very very flexible. One of the main concept is to break custom cryptography. That is why you can meet classic cryptanalysis in <code>cryptatools</code>. This flexibility also aim to break obfuscation/encrypted malware. These are often written in assembly language because they deal with the system and then need to reimplement a lot of things and so their encryption method are often poorly written.</p>
+<p>You can automatize any task. There is a command line interface.</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
 
-                            <a rel="next" href="contact.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="licence.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -164,7 +181,7 @@
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
 
-                    <a rel="next" href="contact.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="licence.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
