@@ -13,7 +13,13 @@
 
 # II - How To
 
-- [Use cryptanalysis attack method against a caesar encryption shellcode shellcode for Malware analysis with cryptatools and radare2 rust bindings (r2pipe)](./chapter_2/1-caesar_shellcode_cryptanalysis_attack.md)
+# 1. Cryptanalysis for Reverse engineering and malware analysis
+
+- [IC against A Caesar Encryption Shellcode With r2pipe](./chapter_2/Reversing/1-caesar_shellcode_cryptanalysis_attack.md)
+
+# 2. Blockchain and cryptocurrencies cryptanalysis
+
+- [Birthday Paradox On Ethereum Wallets.](./chapter_2/Blockchain/1-Evaluating-bitcoin-wallet-collision-probability.md)
 
 # III - API Ref
 
