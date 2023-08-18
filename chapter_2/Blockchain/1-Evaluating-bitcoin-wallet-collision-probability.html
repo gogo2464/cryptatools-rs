@@ -1,0 +1,317 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Cryptography Of Bitcoin Address Using Birthday Paradox - cryptatools-rs</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = null;
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../../philosophy.html"><strong aria-hidden="true">1.</strong> Philosophy</a></li><li class="chapter-item expanded "><a href="../../licence.html"><strong aria-hidden="true">2.</strong> Licence</a></li><li class="chapter-item expanded "><a href="../../contact.html"><strong aria-hidden="true">3.</strong> Contacts</a></li><li class="chapter-item expanded affix "><li class="part-title">I - Tutorials</li><li class="chapter-item expanded "><a href="../../chapter_1/1-get-started.html"><strong aria-hidden="true">4.</strong> Get Started</a></li><li class="chapter-item expanded "><a href="../../chapter_1/2-installation.html"><strong aria-hidden="true">5.</strong> Installation</a></li><li class="chapter-item expanded "><a href="../../chapter_1/3-contribute.html"><strong aria-hidden="true">6.</strong> Contribute</a></li><li class="chapter-item expanded "><a href="../../chapter_1/4-usage.html"><strong aria-hidden="true">7.</strong> Usage</a></li><li class="chapter-item expanded affix "><li class="part-title">II - How To</li><li class="chapter-item expanded affix "><li class="part-title">1. Cryptanalysis for Reverse engineering and malware analysis</li><li class="chapter-item expanded "><a href="../../chapter_2/1-caesar_shellcode_cryptanalysis_attack.html"><strong aria-hidden="true">8.</strong> Using Cryptanalysis Attack Method Against A Caesar Encryption Shellcode Shellcode For Malware Analysis With Cryptatools And Radare2 Rust Bindings (r2pipe)</a></li><li class="chapter-item expanded affix "><li class="part-title">2. Blockchain and cryptocurrencies cryptanalysis</li><li class="chapter-item expanded "><a href="../../chapter_2/Blockchain/1-Evaluating-bitcoin-wallet-collision-probability.html" class="active"><strong aria-hidden="true">9.</strong> Cryptography Of Bitcoin Address Using Birthday Paradox</a></li><li class="chapter-item expanded affix "><li class="part-title">III - API Ref</li><li class="chapter-item expanded "><a href="../../chapter_3/api-ref.html"><strong aria-hidden="true">10.</strong> API-Reference</a></li><li class="chapter-item expanded affix "><li class="part-title">IV - Explanations</li><li class="chapter-item expanded "><a href="../../chapter_4/1-goals-of-cryptanalysis.html"><strong aria-hidden="true">11.</strong> Why doing Cryptanalysis</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">cryptatools-rs</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h2 id="evaluating-ethereum-address-collision-probabilities-with-birthday-paradox-method-using-ether-rs-and-cryptatools-rs"><a class="header" href="#evaluating-ethereum-address-collision-probabilities-with-birthday-paradox-method-using-ether-rs-and-cryptatools-rs">Evaluating Ethereum address collision probabilities with birthday paradox method using ether-rs and cryptatools-rs</a></h2>
+<h1 id="i---intro"><a class="header" href="#i---intro">I - Intro</a></h1>
+<h1 id="1-intro"><a class="header" href="#1-intro">1. Intro</a></h1>
+<p>Ethereum is a decentralized cryptocurrency. Each people has his own wallet authenticated with a public/private keyset. As ethereum is decentralized, if someone create the adress of somebody else, then he will be able to spoof his identity. Hopefully addresses are random, then we need to create a lot of identities.</p>
+<p>But how many identities do we need to create? A paper at this address <a href="https://download.wpsoftware.net/bitcoin-birthday.pdf">here</a> has already answered to this question.</p>
+<p>Today we are going to implement a cryptanalys attack with <code>cryptatools</code> to automatically know the attempts required instead of calculating manually.</p>
+<h1 id="2-challenges-and-terms"><a class="header" href="#2-challenges-and-terms">2. Challenges And Terms</a></h1>
+<p>In the origin, the Birtday Paradox Attack is an attack where the attackant wants to check if the has output is tall enough hash output in order to find collision using pure brute force.
+It is effective in web2 hashing algorithm in order to know if collision are possible on hash algorithm.
+This attack supposes that the hash output generation is purely perfectly random. Tough this methd seems very very brute, the birtday paradox uses math probabilities in order to evaluate if a hash outpute is long enough.</p>
+<p>Today we are going to implement a birtday paradox evalution on bitcoin cryptocurrency using cryptatools-rs, we are able to use birtday paradox, not in order to run hash attack but to evalutate how many time we will need to try in order to have 50% of chances to reach a collision between two wallets.</p>
+<h1 id="ii-lets-do-it"><a class="header" href="#ii-lets-do-it">II let's do it</a></h1>
+<h1 id="1-fecthing-a-random-author-adress"><a class="header" href="#1-fecthing-a-random-author-adress">1. Fecthing A Random Author Adress</a></h1>
+<p>We need to fetch a random hash in order to check if the hash is strong enough. We will use the library <code>ether-rs</code>:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>use ethers::prelude::*;
+<span class="boring">}</span></code></pre></pre>
+<p>then let's use it in order to really fetch the block:</p>
+<pre><pre class="playground"><code class="language-rust">use ethers::prelude::*;
+
+const WSS_URL: &amp;str = &quot;wss://mainnet.infura.io/ws/v3/c60b0bb42f8a4c6481ecd229eddaca27&quot;;
+
+#[tokio::main]
+async fn main() -&gt; eyre::Result&lt;()&gt; {    
+    let provider = Provider::&lt;Ws&gt;::connect(WSS_URL).await?;
+    let mut stream = provider.subscribe_blocks().await?.take(1);
+    let mut wallet_block: Option&lt;Vec&lt;u8&gt;&gt; = None;
+    while let Some(block) = stream.next().await {
+        if let Some(author) = block.author {
+            wallet_block = Some(author.0.to_vec());
+
+            println!(&quot;random hash author: {:?}&quot;, author);
+        }
+    }
+
+    Ok(())
+}</code></pre></pre>
+<h1 id="2-configuring-cryptatools-rs"><a class="header" href="#2-configuring-cryptatools-rs">2. Configuring cryptatools-rs</a></h1>
+<p>In <code>cryptatools-rs</code>, the alphabet is a concept that applies not only for letters but also to any format. We need to tells cryptatools-rs to use hexadecimal alphabet because it will calculate the length in bits of the alphabet in order to occur the birthday paradox with the right number of bits.</p>
+<p>We need to select the alphabet. We will use <code>full_hexadecimal_alphabet</code> struct because it is a struct that contains 255 values.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let hexadecimal_alphabet = Alphabet::new_empty().full_hexadecimal_alphabet();
+let mut bp = BirtdayParadox::new(hexadecimal_alphabet.into());
+<span class="boring">}</span></code></pre></pre>
+<p>Now we will need to call the method <code>calculate_birtday_paradox_expecting_percent_focusing_on_speed_with_taylor</code>.</p>
+<p>This is a method that is speed enough to be calculated on more than let's say 10 characters hash. This is sadly less precise than the method  <code>calculate_birtday_paradox_expecting_percent_focusing_on_precision</code> that we will not user here.</p>
+<p>Let's write:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>bp.calculate_birtday_paradox_expecting_percent_focusing_on_speed_with_taylor(target_hash.clone(), 0.50)
+<span class="boring">}</span></code></pre></pre>
+<p>in</p>
+<pre><pre class="playground"><code class="language-rust">use ethers::prelude::*;
+
+use cryptatools_core::utils::{convert::Encode, alphabets::split_bytes_by_characters_representation, alphabets::Alphabet, alphabets::Encoding};
+use cryptatools_core::cryptanalysis::general_cryptanalysis_methods::frequency_analysis::coincidence_index::CoincidenceIndexGuesser;
+use cryptatools_core::cryptanalysis::general_cryptanalysis_methods::hash_cryptanalysis::birthday_paradox::BirtdayParadox;
+
+const WSS_URL: &amp;str = &quot;wss://mainnet.infura.io/ws/v3/c60b0bb42f8a4c6481ecd229eddaca27&quot;;
+
+#[tokio::main]
+async fn main() -&gt; eyre::Result&lt;()&gt; {
+    let hexadecimal_alphabet = Alphabet::new_empty().full_hexadecimal_alphabet();
+    let bp = BirtdayParadox::new(hexadecimal_alphabet.into());
+    
+    let provider = Provider::&lt;Ws&gt;::connect(WSS_URL).await?;
+    let mut stream = provider.subscribe_blocks().await?.take(1);
+    let mut wallet_block: Option&lt;Vec&lt;u8&gt;&gt; = None;
+    while let Some(block) = stream.next().await {
+        if let Some(author) = block.author {
+            wallet_block = Some(author.0.to_vec());
+        }
+    }
+
+    if let Some(wallet_block) = wallet_block {
+        let target_hash = wallet_block;
+        println!(&quot;after {:?} attempts, there is 50% of chances to get a collision on ethereum addresses.&quot;, bp.calculate_birtday_paradox_expecting_percent_focusing_on_speed_with_taylor(target_hash.clone(), 0.50));
+    } else {
+        println!(&quot;Error: wallet not found. Check your internet connection.&quot;);
+    }
+
+    Ok(())
+}</code></pre></pre>
+<h1 id="4-running-a-birtday-paradox-evaluation"><a class="header" href="#4-running-a-birtday-paradox-evaluation">4. Running a Birtday paradox evaluation.</a></h1>
+<p>In the paper they mentionned:</p>
+<pre><code>For e = 50%, this gives n = 1.41 × 10^24.
+</code></pre>
+<p>Let's run...</p>
+<pre><code>After 1.4234013764919992e24 attempts, there is 50% of chances to get a collision on ethereum addresses.
+</code></pre>
+<p>Sounds perfect! It is exactly the same answer than the paper!</p>
+<p>Of course there is a difference of 0.01e24 but the birthday paradox is an approximation.</p>
+<h1 id="conclusion"><a class="header" href="#conclusion">Conclusion</a></h1>
+<p>ethereum wallet hash and alphabet length provide same resistance as the bitcoin.</p>
+<p>We do not have to worry about the probability to find a wallet collision. It is very safe!</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../chapter_2/1-caesar_shellcode_cryptanalysis_attack.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../../chapter_3/api-ref.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../chapter_2/1-caesar_shellcode_cryptanalysis_attack.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../../chapter_3/api-ref.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../elasticlunr.min.js"></script>
+        <script src="../../mark.min.js"></script>
+        <script src="../../searcher.js"></script>
+
+        <script src="../../clipboard.min.js"></script>
+        <script src="../../highlight.js"></script>
+        <script src="../../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

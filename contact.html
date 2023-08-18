@@ -83,16 +83,38 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="philosophy.html"><strong aria-hidden="true">1.</strong> Philosophy</a></li><li class="chapter-item expanded "><a href="licence.html"><strong aria-hidden="true">2.</strong> Licence</a></li><li class="chapter-item expanded "><a href="contact.html" class="active"><strong aria-hidden="true">3.</strong> Contacts</a></li><li class="chapter-item expanded affix "><li class="part-title">I - Tutorials</li><li class="chapter-item expanded "><a href="chapter_1/1-get-started.html"><strong aria-hidden="true">4.</strong> Get Started</a></li><li class="chapter-item expanded "><a href="chapter_1/2-installation.html"><strong aria-hidden="true">5.</strong> Installation</a></li><li class="chapter-item expanded "><a href="chapter_1/3-contribute.html"><strong aria-hidden="true">6.</strong> Contribute</a></li><li class="chapter-item expanded "><a href="chapter_1/4-usage.html"><strong aria-hidden="true">7.</strong> Usage</a></li><li class="chapter-item expanded affix "><li class="part-title">II - How To</li><li class="chapter-item expanded "><a href="chapter_2/1-caesar_shellcode_cryptanalysis_attack.html"><strong aria-hidden="true">8.</strong> Use cryptanalysis attack method against a caesar encryption shellcode shellcode for Malware analysis with cryptatools and radare2 rust bindings (r2pipe)</a></li><li class="chapter-item expanded affix "><li class="part-title">III - API Ref</li><li class="chapter-item expanded "><a href="chapter_3/api-ref.html"><strong aria-hidden="true">9.</strong> API-Reference</a></li><li class="chapter-item expanded affix "><li class="part-title">IV - Explanations</li><li class="chapter-item expanded "><a href="chapter_4/1-goals-of-cryptanalysis.html"><strong aria-hidden="true">10.</strong> Why doing Cryptanalysis</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="philosophy.html"><strong aria-hidden="true">1.</strong> Philosophy</a></li><li class="chapter-item expanded "><a href="licence.html"><strong aria-hidden="true">2.</strong> Licence</a></li><li class="chapter-item expanded "><a href="contact.html" class="active"><strong aria-hidden="true">3.</strong> Contacts</a></li><li class="chapter-item expanded affix "><li class="part-title">I - Tutorials</li><li class="chapter-item expanded "><a href="chapter_1/1-get-started.html"><strong aria-hidden="true">4.</strong> Get Started</a></li><li class="chapter-item expanded "><a href="chapter_1/2-installation.html"><strong aria-hidden="true">5.</strong> Installation</a></li><li class="chapter-item expanded "><a href="chapter_1/3-contribute.html"><strong aria-hidden="true">6.</strong> Contribute</a></li><li class="chapter-item expanded "><a href="chapter_1/4-usage.html"><strong aria-hidden="true">7.</strong> Usage</a></li><li class="chapter-item expanded affix "><li class="part-title">II - How To</li><li class="chapter-item expanded affix "><li class="part-title">1. Cryptanalysis for Reverse engineering and malware analysis</li><li class="chapter-item expanded "><a href="chapter_2/1-caesar_shellcode_cryptanalysis_attack.html"><strong aria-hidden="true">8.</strong> Using Cryptanalysis Attack Method Against A Caesar Encryption Shellcode Shellcode For Malware Analysis With Cryptatools And Radare2 Rust Bindings (r2pipe)</a></li><li class="chapter-item expanded affix "><li class="part-title">2. Blockchain and cryptocurrencies cryptanalysis</li><li class="chapter-item expanded "><a href="chapter_2/Blockchain/1-Evaluating-bitcoin-wallet-collision-probability.html"><strong aria-hidden="true">9.</strong> Cryptography Of Bitcoin Address Using Birthday Paradox</a></li><li class="chapter-item expanded affix "><li class="part-title">III - API Ref</li><li class="chapter-item expanded "><a href="chapter_3/api-ref.html"><strong aria-hidden="true">10.</strong> API-Reference</a></li><li class="chapter-item expanded affix "><li class="part-title">IV - Explanations</li><li class="chapter-item expanded "><a href="chapter_4/1-goals-of-cryptanalysis.html"><strong aria-hidden="true">11.</strong> Why doing Cryptanalysis</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
 
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
                                 <div id="menu-bar-hover-placeholder"></div>
-                <div id="menu-bar" class="menu-bar sticky bordered">
+                <div id="menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
                         <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
                             <i class="fa fa-bars"></i>
