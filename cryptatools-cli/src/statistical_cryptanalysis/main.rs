@@ -43,7 +43,7 @@ fn main() {
             let mut current_opcode: String = String::from("");
             for o in 0..opcodes.len() {
                 if current_opcode.len() < 2 {
-                    current_opcode.push_str(&String::from(opcodes.clone().chars().nth(o).unwrap()).clone());
+                    current_opcode.push_str(&String::from(opcodes.chars().nth(o).unwrap()).clone());
                 }
 
                 if current_opcode.len() == 2 {
