@@ -8,7 +8,7 @@ const WSS_URL: &str = "wss://mainnet.infura.io/ws/v3/c60b0bb42f8a4c6481ecd229edd
 
 #[tokio::main]
 async fn main() -> eyre::Result<()> {
-    let hexadecimal_alphabet = Alphabet::new_empty().full_hexadecimal_alphabet();
+    let hexadecimal_alphabet = Alphabet::full_hexadecimal_alphabet();
     let bp = BirtdayParadox::new(hexadecimal_alphabet.into());
     
     let provider = Provider::<Ws>::connect(WSS_URL).await?;

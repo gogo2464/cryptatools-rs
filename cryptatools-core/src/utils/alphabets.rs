@@ -397,7 +397,7 @@ impl Alphabet {
     ///
     /// This method has no argument.
     /// Returns an alphabet made with hexadecimal and lowercase only values.
-    pub fn full_hexadecimal_alphabet(&mut self) -> Self {
+    pub fn full_hexadecimal_alphabet() -> Self {
         let mut encoding = BiBTreeMap::new();
         encoding.insert(String::from("00"), vec![0x00]);
         encoding.insert(String::from("01"), vec![0x01]);
@@ -670,8 +670,6 @@ impl Alphabet {
         encoding.insert(String::from("fd"), vec![0xfd]);
         encoding.insert(String::from("fe"), vec![0xfe]);
         encoding.insert(String::from("ff"), vec![0xff]);
-
-        self.encoding = encoding.clone();
 
         Alphabet {
             encoding: encoding
