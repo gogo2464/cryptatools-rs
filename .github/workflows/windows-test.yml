@@ -45,6 +45,7 @@ jobs:
     
     - name: Build and install Python Bindings
       run: |
+        python --version ;
         python .\cryptatools-core\setup.py bdist_wheel --verbose ;
         $wheelFile = Get-ChildItem -Path .\dist\ -Recurse -Include * ;
         pip3 install $wheelFile --force-reinstall ;

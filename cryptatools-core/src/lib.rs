@@ -8,10 +8,3 @@ use crate::cryptography::classical::encryption::transpositional_ciphers::columna
 use crate::cryptanalysis::general_cryptanalysis_methods::frequency_analysis::coincidence_index::CoincidenceIndexGuesser;
 
 uniffi_macros::include_scaffolding!("cryptatools");
-
-/*
-    [Name=full_hexadecimal_alphabet]
-    constructor();
-
-        Alphabet full_hexadecimal_alphabet();
-*/

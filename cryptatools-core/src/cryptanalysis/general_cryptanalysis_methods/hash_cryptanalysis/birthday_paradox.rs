@@ -3,7 +3,6 @@ use num_bigfloat::BigFloat;
 use num_traits::Pow;
 use num::FromPrimitive;
 use num_traits::Float;
-use num::ToPrimitive;
 use num::One;
 
 

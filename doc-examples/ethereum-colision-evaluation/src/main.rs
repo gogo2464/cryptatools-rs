@@ -1,7 +1,6 @@
 use ethers::prelude::*;
 
-use cryptatools_core::utils::{convert::Encode, alphabets::split_bytes_by_characters_representation, alphabets::Alphabet, alphabets::Encoding};
-use cryptatools_core::cryptanalysis::general_cryptanalysis_methods::frequency_analysis::coincidence_index::CoincidenceIndexGuesser;
+use cryptatools_core::utils::alphabets::Alphabet;
 use cryptatools_core::cryptanalysis::general_cryptanalysis_methods::hash_cryptanalysis::birthday_paradox::BirtdayParadox;
 
 const WSS_URL: &str = "wss://mainnet.infura.io/ws/v3/c60b0bb42f8a4c6481ecd229eddaca27";

@@ -1,4 +1,3 @@
-#![feature(assert_matches)]
 use itertools::Itertools;
 use bimap::btree::BiBTreeMap;
 //use std::assert_matches::assert_matches;

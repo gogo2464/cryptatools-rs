@@ -34,7 +34,7 @@ requirements = [
     "wheel",
     "semantic-version==2.9.0",
     "setuptools",
-    "typing_extensions==4.0.1",
+    "typing_extensions==4.7.1",
     "pytest==7.1.2",
     "tox==3.25.1",
 ]
