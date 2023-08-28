@@ -1,7 +1,7 @@
-use std::collections::HashMap;
 use crate::utils::alphabets::Alphabet;
 
 pub struct AlgorithmOne {
+    #[allow(dead_code)]
     alphabet: Alphabet,
 }
 

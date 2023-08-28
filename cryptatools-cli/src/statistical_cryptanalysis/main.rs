@@ -20,7 +20,7 @@ struct Freq (
 fn main() {
     let cli = Cli::parse();
     match &cli.command {
-        Commands::GetCoincidenceIndex { cipher_text } => {
+        Commands::GetCoincidenceIndex { cipher_text: _ } => {
             println!("here is the coincidence index.")
             //let c = CoincidenceIndexGuesser::new(alphabet);
             //let coincidence_index: f64 = c.guess_coincidence_index(opcodes.as_bytes().to_vec());
