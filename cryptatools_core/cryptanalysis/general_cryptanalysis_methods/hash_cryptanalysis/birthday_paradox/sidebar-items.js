@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"struct":["BirtdayParadox"]};
+window.SIDEBAR_ITEMS = {"struct":["BirthdayParadox"]};
