@@ -34,3 +34,9 @@ interface CoincidenceIndexGuesser {
     double guess_coincidence_index(sequence<u8> cipher_text_input);
     double guess_coincidence_index_statistics_from_file(string file_name);
 };
+
+interface BirthdayParadox {
+    constructor(Alphabet alphabet);
+    u64 calculate_birthday_paradox_expecting_percent_focusing_on_precision(sequence<u8> hash_to_process, f64 probability_expectation);
+    f64 calculate_birthday_paradox_expecting_percent_focusing_on_speed_with_taylor(sequence<u8> hash_to_process, f64 probability_expectation);
+};

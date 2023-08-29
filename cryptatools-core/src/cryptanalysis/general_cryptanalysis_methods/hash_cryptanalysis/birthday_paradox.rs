@@ -10,13 +10,13 @@ use num::One;
 use crate::utils::alphabets::Alphabet;
 use crate::utils::alphabets::split_bytes_by_characters_representation;
 
-pub struct BirtdayParadox {
+pub struct BirthdayParadox {
     alphabet: Arc<Alphabet>,
 }
 
-impl BirtdayParadox {
+impl BirthdayParadox {
     pub fn new(alphabet: Arc<Alphabet>) -> Self {
-        BirtdayParadox {
+        BirthdayParadox {
             alphabet: alphabet,
         }
     }
@@ -28,27 +28,27 @@ impl BirtdayParadox {
     /// 
     /// ```
     /// use cryptatools_core::cryptanalysis::general_cryptanalysis_methods::frequency_analysis::coincidence_index::CoincidenceIndexGuesser;
-    /// use cryptatools_core::cryptanalysis::general_cryptanalysis_methods::hash_cryptanalysis::birthday_paradox::BirtdayParadox;
+    /// use cryptatools_core::cryptanalysis::general_cryptanalysis_methods::hash_cryptanalysis::birthday_paradox::BirthdayParadox;
     /// use cryptatools_core::utils::alphabets::Alphabet;
     /// use cryptatools_core::utils::convert::Encode;
     /// 
     /// let lowercase_hexadecimal = Alphabet::new_empty().hexadecimal_ascii_lowercase_sixteen_bits_alphabet();
-    /// let bp = BirtdayParadox::new(lowercase_hexadecimal.into());
+    /// let bp = BirthdayParadox::new(lowercase_hexadecimal.into());
     /// let mut hash = Encode::from_ascii_to_u8(String::from("1"));
     /// assert_eq!(hash, vec![49]);
-    /// assert_eq!(bp.calculate_birtday_paradox_expecting_percent_focusing_on_precision(hash.clone(), 0.5), 5);//20
-    /// assert_eq!(bp.calculate_birtday_paradox_expecting_percent_focusing_on_precision(hash.clone(), 0.95), 10);//39
+    /// assert_eq!(bp.calculate_birthday_paradox_expecting_percent_focusing_on_precision(hash.clone(), 0.5), 5);//20
+    /// assert_eq!(bp.calculate_birthday_paradox_expecting_percent_focusing_on_precision(hash.clone(), 0.95), 10);//39
     /// hash = Encode::from_ascii_to_u8(String::from("1f9"));
-    /// assert_eq!(bp.calculate_birtday_paradox_expecting_percent_focusing_on_precision(hash.clone(), 0.95), 16060);
+    /// assert_eq!(bp.calculate_birthday_paradox_expecting_percent_focusing_on_precision(hash.clone(), 0.95), 16060);
     /// hash = Encode::from_ascii_to_u8(String::from("1f90"));
-    /// assert_eq!(bp.calculate_birtday_paradox_expecting_percent_focusing_on_precision(hash.clone(), 0.95), 160416);
+    /// assert_eq!(bp.calculate_birthday_paradox_expecting_percent_focusing_on_precision(hash.clone(), 0.95), 160416);
     /// //let hash = Encode::from_ascii_to_u8(String::from("00000000"));
-    /// //assert_eq!(bp.calculate_birtday_paradox_expecting_percent_focusing_on_precision(hash.clone(), 0.50), 500);
+    /// //assert_eq!(bp.calculate_birthday_paradox_expecting_percent_focusing_on_precision(hash.clone(), 0.50), 500);
     /// //let hash = Encode::from_ascii_to_u8(String::from("1f9090aae28b8a3dceadf281b0f12828e676c326"));
     /// //assert_eq!(hash, vec![49, 102, 57, 48, 57, 48, 97, 97, 101, 50, 56, 98, 56, 97, 51, 100, 99, 101, 97, 100, 102, 50, 56, 49, 98, 48, 102, 49, 50, 56, 50, 56, 101, 54, 55, 54, 99, 51, 50, 54]);
-    /// //assert_eq!(bp.calculate_birtday_paradox_expecting_percent_focusing_on_precision(hash.clone(), 0.5), 20);
+    /// //assert_eq!(bp.calculate_birthday_paradox_expecting_percent_focusing_on_precision(hash.clone(), 0.5), 20);
     /// ```
-    pub fn calculate_birtday_paradox_expecting_percent_focusing_on_precision(&self, hash_to_process: Vec<u8>, probability_expectation: f64) -> u64 {
+    pub fn calculate_birthday_paradox_expecting_percent_focusing_on_precision(&self, hash_to_process: Vec<u8>, probability_expectation: f64) -> u64 {
         let organized_hash = split_bytes_by_characters_representation(&self.alphabet, hash_to_process); 
         let iter: usize = organized_hash.len() ;
         let alphabet_size = self.alphabet.get_encoding().len();
@@ -79,17 +79,17 @@ impl BirtdayParadox {
     ///
     /// ```
     /// use cryptatools_core::cryptanalysis::general_cryptanalysis_methods::frequency_analysis::coincidence_index::CoincidenceIndexGuesser;
-    /// use cryptatools_core::cryptanalysis::general_cryptanalysis_methods::hash_cryptanalysis::birthday_paradox::BirtdayParadox;
+    /// use cryptatools_core::cryptanalysis::general_cryptanalysis_methods::hash_cryptanalysis::birthday_paradox::BirthdayParadox;
     /// use cryptatools_core::utils::alphabets::Alphabet;
     /// use cryptatools_core::utils::convert::Encode;
     /// 
     /// let lowercase_hexadecimal = Alphabet::new_empty().hexadecimal_ascii_lowercase_sixteen_bits_alphabet();
-    /// let mut bp = BirtdayParadox::new(lowercase_hexadecimal.into());
+    /// let mut bp = BirthdayParadox::new(lowercase_hexadecimal.into());
     /// let hash = Encode::from_ascii_to_u8(String::from("bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0w"));
     /// assert_eq!(hash, vec![98, 99, 49, 113, 120, 121, 50, 107, 103, 100, 121, 103, 106, 114, 115, 113, 116, 122, 113, 50, 110, 48, 121, 114, 102, 50, 52, 57, 51, 112, 56, 51, 107, 107, 102, 106, 104, 120, 48, 119]);
-    /// assert_eq!(bp.calculate_birtday_paradox_expecting_percent_focusing_on_speed_with_taylor(hash.clone(), 0.50), 1.4234013764919992e24);// should be exactly 
+    /// assert_eq!(bp.calculate_birthday_paradox_expecting_percent_focusing_on_speed_with_taylor(hash.clone(), 0.50), 1.4234013764919992e24);// should be exactly 
     /// ```
-    pub fn calculate_birtday_paradox_expecting_percent_focusing_on_speed_with_taylor(&self, hash_to_process: Vec<u8>, probability_expectation: f64) -> f64 {
+    pub fn calculate_birthday_paradox_expecting_percent_focusing_on_speed_with_taylor(&self, hash_to_process: Vec<u8>, probability_expectation: f64) -> f64 {
         let alphabet_size = self.alphabet.get_encoding().len();
         let hash_output_bytes_len: u32 = hash_to_process.len().clone() as u32;
 
@@ -103,7 +103,7 @@ impl BirtdayParadox {
     }
 
 
-    pub fn calculate_birtday_paradox(&self, objects: u64, times: u64) -> u64 {
+    pub fn calculate_birthday_paradox(&self, objects: u64, times: u64) -> u64 {
         self.calculate_permuted_choice_number(objects, times) / times
     }
 
@@ -124,10 +124,10 @@ impl BirtdayParadox {
     /// use cryptatools_core::cryptanalysis::general_cryptanalysis_methods::frequency_analysis::coincidence_index::CoincidenceIndexGuesser;
     /// use cryptatools_core::utils::alphabets::Alphabet;
     /// use cryptatools_core::utils::convert::Encode;
-    /// use cryptatools_core::cryptanalysis::general_cryptanalysis_methods::hash_cryptanalysis::birthday_paradox::BirtdayParadox;
+    /// use cryptatools_core::cryptanalysis::general_cryptanalysis_methods::hash_cryptanalysis::birthday_paradox::BirthdayParadox;
     /// 
     /// let ascii_alphabet = Alphabet::new_empty().ascii_printable_only_encoding();
-    /// let bp = BirtdayParadox::new(ascii_alphabet.into());
+    /// let bp = BirthdayParadox::new(ascii_alphabet.into());
     /// assert_eq!(bp.calculate_permuted_choice_number(5, 2), 10);
     /// assert_eq!(bp.calculate_permuted_choice_number(2, 2), 1);
     /// ```
@@ -141,10 +141,10 @@ impl BirtdayParadox {
     /// use cryptatools_core::cryptanalysis::general_cryptanalysis_methods::frequency_analysis::coincidence_index::CoincidenceIndexGuesser;
     /// use cryptatools_core::utils::alphabets::Alphabet;
     /// use cryptatools_core::utils::convert::Encode;
-    /// use cryptatools_core::cryptanalysis::general_cryptanalysis_methods::hash_cryptanalysis::birthday_paradox::BirtdayParadox;
+    /// use cryptatools_core::cryptanalysis::general_cryptanalysis_methods::hash_cryptanalysis::birthday_paradox::BirthdayParadox;
     /// 
     /// let ascii_alphabet = Alphabet::new_empty().ascii_printable_only_encoding();
-    /// let bp = BirtdayParadox::new(ascii_alphabet.into());
+    /// let bp = BirthdayParadox::new(ascii_alphabet.into());
     /// assert_eq!(bp.factorial(0), 1);
     /// assert_eq!(bp.factorial(1), 1);
     /// assert_eq!(bp.factorial(2), 2);
