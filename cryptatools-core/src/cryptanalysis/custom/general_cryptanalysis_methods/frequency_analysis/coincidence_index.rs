@@ -21,7 +21,7 @@ impl CoincidenceIndexGuesser {
     /// Guess coincidence index of `cipher_text_input`.
     /// 
     /// ```
-    /// use cryptatools_core::cryptanalysis::general_cryptanalysis_methods::frequency_analysis::coincidence_index::CoincidenceIndexGuesser;
+    /// use cryptatools_core::cryptanalysis::custom::general_cryptanalysis_methods::frequency_analysis::coincidence_index::CoincidenceIndexGuesser;
     /// use cryptatools_core::utils::alphabets::Alphabet;
     /// use cryptatools_core::utils::convert::Encode;
     /// 
@@ -60,7 +60,7 @@ impl CoincidenceIndexGuesser {
     /// ```
     /// use once_cell::sync::Lazy;
     /// use cryptatools_core::utils::alphabets::Alphabet;
-    /// use cryptatools_core::cryptanalysis::general_cryptanalysis_methods::frequency_analysis::coincidence_index::CoincidenceIndexGuesser;
+    /// use cryptatools_core::cryptanalysis::custom::general_cryptanalysis_methods::frequency_analysis::coincidence_index::CoincidenceIndexGuesser;
     /// use approx::assert_abs_diff_eq;
     /// 
     /// let alphabet = Alphabet::new_empty().ascii_printable_only_encoding();
@@ -100,7 +100,7 @@ impl CoincidenceIndexGenerator {
     /// 
     /// ```
     /// use cryptatools_core::utils::{convert::Encode, alphabets::Alphabet};
-    /// use cryptatools_core::cryptanalysis::general_cryptanalysis_methods::frequency_analysis::coincidence_index::CoincidenceIndexGenerator;
+    /// use cryptatools_core::cryptanalysis::custom::general_cryptanalysis_methods::frequency_analysis::coincidence_index::CoincidenceIndexGenerator;
     /// 
     /// use approx::assert_abs_diff_eq;
     /// 
@@ -141,7 +141,7 @@ impl CoincidenceIndexGenerator {
     /// ```
     /// use once_cell::sync::Lazy;
     /// use cryptatools_core::utils::{convert::Encode,  alphabets::Alphabet};
-    /// use cryptatools_core::cryptanalysis::general_cryptanalysis_methods::frequency_analysis::coincidence_index::CoincidenceIndexGenerator;
+    /// use cryptatools_core::cryptanalysis::custom::general_cryptanalysis_methods::frequency_analysis::coincidence_index::CoincidenceIndexGenerator;
     /// use approx::assert_abs_diff_eq;
     /// 
     /// 

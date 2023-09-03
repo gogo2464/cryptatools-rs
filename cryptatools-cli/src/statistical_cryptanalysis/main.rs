@@ -7,7 +7,7 @@ use clap::Parser;
 use serde::Deserialize;
 use serde_with::{serde_as, DisplayFromStr};
 //use cryptatools_core::cryptanalysis::general_cryptanalysis_methods::frequency_analysis::coincidence_index::CoincidenceIndexGuesser;
-use cryptatools_core::cryptanalysis::general_cryptanalysis_methods::frequency_analysis::distribution_algorithms::statistical::Statistical;
+use cryptatools_core::cryptanalysis::custom::general_cryptanalysis_methods::frequency_analysis::distribution_algorithms::statistical::Statistical;
 
 
 #[serde_as]

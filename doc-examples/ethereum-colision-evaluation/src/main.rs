@@ -1,7 +1,7 @@
 use ethers::prelude::*;
 
 use cryptatools_core::utils::alphabets::Alphabet;
-use cryptatools_core::cryptanalysis::general_cryptanalysis_methods::hash_cryptanalysis::birthday_paradox::BirthdayParadox;
+use cryptatools_core::cryptanalysis::custom::general_cryptanalysis_methods::hash_cryptanalysis::birthday_paradox::BirthdayParadox;
 
 const WSS_URL: &str = "wss://mainnet.infura.io/ws/v3/c60b0bb42f8a4c6481ecd229eddaca27";
 
