@@ -9,7 +9,8 @@
 - [Get Started](./chapter_1/1-get-started.md)
 - [Installation](./chapter_1/2-installation.md)
 - [Contribute](./chapter_1/3-contribute.md)
-- [Usage](./chapter_1/4-usage.md)
+- [Global Usages](./chapter_1/4-usage.md)
+- [Node Connection](./chapter_1/usages/1-Interacting-with-blockchain-with-nodejs.md)
 
 # II - How To
 
