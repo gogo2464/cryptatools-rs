@@ -318,6 +318,7 @@ Run unit tests with doctests with the command:</p>
 <p>For more examples, please refer to the <a href="https://github.com/gogo2464/cryptatools-rs/blob/master/TUTORIAL.md">Tutorial</a> or to the documentation <a href="https://gogo2464.github.io/cryptatools-rs/cryptatools_core/">Documentation</a>.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="1-intro"><a class="header" href="#1-intro">1 Intro</a></h1>
 <p>In order to connect with smart contracts, you might need to code in nodejs using cryptatools-rs bindings in order to interact with hardhat/web3js.</p>
+<p>The full code example is avaible here: <a href="https://github.com/gogo2464/cryptatools-rs/tree/master/docs/doc-examples/ethereum-wallet-collision-with-web3js-node">Click Here</a>.</p>
 <h1 id="2-create-bindings"><a class="header" href="#2-create-bindings">2 Create bindings</a></h1>
 <p>Sadly uniffi-rs does not currently implement javascript bindings, then we have to code these on our own using <code>wasm-bindgen</code> rust assembly tool. See this <a href="https://rustwasm.github.io/docs/wasm-bindgen/examples/hello-world.html">link</a>.</p>
 <p>./src/lib.rs</p>
@@ -1026,6 +1027,7 @@ int 0x80
 <p>Break caesar algorithm with statistic is trivial on plain text. It is different when the executables are encrypted because we have to deal with the opcode encryption as well as detect plain text assembly languages. Trough in this case, the esiest way was to implement a decryptor after reverse engineering the key, it is sometimes impossible in the case of a malware that deletes the key or provide access to the key only from a remote server that could be disconnected.</p>
 <p>Hopefully, the byte parsing system of <code>cryptatools</code> allow to run cryptanalysis attack against these bytes as well as recognize plain text from bytes.</p>
 <p>Once the plain text is found, we could use <code>radare2</code> emulation to emulate and run a single function: the one with plain text opcodes.</p>
+<p>The source code used in this course is available <a href="https://github.com/gogo2464/cryptatools-rs/tree/master/docs/doc-examples/ethereum-colision-evaluation">Here</a>. Do not hesitate to click in.</p>
 <h3 id="sources-and-references"><a class="header" href="#sources-and-references">Sources and references</a></h3>
 <p><a href="https://nasmland645.wordpress.com/2015/02/08/assignment-4-custom-shellcode-encoder/">Shellcode coding tutorial</a></p>
 <p><a href="http://shell-storm.org/shellcode/files/shellcode-900.html">Shellstorm shellcode sample</a></p>
