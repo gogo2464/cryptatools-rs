@@ -683,7 +683,7 @@ impl Alphabet {
     ///
     /// This method has no argument.
     /// Returns an alphabet made with hexadecimal and lowercase only values.
-    pub fn hexadecimal_ascii_lowercase_sixteen_bits_alphabet(&mut self) -> Self {
+    pub fn hexadecimal_ascii_lowercase_sixteen_bits_alphabet() -> Self {
         let mut encoding = BiBTreeMap::new();
         encoding.insert(String::from("0"), vec![0x30]);
         encoding.insert(String::from("1"), vec![0x31]);
@@ -702,7 +702,7 @@ impl Alphabet {
         encoding.insert(String::from("e"), vec![0x65]);
         encoding.insert(String::from("f"), vec![0x66]);
 
-        self.encoding = encoding.clone();
+        //self.encoding = encoding.clone();
 
         Alphabet {
             encoding: encoding
@@ -856,16 +856,6 @@ impl Alphabet {
             encoding: encoding
         }
     }
-
-
-
-
-
-
-
-
-
-
 
     pub fn get_encoding(&self) -> Vec<Encoding> {
         self.encoding.iter()

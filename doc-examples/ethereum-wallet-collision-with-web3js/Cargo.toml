@@ -1,0 +1,16 @@
+[package]
+name = "ethereum-wallet-collision-with-web3js"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+cryptatools-core = { path = "../../cryptatools-core", package = 'cryptatools-core' }
+wasm-bindgen = "0.2.87"
+getrandom = { version = "0.2", features = ["js"] }
+#cryptatools-core = { git = "https://github.com/gogo2464/cryptatools-rs", package = 'cryptatools-core' }
+web-sys = { version = "0.3.64", features = ['Document', 'Element', 'HtmlElement', 'Node', 'Window']}

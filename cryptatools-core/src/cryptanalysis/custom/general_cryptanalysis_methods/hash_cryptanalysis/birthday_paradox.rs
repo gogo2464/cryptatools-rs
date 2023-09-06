@@ -5,8 +5,6 @@ use num::FromPrimitive;
 use num_traits::Float;
 use num::One;
 
-
-
 use crate::utils::alphabets::Alphabet;
 use crate::utils::alphabets::split_bytes_by_characters_representation;
 
@@ -32,7 +30,7 @@ impl BirthdayParadox {
     /// use cryptatools_core::utils::alphabets::Alphabet;
     /// use cryptatools_core::utils::convert::Encode;
     /// 
-    /// let lowercase_hexadecimal = Alphabet::new_empty().hexadecimal_ascii_lowercase_sixteen_bits_alphabet();
+    /// let lowercase_hexadecimal = Alphabet::hexadecimal_ascii_lowercase_sixteen_bits_alphabet();
     /// let bp = BirthdayParadox::new(lowercase_hexadecimal.into());
     /// let mut hash = Encode::from_ascii_to_u8(String::from("1"));
     /// assert_eq!(hash, vec![49]);
@@ -83,7 +81,7 @@ impl BirthdayParadox {
     /// use cryptatools_core::utils::alphabets::Alphabet;
     /// use cryptatools_core::utils::convert::Encode;
     /// 
-    /// let lowercase_hexadecimal = Alphabet::new_empty().hexadecimal_ascii_lowercase_sixteen_bits_alphabet();
+    /// let lowercase_hexadecimal = Alphabet::hexadecimal_ascii_lowercase_sixteen_bits_alphabet();
     /// let mut bp = BirthdayParadox::new(lowercase_hexadecimal.into());
     /// let hash = Encode::from_ascii_to_u8(String::from("bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0w"));
     /// assert_eq!(hash, vec![98, 99, 49, 113, 120, 121, 50, 107, 103, 100, 121, 103, 106, 114, 115, 113, 116, 122, 113, 50, 110, 48, 121, 114, 102, 50, 52, 57, 51, 112, 56, 51, 107, 107, 102, 106, 104, 120, 48, 119]);
