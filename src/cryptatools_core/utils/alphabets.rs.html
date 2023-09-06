@@ -913,16 +913,6 @@
 <a href="#913" id="913">913</a>
 <a href="#914" id="914">914</a>
 <a href="#915" id="915">915</a>
-<a href="#916" id="916">916</a>
-<a href="#917" id="917">917</a>
-<a href="#918" id="918">918</a>
-<a href="#919" id="919">919</a>
-<a href="#920" id="920">920</a>
-<a href="#921" id="921">921</a>
-<a href="#922" id="922">922</a>
-<a href="#923" id="923">923</a>
-<a href="#924" id="924">924</a>
-<a href="#925" id="925">925</a>
 </pre></div><pre class="rust"><code><span class="kw">use </span>itertools::Itertools;
 <span class="kw">use </span>bimap::btree::BiBTreeMap;
 <span class="comment">//use std::assert_matches::assert_matches;
@@ -1608,7 +1598,7 @@
     ///
     /// This method has no argument.
     /// Returns an alphabet made with hexadecimal and lowercase only values.
-    </span><span class="kw">pub fn </span>hexadecimal_ascii_lowercase_sixteen_bits_alphabet(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="self">Self </span>{
+    </span><span class="kw">pub fn </span>hexadecimal_ascii_lowercase_sixteen_bits_alphabet() -&gt; <span class="self">Self </span>{
         <span class="kw">let </span><span class="kw-2">mut </span>encoding = BiBTreeMap::new();
         encoding.insert(String::from(<span class="string">&quot;0&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x30</span>]);
         encoding.insert(String::from(<span class="string">&quot;1&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x31</span>]);
@@ -1627,9 +1617,9 @@
         encoding.insert(String::from(<span class="string">&quot;e&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x65</span>]);
         encoding.insert(String::from(<span class="string">&quot;f&quot;</span>), <span class="macro">vec!</span>[<span class="number">0x66</span>]);
 
-        <span class="self">self</span>.encoding = encoding.clone();
+        <span class="comment">//self.encoding = encoding.clone();
 
-        Alphabet {
+        </span>Alphabet {
             encoding: encoding
         }
     }
@@ -1781,16 +1771,6 @@
             encoding: encoding
         }
     }
-
-
-
-
-
-
-
-
-
-
 
     <span class="kw">pub fn </span>get_encoding(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Vec&lt;Encoding&gt; {
         <span class="self">self</span>.encoding.iter()
