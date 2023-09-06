@@ -131,3 +131,5 @@ Of course there is a difference of 0.01e24 but the birthday paradox is an approx
 ethereum wallet hash and alphabet length provide same resistance as the bitcoin.
 
 We do not have to worry about the probability to find a wallet collision. It is very safe!
+
+The source code of this course is [here](https://github.com/gogo2464/cryptatools-rs/tree/master/docs/doc-examples/ethereum-colision-evaluation).

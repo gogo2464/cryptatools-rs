@@ -2,6 +2,8 @@
 
 In order to connect with smart contracts, you might need to code in nodejs using cryptatools-rs bindings in order to interact with hardhat/web3js.
 
+The full code example is avaible here: [Click Here](https://github.com/gogo2464/cryptatools-rs/tree/master/docs/doc-examples/ethereum-wallet-collision-with-web3js-node).
+
 # 2 Create bindings
 
 Sadly uniffi-rs does not currently implement javascript bindings, then we have to code these on our own using `wasm-bindgen` rust assembly tool. See this [link](https://rustwasm.github.io/docs/wasm-bindgen/examples/hello-world.html).
