@@ -537,7 +537,8 @@ fn main() {
   
   println!("plain text:  {:?} decrypted with key {:?}", is_decrypted, key);
   r2p.close();
-}```
+}
+```
 
 
 ### 3.3 Caesar breaking using reverse engineering analaysis and implementing a decryptor with cryptatools.
@@ -750,4 +751,4 @@ Once the plain text is found, we could use `radare2` emulation to emulate and ru
 
 [Shellstorm shellcode sample](http://shell-storm.org/shellcode/files/shellcode-900.html)
 
-[Full Source Code Of This Course](https://github.com/gogo2464/cryptatools-rs/tree/master/docs/doc-examples/caesar_shellcode_statistical_analysis). Do not hesitate to click in order to see a functional example of `cryptatools-rs` in practice.
+[Full source code of this course](https://github.com/gogo2464/cryptatools-rs/tree/master/docs/doc-examples/caesar_shellcode_statistical_analysis).
