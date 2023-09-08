@@ -601,17 +601,11 @@ fn main() {
   
   println!(&quot;plain text:  {:?} decrypted with key {:?}&quot;, is_decrypted, key);
   r2p.close();
-}```
-
-
-## 3.3 Caesar breaking using reverse engineering analaysis and implementing a decryptor with cryptatools.
-
-Now, let's determine the algorithm using reverse engineering method!
-
-Sometimes assembly language could be hard to read and reverse due to counter-reverse engineering protections. It was not the case of this protection. Then let's continue to dig the reverse engineering.
-
-```assembly
-decode:
+}</code></pre></pre>
+<h3 id="33-caesar-breaking-using-reverse-engineering-analaysis-and-implementing-a-decryptor-with-cryptatools"><a class="header" href="#33-caesar-breaking-using-reverse-engineering-analaysis-and-implementing-a-decryptor-with-cryptatools">3.3 Caesar breaking using reverse engineering analaysis and implementing a decryptor with cryptatools.</a></h3>
+<p>Now, let's determine the algorithm using reverse engineering method!</p>
+<p>Sometimes assembly language could be hard to read and reverse due to counter-reverse engineering protections. It was not the case of this protection. Then let's continue to dig the reverse engineering.</p>
+<pre><code class="language-assembly">decode:
     cmp byte [esi], 7
     jl lowbound
     sub byte [esi], 7
@@ -627,7 +621,8 @@ lowbound:
     mov byte [esi], dl
 common_command:
     inc esi
-    loop 7</code></pre></pre>
+    loop 7
+</code></pre>
 <p>After the reverse engineering, we already know that the caesar key is 7 from the instruction <code>loop 7</code>. Let's create a decryptor from cryptatools.</p>
 <pre><code class="language-shell">cargo new caesar_shellcode_decryptor ;
 cd caesar_shellcode_decryptor ;
@@ -783,7 +778,7 @@ int 0x80
 <h3 id="sources-and-references"><a class="header" href="#sources-and-references">Sources and references</a></h3>
 <p><a href="https://nasmland645.wordpress.com/2015/02/08/assignment-4-custom-shellcode-encoder/">Shellcode coding tutorial</a></p>
 <p><a href="http://shell-storm.org/shellcode/files/shellcode-900.html">Shellstorm shellcode sample</a></p>
-<p><a href="https://github.com/gogo2464/cryptatools-rs/tree/master/docs/doc-examples/caesar_shellcode_statistical_analysis">Full Source Code Of This Course</a>. Do not hesitate to click in order to see a functional example of <code>cryptatools-rs</code> in practice.</p>
+<p><a href="https://github.com/gogo2464/cryptatools-rs/tree/master/docs/doc-examples/caesar_shellcode_statistical_analysis">Full source code of this course</a>.</p>
 
                     </main>
 
