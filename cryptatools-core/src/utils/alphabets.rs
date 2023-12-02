@@ -1,6 +1,5 @@
 use itertools::Itertools;
 use bimap::btree::BiBTreeMap;
-//use std::assert_matches::assert_matches;
 
 ///```
 /// use cryptatools_core::utils::{convert::Encode, alphabets::split_bytes_by_characters_representation, alphabets::Alphabet};
@@ -873,9 +872,6 @@ impl Alphabet {
     /// Returns: a converted human readable set of character text in the same order as the original unconverted text.
     ///
     /// ```
-    /// #![feature(assert_matches)]
-    /// 
-    /// use std::assert_matches::assert_matches;
     /// use cryptatools_core::utils::{convert::Encode, alphabets::split_bytes_by_characters_representation, alphabets::Alphabet};
     /// use cryptatools_core::utils::alphabets::Encoding;
     /// 

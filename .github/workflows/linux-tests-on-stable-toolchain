@@ -1,0 +1,53 @@
+name: Linux Tests
+on: [push]
+
+jobs:
+  test-stable:
+  
+   strategy:
+      matrix:
+        os: [ubuntu-latest]
+    runs-on:
+      - ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+
+    - uses: actions-rs/toolchain@v1
+      with:
+        toolchain: stable
+        override: true
+
+    - uses: actions-rs/cargo@v1
+      with:
+        command: build
+        args: --release --all-features
+
+    - name: Install dependencies
+      run: |
+        pip install setuptools wheel
+
+    - name: Build cryptatools
+      run: cargo build --all
+
+    - name: Install cryptatools clis
+      run: cargo install --path ./cryptatools-cli
+
+    - name: Run tests
+      run: |
+        cargo test --all
+
+    - name: Generate documentation
+      run: |
+        cargo doc --package cryptatools-core --workspace --no-deps
+    
+    - name: Build and install Python Bindings
+      run: |
+        python3 ./cryptatools-core/setup.py bdist_wheel --verbose ;
+        pip3 install ./dist/* --force-reinstall ;
+    
+    - name: Test python bindings
+      run: |
+        python3 ./cryptatools-core/binding-testing/testing.py ;
