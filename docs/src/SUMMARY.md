@@ -11,6 +11,7 @@
 - [Contribute](./chapter_1/3-contribute.md)
 - [Global Usages](./chapter_1/4-usage.md)
 - [Node Connection](./chapter_1/usages/1-Interacting-with-blockchain-with-nodejs.md)
+- [public exponent common modulus attack](./chapter_1/usages/2-breaking-rsa.md)
 
 # II - How To
 
