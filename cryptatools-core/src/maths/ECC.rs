@@ -1,16 +1,18 @@
-use num_bigint::{BigUint, BigInt};
-use num_bigint_dig as num_bigint;
-use num_bigint_dig::ModInverse;
+//use num_bigint_dig as num_bigint;
 use num_traits;
+
+use num_bigint_dig::{BigUint, BigInt};
+use num_bigint_dig::ModInverse;
 use num_bigint_dig::prime::probably_prime;
 use num_bigint_dig::ToBigInt;
+use num_bigint_dig::RandBigInt;
+use num_traits::Pow;
+use num_integer::Integer;
 
 #[cfg(feature = "progress-bar")]
 use indicatif::ProgressBar;
 use primal::Primes;
 use std::collections::HashMap;
-
-
 
 
 struct ECC {
@@ -104,10 +106,29 @@ impl Point {
     /// assert_eq!(p2.x_cord, BigInt::from(13));
     /// assert_eq!(p2.z_cord, BigInt::from(10));
     /// ```
+    /// 
+    /// ```
+    /// use num_bigint::{BigUint, BigInt};
+    /// use num_bigint_dig as num_bigint;
+    /// use num_bigint_dig::ModInverse;
+    /// use num_traits;
+    /// use num_traits::cast::FromPrimitive;
+    /// use cryptatools_core::maths::ECC::*;
+    ///
+    /// let modulus: BigInt = BigInt::from(101);
+    /// let a: BigInt = BigInt::from(10);
+    /// let a_24: BigInt = (a + BigInt::from(2)) * BigInt::from(4).mod_inverse(&modulus).unwrap();
+    /// let p1 = Point::new(BigInt::from(10), BigInt::from(17), a_24.clone(), modulus.clone());
+    /// let p2 = p1.double();
+    /// assert_eq!(p2, Point::new(BigInt::from(68), BigInt::from(56), a_24.clone(), modulus.clone()));
+    /// ```
+    ///
     pub fn double(&self) -> Point {
-        let u = BigInt::from(&self.x_cord + &self.z_cord).sqrt();
-        let v = BigInt::from(&self.x_cord - &self.z_cord).sqrt();
-        let diff = BigInt::from(&u - &v);
+        let u = BigInt::from(&self.x_cord + &self.z_cord).pow(2 as u32);
+        println!("test");
+        let v = BigInt::from(&self.x_cord - &self.z_cord).pow(2 as u32);
+        println!("test2");
+        let diff = BigInt::from(u.clone() - v.clone());
         let x_cord = (u * &v) % &self.modulus;
         let z_cord = ((v + &self.a_24 * &diff) * diff) % &self.modulus;
 
@@ -122,6 +143,22 @@ impl Point {
     /// # Parameters
     ///
     /// - `k`: The positive integer multiplier
+    ///
+    /// ```
+    /// use num_bigint::{BigUint, BigInt};
+    /// use num_bigint_dig as num_bigint;
+    /// use num_bigint_dig::ModInverse;
+    /// use num_traits;
+    /// use num_traits::cast::FromPrimitive;
+    /// use cryptatools_core::maths::ECC::*;
+    ///
+    /// let p1 = Point::new(BigInt::from(11), BigInt::from(16), BigInt::from(7), BigInt::from(29));
+    /// let p3 = p1.mont_ladder(&BigInt::from(3));
+    /// assert_eq!(p3.x_cord, BigInt::from(23));
+    /// assert_eq!(p3.z_cord, BigInt::from(17));
+    /// ```
+
+
     pub fn mont_ladder(&self, k: &BigInt) -> Point {
         let mut q = self.clone();
         let mut r = self.double();
@@ -206,7 +243,7 @@ pub enum Error {
 /// - `max_curve`: Maximum number of curves generated.
 /// - `rgen`: Random number generator.
 pub fn ecm_one_factor(
-    n: &BigUint,
+    n: &BigInt,
     b1: usize,
     b2: usize,
     max_curve: usize,
@@ -217,7 +254,7 @@ pub fn ecm_one_factor(
         return Err(Error::BoundsNotEven);
     }
 
-    if probably_prime(n, 0) == true {
+    if probably_prime(&n.to_biguint().unwrap(), 0) == true {
         return Err(Error::NumberIsPrime);
     }
 
@@ -247,28 +284,28 @@ pub fn ecm_one_factor(
         }
 
         // Suyama's Parametrization
-        let sigma = (n - BigInt::from(1).to_biguint().unwrap()).to_bigint().unwrap().random_below(rgen);
+        let sigma = BigInt::from(rand::thread_rng().gen_biguint_below(&BigUint::from(rgen))); //let sigma = (n - BigInt::from(1).to_biguint().unwrap()).to_bigint().unwrap().gen_biguint_below(&BigUint::from(rgen));
         let u = (&sigma * &sigma - BigInt::from(5)) % n;
-        let v = (BigInt::from(4) * sigma) % n;
+        let v : BigInt = (BigInt::from(4) * sigma) % n;
         let diff = v.clone() - u.clone();
-        let u_3 = u.clone().pow(3) % n;
+        let u_3 : BigInt = u.clone().pow(3 as u32) % n;
 
-        let c = match (BigInt::from(4) * &u_3 * &v).invert(n) {
-            Ok(c) => {
-                (diff.pow_mod(&BigInt::from(3), n).unwrap() * (BigInt::from(4) * &u + &v) * c
+        let c = match (BigInt::from(4) * &u_3 * &v).mod_inverse(n) {
+            Some(c) => {
+                (diff.modpow(&BigInt::from(3), n) * (BigInt::from(4) * &u + &v) * c
                     - BigInt::from(2))
                     % n
             }
             _ => return Ok((BigInt::from(4) * u_3 * v).gcd(n)),
         };
 
-        let a24 = (c + 2) * BigInt::from(4).invert(n).unwrap() % n;
-        let q = Point::new(u_3, v.pow(3) % n, a24, n.clone());
+        let a24 = (c + 2) * BigInt::from(4).mod_inverse(n).unwrap() % n;
+        let q = Point::new(u_3, v.pow(3 as u32) % n, a24, n.clone());
         let q = q.mont_ladder(&k);
         let g = q.z_cord.clone().gcd(n);
 
         // Stage 1 factor
-        if &g != n && g != 1 {
+        if &g != n && g != BigInt::from(1) {
             return Ok(g);
         }
 
@@ -311,7 +348,7 @@ pub fn ecm_one_factor(
         g = g.gcd(n);
 
         // Stage 2 Factor found
-        if &g != n && g != 1 {
+        if &g != n && g != BigInt::from(1) {
             return Ok(g);
         }
     }
@@ -347,8 +384,30 @@ fn optimal_b1(digits: usize) -> usize {
 /// # Parameters
 ///
 /// - `n`: Number to be factored.
+///
+///
+/// ```
+/// use num_bigint::{BigUint, BigInt};
+/// use num_bigint_dig as num_bigint;
+/// use num_bigint_dig::ModInverse;
+/// use num_traits;
+/// use num_traits::cast::FromPrimitive;
+///
+/// use std::collections::HashMap;
+/// use std::str::FromStr;
+/// 
+/// use cryptatools_core::maths::ECC::*;
+///
+/// assert_eq!(
+/// ecm(&BigInt::from_str("398883434337287").unwrap()).unwrap(),
+/// HashMap::from([
+///     (BigInt::from(99476569), 1),
+///     (BigInt::from(4009823), 1),
+/// ])
+/// );
+/// ```
 pub fn ecm(
-    n: &BigUint,
+    n: &BigInt,
     #[cfg(feature = "progress-bar")] pb: Option<&ProgressBar>,
 ) -> Result<HashMap<BigInt, usize>, Error> {
     ecm_with_params(
@@ -376,7 +435,7 @@ pub fn ecm(
 /// - `max_curve`: Maximum number of curves generated.
 /// - `seed`: Initialize pseudorandom generator.
 pub fn ecm_with_params(
-    n: &BigUint,
+    n: &BigInt,
     b1: usize,
     b2: usize,
     max_curve: usize,
@@ -387,21 +446,21 @@ pub fn ecm_with_params(
 
     let mut n: BigInt = n.clone();
     for prime in Primes::all().take(100_000) {
-        if n.is_divisible_u(prime as u32) {
-            let prime = BigInt::from(prime);
-            while n.is_divisible(&prime) {
-                n /= &prime;
+        if n.is_multiple_of(&BigInt::from(prime)) {
+            let prime = BigInt::from(prime.clone());
+            while n.is_multiple_of(&prime) {
+                n /= prime.clone();
                 *factors.entry(prime.clone()).or_insert(0) += 1;
             }
         }
     }
 
-    let mut rand_state = RandState::new();
-    rand_state.seed(&seed.into());
+    //let mut rand_state = RandState::new();
+    //rand_state.seed(&seed.into());
 
-    while n != 1 {
+    while n.to_bigint().unwrap() != BigInt::from(1) {
         let factor = ecm_one_factor(
-            &n,
+            &n.to_bigint().unwrap(),
             b1,
             b2,
             max_curve,
@@ -409,9 +468,9 @@ pub fn ecm_with_params(
             #[cfg(feature = "progress-bar")]
             pb,
         )
-        .unwrap_or(n.clone());
+        .unwrap_or(n.to_bigint().unwrap().clone());
 
-        while n.is_divisible(&factor) {
+        while n.is_multiple_of(&factor) {
             n /= &factor;
             *factors.entry(factor.clone()).or_insert(0) += 1;
         }

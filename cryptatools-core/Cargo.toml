@@ -17,14 +17,12 @@ itertools = "*"
 uniffi_bindgen = "*"
 time = "*"
 rand = "*"
-num-bigint = "*"
 num-traits = "*"
 num = "*"
 num-bigfloat = "*"
-num-bigint-dig = { version = "0.8", features = ["prime"] }
-num-prime = "*"
-rug = "1.22.0"
-
+num-bigint = { version = "*", features = [] } #"prime", "rand"
+num-bigint-dig = { version = "*", features = ["prime", "rand"], default-features=false }
+num-integer = "*"
 
 indicatif = { version = "0.17", optional = true }
 primal = "0.3"
