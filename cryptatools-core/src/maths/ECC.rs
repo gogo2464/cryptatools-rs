@@ -125,9 +125,7 @@ impl Point {
     ///
     pub fn double(&self) -> Point {
         let u = BigInt::from(&self.x_cord + &self.z_cord).pow(2 as u32);
-        println!("test");
         let v = BigInt::from(&self.x_cord - &self.z_cord).pow(2 as u32);
-        println!("test2");
         let diff = BigInt::from(u.clone() - v.clone());
         let x_cord = (u * &v) % &self.modulus;
         let z_cord = ((v + &self.a_24 * &diff) * diff) % &self.modulus;
@@ -157,8 +155,6 @@ impl Point {
     /// assert_eq!(p3.x_cord, BigInt::from(23));
     /// assert_eq!(p3.z_cord, BigInt::from(17));
     /// ```
-
-
     pub fn mont_ladder(&self, k: &BigInt) -> Point {
         let mut q = self.clone();
         let mut r = self.double();
@@ -398,11 +394,13 @@ fn optimal_b1(digits: usize) -> usize {
 /// 
 /// use cryptatools_core::maths::ECC::*;
 ///
+/// // assert_eq!(BigInt::from_str("398883434337287"), );
+///
 /// assert_eq!(
 /// ecm(&BigInt::from_str("398883434337287").unwrap()).unwrap(),
 /// HashMap::from([
-///     (BigInt::from(99476569), 1),
-///     (BigInt::from(4009823), 1),
+///     (BigInt::from_str("99476569").unwrap(), 1),
+///     (BigInt::from_str("4009823").unwrap(), 1),
 /// ])
 /// );
 /// ```
