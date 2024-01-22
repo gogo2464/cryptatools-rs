@@ -17,10 +17,17 @@ itertools = "*"
 uniffi_bindgen = "*"
 time = "*"
 rand = "*"
-num-bigint = "*"
 num-traits = "*"
 num = "*"
 num-bigfloat = "*"
+num-bigint = { version = "*", features = [] } #"prime", "rand"
+num-bigint-dig = { version = "*", features = ["prime", "rand"], default-features=false }
+num-integer = "*"
+
+indicatif = { version = "0.17", optional = true }
+primal = "0.3"
+thiserror = "1"
+
 
 [build-dependencies]
 uniffi = {version = "*", features = [ "build", "cli" ]}
