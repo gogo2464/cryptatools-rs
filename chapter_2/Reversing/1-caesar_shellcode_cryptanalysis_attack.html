@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en" class="light" dir="ltr">
+<html lang="en" class="light sidebar-visible" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
@@ -7,7 +7,7 @@
 
 
         <!-- Custom HTML head -->
-        
+
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff">
@@ -24,26 +24,41 @@
         <link rel="stylesheet" href="../../fonts/fonts.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="../../highlight.css">
-        <link rel="stylesheet" href="../../tomorrow-night.css">
-        <link rel="stylesheet" href="../../ayu-highlight.css">
+        <link rel="stylesheet" id="highlight-css" href="../../highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="../../tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="../../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
 
-    </head>
-    <body class="sidebar-visible no-js">
-    <div id="body-container">
-        <!-- Provide site root to javascript -->
-        <script>
-            var path_to_root = "../../";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
-        </script>
 
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "../../";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "../../searchindex.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../../toc.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="body-container">
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script>
             try {
-                var theme = localStorage.getItem('mdbook-theme');
-                var sidebar = localStorage.getItem('mdbook-sidebar');
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
 
                 if (theme.startsWith('"') && theme.endsWith('"')) {
                     localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
@@ -57,70 +72,51 @@
 
         <!-- Set the theme before any content is loaded, prevents flash -->
         <script>
-            var theme;
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
-            var html = document.querySelector('html');
+            const html = document.documentElement;
             html.classList.remove('light')
             html.classList.add(theme);
-            var body = document.querySelector('body');
-            body.classList.remove('no-js')
-            body.classList.add('js');
+            html.classList.add("js");
         </script>
 
         <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var body = document.querySelector('body');
-            var sidebar = null;
-            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
             } else {
                 sidebar = 'hidden';
+                sidebar_toggle.checked = false;
             }
-            sidebar_toggle.checked = sidebar === 'visible';
-            body.classList.remove('sidebar-visible');
-            body.classList.add("sidebar-" + sidebar);
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../../philosophy.html"><strong aria-hidden="true">1.</strong> Philosophy</a></li><li class="chapter-item expanded "><a href="../../licence.html"><strong aria-hidden="true">2.</strong> Licence</a></li><li class="chapter-item expanded "><a href="../../contact.html"><strong aria-hidden="true">3.</strong> Contacts</a></li><li class="chapter-item expanded affix "><li class="part-title">I - Tutorials</li><li class="chapter-item expanded "><a href="../../chapter_1/1-get-started.html"><strong aria-hidden="true">4.</strong> Get Started</a></li><li class="chapter-item expanded "><a href="../../chapter_1/2-installation.html"><strong aria-hidden="true">5.</strong> Installation</a></li><li class="chapter-item expanded "><a href="../../chapter_1/3-contribute.html"><strong aria-hidden="true">6.</strong> Contribute</a></li><li class="chapter-item expanded "><a href="../../chapter_1/4-usage.html"><strong aria-hidden="true">7.</strong> Global Usages</a></li><li class="chapter-item expanded "><a href="../../chapter_1/usages/1-Interacting-with-blockchain-with-nodejs.html"><strong aria-hidden="true">8.</strong> Node Connection</a></li><li class="chapter-item expanded affix "><li class="part-title">II - How To</li><li class="chapter-item expanded affix "><li class="part-title">1. Cryptanalysis for Reverse engineering and malware analysis</li><li class="chapter-item expanded "><a href="../../chapter_2/Reversing/1-caesar_shellcode_cryptanalysis_attack.html" class="active"><strong aria-hidden="true">9.</strong> IC against A Caesar Encryption Shellcode With r2pipe</a></li><li class="chapter-item expanded affix "><li class="part-title">2. Blockchain and cryptocurrencies cryptanalysis</li><li class="chapter-item expanded "><a href="../../chapter_2/Blockchain/1-Evaluating-bitcoin-wallet-collision-probability.html"><strong aria-hidden="true">10.</strong> Birthday Paradox On Ethereum Wallets.</a></li><li class="chapter-item expanded affix "><li class="part-title">III - API Ref</li><li class="chapter-item expanded "><a href="../../chapter_3/api-ref.html"><strong aria-hidden="true">11.</strong> API-Reference</a></li><li class="chapter-item expanded affix "><li class="part-title">IV - Explanations</li><li class="chapter-item expanded "><a href="../../chapter_4/1-goals-of-cryptanalysis.html"><strong aria-hidden="true">12.</strong> Why doing Cryptanalysis</a></li></ol>
-            </div>
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../../toc.html"></iframe>
+            </noscript>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
             </div>
         </nav>
 
-        <!-- Track and set sidebar scroll position -->
-        <script>
-            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
-            sidebarScrollbox.addEventListener('click', function(e) {
-                if (e.target.tagName === 'A') {
-                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
-                }
-            }, { passive: true });
-            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
-            sessionStorage.removeItem('sidebar-scroll');
-            if (sidebarScrollTop) {
-                // preserve sidebar scroll position when navigating via links within sidebar
-                sidebarScrollbox.scrollTop = sidebarScrollTop;
-            } else {
-                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
-                var activeSection = document.querySelector('#sidebar .active');
-                if (activeSection) {
-                    activeSection.scrollIntoView({ block: 'center' });
-                }
-            }
-        </script>
-
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
-                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar-hover-placeholder"></div>
                 <div id="menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
                         <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
@@ -130,13 +126,14 @@
                             <i class="fa fa-paint-brush"></i>
                         </button>
                         <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
                         </ul>
-                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                        <button id="search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="searchbar">
                             <i class="fa fa-search"></i>
                         </button>
                     </div>
@@ -153,7 +150,12 @@
 
                 <div id="search-wrapper" class="hidden">
                     <form id="searchbar-outer" class="searchbar-outer">
-                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                        <div class="search-wrapper">
+                            <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <i class="fa fa-spinner fa-spin"></i>
+                            </div>
+                        </div>
                     </form>
                     <div id="searchresults-outer" class="searchresults-outer hidden">
                         <div id="searchresults-header" class="searchresults-header"></div>
@@ -188,7 +190,7 @@
 <p>In the case of this analysis, we have access to the <a href="http://shell-storm.org/shellcode/files/shellcode-900.html">Shellstorm shellcode sample link here</a>. So we already have the opcode of the shellcode in the format <code>\x12\x34</code>. So let's copy the opcodes <code>\xeb\x25\x5e\x31\xc9\xb1\x1e\x80\x3e\x07\x7c\x05\x80\x2e\x07\xeb\x11\x31\xdb\x31\xd2\xb3\x07\xb2\xff\x66\x42\x2a\x1e\x66\x29\xda\x88\x16\x46\xe2\xe2\xeb\x05\xe8\xd6\xff\xff\xff\x38\xc7\x57\x6f\x69\x68\x7a\x6f\x6f\x69\x70\x75\x36\x6f\x36\x36\x36\x36\x90\xea\x57\x90\xe9\x5a\x90\xe8\xb7\x12\xd4\x87</code> to the file <code>shellcode.txt</code>.</p>
 <p>Then we are now going to compile the shellcode in order to disassemble it.</p>
 <p>First parse it to get an opcode format such as format <code>1234</code>:</p>
-<pre><code class="language-shell">echo &quot;$(cat shellcode.txt | tr -d 'x' | tr -d '\\' | tr -d '\n')&quot; &gt; opcode.txt
+<pre><code class="language-shell">echo "$(cat shellcode.txt | tr -d 'x' | tr -d '\\' | tr -d '\n')" &gt; opcode.txt
 </code></pre>
 <p>Then let's compile it really:</p>
 <pre><code class="language-shell">xxd -r -p opcode.txt bin
@@ -285,7 +287,7 @@ shellcode:
 <pre><code class="language-shell">p8 0x1e @ 0x2c ;
 38c7576f69687a6f6f697075366f3636363690ea5790e95a90e8b712d487
 </code></pre>
-<p><code>38c7576f69687a6f6f697075366f3636363690ea5790e95a90e8b712d487</code> is the cipher text. </p>
+<p><code>38c7576f69687a6f6f697075366f3636363690ea5790e95a90e8b712d487</code> is the cipher text.</p>
 <p>Now that we know where the shellcode is (at the label shellcode), we will break it using in a first time only cryptatools cryptanalysis method. Then we will explore each way to solve the problem. We will start by the most cryptanalystic method and finish with the less cryptanalystic method.</p>
 <h3 id="31-caesar-statistical-analysis-try-when-the-shellcode-size-is-too-little"><a class="header" href="#31-caesar-statistical-analysis-try-when-the-shellcode-size-is-too-little">3.1 Caesar statistical analysis: Try when the shellcode size is too little.</a></h3>
 <p>The global idea is to see at which frequency each opcode appears in the code and then compare with the frequency distribution of plain text opcodes in a shellcode database or a malware database as well as a goodware database (trough less accurate).</p>
@@ -296,17 +298,17 @@ shellcode:
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>[package]
-name = &quot;caesar_shellcode_1_statistical_analysis&quot;
-version = &quot;0.1.0&quot;
-edition = &quot;2021&quot;
+name = "caesar_shellcode_1_statistical_analysis"
+version = "0.1.0"
+edition = "2021"
 
 <span class="boring">See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 </span>
 [dependencies]
-cryptatools-core = { git = &quot;https://github.com/gogo2464/cryptatools-rs&quot;, package = 'cryptatools-core' }
-serde_json = &quot;1.0.91&quot;
-r2pipe = { git = &quot;https://github.com/RHL120/r2pipe.rs&quot;, branch = &quot;windows_bad&quot; }
-itertools = &quot;0.10.5&quot;
+cryptatools-core = { git = "https://github.com/gogo2464/cryptatools-rs", package = 'cryptatools-core' }
+serde_json = "1.0.91"
+r2pipe = { git = "https://github.com/RHL120/r2pipe.rs", branch = "windows_bad" }
+itertools = "0.10.5"
 <span class="boring">}</span></code></pre></pre>
 <pre><pre class="playground"><code class="language-rust">use r2pipe::R2Pipe;
 use r2pipe::open_pipe;
@@ -328,12 +330,12 @@ fn read_plain_text(cipher_text: String) -&gt; Vec&lt;u8&gt; {
 }
 
 fn main() {
-  let mut r2p = open_pipe!(Some(&quot;bin&quot;)).unwrap();
-  let mut cipher_text = String::from(r2p.cmd(&quot;p8 0x1e @ 0x2c ;&quot;).unwrap());
+  let mut r2p = open_pipe!(Some("bin")).unwrap();
+  let mut cipher_text = String::from(r2p.cmd("p8 0x1e @ 0x2c ;").unwrap());
   cipher_text.remove(cipher_text.len()-1);
   cipher_text.remove(cipher_text.len()-1);
   
-  println!(&quot;cipher text: {:?}&quot;, cipher_text);
+  println!("cipher text: {:?}", cipher_text);
   
   let unknow_opcode_alphabet = Alphabet::new_empty().unknow_opcodes();
   
@@ -344,7 +346,7 @@ fn main() {
   
   for character in stat_percentage {
 	  for opcode in character.0 {
-		  println!(&quot;opcode {:x}, statistic: {:?}&quot;, opcode, character.1);
+		  println!("opcode {:x}, statistic: {:?}", opcode, character.1);
 	  }
 	  
   }
@@ -356,7 +358,7 @@ fn main() {
    Compiling caesar_shellcode_1_statistical_analysis v0.1.0 (C:\Users\TRUNCATED\Desktop\cryptatools-rs\tutos\caesar_shellcode_1_statistical_analysis)
     Finished dev [unoptimized + debuginfo] target(s) in 1.15s
      Running `target\debug\caesar_shellcode_1_statistical_analysis.exe`
-cipher text: &quot;38c7576f69687a6f6f697075366f3636363690ea5790e95a90e8b712d487&quot;
+cipher text: "38c7576f69687a6f6f697075366f3636363690ea5790e95a90e8b712d487"
 opcode e9, statistic: 0.03333333333333333
 opcode e8, statistic: 0.03333333333333333
 opcode 5a, statistic: 0.03333333333333333
@@ -381,11 +383,11 @@ opcode d4, statistic: 0.03333333333333333
 <p>These could be either: <code>mov</code>, <code>push</code> or <code>call</code>.</p>
 <h3 id="3111-is-36-a-mov-89"><a class="header" href="#3111-is-36-a-mov-89">3.1.1.1 Is 36 a mov (89)?</a></h3>
 <p>Let's manually try to replace <code>36</code> by <code>mov</code> and see:</p>
-<pre><code class="language-powershell">rasm2 -a x86 -b 32 &quot;mov eax, eax&quot;
+<pre><code class="language-powershell">rasm2 -a x86 -b 32 "mov eax, eax"
 89c0
 </code></pre>
 <p>so let's replace <code>36</code> by <code>89</code>.</p>
-<pre><code class="language-powershell">$text = &quot;38c7576f69687a6f6f697075366f3636363690ea5790e95a90e8b712d487&quot; ; $text = $text -replace &quot;36&quot;,&quot;89&quot;
+<pre><code class="language-powershell">$text = "38c7576f69687a6f6f697075366f3636363690ea5790e95a90e8b712d487" ; $text = $text -replace "36","89"
 rasm2 -a x86 -b 32 -D $text
 
 0x00000000   2                     38c7  cmp bh, al
@@ -404,15 +406,15 @@ rasm2 -a x86 -b 32 -D $text
 <p>We have an invalid opcode. We can only be wrong.</p>
 <h3 id="3112-is-36-a-push-50-"><a class="header" href="#3112-is-36-a-push-50-">3.1.1.2 Is 36 a push (50) ?</a></h3>
 <p>Let's manually try to replace <code>36</code> by <code>push</code> and see:</p>
-<pre><code class="language-powershell">rasm2 -a x86 -b 32 &quot;push eax&quot;
+<pre><code class="language-powershell">rasm2 -a x86 -b 32 "push eax"
 50
 </code></pre>
 <p>As I guess there could be many opcode for <code>push</code> dependig of the second operand. We will use guess it is a call of we do not find better before.</p>
 <h3 id="3113-is-36-a-call-e8"><a class="header" href="#3113-is-36-a-call-e8">3.1.1.3 Is 36 a call (e8)?</a></h3>
-<pre><code class="language-powershell">rasm2 -a x86 -b 32 &quot;call 0x00&quot;
+<pre><code class="language-powershell">rasm2 -a x86 -b 32 "call 0x00"
 e8fbffffff
 </code></pre>
-<pre><code class="language-powershell">$text = &quot;38c7576f69687a6f6f697075366f3636363690ea5790e95a90e8b712d487&quot; ; $text = $text -replace &quot;36&quot;,&quot;89&quot;
+<pre><code class="language-powershell">$text = "38c7576f69687a6f6f697075366f3636363690ea5790e95a90e8b712d487" ; $text = $text -replace "36","89"
 rasm2 -a x86 -b 32 -D $text
 0x00000000   2                     38c7  cmp bh, al
 0x00000002   1                       57  push edi
@@ -431,10 +433,10 @@ rasm2 -a x86 -b 32 -D $text
 <h3 id="3114-is-36-another-push-"><a class="header" href="#3114-is-36-another-push-">3.1.1.4 Is 36 another push ?</a></h3>
 <p>Now we have eliminated any other possibility, we know that <code>36</code> is probably register or stack data. let's see latter.</p>
 <h3 id="3121-is-6f-a-mov-push-or-a-call-lets-try-a-mov"><a class="header" href="#3121-is-6f-a-mov-push-or-a-call-lets-try-a-mov">3.1.2.1 is <code>6f</code> a <code>mov</code>, <code>push</code> or a <code>call</code>. Let's try a <code>mov</code></a></h3>
-<pre><code class="language-powershell">rasm2 -a x86 -b 32 &quot;mov eax, eax&quot;
+<pre><code class="language-powershell">rasm2 -a x86 -b 32 "mov eax, eax"
 89c0
 </code></pre>
-<pre><code class="language-powershell">$text = &quot;38c7576f69687a6f6f697075366f3636363690ea5790e95a90e8b712d487&quot; ; $text = $text -replace &quot;6f&quot;,&quot;89&quot;
+<pre><code class="language-powershell">$text = "38c7576f69687a6f6f697075366f3636363690ea5790e95a90e8b712d487" ; $text = $text -replace "6f","89"
 rasm2 -a x86 -b 32 -D $text
 0x00000000   2                     38c7  cmp bh, al
 0x00000002   1                       57  push edi
@@ -450,10 +452,10 @@ rasm2 -a x86 -b 32 -D $text
 </code></pre>
 <p>Seems to be possible. But the <code>jp</code> instruction is weird. Let's continue to see.</p>
 <h3 id="3122-is-6f-a-mov-push-or-a-call-lets-try-a-push"><a class="header" href="#3122-is-6f-a-mov-push-or-a-call-lets-try-a-push">3.1.2.2 is <code>6f</code> a <code>mov</code>, <code>push</code> or a <code>call</code>. Let's try a <code>push</code></a></h3>
-<pre><code class="language-powershell">rasm2 -a x86 -b 32 &quot;push 0x12345678&quot;
+<pre><code class="language-powershell">rasm2 -a x86 -b 32 "push 0x12345678"
 6878563412
 </code></pre>
-<pre><code class="language-powershell">$text = &quot;38c7576f69687a6f6f697075366f3636363690ea5790e95a90e8b712d487&quot; ; $text = $text -replace &quot;6f&quot;,&quot;68&quot;
+<pre><code class="language-powershell">$text = "38c7576f69687a6f6f697075366f3636363690ea5790e95a90e8b712d487" ; $text = $text -replace "6f","68"
 rasm2 -a x86 -b 32 -D $text
 0x00000000   2                     38c7  cmp bh, al
 0x00000002   1                       57  push edi
@@ -467,12 +469,12 @@ rasm2 -a x86 -b 32 -D $text
 </code></pre>
 <p>Seems more than likely possible. We remember the values <code>0x687a6869</code>, <code>0x36757069</code> and <code>0x36363636</code> as data for future analysis.</p>
 <h3 id="3131-is-90-a-mov-push-or-a-call-lets-try-a-push"><a class="header" href="#3131-is-90-a-mov-push-or-a-call-lets-try-a-push">3.1.3.1 is <code>90</code> a <code>mov</code>, <code>push</code> or a <code>call</code>. Let's try a <code>push</code>.</a></h3>
-<pre><code class="language-powershell">rasm2 -a x86 -b 32 &quot;mov eax, eax&quot;
+<pre><code class="language-powershell">rasm2 -a x86 -b 32 "mov eax, eax"
 89c0
 </code></pre>
-<pre><code class="language-powershell">$text = &quot;38c7576f69687a6f6f697075366f3636363690ea5790e95a90e8b712d487&quot; ;
-$text = $text -replace &quot;6f&quot;,&quot;68&quot;
-$text = $text -replace &quot;90&quot;,&quot;89&quot;
+<pre><code class="language-powershell">$text = "38c7576f69687a6f6f697075366f3636363690ea5790e95a90e8b712d487" ;
+$text = $text -replace "6f","68"
+$text = $text -replace "90","89"
 rasm2 -a x86 -b 32 -D $text
 0x00000000   2                     38c7  cmp bh, al
 0x00000002   1                       57  push edi
@@ -501,17 +503,17 @@ rasm2 -a x86 -b 32 -D $text
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>[package]
-name = &quot;caesar_shellcode_2_caesar_brute_forcer&quot;
-version = &quot;0.1.0&quot;
-edition = &quot;2021&quot;
+name = "caesar_shellcode_2_caesar_brute_forcer"
+version = "0.1.0"
+edition = "2021"
 
 <span class="boring">See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 </span>
 [dependencies]
-cryptatools-core = { git = &quot;https://github.com/gogo2464/cryptatools-rs&quot;, package = 'cryptatools-core' }
-serde_json = &quot;1.0.91&quot;
-r2pipe = { git = &quot;https://github.com/RHL120/r2pipe.rs&quot;, branch = &quot;windows_bad&quot; }
-itertools = &quot;0.10.5&quot;
+cryptatools-core = { git = "https://github.com/gogo2464/cryptatools-rs", package = 'cryptatools-core' }
+serde_json = "1.0.91"
+r2pipe = { git = "https://github.com/RHL120/r2pipe.rs", branch = "windows_bad" }
+itertools = "0.10.5"
 <span class="boring">}</span></code></pre></pre>
 <p>main.rs</p>
 <pre><pre class="playground"><code class="language-rust">use r2pipe::R2Pipe;
@@ -539,9 +541,9 @@ fn convert_u8_to_text(u8_vector: Vec&lt;u8&gt;) -&gt; String {
   let mut string = String::new();
   for num in u8_vector {
 	if num &gt;= 0x0f {
-		write!(&amp;mut string, &quot;{num:x}&quot;);
+		write!(&amp;mut string, "{num:x}");
 	} else {
-		write!(&amp;mut string, &quot;0{num:x}&quot;);
+		write!(&amp;mut string, "0{num:x}");
 	}
   }
   
@@ -549,20 +551,20 @@ fn convert_u8_to_text(u8_vector: Vec&lt;u8&gt;) -&gt; String {
 }
 
 fn is_plain_text(probably_cipher_text: Vec&lt;u8&gt;) -&gt; bool {
-	  let mut r2p = open_pipe!(Some(&quot;-&quot;)).unwrap();
+	  let mut r2p = open_pipe!(Some("-")).unwrap();
 	  
-	  r2p.cmd(&quot;e anal.arch=x86 ; e asm.bits=32 ;&quot;).unwrap();
+	  r2p.cmd("e anal.arch=x86 ; e asm.bits=32 ;").unwrap();
 	  
 	  let string_probably_cipher_text = convert_u8_to_text(probably_cipher_text.clone());
-	  let mut cmd = String::from(&quot;&quot;);
-	  write!(&amp;mut cmd, &quot;wx {string_probably_cipher_text} ;&quot;);
+	  let mut cmd = String::from("");
+	  write!(&amp;mut cmd, "wx {string_probably_cipher_text} ;");
 	  
 	  r2p.cmd(&amp;cmd).unwrap();
-	  let instructions = String::from(r2p.cmd(&quot;pI 0x1e @ 0x00 ;&quot;).unwrap());
+	  let instructions = String::from(r2p.cmd("pI 0x1e @ 0x00 ;").unwrap());
 	  
-	  println!(&quot;instructions: {:?}&quot;, instructions);
+	  println!("instructions: {:?}", instructions);
 	  
-	  if instructions.find(&quot;invalid&quot;).is_none() == false {
+	  if instructions.find("invalid").is_none() == false {
 		return false;  
 	  }
 	
@@ -572,7 +574,7 @@ fn is_plain_text(probably_cipher_text: Vec&lt;u8&gt;) -&gt; bool {
 	  
 	  for character in stat_percentage {
 		  for opcode in character.0 {
-			  println!(&quot;opcode {:x}, statistic: {:?}&quot;, opcode, character.1);
+			  println!("opcode {:x}, statistic: {:?}", opcode, character.1);
 			  if opcode == 0x89 &amp;&amp; character.1 &gt; 20.0/100.0 &amp;&amp; character.1 &lt; 40.0/100.0 { //mov
 			      return false;
 		      }
@@ -583,12 +585,12 @@ fn is_plain_text(probably_cipher_text: Vec&lt;u8&gt;) -&gt; bool {
 }
 
 fn main() {
-  let mut r2p = open_pipe!(Some(&quot;bin&quot;)).unwrap();
-  let mut cipher_text = String::from(r2p.cmd(&quot;p8 0x1e @ 0x2c ;&quot;).unwrap());
+  let mut r2p = open_pipe!(Some("bin")).unwrap();
+  let mut cipher_text = String::from(r2p.cmd("p8 0x1e @ 0x2c ;").unwrap());
   cipher_text.remove(cipher_text.len()-1);
   cipher_text.remove(cipher_text.len()-1);
   
-  println!(&quot;cipher text: {:?}&quot;, cipher_text);
+  println!("cipher text: {:?}", cipher_text);
   
   let unknow_opcode_alphabet = Alphabet::new_empty().unknow_opcodes();
   let bytes = read_plain_text(cipher_text);
@@ -606,7 +608,7 @@ fn main() {
 	  key += 1;
   }
   
-  println!(&quot;plain text:  {:?} decrypted with key {:?}&quot;, is_decrypted, key);
+  println!("plain text:  {:?} decrypted with key {:?}", is_decrypted, key);
   r2p.close();
 }</code></pre></pre>
 <h3 id="33-caesar-breaking-using-reverse-engineering-analaysis-and-implementing-a-decryptor-with-cryptatools"><a class="header" href="#33-caesar-breaking-using-reverse-engineering-analaysis-and-implementing-a-decryptor-with-cryptatools">3.3 Caesar breaking using reverse engineering analaysis and implementing a decryptor with cryptatools.</a></h3>
@@ -638,17 +640,17 @@ cd caesar_shellcode_decryptor ;
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>[package]
-name = &quot;caesar_shellcode_decryptor&quot;
-version = &quot;0.1.0&quot;
-edition = &quot;2021&quot;
+name = "caesar_shellcode_decryptor"
+version = "0.1.0"
+edition = "2021"
 
 <span class="boring">See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 </span>
 [dependencies]
-cryptatools-core = { git = &quot;https://github.com/gogo2464/cryptatools-rs&quot;, package = 'cryptatools-core' }
-serde_json = &quot;1.0.91&quot;
-r2pipe = { git = &quot;https://github.com/RHL120/r2pipe.rs&quot;, branch = &quot;windows_bad&quot; }
-itertools = &quot;0.10.5&quot;
+cryptatools-core = { git = "https://github.com/gogo2464/cryptatools-rs", package = 'cryptatools-core' }
+serde_json = "1.0.91"
+r2pipe = { git = "https://github.com/RHL120/r2pipe.rs", branch = "windows_bad" }
+itertools = "0.10.5"
 <span class="boring">}</span></code></pre></pre>
 <p>Now edit the <code>main.rs</code></p>
 <pre><pre class="playground"><code class="language-rust">use r2pipe::R2Pipe;
@@ -674,12 +676,12 @@ fn read_plain_text(cipher_text: String) -&gt; Vec&lt;u8&gt; {
 
 
 fn main() {
-  let mut r2p = open_pipe!(Some(&quot;bin&quot;)).unwrap();
-  let mut cipher_text = String::from(r2p.cmd(&quot;p8 0x1e @ 0x2c ;&quot;).unwrap());
+  let mut r2p = open_pipe!(Some("bin")).unwrap();
+  let mut cipher_text = String::from(r2p.cmd("p8 0x1e @ 0x2c ;").unwrap());
   cipher_text.remove(cipher_text.len()-1);
   cipher_text.remove(cipher_text.len()-1);
   
-  println!(&quot;cipher text: {:?}&quot;, cipher_text);
+  println!("cipher text: {:?}", cipher_text);
   
   let unknow_opcode_alphabet = Alphabet::new_empty().unknow_opcodes();
   let mut c: CaesarNumberAlgorithm = CaesarNumberAlgorithm::new(unknow_opcode_alphabet.into());
@@ -690,17 +692,17 @@ fn main() {
   let mut string = String::new();
   for num in decrypted {
 	if num &gt;= 0x0f {
-		write!(&amp;mut string, &quot;{num:x}&quot;);
+		write!(&amp;mut string, "{num:x}");
 	} else {
-		write!(&amp;mut string, &quot;0{num:x}&quot;);
+		write!(&amp;mut string, "0{num:x}");
 	}
   }
   
-  println!(&quot;plain text : {:?}&quot;, string);
+  println!("plain text : {:?}", string);
   
   r2p.close();
 }</code></pre></pre>
-<pre><code class="language-shell">$ rasm2 -a x86 -b 32 -D &quot;31c05068626173686862696e2f682f2f2f2f89e35089e25389e1b00bcd80&quot;
+<pre><code class="language-shell">$ rasm2 -a x86 -b 32 -D "31c05068626173686862696e2f682f2f2f2f89e35089e25389e1b00bcd80"
 0x00000000   2                     31c0  xor eax, eax
 0x00000002   1                       50  push eax
 0x00000003   5               6862617368  push 0x68736162
@@ -717,15 +719,15 @@ fn main() {
  -- In radare we trust
 [0x00000000]&gt; ? 0x68736162
 segment 6873000:6162
-string  &quot;bash&quot;
+string  "bash"
 [0x00000000]&gt; ? 0x2f6e6962
-string  &quot;bin/&quot;
+string  "bin/"
 [0x00000000]&gt; ? 0x2f2f2f2f
-string  &quot;////&quot;
+string  "////"
 </code></pre>
 <h3 id="34-caesar-breaking-using-only-reverse-engineering-analaysis-by-debugging-no-cryptanalysis"><a class="header" href="#34-caesar-breaking-using-only-reverse-engineering-analaysis-by-debugging-no-cryptanalysis">3.4 Caesar breaking using only reverse engineering analaysis by debugging. No cryptanalysis.</a></h3>
 <p>In this part we are going to debug the full shellcode in order to decrypt it. We need to have a Linux OS now.</p>
-<pre><code class="language-shell">radare2 -a x86 -b 32 -e esil.romem=true -e emu.write=true -e io.cache=true -s 0x0 -c &quot;aei; aeip; aeim 0xffffd000 0x2000 stack; aesu 0x25; Vp&quot; bin
+<pre><code class="language-shell">radare2 -a x86 -b 32 -e esil.romem=true -e emu.write=true -e io.cache=true -s 0x0 -c "aei; aeip; aeim 0xffffd000 0x2000 stack; aesu 0x25; Vp" bin
 </code></pre>
 <pre><code class="language-shell">&gt; i | grep size
 size     0x4a
@@ -833,6 +835,7 @@ int 0x80
         <script src="../../book.js"></script>
 
         <!-- Custom JS scripts -->
+
 
 
     </div>
