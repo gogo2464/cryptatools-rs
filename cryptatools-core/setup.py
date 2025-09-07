@@ -30,13 +30,8 @@ FROM_TOP = PYTHON_ROOT.relative_to(Path.cwd())
 SRC_ROOT = PYTHON_ROOT.parents[1]
 
 requirements = [
-    "semver>=2.13.0",
     "wheel",
-    "semantic-version==2.9.0",
     "setuptools",
-    "typing_extensions==4.7.1",
-    "pytest==7.1.2",
-    "tox==3.25.1",
 ]
 
 # The environment variable `GLEAN_BUILD_VARIANT` can be set to `debug` or `release`
