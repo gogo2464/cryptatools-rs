@@ -25,11 +25,14 @@ jobs:
         command: build
         args: --release --all-features
 
+    - name: Setup Python 3.11
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+
     - name: Install dependencies
       run: |
-        python3 -m venv venv
-        source venv/bin/activate
-        pip3 install setuptools wheel
+        pip install --break-system-packages setuptools wheel
 
     - name: Build cryptatools
       run: cargo build --all
@@ -47,9 +50,9 @@ jobs:
     
     - name: Build and install Python Bindings
       run: |
-        python3 ./cryptatools-core/setup.py bdist_wheel --verbose ;
-        pip3 install ./dist/* --force-reinstall ;
+        python ./cryptatools-core/setup.py bdist_wheel --verbose ;
+        pip install ./dist/* --force-reinstall ;
     
     - name: Test python bindings
       run: |
-        python3 ./cryptatools-core/binding-testing/testing.py ;
+        python ./cryptatools-core/binding-testing/testing.py ;
