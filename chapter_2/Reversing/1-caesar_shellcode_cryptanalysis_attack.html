@@ -185,6 +185,12 @@
 <p>Shellstorm is a pentester ressource. They provide shellcode for cyber security researcher. Sadly their shellcode could be used by hackers in order to create computer trojan. Hackers could include the shellcode in an image or an executable to add trojan during the execution of the file.</p>
 <p>One of these shellcode uses caesar to obfuscate his signature against anti-virus.</p>
 <p>Today we are going to use cryptatools to break the caesar encryption algorithm to deobfuscate a malware for reverse engineering purpose. We will explore the different way than brute force to break this caesar encryption and we will break ceasar at least.</p>
+<p>This How-to has been tested with cryptatools-core version '0.1.2'. Do not forget to write:</p>
+<pre><code class="language-yaml">[dependencies]
+cryptatools-core = { git = "https://github.com/gogo2464/cryptatools-rs", package = 'cryptatools-core', version = '0.1.2' }
+serde_json = "1.0.91"
+</code></pre>
+<p>in Cargo.toml</p>
 <h3 id="2-reverse-engineering-the-shellcode"><a class="header" href="#2-reverse-engineering-the-shellcode">2-Reverse Engineering the shellcode</a></h3>
 <p>We want to see the machine code of the shellcode in order to see were the data is stocked and to do reverse engineering in order to ensure the encryption algorithm.</p>
 <p>In the case of this analysis, we have access to the <a href="http://shell-storm.org/shellcode/files/shellcode-900.html">Shellstorm shellcode sample link here</a>. So we already have the opcode of the shellcode in the format <code>\x12\x34</code>. So let's copy the opcodes <code>\xeb\x25\x5e\x31\xc9\xb1\x1e\x80\x3e\x07\x7c\x05\x80\x2e\x07\xeb\x11\x31\xdb\x31\xd2\xb3\x07\xb2\xff\x66\x42\x2a\x1e\x66\x29\xda\x88\x16\x46\xe2\xe2\xeb\x05\xe8\xd6\xff\xff\xff\x38\xc7\x57\x6f\x69\x68\x7a\x6f\x6f\x69\x70\x75\x36\x6f\x36\x36\x36\x36\x90\xea\x57\x90\xe9\x5a\x90\xe8\xb7\x12\xd4\x87</code> to the file <code>shellcode.txt</code>.</p>

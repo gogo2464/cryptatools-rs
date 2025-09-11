@@ -432,6 +432,12 @@ module.exports = {
 <p>Shellstorm is a pentester ressource. They provide shellcode for cyber security researcher. Sadly their shellcode could be used by hackers in order to create computer trojan. Hackers could include the shellcode in an image or an executable to add trojan during the execution of the file.</p>
 <p>One of these shellcode uses caesar to obfuscate his signature against anti-virus.</p>
 <p>Today we are going to use cryptatools to break the caesar encryption algorithm to deobfuscate a malware for reverse engineering purpose. We will explore the different way than brute force to break this caesar encryption and we will break ceasar at least.</p>
+<p>This How-to has been tested with cryptatools-core version '0.1.2'. Do not forget to write:</p>
+<pre><code class="language-yaml">[dependencies]
+cryptatools-core = { git = "https://github.com/gogo2464/cryptatools-rs", package = 'cryptatools-core', version = '0.1.2' }
+serde_json = "1.0.91"
+</code></pre>
+<p>in Cargo.toml</p>
 <h3 id="2-reverse-engineering-the-shellcode"><a class="header" href="#2-reverse-engineering-the-shellcode">2-Reverse Engineering the shellcode</a></h3>
 <p>We want to see the machine code of the shellcode in order to see were the data is stocked and to do reverse engineering in order to ensure the encryption algorithm.</p>
 <p>In the case of this analysis, we have access to the <a href="http://shell-storm.org/shellcode/files/shellcode-900.html">Shellstorm shellcode sample link here</a>. So we already have the opcode of the shellcode in the format <code>\x12\x34</code>. So let's copy the opcodes <code>\xeb\x25\x5e\x31\xc9\xb1\x1e\x80\x3e\x07\x7c\x05\x80\x2e\x07\xeb\x11\x31\xdb\x31\xd2\xb3\x07\xb2\xff\x66\x42\x2a\x1e\x66\x29\xda\x88\x16\x46\xe2\xe2\xeb\x05\xe8\xd6\xff\xff\xff\x38\xc7\x57\x6f\x69\x68\x7a\x6f\x6f\x69\x70\x75\x36\x6f\x36\x36\x36\x36\x90\xea\x57\x90\xe9\x5a\x90\xe8\xb7\x12\xd4\x87</code> to the file <code>shellcode.txt</code>.</p>
@@ -1041,6 +1047,10 @@ int 0x80
 <p>Ethereum is a decentralized cryptocurrency. Each people has his own wallet authenticated with a public/private keyset. As ethereum is decentralized, if someone create the adress of somebody else, then he will be able to spoof his identity. Hopefully addresses are random, then we need to create a lot of identities.</p>
 <p>But how many identities do we need to create? A paper at this address <a href="https://download.wpsoftware.net/bitcoin-birthday.pdf">here</a> has already answered to this question.</p>
 <p>Today we are going to implement a cryptanalys attack with <code>cryptatools</code> to automatically know the attempts required instead of calculating manually.</p>
+<pre><code class="language-yaml">[dependencies]
+cryptatools-core = { git = "https://github.com/gogo2464/cryptatools-rs", package = 'cryptatools-core', version = '0.1.2' }
+serde_json = "1.0.91"
+</code></pre>
 <h1 id="2-challenges-and-terms"><a class="header" href="#2-challenges-and-terms">2. Challenges And Terms</a></h1>
 <p>In the origin, the Birtday Paradox Attack is an attack where the attackant wants to check if the has output is tall enough hash output in order to find collision using pure brute force.
 It is effective in web2 hashing algorithm in order to know if collision are possible on hash algorithm.
@@ -1133,6 +1143,10 @@ async fn main() -&gt; eyre::Result&lt;()&gt; {
 <p>ethereum wallet hash and alphabet length provide same resistance as the bitcoin.</p>
 <p>We do not have to worry about the probability to find a wallet collision. It is very safe!</p>
 <p>The source code of this course is <a href="https://github.com/gogo2464/cryptatools-rs/tree/master/docs/doc-examples/ethereum-colision-evaluation">here</a>.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="i--intro-and-challenge"><a class="header" href="#i--intro-and-challenge">I / Intro and challenge</a></h1>
+<p>Antivirus search for a pattern to find a virus. This pattern can be present in programs made by developpers. Somtimes, an antivirus could detect malware where they are not present.</p>
+<p>Based upon this fact, I am going to show you how much percent of luck is present that each yara rule can detect a virus where there is no virus.</p>
+<h1 id="1"><a class="header" href="#1">1.</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><p>The project <code>cryptatools-core</code> is a well documented project. Each element of the library should have been documented in the API documentation.</p>
 <ul>
 <li><a href="https://gogo2464.github.io/cryptatools-rs/cryptatools_core/index.html">See the API Reference at this address: API-Ref</a></li>

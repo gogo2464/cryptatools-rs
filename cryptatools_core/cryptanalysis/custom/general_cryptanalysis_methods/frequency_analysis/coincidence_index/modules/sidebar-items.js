@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"mod":["vigenere_coincidence_index"]};

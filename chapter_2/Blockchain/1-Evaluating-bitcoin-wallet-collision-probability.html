@@ -181,6 +181,10 @@
 <p>Ethereum is a decentralized cryptocurrency. Each people has his own wallet authenticated with a public/private keyset. As ethereum is decentralized, if someone create the adress of somebody else, then he will be able to spoof his identity. Hopefully addresses are random, then we need to create a lot of identities.</p>
 <p>But how many identities do we need to create? A paper at this address <a href="https://download.wpsoftware.net/bitcoin-birthday.pdf">here</a> has already answered to this question.</p>
 <p>Today we are going to implement a cryptanalys attack with <code>cryptatools</code> to automatically know the attempts required instead of calculating manually.</p>
+<pre><code class="language-yaml">[dependencies]
+cryptatools-core = { git = "https://github.com/gogo2464/cryptatools-rs", package = 'cryptatools-core', version = '0.1.2' }
+serde_json = "1.0.91"
+</code></pre>
 <h1 id="2-challenges-and-terms"><a class="header" href="#2-challenges-and-terms">2. Challenges And Terms</a></h1>
 <p>In the origin, the Birtday Paradox Attack is an attack where the attackant wants to check if the has output is tall enough hash output in order to find collision using pure brute force.
 It is effective in web2 hashing algorithm in order to know if collision are possible on hash algorithm.
@@ -282,7 +286,7 @@ async fn main() -&gt; eyre::Result&lt;()&gt; {
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../../chapter_3/api-ref.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../../chapter_2/Reversing/2-yara_rule_false_positive_percentile.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -296,7 +300,7 @@ async fn main() -&gt; eyre::Result&lt;()&gt; {
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../../chapter_3/api-ref.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../../chapter_2/Reversing/2-yara_rule_false_positive_percentile.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
