@@ -12,6 +12,14 @@ One of these shellcode uses caesar to obfuscate his signature against anti-virus
 
 Today we are going to use cryptatools to break the caesar encryption algorithm to deobfuscate a malware for reverse engineering purpose. We will explore the different way than brute force to break this caesar encryption and we will break ceasar at least.
 
+This How-to has been tested with cryptatools-core version '0.1.2'. Do not forget to write:
+```yaml
+[dependencies]
+cryptatools-core = { git = "https://github.com/gogo2464/cryptatools-rs", package = 'cryptatools-core', version = '0.1.2' }
+serde_json = "1.0.91"
+```
+in Cargo.toml
+
 ### 2-Reverse Engineering the shellcode
 
 We want to see the machine code of the shellcode in order to see were the data is stocked and to do reverse engineering in order to ensure the encryption algorithm.

@@ -10,6 +10,12 @@ But how many identities do we need to create? A paper at this address [here](htt
 
 Today we are going to implement a cryptanalys attack with `cryptatools` to automatically know the attempts required instead of calculating manually.
 
+```yaml
+[dependencies]
+cryptatools-core = { git = "https://github.com/gogo2464/cryptatools-rs", package = 'cryptatools-core', version = '0.1.2' }
+serde_json = "1.0.91"
+```
+
 # 2. Challenges And Terms
 
 In the origin, the Birtday Paradox Attack is an attack where the attackant wants to check if the has output is tall enough hash output in order to find collision using pure brute force.

@@ -22,6 +22,11 @@
 
 - [Birthday Paradox On Ethereum Wallets.](./chapter_2/Blockchain/1-Evaluating-bitcoin-wallet-collision-probability.md)
 
+# 3. Virology Research: Birthday Pardadox to study how much percent a yara rule could have false positive
+
+- [Birthday Paradox On yara rule: detecting false positive percent.](./chapter_2/Reversing/2-yara_rule_false_positive_percentile.md)
+
+
 # III - API Ref
 
 - [API-Reference](./chapter_3/api-ref.md)

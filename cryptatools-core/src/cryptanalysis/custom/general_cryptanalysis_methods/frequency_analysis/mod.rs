@@ -1,2 +1,2 @@
-pub mod coincidence_index;
 pub mod distribution_algorithms;
+pub mod coincidence_index;
