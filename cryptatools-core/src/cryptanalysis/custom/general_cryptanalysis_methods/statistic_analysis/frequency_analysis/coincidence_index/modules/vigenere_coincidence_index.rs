@@ -26,7 +26,7 @@ impl VigenereCoincidenceIndexGenerator {
     /// 
     /// ```
     /// use cryptatools_core::utils::{convert::Encode, alphabets::Alphabet};
-    /// use cryptatools_core::cryptanalysis::custom::general_cryptanalysis_methods::frequency_analysis::coincidence_index::modules::vigenere_coincidence_index::VigenereCoincidenceIndexGenerator;
+    /// use cryptatools_core::cryptanalysis::custom::general_cryptanalysis_methods::statistic_analysis::frequency_analysis::coincidence_index::modules::vigenere_coincidence_index::VigenereCoincidenceIndexGenerator;
     /// 
     /// use approx::assert_abs_diff_eq;
     /// 
@@ -67,7 +67,7 @@ impl VigenereCoincidenceIndexGenerator {
     /// ```
     /// use once_cell::sync::Lazy;
     /// use cryptatools_core::utils::{convert::Encode,  alphabets::Alphabet};
-    /// use cryptatools_core::cryptanalysis::custom::general_cryptanalysis_methods::frequency_analysis::coincidence_index::modules::vigenere_coincidence_index::VigenereCoincidenceIndexGenerator;
+    /// use cryptatools_core::cryptanalysis::custom::general_cryptanalysis_methods::statistic_analysis::frequency_analysis::coincidence_index::modules::vigenere_coincidence_index::VigenereCoincidenceIndexGenerator;
     /// use approx::assert_abs_diff_eq;
     /// 
     /// 

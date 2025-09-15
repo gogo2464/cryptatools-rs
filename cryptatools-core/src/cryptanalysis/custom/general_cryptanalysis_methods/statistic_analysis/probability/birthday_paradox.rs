@@ -5,7 +5,7 @@ use num::FromPrimitive;
 use num_traits::Float;
 use num::One;
 
-use crate::cryptanalysis::custom::general_cryptanalysis_methods::frequency_analysis::coincidence_index::engine::coincidence_index::CoincidenceIndexGuesser;
+use crate::cryptanalysis::custom::general_cryptanalysis_methods::statistic_analysis::frequency_analysis::coincidence_index::engine::coincidence_index::CoincidenceIndexGuesser;
 
 use crate::utils::alphabets::Alphabet;
 use crate::utils::alphabets::split_bytes_by_characters_representation;
@@ -27,8 +27,8 @@ impl BirthdayParadox {
     /// Take the len of the hash, 
     /// 
     /// ```
-    /// use cryptatools_core::cryptanalysis::custom::general_cryptanalysis_methods::hash_cryptanalysis::birthday_paradox::BirthdayParadox;
-    /// use cryptatools_core::cryptanalysis::custom::general_cryptanalysis_methods::frequency_analysis::coincidence_index::engine::coincidence_index::CoincidenceIndexGuesser;
+    /// use cryptatools_core::cryptanalysis::custom::general_cryptanalysis_methods::statistic_analysis::probability::birthday_paradox::BirthdayParadox;
+    /// use cryptatools_core::cryptanalysis::custom::general_cryptanalysis_methods::statistic_analysis::frequency_analysis::coincidence_index::engine::coincidence_index::CoincidenceIndexGuesser;
     /// use cryptatools_core::utils::alphabets::Alphabet;
     /// use cryptatools_core::utils::convert::Encode;
     /// 
@@ -78,8 +78,8 @@ impl BirthdayParadox {
     /// Does not convert byte array to representation yet. 
     ///
     /// ```
-    /// use cryptatools_core::cryptanalysis::custom::general_cryptanalysis_methods::frequency_analysis::coincidence_index::engine::coincidence_index::CoincidenceIndexGuesser;
-    /// use cryptatools_core::cryptanalysis::custom::general_cryptanalysis_methods::hash_cryptanalysis::birthday_paradox::BirthdayParadox;
+    /// use cryptatools_core::cryptanalysis::custom::general_cryptanalysis_methods::statistic_analysis::frequency_analysis::coincidence_index::engine::coincidence_index::CoincidenceIndexGuesser;
+    /// use cryptatools_core::cryptanalysis::custom::general_cryptanalysis_methods::statistic_analysis::probability::birthday_paradox::BirthdayParadox;
     /// use cryptatools_core::utils::alphabets::Alphabet;
     /// use cryptatools_core::utils::convert::Encode;
     /// 
@@ -121,10 +121,10 @@ impl BirthdayParadox {
     /// Returns: the number of possible choices.
     ///
     /// ```
-    /// use cryptatools_core::cryptanalysis::custom::general_cryptanalysis_methods::frequency_analysis::coincidence_index::engine::coincidence_index::CoincidenceIndexGuesser;
+    /// use cryptatools_core::cryptanalysis::custom::general_cryptanalysis_methods::statistic_analysis::frequency_analysis::coincidence_index::engine::coincidence_index::CoincidenceIndexGuesser;
     /// use cryptatools_core::utils::alphabets::Alphabet;
     /// use cryptatools_core::utils::convert::Encode;
-    /// use cryptatools_core::cryptanalysis::custom::general_cryptanalysis_methods::hash_cryptanalysis::birthday_paradox::BirthdayParadox;
+    /// use cryptatools_core::cryptanalysis::custom::general_cryptanalysis_methods::statistic_analysis::probability::birthday_paradox::BirthdayParadox;
     /// 
     /// let ascii_alphabet = Alphabet::new_empty().ascii_printable_only_encoding();
     /// let bp = BirthdayParadox::new(ascii_alphabet.into());
@@ -138,10 +138,10 @@ impl BirthdayParadox {
     /// Get number factorial.
     ///
     /// ```
-    /// use cryptatools_core::cryptanalysis::custom::general_cryptanalysis_methods::frequency_analysis::coincidence_index::engine::coincidence_index::CoincidenceIndexGuesser;
+    /// use cryptatools_core::cryptanalysis::custom::general_cryptanalysis_methods::statistic_analysis::frequency_analysis::coincidence_index::engine::coincidence_index::CoincidenceIndexGuesser;
     /// use cryptatools_core::utils::alphabets::Alphabet;
     /// use cryptatools_core::utils::convert::Encode;
-    /// use cryptatools_core::cryptanalysis::custom::general_cryptanalysis_methods::hash_cryptanalysis::birthday_paradox::BirthdayParadox;
+    /// use cryptatools_core::cryptanalysis::custom::general_cryptanalysis_methods::statistic_analysis::probability::birthday_paradox::BirthdayParadox;
     /// 
     /// let ascii_alphabet = Alphabet::new_empty().ascii_printable_only_encoding();
     /// let bp = BirthdayParadox::new(ascii_alphabet.into());
