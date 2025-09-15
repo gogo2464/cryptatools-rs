@@ -6,8 +6,8 @@
 <p>Method to get the percent of chance to get a collision to on a hash.
 Take the len of the hash,</p>
 
-<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>cryptatools_core::cryptanalysis::custom::general_cryptanalysis_methods::hash_cryptanalysis::birthday_paradox::BirthdayParadox;
-<span class="kw">use </span>cryptatools_core::cryptanalysis::custom::general_cryptanalysis_methods::frequency_analysis::coincidence_index::engine::coincidence_index::CoincidenceIndexGuesser;
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>cryptatools_core::cryptanalysis::custom::general_cryptanalysis_methods::statistic_analysis::probability::birthday_paradox::BirthdayParadox;
+<span class="kw">use </span>cryptatools_core::cryptanalysis::custom::general_cryptanalysis_methods::statistic_analysis::frequency_analysis::coincidence_index::engine::coincidence_index::CoincidenceIndexGuesser;
 <span class="kw">use </span>cryptatools_core::utils::alphabets::Alphabet;
 <span class="kw">use </span>cryptatools_core::utils::convert::Encode;
  
@@ -35,8 +35,8 @@ hash = Encode::from_ascii_to_u8(String::from(<span class="string">"1f90"</span>)
 Take the len of the hash,
 Does not convert byte array to representation yet.</p>
 
-<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>cryptatools_core::cryptanalysis::custom::general_cryptanalysis_methods::frequency_analysis::coincidence_index::engine::coincidence_index::CoincidenceIndexGuesser;
-<span class="kw">use </span>cryptatools_core::cryptanalysis::custom::general_cryptanalysis_methods::hash_cryptanalysis::birthday_paradox::BirthdayParadox;
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>cryptatools_core::cryptanalysis::custom::general_cryptanalysis_methods::statistic_analysis::frequency_analysis::coincidence_index::engine::coincidence_index::CoincidenceIndexGuesser;
+<span class="kw">use </span>cryptatools_core::cryptanalysis::custom::general_cryptanalysis_methods::statistic_analysis::probability::birthday_paradox::BirthdayParadox;
 <span class="kw">use </span>cryptatools_core::utils::alphabets::Alphabet;
 <span class="kw">use </span>cryptatools_core::utils::convert::Encode;
  
@@ -57,10 +57,10 @@ It is not a simple multiplication of two object.
 </ul>
 <p>Returns: the number of possible choices.</p>
 
-<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>cryptatools_core::cryptanalysis::custom::general_cryptanalysis_methods::frequency_analysis::coincidence_index::engine::coincidence_index::CoincidenceIndexGuesser;
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>cryptatools_core::cryptanalysis::custom::general_cryptanalysis_methods::statistic_analysis::frequency_analysis::coincidence_index::engine::coincidence_index::CoincidenceIndexGuesser;
 <span class="kw">use </span>cryptatools_core::utils::alphabets::Alphabet;
 <span class="kw">use </span>cryptatools_core::utils::convert::Encode;
-<span class="kw">use </span>cryptatools_core::cryptanalysis::custom::general_cryptanalysis_methods::hash_cryptanalysis::birthday_paradox::BirthdayParadox;
+<span class="kw">use </span>cryptatools_core::cryptanalysis::custom::general_cryptanalysis_methods::statistic_analysis::probability::birthday_paradox::BirthdayParadox;
  
 <span class="kw">let </span>ascii_alphabet = Alphabet::new_empty().ascii_printable_only_encoding();
 <span class="kw">let </span>bp = BirthdayParadox::new(ascii_alphabet.into());
@@ -68,10 +68,10 @@ It is not a simple multiplication of two object.
 <span class="macro">assert_eq!</span>(bp.calculate_permuted_choice_number(<span class="number">2</span>, <span class="number">2</span>), <span class="number">1</span>);</code></pre></div>
 </div></details><details class="toggle method-toggle" open><summary><section id="method.factorial" class="method"><a class="src rightside" href="../../../../../../../src/cryptatools_core/cryptanalysis/custom/general_cryptanalysis_methods/statistic_analysis/probability/birthday_paradox.rs.html#153-159">Source</a><h4 class="code-header">pub fn <a href="#method.factorial" class="fn">factorial</a>(&amp;self, number: <a class="primitive" href="https://doc.rust-lang.org/1.89.0/std/primitive.u64.html">u64</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/1.89.0/std/primitive.u64.html">u64</a></h4></section></summary><div class="docblock"><p>Get number factorial.</p>
 
-<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>cryptatools_core::cryptanalysis::custom::general_cryptanalysis_methods::frequency_analysis::coincidence_index::engine::coincidence_index::CoincidenceIndexGuesser;
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>cryptatools_core::cryptanalysis::custom::general_cryptanalysis_methods::statistic_analysis::frequency_analysis::coincidence_index::engine::coincidence_index::CoincidenceIndexGuesser;
 <span class="kw">use </span>cryptatools_core::utils::alphabets::Alphabet;
 <span class="kw">use </span>cryptatools_core::utils::convert::Encode;
-<span class="kw">use </span>cryptatools_core::cryptanalysis::custom::general_cryptanalysis_methods::hash_cryptanalysis::birthday_paradox::BirthdayParadox;
+<span class="kw">use </span>cryptatools_core::cryptanalysis::custom::general_cryptanalysis_methods::statistic_analysis::probability::birthday_paradox::BirthdayParadox;
 
 <span class="kw">let </span>ascii_alphabet = Alphabet::new_empty().ascii_printable_only_encoding();
 <span class="kw">let </span>bp = BirthdayParadox::new(ascii_alphabet.into());
